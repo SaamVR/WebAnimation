@@ -17,7 +17,7 @@ import threading
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1] / 'site'
-DURATION_MS = {'01-order-journey': 10200, '02-living-ink': 9000, '03-bloom-to-bottle': 11600}
+DURATION_MS = {'01-order-journey': 10200, '02-living-ink': 9000, '03-bloom-to-bottle': 11600, 'Project4': 20500, 'Project5': 22000, 'Project6': 18000, 'Project7': 20400, 'Project8': 19000, 'Project9': 21000}
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -54,7 +54,8 @@ def main():
             with sync_playwright() as pw:
                 browser = pw.chromium.launch(headless=True, args=['--disable-dev-shm-usage'])
                 page = browser.new_page(viewport={'width': args.width, 'height': height}, device_scale_factor=1)
-                page.goto(f'{host}/projects/{args.project}/?render=1', wait_until='load')
+                route = f'/Project{args.project[-1]}/?preview=1' if args.project.startswith('Project') else f'/projects/{args.project}/?render=1'
+                page.goto(f'{host}{route}', wait_until='load')
                 page.wait_for_function('window.motionReady === true')
                 for i in range(frames):
                     page.evaluate('(ms) => window.renderAt(ms)', i * 1000 / args.fps)

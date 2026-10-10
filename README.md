@@ -1,48 +1,54 @@
 # Creative Motion Lab — WebAnimation
 
-A growing collection of creative-coding, procedural and interactive motion experiments. **One GitHub repository and one Render static site** serve all projects.
+Nine independent, code-driven motion studies on **one Render static site**. The gallery is an editorial presentation of interactive product-motion concepts rather than a generic collection of animated icons.
 
-## Live site
+**Live:** https://creative-motion-lab.onrender.com/
 
-- `/` — project gallery
-- `/projects/01-order-journey/` — Order Journey, a deterministic SVG web component; configurable loop, speed and timeline
-- `/projects/02-living-ink/` — Living Ink, a Canvas 2D procedural botanical scene; wind interaction, three color palettes, WebM capture where browser-supported
-- `/projects/03-bloom-to-bottle/` — Bloom to Bottle, an original botanical-to-product sequence with three visual variants, a functional demo Add to Bag control, deterministic frame rendering and WebM capture
+## Routes
+
+| Route | Experience | Practical application |
+| --- | --- | --- |
+| `/Project1/` | Order Journey | E-commerce fulfillment |
+| `/Project2/` | Living Ink | Procedural illustration |
+| `/Project3/` | Bloom to Bottle | Botanical beauty product detail |
+| `/Project4/` | AER | Air-purifier explainer & color variants |
+| `/Project5/` | Atelier | Furniture material configurator |
+| `/Project6/` | Relay | Software workflow explainer |
+| `/Project7/` | Solecraft | Footwear construction & colorways |
+| `/Project8/` | Studio Brew | Espresso-machine product story |
+| `/Project9/` | Kinetic Time | Luxury watch mechanical visual study |
+
+Original Project 1–3 routes under `/projects/` remain intact; their new /ProjectN/ aliases retain the original experiences. Projects 4–9 use shared `site/assets/scenes.js`, `site/assets/studio.js`, and `site/assets/lab.css` but each has unique procedural artwork and choreography. The `site/index.html` gallery contains lazy-loaded previews, navigation, category filters, responsive layout, and accessibility labels.
 
 ## Run locally
 
 ```bash
 cd site
 python3 -m http.server 8080
+# http://localhost:8080
 ```
 
-Then open http://localhost:8080/ . No build dependencies, server or database are required.
+No web build step or backend is needed. The Render static site publishes the `site/` folder directly from `main`.
 
-## Add another animation
+## Motion & interaction
 
-Create `site/projects/03-name/index.html` (and any project assets) and add a gallery card to `site/index.html`. New projects share the same Render service and domain.
+Projects 4–9 offer Play/Pause, deterministic frame scrubbing, 3 responsive product variants, and a **Copy Product Configuration** action. Call `window.renderAt(milliseconds)` to render a specific time for tests, visual QA, or MP4 exports. Use `?preview=1` for an art-only presentation frame.
 
-## Video export
-
-Project 1 supports deterministic `window.renderAt(milliseconds)` with `?render=1`; this enables frame rendering in a headless browser and FFmpeg assembly. Projects 2 and 3 offer browser WebM recording and frame rendering via `window.renderAt(milliseconds)`; browser MediaRecorder exports run in real time and support varies.
-
-## Accessibility and quality
-
-Reduced-motion preferences are respected by default. Timeline scrubbing works while paused. Each experiment is independently viewable and usable without build tooling.
-
-### Reproducible MP4 exports
+Video export:
 
 ```bash
 pip install playwright
 playwright install chromium
-# FFmpeg must be installed on the host
-python scripts/export_video.py --project 01-order-journey --width 1280 --fps 30
-python scripts/export_video.py --project 02-living-ink --width 1280 --fps 30
-python scripts/export_video.py --project 03-bloom-to-bottle --width 1280 --fps 30
+# ffmpeg must be installed
+python scripts/export_video.py --project Project4 --fps 24 --width 1280
+python scripts/export_video.py --project Project5 --fps 24 --width 1280
+# Project6 through Project9 also supported.
 ```
 
-This exporter captures each frame at an explicit timestamp and encodes H.264 MP4 through FFmpeg; no interactive animation input is required during export. If you want art-directed wind in the recorded Living Ink video, add scripted wind to the deterministic renderer.
+## Direction & honesty about scope
 
-## Motion direction and QA
+The brief and beat-by-beat cinematography are recorded in `docs/production-direction-04-09.md`. Projects 4–9 are **original stylized SVG/procedural concept demonstrations**, not physically validated engineering simulations or high-poly photoreal product renders. Their variant controls change the illustrated product appearance or recipe state. Relay uses fictional customer information, not live messaging, calendar, or billing. None of the prototypes performs an actual purchase or accepts customer orders.
 
-Read [`docs/animation-direction.md`](docs/animation-direction.md) for the beat-by-beat choreography, art-direction decisions, and acceptance criteria. The `?render=1` mode freezes each project at the start for reproducible export, and `window.renderAt(ms)` sets deterministic scene time. The mock shopping bag in Project 3 is a **client-side design study**, not a payment checkout or inventory backend.
+## QA
+
+An automated browser pass on 2026-10-10 checked all six newly created routes: an SVG scene at a deterministic time, three clickable variants, no page errors; it also verified nine cards and working filters in the gallery and a narrow mobile viewport with no horizontal overflow. Deployment status is checked separately through Render.
