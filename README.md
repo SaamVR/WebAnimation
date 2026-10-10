@@ -28,3 +28,15 @@ Project 1 supports deterministic `window.renderAt(milliseconds)` with `?render=1
 ## Accessibility and quality
 
 Reduced-motion preferences are respected by default. Timeline scrubbing works while paused. Each experiment is independently viewable and usable without build tooling.
+
+### Reproducible MP4 exports
+
+```bash
+pip install playwright
+playwright install chromium
+# FFmpeg must be installed on the host
+python scripts/export_video.py --project 01-order-journey --width 1280 --fps 30
+python scripts/export_video.py --project 02-living-ink --width 1280 --fps 30
+```
+
+This exporter captures each frame at an explicit timestamp and encodes H.264 MP4 through FFmpeg; no interactive animation input is required during export. If you want art-directed wind in the recorded Living Ink video, add scripted wind to the deterministic renderer.
