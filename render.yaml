@@ -1,0 +1,7 @@
+services:
+  - type: web
+    runtime: static
+    name: creative-motion-lab
+    buildCommand: echo "Creative Motion Lab static assets ready"
+    staticPublishPath: site
+    autoDeployTrigger: commit

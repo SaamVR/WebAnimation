@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#152729"/>
+  <title>Order Journey — Creative Motion Lab</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    :root {color-scheme:dark; --ink:#e9f0e8; --muted:#a6b4ad; --bg:#142624; --line:#355048; --acid:#d6ef8b; }
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'DM Sans',Arial,sans-serif}
+    .shell{max-width:1490px;margin:auto;padding:25px clamp(12px,3.5vw,48px) 36px}
+    .mast{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:23px}
+    .mark{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:700;letter-spacing:.15em}
+    .logo{width:36px;height:36px;border:1px solid #879c93;border-radius:10px;display:grid;place-items:center;color:var(--acid);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.09em}
+    .mast-detail{color:var(--muted);font:500 11px 'Space Grotesk',Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase}
+    .screen-wrap{border-radius:17px;padding:9px;background:#25403b;box-shadow:0 20px 80px #071916b0;border:1px solid #3b5851}
+    order-journey{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#f7f4ec}
+    .controls{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:21px 3px 6px}
+    .play{background:var(--acid);color:#23372c;border:0;font:700 13px 'Space Grotesk',Arial,sans-serif;border-radius:30px;padding:11px 20px;cursor:pointer;min-width:101px}
+    .ghost{background:transparent;border:1px solid #557166;color:#e4eee7;font:600 13px 'Space Grotesk',Arial,sans-serif;border-radius:30px;padding:10px 16px;cursor:pointer}
+    .play:hover,.ghost:hover{filter:brightness(1.12)}
+    input[type=range]{min-width:90px;flex:1;accent-color:var(--acid);cursor:pointer}
+    .time{font:600 12px 'Space Grotesk',Arial,sans-serif;color:var(--muted);white-space:nowrap;min-width:88px;text-align:right}
+    .legends{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:14px;border-top:1px solid var(--line);padding-top:19px;color:#91aba1;font-size:12px}
+    .legends strong{color:#ebf5ec;font-weight:600}
+    a{color:var(--acid);text-decoration:none} a:hover{text-decoration:underline}
+    body.render-only{background:#f7f4ec;overflow:hidden} body.render-only .shell{padding:0;max-width:none} body.render-only .mast,body.render-only .controls,body.render-only .legends{display:none} body.render-only .screen-wrap{padding:0;border:0;border-radius:0;box-shadow:none} body.render-only order-journey{border-radius:0;height:100vh;aspect-ratio:auto}
+    @media(max-width:700px){.mast-detail{display:none}.controls{gap:10px}.time{min-width:80px}.legends{gap:15px}.ghost{font-size:12px;padding:10px 12px}}
+    @media(prefers-reduced-motion:reduce){.play,.ghost{transition:none}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="mast"><div class="mark"><span class="logo">m.</span> MOTION / LAB</div><div class="mast-detail"><a href="../../" style="color:inherit">← COLLECTION</a> &nbsp; / &nbsp; 001—ORDER JOURNEY</div></header>
+    <section class="screen-wrap" aria-label="Interactive Order Journey animation"><order-journey id="motion" aria-label="Animated packaging and drone delivery sequence"></order-journey></section>
+    <div class="controls"><button class="play" id="play">Pause II</button><button class="ghost" id="restart">↺ Replay</button><input id="scrub" type="range" min="0" max="10200" value="0" step="20" aria-label="Scrub animation"/><span class="time" id="time">00:00 / 00:10</span><button class="ghost" id="loop" aria-pressed="true">Loop: on</button><button class="ghost" id="speed" aria-label="Playback speed">Speed: 1×</button></div>
+    <footer class="legends"><span><strong>01</strong> &nbsp; Packaging → Seal → Dispatch</span><span>Procedural SVG &nbsp; · &nbsp; Zero animation dependencies &nbsp; · &nbsp; Web component</span><span>Drag the timeline to inspect each motion</span></footer>
+  </main>
+  <script src="./order-journey.js"></script>
+  <script>
+    const el = document.querySelector('#motion');
+    const play = document.querySelector('#play'), restart = document.querySelector('#restart'), slider = document.querySelector('#scrub'), time = document.querySelector('#time'), loop = document.querySelector('#loop'), speed = document.querySelector('#speed');
+    const qp = new URLSearchParams(location.search);
+    if(qp.has('render')) document.body.classList.add('render-only');
+    function fmt(ms){const s=Math.floor(ms/1000);return `00:${String(s).padStart(2,'0')}`;}
+    el.addEventListener('frame',(evt)=>{let {ms,playing}=evt.detail;slider.value=ms;time.textContent=`${fmt(ms)} / 00:10`;play.textContent=playing?'Pause II':'Play ▶';});
+    play.onclick=()=>el.toggle();restart.onclick=()=>el.restart();
+    slider.addEventListener('input',()=>{const target=+slider.value;el.pause();el.renderAt(target);});
+    loop.onclick=()=>{el.loop=!el.loop;loop.textContent=`Loop: ${el.loop?'on':'off'}`;loop.setAttribute('aria-pressed',String(el.loop));};
+    speed.onclick=()=>{const levels=[.75,1,1.25,1.5];const next=(levels.indexOf(el.speed)+1)%levels.length;el.speed=levels[next];speed.textContent=`Speed: ${el.speed}×`;};
+    if(qp.has('render')){el.loop=false;el.pause();el.renderAt(0);}
+    else if(!matchMedia('(prefers-reduced-motion: reduce)').matches) el.play();
+    window.renderAt=(ms)=>el.renderAt(ms);
+    window.motionReady=true;
+    window.addEventListener('keydown',evt=>{if(evt.code==='Space' && evt.target.tagName!=='BUTTON' && evt.target.tagName!=='INPUT'){evt.preventDefault();el.toggle();}});
+  </script>
+</body>
+</html>
