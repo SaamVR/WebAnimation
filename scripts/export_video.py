@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Export either Creative Motion Lab project to MP4 using its browser timeline.
+"""Export any Creative Motion Lab project to MP4 using its browser timeline.
 
 Install once: pip install playwright && playwright install chromium
 Also install FFmpeg. Example:
 python scripts/export_video.py --project 01-order-journey --width 1280 --fps 30
 python scripts/export_video.py --project 02-living-ink --width 1920 --fps 24
+python scripts/export_video.py --project 03-bloom-to-bottle --width 1920 --fps 24
 """
 import argparse
 import contextlib
@@ -16,7 +17,7 @@ import threading
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1] / 'site'
-DURATION_MS = {'01-order-journey': 10200, '02-living-ink': 9000}
+DURATION_MS = {'01-order-journey': 10200, '02-living-ink': 9000, '03-bloom-to-bottle': 11600}
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):

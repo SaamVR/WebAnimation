@@ -9,6 +9,8 @@ const W = 1440, H = 810, DURATION = 10200;
 const clamp=(n,a=0,b=1)=>Math.min(b,Math.max(a,n));
 const lerp=(a,b,t)=>a+(b-a)*t;
 const easeOut=t=>1-Math.pow(1-t,3);
+const easeInOut=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const elastic=t=>1-Math.exp(-7*t)*Math.cos(12*t);
 const easeIn=t=>t*t*t;
 const smooth=t=>t*t*(3-2*t);
 const back=t=>1+2.70158*Math.pow(t-1,3)+1.70158*Math.pow(t-1,2);
@@ -54,6 +56,7 @@ const template = `
   <circle cx="814" cy="409" r="224" fill="none" stroke="#ffffff" stroke-opacity=".7" stroke-width="2"/>
   <path d="M578 413h470 M814 177v475" stroke="#e0e5db" stroke-width="1.5" stroke-dasharray="7 11"/>
   <circle cx="605" cy="237" r="15" fill="#d6eab3"/><circle cx="1048" cy="550" r="9" fill="#c3dccc"/>
+  <g id="liftDust" opacity="0"><path d="M635 627q-35 0-53-17 M990 627q35 0 53-17" stroke="#abc99c" fill="none" stroke-linecap="round" stroke-width="5"/><circle cx="613" cy="596" r="8" fill="#bcd7a7"/><circle cx="1033" cy="584" r="6" fill="#d5c49b"/></g>
   <g id="speedlines" opacity="0"><path d="M536 495h120 M540 519h79 M1050 434h90 M1050 458h60" stroke="#91b3a4" stroke-width="5" stroke-linecap="round"/></g>
   <ellipse id="groundShadow" cx="814" cy="615" rx="195" ry="26" fill="#5e624f" opacity=".13" filter="url(#blur)"/>
   <g id="parcel" opacity="0">
@@ -84,6 +87,7 @@ const template = `
    <circle cx="3" cy="5" r="31" fill="#e1f7db" opacity=".65"/><path d="M-13 12q16-29 32 0 M-6 19q9-14 17 0" fill="none" stroke="#437e69" stroke-width="5" stroke-linecap="round"/><circle cx="3" cy="25" r="4.5" fill="#437e69"/>
    <rect x="-25" y="-52" width="50" height="11" rx="5" fill="#548c79"/>
   </g>
+  <g id="latchSpark" opacity="0"><circle cx="814" cy="356" r="24" stroke="#c5e083" stroke-width="4" fill="none"/><path d="M784 348l-15-13 M842 341l16-17 M814 320v-14" fill="none" stroke="#86b49b" stroke-width="6" stroke-linecap="round"/></g>
   <g id="burst" opacity="0"><path d="M700 290l-23-20 M915 302l25-18 M814 232v-30 M980 368l23-5 M644 355l-23-5" stroke="#b0c773" stroke-width="6" stroke-linecap="round"/><circle cx="694" cy="347" r="6" fill="#edc37f"/><circle cx="923" cy="340" r="5" fill="#9acdb2"/></g>
   <g id="drone" opacity="0">
    <path d="M-132 7L-54 24 M54 24L132 7" stroke="#395c55" stroke-width="12" stroke-linecap="round"/>
@@ -95,6 +99,7 @@ const template = `
    <g id="rotorRight"><ellipse cx="139" cy="-5" rx="58" ry="8" fill="#7ea79d" opacity=".7"/><path d="M99-5h80" stroke="#204f45" stroke-width="4" stroke-linecap="round"/></g>
    <rect x="-19" y="36" width="38" height="15" rx="6" fill="#173d36"/>
    <path id="tether" d="M0 48V48" stroke="#526f64" stroke-width="3.4" stroke-dasharray="5 4"/>
+   <circle id="hookMagnet" cx="0" cy="55" r="12" fill="#bed58c" stroke="#335e4c" stroke-width="4"/>
    <path id="claw" d="M-13 46l13 8 13-8" stroke="#456a5f" stroke-width="5" fill="none" stroke-linecap="round"/>
   </g>
   <g id="finish" opacity="0">
@@ -118,7 +123,7 @@ const template = `
 
 class OrderJourney extends HTMLElement {
   static get observedAttributes(){return ['autoplay'];}
-  constructor(){super();this.attachShadow({mode:'open'});this.shadowRoot.innerHTML=template;this._playing=false;this._time=0;this._loop=true;this._frame=0;this._last=0;this._speed=1;this.els={};for(const id of ['scene','underline','airPaths','parcel','floor','rearLeft','rearRight','wallLeft','wallRight','boxSideDetail','innerFlap','flapLeft','flapRight','topSeam','tape','tapeDash','shippingLabel','product','burst','drone','rotorLeft','rotorRight','tether','claw','finish','tick','groundShadow','speedlines','phase','countdown','progress','rightLabels'])this.els[id]=this.shadowRoot.getElementById(id);}
+  constructor(){super();this.attachShadow({mode:'open'});this.shadowRoot.innerHTML=template;this._playing=false;this._time=0;this._loop=true;this._frame=0;this._last=0;this._speed=1;this.els={};for(const id of ['scene','underline','airPaths','parcel','floor','rearLeft','rearRight','wallLeft','wallRight','boxSideDetail','innerFlap','flapLeft','flapRight','topSeam','tape','tapeDash','shippingLabel','product','burst','drone','rotorLeft','rotorRight','tether','claw','finish','tick','groundShadow','speedlines','liftDust','latchSpark','hookMagnet','phase','countdown','progress','rightLabels'])this.els[id]=this.shadowRoot.getElementById(id);}
   connectedCallback(){this.renderAt(0);if(this.hasAttribute('autoplay')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)this.play();}
   disconnectedCallback(){this.pause();}
   get duration(){return DURATION;}
@@ -138,7 +143,7 @@ class OrderJourney extends HTMLElement {
     this.setOpacity('scene',inScene);
     E.underline.setAttribute('stroke-dasharray',180);E.underline.setAttribute('stroke-dashoffset',fmt(180*(1-span(t,.12,.85,easeOut))));
     this.setOpacity('airPaths',.4+span(t,5.2,5.85)*.6);
-    const status=t<1.1?'01 / READY TO PACK':t<3.25?'02 / PACKING WITH CARE':t<4.55?'03 / SEALED & SECURE':t<5.65?'04 / LABEL APPLIED':t<7.15?'05 / COURIER ARRIVING':t<8.45?'06 / ON ITS WAY':'07 / ORDER PLACED';
+    const status=t<1.1?'01 / READY TO PACK':t<3.25?'02 / PACKING WITH CARE':t<4.55?'03 / SEALED & SECURE':t<5.65?'04 / LABEL APPLIED':t<7.30?'05 / SECURE PICKUP':t<8.55?'06 / ON ITS WAY':'07 / ORDER PLACED';
     E.phase.textContent=status;
     E.progress.setAttribute('width',fmt(284*t/(DURATION/1000)));
     E.countdown.textContent=`00:${String(Math.min(10,Math.floor(t))).padStart(2,'0')} / 00:10`;
@@ -148,9 +153,11 @@ class OrderJourney extends HTMLElement {
     const scale=lerp(.66,1,base);
     const popY=(1-base)*42;
     // pickup is shared with the drone move, so the package stays attached to its cable.
-    const flight=span(t,7.2,8.65,smooth);
-    const airX=flight*330,airY=-flight*515;
-    this.setTransform('parcel',`translate(${fmt(airX)} ${fmt(airY+popY)}) translate(814 430) scale(${fmt(scale)}) translate(-814 -430)`);
+    const liftPrep=span(t,6.95,7.19,easeOut)*(1-span(t,7.25,7.46));
+    const flight=span(t,7.30,8.68,easeInOut);
+    const airX=flight*440,airY=-flight*565+liftPrep*9;
+    const liftJolt=Math.sin(span(t,7.30,7.64)*Math.PI)*9*(1-flight);
+    this.setTransform('parcel',`translate(${fmt(airX)} ${fmt(airY+popY+liftJolt)}) translate(814 430) scale(${fmt(scale*(1+liftJolt*.0008))} ${fmt(scale*(1-liftJolt*.001))}) translate(-814 -430)`);
     // Floor slides subtly as the walls fold.
     E.floor.setAttribute('fill',t<2.35?'#e3b682':'#9e6e47');
     const initialLeft=[[657,423],[814,495],[814,495],[657,423]];
@@ -176,27 +183,35 @@ class OrderJourney extends HTMLElement {
     const lab=span(t,4.84,5.29,back);this.setOpacity('shippingLabel',win(t,4.85,5.1));
     this.setTransform('shippingLabel',`translate(${fmt((1-lab)*20)} ${fmt((1-lab)*-15)})`);
     // Small product lands into the center of the package, then is concealed.
-    const fall=span(t,2.3,2.96,easeIn), bounce=span(t,2.96,3.19,easeOut);
-    let productY=lerp(176,423,fall)-19*Math.sin(bounce*Math.PI)*(1-bounce);
+    const fall=span(t,2.30,2.96,easeIn), bounce=span(t,2.96,3.25,easeOut);
+    const anticipation=span(t,2.05,2.22)*(1-span(t,2.22,2.36));
+    let productY=lerp(176,423,fall)-20*Math.sin(bounce*Math.PI)*(1-bounce)-anticipation*17;
     const productScale=lerp(.88,.45,fall);
-    this.setTransform('product',`translate(814 ${fmt(productY)}) scale(${fmt(productScale)})`);
+    this.setTransform('product',`translate(814 ${fmt(productY)}) rotate(${fmt((1-fall)*(-7+Math.sin(t*6)*2))}) scale(${fmt(productScale)})`);
     this.setOpacity('product',span(t,1.92,2.25)*(1-span(t,3.13,3.44)));
     this.setOpacity('burst',fade(t,2.91,3.34)*.9);
     // Drone approaches, lowers cable, hooks package and carries it off.
-    const arrive=span(t,5.33,6.4,easeOut);
-    const pickup=span(t,7.1,8.63,smooth);
-    const posX=lerp(1514,814,arrive)+pickup*330;
-    const posY=lerp(228,232,arrive)-pickup*515+Math.sin(t*10)*4.8;
-    this.setOpacity('drone',span(t,5.27,5.64)*(1-span(t,8.38,8.74)));
-    this.setTransform('drone',`translate(${fmt(posX)} ${fmt(posY)}) rotate(${fmt(Math.sin(t*5)*2.1-pickup*11)})`);
+    const arrive=span(t,5.35,6.38,easeOut);
+    const hover=span(t,6.22,6.48);
+    const posX=lerp(1514,814,arrive)+airX;
+    // The drone and package are one kinematic rig during the flight.
+    // Idle bob is removed at latch, keeping the magnet attached to the top face.
+    const bob=Math.sin(t*9)*3.4*(1-span(t,6.9,7.18));
+    const posY=lerp(218,232,arrive)+airY+bob;
+    this.setOpacity('drone',span(t,5.27,5.64)*(1-span(t,8.48,8.82)));
+    this.setTransform('drone',`translate(${fmt(posX)} ${fmt(posY)}) rotate(${fmt((1-hover)*Math.sin(t*5)*1.5-flight*3)})`);
     // Cable descends toward top of carton, and retracts on departure.
-    const cable=span(t,6.34,6.98,easeOut)*(1-span(t,7.16,7.8));
-    const ropeLen=lerp(48,145,cable);
+    const cable=span(t,6.35,6.95,easeOut);
+    // Attachment remains visible while both objects travel on the same path.
+    const ropeLen=lerp(48,119,cable);
     E.tether.setAttribute('d',`M0 48V${fmt(ropeLen)}`);
     E.claw.setAttribute('d',`M-13 ${fmt(ropeLen-2)}l13 8 13-8`);
+    E.hookMagnet.setAttribute('cy',fmt(ropeLen+6));
+    this.setOpacity('latchSpark',fade(t,6.96,7.37));
+    this.setOpacity('liftDust',fade(t,7.29,7.85));
     this.setTransform('rotorLeft',`translate(0 ${fmt(Math.sin(t*66)*1.1)}) scale(1 ${fmt(.7+Math.sin(t*65)*.08)})`);
     this.setTransform('rotorRight',`translate(0 ${fmt(Math.sin(t*66+1)*1.1)}) scale(1 ${fmt(.7+Math.sin(t*65+2)*.08)})`);
-    this.setOpacity('speedlines',fade(t,7.43,8.62)*.85);
+    this.setOpacity('speedlines',fade(t,7.49,8.67)*.85);
     // Physical contact shadow tracks the lift, naturally fading with altitude.
     E.groundShadow.setAttribute('rx',fmt(195+flight*55));E.groundShadow.setAttribute('opacity',fmt(.13*(1-flight*.92)));
     // A subtle elastic squash on impact, visible while the bottle lands.
@@ -204,10 +219,10 @@ class OrderJourney extends HTMLElement {
     const squash=1+Math.sin(impact*Math.PI)*.085;
     if(impact>0) this.setTransform('product',`translate(814 ${fmt(productY)}) scale(${fmt(productScale/squash)} ${fmt(productScale*squash)})`);
     // Closing card uses scale + opacity rather than another asset.
-    const done=span(t,8.45,9.07,back);
-    this.setOpacity('finish',span(t,8.45,8.85)*(1-span(t,9.78,10.13)));
+    const done=span(t,8.55,9.07,back);
+    this.setOpacity('finish',span(t,8.55,8.95)*(1-span(t,9.86,10.18)));
     this.setTransform('finish',`translate(814 411) scale(${fmt(.78+done*.22)}) translate(-814 -411)`);
-    E.tick.setAttribute('stroke-dasharray','160');E.tick.setAttribute('stroke-dashoffset',fmt(160*(1-span(t,8.64,9.3,easeOut))));
+    E.tick.setAttribute('stroke-dasharray','160');E.tick.setAttribute('stroke-dashoffset',fmt(160*(1-span(t,8.78,9.29,easeOut))));
     this.dispatchEvent(new CustomEvent('frame',{detail:{ms:this._time,playing:this._playing}}));
   }
   _tick=(stamp)=>{
