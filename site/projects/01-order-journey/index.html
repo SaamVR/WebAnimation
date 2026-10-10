@@ -49,7 +49,7 @@
     slider.addEventListener('input',()=>{const target=+slider.value;el.pause();el.renderAt(target);});
     loop.onclick=()=>{el.loop=!el.loop;loop.textContent=`Loop: ${el.loop?'on':'off'}`;loop.setAttribute('aria-pressed',String(el.loop));};
     speed.onclick=()=>{const levels=[.75,1,1.25,1.5];const next=(levels.indexOf(el.speed)+1)%levels.length;el.speed=levels[next];speed.textContent=`Speed: ${el.speed}×`;};
-    if(qp.has('render')){el.loop=false;el.pause();el.renderAt(0);}
+    if(qp.has('render')){el.loop=false;el.pause();el.renderAt(0);} else if(qp.has('preview')){document.body.classList.add('render-only');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)el.play();}
     else if(!matchMedia('(prefers-reduced-motion: reduce)').matches) el.play();
     window.renderAt=(ms)=>el.renderAt(ms);
     window.motionReady=true;
