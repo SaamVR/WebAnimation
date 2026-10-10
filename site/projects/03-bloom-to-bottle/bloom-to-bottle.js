@@ -86,7 +86,7 @@ function petalsAndSparkles(t,p){const sustain=stage(t,5.08,5.90)*(1-stage(t,10.7
  }
  g.strokeStyle=p.dark+'66';g.setLineDash([2,12]);g.lineWidth=2;g.beginPath();g.ellipse(963,454,250,217,.08,0,TAU);g.stroke();g.setLineDash([]);g.restore();
 }
-function framing(t,p){const reveal=stage(t,7.08,7.75,out);g.globalAlpha=reveal;
+function framing(t,p){if(window.innerWidth<=700)return;const reveal=stage(t,7.08,7.75,out);g.globalAlpha=reveal;
  g.textAlign='center';g.font='600 13px Space Grotesk';g.fillStyle='#4a7457';g.fillText('PLANT-INSPIRED · EVERYDAY RITUAL',962,735);
  g.strokeStyle=p.leaf;g.lineWidth=2.4;g.beginPath();g.moveTo(821,750);g.lineTo(1105,750);g.stroke();g.globalAlpha=1;
  g.textAlign='left';g.font='600 14px Space Grotesk';g.fillStyle='#738673';g.fillText(t<3?'01 / THE BOTANICAL':t<5.6?'02 / THE TRANSFORMATION':t<7.45?'03 / THE FORMULA':'04 / THE RITUAL',70,739);
