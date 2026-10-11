@@ -1,0 +1,25 @@
+name: Campaign media QA
+on:
+  push:
+    branches:
+      - feat/motion-portfolio-media-first-20261011
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-route-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check scripts compile
+        run: |
+          node --check site/campaign/campaign.js
+          node --check site/assets/solecraft-actual-shoe-poster.js
+      - name: Check nine campaign routes and media/source contracts
+        run: node scripts/check-campaign-media.mjs
