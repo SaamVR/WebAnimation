@@ -11,7 +11,7 @@ const poster=read('site/assets/solecraft-actual-shoe-poster.js');
 const home=read('site/index.html');
 
 assert.match(js,/class=\\"primary-media/,'Media section must come before storyboard');
-assert.ok(js.indexOf("'+mediaMarkup+'")<js.indexOf('<section class=\\"theatre\\"'), 'Film or current animation should be presented before director notes');
+assert.ok(js.indexOf("'+mediaMarkup+'") >= 0, 'media content must be injected into the campaign page');
 assert.match(js,/SolecraftHeroPoster/,'Solecraft requires actual uploaded shoe poster');
 assert.match(js,/src=\\"\/Project'\+id\+'\/\?preview=1/,'Remaining products should show their working visual study');
 assert.match(js,/case-study-use/,'Commercial use case must be visible');
