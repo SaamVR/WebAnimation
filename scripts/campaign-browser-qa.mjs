@@ -20,6 +20,16 @@ try {
    await page.locator('.chapter').nth(3).click();
    assert.equal(await page.locator('.chapter[aria-pressed=true]').count(),1,'chapter must be selectable');
    assert.equal(errors.length,0,'No JavaScript errors on product'+n+': '+errors.join(','));
+   if(n===2){
+      await page.waitForSelector('#living-brand-root[data-ready="true"]',{timeout:12000});
+      assert.match(await page.locator('#identity-product').innerText(),/Morning Mint/);
+      await page.locator('button[data-blend="hibiscus"]').click();
+      assert.match(await page.locator('#identity-product').innerText(),/Hibiscus Bloom/);
+      assert.match(await page.locator('#identity-title').innerText(),/vibrant/i);
+      assert.equal(await page.locator('button[aria-pressed="true"][data-blend]').count(),1);
+      await page.screenshot({path:dir+'/living-ink-brand-desktop.png',fullPage:true});
+      console.log('LIVING INK PASS: artwork embedded and packaging SKU updates product identity');
+   }
    if(n===6){
       await page.waitForSelector('#relay-request',{timeout:10000});
       await page.locator('#relay-analyze').click();
