@@ -18,3 +18,12 @@
 .case-body p{font-size:15px;line-height:1.7;color:#d8dfd6;margin:0}
 .case-body strong{display:block;font-size:10px;letter-spacing:.17em;color:var(--light);margin-bottom:7px}
 @media(max-width:800px){.media-topline{font-size:8px;padding:15px;flex-direction:column;gap:4px}.media-motion .media-frame{height:430px;min-height:0}.solecraft-media{min-height:390px}.media-lower{padding:27px 15px 19px;align-items:start;flex-direction:column;gap:12px}.media-lower p{font-size:10px}.media-motion .media-lower{margin-top:-138px;min-height:138px}.case-study-use{grid-template-columns:1fr;gap:12px;padding:20px 0 65px}}
+
+/* Homepage thumbnail: actual Solecraft model rather than the old SVG sneaker. */
+.preview-mode{overflow:hidden}
+.preview-mode .shell{width:100%;margin:0}
+.preview-mode .nav,.preview-mode .heading,.preview-mode .theatre,.preview-mode .details,.preview-mode .case-study-use,.preview-mode .footer{display:none!important}
+.preview-mode .primary-media{position:fixed;inset:0;margin:0;border:0;border-radius:0;min-height:0;height:100vh;background:#554843}
+.preview-mode .solecraft-media::before{opacity:.15}
+.preview-mode .shoe-actual{object-fit:cover}
+.preview-mode .media-topline,.preview-mode .media-lower{display:none}
