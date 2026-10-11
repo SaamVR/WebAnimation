@@ -10,10 +10,10 @@ const css=read('site/campaign/campaign.css');
 const poster=read('site/assets/solecraft-actual-shoe-poster.js');
 const home=read('site/index.html');
 
-assert.match(js,/class=\\"primary-media/,'Media section must come before storyboard');
+assert.ok(js.includes('class="primary-media'), 'Campaign must include media section');
 assert.ok(js.indexOf("'+mediaMarkup+'") >= 0, 'media content must be injected into the campaign page');
 assert.match(js,/SolecraftHeroPoster/,'Solecraft requires actual uploaded shoe poster');
-assert.match(js,/src=\\"\/Project'\+id\+'\/\?preview=1/,'Remaining products should show their working visual study');
+assert.ok(js.includes('src="/Project\'+id+\'/?preview=1'), 'Other projects need working preview routes');
 assert.match(js,/case-study-use/,'Commercial use case must be visible');
 assert.match(js,/currentOutcome\.deliverable/,'Deliverable needs to be described');
 assert.match(js,/CampaignTest/,'Existing timeline API must remain available');
