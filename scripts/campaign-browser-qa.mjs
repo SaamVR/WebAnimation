@@ -20,6 +20,23 @@ try {
    await page.locator('.chapter').nth(3).click();
    assert.equal(await page.locator('.chapter[aria-pressed=true]').count(),1,'chapter must be selectable');
    assert.equal(errors.length,0,'No JavaScript errors on product'+n+': '+errors.join(','));
+   if(n===6){
+      await page.waitForSelector('#relay-request',{timeout:10000});
+      await page.locator('#relay-analyze').click();
+      assert.match(await page.locator('#relay-summary').innerText(),/CONSULTATION/i);
+      assert.match(await page.locator('#relay-summary').innerText(),/TUESDAY/i);
+      await page.locator('.relay-slot[data-slot="10:30"]').click();
+      assert.equal(await page.locator('#relay-confirm').isDisabled(),false);
+      await page.locator('#relay-confirm').click();
+      assert.match(await page.locator('#relay-result').innerText(),/No real booking was created/i);
+      await page.screenshot({path:dir+'/relay-confirmed-desktop.png',fullPage:true});
+      const input=page.locator('#relay-request');
+      await input.fill('I need help with my website');
+      assert.equal(await page.locator('#relay-confirm').isDisabled(),true);
+      await page.locator('#relay-analyze').click();
+      assert.match(await page.locator('#relay-summary').innerText(),/UNSPECIFIED/);
+      console.log('RELAY WORKFLOW PASS: editable request -> parsed -> selected -> explicitly confirmed demo');
+   }
    if(n===7){
       const img=page.locator('img.shoe-actual');
       await img.waitFor();
