@@ -107,8 +107,8 @@ const template = `
    <circle cx="814" cy="398" r="90" fill="#edf6d9"/>
    <path id="tick" d="M770 394l31 32 58-67" fill="none" stroke="#2b5e4b" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
    <circle cx="681" cy="327" r="8" fill="#99c5a5"/><circle cx="954" cy="329" r="12" fill="#c1d87e"/><circle cx="701" cy="512" r="6" fill="#ebb979"/><path d="M927 504l22 12m-4-31 20-7" stroke="#92bda3" stroke-width="6" stroke-linecap="round"/>
-   <text x="814" y="568" fill="#24493d" font-size="38" font-weight="700" text-anchor="middle" letter-spacing="-1.6">ORDER PLACED!</text>
-   <text x="814" y="603" fill="#627e6b" font-size="17" text-anchor="middle" class="mini">A little joy is headed your way.</text>
+   <text x="814" y="568" fill="#24493d" font-size="38" font-weight="700" text-anchor="middle" letter-spacing="-1.6">DISPATCHED!</text>
+   <text x="814" y="603" fill="#627e6b" font-size="17" text-anchor="middle" class="mini">Your package is on its way.</text>
   </g>
  </g>
  <g id="footer" aria-label="Animation phase and progress">
@@ -143,7 +143,7 @@ class OrderJourney extends HTMLElement {
     this.setOpacity('scene',inScene);
     E.underline.setAttribute('stroke-dasharray',180);E.underline.setAttribute('stroke-dashoffset',fmt(180*(1-span(t,.12,.85,easeOut))));
     this.setOpacity('airPaths',.4+span(t,5.2,5.85)*.6);
-    const status=t<1.1?'01 / READY TO PACK':t<3.25?'02 / PACKING WITH CARE':t<4.55?'03 / SEALED & SECURE':t<5.65?'04 / LABEL APPLIED':t<7.30?'05 / SECURE PICKUP':t<8.55?'06 / ON ITS WAY':'07 / ORDER PLACED';
+    const status=t<1.1?'01 / READY TO PACK':t<3.25?'02 / PACKING WITH CARE':t<4.55?'03 / SEALED & SECURE':t<5.65?'04 / LABEL APPLIED':t<7.30?'05 / SECURE PICKUP':t<8.55?'06 / ON ITS WAY':'07 / DISPATCHED';
     E.phase.textContent=status;
     E.progress.setAttribute('width',fmt(284*t/(DURATION/1000)));
     E.countdown.textContent=`00:${String(Math.min(10,Math.floor(t))).padStart(2,'0')} / 00:10`;
