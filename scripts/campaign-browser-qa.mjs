@@ -31,6 +31,8 @@ try {
       await page.locator('button[data-status="handoff"]').click();
       const finalTime=await page.locator('#order-live-film').evaluate(frame=>frame.contentWindow.document.querySelector('#scrub')?.value);
       assert.equal(Number(finalTime),9600,'Real delivery pickup should be synchronized with status');
+      const closing=await page.locator('#order-live-film').evaluate(frame=>frame.contentWindow.document.querySelector('#finish text')?.textContent);
+      assert.match(closing,/DISPATCHED!/,'Final animation frame must match dispatched order status');
       assert.match(await page.locator('#order-feedback').innerText(),/Fictional order demo/);
       await page.screenshot({path:dir+'/order-tracking-functional.png',fullPage:true});
       console.log('ORDER STORY PASS: milestones seek real box animation at 5.2s and 9.6s, with honest demo state');
