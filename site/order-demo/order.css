@@ -1,0 +1,24 @@
+
+.order-feature{background:#14231c;min-height:0}
+.order-layout{display:grid;grid-template-columns:minmax(0,1.28fr) minmax(310px,.72fr);min-height:520px}
+.order-live-frame{height:100%;min-height:520px;width:100%;border:0;background:#cde4bd}
+.order-panel{padding:30px clamp(20px,3vw,38px);height:100%;display:flex;flex-direction:column;background:radial-gradient(ellipse at 30% 0%,#40593b,#1a2c22 61%)}
+.order-panelhead{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:9px;font-weight:800;letter-spacing:.11em;color:#c3d8bc;padding-bottom:28px}
+.order-panelhead b{color:#e9f9d3;font-size:8px}
+.order-status-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;color:#a9c1a4;font-size:9px;font-weight:800;letter-spacing:.1em}
+.order-status-top strong{color:#ecfce4;font-size:11px;letter-spacing:.02em}
+.order-status-title{font-size:clamp(25px,2.6vw,38px);letter-spacing:-.055em;line-height:1.08;font-weight:600;margin:0 0 11px}
+.order-status-deck{color:#b6cdb4;line-height:1.65;font-size:12px;margin:0 0 24px}
+.order-milestones{margin:0;padding:0;list-style:none;display:grid;gap:6px;flex:1}
+.order-milestones li{list-style:none}
+.order-milestone{width:100%;display:flex;gap:12px;align-items:center;text-align:left;border:1px solid #eaffd012;background:#ffffff06;border-radius:9px;color:#f3faed;padding:10px 12px}
+.order-milestone i{font-style:normal;flex-shrink:0;width:30px;height:30px;display:grid;place-items:center;border:1px solid #aec8a968;border-radius:50%;font-size:11px;color:#d4e9c8}
+.order-milestone strong{font-size:12px;display:block}
+.order-milestone small{font-size:9px;display:block;color:#b2c3ad;line-height:1.4;margin-top:3px}
+.order-milestone[aria-pressed=true]{background:#bde8a7;color:#1e3728;border-color:#d8f5c3}
+.order-milestone[aria-pressed=true] small{color:#345b39}
+.order-milestone[aria-pressed=true] i{background:#254a34;border-color:#254a34;color:#d8f5c3}
+.order-feedback{color:#d0e4ca;border-left:2px solid #bde8a7;padding-left:13px;line-height:1.5;font-size:10px;margin:16px 0}
+.order-panel-foot{border-top:1px solid #ffffff30;padding-top:13px;font-size:9px;letter-spacing:.11em;color:#8ca68c}
+@media(max-width:980px){.order-layout{grid-template-columns:1fr}.order-live-frame{height:400px;min-height:0}.order-panel{padding:25px}.order-milestones{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}}
+@media(max-width:540px){.order-live-frame{height:300px}.order-milestones{grid-template-columns:1fr}.order-panelhead{flex-wrap:wrap}}
