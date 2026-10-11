@@ -20,6 +20,21 @@ try {
    await page.locator('.chapter').nth(3).click();
    assert.equal(await page.locator('.chapter[aria-pressed=true]').count(),1,'chapter must be selectable');
    assert.equal(errors.length,0,'No JavaScript errors on product'+n+': '+errors.join(','));
+   if(n===1){
+      await page.waitForSelector('#order-workflow-root[data-ready="true"]',{timeout:12000});
+      await page.waitForFunction(()=>document.getElementById('order-workflow-root')?.dataset.synced==='true',{timeout:12000});
+      await page.locator('button[data-status="sealed"]').click();
+      assert.equal(await page.locator('#order-workflow-root').getAttribute('data-status'),'sealed');
+      assert.equal(await page.locator('#order-workflow-root').getAttribute('data-synced'),'true');
+      const sealTime=await page.locator('#order-live-film').evaluate(frame=>frame.contentWindow.document.querySelector('#scrub')?.value);
+      assert.equal(Number(sealTime),5200,'Real package should seek to seal animation');
+      await page.locator('button[data-status="handoff"]').click();
+      const finalTime=await page.locator('#order-live-film').evaluate(frame=>frame.contentWindow.document.querySelector('#scrub')?.value);
+      assert.equal(Number(finalTime),9600,'Real delivery pickup should be synchronized with status');
+      assert.match(await page.locator('#order-feedback').innerText(),/Fictional order demo/);
+      await page.screenshot({path:dir+'/order-tracking-functional.png',fullPage:true});
+      console.log('ORDER STORY PASS: milestones seek real box animation at 5.2s and 9.6s, with honest demo state');
+   }
    if(n===2){
       await page.waitForSelector('#living-brand-root[data-ready="true"]',{timeout:12000});
       assert.match(await page.locator('#identity-product').innerText(),/Morning Mint/);
