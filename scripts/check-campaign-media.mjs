@@ -37,5 +37,5 @@ for(let n=1;n<=9;n++){
 }
 const shoePage=read('site/product7/index.html');
 assert.ok(shoePage.indexOf('solecraft-actual-shoe-poster.js')<shoePage.indexOf('campaign.js'),'Solecraft poster must be registered before campaign module');
-assert.match(js,/not yet hosted on this page/,'Must not imply unhosted director film is already online');
+assert.ok(js.includes('not hosted on this page yet'), 'Must not imply unhosted director film is already online');
 console.log('PASS: 9 routes, working-media embedding, real shoe poster integrity, buyer stories, legacy preservation.');
