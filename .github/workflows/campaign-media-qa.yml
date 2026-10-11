@@ -23,3 +23,19 @@ jobs:
           node --check site/assets/solecraft-actual-shoe-poster.js
       - name: Check nine campaign routes and media/source contracts
         run: node scripts/check-campaign-media.mjs
+      - name: Prepare Chromium browser testing
+        run: |
+          npm install --no-save playwright@1.56.0
+          npx playwright install chromium --with-deps
+      - name: Audit real browser rendering and campaign interactions
+        run: |
+          python3 -m http.server 8799 --bind 127.0.0.1 --directory site > /tmp/campaign-server.log 2>&1 &
+          sleep 2
+          node scripts/campaign-browser-qa.mjs
+      - name: Preserve visual proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: campaign-browser-evidence
+          path: qa-artifacts/
+          if-no-files-found: ignore
