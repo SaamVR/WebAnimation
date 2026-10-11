@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feat/motion-portfolio-media-first-20261011
+      - feat/living-ink-brand-experience-20261011
   workflow_dispatch:
 
 permissions:
@@ -25,6 +26,8 @@ jobs:
         run: node scripts/check-campaign-media.mjs
       - name: Verify functional Relay workflow core
         run: node --test scripts/tests/relay-workflow.test.mjs
+      - name: Verify Living Ink brand configuration
+        run: node --test scripts/tests/living-brand.test.mjs
       - name: Prepare Chromium browser testing
         run: |
           npm install --no-save playwright@1.56.0
