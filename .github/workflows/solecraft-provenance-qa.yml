@@ -1,0 +1,41 @@
+name: Solecraft provenance gate
+on:
+  push:
+    branches:
+      - feat/solecraft-provenance-gate-20261013
+  pull_request:
+    paths:
+      - 'scripts/asset-validate.mjs'
+      - 'scripts/runtime-preflight.mjs'
+      - 'scripts/tests/asset-validate.test.mjs'
+      - 'scripts/tests/runtime-preflight.test.mjs'
+      - 'docs/assets/solecraft-license-ledger.md'
+      - '.github/workflows/solecraft-provenance-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate sources and tests without downloading trademarked art
+        run: |
+          node --check scripts/runtime-preflight.mjs
+          node --check scripts/asset-validate.mjs
+          node --test scripts/tests/runtime-preflight.test.mjs scripts/tests/asset-validate.test.mjs
+      - name: Capture executable availability without claiming WebGL evidence
+        run: |
+          mkdir -p qa-artifacts
+          node scripts/runtime-preflight.mjs --json > qa-artifacts/solecraft-runtime-preflight.json
+      - name: Preserve capability report
+        uses: actions/upload-artifact@v4
+        with:
+          name: solecraft-provenance-capability-report
+          path: qa-artifacts/solecraft-runtime-preflight.json
