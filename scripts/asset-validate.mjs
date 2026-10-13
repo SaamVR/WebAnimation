@@ -50,14 +50,33 @@ export async function validateShoeAsset(path, manifest = {}) {
       try {
         gltf = JSON.parse(bytes.toString('utf8', 20, 20 + jsonLength).replace(/\0+$/g, '').trim());
         if (gltf.asset?.version !== '2.0') errors.push('GLB JSON must declare glTF asset version 2.0.');
-        if (!Array.isArray(gltf.meshes) || gltf.meshes.length === 0) errors.push('GLB contains no declared product mesh.');
+        const hasPositionData = Array.isArray(gltf.meshes) && gltf.meshes.some(mesh =>
+          Array.isArray(mesh.primitives) && mesh.primitives.some(primitive => {
+            const index = primitive.attributes?.POSITION;
+            return Number.isInteger(index) && index >= 0 &&
+              Number.isInteger(gltf.accessors?.[index]?.count) && gltf.accessors[index].count > 0;
+          })
+        );
+        if (!hasPositionData) errors.push('GLB has no mesh primitive with a nonempty POSITION accessor.');
       } catch {
         errors.push('GLB JSON chunk cannot be parsed.');
       }
     }
   }
   const embeddedVariants = gltf?.extensions?.KHR_materials_variants?.variants;
-  const variantVerified = Array.isArray(embeddedVariants) && embeddedVariants.length > 0;
+  const variantVerified = Array.isArray(embeddedVariants) && embeddedVariants.length > 0 &&
+    Array.isArray(gltf?.meshes) && gltf.meshes.some(mesh =>
+      Array.isArray(mesh.primitives) && mesh.primitives.some(primitive =>
+        Array.isArray(primitive.extensions?.KHR_materials_variants?.mappings) &&
+        primitive.extensions.KHR_materials_variants.mappings.some(mapping =>
+          Number.isInteger(mapping.material) && mapping.material >= 0 &&
+          mapping.material < (gltf.materials?.length ?? 0) &&
+          Array.isArray(mapping.variants) && mapping.variants.some(i =>
+            Number.isInteger(i) && i >= 0 && i < embeddedVariants.length
+          )
+        )
+      )
+    );
   const names = variantVerified
     ? embeddedVariants.map(v => v?.name).filter(v => typeof v === 'string' && v.trim())
     : (Array.isArray(manifest.variantNames) ? manifest.variantNames.filter(v => typeof v === 'string' && v.trim()) : []);
