@@ -6,12 +6,12 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { validateShoeAsset } from '../asset-validate.mjs';
 
-function fakeGlb({ variants = true } = {}) {
+function fakeGlb({ variants = true, mapped = true } = {}) {
   const doc = {
     asset: { version: '2.0' },
     meshes: [{ primitives: [{
       attributes: { POSITION: 0 },
-      ...(variants ? { extensions: { KHR_materials_variants: {
+      ...(variants && mapped ? { extensions: { KHR_materials_variants: {
         mappings: [{ material: 0, variants: [0, 1, 2] }]
       } } } : {})
     }] }],
@@ -76,15 +76,15 @@ test('asset missing, rights unknown and wrong checksum block intake', async () =
     assert.match((await validateShoeAsset(path, { ...manifest(bytes), classification: 'production' })).errors.join(' '), /public-use authorization/);
   });
 });
-test('extension without any mesh variant binding is not a verified colorway', () =>
+test('GLB extension color names without mesh bindings are not verified material variants', () =>
   fixture(async (path, bytes) => {
-    const modified = fakeGlb({ variants: false });
-    // Declared colors alone remain non-verifiable without mesh material bindings.
     const result = await validateShoeAsset(path, { ...manifest(bytes), variantNames: ['Sky'] });
+    assert.equal(result.ok, true);
     assert.equal(result.variantVerified, false);
+    assert.equal(result.variantSource, 'manifest declaration');
+    assert.deepEqual(result.variantNames, ['Sky']);
     assert.equal(result.productionReady, false);
-    assert.equal(modified.length > 20, true);
-  }, { variants: false })
+  }, { variants: true, mapped: false })
 );
 test('manifest colorways are declarations, not verified GLB materials', () =>
   fixture(async (path, bytes) => {
