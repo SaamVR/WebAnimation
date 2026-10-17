@@ -4,7 +4,7 @@ import test from 'node:test';
 const html = readFileSync(new URL('../../site/threads/index.html', import.meta.url), 'utf8');
 const script = readFileSync(new URL('../../site/threads/app.mjs', import.meta.url), 'utf8');
 const art = readFileSync(new URL('../../site/threads/reference-art.mjs', import.meta.url), 'utf8');
-const sections = ['id="top"','class="hero panel-wrap"','id="categories"','id="shop"','id="about"','id="mission"','id="arrivals"','class="panel-wrap sale"','id="deal"','class="site-footer"'];
+const sections = ['id="top"','class="hero panel-wrap"','id="categories"','id="shop"','id="about"','id="mission"','id="arrivals"','class="panel-wrap sale section-space"','id="deal"','class="site-footer"'];
 test('all canonical sections appear in screenshot order', () => {
   let last = -1;
   for(const marker of sections){const i=html.indexOf(marker);assert(i>=0, marker);assert(i>last,marker+' must follow the previous section');last=i;}
