@@ -54,3 +54,13 @@ The earlier `--content:1140px` reduced a 1440px browser's panels to 1068px and c
 Browser QA correction: promotional pseudo-element/compositing combination concealed the prior approved backpack in Chromium after palette update. A dedicated, versioned CSS correction raises original static image layer, removes the faulty mask/blend, and preserves the owner-supplied backpack file without altering the composition or assigning T03 motion.
 
 Final visual QA: image compositing defect persisted for inline <img> across browser widths despite decode succeeding. The original owner image now paints as CSS background of the existing promo image stage, while the existing img stays in markup for text alternatives and layout. Its opaque white canvas blends with the approved #F1EFEB, preserving subject art. The previous defective deal-art-layer-fix stylesheet is superseded.
+
+## Approved standalone asset integration — October 18 (latest)
+The owner supplied six images, applied without changing the page architecture or animation assignments:
+1. Header icons: precisely extracted silhouette of search, heart and shopping cart, colored #2E453A; wordmark remains unchanged.
+2. Featured Products: four individual crops of olive sneaker, silver sneaker, red backpack and black headphones. Card layout, prices, controls and cart behavior remain intact. Silver product display color and name updated to reflect actual supplied image.
+3. Quality story: five crops from the approved orange sneaker + four-panel macro collage, placed into the preexisting CSS grid.
+4. Brighter Everyday: source image black top/bottom bars trimmed; original dark-green product photo used without recoloring.
+5. Last Chance to Save: moody sneaker artwork with a light text-protective overlay; countdown remains static sample numbers.
+6. Deal of the Week: owner illustration cropped only to its transparency content bounds; original beige panel and all backpack/cap/bottle/shoe details retained. A crop of the same original art is used at narrow screen widths.
+All media files are local assets in site/threads/assets and served without EcomCMS dependency. T01–T04 motion is deferred.

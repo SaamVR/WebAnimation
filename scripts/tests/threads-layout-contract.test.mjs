@@ -32,15 +32,15 @@ test('four featured and six arrival products',()=>{
 
 test('approved supplied header identity and hero/deal image assets are referenced',()=>{
   assert.match(html,/assets\/threads-wordmark-2e453a\.png/);
-  for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/icon-'+name+'-2e453a.png'));
+  for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/header-'+name+'.png'));
   for(const link of ['HOME','SHOP','COLLECTION','ABOUT']) assert.ok(html.includes('>'+link+'</a>'));
   assert.match(html,/assets\/threads-hero\.webp/);
-  assert.match(html,/assets\/deal-backpack\.webp/);
+  assert.match(html,/assets\/deal-week-original-panel\.webp/);
   assert.doesNotMatch(html,/class="hero-doodle"|data-ref-img="hero"|data-ref-img="backpack"/);
   assert.match(html,/Shopping cart/);
 });
 
-test('supplied backpack graphic loads without lazy-scroll dependence',()=>{assert.match(html,/deal-backpack\.webp[^>]*loading="eager"/)});
+test('supplied backpack graphic loads without lazy-scroll dependence',()=>{assert.match(html,/deal-week-original-panel\.webp[^>]*loading="lazy"/)});
 
 const css = readFileSync(new URL('../../site/threads/styles.css', import.meta.url), 'utf8');
 test('desktop content max width does not revert to the narrow 1140px demo',()=>{
@@ -62,4 +62,17 @@ test('existing owner backpack is not hidden by promo compositing',()=>{
  assert.ok(html.includes('deal-backpack-background-20261018.css'));
  assert.match(layering,/background-image:url/);
  assert.match(layering,/background-blend-mode:multiply/);
+});
+
+test('all six approved artwork sections use owned local media and keep their order',()=>{
+  const paths=['header-search.png','header-favorite.png','header-cart.png','featured-olive-sneaker.webp','featured-silver-sneaker.webp','featured-red-backpack.webp','featured-black-headphones.webp','editorial-main.webp','editorial-detail-1.webp','editorial-detail-2.webp','editorial-detail-3.webp','editorial-detail-4.webp','campaign-essentials.webp','sale-moody-sneakers.webp','deal-week-original-panel.webp','deal-week-mobile.webp'];
+  for(const name of paths){
+    assert.ok(readFileSync(new URL('../../site/threads/assets/'+name,import.meta.url)).length>800,'missing/empty '+name);
+  }
+  assert.ok(html.includes('./artwork-review-20261018.css'));
+  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-main.webp','campaign-essentials.webp','sale-moody-sneakers.webp','deal-week-original-panel.webp','deal-week-mobile.webp']) assert.ok(html.includes(name),'not wired '+name);
+  for(const name of ['featured-olive-sneaker.webp','featured-silver-sneaker.webp','featured-red-backpack.webp','featured-black-headphones.webp']) assert.ok(script.includes(name),'not wired '+name);
+  assert.doesNotMatch(html,/data-ref-img="editorial|data-ref-img="campaign"|data-ref-img="sale"/);
+  assert.match(html,/id="featured-products"/);
+  assert.match(html,/id="arrival-products"/);
 });

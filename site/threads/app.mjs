@@ -7,10 +7,10 @@
 import { refreshReferenceCrops } from './art-crops.mjs';
 
 const productCatalog = [
-  { id:'f1', group:'featured', name:'Asics Gel-NYC', subtitle:'At once / Everyday Runner', category:'Sneakers', price:75, swatches:['#78836a','#a5ae95','#e6e3d6'], image:'feat-1', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
-  { id:'f2', group:'featured', name:'Asics Gel-NYC Yellow', subtitle:'At once / Sport Collection', category:'Sneakers', price:89, swatches:['#d5a94c','#ded3b4','#a4a58c'], image:'feat-2', fallback:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=550&q=80' },
-  { id:'f3', group:'featured', name:'Fjällräven Travel Backpack', subtitle:'Adventure Ready', category:'Bags', price:119, swatches:['#b94238','#bd9079','#656d54'], image:'feat-3', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
-  { id:'f4', group:'featured', name:'Sony WH-1000XM5', subtitle:'Over-Ear Headphones', category:'Accessories', price:129, swatches:['#282929','#a7a29a','#dcd7c9'], image:'feat-4', fallback:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=550&q=80' },
+  { id:'f1', group:'featured', asset:'./assets/featured-olive-sneaker.webp', name:'Asics Gel-NYC', subtitle:'At once / Everyday Runner', category:'Sneakers', price:75, swatches:['#78836a','#a5ae95','#e6e3d6'], image:'feat-1', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
+  { id:'f2', group:'featured', asset:'./assets/featured-silver-sneaker.webp', name:'Asics Gel-NYC Silver', subtitle:'At once / Sport Collection', category:'Sneakers', price:89, swatches:['#d8d5ce','#858982','#bdbeb9'], image:'feat-2', fallback:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=550&q=80' },
+  { id:'f3', group:'featured', asset:'./assets/featured-red-backpack.webp', name:'Fjällräven Travel Backpack', subtitle:'Adventure Ready', category:'Bags', price:119, swatches:['#b94238','#bd9079','#656d54'], image:'feat-3', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
+  { id:'f4', group:'featured', asset:'./assets/featured-black-headphones.webp', name:'Sony WH-1000XM5', subtitle:'Over-Ear Headphones', category:'Accessories', price:129, swatches:['#282929','#a7a29a','#dcd7c9'], image:'feat-4', fallback:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=550&q=80' },
   { id:'n1', group:'arrival', name:'New Balance 550', subtitle:'Men’s Lifestyle Sneakers', category:'Sneakers', price:134.99, swatches:['#21394b','#ddddcf','#82909b'], image:'arrival-1', fallback:'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=550&q=80' },
   { id:'n2', group:'arrival', name:'The Daily Duffel', subtitle:'Everyday Carry Bag', category:'Bags', price:89.99, swatches:['#ec6c36','#233f40','#d3b693'], image:'arrival-2', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
   { id:'n3', group:'arrival', name:'New Balance 550', subtitle:'Men’s Lifestyle Sneakers', category:'Sneakers', price:134.99, swatches:['#bda38c','#444a43','#eee5d8'], image:'arrival-3', fallback:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=550&q=80' },
@@ -37,7 +37,7 @@ function productMarkup(product) {
   const saved = state.favorites.has(product.id);
   return '<article class="product-card" data-product-id="' + product.id + '">' +
     '<div class="product-media">' +
-      '<img data-ref-img="' + product.image + '" src="' + product.fallback + '" alt="' + safeName + '" loading="lazy">' +
+      '<img ' + (product.group === 'arrival' ? 'data-ref-img="'+product.image+'" ' : '') + 'src="' + (product.asset || product.fallback) + '" alt="' + safeName + '" loading="lazy">' +
       '<button type="button" class="heart-button" data-save="' + product.id + '" aria-label="' + (saved?'Remove ':'Save ') + safeName + (saved?' from':' to') + ' favorites" aria-pressed="' + saved + '">' + (saved?'♥':'♡') + '</button>' +
     '</div><div class="product-info"><h3>' + safeName + '</h3><p>' + escapeText(product.subtitle) + '</p>' +
     '<div class="swatches" aria-label="Available color palette">' + product.swatches.map((color) => '<span style="background:' + color + '" aria-hidden="true"></span>').join('') + '</div>' +
@@ -69,7 +69,7 @@ function renderBag() {
     [...state.cart.entries()].map(([id,quantity]) => {
       const item = productCatalog.find((p) => p.id===id);
       const image = document.querySelector('[data-product-id="'+id+'"] img');
-      const imgSrc = image?.src || item.fallback;
+      const imgSrc = image?.src || item.asset || item.fallback;
       return '<div class="bag-line"><img src="'+imgSrc+'" alt=""><div><h3>'+escapeText(item.name)+'</h3><p>Qty '+quantity+' · '+money(item.price*quantity)+'</p></div><button type="button" data-remove="'+id+'">Remove</button></div>';
     }).join('') : '<p>Your bag is empty. Explore the sample collection to add an item.</p>';
 }
