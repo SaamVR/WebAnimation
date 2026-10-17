@@ -59,7 +59,7 @@ test('owner palette and original full-resolution category art replace screenshot
 
 test('existing owner backpack is not hidden by promo compositing',()=>{
  const layering=readFileSync(new URL('../../site/threads/deal-backpack-background-20261018.css',import.meta.url),'utf8');
- assert.ok(html.includes('deal-art-layer-fix-20261018.css'));
+ assert.ok(html.includes('deal-backpack-background-20261018.css'));
  assert.match(layering,/background-image:url/);
  assert.match(layering,/background-blend-mode:multiply/);
 });
