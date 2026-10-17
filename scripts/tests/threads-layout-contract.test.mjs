@@ -70,7 +70,7 @@ test('all six approved artwork sections use owned local media and keep their ord
     assert.ok(readFileSync(new URL('../../site/threads/assets/'+name,import.meta.url)).length>800,'missing/empty '+name);
   }
   assert.ok(html.includes('./artwork-review-20261018.css'));
-  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-main.webp','campaign-essentials.webp','sale-moody-sneakers.webp','deal-week-original-panel.webp','deal-week-mobile.webp']) assert.ok(html.includes(name),'not wired '+name);
+  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-complete-20261018.webp','campaign-essentials.webp','sale-moody-sneakers.webp','deal-week-original-panel.webp','deal-week-mobile.webp']) assert.ok(html.includes(name),'not wired '+name);
   for(const name of ['featured-olive-sneaker-card.webp','featured-silver-sneaker-card.webp','featured-red-backpack-card.webp','featured-black-headphones-card.webp']) assert.ok(script.includes(name),'not wired '+name);
   assert.doesNotMatch(html,/data-ref-img="editorial|data-ref-img="campaign"|data-ref-img="sale"/);
   assert.match(html,/id="featured-products"/);
