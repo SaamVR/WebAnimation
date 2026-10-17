@@ -41,3 +41,10 @@ test('approved supplied header identity and hero/deal image assets are reference
 });
 
 test('supplied backpack graphic loads without lazy-scroll dependence',()=>{assert.match(html,/deal-backpack\.webp[^>]*loading="eager"/)});
+
+const css = readFileSync(new URL('../../site/threads/styles.css', import.meta.url), 'utf8');
+test('desktop content max width does not revert to the narrow 1140px demo',()=>{
+  assert.match(css,/--content:1840px/);
+  assert.match(css,/--edge:clamp\(16px,3\.5vw,56px\)/);
+  assert.match(css,/min-width:901px/);
+});

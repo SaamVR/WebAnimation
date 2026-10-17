@@ -39,3 +39,7 @@ Browser QA notes: Source art has been recovered to an independently cropped WebP
 
 ## Owner-supplied assets — October 17
 The exact owner-supplied THREADS wordmark and header Search, Favorite and Cart graphics replace the provisional header glyphs. Navigation now reads HOME, SHOP, COLLECTION, ABOUT. The owner-supplied hero photograph (white outer margins cropped) replaces the screenshot atlas crop; its embedded handwritten detail is not duplicated. The Deal of the Week illustration uses the owner-supplied full-resolution backpack image without T03 animation. All six images are local files in site/threads/assets; no EcomCMS changes.
+
+## Desktop width reconciliation — October 18
+
+The earlier `--content:1140px` reduced a 1440px browser's panels to 1068px and created 186px gutters, departing materially from the owner's wide reference layout. Desktop content now uses a capped 1840px grid with responsive gutters of about 3.5vw (up to 56px), with desktop imagery and media heights proportionally expanded. The mobile breakpoints are unchanged. Explicit width screenshots and overflow QA are required before accepting this width correction.
