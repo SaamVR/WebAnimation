@@ -34,3 +34,16 @@
 
 @media(min-width:381px) and (max-width:620px){.main-nav{gap:7px;font-size:9px}.header-tools{gap:2px;padding-right:0}}
 .product-media img[data-cropped]{content-visibility:visible}
+
+/* Owner supplied header identity, hero photograph and exact backpack artwork. */
+.wordmark{display:inline-flex;align-items:center;width:152px;max-width:100%}
+.wordmark img{width:100%;height:auto;object-fit:contain}
+.main-nav{font-size:10px;font-weight:800;letter-spacing:.095em}
+.header-icon{display:block;width:21px;height:21px;object-fit:contain;pointer-events:none}
+.hero-art{justify-content:stretch}
+.hero-art img{width:100%;height:100%;object-fit:cover;object-position:center center;filter:none}
+.hero-shade{background:linear-gradient(90deg,rgba(4,28,20,.43),rgba(5,35,25,.18) 35%,transparent 57%)}
+.promo-image img{width:100%;height:345px;object-fit:contain;object-position:center bottom;mix-blend-mode:multiply}
+@media(max-width:900px){.wordmark{width:125px}.main-nav{gap:23px;font-size:9px}}
+@media(max-width:620px){.wordmark{width:92px;flex:0 0 auto}.main-nav{gap:8px;font-size:8px;letter-spacing:.025em}.header-tools{gap:2px;padding-right:0}.header-icon{width:17px;height:17px}.hero-art img{width:100%;object-position:62% center;filter:none}.hero-shade{background:linear-gradient(90deg,rgba(7,32,24,.78),rgba(10,40,30,.40) 50%,rgba(8,40,30,.1))}.promo-image img{height:215px;object-position:center bottom}}
+@media(max-width:380px){.wordmark{width:110px}.main-nav{gap:14px;font-size:9px}}

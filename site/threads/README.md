@@ -36,3 +36,6 @@ Visit localhost:8000/threads/
 No framework build step or CMS is required. The owner will provide animation briefs one at a time.
 
 Browser QA notes: Source art has been recovered to an independently cropped WebP atlas. Delayed offscreen image decode is avoided by eagerly activating locally cropped thumbnails after atlas decode. Mobile header fit tested at 360/390 pixels.
+
+## Owner-supplied assets — October 17
+The exact owner-supplied THREADS wordmark and header Search, Favorite and Cart graphics replace the provisional header glyphs. Navigation now reads HOME, SHOP, COLLECTION, ABOUT. The owner-supplied hero photograph (white outer margins cropped) replaces the screenshot atlas crop; its embedded handwritten detail is not duplicated. The Deal of the Week illustration uses the owner-supplied full-resolution backpack image without T03 animation. All six images are local files in site/threads/assets; no EcomCMS changes.

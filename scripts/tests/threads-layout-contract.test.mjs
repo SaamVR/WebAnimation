@@ -29,3 +29,13 @@ test('four featured and six arrival products',()=>{
   assert.equal((script.match(/group:'featured'/g)||[]).length,4);
   assert.equal((script.match(/group:'arrival'/g)||[]).length,6);
 });
+
+test('approved supplied header identity and hero/deal image assets are referenced',()=>{
+  assert.match(html,/assets\/threads-wordmark\.png/);
+  for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/icon-'+name+'.png'));
+  for(const link of ['HOME','SHOP','COLLECTION','ABOUT']) assert.ok(html.includes('>'+link+'</a>'));
+  assert.match(html,/assets\/threads-hero\.webp/);
+  assert.match(html,/assets\/deal-backpack\.webp/);
+  assert.doesNotMatch(html,/class="hero-doodle"|data-ref-img="hero"|data-ref-img="backpack"/);
+  assert.match(html,/Shopping cart/);
+});

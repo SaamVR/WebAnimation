@@ -13,17 +13,17 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" id="top">
     <div class="header-inner">
-      <a class="wordmark" href="#top" aria-label="Threads home">THREADS</a>
+      <a class="wordmark" href="#top" aria-label="Threads home"><img src="./assets/threads-wordmark.png" alt="THREADS" width="850" height="105"></a>
       <nav class="main-nav" aria-label="Main navigation">
-        <a href="#top" aria-current="page">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="#categories">Collections</a>
-        <a href="#about">About</a>
+        <a href="#top" aria-current="page">HOME</a>
+        <a href="#shop">SHOP</a>
+        <a href="#categories">COLLECTION</a>
+        <a href="#about">ABOUT</a>
       </nav>
       <div class="header-tools">
-        <button class="icon-btn" id="search-button" type="button" aria-label="Search products" aria-expanded="false" aria-controls="search-area"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.4"/><path d="m15.2 15.2 5.3 5.3"/></svg></button>
-        <button class="icon-btn" id="favorites-button" type="button" aria-label="View saved items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 8.9c0 3.8-8.5 9.7-8.5 9.7S3.5 12.7 3.5 8.9a4.6 4.6 0 0 1 8.5-2.3 4.6 4.6 0 0 1 8.5 2.3Z"/></svg></button>
-        <button class="icon-btn bag-button" id="bag-button" type="button" aria-label="Open shopping bag, 0 items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.5h14l-1.3 12h-11L5 8.5Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><span class="bag-count" id="bag-count">0</span></button>
+        <button class="icon-btn" id="search-button" type="button" aria-label="Search products" aria-expanded="false" aria-controls="search-area"><img class="header-icon" src="./assets/icon-search.png" width="112" height="112" alt=""></button>
+        <button class="icon-btn" id="favorites-button" type="button" aria-label="View saved items"><img class="header-icon" src="./assets/icon-favorite.png" width="112" height="105" alt=""></button>
+        <button class="icon-btn bag-button" id="bag-button" type="button" aria-label="Open shopping cart, 0 items"><img class="header-icon" src="./assets/icon-cart.png" width="112" height="90" alt=""><span class="bag-count" id="bag-count">0</span></button>
       </div>
     </div>
     <div id="search-area" class="search-area" hidden>
@@ -35,7 +35,7 @@
 
   <main id="main">
     <section class="hero panel-wrap" aria-labelledby="hero-heading">
-      <div class="hero-art"><img data-ref-img="hero" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&q=80" alt="Lifestyle sneakers, travel bag and cap arranged on stone" fetchpriority="high"></div>
+      <div class="hero-art"><img src="./assets/threads-hero.webp" alt="THREADS editorial sneaker, duffel bag and cap on stone against dark green" width="1536" height="769" fetchpriority="high"></div>
       <div class="hero-shade"></div>
       <div class="hero-copy">
         <span class="eyebrow with-line">Premium lifestyle</span>
@@ -44,7 +44,7 @@
         <a href="#shop" class="pill pill-light">Shop Collection <span aria-hidden="true">→</span></a>
         <div class="hero-pagination" aria-hidden="true"><span>01 / 04</span><i></i><span>‹ &nbsp; ›</span></div>
       </div>
-      <div class="hero-doodle" aria-hidden="true"><span>Style<br>Moves<br>Forward</span><small>◯</small></div>
+      <!-- Handwritten hero mark is already in the owner supplied hero photograph -->
     </section>
 
     <section id="categories" class="content-wrap categories section-space" aria-labelledby="categories-title">
@@ -89,7 +89,7 @@
     </section>
 
     <section class="content-wrap backpack-promo section-space" id="deal" aria-labelledby="deal-heading">
-      <div class="promo-image"><img data-ref-img="backpack" src="./backpack.svg" alt="Colorful illustrated orange and teal travel backpack and accessories" loading="lazy"></div>
+      <div class="promo-image"><img src="./assets/deal-backpack.webp" width="1050" height="1050" alt="Orange and turquoise illustrated outdoor backpack, cap, water bottle and sneaker" loading="lazy"></div>
       <div class="promo-copy"><span class="eyebrow with-line dark">Special offer</span><h2 id="deal-heading">Deal Of<br>the Week</h2><p>Handpicked essentials at unbeatable prices. Don't miss out on this week's special picks.</p><a href="#shop" class="pill pill-green">Shop the Deals <span aria-hidden="true">→</span></a></div>
     </section>
   </main>
@@ -108,8 +108,8 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div class="modal-scrim" id="drawer-scrim" hidden></div>
-  <aside class="bag-drawer" id="bag-drawer" role="dialog" aria-modal="true" aria-label="Shopping bag" hidden>
-    <div class="bag-title"><h2>Your Bag</h2><button type="button" id="bag-close" class="icon-btn" aria-label="Close shopping bag">×</button></div>
+  <aside class="bag-drawer" id="bag-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart" hidden>
+    <div class="bag-title"><h2>Your Cart</h2><button type="button" id="bag-close" class="icon-btn" aria-label="Close shopping cart">×</button></div>
     <div id="bag-lines" class="bag-lines"></div>
     <div class="bag-summary"><div><span>Subtotal</span><strong id="bag-total">$0.00</strong></div><p>Sample products and demo cart only. Checkout animation will be added separately.</p><button class="pill pill-green full-width" disabled type="button">T04 · Checkout coming next</button></div>
   </aside>

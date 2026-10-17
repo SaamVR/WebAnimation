@@ -63,7 +63,7 @@ function renderBag() {
   const count = [...state.cart.values()].reduce((a,b) => a+b,0);
   const total = [...state.cart.entries()].reduce((a,[id,q]) => a+productCatalog.find((p)=>p.id===id).price*q,0);
   byId('bag-count').textContent = String(count);
-  byId('bag-button').setAttribute('aria-label','Open shopping bag, '+count+' items');
+  byId('bag-button').setAttribute('aria-label','Open shopping cart, '+count+' items');
   byId('bag-total').textContent = money(total);
   byId('bag-lines').innerHTML = count ?
     [...state.cart.entries()].map(([id,quantity]) => {
@@ -99,7 +99,7 @@ document.addEventListener('click', (event) => {
     const id=add.dataset.add;
     state.cart.set(id,(state.cart.get(id)||0)+1);
     renderBag();
-    showToast('Added to your demo bag');
+    showToast('Added to your demo cart');
     return;
   }
   const save=event.target.closest('[data-save]');
