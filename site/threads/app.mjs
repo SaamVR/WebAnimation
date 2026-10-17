@@ -4,9 +4,11 @@
  * No commerce API, account system, persistent orders or payment processing.
  */
 
+import { refreshReferenceCrops } from './art-crops.mjs';
+
 const productCatalog = [
-  { id:'f1', group:'featured', name:'Asics Gel-AYO', subtitle:'At once / Everyday Runner', category:'Sneakers', price:75, swatches:['#78836a','#a5ae95','#e6e3d6'], image:'feat-1', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
-  { id:'f2', group:'featured', name:'Asics Gel-1130', subtitle:'At once / Sport Collection', category:'Sneakers', price:89, swatches:['#d5a94c','#ded3b4','#a4a58c'], image:'feat-2', fallback:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=550&q=80' },
+  { id:'f1', group:'featured', name:'Asics Gel-NYC', subtitle:'At once / Everyday Runner', category:'Sneakers', price:75, swatches:['#78836a','#a5ae95','#e6e3d6'], image:'feat-1', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
+  { id:'f2', group:'featured', name:'Asics Gel-NYC Yellow', subtitle:'At once / Sport Collection', category:'Sneakers', price:89, swatches:['#d5a94c','#ded3b4','#a4a58c'], image:'feat-2', fallback:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=550&q=80' },
   { id:'f3', group:'featured', name:'Fjällräven Travel Backpack', subtitle:'Adventure Ready', category:'Bags', price:119, swatches:['#b94238','#bd9079','#656d54'], image:'feat-3', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
   { id:'f4', group:'featured', name:'Sony WH-1000XM5', subtitle:'Over-Ear Headphones', category:'Accessories', price:129, swatches:['#282929','#a7a29a','#dcd7c9'], image:'feat-4', fallback:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=550&q=80' },
   { id:'n1', group:'arrival', name:'New Balance 550', subtitle:'Men’s Lifestyle Sneakers', category:'Sneakers', price:134.99, swatches:['#21394b','#ddddcf','#82909b'], image:'arrival-1', fallback:'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=550&q=80' },
@@ -54,6 +56,7 @@ function renderProducts() {
   };
   renderGroup('featured','featured-products');
   renderGroup('arrival','arrival-products');
+  void refreshReferenceCrops();
 }
 
 function renderBag() {
