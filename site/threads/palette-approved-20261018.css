@@ -1,0 +1,57 @@
+/* THREADS approved six-color palette — owner reference, October 18 2026.
+   Loaded after existing styles and layout-wide correction. */
+:root{
+ --cream:#F9F9F7;
+ --card:#EEECE8;
+ --ink:#172B2E;
+ --forest:#2E453A;
+ --forest-2:#2E453A;
+ --lime:#AED5A9;
+ --muted:#657069;
+ --charcoal:#222522;
+}
+body{background:var(--cream);color:var(--charcoal)}
+.site-header,.search-area{background:#F9F9F7}
+.wordmark,.main-nav a,.icon-btn{color:#2E453A}
+.main-nav a:hover,.main-nav a[aria-current]{color:#2E453A;border-color:#2E453A}
+.bag-count{background:#2E453A;color:#F9F9F7}
+.section-heading h2,.category-copy h3,.product-info h3,.product-buy strong,.promo-copy h2,.editorial-copy h2{color:#172B2E}
+.category-card{background:#F1EFEB}
+.category-copy p{color:#5F6962}
+.category-copy span{color:#2E453A}
+.category-card img{mix-blend-mode:multiply;object-fit:contain;object-position:center bottom}
+.category-card:nth-child(1) img{width:83%;height:68%}
+.category-card:nth-child(2) img{width:78%;height:71%}
+.category-card:nth-child(3) img{width:77%;height:74%}
+.product-card,.product-media,.product-info{background:#EEECE8}
+.product-info>p,.product-rating{color:#646C65}
+.product-media img{mix-blend-mode:multiply}
+.product-buy button,.pill-green{background:#2E453A;color:#F9F9F7}
+.product-buy button:hover,.pill-green:hover{background:#172B2E}
+.heart-button,.icon-btn{color:#172B2E}
+.outline-link{border-color:#DFDED8;color:#2E453A}
+.text-link{color:#2E453A}
+.editorial,.editorial-copy{background:#F1EFEB}
+.editorial-copy p,.promo-copy p{color:#5F6861}
+.pill-lime{background:#AED5A9;color:#172B2E}
+.pill-light{background:#F9F9F7;color:#172B2E}
+.campaign{background:#172B2E}
+.campaign-shade{background:linear-gradient(90deg,#172B2E 0%,rgba(23,43,46,.95) 32%,rgba(23,43,46,.34) 63%,rgba(23,43,46,.05) 100%)}
+.sale{background:#172B2E}
+.sale-overlay{background:linear-gradient(0deg,rgba(23,43,46,.60),rgba(46,69,58,.30)),linear-gradient(90deg,rgba(23,43,46,.20),rgba(23,43,46,.08))}
+.backpack-promo{background:#F1EFEB}
+.backpack-promo::after{background:#EEECE8}
+.search-row input{background:#F9F9F7;border-color:#DADBD4;color:#172B2E}
+.search-row button{background:#2E453A}
+.toast{background:#172B2E}
+.bag-drawer{background:#F9F9F7}
+.bag-summary,.bag-title,.bag-line{border-color:#E5E3DD}
+.site-footer{background:linear-gradient(112deg,#172B2E 2%,#2E453A 100%)}
+.newsletter input{background:#2E453A}
+.newsletter button{background:#F9F9F7;color:#172B2E}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #AED5A9;outline-offset:3px}
+@media(max-width:620px){
+ .category-card:nth-child(1) img{width:100%;height:65%}
+ .category-card:nth-child(2) img{width:97%;height:65%}
+ .category-card:nth-child(3) img{width:98%;height:66%}
+}

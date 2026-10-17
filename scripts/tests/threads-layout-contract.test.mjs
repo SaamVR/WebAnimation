@@ -31,8 +31,8 @@ test('four featured and six arrival products',()=>{
 });
 
 test('approved supplied header identity and hero/deal image assets are referenced',()=>{
-  assert.match(html,/assets\/threads-wordmark\.png/);
-  for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/icon-'+name+'.png'));
+  assert.match(html,/assets\/threads-wordmark-2e453a\.png/);
+  for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/icon-'+name+'-2e453a.png'));
   for(const link of ['HOME','SHOP','COLLECTION','ABOUT']) assert.ok(html.includes('>'+link+'</a>'));
   assert.match(html,/assets\/threads-hero\.webp/);
   assert.match(html,/assets\/deal-backpack\.webp/);
@@ -47,4 +47,12 @@ test('desktop content max width does not revert to the narrow 1140px demo',()=>{
   assert.match(css,/--content:1840px/);
   assert.match(css,/--edge:clamp\(16px,3\.5vw,56px\)/);
   assert.match(css,/min-width:901px/);
+});
+
+test('owner palette and original full-resolution category art replace screenshot thumbnail crops',()=>{
+ const palette = readFileSync(new URL('../../site/threads/palette-approved-20261018.css',import.meta.url),'utf8');
+ for(const hex of ['#F9F9F7','#F1EFEB','#EEECE8','#AED5A9','#2E453A','#172B2E']) assert.ok(palette.includes(hex),'missing '+hex);
+ for(const category of ['sneakers','bags','accessories']) assert.match(html,new RegExp('assets/category-'+category+'\\.webp'));
+ for(const old of ['data-ref-img="cat-sneaker"','data-ref-img="cat-bag"','data-ref-img="cat-accessory"']) assert.ok(!html.includes(old),'old atlas mapping would override new category illustration');
+ assert.ok(html.includes('palette-approved-20261018.css'));
 });

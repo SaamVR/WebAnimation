@@ -43,3 +43,10 @@ The exact owner-supplied THREADS wordmark and header Search, Favorite and Cart g
 ## Desktop width reconciliation — October 18
 
 The earlier `--content:1140px` reduced a 1440px browser's panels to 1068px and created 186px gutters, departing materially from the owner's wide reference layout. Desktop content now uses a capped 1840px grid with responsive gutters of about 3.5vw (up to 56px), with desktop imagery and media heights proportionally expanded. The mobile breakpoints are unchanged. Explicit width screenshots and overflow QA are required before accepting this width correction.
+
+## Owner-approved palette and category art — 2026-10-18
+- Background #F9F9F7; primary pale category/card #F1EFEB; secondary pale product/card #EEECE8.
+- Accent #AED5A9 sparingly; medium green #2E453A for controls, CTA surfaces and wordmark; deep green #172B2E for product names, prices and important icons. Regular copy uses charcoal #222522.
+- Search, favorite, cart and THREADS wordmark assets are recolored via their original alpha masks to the **exact** requested #2E453A (no drawing changes).
+- Original owner-supplied sneakers (burgundy), bags (blue duffel), accessories (yellow cap, bottle, watch) replace only the 3 category images. Trimmed white canvas around art, otherwise exact source drawings.
+- Original images kept as individual local static assets and excluded from the old low-resolution art-atlas substitution. The existing approved layout and all other section art remain unchanged. No T01–T04 animations added.
