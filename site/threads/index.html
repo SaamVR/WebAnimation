@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#153b32">
+  <meta name="description" content="THREADS — standalone editorial storefront layout demonstration.">
+  <title>THREADS — Sneakers, Bags & Essentials</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./layout-wide-20261018.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="wordmark" href="#top" aria-label="Threads home"><img src="./assets/threads-wordmark.png" alt="THREADS" width="850" height="105"></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#top" aria-current="page">HOME</a>
+        <a href="#shop">SHOP</a>
+        <a href="#categories">COLLECTION</a>
+        <a href="#about">ABOUT</a>
+      </nav>
+      <div class="header-tools">
+        <button class="icon-btn" id="search-button" type="button" aria-label="Search products" aria-expanded="false" aria-controls="search-area"><img class="header-icon" src="./assets/icon-search.png" width="112" height="112" alt=""></button>
+        <button class="icon-btn" id="favorites-button" type="button" aria-label="View saved items"><img class="header-icon" src="./assets/icon-favorite.png" width="112" height="105" alt=""></button>
+        <button class="icon-btn bag-button" id="bag-button" type="button" aria-label="Open shopping cart, 0 items"><img class="header-icon" src="./assets/icon-cart.png" width="112" height="90" alt=""><span class="bag-count" id="bag-count">0</span></button>
+      </div>
+    </div>
+    <div id="search-area" class="search-area" hidden>
+      <label for="search-input">Find your next essential</label>
+      <div class="search-row"><input id="search-input" type="search" placeholder="Sneakers, backpacks, caps…" autocomplete="off"><button id="search-close" type="button">Close</button></div>
+      <p id="search-feedback" role="status">Search the demo catalog.</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero panel-wrap" aria-labelledby="hero-heading">
+      <div class="hero-art"><img src="./assets/threads-hero.webp" alt="THREADS editorial sneaker, duffel bag and cap on stone against dark green" width="1536" height="769" fetchpriority="high"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <span class="eyebrow with-line">Premium lifestyle</span>
+        <h1 id="hero-heading">SNEAKERS,<br>BAGS &amp;<br>ESSENTIALS</h1>
+        <p>Premium sneakers, bags and everyday essentials for a modern lifestyle.</p>
+        <a href="#shop" class="pill pill-light">Shop Collection <span aria-hidden="true">→</span></a>
+        <div class="hero-pagination" aria-hidden="true"><span>01 / 04</span><i></i><span>‹ &nbsp; ›</span></div>
+      </div>
+      <!-- Handwritten hero mark is already in the owner supplied hero photograph -->
+    </section>
+
+    <section id="categories" class="content-wrap categories section-space" aria-labelledby="categories-title">
+      <div class="section-heading"><h2 id="categories-title">Categories</h2><a href="#shop" class="text-link">View All Products <span aria-hidden="true">→</span></a></div>
+      <div class="categories-grid">
+        <a href="#shop" class="category-card" data-filter-link="Sneakers"><div class="category-copy"><h3>Sneakers</h3><p>Iconic styles for<br>everyday movement.</p><span>Shop Now →</span></div><img data-ref-img="cat-sneaker" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=420&q=80" alt="Burgundy sneaker" loading="lazy"></a>
+        <a href="#shop" class="category-card" data-filter-link="Bags"><div class="category-copy"><h3>Bags</h3><p>Carry your world<br>in style.</p><span>Shop Now →</span></div><img data-ref-img="cat-bag" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=420&q=80" alt="Blue duffel bag" loading="lazy"></a>
+        <a href="#shop" class="category-card" data-filter-link="Accessories"><div class="category-copy"><h3>Accessories</h3><p>The little things<br>make a big difference.</p><span>Shop Now →</span></div><img data-ref-img="cat-accessory" src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=420&q=80" alt="Yellow cap and accessories" loading="lazy"></a>
+      </div>
+    </section>
+
+    <section id="shop" class="content-wrap featured section-space" aria-labelledby="featured-heading">
+      <div class="section-heading"><h2 id="featured-heading">Our Featured Products</h2><a class="outline-link" href="#arrivals">Explore More <span aria-hidden="true">→</span></a></div>
+      <div id="featured-products" class="product-grid four-col"></div>
+    </section>
+
+    <section id="about" class="content-wrap editorial section-space" aria-labelledby="about-heading">
+      <div class="collage">
+        <img data-ref-img="editorial-main" src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=550&q=80" alt="Close-up orange sneaker" loading="lazy">
+        <img data-ref-img="editorial-1" src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=360&q=80" alt="Sneaker textile detail" loading="lazy">
+        <img data-ref-img="editorial-2" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=360&q=80" alt="Bag material detail" loading="lazy">
+        <img data-ref-img="editorial-3" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=360&q=80" alt="Footwear detail" loading="lazy">
+        <img data-ref-img="editorial-4" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=360&q=80" alt="Everyday essentials detail" loading="lazy">
+      </div>
+      <div class="editorial-copy"><span class="eyebrow with-line dark">About Threads</span><h2 id="about-heading">We Provide Quality.</h2><p>At THREADS, we believe in more than just products. The right everyday essentials bring confidence, joy and everyday comfort to your lifestyle.</p><p>Crafted with purpose, combining quality, timeless style and modern design.</p><a href="#mission" class="pill pill-green">Explore Our Story <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <section id="mission" class="panel-wrap campaign section-space" aria-labelledby="campaign-heading">
+      <div class="campaign-art"><img data-ref-img="campaign" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=950&q=80" alt="Premium travel bag and sneaker editorial" loading="lazy"></div>
+      <div class="campaign-shade"></div>
+      <div class="campaign-copy"><span class="eyebrow with-line">For a brighter tomorrow</span><h2 id="campaign-heading">Built for a<br>Brighter Everyday</h2><p>At THREADS, we create premium gear that moves with you — whether you're traveling, at work, or out exploring. Designed for real life, made to last, and always forward-thinking.</p><a href="#arrivals" class="pill pill-lime">Learn More <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <section id="arrivals" class="content-wrap arrivals section-space" aria-labelledby="arrivals-heading">
+      <div class="section-heading"><div><h2 id="arrivals-heading">New Arrivals</h2><p class="section-subtitle">Fresh essentials for a brighter everyday.</p></div><a href="#shop" class="text-link">Explore More <span aria-hidden="true">→</span></a></div>
+      <div id="arrival-products" class="product-grid three-col"></div>
+    </section>
+
+    <section class="panel-wrap sale section-space" aria-labelledby="sale-heading">
+      <div class="sale-art"><img data-ref-img="sale" src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=1400&q=80" alt="Grey sneaker on a deep green background" loading="lazy"></div><div class="sale-overlay"></div>
+      <div class="sale-copy"><h2 id="sale-heading">Last Chance to Save.</h2><p>Premium sneakers. Exclusive prices. This deal won't last—shop now before time runs out.</p><div class="countdown" aria-label="Decorative promotional countdown"><div><strong>02</strong><span>Days</span></div><div><strong>21</strong><span>Hours</span></div><div><strong>44</strong><span>Minutes</span></div><div><strong>54</strong><span>Seconds</span></div></div><a href="#shop" class="pill pill-lime">Grab The Deal <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <section class="content-wrap backpack-promo section-space" id="deal" aria-labelledby="deal-heading">
+      <div class="promo-image"><img src="./assets/deal-backpack.webp" width="1050" height="1050" alt="Orange and turquoise illustrated outdoor backpack, cap, water bottle and sneaker" loading="eager" decoding="async"></div>
+      <div class="promo-copy"><span class="eyebrow with-line dark">Special offer</span><h2 id="deal-heading">Deal Of<br>the Week</h2><p>Handpicked essentials at unbeatable prices. Don't miss out on this week's special picks.</p><a href="#shop" class="pill pill-green">Shop the Deals <span aria-hidden="true">→</span></a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main content-wrap">
+      <div class="footer-intro"><a class="footer-logo" href="#top">THREADS</a><p>Premium sneakers, bags and everyday essentials for a brighter everyday.</p><div class="social-icons" aria-hidden="true">◎ &nbsp; ◇ &nbsp; ◌</div></div>
+      <div class="footer-links"><h3>Shop</h3><a href="#shop">Sneakers</a><a href="#categories">Bags</a><a href="#categories">Accessories</a><a href="#arrivals">New Arrivals</a></div>
+      <div class="footer-links"><h3>About</h3><a href="#about">Our Story</a><a href="#mission">Sustainability</a><a href="#about">Careers</a></div>
+      <div class="footer-links"><h3>Help</h3><a href="#footer-news">Help Center</a><a href="#footer-news">Shipping &amp; Returns</a><a href="#footer-news">Size Guide</a><a href="#footer-news">Contact Us</a></div>
+      <div class="footer-links"><h3>Company</h3><a href="#about">Terms of Service</a><a href="#about">Privacy Policy</a><a href="#about">Cookie Policy</a></div>
+      <div id="footer-news" class="newsletter"><span class="eyebrow">Stay connected</span><h3>Get Our News And Updates</h3><form id="newsletter-form"><label for="newsletter-email" class="sr-only">Email</label><input id="newsletter-email" type="email" placeholder="Enter your email" required><button type="submit">Subscribe</button></form><p id="newsletter-status">Visual demo only; no emails are collected.</p></div>
+    </div>
+    <div class="footer-bottom content-wrap"><span>© 2026 THREADS · Standalone design study</span><span>Concept catalog · No real orders or payment processing</span></div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="modal-scrim" id="drawer-scrim" hidden></div>
+  <aside class="bag-drawer" id="bag-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart" hidden>
+    <div class="bag-title"><h2>Your Cart</h2><button type="button" id="bag-close" class="icon-btn" aria-label="Close shopping cart">×</button></div>
+    <div id="bag-lines" class="bag-lines"></div>
+    <div class="bag-summary"><div><span>Subtotal</span><strong id="bag-total">$0.00</strong></div><p>Sample products and demo cart only. Checkout animation will be added separately.</p><button class="pill pill-green full-width" disabled type="button">T04 · Checkout coming next</button></div>
+  </aside>
+</body>
+</html>
