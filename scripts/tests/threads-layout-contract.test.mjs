@@ -39,3 +39,5 @@ test('approved supplied header identity and hero/deal image assets are reference
   assert.doesNotMatch(html,/class="hero-doodle"|data-ref-img="hero"|data-ref-img="backpack"/);
   assert.match(html,/Shopping cart/);
 });
+
+test('supplied backpack graphic loads without lazy-scroll dependence',()=>{assert.match(html,/deal-backpack\.webp[^>]*loading="eager"/)});

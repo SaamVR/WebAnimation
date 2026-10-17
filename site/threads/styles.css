@@ -47,3 +47,6 @@
 @media(max-width:900px){.wordmark{width:125px}.main-nav{gap:23px;font-size:9px}}
 @media(max-width:620px){.wordmark{width:92px;flex:0 0 auto}.main-nav{gap:8px;font-size:8px;letter-spacing:.025em}.header-tools{gap:2px;padding-right:0}.header-icon{width:17px;height:17px}.hero-art img{width:100%;object-position:62% center;filter:none}.hero-shade{background:linear-gradient(90deg,rgba(7,32,24,.78),rgba(10,40,30,.40) 50%,rgba(8,40,30,.1))}.promo-image img{height:215px;object-position:center bottom}}
 @media(max-width:380px){.wordmark{width:110px}.main-nav{gap:14px;font-size:9px}}
+
+/* Feather only the white outer photograph edges so the owner's original art sits on the ivory banner. */
+.promo-image img[src$="deal-backpack.webp"]{-webkit-mask-image:radial-gradient(ellipse 79% 78% at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse 79% 78% at 50% 50%,#000 68%,transparent 100%)}
