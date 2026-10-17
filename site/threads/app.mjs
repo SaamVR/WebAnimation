@@ -37,7 +37,7 @@ function productMarkup(product) {
   const saved = state.favorites.has(product.id);
   return '<article class="product-card" data-product-id="' + product.id + '">' +
     '<div class="product-media">' +
-      '<img ' + (product.group === 'arrival' ? 'data-ref-img="'+product.image+'" ' : '') + 'src="' + (product.asset || product.fallback) + '" alt="' + safeName + '" loading="lazy">' +
+      '<img ' + (product.group === 'arrival' ? 'data-ref-img="'+product.image+'" ' : '') + 'src="' + (product.asset || product.fallback) + '" alt="' + safeName + '" loading="' + (product.group === 'featured' ? 'eager' : 'lazy') + '">' +
       '<button type="button" class="heart-button" data-save="' + product.id + '" aria-label="' + (saved?'Remove ':'Save ') + safeName + (saved?' from':' to') + ' favorites" aria-pressed="' + saved + '">' + (saved?'♥':'♡') + '</button>' +
     '</div><div class="product-info"><h3>' + safeName + '</h3><p>' + escapeText(product.subtitle) + '</p>' +
     '<div class="swatches" aria-label="Available color palette">' + product.swatches.map((color) => '<span style="background:' + color + '" aria-hidden="true"></span>').join('') + '</div>' +

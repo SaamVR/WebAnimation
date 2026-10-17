@@ -88,3 +88,10 @@ test('browser-safe asset layer retains exact product photos and deal compositing
  assert.match(compat,/background-image:url/);
  assert.match(compat,/deal-week-mobile\.webp/);
 });
+
+test('feature art remains paintable in full-page screenshot QA',()=>{
+ const compat=readFileSync(new URL('../../site/threads/artwork-visibility-20261018.css',import.meta.url),'utf8');
+ assert.ok(html.includes('artwork-visibility-20261018.css'));
+ assert.match(compat,/content-visibility:visible/);
+ assert.ok(script.includes("product.group === 'featured' ? 'eager' : 'lazy'"));
+});

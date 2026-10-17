@@ -67,3 +67,6 @@ All media files are local assets in site/threads/assets and served without EcomC
 
 ### Browser paint-path fidelity correction
 On deployed Chromium screenshot QA, the original WebP images decoded but blend compositing failed to paint several Featured Product images and the desktop backpack. The four product artworks are now photographed against exactly the approved #EEECE8 card beige as local static crops (no replacement drawing), rendered using normal compositing. The Deal artwork is painted as a CSS background at desktop/mobile resolutions; its original semantic `<picture>` and alt-text image remain in the DOM and it is not used as a whole-page screenshot. T01–T04 remain untouched. Source QA and six real browser viewport checks are required after this correction.
+
+### Final browser capture stability
+The four featured images are tiny locally optimized files and are now eagerly loaded. Product image content-visibility is explicitly visible to avoid full-page screenshot omissions, while New Arrivals retain normal lazy network loading. No animation changes.
