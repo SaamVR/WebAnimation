@@ -1,0 +1,4 @@
+/* Versioned standalone Threads width calibration — intentionally loaded after styles.css.
+   Makes this visual correction effective even while Render's CDN still caches the old CSS. */
+:root{--content:1840px;--edge:clamp(16px,3.5vw,56px)}
+@media(min-width:901px){.hero{min-height:clamp(515px,46vw,850px)}.product-media{height:clamp(219px,21vw,325px)}.arrivals .product-media{height:clamp(234px,22vw,335px)}.editorial{min-height:clamp(322px,27vw,470px)}.campaign{min-height:clamp(375px,30vw,560px)}.backpack-promo{min-height:clamp(350px,30vw,470px)}.promo-image img{height:clamp(345px,28vw,440px)}}
