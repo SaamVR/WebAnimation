@@ -64,3 +64,6 @@ The owner supplied six images, applied without changing the page architecture or
 5. Last Chance to Save: moody sneaker artwork with a light text-protective overlay; countdown remains static sample numbers.
 6. Deal of the Week: owner illustration cropped only to its transparency content bounds; original beige panel and all backpack/cap/bottle/shoe details retained. A crop of the same original art is used at narrow screen widths.
 All media files are local assets in site/threads/assets and served without EcomCMS dependency. T01–T04 motion is deferred.
+
+### Browser paint-path fidelity correction
+On deployed Chromium screenshot QA, the original WebP images decoded but blend compositing failed to paint several Featured Product images and the desktop backpack. The four product artworks are now photographed against exactly the approved #EEECE8 card beige as local static crops (no replacement drawing), rendered using normal compositing. The Deal artwork is painted as a CSS background at desktop/mobile resolutions; its original semantic `<picture>` and alt-text image remain in the DOM and it is not used as a whole-page screenshot. T01–T04 remain untouched. Source QA and six real browser viewport checks are required after this correction.

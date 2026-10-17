@@ -76,3 +76,15 @@ test('all six approved artwork sections use owned local media and keep their ord
   assert.match(html,/id="featured-products"/);
   assert.match(html,/id="arrival-products"/);
 });
+
+test('browser-safe asset layer retains exact product photos and deal compositing',()=>{
+ const compat=readFileSync(new URL('../../site/threads/artwork-paint-fix-20261018.css',import.meta.url),'utf8');
+ assert.ok(html.includes('artwork-paint-fix-20261018.css'));
+ for(const kind of ['olive-sneaker','silver-sneaker','red-backpack','black-headphones']){
+   assert.ok(script.includes('featured-'+kind+'-card.webp'));
+   assert.ok(readFileSync(new URL('../../site/threads/assets/featured-'+kind+'-card.webp',import.meta.url)).length>2000);
+ }
+ assert.match(compat,/mix-blend-mode:normal/);
+ assert.match(compat,/background-image:url/);
+ assert.match(compat,/deal-week-mobile\.webp/);
+});
