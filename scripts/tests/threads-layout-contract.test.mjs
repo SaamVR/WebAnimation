@@ -95,3 +95,20 @@ test('feature art remains paintable in full-page screenshot QA',()=>{
  assert.match(compat,/content-visibility:visible/);
  assert.ok(script.includes("product.group === 'featured' ? 'eager' : 'lazy'"));
 });
+
+test('Quality collage is a single contained artwork; original banner remains',()=>{
+  const section=html.split('<section id="about"')[1].split('</section>')[0];
+  assert.ok(section.includes('editorial-complete-20261018.webp'));
+  assert.equal((section.match(/<img /g)||[]).length,1);
+  assert.ok(section.includes('We Provide Quality.'));
+  assert.ok(section.includes('Explore Our Story'));
+  const campaign=html.split('<section id="mission"')[1].split('</section>')[0];
+  assert.ok(campaign.includes('campaign-essentials.webp'));
+  assert.ok(campaign.includes('Built for a'));
+  const style=readFileSync(new URL('../../site/threads/section-fidelity-20261018.css',import.meta.url),'utf8');
+  assert.ok(style.includes('#about .collage'));
+  assert.ok(style.includes('overflow: hidden'));
+  assert.ok(style.includes('aspect-ratio: 2000 / 623'));
+  assert.ok(html.includes('section-fidelity-20261018.css'));
+  assert.ok(readFileSync(new URL('../../site/threads/assets/editorial-complete-20261018.webp',import.meta.url)).length>20000);
+});

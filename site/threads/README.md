@@ -70,3 +70,10 @@ On deployed Chromium screenshot QA, the original WebP images decoded but blend c
 
 ### Final browser capture stability
 The four featured images are tiny locally optimized files and are now eagerly loaded. Product image content-visibility is explicitly visible to avoid full-page screenshot omissions, while New Arrivals retain normal lazy network loading. No animation changes.
+
+
+## Quality and Brighter Everyday correction — 2026-10-18
+
+The image overflow reported on the deployed iPad screenshot is addressed by replacing five individually sized collage images with the exact owner-provided complete source (2048x984), saved as a WebP local asset. Dedicated section-scoped CSS keeps the image inside the collage and the adjacent text unchanged. Mobile stacks the full collage over the original text. The previous individual cropped art remains in the repository but is not used for this section.
+
+The existing approved campaign-essentials.webp 2000x623 image already excludes the black bars visible in the full source; it is retained unchanged. The banner keeps the original image and left text overlay, with a wide desktop ratio and responsive minimum height on narrow screens. No other storefront sections, production apps or motion treatments are changed.
