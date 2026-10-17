@@ -46,8 +46,9 @@
 /* The existing 2000x623 local banner already had the source black bars removed.
    Keep its original photograph/overlay without scaling letterbox margins. */
 #mission.campaign {
-  aspect-ratio: 2000 / 623;
-  min-height: 0;
+  /* Respect the photo ratio where possible, but never clip live copy. */
+  aspect-ratio: auto;
+  min-height: clamp(375px, 30vw, 560px);
   height: auto;
   overflow: hidden;
   isolation: isolate;
