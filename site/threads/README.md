@@ -1,0 +1,36 @@
+# THREADS — Standalone homepage layout demo
+
+Source repository: SaamVR/WebAnimation, path site/threads/.
+Canonical visual reference: Owner's IMG_1613(1).jpeg and IMG_1613(2).jpeg provided October 17, 2026.
+Creative approval covers the layout screenshot only, not any additional animation treatment.
+
+## Delivery in this phase
+
+Responsive HTML/CSS/JS editorial storefront study. Semantic live sections, headings, buttons, filters, simple in-memory sample cart, favorites, search, and a demo-only newsletter acknowledgement. No CMS runtime, account, API, orders, payment, database or email submission.
+
+Homepage order follows the screenshot exactly:
+1. Header with reserved T01 search control; no spotlight animation yet
+2. Lifestyle hero
+3. Categories (3)
+4. Featured Products (4): T02 reserved, no fly-away motion yet
+5. About Threads quality collage
+6. Built for a Brighter Everyday campaign
+7. New Arrivals (6): T02 reserved, no fly-away motion yet
+8. Last Chance to Save promotion with static numbers from screenshot
+9. Deal of the Week: T03 static visual, no reveal animation yet
+10. Footer and newsletter
+
+T04 is deferred until the owner supplies its separate choreography brief; checkout stays disabled.
+
+## Fidelity and source-image limits
+
+The owner's only supplied visual asset is a 431×1536 compressed full-page screenshot, not original high-resolution product photo exports. The HTML/CSS page is reconstructed independently; no flattened screenshot is used as a site background. Photographic product images are temporary editorial fallback photos, NOT claimed to match the reference pixel-by-pixel. The orange/teal backpack layers are a static composite sourced via a commit-pinned raw GitHub path from previously archived Threads concept assets; this is read-only static imagery, NOT an EcomCMS runtime, API or deployment integration. SaamVR/EcomCMS is never modified.
+
+Before owner visual approval: compare actual browser captures at 1440, 768 and 390 pixels side-by-side with the screenshot; replace provisional image links with approved original photos and vendor the backpack static layers into the standalone WebAnimation repository. The screenshot timer is decorative static copy, not an invented live sales deadline.
+
+## Local preview
+
+Serve the site directory with any static server, such as: python3 -m http.server 8000 --directory site
+Visit localhost:8000/threads/
+
+No framework build step or CMS is required. The owner will provide animation briefs one at a time.

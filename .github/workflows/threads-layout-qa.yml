@@ -1,0 +1,20 @@
+name: Threads layout contract
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "site/threads/**"
+      - "scripts/tests/threads-layout-contract.test.mjs"
+      - ".github/workflows/threads-layout-qa.yml"
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate standalone layout contract
+        run: node --test scripts/tests/threads-layout-contract.test.mjs
+      - name: Syntax check client modules
+        run: |
+          node --check site/threads/app.mjs
+          node --check site/threads/reference-art.mjs
