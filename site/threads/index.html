@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11392f">
+  <meta name="description" content="THREADS independent interactive storefront motion study — four working interactions.">
+  <title>THREADS — Everyday Essentials | Interactive Storefront Study</title>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="study-notice" aria-label="Demo disclosure">Independent concept demo · Sample catalog · No real purchases or payments</div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#home" class="brand" aria-label="THREADS home">THREADS</a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="#home">Home</a><a href="#shop">Shop</a><a href="#categories">Collections</a><a href="#about">About</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-button" id="search-trigger" aria-expanded="false" aria-controls="search-panel" aria-label="Open spotlight search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg></button>
+        <button type="button" class="icon-button" id="favorites-trigger" aria-label="Show favorite items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 8.7c0 4.1-8.5 10.2-8.5 10.2S3.5 12.8 3.5 8.7a4.6 4.6 0 0 1 8.5-2.4 4.6 4.6 0 0 1 8.5 2.4Z"/></svg><span id="favorite-count" class="fav-count" hidden>0</span></button>
+        <button type="button" class="icon-button cart-trigger" id="cart-trigger" aria-label="View shopping bag, zero items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 8h15l-1.3 12h-12L4.5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span id="cart-count" class="cart-count" aria-live="polite">0</span></button>
+      </div>
+    </div>
+    <section id="search-panel" class="search-panel" hidden aria-label="Spotlight product search">
+      <div class="search-field-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><label class="sr-only" for="site-search">Search products</label><input id="site-search" type="search" autocomplete="off" placeholder="Search sneakers, bags, accessories…" aria-describedby="search-status"><button id="search-clear" type="button" class="text-button">Clear</button><button id="search-close" type="button" class="icon-button" aria-label="Close search">×</button></div>
+      <div id="search-status" role="status" aria-live="polite">Type to find something you love.</div>
+      <div id="search-results" class="search-results"></div>
+    </section>
+  </header>
+  <main id="main">
+    <section id="home" class="hero section-container" aria-labelledby="hero-heading">
+      <div class="hero-visual"><img class="hero-photo" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1400&q=85&fit=crop" alt="Editorial sneaker photography" fetchpriority="high"></div>
+      <div class="hero-content">
+        <span class="eyebrow line-eyebrow">Premium lifestyle</span>
+        <h1 id="hero-heading">SNEAKERS,<br>BAGS &amp;<br>ESSENTIALS</h1>
+        <p>Premium sneakers, bags and everyday essentials for a modern lifestyle.</p>
+        <a class="pill-button button-light" href="#shop">Shop Collection <span aria-hidden="true">→</span></a>
+        <div class="hero-index"><span>01 / 04</span><span class="hero-progress" aria-hidden="true"><i></i></span><span class="hero-nav" aria-hidden="true">‹ &nbsp; ›</span></div>
+      </div>
+      <p class="hero-side-note">Style moves<br>forward.</p>
+    </section>
+    <section id="categories" class="section-container category-section section-gap">
+      <div class="section-heading compact"><h2>Categories</h2><a href="#shop" class="simple-link">View All Products <span aria-hidden="true">→</span></a></div>
+      <div class="category-grid">
+        <a class="category-card" href="#shop" data-category="Sneakers"><div><h3>Sneakers</h3><p>Iconic styles for<br>everyday movement.</p><span>Shop Now →</span></div><img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=600&q=85" alt="Sneaker collection" loading="lazy"></a>
+        <a class="category-card" href="#shop" data-category="Bags"><div><h3>Bags</h3><p>Carry your world<br>in style.</p><span>Shop Now →</span></div><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=85" alt="Bag collection" loading="lazy"></a>
+        <a class="category-card" href="#shop" data-category="Accessories"><div><h3>Accessories</h3><p>The little things<br>make a big difference.</p><span>Shop Now →</span></div><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&q=85" alt="Accessories collection" loading="lazy"></a>
+      </div>
+    </section>
+    <section id="shop" class="section-container featured-section section-gap">
+      <div class="section-heading"><h2>Our Featured Products</h2><a class="outlined-button" href="#arrivals">Explore More <span aria-hidden="true">→</span></a></div>
+      <div id="featured-grid" class="product-grid featured-grid" aria-label="Featured products"></div>
+    </section>
+    <section id="about" class="section-container editorial-section section-gap">
+      <div class="editorial-mosaic" aria-label="Lifestyle editorial gallery">
+        <img class="mosaic-large" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800&q=85" alt="Sneaker details" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=450&q=80" alt="Everyday sneaker" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=450&q=80" alt="Bag material details" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=450&q=80" alt="Footwear design" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?w=450&q=80" alt="Everyday accessories" loading="lazy">
+      </div>
+      <div class="editorial-copy"><span class="eyebrow dark-eyebrow">About Threads</span><h2>We Provide Quality.</h2><p>At THREADS, we believe in more than just products. The right everyday essentials bring confidence, joy and everyday comfort to your lifestyle.</p><p>Crafted with purpose, combining quality, timeless style and modern design.</p><a href="#mission" class="pill-button button-dark">Explore Our Story <span aria-hidden="true">→</span></a></div>
+    </section>
+    <section id="mission" class="section-container campaign-section section-gap">
+      <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=1400&q=85" alt="New season sneaker collection" loading="lazy">
+      <div class="campaign-content"><span class="eyebrow line-eyebrow">For a brighter tomorrow</span><h2>Built for a<br>Brighter Everyday</h2><p>At THREADS, we create premium gear that moves with you — wherever you're traveling, at work, or out exploring. Designed for real life, made to last, and always forward-thinking.</p><a href="#arrivals" class="pill-button button-sage">Learn More <span aria-hidden="true">→</span></a></div>
+    </section>
+    <section id="arrivals" class="section-container arrivals-section section-gap">
+      <div class="section-heading"><div><h2>New Arrivals</h2><p class="section-subtitle">Fresh essentials for a brighter everyday.</p></div><a href="#featured-grid" class="simple-link">Explore More <span aria-hidden="true">→</span></a></div>
+      <div id="arrivals-grid" class="product-grid arrivals-grid" aria-label="New arrival products"></div>
+    </section>
+    <section id="sale" class="section-container flash-sale section-gap" aria-label="Last chance promotion">
+      <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=1400&q=85" alt="Featured sale sneaker" loading="lazy">
+      <div class="sale-content"><span class="eyebrow">Limited time offer</span><h2>Last Chance to Save</h2><p>Premium sneakers. Exclusive prices. This deal won't last—shop now before time runs out.</p><div class="countdown" id="countdown" aria-label="Demo countdown timer"><div><strong id="days">02</strong><span>Days</span></div><div><strong id="hours">21</strong><span>Hours</span></div><div><strong id="minutes">44</strong><span>Minutes</span></div><div><strong id="seconds">54</strong><span>Seconds</span></div></div><a href="#shop" class="pill-button button-sage">Grab The Deal <span aria-hidden="true">→</span></a></div>
+    </section>
+    <section id="deal" class="section-container backpack-deal section-gap" aria-labelledby="deal-title">
+      <div class="backpack-art" id="backpack-art" aria-hidden="true"><div class="backpack-shadow"></div><svg class="pack-illustration" viewBox="0 0 530 460" role="presentation"><defs><linearGradient id="packBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3fa5b6"/><stop offset=".42" stop-color="#1a617e"/><stop offset="1" stop-color="#143d4b"/></linearGradient><linearGradient id="packOrange" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#ef923d"/><stop offset="1" stop-color="#c64d24"/></linearGradient></defs><path d="M155 136q-52-37-66 23l-34 199 91 14 34-160Z" fill="#cf5a2c" stroke="#174b55" stroke-width="9"/><path d="M302 77q48-18 73 52l37 220-66 18-47-212Z" fill="#ea9736" stroke="#164551" stroke-width="9"/><path d="M188 108q23-63 78-67 62 4 76 65l38 252q-106 44-238 3Z" fill="url(#packBody)" stroke="#0d3944" stroke-width="14"/><path d="M198 91q67-57 125 8l11 58H176Z" fill="#f7a44a" stroke="#0e4050" stroke-width="12"/><path d="M145 230q94-56 242 0l-13 133q-102 31-224-4Z" fill="#2d8d9e" stroke="#12475a" stroke-width="11"/><path d="M188 258q82-26 144 0l7 100q-74 12-151-7Z" fill="url(#packOrange)" stroke="#173f4e" stroke-width="10"/><path d="M175 120q18 12 39 9m89 0q20 1 35-9" fill="none" stroke="#f3b052" stroke-width="17" stroke-linecap="round"/><path d="m153 150 40 206m151-204 18 208" stroke="#f69c38" stroke-width="21" opacity=".9"/><path d="M226 282h49v43h-49z" fill="#e5dbac" stroke="#174e5e" stroke-width="6"/><path d="M234 298h32" stroke="#174e5e" stroke-width="5"/><path d="M207 47q57-49 114 0" fill="none" stroke="#123d48" stroke-width="24"/><path d="M119 342q27-5 33 14l-6 26-35-4Z" fill="#e59136" stroke="#114858" stroke-width="8"/><path d="M381 336q29 0 37 25l-20 18-27-12Z" fill="#e59136" stroke="#114858" stroke-width="8"/></svg><div class="pack-flap" id="pack-flap"></div><div class="pack-offer-sheet" id="pack-offer-sheet"><small>EXCLUSIVE DROP</small><strong>20% OFF</strong><span>your demo backpack</span><code>THREADS20</code></div><div class="pack-sneaker" aria-hidden="true">👟</div></div>
+      <div class="deal-content"><span class="eyebrow dark-eyebrow">Special offer</span><h2 id="deal-title">Deal Of<br>the Week</h2><p>Handpicked essentials at unbeatable prices. Don't miss out on this week's special picks.</p><button type="button" id="deal-toggle" class="pill-button button-dark" aria-expanded="false" aria-controls="deal-expanded">Reveal the Deal <span aria-hidden="true">→</span></button><div id="deal-expanded" class="deal-expanded" hidden><p>Enjoy 20% off the demo backpack collection with <strong>THREADS20</strong>. This is a visual-only offer for the concept demo.</p><button type="button" id="add-deal" class="outlined-button">Add the backpack to bag →</button></div></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-grid section-container"><div class="footer-brand"><h2>THREADS</h2><p>Premium sneakers, bags and everyday essentials for a brighter everyday.</p><div class="social-marks" aria-label="Social design placeholders">◎ &nbsp; ♡ &nbsp; ◇</div></div><div class="footer-links"><span class="eyebrow">Shop</span><a href="#shop">Sneakers</a><a href="#categories">Bags</a><a href="#categories">Accessories</a><a href="#arrivals">New Arrivals</a></div><div class="footer-links"><span class="eyebrow">About</span><a href="#about">Our Story</a><a href="#mission">Sustainability</a><a href="#about">Careers</a></div><div class="newsletter"><span class="eyebrow">Stay connected</span><h3>Get Our News And Updates</h3><form id="newsletter-form"><label class="sr-only" for="newsletter-email">Email address</label><input id="newsletter-email" type="email" placeholder="Enter your email" required><button type="submit">Subscribe</button></form><p id="newsletter-status">Concept only; no email data is transmitted.</p></div></div>
+    <div class="footer-bottom section-container"><span>© THREADS — Independent interactive design study</span><span>No affiliation with a live retailer · Sample checkout only</span></div>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="motion-stage" class="motion-stage" aria-hidden="true"></div>
+  <div class="drawer-backdrop" id="cart-backdrop" hidden></div>
+  <aside id="cart-drawer" class="cart-drawer" aria-modal="true" role="dialog" aria-label="Your shopping bag" hidden>
+    <div class="drawer-heading"><h2>Your Bag</h2><button type="button" id="cart-close" class="icon-button" aria-label="Close shopping bag">×</button></div><div id="cart-items" class="cart-items"></div><div class="drawer-footer"><div class="subtotal"><span>Subtotal</span><strong id="cart-subtotal">$0.00</strong></div><p>Demo items only. Payment is simulated and nothing is charged.</p><button type="button" id="checkout-open" class="checkout-open pill-button button-dark" disabled>Continue to demo payment →</button></div>
+  </aside>
+  <div class="modal-backdrop" id="payment-backdrop" hidden></div>
+  <section id="payment-modal" role="dialog" aria-modal="true" aria-labelledby="payment-heading" class="payment-modal" hidden>
+    <div class="payment-top"><span class="eyebrow dark-eyebrow">T04 · Interactive checkout</span><button type="button" id="payment-close" class="icon-button" aria-label="Close demo checkout">×</button></div>
+    <h2 id="payment-heading">Your next move, made simple.</h2><p class="payment-disclosure">Simulation only. Do not enter real payment details. No payment is processed or transmitted.</p>
+    <div class="payment-progress" aria-label="Payment illustration steps"><div class="step active" data-step="1"><span>01</span><small>Review</small></div><div class="step" data-step="2"><span>02</span><small>Processing</small></div><div class="step" data-step="3"><span>03</span><small>Complete</small></div></div>
+    <div id="payment-review" class="payment-review"><div class="payment-method"><div class="mock-card"><span>THREADS / DEMO</span><strong>•••• &nbsp; •••• &nbsp; •••• &nbsp; 2026</strong><small>VISUAL SIMULATION</small></div><div><h3>Demo payment</h3><p>Animated confirmation, no real card or bank integration.</p></div></div><div class="subtotal"><span>Order total</span><strong id="payment-total">$0.00</strong></div><button type="button" id="pay-demo" class="pill-button button-dark payment-action">Simulate payment →</button></div>
+    <div id="payment-animating" class="payment-animating" hidden><div class="pay-beam"><div class="pay-card-icon">▭</div><div class="beam-track"><span class="beam-dot"></span></div><div class="pay-check-icon">✓</div></div><h3>Preparing your confirmation…</h3><p>This is a staged motion sequence. No actual transaction.</p></div>
+    <div id="payment-success" class="payment-success" hidden><div class="success-ring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42"/><path d="m29 51 14 13 28-29"/></svg></div><h3>Demo Complete</h3><p>Your shopping journey animation has finished. No order or charge was created.</p><button type="button" id="payment-done" class="pill-button button-dark">Back to THREADS →</button></div>
+  </section>
+</body>
+</html>

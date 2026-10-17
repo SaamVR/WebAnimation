@@ -1,0 +1,37 @@
+name: Threads standalone demo QA
+on:
+  push:
+    branches: ['feat/threads-standalone-four-interactions-20261017']
+    paths: ['site/threads/**', 'scripts/tests/threads-demo.test.mjs', 'scripts/threads-browser-qa.cjs', '.github/workflows/threads-standalone-qa.yml']
+  pull_request:
+    paths: ['site/threads/**', 'scripts/tests/threads-demo.test.mjs', 'scripts/threads-browser-qa.cjs', '.github/workflows/threads-standalone-qa.yml']
+  workflow_dispatch:
+jobs:
+  standalone-threads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Source and commerce simulation contracts
+        run: node --test scripts/tests/threads-demo.test.mjs
+      - name: Install isolated browser test runtime
+        run: |
+          mkdir -p /tmp/threads-browser-runtime
+          npm --prefix /tmp/threads-browser-runtime init -y >/dev/null
+          npm --prefix /tmp/threads-browser-runtime install playwright@1.56.1 --no-save --no-audit --no-fund
+          /tmp/threads-browser-runtime/node_modules/.bin/playwright install --with-deps chromium
+      - name: Desktop and mobile interaction evidence
+        run: NODE_PATH=/tmp/threads-browser-runtime/node_modules node scripts/threads-browser-qa.cjs
+      - name: Browser screenshots and QA records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: threads-independent-layout-and-motion-review
+          path: test-artifacts/threads
+          if-no-files-found: ignore
+          retention-days: 7
