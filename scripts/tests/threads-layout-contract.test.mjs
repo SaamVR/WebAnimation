@@ -56,3 +56,10 @@ test('owner palette and original full-resolution category art replace screenshot
  for(const old of ['data-ref-img="cat-sneaker"','data-ref-img="cat-bag"','data-ref-img="cat-accessory"']) assert.ok(!html.includes(old),'old atlas mapping would override new category illustration');
  assert.ok(html.includes('palette-approved-20261018.css'));
 });
+
+test('existing owner backpack is not hidden by promo compositing',()=>{
+ const layering=readFileSync(new URL('../../site/threads/deal-art-layer-fix-20261018.css',import.meta.url),'utf8');
+ assert.ok(html.includes('deal-art-layer-fix-20261018.css'));
+ assert.match(layering,/mix-blend-mode:normal/);
+ assert.match(layering,/z-index:4/);
+});

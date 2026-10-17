@@ -1,0 +1,8 @@
+/* Restore the approved static deal image above the decorative promo pseudo-element.
+   Mask + multiply blend caused a Chromium compositing defect hiding the illustration.
+   The illustration itself remains the unchanged owner-supplied file. */
+.backpack-promo .promo-image{position:relative;z-index:4}
+.backpack-promo .promo-image img[src$="deal-backpack.webp"]{
+ position:relative;z-index:2;mix-blend-mode:normal;
+ -webkit-mask-image:none;mask-image:none;
+}

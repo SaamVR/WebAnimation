@@ -50,3 +50,5 @@ The earlier `--content:1140px` reduced a 1440px browser's panels to 1068px and c
 - Search, favorite, cart and THREADS wordmark assets are recolored via their original alpha masks to the **exact** requested #2E453A (no drawing changes).
 - Original owner-supplied sneakers (burgundy), bags (blue duffel), accessories (yellow cap, bottle, watch) replace only the 3 category images. Trimmed white canvas around art, otherwise exact source drawings.
 - Original images kept as individual local static assets and excluded from the old low-resolution art-atlas substitution. The existing approved layout and all other section art remain unchanged. No T01–T04 animations added.
+
+Browser QA correction: promotional pseudo-element/compositing combination concealed the prior approved backpack in Chromium after palette update. A dedicated, versioned CSS correction raises original static image layer, removes the faulty mask/blend, and preserves the owner-supplied backpack file without altering the composition or assigning T03 motion.
