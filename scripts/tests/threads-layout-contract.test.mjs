@@ -58,8 +58,8 @@ test('owner palette and original full-resolution category art replace screenshot
 });
 
 test('existing owner backpack is not hidden by promo compositing',()=>{
- const layering=readFileSync(new URL('../../site/threads/deal-art-layer-fix-20261018.css',import.meta.url),'utf8');
+ const layering=readFileSync(new URL('../../site/threads/deal-backpack-background-20261018.css',import.meta.url),'utf8');
  assert.ok(html.includes('deal-art-layer-fix-20261018.css'));
- assert.match(layering,/mix-blend-mode:normal/);
- assert.match(layering,/z-index:4/);
+ assert.match(layering,/background-image:url/);
+ assert.match(layering,/background-blend-mode:multiply/);
 });

@@ -52,3 +52,5 @@ The earlier `--content:1140px` reduced a 1440px browser's panels to 1068px and c
 - Original images kept as individual local static assets and excluded from the old low-resolution art-atlas substitution. The existing approved layout and all other section art remain unchanged. No T01–T04 animations added.
 
 Browser QA correction: promotional pseudo-element/compositing combination concealed the prior approved backpack in Chromium after palette update. A dedicated, versioned CSS correction raises original static image layer, removes the faulty mask/blend, and preserves the owner-supplied backpack file without altering the composition or assigning T03 motion.
+
+Final visual QA: image compositing defect persisted for inline <img> across browser widths despite decode succeeding. The original owner image now paints as CSS background of the existing promo image stage, while the existing img stays in markup for text alternatives and layout. Its opaque white canvas blends with the approved #F1EFEB, preserving subject art. The previous defective deal-art-layer-fix stylesheet is superseded.
