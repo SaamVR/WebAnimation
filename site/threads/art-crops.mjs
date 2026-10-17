@@ -67,6 +67,7 @@ export async function refreshReferenceCrops() {
     if(!regions[key] || element.dataset.cropped===key)continue;
     const url=cropImage(atlas,key);
     if(!url)continue;
+    element.loading='eager';
     element.src=url;
     element.dataset.cropped=key;
   }

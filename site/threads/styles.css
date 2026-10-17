@@ -31,3 +31,6 @@
 @media(max-width:620px){.backpack-static-stage{height:205px!important;min-height:205px!important}}
 
 @media(max-width:620px){.header-tools{padding-right:10px}}
+
+@media(min-width:381px) and (max-width:620px){.main-nav{gap:7px;font-size:9px}.header-tools{gap:2px;padding-right:0}}
+.product-media img[data-cropped]{content-visibility:visible}

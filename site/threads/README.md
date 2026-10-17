@@ -34,3 +34,5 @@ Serve the site directory with any static server, such as: python3 -m http.server
 Visit localhost:8000/threads/
 
 No framework build step or CMS is required. The owner will provide animation briefs one at a time.
+
+Browser QA notes: Source art has been recovered to an independently cropped WebP atlas. Delayed offscreen image decode is avoided by eagerly activating locally cropped thumbnails after atlas decode. Mobile header fit tested at 360/390 pixels.
