@@ -77,3 +77,6 @@ The four featured images are tiny locally optimized files and are now eagerly lo
 The image overflow reported on the deployed iPad screenshot is addressed by replacing five individually sized collage images with the exact owner-provided complete source (2048x984), saved as a WebP local asset. Dedicated section-scoped CSS keeps the image inside the collage and the adjacent text unchanged. Mobile stacks the full collage over the original text. The previous individual cropped art remains in the repository but is not used for this section.
 
 The existing approved campaign-essentials.webp 2000x623 image already excludes the black bars visible in the full source; it is retained unchanged. The banner keeps the original image and left text overlay, with a wide desktop ratio and responsive minimum height on narrow screens. No other storefront sections, production apps or motion treatments are changed.
+
+
+Responsive QA refinement: browser measurements showed the headline/copy needed 462px at 1440 and 387px at 1024. A rigid 2000/623 section aspect ratio cut off copy. The banner now naturally expands from its content (minimum height 375px–560px responsive), with the original approved image cropped via object-fit:cover and no stretch or source black bars. Mobile retains its original minimum 350px.

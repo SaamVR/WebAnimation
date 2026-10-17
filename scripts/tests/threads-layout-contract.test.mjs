@@ -108,7 +108,8 @@ test('Quality collage is a single contained artwork; original banner remains',()
   const style=readFileSync(new URL('../../site/threads/section-fidelity-20261018.css',import.meta.url),'utf8');
   assert.ok(style.includes('#about .collage'));
   assert.ok(style.includes('overflow: hidden'));
-  assert.ok(style.includes('aspect-ratio: 2000 / 623'));
+  assert.ok(style.includes('aspect-ratio: auto'));
+  assert.ok(style.includes('min-height: clamp(375px, 30vw, 560px)'));
   assert.ok(html.includes('section-fidelity-20261018.css'));
   assert.ok(readFileSync(new URL('../../site/threads/assets/editorial-complete-20261018.webp',import.meta.url)).length>20000);
 });
