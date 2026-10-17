@@ -29,3 +29,5 @@
 .product-grid>.empty-products{grid-column:1/-1;padding:25px 10px;color:#677369;font-size:13px}
 .backpack-static-stage img{object-fit:contain!important;mix-blend-mode:normal!important}
 @media(max-width:620px){.backpack-static-stage{height:205px!important;min-height:205px!important}}
+
+@media(max-width:620px){.header-tools{padding-right:10px}}

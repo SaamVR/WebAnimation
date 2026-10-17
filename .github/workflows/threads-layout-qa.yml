@@ -17,4 +17,4 @@ jobs:
       - name: Syntax check client modules
         run: |
           node --check site/threads/app.mjs
-          node --check site/threads/reference-art.mjs
+          test -f site/threads/backpack.svg

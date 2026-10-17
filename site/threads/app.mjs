@@ -3,7 +3,6 @@
  * No T01/T02/T03/T04 animation implementations in this phase.
  * No commerce API, account system, persistent orders or payment processing.
  */
-import { installReferenceArt } from './reference-art.mjs';
 
 const productCatalog = [
   { id:'f1', group:'featured', name:'Asics Gel-AYO', subtitle:'At once / Everyday Runner', category:'Sneakers', price:75, swatches:['#78836a','#a5ae95','#e6e3d6'], image:'feat-1', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
@@ -55,9 +54,6 @@ function renderProducts() {
   };
   renderGroup('featured','featured-products');
   renderGroup('arrival','arrival-products');
-  // Images are cropped from the supplied layout as individual visual assets,
-  // not a screenshot stretched over the site.
-  installReferenceArt();
 }
 
 function renderBag() {

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 const html = readFileSync(new URL('../../site/threads/index.html', import.meta.url), 'utf8');
 const script = readFileSync(new URL('../../site/threads/app.mjs', import.meta.url), 'utf8');
-const art = readFileSync(new URL('../../site/threads/reference-art.mjs', import.meta.url), 'utf8');
+const pack = readFileSync(new URL('../../site/threads/backpack.svg', import.meta.url), 'utf8');
 const sections = ['id="top"','class="hero panel-wrap"','id="categories"','id="shop"','id="about"','id="mission"','id="arrivals"','class="panel-wrap sale section-space"','id="deal"','class="site-footer"'];
 test('all canonical sections appear in screenshot order', () => {
   let last = -1;
@@ -20,7 +20,7 @@ test('independent of CMS runtime and real payment',()=>{
   assert.doesNotMatch(html,/EcomCMS|ezcomo|checkout\.stripe|paystack/i);
   assert.doesNotMatch(script,/supabase|stripe|checkout/i);
   assert.match(html,/Sample products and demo cart only/);
-  assert.match(art,/raw\.githubusercontent\.com/);
+  assert.match(pack,/<svg/);
 });
 test('four featured and six arrival products',()=>{
   assert.equal((script.match(/group:'featured'/g)||[]).length,4);
