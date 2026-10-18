@@ -212,7 +212,7 @@ test('homepage routes to shared catalog pages and inline search',()=>{
  assert.match(html,/href="\/cart\/"/);
  assert.ok(html.indexOf('id="search-area"')<html.indexOf('id="search-button"'));
  assert.ok(!html.includes('class="search-area" hidden'));
- assert.ok(html.includes('storefront.css?v=connected-v1'));
+ assert.ok(html.includes('storefront.css?v=connected-v2'));
  const shell=readFileSync(new URL('../../site/threads/storefront-pages.mjs',import.meta.url),'utf8');
  for(const p of ['searchPage()','detailPage()','cartPage()','checkoutPage()','orderPage()'])assert.ok(shell.includes('function '+p),p);
 });

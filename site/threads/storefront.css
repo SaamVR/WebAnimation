@@ -2,8 +2,8 @@
 :root{--store-green:#2E453A;--store-deep:#172B2E;--store-soft:#AED5A9;--store-bg:#F9F9F7;--store-card:#EEECE8;--store-light:#F1EFEB}
 /* Existing header search expands horizontally towards LEFT from the existing icon. */
 .site-header .header-tools{position:relative;isolation:isolate;--tool-size:29px;--tool-gap:13px}
-.inline-search{position:absolute;right:calc(3*var(--tool-size) + 2*var(--tool-gap));top:50%;transform:translateY(-50%);width:0;opacity:0;visibility:hidden;pointer-events:none;z-index:10;overflow:hidden;transition:width .24s ease,opacity .19s ease,visibility .24s}
-.inline-search.is-open{width:min(340px,calc(100vw - 160px));opacity:1;visibility:visible;pointer-events:auto;overflow:visible}
+.inline-search{position:absolute;right:calc(3*var(--tool-size) + 2*var(--tool-gap));top:50%;transform:translateY(-50%);width:0;opacity:0;visibility:hidden;pointer-events:none;z-index:10;overflow:hidden;transition:width .24s ease,opacity .19s ease,visibility 0s linear .24s}
+.inline-search.is-open{width:min(340px,calc(100vw - 160px));opacity:1;visibility:visible;pointer-events:auto;overflow:visible;transition:width .24s ease,opacity .19s ease,visibility 0s}
 .inline-search input{display:block;width:100%;height:36px;min-width:0;border:1px solid #9EACA3;outline-offset:1px;border-radius:25px 0 0 25px;padding:0 15px;background:var(--store-bg);box-shadow:0 2px 12px #162f221c;color:var(--store-deep);font-size:12px}
 .header-tools #search-button{z-index:11;background:var(--store-bg);border-radius:30px}
 .header-tools #search-button[aria-expanded="true"]{box-shadow:0 2px 12px #162f221c}
