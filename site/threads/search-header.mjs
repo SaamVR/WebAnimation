@@ -10,7 +10,10 @@ export function initInlineSearch(root=document){
   toggle.setAttribute('aria-expanded',String(open));
   input.tabIndex=open?0:-1;
   if('inert' in form) form.inert=!open;
-  if(focus)(open?input:toggle).focus();
+  if(focus){
+   if(open){input.focus();requestAnimationFrame(()=>{if(form.classList.contains('is-open'))input.focus()});}
+   else toggle.focus();
+  }
  };
  setOpen(false,{focus:false});
  toggle.addEventListener('click',()=>setOpen(!form.classList.contains('is-open')));
