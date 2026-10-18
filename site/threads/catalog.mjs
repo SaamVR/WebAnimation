@@ -46,13 +46,13 @@ export const productMeta = product => ({
     : product.category==='Bags'
       ? 'A practical everyday travel companion with a standout finish. Illustrative THREADS demo product.'
       : 'Everyday accessory with a clean, versatile finish. Illustrative THREADS demo product.'),
-  colors: product.swatches.map((hex,i)=>({id:'color-'+i,name:({
+  colors: Array.isArray(product.colors)&&product.colors.length ? product.colors : product.swatches.map((hex,i)=>({id:'color-'+i,name:({
     f1:['Olive','Ivory','Charcoal'],f2:['Yellow','Navy','Cream'],f3:['Orange','Black','Sand'],
     f4:['Black','Slate','Ivory'],n1:['Aqua','Coral','Lime'],n2:['Crimson','Black','Ivory'],
     n3:['Amber','Black','White'],n4:['Orange','Black','Cream'],n5:['Lime','Graphite','Ivory'],
     n6:['Black','Teal','Grey']
   })[product.id]?.[i]||'Color '+(i+1),hex})),
-  sizes: product.category==='Sneakers' ? [38,39,40,41,42,43].map(n=>String(n)) : ['One Size'],
+  sizes: Array.isArray(product.sizes)&&product.sizes.length ? product.sizes : product.category==='Sneakers' ? [38,39,40,41,42,43].map(n=>String(n)) : ['One Size'],
   status: product.group==='arrival'?'New Arrival':'Featured',
   keywords: [
     product.category==='Sneakers'?'sneaker sneakers shoes trainers running footwear':'',
