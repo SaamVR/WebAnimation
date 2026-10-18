@@ -81,3 +81,10 @@ Four owner-provided collage files were isolated into **29 actual product cover i
 - Cart, checkout, order confirmation and animations T01–T04 remain unchanged.
 - The connected branch passing CI is not equivalent to a production deploy. Browser/mobile and
   public-preview verification must be reported separately and never assumed.
+
+## Batch 2 — Real angles imported (2026-10-19)
+- Received 38 ZIP collages; 36 confidently mapped to existing stable IDs; extracted 119 genuine individual product views (15 sneakers ×3, 7 hats ×4, 7 bags ×3, 7 accessories ×3–4).
+- One source cover remains first in each matched gallery; additional views are distinct transparent WebPs at `assets/products/<id>/<angle>.webp`. Existing PDP template displays real thumbnails and image switches; no fabricated cropped alternatives.
+- Three original products remain COVER ONLY pending usable source collages: `f1` Olive Sport Runner, `f3` Orange Weekender Duffel, `f4` Studio Wireless Headphones. Collages for unrelated silver sneaker and green duffel were not misassigned.
+- `galleryAssetManifest` in `catalog.mjs` is the single source for view-to-product mapping. Gallery paths are validated by the new asset contract and actual browser QA before promotion.
+- T01 Spotlight Search card hooks, T02 stable Add to Cart/cart anchors and separate imagery, T03 homepage deal, T04 checkout approval remain reserved only, with no animations implemented.

@@ -49,18 +49,218 @@ export const catalogFilters = Object.freeze([
 ]);
 export const merchandisingCategory = product =>
   product.type==='cap'||product.category==='Hats' ? 'Hats' : product.category;
+// Batch 2: mapped strictly to authenticated owner collage cutouts, not synthetic views.
+// Gallery paths are kept independent of the product cover image for future T02 overlays.
+export const galleryAssetManifest = Object.freeze({
+  "acc-01": [
+    "front",
+    "angled",
+    "profile",
+    "side"
+  ],
+  "acc-02": [
+    "front",
+    "angled",
+    "profile",
+    "side"
+  ],
+  "acc-03": [
+    "front",
+    "angled",
+    "profile",
+    "side"
+  ],
+  "acc-04": [
+    "front",
+    "back",
+    "open"
+  ],
+  "acc-05": [
+    "front",
+    "back",
+    "open"
+  ],
+  "acc-06": [
+    "front",
+    "back",
+    "open"
+  ],
+  "acc-07": [
+    "front",
+    "angled",
+    "profile",
+    "side"
+  ],
+  "bag-01": [
+    "front",
+    "angled",
+    "side"
+  ],
+  "bag-02": [
+    "front",
+    "angled",
+    "side"
+  ],
+  "bag-03": [
+    "front",
+    "angled",
+    "side"
+  ],
+  "bag-04": [
+    "front",
+    "angled",
+    "side"
+  ],
+  "bag-05": [
+    "front",
+    "angled",
+    "side"
+  ],
+  "bag-06": [
+    "front",
+    "angled",
+    "side"
+  ],
+  "bag-07": [
+    "front",
+    "angled",
+    "side"
+  ],
+  "f2": [
+    "front",
+    "angled",
+    "profile",
+    "rear"
+  ],
+  "hat-01": [
+    "front",
+    "angled",
+    "profile",
+    "rear"
+  ],
+  "hat-02": [
+    "front",
+    "angled",
+    "profile",
+    "rear"
+  ],
+  "hat-03": [
+    "front",
+    "angled",
+    "profile",
+    "rear"
+  ],
+  "hat-04": [
+    "front",
+    "angled",
+    "profile",
+    "rear"
+  ],
+  "hat-05": [
+    "front",
+    "angled",
+    "profile",
+    "rear"
+  ],
+  "hat-06": [
+    "front",
+    "angled",
+    "profile",
+    "rear"
+  ],
+  "n1": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "n2": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "n3": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "n4": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "n5": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "n6": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-01": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-02": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-03": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-04": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-05": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-06": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-07": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-08": [
+    "angled",
+    "rear",
+    "action"
+  ],
+  "sho-09": [
+    "angled",
+    "rear",
+    "action"
+  ]
+});
+const galleryViewLabels = Object.freeze({"front":"Front view","angled":"Three-quarter angle","profile":"Side profile","rear":"Rear view","side":"Side view","back":"Back view","open":"Open-cap view","action":"Alternative action angle"});
+for (const product of catalog) {
+  const views=galleryAssetManifest[product.id];
+  if(!views) continue;
+  product.gallery=[
+    {asset:product.asset,label:'Catalog cover image'},
+    ...views.map(view=>({asset:'./assets/products/'+product.id+'/'+view+'.webp',label:galleryViewLabels[view]}))
+  ];
+}
+
 export function productGallery(product) {
-  // Each owner-supplied alternate angle must be a distinct source asset.
-  // Existing products intentionally retain cropped single-photo views until Batch 2 arrives.
+  // Display only real owner-provided camera angles; never magnify one image into fake views.
   if (Array.isArray(product.gallery) && product.gallery.length)
     return product.gallery.filter(x=>x&&x.asset&&x.label).map(x=>({
       asset:x.asset, label:x.label, crop:0, isAlternate:x.asset!==product.asset
     }));
-  return [
-    {asset:product.asset, label:'Full product image', crop:0, isAlternate:false},
-    {asset:product.asset, label:'Detail crop of the same photograph', crop:1, isAlternate:false},
-    {asset:product.asset, label:'Closer crop of the same photograph', crop:2, isAlternate:false}
-  ];
+  return [{asset:product.asset,label:'Catalog cover image',crop:0,isAlternate:false}];
 }
 // Rotate categories on the unfiltered Shop page after the four familiar feature cards.
 // Search relevance and filtered-category order stay untouched.

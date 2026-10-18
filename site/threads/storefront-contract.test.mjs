@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {catalog,searchCatalog,productMeta,productGallery,catalogFilters,merchandisingCategory,imageUrl,curateShopProducts} from './catalog.mjs';
+import {catalog,searchCatalog,productMeta,productGallery,galleryAssetManifest,catalogFilters,merchandisingCategory,imageUrl,curateShopProducts} from './catalog.mjs';
 import {variantAvailable,priceTk,cartKey} from './store-core.mjs';
 const here=import.meta.url;
 const read=p=>readFileSync(new URL(p,here),'utf8');
@@ -62,7 +62,7 @@ test('merchandising filters distinguish caps from accessories, and bags from bac
 test('product images support owner-supplied independent gallery views, without invented angles',()=>{
  const p=catalog.find(x=>x.id==='f1');
  const old=productGallery(p);
- assert.equal(old.length,3);
+ assert.equal(old.length,1,'unmatched legacy items should show one honest source view');
  assert.ok(old.every(v=>v.asset===p.asset&&!v.isAlternate));
  const supplied={asset:'./assets/products/new/cover.webp',gallery:[
   {asset:'./assets/products/new/front.webp',label:'Front'},
@@ -126,4 +126,31 @@ test('storefront uses full, absolutely constrained cover images and category hea
  assert.ok(page.includes('data-shop-group='));
  assert.ok(page.includes('catalogFilters.slice(1)'));
  assert.ok(page.includes('fullShop'));
+});
+
+test('Batch 2 gallery manifest maps 119 unique real angles across 36 matching products',()=>{
+ const matches=catalog.filter(p=>galleryAssetManifest[p.id]);
+ assert.equal(matches.length,36);
+ assert.equal(Object.values(galleryAssetManifest).reduce((sum,a)=>sum+a.length,0),119);
+ assert.deepEqual(catalog.filter(p=>!galleryAssetManifest[p.id]).map(p=>p.id),['f1','f3','f4']);
+ const paths=new Set();
+ for(const p of matches){
+  const views=productGallery(p);
+  assert.equal(views.length,1+galleryAssetManifest[p.id].length);
+  assert.equal(views[0].asset,p.asset);
+  for(const view of views.slice(1)){
+   assert.ok(view.isAlternate&&view.crop===0);
+   assert.match(view.asset,/^\.\/assets\/products\//);
+   assert.ok(!paths.has(view.asset),'A gallery photo cannot be assigned to multiple products');
+   paths.add(view.asset);
+  }
+ }
+ assert.equal(paths.size,119);
+ for(const p of catalog.filter(p=>!galleryAssetManifest[p.id])){
+  assert.equal(productGallery(p).length,1);
+  assert.equal(productGallery(p)[0].isAlternate,false);
+ }
+ const page=read('storefront-pages.mjs');
+ assert.ok(page.includes('data-t02-image'));
+ assert.ok(page.includes('data-t02-add'));
 });
