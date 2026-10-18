@@ -17,7 +17,8 @@
   <link rel="stylesheet" href="./footer-reference-20261018.css">
   <link rel="stylesheet" href="./market-catalog-polish-20261018.css">
   <link rel="stylesheet" href="./threads-asset-fidelity-20261018.css?v=20261018-featured-v2">
-  <script type="module" src="./app.mjs?v=20261018-featured-v2"></script>
+  <link rel="stylesheet" href="./storefront.css?v=connected-v1">
+  <script type="module" src="./app.mjs?v=connected-v1"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,20 +27,16 @@
       <a class="wordmark" href="#top" aria-label="Threads home"><img src="./assets/threads-wordmark-2e453a.png" alt="THREADS" width="850" height="105"></a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#top" aria-current="page">HOME</a>
-        <a href="#shop">SHOP</a>
-        <a href="#categories">COLLECTION</a>
+        <a href="/search/">SHOP</a>
+        <a href="/search/?category=Sneakers">COLLECTION</a>
         <a href="#about">ABOUT</a>
       </nav>
       <div class="header-tools">
+        <form id="search-area" class="inline-search" role="search" action="/search/" method="get" aria-hidden="true"><label for="search-input" class="sr-only">Search THREADS products</label><input id="search-input" name="q" type="search" placeholder="Search products…" autocomplete="off" tabindex="-1"></form>
         <button class="icon-btn" id="search-button" type="button" aria-label="Search products" aria-expanded="false" aria-controls="search-area"><img class="header-icon" src="./assets/header-search.png" width="112" height="112" alt=""></button>
         <button class="icon-btn" id="favorites-button" type="button" aria-label="View saved items"><img class="header-icon" src="./assets/header-favorite.png" width="112" height="105" alt=""></button>
-        <button class="icon-btn bag-button" id="bag-button" type="button" aria-label="Open shopping cart, 0 items"><img class="header-icon" src="./assets/header-cart.png" width="112" height="90" alt=""><span class="bag-count" id="bag-count">0</span></button>
+        <a class="icon-btn bag-button" id="bag-button" href="/cart/" aria-label="View shopping cart, 0 items"><img class="header-icon" src="./assets/header-cart.png" width="112" height="90" alt=""><span class="bag-count" id="bag-count">0</span></a>
       </div>
-    </div>
-    <div id="search-area" class="search-area" hidden>
-      <label for="search-input">Find your next essential</label>
-      <div class="search-row"><input id="search-input" type="search" placeholder="Sneakers, backpacks, caps…" autocomplete="off"><button id="search-close" type="button">Close</button></div>
-      <p id="search-feedback" role="status">Search the demo catalog.</p>
     </div>
   </header>
 
@@ -51,23 +48,23 @@
         <span class="eyebrow with-line">Premium lifestyle</span>
         <h1 id="hero-heading">SNEAKERS,<br>BAGS &amp;<br>ESSENTIALS</h1>
         <p>Premium sneakers, bags and everyday essentials for a modern lifestyle.</p>
-        <a href="#shop" class="pill pill-light">Shop Collection <span aria-hidden="true">→</span></a>
+        <a href="/search/" class="pill pill-light">Shop Collection <span aria-hidden="true">→</span></a>
         <div class="hero-pagination" aria-hidden="true"><span>01 / 04</span><i></i><span>‹ &nbsp; ›</span></div>
       </div>
       <!-- Handwritten hero mark is already in the owner supplied hero photograph -->
     </section>
 
     <section id="categories" class="content-wrap categories section-space" aria-labelledby="categories-title">
-      <div class="section-heading"><h2 id="categories-title">Categories</h2><a href="#shop" class="text-link">View All Products <span aria-hidden="true">→</span></a></div>
+      <div class="section-heading"><h2 id="categories-title">Categories</h2><a href="/search/" class="text-link">View All Products <span aria-hidden="true">→</span></a></div>
       <div class="categories-grid">
-        <a href="#shop" class="category-card" data-filter-link="Sneakers"><div class="category-copy"><h3>Sneakers</h3><p>Iconic styles for<br>everyday movement.</p><span>Shop Now →</span></div><img src="./assets/category-sneakers.webp" width="1160" height="720" alt="Burgundy and ivory sneaker" loading="lazy"></a>
-        <a href="#shop" class="category-card" data-filter-link="Bags"><div class="category-copy"><h3>Bags</h3><p>Carry your world<br>in style.</p><span>Shop Now →</span></div><img src="./assets/category-bags.webp" width="923" height="663" alt="Blue travel duffel bag with black handles" loading="lazy"></a>
-        <a href="#shop" class="category-card" data-filter-link="Accessories"><div class="category-copy"><h3>Accessories</h3><p>The little things<br>make a big difference.</p><span>Shop Now →</span></div><img src="./assets/category-accessories.webp" width="684" height="670" alt="Yellow cap, black bottle and wristwatch" loading="lazy"></a>
+        <a href="/search/?category=Sneakers" class="category-card"><div class="category-copy"><h3>Sneakers</h3><p>Iconic styles for<br>everyday movement.</p><span>Shop Now →</span></div><img src="./assets/category-sneakers.webp" width="1160" height="720" alt="Burgundy and ivory sneaker" loading="lazy"></a>
+        <a href="/search/?category=Bags" class="category-card"><div class="category-copy"><h3>Bags</h3><p>Carry your world<br>in style.</p><span>Shop Now →</span></div><img src="./assets/category-bags.webp" width="923" height="663" alt="Blue travel duffel bag with black handles" loading="lazy"></a>
+        <a href="/search/?category=Accessories" class="category-card"><div class="category-copy"><h3>Accessories</h3><p>The little things<br>make a big difference.</p><span>Shop Now →</span></div><img src="./assets/category-accessories.webp" width="684" height="670" alt="Yellow cap, black bottle and wristwatch" loading="lazy"></a>
       </div>
     </section>
 
     <section id="shop" class="content-wrap featured section-space" aria-labelledby="featured-heading">
-      <div class="section-heading"><h2 id="featured-heading">Our Featured Products</h2><a class="outline-link" href="#arrivals">Explore More <span aria-hidden="true">→</span></a></div>
+      <div class="section-heading"><h2 id="featured-heading">Our Featured Products</h2><a class="outline-link" href="/search/">Explore More <span aria-hidden="true">→</span></a></div>
       <div id="featured-products" class="product-grid four-col"></div>
     </section>
 
@@ -85,13 +82,13 @@
     </section>
 
     <section id="arrivals" class="content-wrap arrivals section-space" aria-labelledby="arrivals-heading">
-      <div class="section-heading"><div><h2 id="arrivals-heading">New Arrivals</h2><p class="section-subtitle">Fresh essentials for a brighter everyday.</p></div><a href="#shop" class="text-link">Explore More <span aria-hidden="true">→</span></a></div>
+      <div class="section-heading"><div><h2 id="arrivals-heading">New Arrivals</h2><p class="section-subtitle">Fresh essentials for a brighter everyday.</p></div><a href="/search/" class="text-link">Explore More <span aria-hidden="true">→</span></a></div>
       <div id="arrival-products" class="product-grid three-col"></div>
     </section>
 
     <section class="panel-wrap sale section-space" aria-labelledby="sale-heading">
       <div class="sale-art"><img src="./assets/sale-moody-sneakers.webp" width="1850" height="811" alt="Two grey-green sneakers in a moody dark-green product editorial" loading="lazy"></div><div class="sale-overlay"></div>
-      <div class="sale-copy"><h2 id="sale-heading">Last Chance to Save.</h2><p>Premium sneakers. Exclusive prices. This deal won't last—shop now before time runs out.</p><div class="countdown" aria-label="Decorative promotional countdown"><div><strong>02</strong><span>Days</span></div><div><strong>21</strong><span>Hours</span></div><div><strong>44</strong><span>Minutes</span></div><div><strong>54</strong><span>Seconds</span></div></div><a href="#shop" class="pill pill-lime">Grab The Deal <span aria-hidden="true">→</span></a></div>
+      <div class="sale-copy"><h2 id="sale-heading">Last Chance to Save.</h2><p>Premium sneakers. Exclusive prices. This deal won't last—shop now before time runs out.</p><div class="countdown" aria-label="Decorative promotional countdown"><div><strong>02</strong><span>Days</span></div><div><strong>21</strong><span>Hours</span></div><div><strong>44</strong><span>Minutes</span></div><div><strong>54</strong><span>Seconds</span></div></div><a href="/search/?category=Sneakers" class="pill pill-lime">Grab The Deal <span aria-hidden="true">→</span></a></div>
     </section>
 
 
@@ -111,7 +108,7 @@
         <span class="eyebrow with-line dark">Special offer</span>
         <h2 id="deal-heading">Deal Of<br>the Week</h2>
         <p>Handpicked essentials at unbeatable prices. Don't miss out on this week's special picks.</p>
-        <a href="#shop" class="pill pill-green">Shop the Deals <span aria-hidden="true">→</span></a>
+        <a href="/search/" class="pill pill-green">Shop the Deals <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>

@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 const html = readFileSync(new URL('../../site/threads/index.html', import.meta.url), 'utf8');
-const script = readFileSync(new URL('../../site/threads/app.mjs', import.meta.url), 'utf8');
+const script = readFileSync(new URL('../../site/threads/app.mjs', import.meta.url), 'utf8') + '\n' + readFileSync(new URL('../../site/threads/catalog.mjs', import.meta.url), 'utf8');
 const pack = readFileSync(new URL('../../site/threads/backpack.svg', import.meta.url), 'utf8');
 const cropper = readFileSync(new URL('../../site/threads/art-crops.mjs', import.meta.url), 'utf8');
 const sections = ['id="top"','class="hero panel-wrap"','id="categories"','id="shop"','id="about"','id="mission"','id="arrivals"','class="panel-wrap sale section-space"','id="deal"','class="site-footer"'];
@@ -102,7 +102,7 @@ test('feature art remains paintable in full-page screenshot QA',()=>{
  const compat=readFileSync(new URL('../../site/threads/artwork-visibility-20261018.css',import.meta.url),'utf8');
  assert.ok(html.includes('artwork-visibility-20261018.css'));
  assert.match(compat,/content-visibility:visible/);
- assert.ok(script.includes("product.group === 'featured' ? 'eager' : 'lazy'"));
+ assert.ok(script.includes("p.group==='featured'?'eager':'lazy'"));
 });
 
 test('Quality collage is a single contained artwork; original banner remains',()=>{
@@ -151,7 +151,7 @@ test('catalog polish follows the approved palette and currency, without changing
  assert.ok(polish.includes('.category-card:nth-child(2) img'));
  assert.ok(polish.includes('.category-card:nth-child(3) img'));
  assert.ok(html.includes('id="bag-total">Tk 0'));
- assert.ok(script.includes("const money = (num) => 'Tk ' + Math.round(num).toLocaleString('en-BD')"));
+ assert.ok(script.includes("export const priceTk = amount => 'Tk ' + Math.round(amount).toLocaleString('en-BD')"));
  assert.doesNotMatch(script,/price:\d+\.\d+/);
  assert.doesNotMatch(html,/\$\d/);
 });
@@ -161,7 +161,7 @@ test('three complete top-row owner shoes are local and no longer overridden by a
    assert.ok(script.includes('./assets/arrival-'+name+'-runner.webp'));
    assert.ok(readFileSync(new URL('../../site/threads/assets/arrival-'+name+'-runner.webp',import.meta.url)).length>10000);
  }
- assert.ok(script.includes("product.group === 'arrival' && !product.asset ?"));
+ assert.ok(script.includes('imageUrl(p)'));
  assert.ok(script.includes("name:'Aqua Motion Runner'"));
  assert.ok(script.includes("name:'Crimson Track Runner'"));
  assert.ok(script.includes("name:'Amber Street Runner'"));
@@ -205,4 +205,14 @@ test('latest featured image swap preserves storefront structure and maps four lo
  assert.ok(html.includes('app.mjs?v=20261018-featured-v2'));
  assert.ok(html.includes('threads-asset-fidelity-20261018.css?v=20261018-featured-v2'));
  for(const id of ['n1','n2','n3','n4','n5','n6']) assert.ok(script.includes("id:'"+id+"'"),id);
+});
+
+test('homepage routes to shared catalog pages and inline search',()=>{
+ assert.match(html,/href="\/search\/"/);
+ assert.match(html,/href="\/cart\/"/);
+ assert.ok(html.indexOf('id="search-area"')<html.indexOf('id="search-button"'));
+ assert.ok(!html.includes('class="search-area" hidden'));
+ assert.ok(html.includes('storefront.css?v=connected-v1'));
+ const shell=readFileSync(new URL('../../site/threads/storefront-pages.mjs',import.meta.url),'utf8');
+ for(const p of ['search','product','cart','checkout','order'])assert.ok(shell.includes('function '+p+'Page()'),p);
 });
