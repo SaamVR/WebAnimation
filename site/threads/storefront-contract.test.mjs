@@ -88,7 +88,7 @@ test('Batch 1 image mapping, category counts, one honest cover per new product',
   assert.ok(p.price>0&&Number.isInteger(p.price));
   assert.ok(p.name&&p.description&&p.tags.length);
   assert.equal(p.asset,'./assets/products/'+p.id+'/cover.webp');
-  assert.equal(productGallery(p).length,1,'Do not invent camera angles');
+  assert.equal(productGallery(p).length,1+galleryAssetManifest[p.id].length,'Exactly the supplied individual gallery views, no invented angles');
   assert.equal(productGallery(p)[0].asset,p.asset);
   assert.equal(productGallery(p)[0].isAlternate,false);
  }
