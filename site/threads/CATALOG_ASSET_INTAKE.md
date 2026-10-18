@@ -58,3 +58,10 @@ The storefront's `productGallery()` displays real, separate assets whenever `gal
 3. Test `Vintage Sneakers`, `Sneaker`, `Hat`, `Cap`, `Backpack`, `Bag`, and `Accessories` with truthful relevance; **a duffel is not a backpack**.
 4. Open all Shop/Search cards; cycle actual thumbnails; verify cart → simulated checkout → successful order and negative paths.
 5. Capture browser screenshots at desktop 1440px and mobile 390px; report broken/absent crops separately. Require owner review before branch merge/deployment.
+
+## Batch 1 received — 2026-10-19 (asset upload pending)
+Four owner-uploaded transparent RGBA collages were inspected and segmented into 29 distinct product cutouts: 9 sneakers, 6 caps, 7 bags (4 backpacks and 3 duffels), and 7 accessories (2 belts, 3 bottles and 2 watches). The previous ten catalog IDs and home Featured/New Arrivals remain intact. New stable IDs: sho-01..09, hat-01..06, bag-01..07, acc-01..07. Their cover paths are assets/products/<ID>/cover.webp.
+
+**Important release gate:** The exact 29 cutouts are packaged outside the GitHub connector as a downloadable ZIP with manifest and visual contact sheet. This connector can commit the JS/docs but cannot ingest the binary ZIP directly from the working container. Until all 29 WebP files are uploaded into this branch at the mapped paths, this draft branch will display broken image URLs for the new items and MUST NOT be merged, deployed, or reported visually complete.
+
+Batch 1 provides only a cover photograph per product. The gallery renderer displays that actual cover only and does not claim nonexistent alternate-angle shots. Batch 2 is still required for side/rear/detail thumbnails. Catalog names and prices assigned for demo are illustrative, not verified retail specifications or official offers.
