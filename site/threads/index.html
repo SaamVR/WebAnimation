@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./artwork-visibility-20261018.css">
   <link rel="stylesheet" href="./section-fidelity-20261018.css">
   <link rel="stylesheet" href="./deal-of-week-rebuild-20261018.css">
+  <link rel="stylesheet" href="./footer-reference-20261018.css">
   <script type="module" src="./app.mjs"></script>
 </head>
 <body>
@@ -113,18 +114,40 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-main content-wrap">
-      <div class="footer-intro"><a class="footer-logo" href="#top">THREADS</a><p>Premium sneakers, bags and everyday essentials for a brighter everyday.</p><div class="social-icons" aria-hidden="true">◎ &nbsp; ◇ &nbsp; ◌</div></div>
-      <div class="footer-links"><h3>Shop</h3><a href="#shop">Sneakers</a><a href="#categories">Bags</a><a href="#categories">Accessories</a><a href="#arrivals">New Arrivals</a></div>
-      <div class="footer-links"><h3>About</h3><a href="#about">Our Story</a><a href="#mission">Sustainability</a><a href="#about">Careers</a></div>
-      <div class="footer-links"><h3>Help</h3><a href="#footer-news">Help Center</a><a href="#footer-news">Shipping &amp; Returns</a><a href="#footer-news">Size Guide</a><a href="#footer-news">Contact Us</a></div>
-      <div class="footer-links"><h3>Company</h3><a href="#about">Terms of Service</a><a href="#about">Privacy Policy</a><a href="#about">Cookie Policy</a></div>
-      <div id="footer-news" class="newsletter"><span class="eyebrow">Stay connected</span><h3>Get Our News And Updates</h3><form id="newsletter-form"><label for="newsletter-email" class="sr-only">Email</label><input id="newsletter-email" type="email" placeholder="Enter your email" required><button type="submit">Subscribe</button></form><p id="newsletter-status">Visual demo only; no emails are collected.</p></div>
+  <footer class="site-footer" aria-label="THREADS footer">
+    <div class="threads-footer-inner">
+      <div class="threads-footer-top">
+        <div class="threads-footer-brand">
+          <a class="threads-footer-logo" href="#top" aria-label="THREADS home">
+            <img src="./assets/threads-footer-logo-inverted.png" width="900" height="112" alt="THREADS" loading="eager" decoding="async">
+          </a>
+          <p>Premium sneakers, bags and everyday<br class="footer-desktop-break"> essentials for a brighter everyday.</p>
+          <div class="threads-footer-social" role="img" aria-label="Social media: Instagram, Facebook, YouTube and Pinterest (illustrative icons)">
+            <span title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.8" cy="6.4" r=".75" fill="currentColor" stroke="none"/></svg></span>
+            <span title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14.6 22v-8.7h3l.45-3.5H14.6V7.5c0-1 .28-1.67 1.72-1.67h1.84V2.7a25 25 0 0 0-2.68-.14c-2.66 0-4.48 1.63-4.48 4.6v2.64H8v3.5h3V22h3.6Z"/></svg></span>
+            <span title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.65"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor" stroke="none"/><path d="m10 8.7 6 3.3-6 3.3Z" fill="#172B2E" stroke="none"/></svg></span>
+            <span title="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.34c-.06-.84 0-1.7.2-2.5l1.2-5.13s-.3-.59-.3-1.45c0-1.35.78-2.37 1.75-2.37.83 0 1.23.62 1.23 1.37 0 .83-.53 2.07-.8 3.22-.23.96.47 1.74 1.4 1.74 1.68 0 2.98-1.77 2.98-4.33 0-2.27-1.63-3.86-3.97-3.86-2.7 0-4.29 2.02-4.29 4.11 0 .82.31 1.7.71 2.18a.29.29 0 0 1 .06.28l-.27 1.1c-.04.18-.15.22-.34.14-1.27-.6-2.06-2.47-2.06-3.97 0-3.23 2.35-6.2 6.77-6.2 3.55 0 6.31 2.53 6.31 5.91 0 3.52-2.22 6.36-5.3 6.36-1.03 0-2-.54-2.34-1.17l-.63 2.4c-.23.91-.85 2.05-1.26 2.83A10 10 0 1 0 12 2Z"/></svg></span>
+          </div>
+        </div>
+        <div id="footer-news" class="threads-footer-newsletter">
+          <span class="threads-footer-kicker">STAY CONNECTED</span>
+          <h2>Get Our News And Updates</h2>
+          <form id="newsletter-form">
+            <label for="newsletter-email" class="sr-only">Email address for newsletter demo</label>
+            <input id="newsletter-email" type="email" autocomplete="email" placeholder="Enter your email" aria-describedby="newsletter-status" required>
+            <button type="submit">Subscribe</button>
+          </form>
+          <p id="newsletter-status" role="status" aria-live="polite">Demo preview only — email addresses are not collected.</p>
+        </div>
+      </div>
+      <nav class="threads-footer-nav" aria-label="Footer navigation">
+        <div class="threads-footer-links"><h3>Shop</h3><a href="#shop">Sneakers</a><a href="#categories">Bags</a><a href="#categories">Accessories</a><a href="#arrivals">New Arrivals</a></div>
+        <div class="threads-footer-links"><h3>About</h3><a href="#about">Our Story</a><a href="#mission">Sustainability</a><a href="#about">Careers</a><a href="#about">Press</a></div>
+        <div class="threads-footer-links"><h3>Help</h3><a href="#footer-news">Help Center</a><a href="#footer-news">Shipping &amp; Returns</a><a href="#footer-news">Size Guide</a><a href="#footer-news">Contact Us</a></div>
+        <div class="threads-footer-links threads-footer-company"><h3>Company</h3><a href="#about">Terms of Service</a><a href="#about">Privacy Policy</a><a href="#about">Cookie Policy</a><p class="threads-footer-legal">© 2026 THREADS · Demo preview</p></div>
+      </nav>
     </div>
-    <div class="footer-bottom content-wrap"><span>© 2026 THREADS · Standalone design study</span><span>Concept catalog · No real orders or payment processing</span></div>
   </footer>
-
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div class="modal-scrim" id="drawer-scrim" hidden></div>
   <aside class="bag-drawer" id="bag-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart" hidden>

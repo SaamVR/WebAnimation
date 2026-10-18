@@ -122,3 +122,23 @@ test('Quality collage is a single contained artwork; original banner remains',()
   assert.ok(html.includes('section-fidelity-20261018.css'));
   assert.ok(readFileSync(new URL('../../site/threads/assets/editorial-complete-20261018.webp',import.meta.url)).length>20000);
 });
+
+test('approved two-tier Threads footer uses inverted real logo, email demo, and four nav columns',()=>{
+  const footer=html.split('<footer class="site-footer"')[1].split('</footer>')[0];
+  assert.ok(footer.includes('threads-footer-logo-inverted.png'));
+  assert.equal((footer.match(/<img /g)||[]).length,1);
+  assert.ok(footer.includes('threads-footer-top'));
+  assert.ok(footer.includes('threads-footer-newsletter'));
+  assert.ok(footer.includes('threads-footer-nav'));
+  for(const label of ['Shop','About','Help','Company']) assert.ok(footer.includes('<h3>'+label+'</h3>'));
+  assert.equal((footer.match(/class="threads-footer-links/g)||[]).length,4);
+  assert.ok(footer.includes('newsletter-form')&&footer.includes('newsletter-email')&&footer.includes('newsletter-status'));
+  assert.ok(footer.includes('email addresses are not collected'));
+  assert.ok(!footer.includes('◎ &nbsp; ◇'));
+  const stylesheet=readFileSync(new URL('../../site/threads/footer-reference-20261018.css',import.meta.url),'utf8');
+  assert.ok(stylesheet.includes('grid-template-columns: repeat(4, minmax(0, 1fr))'));
+  assert.ok(stylesheet.includes('grid-template-columns: repeat(2,minmax(0,1fr))'));
+  assert.ok(stylesheet.includes('#172B2E'));
+  assert.ok(html.includes('footer-reference-20261018.css'));
+  assert.ok(readFileSync(new URL('../../site/threads/assets/threads-footer-logo-inverted.png',import.meta.url)).length>2000);
+});

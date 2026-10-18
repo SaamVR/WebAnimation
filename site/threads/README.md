@@ -84,3 +84,8 @@ Responsive QA refinement: browser measurements showed the headline/copy needed 4
 
 ## October 18 — Deal of the Week rebuilt (standalone)
 The legacy composited deal image, duplicate decorative rectangles, CSS background fallbacks and picture element have been replaced in the active DOM with **one SVG angled panel** traced to the owner's supplied transparent panel silhouette. The illustrated backpack is an independent, transparent WebP layer isolated from the original owner artwork (with alpha-masked handle opening and shadow); supplied original subject placement/appearance is preserved. The right-hand heading, paragraph and linked CTA remain editable HTML. The wrapper exposes `data-t03-layer="backpack"` as a future animation hook; no T03 choreography is enabled. A dedicated responsive stylesheet targets only `#deal.threads-deal` to avoid legacy CSS selectors. EcomCMS and other storefront sections are untouched.
+
+
+## Footer visual reference and inverted Threads wordmark — 2026-10-18
+
+Owner-supplied transparent light-colored THREADS wordmark cropped to content bounds and preserved as `site/threads/assets/threads-footer-logo-inverted.png`. Rebuilt footer only, based on two-row reference: top brand description and four illustrative social icons (no unapproved outbound links), top-right newsletter form with central separator; thin full-width divider; second row of Shop/About/Help/Company columns with modest © 2026 demo indication. Colors use existing site greens #172B2E, #2E453A and light ivory #F9F9F7. On mobile, brand/newsletter stack and link columns become a 2×2 grid. Newsletter is intentionally demo-only; no email submitted or retained. All T01-T04 motion, the remaining homepage sections and EcomCMS are unchanged.
