@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {catalog,searchCatalog,productMeta} from './catalog.mjs';
+import {catalog,searchCatalog,productMeta,productGallery,catalogFilters,merchandisingCategory,imageUrl} from './catalog.mjs';
 import {variantAvailable,priceTk,cartKey} from './store-core.mjs';
 const here=import.meta.url;
 const read=p=>readFileSync(new URL(p,here),'utf8');
@@ -44,4 +44,36 @@ test('homepage search field expands left of its header icon on one row',()=>{
  assert.ok(style.includes('right:calc(3*var(--tool-size) + 2*var(--tool-gap))'));
  assert.ok(!home.includes('<div id="search-area" class="search-area" hidden>'));
  assert.ok(home.includes('href="/cart/"'));
+});
+test('merchandising filters distinguish caps from accessories, and bags from backpacks',()=>{
+ assert.deepEqual(catalogFilters.map(x=>x.id),['All','Sneakers','Hats','Bags','Accessories']);
+ assert.equal(merchandisingCategory(catalog.find(p=>p.id==='f2')),'Hats');
+ assert.equal(searchCatalog('Hat').length,1);
+ assert.equal(searchCatalog('CAP').length,1);
+ assert.equal(searchCatalog('', 'Hats').length,1);
+ assert.equal(searchCatalog('', 'Accessories').length,1);
+ assert.equal(searchCatalog('Backpack').length,0,'A duffel is not falsely advertised as a backpack');
+ assert.equal(searchCatalog('duffel').length,1);
+ assert.ok(searchCatalog('Vintage Sneakers').length>=3);
+ assert.equal(searchCatalog('not-a-product-ever').length,0);
+});
+test('product images support owner-supplied independent gallery views, without invented angles',()=>{
+ const p=catalog.find(x=>x.id==='f1');
+ const old=productGallery(p);
+ assert.equal(old.length,3);
+ assert.ok(old.every(v=>v.asset===p.asset&&!v.isAlternate));
+ const supplied={asset:'./assets/products/new/cover.webp',gallery:[
+  {asset:'./assets/products/new/front.webp',label:'Front'},
+  {asset:'./assets/products/new/side.webp',label:'Side profile'},
+  {asset:'./assets/products/new/back.webp',label:'Back'}
+ ]};
+ const genuine=productGallery(supplied);
+ assert.deepEqual(genuine.map(x=>x.label),['Front','Side profile','Back']);
+ assert.equal(genuine[1].crop,0);
+ assert.equal(genuine[1].isAlternate,true);
+ assert.equal(imageUrl(genuine[1]),'/assets/products/new/side.webp');
+ const page=read('storefront-pages.mjs');
+ assert.ok(page.includes('gallery.map((view,i)'));
+ assert.ok(page.includes('image.src=imageUrl(view)'));
+ assert.ok(page.includes('id="gallery-view-note"'));
 });
