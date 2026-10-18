@@ -34,7 +34,9 @@ export const productMeta = product => ({
   keywords: [
     product.category==='Sneakers'?'sneaker sneakers shoes trainers running footwear':'',
     product.category==='Bags'?'bag bags duffel backpack travel':'',
-    product.category==='Accessories'?'accessories cap headphones accessory':'',
+    product.category==='Accessories'?'accessories accessory':'',
+    product.id==='f2'?'cap baseball hat headwear':'',
+    product.id==='f4'?'headphones audio earphones':'',
     vintageIds.has(product.id)?'vintage retro classic heritage inspired sneakers':'',
     product.group==='arrival'?'new arrivals new':''
   ].join(' ')
