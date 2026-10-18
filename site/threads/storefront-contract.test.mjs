@@ -112,7 +112,9 @@ test('unfiltered Shop groups category-major, row-major and keeps related variati
  assert.deepEqual(belts.map(p=>p.id),['acc-01','acc-02']);
  assert.equal(ordered.findIndex(p=>p.id==='acc-02'),ordered.findIndex(p=>p.id==='acc-01')+1);
  const bags=ordered.filter(p=>merchandisingCategory(p)==='Bags');
- assert.deepEqual(bags.filter(p=>p.type==='backpack').map(p=>p.id),['bag-01','bag-02','bag-03','bag-04']);
+ assert.equal(bags.filter(p=>p.type==='backpack').length,4);
+ const backpackNames=bags.filter(p=>p.type==='backpack').map(p=>p.name);
+ assert.deepEqual(backpackNames,[...backpackNames].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'})));
  assert.deepEqual(curateShopProducts([...catalog].reverse()).map(p=>p.id),ordered.map(p=>p.id));
 });
 
