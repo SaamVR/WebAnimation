@@ -170,7 +170,7 @@ test('three complete top-row owner shoes are local and no longer overridden by a
 });
 
 test('2026-10-18 latest owner featured art and three previously approved bottom-row shoes',()=>{
-  const source=readFileSync(new URL('../../site/threads/app.mjs',import.meta.url),'utf8');
+  const source=readFileSync(new URL('../../site/threads/catalog.mjs',import.meta.url),'utf8');
   for(const filename of ['featured-olive-sneaker-owner-20261018.webp','featured-yellow-cap-owner-20261018.webp','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp','arrival-bottom-orange-cream-20261018.webp','arrival-bottom-lime-20261018.webp','arrival-bottom-black-teal-20261018.webp']){
     assert.ok(source.includes(filename),filename);
     assert.ok(readFileSync(new URL('../../site/threads/assets/'+filename,import.meta.url)).length>12000,filename);
@@ -202,7 +202,7 @@ test('latest featured image swap preserves storefront structure and maps four lo
    assert.ok(readFileSync(new URL('../../site/threads/assets/'+filenames[i],import.meta.url)).length>8000);
  }
  assert.ok(script.includes("id:'f3', group:'featured', asset:")&&script.includes("category:'Bags'"));
- assert.ok(html.includes('app.mjs?v=20261018-featured-v2'));
+ assert.ok(html.includes('app.mjs?v=connected-v1'));
  assert.ok(html.includes('threads-asset-fidelity-20261018.css?v=20261018-featured-v2'));
  for(const id of ['n1','n2','n3','n4','n5','n6']) assert.ok(script.includes("id:'"+id+"'"),id);
 });
@@ -214,5 +214,5 @@ test('homepage routes to shared catalog pages and inline search',()=>{
  assert.ok(!html.includes('class="search-area" hidden'));
  assert.ok(html.includes('storefront.css?v=connected-v1'));
  const shell=readFileSync(new URL('../../site/threads/storefront-pages.mjs',import.meta.url),'utf8');
- for(const p of ['search','product','cart','checkout','order'])assert.ok(shell.includes('function '+p+'Page()'),p);
+ for(const p of ['searchPage()','detailPage()','cartPage()','checkoutPage()','orderPage()'])assert.ok(shell.includes('function '+p),p);
 });
