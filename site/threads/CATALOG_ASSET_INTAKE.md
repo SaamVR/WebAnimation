@@ -59,9 +59,25 @@ The storefront's `productGallery()` displays real, separate assets whenever `gal
 4. Open all Shop/Search cards; cycle actual thumbnails; verify cart → simulated checkout → successful order and negative paths.
 5. Capture browser screenshots at desktop 1440px and mobile 390px; report broken/absent crops separately. Require owner review before branch merge/deployment.
 
-## Batch 1 received — 2026-10-19 (asset upload pending)
-Four owner-uploaded transparent RGBA collages were inspected and segmented into 29 distinct product cutouts: 9 sneakers, 6 caps, 7 bags (4 backpacks and 3 duffels), and 7 accessories (2 belts, 3 bottles and 2 watches). The previous ten catalog IDs and home Featured/New Arrivals remain intact. New stable IDs: sho-01..09, hat-01..06, bag-01..07, acc-01..07. Their cover paths are assets/products/<ID>/cover.webp.
+## Batch 1 imported — 2026-10-19 (GitHub source and asset gate PASS)
+Four owner-provided collage files were isolated into **29 actual product cover images**:
+9 sneakers, 6 caps, 7 bags (4 backpacks / 3 duffels), and 7 accessories
+(2 webbing belts / 3 water bottles / 2 watches).
 
-**Important release gate:** The exact 29 cutouts are packaged outside the GitHub connector as a downloadable ZIP with manifest and visual contact sheet. This connector can commit the JS/docs but cannot ingest the binary ZIP directly from the working container. Until all 29 WebP files are uploaded into this branch at the mapped paths, this draft branch will display broken image URLs for the new items and MUST NOT be merged, deployed, or reported visually complete.
-
-Batch 1 provides only a cover photograph per product. The gallery renderer displays that actual cover only and does not claim nonexistent alternate-angle shots. Batch 2 is still required for side/rear/detail thumbnails. Catalog names and prices assigned for demo are illustrative, not verified retail specifications or official offers.
+- Branch: `feat/threads-batch1-catalog-20261019`, draft PR #6 (stacked atop PR #5).
+- Stable IDs: `sho-01..09`, `hat-01..06`, `bag-01..07`, `acc-01..07`.
+- Each real transparent WebP was committed at `site/threads/assets/products/<id>/cover.webp`;
+  images were resized/compressed for performant browser rendering without generating or substituting
+  product photography. Source-resolution originals and crop metadata remain in the downloadable
+  owner-provided asset package.
+- All **29 real WebP files** are checked in and validated by
+  `site/threads/asset-contract.test.mjs`. The GitHub workflow now runs this release gate.
+- Existing ten product IDs remain unchanged; new inventory appears in Shop and category search,
+  while approved homepage featured/arrival curation remains undisturbed.
+- Demo product names, tags, descriptions and BDT prices are illustrative merchandising metadata,
+  not official brand or retail claims.
+- `productGallery()` displays exactly one genuine **cover image** per new product until distinct
+  owner-supplied alternate camera angles arrive in Batch 2. It does not claim three fake views.
+- Cart, checkout, order confirmation and animations T01–T04 remain unchanged.
+- The connected branch passing CI is not equivalent to a production deploy. Browser/mobile and
+  public-preview verification must be reported separately and never assumed.
