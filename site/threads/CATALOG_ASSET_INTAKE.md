@@ -58,3 +58,26 @@ The storefront's `productGallery()` displays real, separate assets whenever `gal
 3. Test `Vintage Sneakers`, `Sneaker`, `Hat`, `Cap`, `Backpack`, `Bag`, and `Accessories` with truthful relevance; **a duffel is not a backpack**.
 4. Open all Shop/Search cards; cycle actual thumbnails; verify cart → simulated checkout → successful order and negative paths.
 5. Capture browser screenshots at desktop 1440px and mobile 390px; report broken/absent crops separately. Require owner review before branch merge/deployment.
+
+## Batch 1 imported — 2026-10-19 (GitHub source and asset gate PASS)
+Four owner-provided collage files were isolated into **29 actual product cover images**:
+9 sneakers, 6 caps, 7 bags (4 backpacks / 3 duffels), and 7 accessories
+(2 webbing belts / 3 water bottles / 2 watches).
+
+- Branch: `feat/threads-batch1-catalog-20261019`, draft PR #6 (stacked atop PR #5).
+- Stable IDs: `sho-01..09`, `hat-01..06`, `bag-01..07`, `acc-01..07`.
+- Each real transparent WebP was committed at `site/threads/assets/products/<id>/cover.webp`;
+  images were resized/compressed for performant browser rendering without generating or substituting
+  product photography. Source-resolution originals and crop metadata remain in the downloadable
+  owner-provided asset package.
+- All **29 real WebP files** are checked in and validated by
+  `site/threads/asset-contract.test.mjs`. The GitHub workflow now runs this release gate.
+- Existing ten product IDs remain unchanged; new inventory appears in Shop and category search,
+  while approved homepage featured/arrival curation remains undisturbed.
+- Demo product names, tags, descriptions and BDT prices are illustrative merchandising metadata,
+  not official brand or retail claims.
+- `productGallery()` displays exactly one genuine **cover image** per new product until distinct
+  owner-supplied alternate camera angles arrive in Batch 2. It does not claim three fake views.
+- Cart, checkout, order confirmation and animations T01–T04 remain unchanged.
+- The connected branch passing CI is not equivalent to a production deploy. Browser/mobile and
+  public-preview verification must be reported separately and never assumed.

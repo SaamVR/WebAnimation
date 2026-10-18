@@ -1,12 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {catalog,searchCatalog,productMeta,productGallery,catalogFilters,merchandisingCategory,imageUrl} from './catalog.mjs';
+import {catalog,searchCatalog,productMeta,productGallery,catalogFilters,merchandisingCategory,imageUrl,curateShopProducts} from './catalog.mjs';
 import {variantAvailable,priceTk,cartKey} from './store-core.mjs';
 const here=import.meta.url;
 const read=p=>readFileSync(new URL(p,here),'utf8');
-test('shared catalog contains exactly ten owner-approved products',()=>{
- assert.equal(catalog.length,10);
+test('shared catalog preserves the original ten IDs and adds 29 genuine owner-image mappings',()=>{
+ assert.equal(catalog.length,39);
+ assert.deepEqual(catalog.slice(0,10).map(p=>p.id),['f1','f2','f3','f4','n1','n2','n3','n4','n5','n6']);
+ assert.equal(catalog.filter(p=>p.group==='catalog').length,29);
  assert.equal(catalog.filter(p=>p.group==='featured').length,4);
  assert.equal(catalog.filter(p=>p.group==='arrival').length,6);
 });
@@ -14,7 +16,7 @@ test('search matches synonyms, terms, case-insensitive partials and vintage snea
  assert.ok(searchCatalog('Vintage Sneakers').length>=3);
  assert.ok(searchCatalog('vInTaGe SnEaKeRs').length>=3);
  assert.equal(searchCatalog('unobtainium-98765').length,0);
- assert.equal(searchCatalog('cap').length,1);
+ assert.ok(searchCatalog('cap').length>=7);
  assert.ok(searchCatalog('', 'Sneakers').every(p=>p.category==='Sneakers'));
 });
 test('variant selection and limited availability are real demo state',()=>{
@@ -48,12 +50,12 @@ test('homepage search field expands left of its header icon on one row',()=>{
 test('merchandising filters distinguish caps from accessories, and bags from backpacks',()=>{
  assert.deepEqual(catalogFilters.map(x=>x.id),['All','Sneakers','Hats','Bags','Accessories']);
  assert.equal(merchandisingCategory(catalog.find(p=>p.id==='f2')),'Hats');
- assert.equal(searchCatalog('Hat').length,1);
- assert.equal(searchCatalog('CAP').length,1);
- assert.equal(searchCatalog('', 'Hats').length,1);
- assert.equal(searchCatalog('', 'Accessories').length,1);
- assert.equal(searchCatalog('Backpack').length,0,'A duffel is not falsely advertised as a backpack');
- assert.equal(searchCatalog('duffel').length,1);
+ assert.ok(searchCatalog('Hat').length>=7);
+ assert.ok(searchCatalog('CAP').length>=7);
+ assert.equal(searchCatalog('', 'Hats').length,7);
+ assert.equal(searchCatalog('', 'Accessories').length,8);
+ assert.equal(searchCatalog('Backpack').length,4,'Only genuine backpack images match; duffels do not');
+ assert.equal(searchCatalog('duffel').length,4);
  assert.ok(searchCatalog('Vintage Sneakers').length>=3);
  assert.equal(searchCatalog('not-a-product-ever').length,0);
 });
@@ -76,4 +78,52 @@ test('product images support owner-supplied independent gallery views, without i
  assert.ok(page.includes('gallery.map((view,i)'));
  assert.ok(page.includes('image.src=imageUrl(view)'));
  assert.ok(page.includes('id="gallery-view-note"'));
+});
+
+test('Batch 1 image mapping, category counts, one honest cover per new product',()=>{
+ const latest=catalog.filter(p=>p.group==='catalog');
+ assert.deepEqual([['Sneakers',9],['Hats',6],['Bags',7],['Accessories',7]].map(([c,n])=>[c,latest.filter(p=>p.category===c).length,n]),[['Sneakers',9,9],['Hats',6,6],['Bags',7,7],['Accessories',7,7]]);
+ assert.equal(new Set(catalog.map(p=>p.id)).size,catalog.length);
+ for(const p of latest){
+  assert.ok(p.price>0&&Number.isInteger(p.price));
+  assert.ok(p.name&&p.description&&p.tags.length);
+  assert.equal(p.asset,'./assets/products/'+p.id+'/cover.webp');
+  assert.equal(productGallery(p).length,1,'Do not invent camera angles');
+  assert.equal(productGallery(p)[0].asset,p.asset);
+  assert.equal(productGallery(p)[0].isAlternate,false);
+ }
+ assert.ok(searchCatalog('Vintage Sneakers').length>=6);
+ assert.ok(searchCatalog('Cap').length>=7);
+ assert.ok(searchCatalog('Backpack').length>=4);
+ assert.ok(searchCatalog('Accessories').length>=8);
+ assert.ok(searchCatalog('bottle').length>=3);
+ assert.ok(!searchCatalog('Backpack').some(p=>p.type==='duffel'));
+});
+
+test('unfiltered Shop groups category-major, row-major and keeps related variations adjacent',()=>{
+ const ordered=curateShopProducts(catalog);
+ assert.equal(ordered.length,39);
+ assert.equal(new Set(ordered.map(p=>p.id)).size,39);
+ const sequence=ordered.map(merchandisingCategory);
+ const categoryOrder=['Sneakers','Hats','Bags','Accessories'];
+ assert.deepEqual([...new Set(sequence)],categoryOrder);
+ for(let i=1;i<sequence.length;i++) assert.ok(categoryOrder.indexOf(sequence[i])>=categoryOrder.indexOf(sequence[i-1]),'Category groups are contiguous');
+ const belts=ordered.filter(p=>p.type==='belt');
+ assert.deepEqual(belts.map(p=>p.id),['acc-01','acc-02']);
+ assert.equal(ordered.findIndex(p=>p.id==='acc-02'),ordered.findIndex(p=>p.id==='acc-01')+1);
+ const bags=ordered.filter(p=>merchandisingCategory(p)==='Bags');
+ assert.equal(bags.filter(p=>p.type==='backpack').length,4);
+ const backpackNames=bags.filter(p=>p.type==='backpack').map(p=>p.name);
+ assert.deepEqual(backpackNames,[...backpackNames].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'})));
+ assert.deepEqual(curateShopProducts([...catalog].reverse()).map(p=>p.id),ordered.map(p=>p.id));
+});
+
+test('storefront uses full, absolutely constrained cover images and category headings',()=>{
+ const css=read('storefront.css'),page=read('storefront-pages.mjs');
+ assert.match(css,/\.store-product-card__media img\{position:absolute;inset:0;width:100%;height:100%/);
+ assert.match(css,/box-sizing:border-box;object-fit:contain;object-position:center/);
+ assert.match(css,/\.store-category-heading\{grid-column:1\/-1/);
+ assert.ok(page.includes('data-shop-group='));
+ assert.ok(page.includes('catalogFilters.slice(1)'));
+ assert.ok(page.includes('fullShop'));
 });
