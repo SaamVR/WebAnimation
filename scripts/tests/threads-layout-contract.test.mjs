@@ -69,7 +69,7 @@ test('Deal of the Week uses one SVG panel and editable accessible copy',()=>{
   const layout=readFileSync(new URL('../../site/threads/deal-of-week-rebuild-20261018.css',import.meta.url),'utf8');
   assert.match(layout,/display: grid/);
   assert.match(layout,/grid-template-columns/);
-  assert.match(layout,/#EEECE8/);
+  assert.match(section,/#EEECE8/);
   assert.ok(html.includes('deal-of-week-rebuild-20261018.css'));
   assert.ok(!html.includes('deal-backpack-background-20261018.css'));
 });
