@@ -81,12 +81,15 @@ export function initT01Spotlight({root=document}={}){
  const clear=()=>{
   clearTimeout(timer);
   if(current){
-   current.timeline?.kill();
-   current.gsap?.set(current.target,{clearProps:'transform,boxShadow,filter'});
-   current.target?.classList.remove('t01-discovered');
-   if(current.icon)current.icon.style.removeProperty('opacity');
-   current.stage?.el.remove();
+   // Mark detached before kill(): GSAP synchronously fires onInterrupt.
+   // A second cleanup must never recursively kill this same timeline.
+   const previous=current;
    current=null;
+   previous.timeline?.kill();
+   previous.gsap?.set(previous.target,{clearProps:'transform,boxShadow,filter'});
+   previous.target?.classList.remove('t01-discovered');
+   if(previous.icon)previous.icon.style.removeProperty('opacity');
+   previous.stage?.el.remove();
   }
   root.querySelectorAll('.t01-reduced-discovery').forEach(n=>n.classList.remove('t01-reduced-discovery'));
   status.textContent='';
@@ -171,7 +174,8 @@ export function initT01Spotlight({root=document}={}){
   timeline.to(s.warm,{attr:{opacity:0,r:0},duration:.52},'<');
   timeline.to(s.veil,{attr:{opacity:0},duration:.42},'<');
   timeline.to(s.glass,{x:start.x,y:start.y,rotation:0,scale:.29,opacity:0,duration:.18,ease:'power2.out'});
-  timeline.play();
+  // 3.87s authored beats at 1.16x settle in ~3.34s on desktop.
+  timeline.timeScale(1.16).play();
  }
  function schedule(query,products){
   cancel();const version=revision;

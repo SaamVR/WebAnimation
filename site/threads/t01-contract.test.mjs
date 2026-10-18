@@ -13,7 +13,7 @@ test('T01 is genuinely integrated into the existing static search, not a substit
 });
 test('T01 is a separate pointer-transparent GSAP actor with real geometry and safe teardown',()=>{
  const js=read('t01-spotlight.mjs'),css=read('storefront.css');
- for(const item of ['MotionPathPlugin','gsap.registerPlugin','getBoundingClientRect','requestAnimationFrame','prefers-reduced-motion','pagehide','visibilitychange','resize','scroll','current.timeline?.kill()','data-t01-card','pointer-events:none']){
+ for(const item of ['MotionPathPlugin','gsap.registerPlugin','getBoundingClientRect','requestAnimationFrame','prefers-reduced-motion','pagehide','visibilitychange','resize','scroll','previous.timeline?.kill()','data-t01-card','pointer-events:none']){
   assert.ok((js+css).includes(item),item);
  }
  assert.match(js,/rankProduct\(/);
