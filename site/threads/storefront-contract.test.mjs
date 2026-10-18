@@ -100,10 +100,28 @@ test('Batch 1 image mapping, category counts, one honest cover per new product',
  assert.ok(!searchCatalog('Backpack').some(p=>p.type==='duffel'));
 });
 
-test('unfiltered Shop interleaves categories after four legacy feature cards',()=>{
+test('unfiltered Shop groups category-major, row-major and keeps related variations adjacent',()=>{
  const ordered=curateShopProducts(catalog);
  assert.equal(ordered.length,39);
  assert.equal(new Set(ordered.map(p=>p.id)).size,39);
- assert.deepEqual(ordered.slice(0,4).map(p=>p.id),['f1','f2','f3','f4']);
- assert.deepEqual(ordered.slice(4,8).map(merchandisingCategory),['Sneakers','Hats','Bags','Accessories']);
+ const sequence=ordered.map(merchandisingCategory);
+ const categoryOrder=['Sneakers','Hats','Bags','Accessories'];
+ assert.deepEqual([...new Set(sequence)],categoryOrder);
+ for(let i=1;i<sequence.length;i++) assert.ok(categoryOrder.indexOf(sequence[i])>=categoryOrder.indexOf(sequence[i-1]),'Category groups are contiguous');
+ const belts=ordered.filter(p=>p.type==='belt');
+ assert.deepEqual(belts.map(p=>p.id),['acc-01','acc-02']);
+ assert.equal(ordered.findIndex(p=>p.id==='acc-02'),ordered.findIndex(p=>p.id==='acc-01')+1);
+ const bags=ordered.filter(p=>merchandisingCategory(p)==='Bags');
+ assert.deepEqual(bags.filter(p=>p.type==='backpack').map(p=>p.id),['bag-01','bag-02','bag-03','bag-04']);
+ assert.deepEqual(curateShopProducts([...catalog].reverse()).map(p=>p.id),ordered.map(p=>p.id));
+});
+
+test('storefront uses full, absolutely constrained cover images and category headings',()=>{
+ const css=read('storefront.css'),page=read('storefront-pages.mjs');
+ assert.match(css,/\.store-product-card__media img\{position:absolute;inset:0;width:100%;height:100%/);
+ assert.match(css,/box-sizing:border-box;object-fit:contain;object-position:center/);
+ assert.match(css,/\.store-category-heading\{grid-column:1\/-1/);
+ assert.ok(page.includes('data-shop-group='));
+ assert.ok(page.includes('catalogFilters.slice(1)'));
+ assert.ok(page.includes('fullShop'));
 });

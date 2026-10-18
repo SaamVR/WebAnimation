@@ -26,7 +26,14 @@ function searchPage(){
  function update(q=input.value,cat=activeCategory){
   const matches=searchCatalog(q,cat).filter(p=>!favorites||getFavorites().has(p.id));
   const list=!q.trim()&&(!cat||cat==='All')&&!favorites?curateShopProducts(matches):matches;
-  $('results-grid').innerHTML=list.length?list.map(card).join(''):`<div class="store-empty"><h3>No matching products</h3><p>Try fewer keywords or browse all categories.</p><a href="/search/" class="store-primary-btn">Browse all products</a></div>`;
+  // Keep natural, row-major grid placement and start each collection on a fresh row.
+  const fullShop=!q.trim()&&(!cat||cat==='All')&&!favorites;
+  const markup=fullShop?catalogFilters.slice(1).map(group=>{
+    const items=list.filter(p=>merchandisingCategory(p)===group.id);
+    if(!items.length)return '';
+    return `<h3 class="store-category-heading" data-shop-group="${group.id}">${escape(group.label)} <span>${items.length} styles</span></h3>`+items.map(card).join('');
+  }).join(''):list.map(card).join('');
+  $('results-grid').innerHTML=list.length?markup:`<div class="store-empty"><h3>No matching products</h3><p>Try fewer keywords or browse all categories.</p><a href="/search/" class="store-primary-btn">Browse all products</a></div>`;
   $('results-count').textContent=list.length+' relevant demo product'+(list.length===1?'':'s');
   $('results-title').textContent=q?'Results for “'+q+'”':'All Products';
   for(const b of document.querySelectorAll('[data-category]'))b.setAttribute('aria-pressed',String((cat||'All')===b.dataset.category));

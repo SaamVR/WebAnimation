@@ -65,14 +65,16 @@ export function productGallery(product) {
 // Rotate categories on the unfiltered Shop page after the four familiar feature cards.
 // Search relevance and filtered-category order stay untouched.
 export function curateShopProducts(products) {
-  const featured=products.filter(p=>p.group==='featured');
-  const rest=products.filter(p=>p.group!=='featured');
-  const groups=['Sneakers','Hats','Bags','Accessories'];
-  const buckets=groups.map(c=>rest.filter(p=>merchandisingCategory(p)===c));
-  const ordered=[...featured];
-  let remaining=rest.length;
-  while(remaining)for(const bucket of buckets){if(bucket.length){ordered.push(bucket.shift());remaining--;}}
-  return ordered;
+  // Deterministic category-major merchandising; never column-cycle categories.
+  const order=['Sneakers','Hats','Bags','Accessories'];
+  const subtype={Bags:['backpack','duffel'],Accessories:['belt','bottle','watch','headphones']};
+  const rank=(list,value)=>{const n=list?.indexOf(value);return n===undefined||n<0?999:n};
+  return [...products].sort((a,b)=>
+    rank(order,merchandisingCategory(a))-rank(order,merchandisingCategory(b)) ||
+    rank(subtype[merchandisingCategory(a)],a.type||a.id==='f4'&&'headphones')-rank(subtype[merchandisingCategory(b)],b.type||b.id==='f4'&&'headphones') ||
+    a.name.localeCompare(b.name,'en',{sensitivity:'base'}) ||
+    a.id.localeCompare(b.id)
+  );
 }
 export const catalogById = Object.freeze(Object.fromEntries(catalog.map(product=>[product.id, product])));
 export const imageUrl = product => '/'+(product.asset || product.fallback || '').replace(/^\.\//,'');
