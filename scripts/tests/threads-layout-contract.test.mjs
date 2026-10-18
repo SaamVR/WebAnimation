@@ -35,12 +35,12 @@ test('approved supplied header identity and hero/deal image assets are reference
   for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/header-'+name+'.png'));
   for(const link of ['HOME','SHOP','COLLECTION','ABOUT']) assert.ok(html.includes('>'+link+'</a>'));
   assert.match(html,/assets\/threads-hero\.webp/);
-  assert.match(html,/assets\/deal-backpack-cutout-20261018\.webp/);
+  assert.match(html,/assets\/deal-backpack-owner-new-20261018\.webp/);
   assert.doesNotMatch(html,/class="hero-doodle"|data-ref-img="hero"|data-ref-img="backpack"/);
   assert.match(html,/Shopping cart/);
 });
 
-test('Deal of the Week uses the isolated backpack as a separate image',()=>{assert.match(html,/deal-backpack-cutout-20261018\.webp/)});
+test('Deal of the Week uses the isolated backpack as a separate image',()=>{assert.match(html,/deal-backpack-owner-new-20261018\.webp/)});
 
 const css = readFileSync(new URL('../../site/threads/styles.css', import.meta.url), 'utf8');
 test('desktop content max width does not revert to the narrow 1140px demo',()=>{
