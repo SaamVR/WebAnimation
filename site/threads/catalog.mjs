@@ -62,6 +62,18 @@ export function productGallery(product) {
     {asset:product.asset, label:'Closer crop of the same photograph', crop:2, isAlternate:false}
   ];
 }
+// Rotate categories on the unfiltered Shop page after the four familiar feature cards.
+// Search relevance and filtered-category order stay untouched.
+export function curateShopProducts(products) {
+  const featured=products.filter(p=>p.group==='featured');
+  const rest=products.filter(p=>p.group!=='featured');
+  const groups=['Sneakers','Hats','Bags','Accessories'];
+  const buckets=groups.map(c=>rest.filter(p=>merchandisingCategory(p)===c));
+  const ordered=[...featured];
+  let remaining=rest.length;
+  while(remaining)for(const bucket of buckets){if(bucket.length){ordered.push(bucket.shift());remaining--;}}
+  return ordered;
+}
 export const catalogById = Object.freeze(Object.fromEntries(catalog.map(product=>[product.id, product])));
 export const imageUrl = product => '/'+(product.asset || product.fallback || '').replace(/^\.\//,'');
 export const priceTk = amount => 'Tk ' + Math.round(amount).toLocaleString('en-BD');
