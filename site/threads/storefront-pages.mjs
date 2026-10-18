@@ -1,4 +1,4 @@
-import {catalog, catalogById, productMeta, productGallery, catalogFilters, merchandisingCategory, imageUrl, priceTk, safeHTML, searchCatalog} from './catalog.mjs';
+import {catalog, catalogById, productMeta, productGallery, catalogFilters, merchandisingCategory, imageUrl, priceTk, safeHTML, searchCatalog,curateShopProducts} from './catalog.mjs';
 import {initInlineSearch} from './search-header.mjs';
 import {getCart,cartSummary,cartCount,addCartItem,updateCartItem,removeCartItem,variantAvailable,getFavorites,toggleFavorite,startDemoPayment,resolveDemoPayment,getAttempt,resetAttempt,getOrder} from './store-core.mjs';
 
@@ -24,7 +24,8 @@ function searchPage(){
  const input=$('catalog-search');const current=query;
  const syncUrl=(q,cat)=>{const p=new URLSearchParams();if(q)p.set('q',q);if(cat)p.set('category',cat);if(favorites)p.set('favorites','1');window.history.replaceState({},'', '/search/'+(p.size?'?'+p.toString():''));};
  function update(q=input.value,cat=activeCategory){
-  const list=searchCatalog(q,cat).filter(p=>!favorites||getFavorites().has(p.id));
+  const matches=searchCatalog(q,cat).filter(p=>!favorites||getFavorites().has(p.id));
+  const list=!q.trim()&&(!cat||cat==='All')&&!favorites?curateShopProducts(matches):matches;
   $('results-grid').innerHTML=list.length?list.map(card).join(''):`<div class="store-empty"><h3>No matching products</h3><p>Try fewer keywords or browse all categories.</p><a href="/search/" class="store-primary-btn">Browse all products</a></div>`;
   $('results-count').textContent=list.length+' relevant demo product'+(list.length===1?'':'s');
   $('results-title').textContent=q?'Results for “'+q+'”':'All Products';
