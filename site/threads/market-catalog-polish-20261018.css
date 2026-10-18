@@ -1,0 +1,61 @@
+/* THREADS owner-approved small refinements, scope: hero CTA, three categories,
+   cards, Tk price presentation, and new-arrival asset scaling. No motion changes. */
+.hero .pill-light {
+  background: #AED5A9;
+  color: #172B2E;
+}
+.hero .pill-light:hover { background: #9CCB96; }
+
+.category-card,
+.product-card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+.category-card { border-radius: 21px; }
+.product-card {
+  box-shadow: 0 7px 20px rgba(23,43,46,.11), 0 2px 6px rgba(23,43,46,.035);
+  transition: box-shadow .22s ease, transform .22s ease;
+}
+.product-card:hover {
+  box-shadow: 0 13px 26px rgba(23,43,46,.14), 0 4px 10px rgba(23,43,46,.06);
+}
+.product-grid .product-card:focus-within {
+  box-shadow: 0 0 0 2px #AED5A9, 0 9px 21px rgba(23,43,46,.10);
+}
+/* Increase bag and accessory illustrations ~15% over the approved sizes.
+   Preserve their existing anchoring while clipping cleanly to rounded cards. */
+.category-card:nth-child(2) img {
+  width: 89.7%;
+  height: 81.65%;
+}
+.category-card:nth-child(3) img {
+  width: 88.55%;
+  height: 85.1%;
+}
+.category-card:nth-child(2):hover img,
+.category-card:nth-child(3):hover img { transform: scale(1.04); }
+
+/* New supplied shoe art uses genuine transparent alpha; avoid multiply ghosting.
+   Keep all artwork contained and do not crop shoe outlines. */
+.arrivals .product-media img[src*="arrival-"] {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  mix-blend-mode: normal;
+  padding: 1px 4px;
+}
+.product-buy strong { font-variant-numeric: tabular-nums; }
+@media (max-width: 900px) {
+  .product-card { border-radius: 15px; }
+}
+@media (max-width: 620px) {
+  .category-card { border-radius: 16px; }
+  .product-card { border-radius: 14px; }
+  .category-card:nth-child(2) img { width: 111.55%; height: 74.75%; }
+  .category-card:nth-child(3) img { width: 112.7%; height: 75.9%; }
+  .product-buy strong { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-card { transition: none; }
+}

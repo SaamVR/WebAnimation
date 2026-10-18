@@ -7,20 +7,20 @@
 import { refreshReferenceCrops } from './art-crops.mjs';
 
 const productCatalog = [
-  { id:'f1', group:'featured', asset:'./assets/featured-olive-sneaker-card.webp', name:'Asics Gel-NYC', subtitle:'At once / Everyday Runner', category:'Sneakers', price:75, swatches:['#78836a','#a5ae95','#e6e3d6'], image:'feat-1', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
-  { id:'f2', group:'featured', asset:'./assets/featured-silver-sneaker-card.webp', name:'Asics Gel-NYC Silver', subtitle:'At once / Sport Collection', category:'Sneakers', price:89, swatches:['#d8d5ce','#858982','#bdbeb9'], image:'feat-2', fallback:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=550&q=80' },
-  { id:'f3', group:'featured', asset:'./assets/featured-red-backpack-card.webp', name:'Fjällräven Travel Backpack', subtitle:'Adventure Ready', category:'Bags', price:119, swatches:['#b94238','#bd9079','#656d54'], image:'feat-3', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
-  { id:'f4', group:'featured', asset:'./assets/featured-black-headphones-card.webp', name:'Sony WH-1000XM5', subtitle:'Over-Ear Headphones', category:'Accessories', price:129, swatches:['#282929','#a7a29a','#dcd7c9'], image:'feat-4', fallback:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=550&q=80' },
-  { id:'n1', group:'arrival', name:'New Balance 550', subtitle:'Men’s Lifestyle Sneakers', category:'Sneakers', price:134.99, swatches:['#21394b','#ddddcf','#82909b'], image:'arrival-1', fallback:'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=550&q=80' },
-  { id:'n2', group:'arrival', name:'The Daily Duffel', subtitle:'Everyday Carry Bag', category:'Bags', price:89.99, swatches:['#ec6c36','#233f40','#d3b693'], image:'arrival-2', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
-  { id:'n3', group:'arrival', name:'New Balance 550', subtitle:'Men’s Lifestyle Sneakers', category:'Sneakers', price:134.99, swatches:['#bda38c','#444a43','#eee5d8'], image:'arrival-3', fallback:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=550&q=80' },
-  { id:'n4', group:'arrival', name:'Classic Backpack', subtitle:'Everyday Essentials', category:'Bags', price:79.99, swatches:['#143b32','#cdbd9f','#40443a'], image:'arrival-4', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
-  { id:'n5', group:'arrival', name:'Asics Gel-Kayano 14', subtitle:'Men’s Lifestyle Sneakers', category:'Sneakers', price:129.99, swatches:['#d55e54','#252c32','#ded7c9'], image:'arrival-5', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
-  { id:'n6', group:'arrival', name:'Classic Logo Cap', subtitle:'Everyday Essential', category:'Accessories', price:34.99, swatches:['#d69b2d','#274f60','#e9dcc5'], image:'arrival-6', fallback:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=550&q=80' }
+  { id:'f1', group:'featured', asset:'./assets/featured-olive-sneaker-card.webp', name:'Asics Gel-NYC', subtitle:'At once / Everyday Runner', category:'Sneakers', price:8990, swatches:['#78836a','#a5ae95','#e6e3d6'], image:'feat-1', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
+  { id:'f2', group:'featured', asset:'./assets/featured-silver-sneaker-card.webp', name:'Asics Gel-NYC Silver', subtitle:'At once / Sport Collection', category:'Sneakers', price:9990, swatches:['#d8d5ce','#858982','#bdbeb9'], image:'feat-2', fallback:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=550&q=80' },
+  { id:'f3', group:'featured', asset:'./assets/featured-red-backpack-card.webp', name:'Fjällräven Travel Backpack', subtitle:'Adventure Ready', category:'Bags', price:6490, swatches:['#b94238','#bd9079','#656d54'], image:'feat-3', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
+  { id:'f4', group:'featured', asset:'./assets/featured-black-headphones-card.webp', name:'Sony WH-1000XM5', subtitle:'Over-Ear Headphones', category:'Accessories', price:32990, swatches:['#282929','#a7a29a','#dcd7c9'], image:'feat-4', fallback:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=550&q=80' },
+  { id:'n1', group:'arrival', asset:'./assets/arrival-aqua-runner.webp', name:'Aqua Motion Runner', subtitle:'Aqua / Coral Everyday Sneaker', category:'Sneakers', price:5490, swatches:['#b4d4d3','#ef565c','#b9da52'], image:'arrival-1' },
+  { id:'n2', group:'arrival', asset:'./assets/arrival-crimson-runner.webp', name:'Crimson Track Runner', subtitle:'Crimson / Black Athletic Sneaker', category:'Sneakers', price:4690, swatches:['#c71937','#161718','#e2e0d9'], image:'arrival-2' },
+  { id:'n3', group:'arrival', asset:'./assets/arrival-amber-runner.webp', name:'Amber Street Runner', subtitle:'Mustard / Black Everyday Sneaker', category:'Sneakers', price:4990, swatches:['#f5b820','#1a1b1b','#e5e4de'], image:'arrival-3' },
+  { id:'n4', group:'arrival', name:'Classic Backpack', subtitle:'Everyday Essentials', category:'Bags', price:3790, swatches:['#143b32','#cdbd9f','#40443a'], image:'arrival-4', fallback:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=550&q=80' },
+  { id:'n5', group:'arrival', name:'Asics Gel-Kayano 14', subtitle:'Men’s Lifestyle Sneakers', category:'Sneakers', price:12490, swatches:['#d55e54','#252c32','#ded7c9'], image:'arrival-5', fallback:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=550&q=80' },
+  { id:'n6', group:'arrival', name:'Classic Logo Cap', subtitle:'Everyday Essential', category:'Accessories', price:1190, swatches:['#d69b2d','#274f60','#e9dcc5'], image:'arrival-6', fallback:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=550&q=80' }
 ];
 const state = { cart:new Map(), favorites:new Set(), filter:'All', search:'' };
 const byId = (id) => document.getElementById(id);
-const money = (num) => '$' + num.toFixed(2);
+const money = (num) => 'Tk ' + Math.round(num).toLocaleString('en-BD');
 const escapeText = (s) => s.replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let toastTimeout;
 
@@ -37,7 +37,7 @@ function productMarkup(product) {
   const saved = state.favorites.has(product.id);
   return '<article class="product-card" data-product-id="' + product.id + '">' +
     '<div class="product-media">' +
-      '<img ' + (product.group === 'arrival' ? 'data-ref-img="'+product.image+'" ' : '') + 'src="' + (product.asset || product.fallback) + '" alt="' + safeName + '" loading="' + (product.group === 'featured' ? 'eager' : 'lazy') + '">' +
+      '<img ' + (product.group === 'arrival' && !product.asset ? 'data-ref-img="'+product.image+'" ' : '') + 'src="' + (product.asset || product.fallback) + '" alt="' + safeName + '" loading="' + (product.group === 'featured' ? 'eager' : 'lazy') + '">' +
       '<button type="button" class="heart-button" data-save="' + product.id + '" aria-label="' + (saved?'Remove ':'Save ') + safeName + (saved?' from':' to') + ' favorites" aria-pressed="' + saved + '">' + (saved?'♥':'♡') + '</button>' +
     '</div><div class="product-info"><h3>' + safeName + '</h3><p>' + escapeText(product.subtitle) + '</p>' +
     '<div class="swatches" aria-label="Available color palette">' + product.swatches.map((color) => '<span style="background:' + color + '" aria-hidden="true"></span>').join('') + '</div>' +

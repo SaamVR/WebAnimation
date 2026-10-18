@@ -89,3 +89,13 @@ The legacy composited deal image, duplicate decorative rectangles, CSS backgroun
 ## Footer visual reference and inverted Threads wordmark — 2026-10-18
 
 Owner-supplied transparent light-colored THREADS wordmark cropped to content bounds and preserved as `site/threads/assets/threads-footer-logo-inverted.png`. Rebuilt footer only, based on two-row reference: top brand description and four illustrative social icons (no unapproved outbound links), top-right newsletter form with central separator; thin full-width divider; second row of Shop/About/Help/Company columns with modest © 2026 demo indication. Colors use existing site greens #172B2E, #2E453A and light ivory #F9F9F7. On mobile, brand/newsletter stack and link columns become a 2×2 grid. Newsletter is intentionally demo-only; no email submitted or retained. All T01-T04 motion, the remaining homepage sections and EcomCMS are unchanged.
+
+
+## Threads visual/catalog refinements — 2026-10-18
+
+- Hero Shop Collection pill changed to the exact palette accent #AED5A9; no other CTAs recolored.
+- Category images Bags and Accessories enlarged approximately 15% and remain clipped within slightly rounded category cards.
+- Category/featured/new-arrival cards now use 14–21px rounded corners; product cards have soft elevation/shadow.
+- All demo catalog prices and the cart subtotal are presented as whole Bangladeshi taka `Tk` via `toLocaleString('en-BD')`. These are **illustrative local-market demo amounts**, not live retail offers, endorsements, or actual authenticated product quotations. Checked indicative Bangladesh running-shoe retail examples around Tk 4,000–7,500 for common contemporary designs; identified premium-branded items remain higher.
+- New Arrivals rows: three completed top-row illustrations supplied by owner were extracted individually into transparent WebP files (Aqua, Crimson, Amber), with descriptive non-authenticating names and illustrative Tk pricing. **The source PNG is cut off at the bottom and does not contain complete views of the three remaining shoes.** Therefore positions 4–6 temporarily preserve their previously approved demo products and locally sourced media; cannot honestly replace them with cropped fragments or fabricated unseen shoes. Request a full uncropped six-shoe image to finish all six.
+- Existing interactions, T01–T04 future hooks, and production EcomCMS remain untouched.

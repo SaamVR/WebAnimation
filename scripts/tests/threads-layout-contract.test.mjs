@@ -142,3 +142,29 @@ test('approved two-tier Threads footer uses inverted real logo, email demo, and 
   assert.ok(html.includes('footer-reference-20261018.css'));
   assert.ok(readFileSync(new URL('../../site/threads/assets/threads-footer-logo-inverted.png',import.meta.url)).length>2000);
 });
+
+test('catalog polish follows the approved palette and currency, without changing motion',()=>{
+ const polish=readFileSync(new URL('../../site/threads/market-catalog-polish-20261018.css',import.meta.url),'utf8');
+ assert.ok(html.includes('market-catalog-polish-20261018.css'));
+ assert.ok(polish.includes('.hero .pill-light')&&polish.includes('#AED5A9'));
+ assert.ok(polish.includes('border-radius: 21px')&&polish.includes('box-shadow:'));
+ assert.ok(polish.includes('.category-card:nth-child(2) img'));
+ assert.ok(polish.includes('.category-card:nth-child(3) img'));
+ assert.ok(html.includes('id="bag-total">Tk 0'));
+ assert.ok(script.includes("const money = (num) => 'Tk ' + Math.round(num).toLocaleString('en-BD')"));
+ assert.doesNotMatch(script,/price:\d+\.\d+/);
+ assert.doesNotMatch(html,/\$\d/);
+});
+
+test('three complete top-row owner shoes are local and no longer overridden by atlas crops',()=>{
+ for (const name of ['aqua','crimson','amber']) {
+   assert.ok(script.includes('./assets/arrival-'+name+'-runner.webp'));
+   assert.ok(readFileSync(new URL('../../site/threads/assets/arrival-'+name+'-runner.webp',import.meta.url)).length>10000);
+ }
+ assert.ok(script.includes("product.group === 'arrival' && !product.asset ?"));
+ assert.ok(script.includes("name:'Aqua Motion Runner'"));
+ assert.ok(script.includes("name:'Crimson Track Runner'"));
+ assert.ok(script.includes("name:'Amber Street Runner'"));
+ // The user image truncates the bottom row; leave existing cards intact pending full source.
+ assert.ok(script.includes("id:'n4'")&&script.includes("id:'n5'")&&script.includes("id:'n6'"));
+});
