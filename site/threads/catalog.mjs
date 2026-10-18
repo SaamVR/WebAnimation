@@ -88,7 +88,7 @@ export const productMeta = product => ({
     product.category==='Bags'?'bag bags travel': '',
     product.type==='backpack'?'backpack backpacks rucksack daypack':'',
     product.type==='duffel'||product.id==='f3'?'duffel weekender luggage':'',
-    product.category==='Accessories'?'accessories accessory':'',
+    merchandisingCategory(product)==='Accessories'?'accessories accessory':'',
     merchandisingCategory(product)==='Hats'?'cap caps hat hats headwear baseball':'',
     product.id==='f4'?'headphones audio earphones':'',
     vintageIds.has(product.id)?'vintage retro classic heritage inspired sneakers':'',
