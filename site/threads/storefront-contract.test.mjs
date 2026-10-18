@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {catalog,searchCatalog,productMeta,productGallery,catalogFilters,merchandisingCategory,imageUrl} from './catalog.mjs';
+import {catalog,searchCatalog,productMeta,productGallery,catalogFilters,merchandisingCategory,imageUrl,curateShopProducts} from './catalog.mjs';
 import {variantAvailable,priceTk,cartKey} from './store-core.mjs';
 const here=import.meta.url;
 const read=p=>readFileSync(new URL(p,here),'utf8');
@@ -98,4 +98,12 @@ test('Batch 1 image mapping, category counts, one honest cover per new product',
  assert.ok(searchCatalog('Accessories').length>=8);
  assert.ok(searchCatalog('bottle').length>=3);
  assert.ok(!searchCatalog('Backpack').some(p=>p.type==='duffel'));
+});
+
+test('unfiltered Shop interleaves categories after four legacy feature cards',()=>{
+ const ordered=curateShopProducts(catalog);
+ assert.equal(ordered.length,39);
+ assert.equal(new Set(ordered.map(p=>p.id)).size,39);
+ assert.deepEqual(ordered.slice(0,4).map(p=>p.id),['f1','f2','f3','f4']);
+ assert.deepEqual(ordered.slice(4,8).map(merchandisingCategory),['Sneakers','Hats','Bags','Accessories']);
 });
