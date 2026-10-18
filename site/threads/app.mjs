@@ -1,6 +1,6 @@
 /** THREADS standalone homepage. Static presentation and connected demo state only.
- * T01 Spotlight, T02 fly-to-cart, T03 Backpack reveal, T04 payment cinematics
- * remain deliberately unimplemented until the owner approves each choreography. */
+ * T01 runs on connected search results; T02 fly-to-cart, T03 backpack reveal
+ * and T04 payment cinematics remain deliberately unimplemented. */
 import {refreshReferenceCrops} from './art-crops.mjs';
 import {catalog,productMeta,imageUrl,priceTk,safeHTML} from './catalog.mjs';
 import {addCartItem,cartSummary,cartCount,getFavorites,toggleFavorite} from './store-core.mjs';
