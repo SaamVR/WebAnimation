@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./layout-wide-20261018.css">
   <link rel="stylesheet" href="./palette-approved-20261018.css">
-  <link rel="stylesheet" href="./deal-backpack-background-20261018.css">
   <link rel="stylesheet" href="./artwork-review-20261018.css">
   <link rel="stylesheet" href="./artwork-paint-fix-20261018.css">
   <link rel="stylesheet" href="./artwork-visibility-20261018.css">
   <link rel="stylesheet" href="./section-fidelity-20261018.css">
+  <link rel="stylesheet" href="./deal-of-week-rebuild-20261018.css">
   <script type="module" src="./app.mjs"></script>
 </head>
 <body>
@@ -91,9 +91,25 @@
       <div class="sale-copy"><h2 id="sale-heading">Last Chance to Save.</h2><p>Premium sneakers. Exclusive prices. This deal won't last—shop now before time runs out.</p><div class="countdown" aria-label="Decorative promotional countdown"><div><strong>02</strong><span>Days</span></div><div><strong>21</strong><span>Hours</span></div><div><strong>44</strong><span>Minutes</span></div><div><strong>54</strong><span>Seconds</span></div></div><a href="#shop" class="pill pill-lime">Grab The Deal <span aria-hidden="true">→</span></a></div>
     </section>
 
-    <section class="content-wrap backpack-promo section-space" id="deal" aria-labelledby="deal-heading">
-      <div class="promo-image"><picture><source media="(max-width: 620px)" srcset="./assets/deal-week-mobile.webp"><img src="./assets/deal-week-original-panel.webp" width="1450" height="671" alt="Original illustrated orange and turquoise backpack with cap, water bottle, sneaker and pale beige offer panel" loading="lazy" decoding="async"></picture></div>
-      <div class="promo-copy"><span class="eyebrow with-line dark">Special offer</span><h2 id="deal-heading">Deal Of<br>the Week</h2><p>Handpicked essentials at unbeatable prices. Don't miss out on this week's special picks.</p><a href="#shop" class="pill pill-green">Shop the Deals <span aria-hidden="true">→</span></a></div>
+
+    <section class="content-wrap threads-deal section-space" id="deal" aria-labelledby="deal-heading">
+      <!-- One vector panel, traced to the silhouette of the owner-approved angled card. -->
+      <svg class="threads-deal__panel" viewBox="0 0 1803 693" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M 93 0 L 1755 152 C 1785 156 1802 179 1802 210 L 1802 631 C 1802 667 1773 693 1735 693 L 116 693 C 48 693 0 663 0 612 L 0 61 C 0 26 42 0 93 0 Z" fill="#EEECE8"/>
+      </svg>
+      <!-- This remains an independent media layer for the future T03 choreography. -->
+      <div class="threads-deal__art" data-t03-layer="backpack">
+        <img src="./assets/deal-backpack-cutout-20261018.webp"
+          width="916" height="933"
+          alt="Illustrated orange and turquoise outdoor backpack with teal cap, water bottle and sneaker"
+          loading="lazy" decoding="async"/>
+      </div>
+      <div class="threads-deal__copy">
+        <span class="eyebrow with-line dark">Special offer</span>
+        <h2 id="deal-heading">Deal Of<br>the Week</h2>
+        <p>Handpicked essentials at unbeatable prices. Don't miss out on this week's special picks.</p>
+        <a href="#shop" class="pill pill-green">Shop the Deals <span aria-hidden="true">→</span></a>
+      </div>
     </section>
   </main>
 

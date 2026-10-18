@@ -35,12 +35,12 @@ test('approved supplied header identity and hero/deal image assets are reference
   for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/header-'+name+'.png'));
   for(const link of ['HOME','SHOP','COLLECTION','ABOUT']) assert.ok(html.includes('>'+link+'</a>'));
   assert.match(html,/assets\/threads-hero\.webp/);
-  assert.match(html,/assets\/deal-week-original-panel\.webp/);
+  assert.match(html,/assets\/deal-backpack-cutout-20261018\.webp/);
   assert.doesNotMatch(html,/class="hero-doodle"|data-ref-img="hero"|data-ref-img="backpack"/);
   assert.match(html,/Shopping cart/);
 });
 
-test('supplied backpack graphic loads without lazy-scroll dependence',()=>{assert.match(html,/deal-week-original-panel\.webp[^>]*loading="lazy"/)});
+test('Deal of the Week uses the isolated backpack as a separate image',()=>{assert.match(html,/deal-backpack-cutout-20261018\.webp/)});
 
 const css = readFileSync(new URL('../../site/threads/styles.css', import.meta.url), 'utf8');
 test('desktop content max width does not revert to the narrow 1140px demo',()=>{
@@ -57,20 +57,30 @@ test('owner palette and original full-resolution category art replace screenshot
  assert.ok(html.includes('palette-approved-20261018.css'));
 });
 
-test('existing owner backpack is not hidden by promo compositing',()=>{
- const layering=readFileSync(new URL('../../site/threads/deal-backpack-background-20261018.css',import.meta.url),'utf8');
- assert.ok(html.includes('deal-backpack-background-20261018.css'));
- assert.match(layering,/background-image:url/);
- assert.match(layering,/background-blend-mode:multiply/);
+test('Deal of the Week uses one SVG panel and editable accessible copy',()=>{
+  const section=html.split('<section class="content-wrap threads-deal')[1].split('</section>')[0];
+  assert.equal((section.match(/<svg /g)||[]).length,1);
+  assert.equal((section.match(/<path /g)||[]).length,1);
+  assert.equal((section.match(/<img /g)||[]).length,1);
+  assert.match(section,/data-t03-layer="backpack"/);
+  assert.match(section,/Deal Of<br>the Week/);
+  assert.match(section,/Shop the Deals/);
+  assert.doesNotMatch(section,/backpack-promo|promo-image|deal-week-original-panel|deal-week-mobile/);
+  const layout=readFileSync(new URL('../../site/threads/deal-of-week-rebuild-20261018.css',import.meta.url),'utf8');
+  assert.match(layout,/display: grid/);
+  assert.match(layout,/grid-template-columns/);
+  assert.match(layout,/#EEECE8/);
+  assert.ok(html.includes('deal-of-week-rebuild-20261018.css'));
+  assert.ok(!html.includes('deal-backpack-background-20261018.css'));
 });
 
 test('all six approved artwork sections use owned local media and keep their order',()=>{
-  const paths=['header-search.png','header-favorite.png','header-cart.png','featured-olive-sneaker-card.webp','featured-silver-sneaker-card.webp','featured-red-backpack-card.webp','featured-black-headphones-card.webp','editorial-main.webp','editorial-detail-1.webp','editorial-detail-2.webp','editorial-detail-3.webp','editorial-detail-4.webp','campaign-essentials.webp','sale-moody-sneakers.webp','deal-week-original-panel.webp','deal-week-mobile.webp'];
+  const paths=['header-search.png','header-favorite.png','header-cart.png','featured-olive-sneaker-card.webp','featured-silver-sneaker-card.webp','featured-red-backpack-card.webp','featured-black-headphones-card.webp','editorial-main.webp','editorial-detail-1.webp','editorial-detail-2.webp','editorial-detail-3.webp','editorial-detail-4.webp','campaign-essentials.webp','sale-moody-sneakers.webp','deal-backpack-cutout-20261018.webp'];
   for(const name of paths){
     assert.ok(readFileSync(new URL('../../site/threads/assets/'+name,import.meta.url)).length>800,'missing/empty '+name);
   }
   assert.ok(html.includes('./artwork-review-20261018.css'));
-  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-complete-20261018.webp','campaign-essentials.webp','sale-moody-sneakers.webp','deal-week-original-panel.webp','deal-week-mobile.webp']) assert.ok(html.includes(name),'not wired '+name);
+  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-complete-20261018.webp','campaign-essentials.webp','sale-moody-sneakers.webp','deal-backpack-cutout-20261018.webp']) assert.ok(html.includes(name),'not wired '+name);
   for(const name of ['featured-olive-sneaker-card.webp','featured-silver-sneaker-card.webp','featured-red-backpack-card.webp','featured-black-headphones-card.webp']) assert.ok(script.includes(name),'not wired '+name);
   assert.doesNotMatch(html,/data-ref-img="editorial|data-ref-img="campaign"|data-ref-img="sale"/);
   assert.match(html,/id="featured-products"/);
@@ -85,8 +95,7 @@ test('browser-safe asset layer retains exact product photos and deal compositing
    assert.ok(readFileSync(new URL('../../site/threads/assets/featured-'+kind+'-card.webp',import.meta.url)).length>2000);
  }
  assert.match(compat,/mix-blend-mode:normal/);
- assert.match(compat,/background-image:url/);
- assert.match(compat,/deal-week-mobile\.webp/);
+ assert.match(compat,/mix-blend-mode:normal/);
 });
 
 test('feature art remains paintable in full-page screenshot QA',()=>{

@@ -1,0 +1,149 @@
+
+/*
+ * THREADS — Deal of the Week, rebuilt independently.
+ * Only one background SVG path is painted. No rectangles, trapezoid overlays,
+ * image-with-baked-panel, mask/blend duplicate, or absolute text positioning.
+ * Other sections and T01–T04 motion behavior are unchanged.
+ */
+#deal.threads-deal {
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.035fr) minmax(0, .965fr);
+  align-items: end;
+  column-gap: clamp(12px, 3vw, 50px);
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: clamp(430px, 36vw, 560px);
+  padding-top: clamp(20px, 2.6vw, 44px);
+  padding-bottom: 0;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+}
+#deal .threads-deal__panel {
+  position: absolute;
+  inset-inline-start: var(--edge);
+  bottom: 0;
+  width: calc(100% - 2 * var(--edge));
+  height: 82%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+#deal .threads-deal__art {
+  grid-column: 1;
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: end;
+  padding-inline: clamp(8px, 2.2vw, 32px) 0;
+  margin: 0;
+}
+#deal .threads-deal__art img {
+  display: block;
+  position: relative;
+  flex: 0 1 auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: clamp(380px, 37vw, 540px);
+  min-width: 0;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: none;
+  mix-blend-mode: normal;
+  opacity: 1;
+  -webkit-mask-image: none;
+  mask-image: none;
+  transform: none;
+}
+#deal .threads-deal__copy {
+  grid-column: 2;
+  position: relative;
+  z-index: 3;
+  min-width: 0;
+  align-self: center;
+  padding: clamp(35px, 5vw, 78px) clamp(22px, 5.2vw, 84px) 25px 0;
+  color: #172B2E;
+}
+#deal .threads-deal__copy .eyebrow {
+  color: #2E453A;
+}
+#deal .threads-deal__copy h2 {
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 800;
+  line-height: .94;
+  letter-spacing: -.06em;
+  color: #172B2E;
+  margin: 13px 0 15px;
+}
+#deal .threads-deal__copy p {
+  max-width: 360px;
+  margin: 0 0 20px;
+  color: #5F6861;
+  font-size: 14px;
+  line-height: 1.55;
+}
+#deal .threads-deal__copy .pill {
+  background: #2E453A;
+  color: #F9F9F7;
+}
+#deal .threads-deal__copy .pill:hover { background: #172B2E; }
+@media (max-width: 900px) {
+  #deal.threads-deal { min-height: 370px; column-gap: 10px; }
+  #deal .threads-deal__panel { height: 82%; }
+  #deal .threads-deal__art { padding-left: 8px; }
+  #deal .threads-deal__art img { max-height: 395px; }
+  #deal .threads-deal__copy { padding: 45px 18px 15px 0; }
+  #deal .threads-deal__copy h2 { font-size: clamp(33px, 5vw, 48px); }
+  #deal .threads-deal__copy p { font-size: 12px; }
+}
+@media (max-width: 620px) {
+  #deal.threads-deal {
+    grid-template-columns: minmax(0, .84fr) minmax(0, 1.16fr);
+    column-gap: 5px;
+    min-height: 330px;
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+  #deal .threads-deal__panel { height: 81%; }
+  #deal .threads-deal__art { padding: 0 0 0 4px; align-self: end; }
+  #deal .threads-deal__art img { width: 100%; max-height: 265px; }
+  #deal .threads-deal__copy {
+    padding: 40px 13px 17px 0;
+    align-self: end;
+  }
+  #deal .threads-deal__copy .eyebrow { font-size: 8px; letter-spacing: .15em; }
+  #deal .threads-deal__copy .with-line { gap: 8px; }
+  #deal .threads-deal__copy .with-line:after { width: 18px; }
+  #deal .threads-deal__copy h2 {
+    font-size: clamp(28px, 7.8vw, 39px);
+    margin: 10px 0 12px;
+    line-height: .96;
+  }
+  #deal .threads-deal__copy p {
+    font-size: 11px;
+    line-height: 1.45;
+    margin-bottom: 13px;
+  }
+  #deal .threads-deal__copy .pill { padding: 10px 13px; gap: 10px; font-size: 10px; }
+}
+@media (max-width: 380px) {
+  #deal.threads-deal { min-height: 335px; }
+  #deal .threads-deal__art img { max-height: 245px; }
+  #deal .threads-deal__copy h2 { font-size: 28px; }
+  #deal .threads-deal__copy p { font-size: 10.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #deal .threads-deal__art img, #deal .threads-deal__panel { transition: none; animation: none; }
+}

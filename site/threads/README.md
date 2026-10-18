@@ -80,3 +80,7 @@ The existing approved campaign-essentials.webp 2000x623 image already excludes t
 
 
 Responsive QA refinement: browser measurements showed the headline/copy needed 462px at 1440 and 387px at 1024. A rigid 2000/623 section aspect ratio cut off copy. The banner now naturally expands from its content (minimum height 375px–560px responsive), with the original approved image cropped via object-fit:cover and no stretch or source black bars. Mobile retains its original minimum 350px.
+
+
+## October 18 — Deal of the Week rebuilt (standalone)
+The legacy composited deal image, duplicate decorative rectangles, CSS background fallbacks and picture element have been replaced in the active DOM with **one SVG angled panel** traced to the owner's supplied transparent panel silhouette. The illustrated backpack is an independent, transparent WebP layer isolated from the original owner artwork (with alpha-masked handle opening and shadow); supplied original subject placement/appearance is preserved. The right-hand heading, paragraph and linked CTA remain editable HTML. The wrapper exposes `data-t03-layer="backpack"` as a future animation hook; no T03 choreography is enabled. A dedicated responsive stylesheet targets only `#deal.threads-deal` to avoid legacy CSS selectors. EcomCMS and other storefront sections are untouched.
