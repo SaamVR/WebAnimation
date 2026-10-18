@@ -15,8 +15,8 @@
   padding: 10px 12px;
 }
 /* Backpacks/caps/headphones are taller silhouettes; keep a little breathing room. */
-#featured-products .product-media img[src*="featured-blue-threads-cap-"],
-#featured-products .product-media img[src*="featured-red-backpack-"],
+#featured-products .product-media img[src*="featured-yellow-cap-owner-"],
+#featured-products .product-media img[src*="featured-orange-duffel-owner-"],
 #featured-products .product-media img[src*="featured-black-headphones-"] {
   padding: 12px 18px;
 }
