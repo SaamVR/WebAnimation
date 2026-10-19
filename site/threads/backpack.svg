@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450" role="img" aria-labelledby="title desc">
+<title id="title">THREADS illustrated outdoor travel backpack</title>
+<desc id="desc">Illustrated turquoise and burnt orange technical travel backpack with straps, cap, sneaker and water bottle.</desc>
+<defs>
+  <linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#45b3b1"/><stop offset=".43" stop-color="#248e9d"/><stop offset="1" stop-color="#125270"/></linearGradient>
+  <linearGradient id="orange" x1=".1" y1=".1" x2=".92" y2="1"><stop stop-color="#ffc074"/><stop offset=".38" stop-color="#f27f37"/><stop offset="1" stop-color="#c84a25"/></linearGradient>
+  <linearGradient id="side" x1="0" y1="0" x2="1" y2=".8"><stop stop-color="#ef9941"/><stop offset="1" stop-color="#b74c25"/></linearGradient>
+  <linearGradient id="dark" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#1a6e80"/><stop offset="1" stop-color="#143747"/></linearGradient>
+  <linearGradient id="shoe" x1=".1" y1="0" x2=".95" y2="1"><stop stop-color="#f9e4bd"/><stop offset="1" stop-color="#e4d5bb"/></linearGradient>
+  <pattern id="stitch" width="14" height="14" patternUnits="userSpaceOnUse"><path d="m0 7 6 2" fill="none" stroke="#f3dcac" stroke-width="1.3" opacity=".48"/></pattern>
+  <filter id="shadow" x="-35%" y="-35%" width="170%" height="180%"><feGaussianBlur stdDeviation="10"/></filter>
+</defs>
+<ellipse cx="306" cy="409" rx="236" ry="18" fill="#27473e" opacity=".19" filter="url(#shadow)"/>
+<!-- shoulder harness behind bag -->
+<path d="M213 120C154 120 145 171 132 266L117 370c-2 18 27 29 44 6l35-146 54-85z" fill="#184854" stroke="#103f45" stroke-width="10"/>
+<path d="M382 118c62 10 80 80 85 154l7 93c1 30-31 37-39 7L407 234l-65-92z" fill="#1c6876" stroke="#10434e" stroke-width="10"/>
+<!-- carrying handle -->
+<path d="M264 107 274 66q18-28 52-18l28 22 5 37" fill="none" stroke="#132f37" stroke-width="25" stroke-linecap="round"/>
+<path d="M269 97 281 65q27-22 54 5l13 30" fill="none" stroke="#ecaa65" stroke-width="9" stroke-linecap="round"/>
+<!-- side attachment left, orange compression fabric -->
+<path d="M163 178q-25 44-22 111l8 87 61 14 21-190z" fill="url(#side)" stroke="#124c57" stroke-width="10" stroke-linejoin="round"/>
+<path d="M154 231 180 255 163 348m12-125 16-8-8 156" fill="none" stroke="#ffb45e" stroke-width="6"/>
+<path d="M155 276 194 290m-42 42 36 9" stroke="#1d5762" stroke-width="10"/>
+<!-- main technical backpack silhouette -->
+<path d="M218 118c13-41 43-59 100-57 52 3 91 31 99 80l28 217q-112 63-266 14l14-202c3-22 12-41 25-52Z" fill="url(#body)" stroke="#164857" stroke-width="12" stroke-linejoin="round"/>
+<path d="M214 133q88-37 194 5l-8 72-203-2Z" fill="#2b97a3" stroke="#155268" stroke-width="7"/>
+<path d="M239 108q82-26 146 9" fill="none" stroke="#9bc5a3" stroke-width="6" stroke-linecap="round"/>
+<!-- top roll/fold contrast -->
+<path d="M217 143q71-32 184-3l-5 43q-89-12-185 7Z" fill="url(#orange)" stroke="#134859" stroke-width="9"/>
+<path d="m245 147 11 32m28-38 11 39m28-37 12 37m32-30 10 31" stroke="#d35426" stroke-width="4" opacity=".5"/>
+<!-- large side stripe and binding -->
+<path d="m203 192-16 170 37 17 16-174Z" fill="#ed9a3c" stroke="#17495a" stroke-width="7"/>
+<path d="m385 197 43 165-35 17-31-178Z" fill="#ed8734" stroke="#17495a" stroke-width="7"/>
+<!-- upper outer pouch -->
+<path d="M221 215q82-39 179-6l22 141q-105 39-223 8Z" fill="url(#orange)" stroke="#164e5c" stroke-width="11" stroke-linejoin="round"/>
+<path d="M226 225q88-30 170-5" fill="none" stroke="#ffd290" stroke-width="6"/>
+<path d="M238 228 225 328m157-103 21 115" stroke="#d45425" stroke-width="4" opacity=".64"/>
+<!-- inner turquoise front pocket -->
+<path d="M238 268q66-17 144-4l5 95q-79 19-151-3Z" fill="url(#body)" stroke="#124957" stroke-width="10" stroke-linejoin="round"/>
+<path d="M256 294h112v37H256z" fill="#f39947" stroke="#124d56" stroke-width="6" rx="5"/>
+<path d="M272 305h86" stroke="#f6c784" stroke-width="4"/>
+<!-- pockets / straps -->
+<path d="M215 233v120m180-124 6 127" stroke="#164652" stroke-width="14"/>
+<path d="M211 231 205 355m188-130 18 125" stroke="#f6bc55" stroke-width="7"/>
+<rect x="198" y="261" width="26" height="26" rx="4" fill="#273e3f" stroke="#edce85" stroke-width="5"/>
+<path d="M204 269h14v10h-14z" fill="#dfe0b7"/>
+<rect x="387" y="259" width="24" height="28" rx="4" fill="#273e3f" stroke="#edce85" stroke-width="5"/>
+<path d="M392 267h14v12h-14z" fill="#dfe0b7"/>
+<path d="m295 266 5-19m33 19 4-19" stroke="#f9e2a2" stroke-width="4"/>
+<path d="M244 349q55 15 129 0" stroke="#cae0ba" stroke-width="2.5" stroke-dasharray="4 7" fill="none"/>
+<!-- graphic seam texture -->
+<path d="M263 170q44-7 92 2m-94 81q52-10 95-3" stroke="#f3d0a0" opacity=".45" stroke-width="3" fill="none" stroke-dasharray="5 5"/>
+<!-- side water bottle -->
+<g transform="translate(80 280) rotate(-8)">
+  <ellipse cx="30" cy="110" rx="34" ry="8" fill="#34574e" opacity=".13"/>
+  <rect x="10" y="25" width="42" height="95" rx="12" fill="#247d92" stroke="#153e4b" stroke-width="6"/>
+  <rect x="14" y="41" width="34" height="50" rx="5" fill="#7bd0be" opacity=".55"/>
+  <rect x="19" y="14" width="24" height="19" rx="4" fill="#f2a04d" stroke="#154858" stroke-width="4"/>
+  <rect x="16" y="6" width="30" height="11" rx="5" fill="#143e4f"/>
+  <path d="M16 59h29" stroke="#e8e0b2" stroke-width="4" opacity=".6"/>
+</g>
+<!-- illustrated running shoe in foreground -->
+<g transform="translate(94 340) rotate(-8)">
+ <ellipse cx="106" cy="80" rx="126" ry="17" fill="#264b42" opacity=".18" filter="url(#shadow)"/>
+ <path d="m10 53 60-21q23-11 51 7l30 20 67 4q31 7 31 29l-21 16L18 104q-26-3-22-20Z" fill="url(#shoe)" stroke="#174a59" stroke-width="9" stroke-linejoin="round"/>
+ <path d="M11 75q49-2 103 5l116 3" fill="none" stroke="#24889d" stroke-width="19"/>
+ <path d="M2 83q105 17 238 13" stroke="#ece5d4" stroke-width="9"/>
+ <path d="m54 42 14-23 56 15 39 24-59 1Z" fill="#2b8f96" stroke="#204c59" stroke-width="7"/>
+ <path d="M60 46 88 57l23-10 23 11" fill="none" stroke="#f3a24b" stroke-width="7"/>
+ <path d="m71 39 35 8m-41-2 32 9m-39-2 28 11" stroke="#f8f2dc" stroke-width="5"/>
+ <path d="M26 77q12 22 25 23" stroke="#efb466" stroke-width="8"/>
+ <path d="M176 65q18 3 29 13" stroke="#eeac72" stroke-width="6"/>
+</g>
+<!-- turquoise cap near top right -->
+<g transform="translate(401 48) rotate(13)">
+ <path d="M10 79q-13-41 19-62C57-4 101 13 108 69l-2 26-92 8Z" fill="#31a0ad" stroke="#164d5c" stroke-width="9"/>
+ <path d="M29 19q37 29 28 69m28-69q-6 36-7 70" stroke="#136474" stroke-width="6" opacity=".7" fill="none"/>
+ <path d="M11 84q54-20 101 2 17 11 37 24-77 17-135-1Z" fill="#eaa044" stroke="#164d5c" stroke-width="9"/>
+ <path d="M20 85q46-8 80 2" stroke="#fed08a" stroke-width="5" fill="none"/>
+</g>
+<!-- loose ties and buckle -->
+<path d="M442 307q30 24 21 63l-8 30" fill="none" stroke="#f0a348" stroke-width="15" stroke-linecap="round"/>
+<path d="M453 398q17 11 26-2" fill="none" stroke="#153f4c" stroke-width="7" stroke-linecap="round"/>
+</svg>

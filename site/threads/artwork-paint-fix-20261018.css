@@ -1,0 +1,27 @@
+/* Real Chromium screenshot QA demonstrated compositor issues with CSS multiply layers
+   on some cards, and intermittent missing inline painting on the deal illustration.
+   These paint-path fixes preserve the actual user artwork and the existing layout. */
+.product-media img[src*="featured-"][src$="-card.webp"]{
+  position:relative!important;z-index:1!important;
+  mix-blend-mode:normal!important;opacity:1!important;
+  filter:none!important;
+}
+.backpack-promo .promo-image {
+  position:relative!important;
+  background-color:transparent!important;
+  background-image:url("./assets/deal-week-original-panel.webp")!important;
+  background-repeat:no-repeat!important;
+  background-position:center bottom!important;
+  background-size:contain!important;
+  background-blend-mode:normal!important;
+}
+.backpack-promo .promo-image picture{
+  opacity:0!important;
+}
+@media(max-width:620px){
+  .backpack-promo .promo-image{
+    background-image:url("./assets/deal-week-mobile.webp")!important;
+    background-size:128% auto!important;
+    background-position:center bottom!important;
+  }
+}

@@ -1,0 +1,93 @@
+/* THREADS: Quality collage and secondary campaign ONLY.
+   Loaded last so previous media rules cannot push collage children out. */
+#about.editorial {
+  display: grid;
+  grid-template-columns: minmax(0, 1.17fr) minmax(0, 1fr);
+  grid-auto-rows: auto;
+  align-items: stretch;
+  min-height: 0;
+  height: auto;
+  overflow: hidden;
+  background: #F1EFEB;
+}
+#about .collage {
+  display: flex;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  padding: 14px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+#about .collage img {
+  display: block;
+  flex: 0 1 auto;
+  grid-row: auto;
+  grid-column: auto;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 2048 / 984;
+  object-fit: contain;
+  object-position: center;
+}
+#about .editorial-copy {
+  min-width: 0;
+  min-height: 0;
+  align-self: stretch;
+}
+/* The existing 2000x623 local banner already had the source black bars removed.
+   Keep its original photograph/overlay without scaling letterbox margins. */
+#mission.campaign {
+  /* Respect the photo ratio where possible, but never clip live copy. */
+  aspect-ratio: auto;
+  min-height: clamp(375px, 30vw, 560px);
+  height: auto;
+  overflow: hidden;
+  isolation: isolate;
+  position: relative;
+}
+#mission .campaign-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+#mission .campaign-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: none;
+}
+#mission .campaign-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+#mission .campaign-copy {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  #mission.campaign { aspect-ratio: auto; min-height: 350px; }
+  #mission .campaign-art img { object-position: 60% center; }
+}
+@media (max-width: 620px) {
+  #about.editorial {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: auto;
+    min-height: 0;
+  }
+  #about .collage { height: auto; min-height: 0; padding: 10px; }
+  #about .collage img { height: auto; aspect-ratio: 2048 / 984; object-fit: contain; }
+  #mission.campaign { min-height: 350px; }
+  #mission .campaign-art img { object-position: 66% center; }
+}

@@ -1,0 +1,135 @@
+/* THREADS static asset fidelity: 2026-10-18.
+   Overrides only the featured/new-arrival imagery, secondary campaign and
+   Deal of the Week illustration. All actual artwork is user supplied. */
+
+/* Keep transparency true on standalone cutout photos instead of the older
+   product-blending rule. The existing card layout, shadows and typography stay. */
+#featured-products .product-media img[src*="featured-"],
+#arrival-products .product-media img[src*="arrival-bottom-"] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  mix-blend-mode: normal;
+  padding: 10px 12px;
+}
+/* Backpacks/caps/headphones are taller silhouettes; keep a little breathing room. */
+#featured-products .product-media img[src*="featured-yellow-cap-owner-"],
+#featured-products .product-media img[src*="featured-orange-duffel-owner-"],
+#featured-products .product-media img[src*="featured-black-headphones-"] {
+  padding: 12px 18px;
+}
+/* New six-shoe artwork: bottom row matches approved top-row object sizing. */
+#arrival-products .product-media img[src*="arrival-bottom-"] {
+  padding: 6px 8px;
+}
+#mission.campaign { background: #213b32; overflow: hidden; }
+#mission .campaign-art { inset: 0; }
+#mission .campaign-art img[src*="campaign-owner-full-"] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Protect the far-right products. Only left-side flat green is expendable. */
+  object-position: right center;
+  filter: none;
+}
+#mission .campaign-shade {
+  background: linear-gradient(90deg,
+    rgba(23,43,46,.69) 0%,
+    rgba(23,43,46,.37) 31%,
+    rgba(23,43,46,.05) 57%,
+    transparent 70%);
+}
+#deal .threads-deal__art img[src*="deal-backpack-owner-new-"] {
+  object-fit: contain;
+  object-position: center bottom;
+  mix-blend-mode: normal;
+  -webkit-mask-image: none;
+  mask-image: none;
+  max-width: 100%;
+  filter: none;
+  transform: none;
+}
+/* At narrow widths it is geometrically impossible to put readable overlay
+   text on the left AND show a 3.23:1-wide photograph without cropping products.
+   Stack the full-width, uncropped image above the unchanged left-aligned text. */
+@media (max-width: 620px) {
+  #mission.campaign {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    min-height: 0;
+    background: #172B2E;
+  }
+  #mission .campaign-art {
+    position: relative;
+    inset: auto;
+    order: 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex: none;
+  }
+  #mission .campaign-art img[src*="campaign-owner-full-"] {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+  #mission .campaign-shade { display: none; }
+  #mission .campaign-copy {
+    order: 1;
+    position: relative;
+    width: 100%;
+    max-width: none;
+    padding: 22px 23px 29px;
+    background: #172B2E;
+    text-align: left;
+  }
+  #featured-products .product-media img[src*="featured-"],
+  #arrival-products .product-media img[src*="arrival-bottom-"] { padding: 5px 6px; }
+}
+
+
+/* Intrinsic square portrait product art must not expand a CSS-grid image track.
+   Mobile feature cards keep the original 130px media row and separate text row. */
+@media (max-width: 620px) {
+  #featured-products .product-media {
+    min-height: 0;
+    overflow: hidden;
+  }
+  #featured-products .product-media img[src*="featured-"] {
+    display: block;
+    min-width: 0;
+    min-height: 0 !important;
+    width: 100%;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100% !important;
+    box-sizing: border-box;
+    object-fit: contain;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+}
+
+
+/* Desktop image containment as well: the taller portrait silhouettes previously
+   escaped the padded 302px grid media track by up to 25px. */
+#featured-products .product-media { min-height: 0; overflow: hidden; }
+#featured-products .product-media img[src*="featured-"] {
+  min-width: 0;
+  min-height: 0 !important;
+  width: 100%;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100% !important;
+  box-sizing: border-box;
+  object-fit: contain;
+  justify-self: stretch;
+  align-self: stretch;
+}

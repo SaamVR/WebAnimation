@@ -1,0 +1,195 @@
+/* THREADS footer — owner-approved visual reference, 2026-10-18.
+   Rebuild limited to the footer; override historical six-column footer rules.
+   The wordmark is the actual owner-supplied white/inverted, transparent artwork. */
+.site-footer {
+  width: min(calc(100% - 2 * var(--edge)), calc(var(--content) - 2 * var(--edge)));
+  margin: clamp(28px, 3vw, 48px) auto 0;
+  padding: 0;
+  background: linear-gradient(108deg, #172B2E 0%, #142E2D 47%, #172B2E 100%);
+  color: #F9F9F7;
+  border: 0;
+  border-radius: 0;
+}
+.site-footer .threads-footer-inner {
+  max-width: 1640px;
+  margin-inline: auto;
+  padding: clamp(28px, 3.7vw, 55px) clamp(24px, 6.2vw, 100px) clamp(25px, 3vw, 44px);
+}
+.site-footer .threads-footer-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+  column-gap: clamp(28px, 5vw, 80px);
+  align-items: start;
+  padding-bottom: clamp(26px, 3.3vw, 50px);
+}
+.site-footer .threads-footer-brand {
+  min-width: 0;
+  padding-top: 6px;
+}
+.site-footer .threads-footer-logo {
+  display: inline-block;
+  width: clamp(190px, 20vw, 284px);
+  max-width: 100%;
+  line-height: 0;
+}
+.site-footer .threads-footer-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.site-footer .threads-footer-brand>p {
+  margin: 17px 0 21px;
+  max-width: 400px;
+  color: #D5DDD6;
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.5;
+}
+.site-footer .threads-footer-social {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 25px);
+  color: #F1EFEB;
+}
+.site-footer .threads-footer-social span {
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+}
+.site-footer .threads-footer-social svg {
+  display: block;
+  width: 23px;
+  height: 23px;
+}
+.site-footer .threads-footer-newsletter {
+  min-width: 0;
+  min-height: 174px;
+  position: relative;
+  padding-left: clamp(25px, 4.2vw, 64px);
+  border-left: 1px solid rgba(232,238,232,.19);
+}
+.site-footer .threads-footer-kicker {
+  display: block;
+  font-size: clamp(10px, .9vw, 12px);
+  font-weight: 800;
+  letter-spacing: .22em;
+  line-height: 1.3;
+  color: #C3D0C7;
+}
+.site-footer .threads-footer-newsletter h2 {
+  margin: 8px 0 20px;
+  color: #F9F9F7;
+  font-size: clamp(21px, 2vw, 30px);
+  font-weight: 700;
+  letter-spacing: -.045em;
+  line-height: 1.15;
+}
+.site-footer .threads-footer-newsletter form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(112px, 170px);
+  gap: clamp(8px, 1vw, 14px);
+  width: 100%;
+}
+.site-footer .threads-footer-newsletter input {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 23px;
+  border-radius: 999px;
+  border: 1px solid rgba(202,217,212,.24);
+  outline-offset: 3px;
+  background: #23423F;
+  color: #F9F9F7;
+  font-size: 13px;
+}
+.site-footer .threads-footer-newsletter input::placeholder { color: #B8C9C3; opacity: 1; }
+.site-footer .threads-footer-newsletter button {
+  height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: #F9F9F7;
+  color: #172B2E;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+  padding-inline: 15px;
+}
+.site-footer .threads-footer-newsletter button:hover { background: #AED5A9; }
+.site-footer .threads-footer-newsletter>p {
+  min-height: 18px;
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: #C5D1C8;
+  line-height: 1.5;
+}
+.site-footer .threads-footer-nav {
+  border-top: 1px solid rgba(238,236,232,.26);
+  padding-top: clamp(22px, 2.5vw, 38px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: clamp(24px, 4vw, 70px);
+  row-gap: 26px;
+}
+.site-footer .threads-footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+.site-footer .threads-footer-links h3 {
+  margin: 0 0 8px;
+  color: #F9F9F7;
+  font-size: clamp(14px, 1.3vw, 19px);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.25;
+}
+.site-footer .threads-footer-links a {
+  font-size: clamp(12px, 1vw, 15px);
+  line-height: 1.45;
+  color: #C9D7D0;
+  text-decoration: none;
+}
+.site-footer .threads-footer-links a:hover,
+.site-footer .threads-footer-links a:focus-visible { color: #F9F9F7; text-decoration: underline; }
+.site-footer .threads-footer-legal {
+  color: #C9D7D0;
+  font-size: clamp(11px, .96vw, 14px);
+  line-height: 1.45;
+  margin: 8px 0 0;
+}
+@media(max-width: 900px) {
+  .site-footer .threads-footer-inner { padding-inline: clamp(22px,4vw,48px); }
+  .site-footer .threads-footer-top { grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); column-gap: 26px; }
+  .site-footer .threads-footer-newsletter { padding-left: 25px; }
+  .site-footer .threads-footer-newsletter form { grid-template-columns: minmax(0,1fr) 115px; }
+  .site-footer .threads-footer-newsletter input { padding-inline: 15px; }
+  .site-footer .threads-footer-nav { column-gap: 20px; }
+}
+@media(max-width: 620px) {
+  .site-footer { margin-top: 30px; }
+  .site-footer .threads-footer-inner { padding: 31px 23px 32px; }
+  .site-footer .threads-footer-top { display: grid; grid-template-columns: minmax(0,1fr); row-gap: 30px; padding-bottom: 27px; }
+  .site-footer .threads-footer-brand { padding: 0; }
+  .site-footer .threads-footer-logo { width: 205px; }
+  .site-footer .threads-footer-brand>p { font-size: 13px; margin: 16px 0 18px; }
+  .site-footer .threads-footer-newsletter { border-left: 0; padding-left: 0; min-height: 0; }
+  .site-footer .threads-footer-newsletter h2 { font-size: 21px; margin-bottom: 16px; }
+  .site-footer .threads-footer-newsletter form { grid-template-columns: minmax(0,1fr) 112px; gap: 9px; }
+  .site-footer .threads-footer-newsletter input { padding: 0 14px; font-size: 12px; height: 45px; }
+  .site-footer .threads-footer-newsletter button { padding-inline: 10px; font-size: 12px; height: 45px; }
+  .site-footer .threads-footer-nav { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 26px 18px; padding-top: 25px; }
+  .site-footer .threads-footer-links h3 { font-size: 16px; margin-bottom: 3px; }
+  .site-footer .threads-footer-links a { font-size: 12px; }
+  .site-footer .threads-footer-legal { font-size: 11px; }
+  .site-footer .footer-desktop-break { display: none; }
+}
+@media(max-width: 355px) {
+  .site-footer .threads-footer-inner { padding-inline: 18px; }
+  .site-footer .threads-footer-newsletter form { grid-template-columns: minmax(0,1fr) 100px; gap: 6px; }
+  .site-footer .threads-footer-newsletter button { font-size: 11px; }
+}

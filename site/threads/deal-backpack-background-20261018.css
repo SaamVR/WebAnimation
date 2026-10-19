@@ -1,0 +1,17 @@
+/* Owner-supplied backpack restored as background on its existing image stage.
+   Browser image-mask + mix-blend compositor previously hid the image on some
+   Chromium clients. The semantic img remains in the DOM as a fallback/alt.
+   Multiply the original white photo canvas into the approved pale card beige. */
+.backpack-promo .promo-image{
+ position:relative;z-index:4;
+ background-color:#F1EFEB;
+ background-image:url("./assets/deal-backpack.webp");
+ background-position:center bottom;
+ background-size:contain;
+ background-repeat:no-repeat;
+ background-blend-mode:multiply;
+}
+.backpack-promo .promo-image img[src$="deal-backpack.webp"]{
+ opacity:0;
+ -webkit-mask-image:none;mask-image:none;
+}

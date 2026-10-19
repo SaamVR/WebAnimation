@@ -1,0 +1,7 @@
+/* Browser review reliability — prevent content-visibility:auto on product
+   imagery from eliding offscreen cards in full-page captures and scrolling. */
+.product-media img,
+.product-media img[loading="lazy"] {
+ content-visibility:visible!important;
+ contain-intrinsic-size:auto!important;
+}
