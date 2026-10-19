@@ -164,7 +164,12 @@ test('T02 V3 duplicates only clicked product image and holds visual badge until 
   'cart-wheel-left','cart-wheel-right','prepareCartBadge','syncCartVisual','settleCartBadge',
   'clipPath:','1.03','prefers-reduced-motion','pagehide'])assert.ok(motion.includes(feature),feature);
  assert.ok(!motion.includes('t02-token'));
- assert.ok(!motion.includes('motionPath:'));
+ assert.ok(motion.includes('motionPath:{path:arcPath,autoRotate:false}'));
+ assert.ok(motion.includes("const isDetail=document.body.dataset.page==='product'"));
+ assert.ok(motion.includes("{x:dx,y:dy,duration:.91,ease:'power2.inOut'}"));
+ assert.ok(motion.includes('const basketMouth=Math.min(cartRect.width*.54,cartRect.height*.50)'));
+ assert.ok(motion.includes('ease:t=>.85*t+.15*t*t*t'));
+ assert.ok(!motion.includes('scale:midScale'));
  assert.ok(!motion.includes('t02-cart-proxy'));
  assert.match(style,/\.site-header,\.store-site-header\{position:sticky/);
  assert.match(style,/\.t02-product-proxy/);
