@@ -1,0 +1,1223 @@
+{
+  "base": "https://threads-t02-v2-review-20261019.onrender.com",
+  "screens": [
+    {
+      "kind": "desktop",
+      "initial": {
+        "scrollY": 0,
+        "cart": {
+          "x": 1363.109375,
+          "y": 23,
+          "w": 24,
+          "h": 22,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "basket": {
+          "x": 1363.109375,
+          "y": 24.09375,
+          "w": 24,
+          "h": 19.8125,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "left": {
+          "x": 1363.109375,
+          "y": 24.09375,
+          "w": 24,
+          "h": 19.8125,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "right": {
+          "x": 1363.109375,
+          "y": 24.09375,
+          "w": 24,
+          "h": 19.8125,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "origin": {
+          "x": 151.390625,
+          "y": 164.515625,
+          "w": 657.15625,
+          "h": 630,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "token": null,
+        "badge": "0",
+        "overlay": false,
+        "proxy": 0
+      },
+      "samples": [
+        {
+          "at": 350,
+          "scrollY": 0,
+          "cart": {
+            "x": 1363.109375,
+            "y": 23,
+            "w": 24,
+            "h": 22,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 151.390625,
+            "y": 164.515625,
+            "w": 657.15625,
+            "h": 630,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 674.235595703125,
+            "y": 653.0355834960938,
+            "w": 5.760009765625,
+            "h": 5.760009765625,
+            "transform": "matrix(0.18, 0, 0, 0.18, 661.116, 639.916)",
+            "opacity": "0"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 800,
+          "scrollY": 0,
+          "cart": {
+            "x": 1363.109375,
+            "y": 23,
+            "w": 24,
+            "h": 22,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 151.390625,
+            "y": 164.515625,
+            "w": 657.15625,
+            "h": 630,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 669.3146362304688,
+            "y": 588.5685424804688,
+            "w": 31.50079345703125,
+            "h": 31.50079345703125,
+            "transform": "matrix(0.9844, 0, 0, 0.9844, 669.065, 588.319)",
+            "opacity": "1"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 1150,
+          "scrollY": 0,
+          "cart": {
+            "x": 1363.109375,
+            "y": 23,
+            "w": 24,
+            "h": 22,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 1361.7476806640625,
+            "y": 23.11478042602539,
+            "w": 25.884765625,
+            "h": 22.14334487915039,
+            "transform": "matrix(0.99485, -0.10137, 0.10137, 0.99485, -21.7869, 23.2626)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 1360.9053955078125,
+            "y": 22.190658569335938,
+            "w": 26.4244384765625,
+            "h": 22.831771850585938,
+            "transform": "matrix(0.9911, -0.13315, 0.13315, 0.9911, -35.2638, 20.6801)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 1360.9876708984375,
+            "y": 23.42229652404785,
+            "w": 26.4244384765625,
+            "h": 22.831769943237305,
+            "transform": "matrix(0.9911, -0.13315, 0.13315, 0.9911, -33.9466, 40.3863)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 151.390625,
+            "y": 164.515625,
+            "w": 657.15625,
+            "h": 630,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 1216.61767578125,
+            "y": 19.74641990661621,
+            "w": 11.3599853515625,
+            "h": 11.35999870300293,
+            "transform": "matrix(0.355, 0, 0, 0.355, 1206.3, 9.42642)",
+            "opacity": "1"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 1550,
+          "scrollY": 0,
+          "cart": {
+            "x": 1363.109375,
+            "y": 23,
+            "w": 24,
+            "h": 22,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 1362.7752685546875,
+            "y": 23.400053024291992,
+            "w": 24.4671630859375,
+            "h": 20.381074905395508,
+            "transform": "matrix(0.99971, -0.02393, 0.02393, 0.99971, -5.34496, -1.91002)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 1362.43701171875,
+            "y": 23.495027542114258,
+            "w": 24.7667236328125,
+            "h": 20.748685836791992,
+            "transform": "matrix(0.99921, -0.03966, 0.03966, 0.99921, -10.7586, 5.64988)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 1362.4442138671875,
+            "y": 23.86188316345215,
+            "w": 24.766845703125,
+            "h": 20.748689651489258,
+            "transform": "matrix(0.99921, -0.03966, 0.03966, 0.99921, -10.6417, 11.5196)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 151.390625,
+            "y": 164.515625,
+            "w": 657.15625,
+            "h": 630,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 1377.029296875,
+            "y": 37.540000915527344,
+            "w": 3.8399658203125,
+            "h": 3.8400001525878906,
+            "transform": "matrix(0.12, 0, 0, 0.12, 1362.95, 23.46)",
+            "opacity": "0"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 1830,
+          "scrollY": 0,
+          "cart": {
+            "x": 1363.109375,
+            "y": 23,
+            "w": 24,
+            "h": 22,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 151.390625,
+            "y": 164.515625,
+            "w": 657.15625,
+            "h": 630,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": null,
+          "badge": "1",
+          "overlay": false,
+          "proxy": 0
+        },
+        {
+          "at": 2250,
+          "scrollY": 0,
+          "cart": {
+            "x": 1363.109375,
+            "y": 23,
+            "w": 24,
+            "h": 22,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 151.390625,
+            "y": 164.515625,
+            "w": 657.15625,
+            "h": 630,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": null,
+          "badge": "1",
+          "overlay": false,
+          "proxy": 0
+        },
+        {
+          "at": 3100,
+          "scrollY": 0,
+          "cart": {
+            "x": 1363.109375,
+            "y": 23,
+            "w": 24,
+            "h": 22,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 1363.109375,
+            "y": 24.09375,
+            "w": 24,
+            "h": 19.8125,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 151.390625,
+            "y": 164.515625,
+            "w": 657.15625,
+            "h": 630,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": null,
+          "badge": "1",
+          "overlay": false,
+          "proxy": 0
+        }
+      ],
+      "after": {
+        "scrollY": 0,
+        "cart": {
+          "x": 1363.109375,
+          "y": 23,
+          "w": 24,
+          "h": 22,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "basket": {
+          "x": 1363.109375,
+          "y": 24.09375,
+          "w": 24,
+          "h": 19.8125,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "left": {
+          "x": 1363.109375,
+          "y": 24.09375,
+          "w": 24,
+          "h": 19.8125,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "right": {
+          "x": 1363.109375,
+          "y": 24.09375,
+          "w": 24,
+          "h": 19.8125,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "origin": {
+          "x": 151.390625,
+          "y": 164.515625,
+          "w": 657.15625,
+          "h": 630,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "token": null,
+        "badge": "1",
+        "overlay": false,
+        "proxy": 0
+      }
+    },
+    {
+      "kind": "mobile",
+      "initial": {
+        "scrollY": 721,
+        "cart": {
+          "x": 356,
+          "y": 21.5,
+          "w": 21,
+          "h": 19,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "basket": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "left": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "right": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "origin": {
+          "x": 16,
+          "y": -582.484375,
+          "w": 358,
+          "h": 427.96875,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "token": null,
+        "badge": "0",
+        "overlay": false,
+        "proxy": 0
+      },
+      "samples": [
+        {
+          "at": 350,
+          "scrollY": 86,
+          "cart": {
+            "x": 356,
+            "y": 21.5,
+            "w": 21,
+            "h": 19,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 16,
+            "y": 52.515625,
+            "w": 358,
+            "h": 427.96875,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": null,
+          "badge": "1",
+          "overlay": false,
+          "proxy": 0
+        },
+        {
+          "at": 800,
+          "scrollY": 64,
+          "cart": {
+            "x": 356,
+            "y": 21.5,
+            "w": 21,
+            "h": 19,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 16,
+            "y": 74.515625,
+            "w": 358,
+            "h": 427.96875,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 286.3999938964844,
+            "y": 363.50628662109375,
+            "w": 32,
+            "h": 32,
+            "transform": "matrix(1, 0, 0, 1, 286.4, 363.506)",
+            "opacity": "1"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 1150,
+          "scrollY": 64,
+          "cart": {
+            "x": 356,
+            "y": 21.5,
+            "w": 21,
+            "h": 19,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 16,
+            "y": 74.515625,
+            "w": 358,
+            "h": 427.96875,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 298.320068359375,
+            "y": 272.4371337890625,
+            "w": 26.147186279296875,
+            "h": 26.147186279296875,
+            "transform": "matrix(0.8171, 0, 0, 0.8171, 295.394, 269.511)",
+            "opacity": "1"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 1550,
+          "scrollY": 64,
+          "cart": {
+            "x": 356,
+            "y": 21.5,
+            "w": 21,
+            "h": 19,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 354.73492431640625,
+            "y": 21.42389678955078,
+            "w": 22.74945068359375,
+            "h": 19.502521514892578,
+            "transform": "matrix(0.99415, -0.108, 0.108, 0.99415, -23.1327, 24.8661)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 352.8212890625,
+            "y": 19.67749786376953,
+            "w": 24.361480712890625,
+            "h": 21.615570068359375,
+            "transform": "matrix(0.97437, -0.22495, 0.22495, 0.97437, -58.125, 37.8408)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 353.02874755859375,
+            "y": 21.498188018798828,
+            "w": 24.361480712890625,
+            "h": 21.61556625366211,
+            "transform": "matrix(0.97437, -0.22495, 0.22495, 0.97437, -54.3317, 71.1334)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 16,
+            "y": 74.515625,
+            "w": 358,
+            "h": 427.96875,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 361.4051208496094,
+            "y": 23.313602447509766,
+            "w": 8.009613037109375,
+            "h": 8.009599685668945,
+            "transform": "matrix(0.2503, 0, 0, 0.2503, 349.41, 11.3184)",
+            "opacity": "1"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 1830,
+          "scrollY": 64,
+          "cart": {
+            "x": 356,
+            "y": 21.5,
+            "w": 21,
+            "h": 19,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 355.70770263671875,
+            "y": 21.725048065185547,
+            "w": 21.40875244140625,
+            "h": 17.833438873291016,
+            "transform": "matrix(0.99971, -0.02393, 0.02393, 0.99971, -5.34496, -1.91002)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 355.4116516113281,
+            "y": 21.808149337768555,
+            "w": 21.670928955078125,
+            "h": 18.155099868774414,
+            "transform": "matrix(0.99921, -0.03966, 0.03966, 0.99921, -10.7586, 5.64988)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 355.41802978515625,
+            "y": 22.129146575927734,
+            "w": 21.67095947265625,
+            "h": 18.155101776123047,
+            "transform": "matrix(0.99921, -0.03966, 0.03966, 0.99921, -10.6417, 11.5196)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 16,
+            "y": 74.515625,
+            "w": 358,
+            "h": 427.96875,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 367.9399719238281,
+            "y": 34.75,
+            "w": 3.839996337890625,
+            "h": 3.8400001525878906,
+            "transform": "matrix(0.12, 0, 0, 0.12, 353.86, 20.67)",
+            "opacity": "0"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 2250,
+          "scrollY": 94,
+          "cart": {
+            "x": 356,
+            "y": 21.5,
+            "w": 21,
+            "h": 19,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 16,
+            "y": 44.515625,
+            "w": 358,
+            "h": 427.96875,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": {
+            "x": 367.9399719238281,
+            "y": 34.75,
+            "w": 3.839996337890625,
+            "h": 3.8400001525878906,
+            "transform": "matrix(0.12, 0, 0, 0.12, 353.86, 20.67)",
+            "opacity": "0"
+          },
+          "badge": "1",
+          "overlay": true,
+          "proxy": 0
+        },
+        {
+          "at": 3100,
+          "scrollY": 721,
+          "cart": {
+            "x": 356,
+            "y": 21.5,
+            "w": 21,
+            "h": 19,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "basket": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "left": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "right": {
+            "x": 356,
+            "y": 22.33203125,
+            "w": 21,
+            "h": 17.3359375,
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "opacity": "1"
+          },
+          "origin": {
+            "x": 16,
+            "y": -582.484375,
+            "w": 358,
+            "h": 427.96875,
+            "transform": "none",
+            "opacity": "1"
+          },
+          "token": null,
+          "badge": "1",
+          "overlay": false,
+          "proxy": 0
+        }
+      ],
+      "after": {
+        "scrollY": 721,
+        "cart": {
+          "x": 356,
+          "y": 21.5,
+          "w": 21,
+          "h": 19,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "basket": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "left": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "right": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "origin": {
+          "x": 16,
+          "y": -582.484375,
+          "w": 358,
+          "h": 427.96875,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "token": null,
+        "badge": "1",
+        "overlay": false,
+        "proxy": 0
+      }
+    }
+  ],
+  "errors": [],
+  "passed": [
+    {
+      "label": "desktop real count 1",
+      "value": "1"
+    },
+    {
+      "label": "desktop genuine single cart"
+    },
+    {
+      "label": "desktop no proxy"
+    },
+    {
+      "label": "desktop token actually visible",
+      "value": [
+        [
+          350,
+          "0"
+        ],
+        [
+          800,
+          "1"
+        ],
+        [
+          1150,
+          "1"
+        ],
+        [
+          1550,
+          "0"
+        ],
+        [
+          1830,
+          null
+        ],
+        [
+          2250,
+          null
+        ],
+        [
+          3100,
+          null
+        ]
+      ]
+    },
+    {
+      "label": "desktop basket articulates",
+      "value": [
+        [
+          350,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ],
+        [
+          800,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ],
+        [
+          1150,
+          "matrix(0.99485, -0.10137, 0.10137, 0.99485, -21.7869, 23.2626)"
+        ],
+        [
+          1550,
+          "matrix(0.99971, -0.02393, 0.02393, 0.99971, -5.34496, -1.91002)"
+        ],
+        [
+          1830,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ],
+        [
+          2250,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ],
+        [
+          3100,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ]
+      ]
+    },
+    {
+      "label": "desktop wheels articulate separately"
+    },
+    {
+      "label": "desktop overlay cleans"
+    },
+    {
+      "label": "desktop image src and styling stationary",
+      "value": "none"
+    },
+    {
+      "label": "desktop cart link remains live"
+    },
+    {
+      "label": "mobile real count 1",
+      "value": "1"
+    },
+    {
+      "label": "mobile genuine single cart"
+    },
+    {
+      "label": "mobile no proxy"
+    },
+    {
+      "label": "mobile token actually visible",
+      "value": [
+        [
+          350,
+          null
+        ],
+        [
+          800,
+          "1"
+        ],
+        [
+          1150,
+          "1"
+        ],
+        [
+          1550,
+          "1"
+        ],
+        [
+          1830,
+          "0"
+        ],
+        [
+          2250,
+          "0"
+        ],
+        [
+          3100,
+          null
+        ]
+      ]
+    },
+    {
+      "label": "mobile basket articulates",
+      "value": [
+        [
+          350,
+          "none"
+        ],
+        [
+          800,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ],
+        [
+          1150,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ],
+        [
+          1550,
+          "matrix(0.99415, -0.108, 0.108, 0.99415, -23.1327, 24.8661)"
+        ],
+        [
+          1830,
+          "matrix(0.99971, -0.02393, 0.02393, 0.99971, -5.34496, -1.91002)"
+        ],
+        [
+          2250,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ],
+        [
+          3100,
+          "matrix(1, 0, 0, 1, 0, 0)"
+        ]
+      ]
+    },
+    {
+      "label": "mobile wheels articulate separately"
+    },
+    {
+      "label": "mobile overlay cleans"
+    },
+    {
+      "label": "mobile image src and styling stationary",
+      "value": "none"
+    },
+    {
+      "label": "mobile cart link remains live"
+    },
+    {
+      "label": "mobile actual header remains at top while scrolled",
+      "value": {
+        "scrollY": 721,
+        "cart": {
+          "x": 356,
+          "y": 21.5,
+          "w": 21,
+          "h": 19,
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "opacity": "1"
+        },
+        "basket": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "left": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "right": {
+          "x": 356,
+          "y": 22.33203125,
+          "w": 21,
+          "h": 17.3359375,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "origin": {
+          "x": 16,
+          "y": -582.484375,
+          "w": 358,
+          "h": 427.96875,
+          "transform": "none",
+          "opacity": "1"
+        },
+        "token": null,
+        "badge": "0",
+        "overlay": false,
+        "proxy": 0
+      }
+    },
+    {
+      "label": "mobile source camera brings original image into viewport",
+      "value": [
+        [
+          350,
+          52.515625
+        ],
+        [
+          800,
+          74.515625
+        ],
+        [
+          1150,
+          74.515625
+        ],
+        [
+          1550,
+          74.515625
+        ],
+        [
+          1830,
+          74.515625
+        ],
+        [
+          2250,
+          44.515625
+        ],
+        [
+          3100,
+          -582.484375
+        ]
+      ]
+    },
+    {
+      "label": "mobile returns to original purchase scroll location",
+      "value": {
+        "before": 721,
+        "after": 721
+      }
+    },
+    {
+      "label": "T01 still finds 4 actual results"
+    },
+    {
+      "label": "T01 spotlight still activates"
+    },
+    {
+      "label": "T01 spotlight still resets"
+    },
+    {
+      "label": "No browser script errors",
+      "value": []
+    }
+  ],
+  "failed": []
+}

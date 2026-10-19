@@ -32,4 +32,4 @@ MOBILE FIX (local browser VERIFIED; creative review remains pending): The existi
 
 Additional local browser evidence: [Mobile real-Chrome MP4](mobile-v2/mobile-source-browser.mp4), [Desktop real-Chrome MP4](mobile-v2/desktop-source-browser.mp4), [Mobile flight frame](mobile-v2/mobile-800.png), [Mobile near catch](mobile-v2/mobile-1550.png), [25-check local browser verification](mobile-v2/QA-browser.json). No proxy carts. Full mobile camera motion was checked at 390×844, with scroll Y 721 -> 74.5 -> 721, before/after matching, proper product source, real basket and independent wheel transform, cart count one and overlay removal.
 
-Pending: V2 Render deployment and public-URL browser re-test, and subjective owner creative approval. Keep PR draft. Do not merge to main or implement T03/T04.
+Render public deployment and desktop/mobile browser verification are now complete: see [public Render QA evidence, including both real Chrome MP4s](deployed/QA.md). **Only subjective owner creative approval remains pending.** Keep PR draft. Do not merge to main or implement T03/T04.
