@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "name": "real cart counts ten distinct adds",
+      "pass": true,
+      "detail": "10"
+    },
+    {
+      "name": "over-cap mutation rejected and no fabricated count",
+      "pass": true,
+      "detail": "10"
+    },
+    {
+      "name": "rapid clicks leave no phantom overlay",
+      "pass": true
+    },
+    {
+      "name": "original cart link remains clickable",
+      "pass": true
+    },
+    {
+      "name": "cart page persistently records ten",
+      "pass": true
+    },
+    {
+      "name": "mobile reduced-motion preserves scroll",
+      "pass": true
+    },
+    {
+      "name": "mobile reduced-motion leaves no travelling token",
+      "pass": true
+    },
+    {
+      "name": "mobile reduced-motion adds genuine one item",
+      "pass": true
+    },
+    {
+      "name": "no browser JavaScript exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}

@@ -154,3 +154,38 @@ test('Batch 2 gallery manifest maps 119 unique real angles across 36 matching pr
  assert.ok(page.includes('data-t02-image'));
  assert.ok(page.includes('data-t02-add'));
 });
+
+
+test('T02 is symbolic, post-commit and isolated from real product imagery',()=>{
+ const motion=read('t02-fly-cart.mjs');
+ const home=read('app.mjs');
+ const detail=read('storefront-pages.mjs');
+ const style=read('storefront.css');
+ assert.ok(motion.includes("import {loadMotionLibrary} from './t02-motion-runtime.mjs'"));
+ assert.ok(motion.includes('id="t02-token"'));
+ assert.ok(motion.includes('cart-basket') && motion.includes('cart-wheel-left') && motion.includes('cart-wheel-right'));
+ assert.ok(motion.includes('installArticulatedHeaderCart'));
+ assert.ok(!motion.includes('t02-cart-proxy'));
+ assert.ok(!motion.includes('t02-count-copy'));
+ assert.ok(!motion.includes('t02-cart-metal'));
+ assert.ok(motion.includes('sourceFor(button)'));
+ assert.ok(motion.includes('cameraScroll('));
+ assert.ok(motion.includes("behavior:'instant'"));
+ assert.ok(motion.includes('originScroll'));
+ assert.ok(motion.includes('active.restoring=true'));
+ assert.ok(motion.includes('getBoundingClientRect()'));
+ assert.ok(motion.includes('motionPath:'));
+ assert.ok(motion.includes('prefers-reduced-motion'));
+ assert.ok(motion.includes('pagehide'));
+ assert.ok(motion.includes('resize'));
+ assert.ok(!motion.includes('detail-main-image'));
+ assert.ok(!motion.includes('product-photo'));
+ assert.ok(home.includes('installArticulatedHeaderCart();'));
+ assert.ok(detail.includes('installArticulatedHeaderCart();'));
+ assert.ok(home.indexOf('const receipt=addCartItem(')<home.indexOf('void playT02({button:add,quantity:receipt.count})'));
+ assert.ok(detail.indexOf('const receipt=addCartItem(')<detail.indexOf('void playT02({button:add,quantity:receipt.count})'));
+ assert.ok(style.includes('.t02-motion-layer{position:fixed;inset:0;z-index:105;pointer-events:none;'));
+ assert.ok(style.includes('body[data-page="product"] .store-site-header'));
+ assert.ok(read('index.html').includes('app.mjs?v=t02-v2-20261019'));
+ assert.ok(read('product/index.html').includes('storefront-pages.mjs?v=t02-v2-20261019'));
+});

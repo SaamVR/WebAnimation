@@ -147,3 +147,22 @@
 .store-product-card.t01-discovered{position:relative;z-index:1}
 .store-product-card.t01-reduced-discovery{outline:2px solid #a98c52;outline-offset:3px;box-shadow:0 8px 24px rgba(43,84,53,.22)}
 @media(prefers-reduced-motion:reduce){.store-product-card.t01-reduced-discovery{transition:none}}
+
+
+/* T02 V2: the token alone lives in a pointer-transparent overlay.
+   The original header cart PNG is split into three articulated SVG groups
+   inside its existing clickable #bag-button. No duplicate cart or badge. */
+.t02-motion-layer{position:fixed;inset:0;z-index:105;pointer-events:none;overflow:hidden;isolation:isolate}
+.t02-token{position:absolute;top:0;left:0;width:32px;height:32px;border-radius:50%;background:#2E453A;pointer-events:none;will-change:transform,opacity}
+.t02-real-cart{overflow:visible;flex:none;transform:translateZ(0)}
+.t02-real-cart #cart-basket,.t02-real-cart #cart-wheel-left,.t02-real-cart #cart-wheel-right{will-change:transform}
+@media(prefers-reduced-motion:reduce){.t02-motion-layer{display:none}}
+
+/* T02 responsive continuity: keep the EXISTING product-page header/cart in view.
+   No floating icon, duplicated header, added navigation row or resized branding. */
+@media(max-width:760px){
+ body[data-page="product"] .store-site-header{
+  position:sticky;top:0;z-index:98;background:var(--store-bg);
+  box-shadow:0 1px 0 rgba(46,69,58,.09);
+ }
+}
