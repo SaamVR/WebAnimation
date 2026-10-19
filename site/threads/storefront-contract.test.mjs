@@ -156,36 +156,23 @@ test('Batch 2 gallery manifest maps 119 unique real angles across 36 matching pr
 });
 
 
-test('T02 is symbolic, post-commit and isolated from real product imagery',()=>{
+test('T02 V3 duplicates only clicked product image and holds visual badge until real catch',()=>{
  const motion=read('t02-fly-cart.mjs');
- const home=read('app.mjs');
- const detail=read('storefront-pages.mjs');
- const style=read('storefront.css');
- assert.ok(motion.includes("import {loadMotionLibrary} from './t02-motion-runtime.mjs'"));
- assert.ok(motion.includes('id="t02-token"'));
- assert.ok(motion.includes('cart-basket') && motion.includes('cart-wheel-left') && motion.includes('cart-wheel-right'));
- assert.ok(motion.includes('installArticulatedHeaderCart'));
+ const home=read('app.mjs'),page=read('storefront-pages.mjs'),style=read('storefront.css');
+ for(const feature of ['t02-product-proxy','t02-flight-image','mediaFor(button)','img.currentSrc||img.src',
+  'objectFit:\'contain\'','getBoundingClientRect()','cameraScroll(','cart-basket',
+  'cart-wheel-left','cart-wheel-right','prepareCartBadge','syncCartVisual','settleCartBadge',
+  'clipPath:','1.03','prefers-reduced-motion','pagehide'])assert.ok(motion.includes(feature),feature);
+ assert.ok(!motion.includes('t02-token'));
+ assert.ok(!motion.includes('motionPath:'));
  assert.ok(!motion.includes('t02-cart-proxy'));
- assert.ok(!motion.includes('t02-count-copy'));
- assert.ok(!motion.includes('t02-cart-metal'));
- assert.ok(motion.includes('sourceFor(button)'));
- assert.ok(motion.includes('cameraScroll('));
- assert.ok(motion.includes("behavior:'instant'"));
- assert.ok(motion.includes('originScroll'));
- assert.ok(motion.includes('active.restoring=true'));
- assert.ok(motion.includes('getBoundingClientRect()'));
- assert.ok(motion.includes('motionPath:'));
- assert.ok(motion.includes('prefers-reduced-motion'));
- assert.ok(motion.includes('pagehide'));
- assert.ok(motion.includes('resize'));
- assert.ok(!motion.includes('detail-main-image'));
- assert.ok(!motion.includes('product-photo'));
- assert.ok(home.includes('installArticulatedHeaderCart();'));
- assert.ok(detail.includes('installArticulatedHeaderCart();'));
- assert.ok(home.indexOf('const receipt=addCartItem(')<home.indexOf('void playT02({button:add,quantity:receipt.count})'));
- assert.ok(detail.indexOf('const receipt=addCartItem(')<detail.indexOf('void playT02({button:add,quantity:receipt.count})'));
- assert.ok(style.includes('.t02-motion-layer{position:fixed;inset:0;z-index:105;pointer-events:none;'));
- assert.ok(style.includes('body[data-page="product"] .store-site-header'));
- assert.ok(read('index.html').includes('app.mjs?v=t02-v2-20261019'));
- assert.ok(read('product/index.html').includes('storefront-pages.mjs?v=t02-v2-20261019'));
+ assert.match(style,/\.site-header,\.store-site-header\{position:sticky/);
+ assert.match(style,/\.t02-product-proxy/);
+ assert.ok(home.includes('prepareCartBadge();const receipt=addCartItem('));
+ assert.ok(page.includes('prepareCartBadge();const receipt=addCartItem('));
+ assert.ok(page.includes('class="store-quick-add"'));
+ assert.ok(page.includes('data-t02-image'));
+ assert.ok(page.includes("document.getElementById('bag-button')") || page.includes('installArticulatedHeaderCart()'));
+ assert.ok(read('index.html').includes('app.mjs?v=t02-v3-20261019'));
+ assert.ok(read('product/index.html').includes('storefront-pages.mjs?v=t02-v3-20261019'));
 });

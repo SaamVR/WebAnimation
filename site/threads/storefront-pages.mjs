@@ -1,7 +1,7 @@
 import {catalog, catalogById, productMeta, productGallery, catalogFilters, merchandisingCategory, imageUrl, priceTk, safeHTML, searchCatalog,curateShopProducts} from './catalog.mjs';
 import {initInlineSearch} from './search-header.mjs';
 import {initT01Spotlight} from './t01-spotlight.mjs';
-import {playT02,installArticulatedHeaderCart} from './t02-fly-cart.mjs';
+import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
 import {getCart,cartSummary,cartCount,addCartItem,updateCartItem,removeCartItem,variantAvailable,getFavorites,toggleFavorite,startDemoPayment,resolveDemoPayment,getAttempt,resetAttempt,getOrder} from './store-core.mjs';
 
 const $=id=>document.getElementById(id);
@@ -14,11 +14,11 @@ const showError=(target,message)=>{const node=$(target);if(node){node.textConten
 const header=()=>`<a class="skip-link" href="#page-main">Skip to content</a><header class="site-header store-site-header" id="top"><div class="header-inner">
  <a class="wordmark" href="/" aria-label="Threads home"><img src="/assets/threads-wordmark-2e453a.png" alt="THREADS" width="850" height="105"></a>
  <nav class="main-nav" aria-label="Main navigation"><a href="/">HOME</a><a href="/search/">SHOP</a><a href="/search/?category=Sneakers">COLLECTION</a><a href="/#about">ABOUT</a></nav>
- <div class="header-tools"><form id="search-area" class="inline-search" role="search" action="/search/" method="get" aria-hidden="true"><label class="sr-only" for="search-input">Search the Threads catalog</label><input id="search-input" type="search" name="q" placeholder="Search products…" autocomplete="off" tabindex="-1" aria-label="Search products"></form><button class="icon-btn" id="search-button" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="search-area"><img class="header-icon" src="/assets/header-search.png" alt=""></button><a href="/search/?favorites=1" class="icon-btn" id="favorites-button" aria-label="Saved favorites"><img class="header-icon" src="/assets/header-favorite.png" alt=""></a><a href="/cart/" class="icon-btn bag-button" id="bag-button" aria-label="View shopping cart"><img class="header-icon" src="/assets/header-cart.png" alt=""><span class="bag-count" id="bag-count">${cartCount()}</span></a></div></div></header>`;
+ <div class="header-tools"><form id="search-area" class="inline-search" role="search" action="/search/" method="get" aria-hidden="true"><label class="sr-only" for="search-input">Search the Threads catalog</label><input id="search-input" type="search" name="q" placeholder="Search products…" autocomplete="off" tabindex="-1" aria-label="Search products"></form><button class="icon-btn" id="search-button" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="search-area"><img class="header-icon" src="/assets/header-search.png" alt=""></button><a href="/search/?favorites=1" class="icon-btn" id="favorites-button" aria-label="Saved favorites"><img class="header-icon" src="/assets/header-favorite.png" alt=""></a><a href="/cart/" class="icon-btn bag-button" id="bag-button" aria-label="View shopping cart"><img class="header-icon" src="/assets/header-cart.png" alt=""><span class="bag-count" id="bag-count">${cartCount()}</span></a><span id="t02-cart-status" class="sr-only" role="status" aria-live="polite"></span></div></div></header>`;
 const footer=()=>`<footer class="site-footer store-site-footer"><div class="threads-footer-inner"><div class="threads-footer-top"><div class="threads-footer-brand"><a class="threads-footer-logo" href="/" aria-label="Threads home"><img src="/assets/threads-footer-logo-inverted.png" alt="THREADS" width="900" height="112"></a><p>Premium sneakers, bags and everyday essentials for a brighter everyday.</p></div><div class="threads-footer-newsletter"><span class="threads-footer-kicker">STAY CONNECTED</span><h2>Get Our News And Updates</h2><p>Standalone THREADS storefront · simulated checkout · no real payments.</p></div></div><nav class="threads-footer-nav" aria-label="Footer navigation"><div class="threads-footer-links"><h3>Shop</h3><a href="/search/?category=Sneakers">Sneakers</a><a href="/search/?category=Bags">Bags</a><a href="/search/?category=Accessories">Accessories</a></div><div class="threads-footer-links"><h3>About</h3><a href="/#about">Our Story</a></div><div class="threads-footer-links"><h3>Help</h3><a href="/cart/">Your Cart</a><a href="/checkout/">Checkout</a></div><div class="threads-footer-links"><h3>Company</h3><p class="threads-footer-legal">© 2026 THREADS · Demo preview</p></div></nav></div></footer>`;
-const card=p=>`<article class="store-product-card" data-t01-card data-product-id="${escape(p.id)}"><a href="${link(p.id)}" class="store-product-card__link"><div class="store-product-card__media"><img src="${imageUrl(p)}" alt="${escape(p.name)}" loading="lazy"></div><span class="store-product-card__name">${escape(p.name)}</span><span class="store-product-card__subtitle">${escape(p.subtitle)}</span></a><div class="store-product-card__footer"><span class="store-price">${money(p.price)}</span><a class="store-small-link" href="${link(p.id)}">View details <span aria-hidden="true">→</span></a></div></article>`;
+const card=p=>`<article class="store-product-card" data-t01-card data-product-id="${escape(p.id)}"><a href="${link(p.id)}" class="store-product-card__link"><div class="store-product-card__media" data-t02-image><img src="${imageUrl(p)}" alt="${escape(p.name)}" loading="lazy"></div><span class="store-product-card__name">${escape(p.name)}</span><span class="store-product-card__subtitle">${escape(p.subtitle)}</span></a><div class="store-product-card__footer"><span class="store-price">${money(p.price)}</span><a class="store-small-link" href="${link(p.id)}">View details <span aria-hidden="true">→</span></a><button type="button" class="store-quick-add" data-add="${escape(p.id)}" data-t02-add aria-label="Add ${escape(p.name)} to cart">Add to Cart</button></div></article>`;
 function mount(html){$('page-content').innerHTML=html}
-function setCartBadge(){const c=$('bag-count');if(c)c.textContent=String(cartCount());const l=$('bag-button');if(l)l.setAttribute('aria-label','View shopping cart, '+cartCount()+' items')}
+function setCartBadge(){const c=$('bag-count');syncCartVisual(cartCount())}
 function searchPage(){
  const query=args.get('q')||'',category=args.get('category')||'',favorites=args.get('favorites')==='1';
  let activeCategory=category;
@@ -45,6 +45,23 @@ function searchPage(){
  update(current,category);
  $('catalog-search-form').addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();syncUrl(q,activeCategory);update(q,activeCategory)});
  $('catalog-filters').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(!b)return;const c=b.dataset.category==='All'?'':b.dataset.category;activeCategory=c;const q=input.value.trim();syncUrl(q,c);update(q,c)});
+ // Shop/Search cards reuse the same cart mutation and T02.
+ $('results-grid').addEventListener('click',e=>{
+  const button=e.target.closest('[data-t02-add]');if(!button)return;
+  const p=catalogById[button.dataset.add];if(!p)return;
+  const m=productMeta(p),color=m.colors[0]?.id;
+  const size=m.sizes.find(value=>variantAvailable(p,color,value));
+  if(!size){const status=$('t02-cart-status');if(status)status.textContent='Selected product unavailable';return;}
+  try{
+   prepareCartBadge();
+   const receipt=addCartItem({id:p.id,color,size,quantity:1});
+   setCartBadge();
+   void playT02({button,quantity:receipt.count}).catch(()=>settleCartBadge());
+  }catch(err){
+   settleCartBadge();
+   const status=$('t02-cart-status');if(status)status.textContent=err.message;
+  }
+ });
 }
 function detailPage(){
  const p=catalogById[args.get('id')];
@@ -66,7 +83,7 @@ function detailPage(){
  sizeWrap.addEventListener('click',e=>{const b=e.target.closest('[data-size]');if(!b||b.disabled)return;size=b.dataset.size;update()});
  document.querySelectorAll('[data-adjust]').forEach(b=>b.addEventListener('click',()=>{qty=Math.max(1,Math.min(10,qty+Number(b.dataset.adjust)));update()}));
  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{const i=Number(b.dataset.view),view=gallery[i];if(!view)return;document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const image=$('detail-main-image');image.src=imageUrl(view);image.alt=p.name+' · '+view.label;image.className=view.crop?'view-'+view.crop:'view-0';$('gallery-view-note').textContent=singlePhoto?(gallery.length===1?'Owner-supplied cover image only. Additional camera angles have not been supplied yet.':'Cropped views of the same source photograph. Additional camera angles have not been supplied yet.'):view.label;}));
- add.addEventListener('click',()=>{try{const receipt=addCartItem({id:p.id,color,size,quantity:qty});setCartBadge();void playT02({button:add,quantity:receipt.count});$('detail-success').innerHTML='Added to cart. <a href="/cart/">View cart →</a>';showError('detail-error','')}catch(err){showError('detail-error',err.message)}});
+ add.addEventListener('click',()=>{try{prepareCartBadge();const receipt=addCartItem({id:p.id,color,size,quantity:qty});setCartBadge();void playT02({button:add,quantity:receipt.count}).catch(()=>settleCartBadge());$('detail-success').innerHTML='Added to cart. <a href="/cart/">View cart →</a>';showError('detail-error','')}catch(err){settleCartBadge();showError('detail-error',err.message)}});
 }
 function cartPage(){
  mount(`<nav class="store-breadcrumb"><a href="/">Home</a> › Cart</nav><section class="store-page-heading"><span class="store-kicker">YOUR THREADS BAG</span><h1>Shopping Cart</h1><p>Review your selected demo products and variants.</p></section><div id="cart-content"></div>`);
