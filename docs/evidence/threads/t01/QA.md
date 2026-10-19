@@ -40,3 +40,8 @@
 ## Remaining release distinction
 
 This document initially certifies code-based local Chromium QA. Record a separate actual Render deployment and public-URL browser pass before claiming public T01 readiness. Batch 2 galleries are preserved. Genuine alternative views still missing for older `f1`, `f3`, `f4` products; those pages remain cover-only and functional.
+
+
+## Live mobile screenshot
+
+[View real browser discovery](mobile-live-discovery-verified.png).
