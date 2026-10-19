@@ -7,7 +7,7 @@ test('T01 is genuinely integrated into the existing static search, not a substit
  assert.match(page,/import \{initT01Spotlight\} from '\.\/t01-spotlight\.mjs'/);
  assert.match(page,/spotlight\.schedule\(q,list\)/);
  assert.match(page,/data-t01-card/);
- assert.match(search,/storefront-pages\.mjs\?v=t01-search-20261019/);
+ assert.match(search,/storefront-pages\.mjs\?v=(?:t01-search|t02)-20261019/);
  assert.match(app,/initInlineSearch\(\)/);
  assert.doesNotMatch(page,/window\.location\s*=\s*['"]\/t01/);
 });
@@ -29,7 +29,7 @@ test('T01 is a separate pointer-transparent GSAP actor with real geometry and sa
  assert.match(read('vendor/gsap.min.js'),/GSAP 3\.14\.2/);
  assert.match(read('vendor/MotionPathPlugin.min.js'),/MotionPathPlugin/);
 });
-test('T02 through T04 action sites are not replaced or animated',()=>{
+test('T01 remains isolated from T02 and T04 mutations; existing hooks remain present',()=>{
  const app=read('app.mjs'),page=read('storefront-pages.mjs');
  assert.match(app,/data-t02-add/);
  assert.match(page,/data-t02-image/);

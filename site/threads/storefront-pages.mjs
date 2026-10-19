@@ -1,6 +1,7 @@
 import {catalog, catalogById, productMeta, productGallery, catalogFilters, merchandisingCategory, imageUrl, priceTk, safeHTML, searchCatalog,curateShopProducts} from './catalog.mjs';
 import {initInlineSearch} from './search-header.mjs';
 import {initT01Spotlight} from './t01-spotlight.mjs';
+import {playT02} from './t02-fly-cart.mjs';
 import {getCart,cartSummary,cartCount,addCartItem,updateCartItem,removeCartItem,variantAvailable,getFavorites,toggleFavorite,startDemoPayment,resolveDemoPayment,getAttempt,resetAttempt,getOrder} from './store-core.mjs';
 
 const $=id=>document.getElementById(id);
@@ -65,7 +66,7 @@ function detailPage(){
  sizeWrap.addEventListener('click',e=>{const b=e.target.closest('[data-size]');if(!b||b.disabled)return;size=b.dataset.size;update()});
  document.querySelectorAll('[data-adjust]').forEach(b=>b.addEventListener('click',()=>{qty=Math.max(1,Math.min(10,qty+Number(b.dataset.adjust)));update()}));
  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{const i=Number(b.dataset.view),view=gallery[i];if(!view)return;document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const image=$('detail-main-image');image.src=imageUrl(view);image.alt=p.name+' · '+view.label;image.className=view.crop?'view-'+view.crop:'view-0';$('gallery-view-note').textContent=singlePhoto?(gallery.length===1?'Owner-supplied cover image only. Additional camera angles have not been supplied yet.':'Cropped views of the same source photograph. Additional camera angles have not been supplied yet.'):view.label;}));
- add.addEventListener('click',()=>{try{addCartItem({id:p.id,color,size,quantity:qty});setCartBadge();$('detail-success').innerHTML='Added to cart. <a href="/cart/">View cart →</a>';showError('detail-error','')}catch(err){showError('detail-error',err.message)}});
+ add.addEventListener('click',()=>{try{const receipt=addCartItem({id:p.id,color,size,quantity:qty});setCartBadge();void playT02({button:add,quantity:receipt.count});$('detail-success').innerHTML='Added to cart. <a href="/cart/">View cart →</a>';showError('detail-error','')}catch(err){showError('detail-error',err.message)}});
 }
 function cartPage(){
  mount(`<nav class="store-breadcrumb"><a href="/">Home</a> › Cart</nav><section class="store-page-heading"><span class="store-kicker">YOUR THREADS BAG</span><h1>Shopping Cart</h1><p>Review your selected demo products and variants.</p></section><div id="cart-content"></div>`);
