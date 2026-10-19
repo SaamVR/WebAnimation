@@ -1,0 +1,115 @@
+{
+  "base": "https://threads-t03-stage-a-backpack-20261019.onrender.com",
+  "checks": [
+    {
+      "name": "desktop closed endpoint",
+      "pass": true,
+      "details": {
+        "before": "false",
+        "close": "false"
+      }
+    },
+    {
+      "name": "desktop open endpoint",
+      "pass": true,
+      "details": {
+        "opened": "true",
+        "clip": "circle(160% at 57% 32%)"
+      }
+    },
+    {
+      "name": "desktop original owner asset image loads",
+      "pass": true
+    },
+    {
+      "name": "desktop original open asset loads",
+      "pass": true
+    },
+    {
+      "name": "desktop no promotional product cards",
+      "pass": true
+    },
+    {
+      "name": "desktop original deal CTA preserved",
+      "pass": true
+    },
+    {
+      "name": "mobile closed endpoint",
+      "pass": true,
+      "details": {
+        "before": "false",
+        "close": "false"
+      }
+    },
+    {
+      "name": "mobile open endpoint",
+      "pass": true,
+      "details": {
+        "opened": "true",
+        "clip": "circle(160% at 57% 32%)"
+      }
+    },
+    {
+      "name": "mobile original owner asset image loads",
+      "pass": true
+    },
+    {
+      "name": "mobile original open asset loads",
+      "pass": true
+    },
+    {
+      "name": "mobile no promotional product cards",
+      "pass": true
+    },
+    {
+      "name": "mobile original deal CTA preserved",
+      "pass": true
+    },
+    {
+      "name": "reduced closed endpoint",
+      "pass": true,
+      "details": {
+        "before": "false",
+        "close": "false"
+      }
+    },
+    {
+      "name": "reduced open endpoint",
+      "pass": true,
+      "details": {
+        "opened": "true",
+        "clip": "circle(160% at 57% 32%)"
+      }
+    },
+    {
+      "name": "reduced original owner asset image loads",
+      "pass": true
+    },
+    {
+      "name": "reduced original open asset loads",
+      "pass": true
+    },
+    {
+      "name": "reduced no promotional product cards",
+      "pass": true
+    },
+    {
+      "name": "reduced original deal CTA preserved",
+      "pass": true
+    },
+    {
+      "name": "T01 spotlight still runs",
+      "pass": true
+    },
+    {
+      "name": "T01 spotlight cleanup",
+      "pass": true
+    },
+    {
+      "name": "no browser JavaScript errors",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "errors": []
+}
