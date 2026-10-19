@@ -14,11 +14,13 @@
   <link rel="stylesheet" href="./artwork-visibility-20261018.css">
   <link rel="stylesheet" href="./section-fidelity-20261018.css">
   <link rel="stylesheet" href="./deal-of-week-rebuild-20261018.css">
+  <link rel="stylesheet" href="./t03-backpack-stage-a.css">
   <link rel="stylesheet" href="./footer-reference-20261018.css">
   <link rel="stylesheet" href="./market-catalog-polish-20261018.css">
   <link rel="stylesheet" href="./threads-asset-fidelity-20261018.css?v=20261018-featured-v2">
   <link rel="stylesheet" href="./storefront.css?v=t02-v3-20261019">
   <script type="module" src="./app.mjs?v=t02-v3-20261019"></script>
+  <script type="module" src="./t03-backpack-stage-a.mjs?v=20261019"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -97,12 +99,22 @@
       <svg class="threads-deal__panel" viewBox="0 0 1803 693" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <path d="M 93 0 L 1755 152 C 1785 156 1802 179 1802 210 L 1802 631 C 1802 667 1773 693 1735 693 L 116 693 C 48 693 0 663 0 612 L 0 61 C 0 26 42 0 93 0 Z" fill="#EEECE8"/>
       </svg>
-      <!-- This remains an independent media layer for the future T03 choreography. -->
+      <!-- T03 Stage A: owner-original closed/open artwork, layered reversible mechanism.
+           Do not introduce T03 product cards until creative approval. -->
       <div class="threads-deal__art" data-t03-layer="backpack">
-        <img src="./assets/deal-backpack-owner-new-20261018.webp"
-          width="948" height="965"
-          alt="Illustrated orange and turquoise outdoor backpack with teal cap, water bottle and sneaker"
-          loading="lazy" decoding="async"/>
+        <button id="t03-backpack-trigger" class="t03-backpack-trigger" type="button"
+          aria-expanded="false" aria-controls="t03-backpack-state"
+          aria-label="Open the illustrated backpack">
+          <span class="t03-stage" id="t03-stage" aria-hidden="true">
+            <img class="t03-layer t03-base-closed" src="./assets/t03-closed-crop.png" alt="" draggable="false">
+            <img class="t03-layer t03-base-open" src="./assets/t03-open-aligned.png" alt="" draggable="false">
+            <img class="t03-layer t03-flap-closed" src="./assets/t03-closed-flap.png" alt="" draggable="false">
+            <img class="t03-layer t03-buckle t03-buckle-left" src="./assets/t03-buckle-left.png" alt="" draggable="false">
+            <img class="t03-layer t03-buckle t03-buckle-right" src="./assets/t03-buckle-right.png" alt="" draggable="false">
+            <img class="t03-layer t03-flap-open" src="./assets/t03-open-flap.png" alt="" draggable="false">
+          </span>
+        </button>
+        <span id="t03-backpack-state" class="sr-only" role="status" aria-live="polite">Backpack closed</span>
       </div>
       <div class="threads-deal__copy">
         <span class="eyebrow with-line dark">Special offer</span>
