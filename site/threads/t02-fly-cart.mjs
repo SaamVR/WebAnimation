@@ -167,8 +167,20 @@ export async function playT02({button,quantity}={}){
  const basketPoint={x:cartRect.left+cartRect.width*.65,y:cartRect.top+cartRect.height*.40};
  const dx=basketPoint.x-origin.x,dy=basketPoint.y-origin.y;
  const dimension=Math.max(rect.width,rect.height);
- const midScale=Math.max(.37,Math.min(.77,180/dimension));
- const entryScale=Math.min(.12,Math.max(.025,14/dimension));
+ // Measure the SAME cart that catches the product: the useful mouth is narrower
+ // than the SVG viewBox. Fit the largest source-frame dimension within its opening.
+ const basketMouth=Math.min(cartRect.width*.54,cartRect.height*.50);
+ const entryScale=Math.min(.12,Math.max(.008,basketMouth*.82/dimension));
+ const isDetail=document.body.dataset.page==='product';
+ const headerBottom=document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0;
+ // One shallow quadratic: control stays inside the viewport and above the
+ // source→basket diagonal, sweeping through whitespace above product details.
+ const arcControl={
+  x:origin.x+dx*.14,
+  y:Math.min(origin.y-20,Math.max(headerBottom+8,basketPoint.y+cartRect.height*.15))
+ };
+ const arcPath='M0,0 Q'+(arcControl.x-origin.x).toFixed(3)+','+
+   (arcControl.y-origin.y).toFixed(3)+' '+dx.toFixed(3)+','+dy.toFixed(3);
  const timeline=gs.timeline({paused:true,onComplete:()=>{
   if(active?.version!==version)return;
   if(cameraMoved){
@@ -186,10 +198,15 @@ export async function playT02({button,quantity}={}){
   .to(button,{scale:1,duration:.15,ease:'power2.out'},.09)
   .to(proxy,{filter:'drop-shadow(0 0 20px rgba(177,213,171,.9))',
     duration:.08,ease:'sine.out',yoyo:true,repeat:1},0)
-  // A single direct translation: no sampled waypoints, loops or GSAP motionPath.
-  .to(proxy,{x:dx,y:dy,duration:.91,ease:'power2.inOut'},.12)
-  .to(proxy,{scale:midScale,duration:.65,ease:'sine.inOut'},.12)
-  .to(proxy,{scale:entryScale,duration:.26,ease:'power3.in'},.77)
+  // Same duration/ease: PDP alone uses one quadratic Bézier. Every other
+  // product card retains the *exact* original direct x/y tween.
+  .to(proxy,isDetail?
+    {motionPath:{path:arcPath,autoRotate:false},duration:.91,ease:'power2.inOut'}:
+    {x:dx,y:dy,duration:.91,ease:'power2.inOut'},.12)
+  // One uninterrupted monotonic scale tween: continuous shrinking, with a
+  // smoothly increasing reduction rate over the final 25–30% of travel.
+  .to(proxy,{scale:entryScale,duration:.91,
+    ease:t=>.85*t+.15*t*t*t},.12)
   // Real unchanged V2 cart groups — only V3 timing is advanced to impact.
   .to(basket,{rotation:-6.2,duration:.20,svgOrigin:'218 226',ease:'power2.out'},.85)
   .to(left,{rotation:-13,duration:.17,svgOrigin:'137 274',ease:'power2.out'},.88)
