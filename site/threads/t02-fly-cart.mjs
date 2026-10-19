@@ -76,6 +76,30 @@ function flightPath(from,to,viewportWidth){
   {x:to.x,y:to.y}
  ];
 }
+/**
+ * When the original product presentation is offscreen on mobile, the browser
+ * briefly follows the actual page back to that same image. The image stays
+ * stationary in document coordinates, while the REAL sticky cart remains in
+ * the original header. After the catch, we return to the user's scroll point.
+ * Never create a second image/cart or invent an on-screen origin.
+ */
+async function cameraScroll(to,version,duration=.42){
+ const from=window.scrollY;
+ const limit=Math.max(0,document.documentElement.scrollHeight-innerHeight);
+ const target=Math.max(0,Math.min(limit,to));
+ if(Math.abs(from-target)<3)return;
+ const started=performance.now();
+ return new Promise(resolve=>{
+  const frame=now=>{
+   if(version!==revision){resolve();return;}
+   const t=Math.min(1,(now-started)/(duration*1000));
+   const e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+   scrollTo({left:0,top:from+(target-from)*e,behavior:'instant'});
+   if(t<1)requestAnimationFrame(frame);else resolve();
+  };
+  requestAnimationFrame(frame);
+ });
+}
 /** Once cart state has changed, paint motion without changing the product image. */
 export async function playT02({button,quantity,badge=document.getElementById('bag-count')}={}){
  const version=++revision;
@@ -84,9 +108,23 @@ export async function playT02({button,quantity,badge=document.getElementById('ba
  const source=button&&sourceFor(button);
  if(!button?.isConnected||!svg||!source||!Number.isInteger(quantity)||quantity<1)return;
  if(matchMedia('(prefers-reduced-motion: reduce)').matches){badgeFeedback(badge);return;}
+ const originScroll=window.scrollY;
+ let cameraMoved=false;
+ // Product page mobile: camera moves to the REAL image, never a proxy.
+ if(document.body.dataset.page==='product' && innerWidth<=760
+    && !visible(source.getBoundingClientRect())){
+  const rect=source.getBoundingClientRect();
+  const desired=window.scrollY+rect.top-75;
+  await cameraScroll(desired,version,.43);
+  if(version!==revision||!source.isConnected||!svg.isConnected)return;
+  cameraMoved=Math.abs(window.scrollY-originScroll)>4;
+ }
  const imageRect=source.getBoundingClientRect(),cartRect=svg.getBoundingClientRect();
- // An off-screen REAL cart or source cannot truthfully be replaced by a proxy.
- if(!visible(imageRect)||!visible(cartRect)){badgeFeedback(badge);return;}
+ // No fake catch when any real geometry is unavailable.
+ if(!visible(imageRect)||!visible(cartRect)){
+  if(cameraMoved)await cameraScroll(originScroll,version,.35);
+  badgeFeedback(badge);return;
+ }
  const basket=svg.querySelector('#cart-basket');
  const wheels=[svg.querySelector('#cart-wheel-left'),svg.querySelector('#cart-wheel-right')];
  if(!basket||wheels.some(w=>!w))return;
@@ -94,7 +132,10 @@ export async function playT02({button,quantity,badge=document.getElementById('ba
  // Center the token inside the actual transparent basket opening, behind its lip.
  const catchPoint={x:cartRect.left+cartRect.width*.66,y:cartRect.top+cartRect.height*.43};
  const gs=await loadMotionLibrary();
- if(version!==revision||!gs||!svg.isConnected||!button.isConnected)return;
+ if(version!==revision||!gs||!svg.isConnected||!button.isConnected){
+  if(cameraMoved&&version===revision)await cameraScroll(originScroll,version,.35);
+  return;
+ }
  const layer=document.createElement('div');
  layer.id='t02-motion-layer';layer.className='t02-motion-layer';layer.setAttribute('aria-hidden','true');
  layer.innerHTML='<span id="t02-token" class="t02-token"></span>';
@@ -106,8 +147,16 @@ export async function playT02({button,quantity,badge=document.getElementById('ba
  const route=flightPath({x:start.x,y:start.y-37},end,innerWidth);
  gs.set(token,{x:start.x,y:start.y,autoAlpha:0,scale:.18,transformOrigin:'50% 50%'});
  gs.set([basket,...wheels],{rotation:0,x:0,y:0});
- const tl=gs.timeline({paused:true,onComplete:()=>{if(active?.version===version)stop();}});
- active={version,button,layer,timeline:tl};
+ const tl=gs.timeline({paused:true,onComplete:()=>{
+  if(active?.version!==version)return;
+  if(cameraMoved){
+   active.restoring=true;
+   void cameraScroll(originScroll,version,.44).then(()=>{
+    if(active?.version===version)stop();
+   });
+  }else stop();
+ }});
+ active={version,button,layer,timeline:tl,restoring:false};
  tl.to(button,{scale:.965,duration:.10,ease:'power2.in'},0)
    .to(button,{scale:1,duration:.19,ease:'power2.out'},.10)
    .to(token,{autoAlpha:1,scale:1,duration:.20,ease:'back.out(1.5)'},.07)
@@ -140,6 +189,6 @@ export async function playT02({button,quantity,badge=document.getElementById('ba
 if(typeof window!=='undefined'){
  window.addEventListener('pagehide',cancelT02);
  window.addEventListener('resize',cancelT02,{passive:true});
- window.addEventListener('scroll',()=>{if(active)cancelT02()},{passive:true});
+ window.addEventListener('scroll',()=>{if(active&&!active.restoring)cancelT02()},{passive:true});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelT02()});
 }

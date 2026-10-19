@@ -169,6 +169,10 @@ test('T02 is symbolic, post-commit and isolated from real product imagery',()=>{
  assert.ok(!motion.includes('t02-count-copy'));
  assert.ok(!motion.includes('t02-cart-metal'));
  assert.ok(motion.includes('sourceFor(button)'));
+ assert.ok(motion.includes('cameraScroll('));
+ assert.ok(motion.includes("behavior:'instant'"));
+ assert.ok(motion.includes('originScroll'));
+ assert.ok(motion.includes('active.restoring=true'));
  assert.ok(motion.includes('getBoundingClientRect()'));
  assert.ok(motion.includes('motionPath:'));
  assert.ok(motion.includes('prefers-reduced-motion'));
@@ -181,6 +185,7 @@ test('T02 is symbolic, post-commit and isolated from real product imagery',()=>{
  assert.ok(home.indexOf('const receipt=addCartItem(')<home.indexOf('void playT02({button:add,quantity:receipt.count})'));
  assert.ok(detail.indexOf('const receipt=addCartItem(')<detail.indexOf('void playT02({button:add,quantity:receipt.count})'));
  assert.ok(style.includes('.t02-motion-layer{position:fixed;inset:0;z-index:105;pointer-events:none;'));
+ assert.ok(style.includes('body[data-page="product"] .store-site-header'));
  assert.ok(read('index.html').includes('app.mjs?v=t02-v2-20261019'));
  assert.ok(read('product/index.html').includes('storefront-pages.mjs?v=t02-v2-20261019'));
 });
