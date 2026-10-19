@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate standalone layout contract
-        run: node --test scripts/tests/threads-layout-contract.test.mjs site/threads/storefront-contract.test.mjs site/threads/asset-contract.test.mjs
+        run: node --test scripts/tests/threads-layout-contract.test.mjs site/threads/storefront-contract.test.mjs site/threads/asset-contract.test.mjs site/threads/gallery-asset-contract.test.mjs site/threads/t01-contract.test.mjs
       - name: Syntax check client modules
         run: |
           node --check site/threads/app.mjs
@@ -21,5 +21,6 @@ jobs:
           node --check site/threads/store-core.mjs
           node --check site/threads/storefront-pages.mjs
           node --check site/threads/search-header.mjs
+          node --check site/threads/t01-spotlight.mjs
           node --check site/threads/art-crops.mjs
           test -f site/threads/backpack.svg

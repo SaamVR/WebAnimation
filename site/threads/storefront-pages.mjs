@@ -1,5 +1,6 @@
 import {catalog, catalogById, productMeta, productGallery, catalogFilters, merchandisingCategory, imageUrl, priceTk, safeHTML, searchCatalog,curateShopProducts} from './catalog.mjs';
 import {initInlineSearch} from './search-header.mjs';
+import {initT01Spotlight} from './t01-spotlight.mjs';
 import {getCart,cartSummary,cartCount,addCartItem,updateCartItem,removeCartItem,variantAvailable,getFavorites,toggleFavorite,startDemoPayment,resolveDemoPayment,getAttempt,resetAttempt,getOrder} from './store-core.mjs';
 
 const $=id=>document.getElementById(id);
@@ -21,6 +22,7 @@ function searchPage(){
  const query=args.get('q')||'',category=args.get('category')||'',favorites=args.get('favorites')==='1';
  let activeCategory=category;
  mount(`<section class="store-page-heading"><div class="store-kicker">THREADS COLLECTION</div><h1>${favorites?'Saved favorites':'Discover your next essential'}</h1><p>Curated sneakers, headwear, travel bags and everyday accessories. Every item has its own details.</p></section><section class="store-search-toolbar"><form id="catalog-search-form" role="search"><label for="catalog-search">Search the collection</label><div class="store-search-row"><input type="search" id="catalog-search" name="q" value="${escape(query)}" placeholder="Try vintage sneakers…"><button type="submit" class="store-primary-btn">Search <span aria-hidden="true">→</span></button></div></form><div class="store-filter-row" aria-label="Product categories" id="catalog-filters">${catalogFilters.map(x=>`<button type="button" class="store-chip" data-category="${x.id}" aria-pressed="${(category||'All')===x.id}">${x.label}</button>`).join('')}</div></section><section class="store-catalog-results" aria-live="polite"><div class="store-results-top"><h2 id="results-title">Search Results</h2><span id="results-count"></span></div><div id="results-grid" class="store-results-grid" data-t01-results></div></section>`);
+ const spotlight=initT01Spotlight();
  const input=$('catalog-search');const current=query;
  const syncUrl=(q,cat)=>{const p=new URLSearchParams();if(q)p.set('q',q);if(cat)p.set('category',cat);if(favorites)p.set('favorites','1');window.history.replaceState({},'', '/search/'+(p.size?'?'+p.toString():''));};
  function update(q=input.value,cat=activeCategory){
@@ -37,6 +39,7 @@ function searchPage(){
   $('results-count').textContent=list.length+' relevant demo product'+(list.length===1?'':'s');
   $('results-title').textContent=q?'Results for “'+q+'”':'All Products';
   for(const b of document.querySelectorAll('[data-category]'))b.setAttribute('aria-pressed',String((cat||'All')===b.dataset.category));
+  spotlight.schedule(q,list);
  }
  update(current,category);
  $('catalog-search-form').addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();syncUrl(q,activeCategory);update(q,activeCategory)});
