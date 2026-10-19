@@ -5,7 +5,7 @@
  */
 const ROOT='/vendor/';
 let libraries;
-function loadMotionLibrary(){
+export function loadMotionLibrary(){
  if(libraries)return libraries;
  const load=src=>new Promise((resolve,reject)=>{
   const script=document.createElement('script');script.src=ROOT+src;script.async=false;

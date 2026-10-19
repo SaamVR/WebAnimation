@@ -1,10 +1,11 @@
 /** THREADS standalone homepage. Static presentation and connected demo state only.
- * T01 runs on connected search results; T02 fly-to-cart, T03 backpack reveal
- * and T04 payment cinematics remain deliberately unimplemented. */
+ * T01 spotlight and T02 symbolic fly-to-cart are isolated approved interactions.
+ * T03 backpack reveal and T04 payment cinematics remain unimplemented. */
 import {refreshReferenceCrops} from './art-crops.mjs';
 import {catalog,productMeta,imageUrl,priceTk,safeHTML} from './catalog.mjs';
 import {addCartItem,cartSummary,cartCount,getFavorites,toggleFavorite} from './store-core.mjs';
 import {initInlineSearch} from './search-header.mjs';
+import {playT02} from './t02-fly-cart.mjs';
 const state={filter:'All'};
 const byId=id=>document.getElementById(id);
 let toastTimeout;
@@ -31,7 +32,7 @@ function syncCart(){const bag=cartSummary();byId('bag-count').textContent=String
 function filterTo(category){state.filter=category;renderProducts();showToast(category==='All'?'Showing all products':'Showing '+category.toLowerCase())}
 document.addEventListener('click',e=>{
  const add=e.target.closest('[data-add]');
- if(add){try{const p=catalog.find(x=>x.id===add.dataset.add);if(!p)return;const meta=productMeta(p);addCartItem({id:p.id,color:meta.colors[0].id,size:p.category==='Sneakers'?'40':meta.sizes[0],quantity:1});syncCart();showToast('Added to cart. Choose other variants on the product page.')}catch(err){showToast(err.message)}return}
+ if(add){try{const p=catalog.find(x=>x.id===add.dataset.add);if(!p)return;const meta=productMeta(p);const receipt=addCartItem({id:p.id,color:meta.colors[0].id,size:p.category==='Sneakers'?'40':meta.sizes[0],quantity:1});syncCart();void playT02({button:add,quantity:receipt.count});showToast('Added to cart. Choose other variants on the product page.')}catch(err){showToast(err.message)}return}
  const save=e.target.closest('[data-save]');if(save){const yes=toggleFavorite(save.dataset.save);renderProducts();showToast(yes?'Saved to favorites':'Removed from favorites');return}
  const category=e.target.closest('[data-filter-link]');if(category)filterTo(category.dataset.filterLink);
 });
