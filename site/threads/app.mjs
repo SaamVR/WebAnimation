@@ -5,7 +5,7 @@ import {refreshReferenceCrops} from './art-crops.mjs';
 import {catalog,productMeta,imageUrl,priceTk,safeHTML} from './catalog.mjs';
 import {addCartItem,cartSummary,cartCount,getFavorites,toggleFavorite} from './store-core.mjs';
 import {initInlineSearch} from './search-header.mjs';
-import {playT02} from './t02-fly-cart.mjs';
+import {playT02,installArticulatedHeaderCart} from './t02-fly-cart.mjs';
 const state={filter:'All'};
 const byId=id=>document.getElementById(id);
 let toastTimeout;
@@ -38,6 +38,7 @@ document.addEventListener('click',e=>{
 });
 byId('favorites-button').addEventListener('click',e=>{e.preventDefault();filterTo(state.filter==='Favorites'?'All':'Favorites');byId('shop').scrollIntoView({behavior:'auto'})});
 byId('newsletter-form').addEventListener('submit',e=>{e.preventDefault();byId('newsletter-status').textContent='Thanks for exploring! This is a visual-only demo; your email has not been saved.';e.target.reset()});
+installArticulatedHeaderCart();
 initInlineSearch();
 window.addEventListener('threads:cartchange',syncCart);
 window.addEventListener('storage',()=>{syncCart();renderProducts()});

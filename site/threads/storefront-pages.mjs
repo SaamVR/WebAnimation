@@ -1,7 +1,7 @@
 import {catalog, catalogById, productMeta, productGallery, catalogFilters, merchandisingCategory, imageUrl, priceTk, safeHTML, searchCatalog,curateShopProducts} from './catalog.mjs';
 import {initInlineSearch} from './search-header.mjs';
 import {initT01Spotlight} from './t01-spotlight.mjs';
-import {playT02} from './t02-fly-cart.mjs';
+import {playT02,installArticulatedHeaderCart} from './t02-fly-cart.mjs';
 import {getCart,cartSummary,cartCount,addCartItem,updateCartItem,removeCartItem,variantAvailable,getFavorites,toggleFavorite,startDemoPayment,resolveDemoPayment,getAttempt,resetAttempt,getOrder} from './store-core.mjs';
 
 const $=id=>document.getElementById(id);
@@ -115,7 +115,7 @@ function orderPage(){
  mount(`<section class="store-order-confirmation"><div class="store-confirm-icon" aria-hidden="true">✓</div><span class="store-kicker">SUCCESSFUL DEMO TRANSACTION</span><h1>Order Confirmed</h1><p>Thank you for testing the THREADS storefront. No real payment was taken and no delivery will be made.</p><div class="store-order-paper"><div class="store-summary-line"><span>Order reference</span><strong>${escape(order.ref)}</strong></div><div class="store-summary-line"><span>Status</span><strong>Demo payment approved</strong></div><div class="store-summary-line"><span>Placed</span><span>${escape(new Date(order.createdAt).toLocaleString())}</span></div>${order.items.map(x=>{const p=catalogById[x.id];return p?`<div class="store-checkout-line"><img src="${imageUrl(p)}" alt=""><div><strong>${escape(p.name)}</strong><p>${escape(productMeta(p).colors.find(c=>c.id===x.color)?.name)} / ${escape(x.size)} × ${x.quantity}</p></div><strong>${money(x.price*x.quantity)}</strong></div>`:''}).join('')}<div class="store-summary-line store-summary-total"><span>Demo total</span><strong>${money(order.total)}</strong></div></div><a href="/search/" class="store-primary-btn">Return to shop →</a></section>`);
 }
 $('site-shell').innerHTML=header()+'<main id="page-main" class="store-main content-wrap"><div id="page-content"></div></main>'+footer();
-initInlineSearch();setCartBadge();
+installArticulatedHeaderCart();initInlineSearch();setCartBadge();
 window.addEventListener('threads:cartchange',setCartBadge);
 window.addEventListener('storage',setCartBadge);
 ({search:searchPage,product:detailPage,cart:cartPage,checkout:checkoutPage,order:orderPage}[page]||searchPage)();

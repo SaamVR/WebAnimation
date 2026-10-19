@@ -149,14 +149,11 @@
 @media(prefers-reduced-motion:reduce){.store-product-card.t01-reduced-discovery{transition:none}}
 
 
-/* T02 symbolic illustrated motion. Entirely separate from product imagery and
-   from the permanent, functional cart button; never intercepts taps/clicks. */
+/* T02 V2: the token alone lives in a pointer-transparent overlay.
+   The original header cart PNG is split into three articulated SVG groups
+   inside its existing clickable #bag-button. No duplicate cart or badge. */
 .t02-motion-layer{position:fixed;inset:0;z-index:105;pointer-events:none;overflow:hidden;isolation:isolate}
-.t02-token,.t02-cart-proxy,.t02-spark{position:absolute;top:0;left:0;pointer-events:none;will-change:transform,opacity}
-.t02-token{width:76px;height:76px;filter:drop-shadow(0 9px 12px rgba(29,51,34,.21))}
-.t02-cart-proxy{width:110px;height:99px;filter:drop-shadow(0 10px 10px rgba(20,46,32,.2))}
-.t02-spark{width:110px;height:110px;fill:none}
-.t02-token svg,.t02-cart-proxy svg{display:block}
+.t02-token{position:absolute;top:0;left:0;width:32px;height:32px;border-radius:50%;background:#2E453A;pointer-events:none;will-change:transform,opacity}
+.t02-real-cart{overflow:visible;flex:none;transform:translateZ(0)}
+.t02-real-cart #cart-basket,.t02-real-cart #cart-wheel-left,.t02-real-cart #cart-wheel-right{will-change:transform}
 @media(prefers-reduced-motion:reduce){.t02-motion-layer{display:none}}
-
-.t02-count-copy{position:absolute;right:3px;top:4px;min-width:24px;height:24px;border-radius:30px;display:grid;place-items:center;padding-inline:4px;background:#d9be84;border:2px solid #f9f9f7;color:#163729;font-size:11px;font-weight:800;box-shadow:0 3px 7px #1637291e;font-variant-numeric:tabular-nums}

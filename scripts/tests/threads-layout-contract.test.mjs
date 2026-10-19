@@ -202,7 +202,7 @@ test('latest featured image swap preserves storefront structure and maps four lo
    assert.ok(readFileSync(new URL('../../site/threads/assets/'+filenames[i],import.meta.url)).length>8000);
  }
  assert.ok(script.includes("id:'f3', group:'featured', asset:")&&script.includes("category:'Bags'"));
- assert.ok(html.includes('app.mjs?v=t02-20261019'));
+ assert.ok(html.includes('app.mjs?v=t02-v2-20261019'));
  assert.ok(html.includes('threads-asset-fidelity-20261018.css?v=20261018-featured-v2'));
  for(const id of ['n1','n2','n3','n4','n5','n6']) assert.ok(script.includes("id:'"+id+"'"),id);
 });
@@ -212,7 +212,7 @@ test('homepage routes to shared catalog pages and inline search',()=>{
  assert.match(html,/href="\/cart\/"/);
  assert.ok(html.indexOf('id="search-area"')<html.indexOf('id="search-button"'));
  assert.ok(!html.includes('class="search-area" hidden'));
- assert.ok(html.includes('storefront.css?v=t02-20261019'));
+ assert.ok(html.includes('storefront.css?v=t02-v2-20261019'));
  const shell=readFileSync(new URL('../../site/threads/storefront-pages.mjs',import.meta.url),'utf8');
  for(const p of ['searchPage()','detailPage()','cartPage()','checkoutPage()','orderPage()'])assert.ok(shell.includes('function '+p),p);
 });

@@ -1,131 +1,145 @@
 /**
- * THREADS T02 — illustrated Add to Cart → Catch → Fly Away.
- * No product photography, checkout state, or source interface is animated.
- * Call play() only AFTER an actual, successful addCartItem() mutation.
+ * THREADS T02 V2 — a single symbolic token, caught by the real header cart.
+ * The approved T01 implementation is untouched. Only call after addCartItem succeeds.
  */
-import {loadMotionLibrary} from './t01-spotlight.mjs';
+import {loadMotionLibrary} from './t02-motion-runtime.mjs';
 
-const center=rect=>({x:rect.left+rect.width/2,y:rect.top+rect.height/2});
-const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
-const curved=(start,end,lift=80,side=0)=>[
- {x:start.x,y:start.y},
- {x:start.x+(end.x-start.x)*.32+side,y:Math.max(62,Math.min(start.y,end.y)-lift)},
- {x:start.x+(end.x-start.x)*.78-side*.3,y:Math.max(62,Math.min(start.y,end.y)-lift)*.4},
- {x:end.x,y:end.y}
-];
-const tokenSvg=`<svg viewBox="0 0 76 76" width="76" height="76" aria-hidden="true">
- <defs><radialGradient id="t02-token-grad" cx="35%" cy="24%"><stop stop-color="#4d765b"/><stop offset=".62" stop-color="#234a39"/><stop offset="1" stop-color="#153328"/></radialGradient></defs>
- <ellipse cx="38" cy="64" rx="28" ry="5.8" fill="#132b20" opacity=".10"/>
- <circle cx="38" cy="36" r="31" fill="#c5a36b" opacity=".42"/>
- <circle cx="38" cy="34" r="29" fill="url(#t02-token-grad)" stroke="#c9a773" stroke-width="1.8"/>
- <path d="M25 31h26l-2 21H27z" fill="none" stroke="#fffdf2" stroke-width="3.3" stroke-linejoin="round"/>
- <path d="M32 33v-6a6 6 0 0 1 12 0v6" fill="none" stroke="#fffdf2" stroke-width="3.2" stroke-linecap="round"/>
- <path d="m32.7 41.5 4.3 4.3 7.6-8.4" fill="none" stroke="#f2d89a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
- <path d="M20 24Q28 12 39 13" fill="none" stroke="#fff" stroke-width="2" opacity=".22" stroke-linecap="round"/>
- </svg>`;
-const cartSvg=`<svg width="110" height="99" viewBox="0 0 110 99" fill="none" aria-hidden="true">
- <defs><linearGradient id="t02-cart-metal" x1="16" x2="94" y1="27" y2="68" gradientUnits="userSpaceOnUse"><stop stop-color="#4c785b"/><stop offset=".6" stop-color="#254d3a"/><stop offset="1" stop-color="#183c2d"/></linearGradient></defs>
- <g id="t02-cart-body">
-  <path d="M7 17h15l9 52h61" stroke="#234a38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M24 26h72l-9 34-57 4z" fill="url(#t02-cart-metal)" stroke="#193a2b" stroke-width="3.2" stroke-linejoin="round"/>
-  <path d="M31 35h58M35 46h50" stroke="#d7c69d" stroke-width="2" opacity=".68"/>
-  <path d="M49 30v30m21-30v29" stroke="#f5ecda" stroke-width="1.5" opacity=".36"/>
-  <path d="M33 64h54" stroke="#dab476" stroke-width="3" stroke-linecap="round"/>
- </g>
- <g id="t02-wheel-back"><circle cx="41" cy="80" r="9.2" fill="#1b352a" stroke="#bc985c" stroke-width="2"/><path d="M41 74v12m-6-6h12" stroke="#fff4dd" stroke-width="1.4"/></g>
- <g id="t02-wheel-front"><circle cx="82" cy="80" r="9.2" fill="#1b352a" stroke="#bc985c" stroke-width="2"/><path d="M82 74v12m-6-6h12" stroke="#fff4dd" stroke-width="1.4"/></g>
- <path d="M26 23l-2-5 12 2" stroke="#dfb870" stroke-width="2" stroke-linecap="round" opacity=".9"/>
- </svg>`;
-function overlay(){
- const wrap=document.createElement('div');
- wrap.id='t02-motion-layer';wrap.className='t02-motion-layer';wrap.setAttribute('aria-hidden','true');
- wrap.innerHTML=`<div id="t02-token" class="t02-token">${tokenSvg}</div>
- <div id="t02-cart-proxy" class="t02-cart-proxy">${cartSvg}<span id="t02-count-copy" class="t02-count-copy"></span></div>
- <svg class="t02-spark" viewBox="0 0 110 110" width="110" height="110" aria-hidden="true">
-  <circle cx="55" cy="55" r="38" fill="none" stroke="#b79a63" stroke-width="3"/>
-  <path d="M55 4v17M55 90v17M4 55h17M90 55h17M19 19l13 13M78 78l13 13M91 19 78 32M19 91l13-13" stroke="#b79a63" stroke-width="2.2" stroke-linecap="round"/>
- </svg>`;
- document.body.appendChild(wrap);
- return {wrap,token:wrap.querySelector('#t02-token'),cart:wrap.querySelector('#t02-cart-proxy'),wheels:wrap.querySelectorAll('#t02-wheel-back,#t02-wheel-front'),spark:wrap.querySelector('.t02-spark')};
+const NS='http://www.w3.org/2000/svg';
+const ORIGIN_IMAGE='[data-t02-image]';
+let active=null,revision=0;
+
+/**
+ * Articulate the EXISTING raster cart icon in its EXISTING navigation link.
+ * Reuse exact PNG pixels in three separately transformable SVG groups.
+ * Clipping at the actual wheel separation preserves color, silhouette, size.
+ */
+export function installArticulatedHeaderCart(){
+ const anchor=document.getElementById('bag-button');
+ if(!anchor)return null;
+ const existing=anchor.querySelector('#t02-real-cart');
+ if(existing)return existing;
+ const original=anchor.querySelector('img.header-icon[src*="header-cart.png"]');
+ if(!original)return null;
+ const markup='<svg id="t02-real-cart" class="header-icon t02-real-cart" viewBox="0 0 384 317" xmlns="'+NS+'" aria-hidden="true" focusable="false">'+
+  '<defs><clipPath id="t02-basket-clip"><rect x="0" y="0" width="384" height="238"/></clipPath>'+
+  '<clipPath id="t02-left-clip"><circle cx="137" cy="274" r="37"/></clipPath>'+
+  '<clipPath id="t02-right-clip"><circle cx="285" cy="274" r="37"/></clipPath></defs>'+
+  '<g id="cart-basket"><image href="/assets/header-cart.png" width="384" height="317" clip-path="url(#t02-basket-clip)"/></g>'+
+  '<g id="cart-wheel-left"><image href="/assets/header-cart.png" width="384" height="317" clip-path="url(#t02-left-clip)"/></g>'+
+  '<g id="cart-wheel-right"><image href="/assets/header-cart.png" width="384" height="317" clip-path="url(#t02-right-clip)"/></g></svg>';
+ original.outerHTML=markup;
+ return anchor.querySelector('#t02-real-cart');
 }
-let inFlight=null,sequence=0;
-function cleanup(){
- const active=inFlight;inFlight=null;
- if(!active)return;
- active.tl?.kill();
- active.wrap?.remove();
- if(active.button?.isConnected)active.button.style.removeProperty('transform');
+
+function visible(rect){
+ return rect.width>12&&rect.height>12&&rect.top>=0&&rect.left>=0&&
+ rect.bottom<=innerHeight+2&&rect.right<=innerWidth+2;
 }
-function badgePop(gs,badge){
+function sourceFor(button){
+ return button.closest('.product-card')?.querySelector(ORIGIN_IMAGE) ||
+   document.querySelector('.store-detail__image'+ORIGIN_IMAGE);
+}
+function badgeFeedback(badge){
  if(!badge)return;
- gs.fromTo(badge,{scale:1},{scale:1.34,duration:.14,ease:'power2.out',repeat:1,yoyo:true,overwrite:true,transformOrigin:'center center'});
+ badge.animate?.([{transform:'scale(1)'},{transform:'scale(1.16)'},{transform:'scale(1)'}],
+  {duration:230,easing:'ease-out'});
 }
-function restingBadge(badge){
- if(!badge)return;
- badge.animate?.([{transform:'scale(1)'},{transform:'scale(1.12)'},{transform:'scale(1)'}],{duration:230,easing:'ease-out'});
+function resetCartParts(){
+ const icon=document.getElementById('t02-real-cart');
+ for(const id of ['cart-basket','cart-wheel-left','cart-wheel-right']){
+  icon?.querySelector('#'+id)?.style.removeProperty('transform');
+ }
+ document.getElementById('bag-count')?.style.removeProperty('transform');
 }
-/** Called only on a verified successful cart addition. */
-export async function playT02({button,cartButton=document.getElementById('bag-button'),badge=document.getElementById('bag-count'),quantity}={}){
- const version=++sequence;
- cleanup();
- if(!button?.isConnected||!cartButton?.isConnected||!Number.isInteger(quantity)||quantity<1)return;
- if(matchMedia('(prefers-reduced-motion: reduce)').matches){restingBadge(badge);return;}
- const fromRect=button.getBoundingClientRect(),cartRect=cartButton.getBoundingClientRect();
- if(!fromRect.width||!fromRect.height||!cartRect.width||!cartRect.height)return;
- const origin=center(fromRect),anchor=center(cartRect);
- // The fixed overlay remains visible when the permanent header is offscreen.
- const catchAt={x:clamp(anchor.x,55,innerWidth-55),y:clamp(anchor.y,108,innerHeight-90)};
- const from={x:clamp(origin.x,24,innerWidth-24),y:clamp(origin.y,24,innerHeight-24)};
- let gs;
- try{gs=await loadMotionLibrary()}catch{return}
- if(version!==sequence||!gs||!button.isConnected||!cartButton.isConnected)return;
- const {wrap,token,cart,wheels,spark}=overlay();
- const countCopy=cart.querySelector('#t02-count-copy');countCopy.textContent=String(quantity);
- const tokenHalf=38,cartHalfX=55,cartHalfY=49;
- const posToken={x:from.x-tokenHalf,y:from.y-tokenHalf};
- const posCart={x:catchAt.x-cartHalfX,y:catchAt.y-cartHalfY};
- gs.set(token,{x:posToken.x,y:posToken.y,opacity:0,scale:.05,rotation:-8,transformOrigin:'38px 38px'});
- gs.set(cart,{x:posCart.x,y:posCart.y,opacity:0,scale:.72,rotation:0,transformOrigin:'62px 79px'});
- gs.set(spark,{x:catchAt.x-55,y:catchAt.y-55,opacity:0,scale:.2,transformOrigin:'55px 55px'});
- const tl=gs.timeline({paused:true,onComplete:()=>{
-  if(inFlight?.version===version)cleanup();
- }});
- inFlight={version,tl,wrap,button};
- // Anticipation: button depresses while independent token emerges.
- tl.to(button,{scale:.955,duration:.12,ease:'power1.in'},0)
-   .to(button,{scale:1,duration:.18,ease:'back.out(2.2)'},.12)
-   .to(token,{opacity:1,scale:.79,rotation:0,duration:.20,ease:'back.out(1.65)'},.06)
-   .to(token,{y:posToken.y-31,scaleY:1.18,scaleX:.92,duration:.20,ease:'power2.out'},.24)
-   .to(token,{scaleX:1,scaleY:1,duration:.12},.44);
- // Proxy appears aligned with actual cart anchor and prepares to catch.
- tl.to(cart,{autoAlpha:1,scale:.94,duration:.26,ease:'back.out(1.5)'},.56)
-   .to(cart,{rotation:-14,y:posCart.y-8,duration:.18,ease:'power2.out'},.84);
- const landing={x:catchAt.x-38,y:catchAt.y-45};
- const flying=curved({x:posToken.x,y:posToken.y-31},landing,innerWidth<650?56:114,innerWidth<650?22:58);
- tl.to(token,{motionPath:{path:flying,curviness:1,autoRotate:false},rotation:285,scale:.66,
-   duration:.83,ease:'power2.inOut'},.46)
-   .to(token,{scaleX:1.18,scaleY:.55,rotation:326,duration:.10,ease:'power3.in'},1.26)
-   .to(token,{autoAlpha:0,scale:.13,duration:.13,ease:'power3.in'},1.34);
- // Elastic catch, wheel reaction and elegant gold ring.
- tl.to(cart,{rotation:7,scaleX:1.09,scaleY:.79,y:posCart.y+8,duration:.12,ease:'power2.in'},1.28)
-   .to(cart,{rotation:-4,scaleX:.95,scaleY:1.08,y:posCart.y-3,duration:.17,ease:'back.out(2.2)'},1.40)
-   .to(cart,{rotation:0,scale:1,y:posCart.y,duration:.16,ease:'power2.out'},1.57)
-   .to(wheels,{rotation:70,duration:.26,ease:'power2.out',transformOrigin:'50% 50%'},1.34)
-   .to(spark,{opacity:.92,scale:.75,duration:.17,ease:'power2.out'},1.31)
-   .to(spark,{opacity:0,scale:1.25,duration:.27,ease:'power2.in'},1.48);
- tl.call(()=>{if(inFlight?.version===version){badgePop(gs,badge);badgePop(gs,countCopy)}},null,1.47);
- // The cart rolls forward and swishes out; permanent header icon never moves.
- const away={x:innerWidth+148,y:Math.max(-98,catchAt.y-130)};
- tl.to(cart,{rotation:12,scaleX:1.04,duration:.16,ease:'power2.in'},1.68)
-   .to(cart,{motionPath:{path:curved(posCart,{x:away.x-cartHalfX,y:away.y-cartHalfY},-60,-60),curviness:1,autoRotate:false},
-      rotation:22,scale:.78,opacity:0,duration:.53,ease:'power3.in'},1.73)
-   .to(wheels,{rotation:410,duration:.48,ease:'power2.in'},1.73);
+function stop(){
+ const old=active;active=null;
+ if(old){
+  old.timeline?.kill();
+  old.layer?.remove();
+  old.button?.style.removeProperty('transform');
+ }
+ resetCartParts();
+}
+export function cancelT02(){revision++;stop()}
+
+function flightPath(from,to,viewportWidth){
+ const dx=to.x-from.x,dy=to.y-from.y;
+ // The reference's readable lift → broad sweep → short descending basket entry.
+ // Even on mobile, waypoints are generated from measured screen geometry.
+ const side=Math.sign(dx)||1;
+ const approachY=Math.max(10,to.y-28);
+ return [
+  {x:from.x,y:from.y},
+  {x:from.x+dx*.12,y:from.y-Math.min(100,Math.max(60,Math.abs(dy)*.22))},
+  {x:from.x+dx*.38,y:Math.max(16,to.y+Math.max(56,Math.abs(dy)*.14))},
+  {x:to.x-side*Math.min(Math.abs(dx)*.23,viewportWidth*.17),y:approachY},
+  {x:to.x,y:to.y}
+ ];
+}
+/** Once cart state has changed, paint motion without changing the product image. */
+export async function playT02({button,quantity,badge=document.getElementById('bag-count')}={}){
+ const version=++revision;
+ stop();
+ const svg=installArticulatedHeaderCart();
+ const source=button&&sourceFor(button);
+ if(!button?.isConnected||!svg||!source||!Number.isInteger(quantity)||quantity<1)return;
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches){badgeFeedback(badge);return;}
+ const imageRect=source.getBoundingClientRect(),cartRect=svg.getBoundingClientRect();
+ // An off-screen REAL cart or source cannot truthfully be replaced by a proxy.
+ if(!visible(imageRect)||!visible(cartRect)){badgeFeedback(badge);return;}
+ const basket=svg.querySelector('#cart-basket');
+ const wheels=[svg.querySelector('#cart-wheel-left'),svg.querySelector('#cart-wheel-right')];
+ if(!basket||wheels.some(w=>!w))return;
+ const begin={x:imageRect.left+imageRect.width*.80,y:imageRect.top+imageRect.height*.78};
+ // Center the token inside the actual transparent basket opening, behind its lip.
+ const catchPoint={x:cartRect.left+cartRect.width*.66,y:cartRect.top+cartRect.height*.43};
+ const gs=await loadMotionLibrary();
+ if(version!==revision||!gs||!svg.isConnected||!button.isConnected)return;
+ const layer=document.createElement('div');
+ layer.id='t02-motion-layer';layer.className='t02-motion-layer';layer.setAttribute('aria-hidden','true');
+ layer.innerHTML='<span id="t02-token" class="t02-token"></span>';
+ document.body.append(layer);
+ const token=layer.querySelector('#t02-token');
+ const r=16;
+ const start={x:begin.x-r,y:begin.y-r};
+ const end={x:catchPoint.x-r,y:catchPoint.y-r};
+ const route=flightPath({x:start.x,y:start.y-37},end,innerWidth);
+ gs.set(token,{x:start.x,y:start.y,autoAlpha:0,scale:.18,transformOrigin:'50% 50%'});
+ gs.set([basket,...wheels],{rotation:0,x:0,y:0});
+ const tl=gs.timeline({paused:true,onComplete:()=>{if(active?.version===version)stop();}});
+ active={version,button,layer,timeline:tl};
+ tl.to(button,{scale:.965,duration:.10,ease:'power2.in'},0)
+   .to(button,{scale:1,duration:.19,ease:'power2.out'},.10)
+   .to(token,{autoAlpha:1,scale:1,duration:.20,ease:'back.out(1.5)'},.07)
+   .to(token,{y:start.y-37,duration:.22,ease:'power2.out'},.23)
+   // A continuous sweeping asymmetrical arc, resolved against current geometry.
+   .to(token,{motionPath:{path:route,curviness:1.12,autoRotate:false},
+     scale:.24,duration:.98,ease:'power2.inOut'},.35)
+   .to(basket,{rotation:-6.2,duration:.20,svgOrigin:'218 226',ease:'power2.out'},.88)
+   .to(wheels[0],{rotation:-13,duration:.16,svgOrigin:'137 274',ease:'power2.out'},.96)
+   .to(wheels[1],{rotation:-13,duration:.16,svgOrigin:'285 274',ease:'power2.out'},.96)
+   // A final downward movement into, not across, the real basket opening.
+   .to(token,{y:end.y+7,scale:.12,autoAlpha:0,duration:.14,ease:'power2.in'},1.30)
+   .to(basket,{rotation:3.0,y:52,duration:.11,svgOrigin:'218 226',ease:'power2.in'},1.33)
+   .to(wheels[0],{rotation:18,duration:.12,ease:'power2.out'},1.34)
+   .to(wheels[1],{rotation:18,duration:.12,ease:'power2.out'},1.34)
+   .to(basket,{rotation:-1.8,y:-13,duration:.17,ease:'power2.out'},1.44)
+   .to(wheels[0],{rotation:-6,duration:.16,ease:'power2.out'},1.46)
+   .to(wheels[1],{rotation:-6,duration:.16,ease:'power2.out'},1.46)
+   .to(basket,{rotation:0,y:0,duration:.22,ease:'power2.out'},1.61)
+   .to(wheels[0],{rotation:0,duration:.22,ease:'power2.out'},1.62)
+   .to(wheels[1],{rotation:0,duration:.22,ease:'power2.out'},1.62)
+   .call(()=>{if(active?.version===version&&badge){
+     gs.fromTo(badge,{scale:1},{scale:1.17,duration:.13,repeat:1,yoyo:true,
+       ease:'power2.out',transformOrigin:'center center'});
+   }},null,1.39)
+   .to({}, {duration:.08},1.81);
  tl.play();
  return tl;
 }
-export function cancelT02(){sequence++;cleanup()}
 if(typeof window!=='undefined'){
- addEventListener('pagehide',cancelT02);
- addEventListener('resize',cancelT02,{passive:true});
+ window.addEventListener('pagehide',cancelT02);
+ window.addEventListener('resize',cancelT02,{passive:true});
+ window.addEventListener('scroll',()=>{if(active)cancelT02()},{passive:true});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelT02()});
 }
