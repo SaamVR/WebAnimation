@@ -149,20 +149,19 @@
 @media(prefers-reduced-motion:reduce){.store-product-card.t01-reduced-discovery{transition:none}}
 
 
-/* T02 V2: the token alone lives in a pointer-transparent overlay.
-   The original header cart PNG is split into three articulated SVG groups
-   inside its existing clickable #bag-button. No duplicate cart or badge. */
-.t02-motion-layer{position:fixed;inset:0;z-index:105;pointer-events:none;overflow:hidden;isolation:isolate}
-.t02-token{position:absolute;top:0;left:0;width:32px;height:32px;border-radius:50%;background:#2E453A;pointer-events:none;will-change:transform,opacity}
+
+/* T02 V3: existing header stays in view storewide; its approved contents do not change.
+   Keep T01's spotlight layer (z=95) above the header (z=75). */
+.site-header,.store-site-header{position:sticky;top:0;z-index:75;background:var(--store-bg);box-shadow:0 1px 0 rgba(46,69,58,.09)}
+/* Only a duplicate image cutout travels; the original card and beige backing are not cloned. */
+.t02-motion-layer{position:fixed;inset:0;z-index:105;pointer-events:none;overflow:visible}
+.t02-product-proxy{position:absolute;display:grid;place-items:center;pointer-events:none;
+ will-change:transform,opacity,filter,clip-path;overflow:visible;transform-origin:center center}
+.t02-product-proxy img{display:block;object-fit:contain;pointer-events:none}
 .t02-real-cart{overflow:visible;flex:none;transform:translateZ(0)}
 .t02-real-cart #cart-basket,.t02-real-cart #cart-wheel-left,.t02-real-cart #cart-wheel-right{will-change:transform}
+.store-quick-add{font-size:11px;font-weight:750;color:white;background:var(--store-green);
+ border:0;border-radius:11px;padding:9px 12px;min-height:34px;white-space:nowrap}
+.store-quick-add:hover{background:var(--store-deep)}
+.store-product-card__footer{flex-wrap:wrap}
 @media(prefers-reduced-motion:reduce){.t02-motion-layer{display:none}}
-
-/* T02 responsive continuity: keep the EXISTING product-page header/cart in view.
-   No floating icon, duplicated header, added navigation row or resized branding. */
-@media(max-width:760px){
- body[data-page="product"] .store-site-header{
-  position:sticky;top:0;z-index:98;background:var(--store-bg);
-  box-shadow:0 1px 0 rgba(46,69,58,.09);
- }
-}

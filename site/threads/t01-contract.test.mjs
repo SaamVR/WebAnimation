@@ -7,7 +7,7 @@ test('T01 is genuinely integrated into the existing static search, not a substit
  assert.match(page,/import \{initT01Spotlight\} from '\.\/t01-spotlight\.mjs'/);
  assert.match(page,/spotlight\.schedule\(q,list\)/);
  assert.match(page,/data-t01-card/);
- assert.match(search,/storefront-pages\.mjs\?v=(?:t01-search-20261019|t02-20261019|t02-v2-20261019)/);
+ assert.match(search,/storefront-pages\.mjs\?v=(?:t01-search-20261019|t02-20261019|t02-v3-20261019)/);
  assert.match(app,/initInlineSearch\(\)/);
  assert.doesNotMatch(page,/window\.location\s*=\s*['"]\/t01/);
 });
