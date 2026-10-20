@@ -1,6 +1,6 @@
 /**
  * THREADS T03 — Stage A ONLY.
- * Non-destructive image-layer opening study. No promotional cards or fabricated offers.
+ * Checkpoint opening choreography with a visual-only 10%* demo card.
  * Owner artwork is under /assets/t03-backpack-{closed,open}-original.png.
  * These two references are the only source artwork.
  */
@@ -16,6 +16,7 @@ if(trigger&&stage){
  const under=stage.querySelector('.t03-base-open');
  const left=stage.querySelector('.t03-buckle-left');
  const right=stage.querySelector('.t03-buckle-right');
+ const card=stage.querySelector('.t03-discount-card');
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const setAccessible=(open)=>{
   trigger.setAttribute('aria-expanded',String(open));
@@ -29,6 +30,7 @@ if(trigger&&stage){
   gs.set(closed,{rotationX:0,y:0,transformOrigin:'56% 15%'});
   gs.set(under,{clipPath:'circle(0% at 57% 32%)'});
   gs.set([left,right],{rotation:0,x:0,y:0,autoAlpha:1});
+  gs.set(card,{autoAlpha:0,z:60,y:112,rotation:-7,scale:.82,transformOrigin:'50% 100%'});
   timeline=gs.timeline({
    paused:true,
    onComplete:()=>{opened.style.visibility='hidden';progress='open';busy=false;setAccessible(true)},
@@ -45,6 +47,10 @@ if(trigger&&stage){
    .to(closed,{rotationX:-89,y:-31,duration:.72,ease:'power2.inOut'},.33)
    // Reveal happens BEHIND the lifting flap, through an SVG/CSS clipping window.
    .to(under,{clipPath:'circle(160% at 57% 32%)',duration:.75,ease:'power2.inOut'},.42)
+   // Rising card starts as the flap lifts, climbs from inside the real opening,
+   // and stays above the incomplete upper flap edge. Display-only: no cart mutation.
+   .set(card,{autoAlpha:1},.36)
+   .to(card,{y:-66,rotation:-2,scale:1,duration:1.08,ease:'power2.out'},.38)
    .set(opened,{visibility:'visible'},.75)
    .to(opened,{rotationX:0,duration:.56,ease:'power2.out'},.77)
    .to(left,{autoAlpha:0,duration:.12},.87)

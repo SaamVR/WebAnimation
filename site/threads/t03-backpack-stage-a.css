@@ -11,7 +11,7 @@
 #deal .t03-stage {
   position:relative; display:block; flex:0 1 auto;
   width:min(100%,575px); height:auto; aspect-ratio:1090 / 1024;
-  transform-style:preserve-3d; perspective:950px;
+  transform-style:flat; perspective:950px;
   overflow:visible; will-change:transform;
 }
 #deal .t03-stage .t03-layer {
@@ -34,4 +34,28 @@
 }
 @media (prefers-reduced-motion:reduce) {
   #deal .t03-stage,#deal .t03-layer {animation:none!important;transition:none!important}
+}
+
+/* Sole new foreground prop: one static visual-only offer with an asterisk. */
+#deal .t03-discount-card{
+  position:absolute;left:34%;top:19%;width:37%;aspect-ratio:1.35;
+  box-sizing:border-box;z-index:6;visibility:hidden;opacity:0;
+  display:flex;justify-content:center;align-items:center;
+  border:2px solid #2E453A;border-radius:15px;
+  background:#f8f4e9;box-shadow:0 12px 26px rgba(25,47,37,.13);
+  color:#2E453A;pointer-events:none;user-select:none;
+  font-family:inherit;transform-origin:50% 100%;
+}
+#deal .t03-discount-value{
+  font-size:clamp(25px,4.5vw,61px);line-height:1;letter-spacing:-.085em;
+  font-weight:850;white-space:nowrap;
+}
+#deal .t03-discount-star{
+  position:absolute;right:11%;top:6%;
+  font-size:clamp(18px,2.0vw,26px);line-height:1;font-weight:800;
+}
+@media(max-width:620px){
+ #deal .t03-discount-card{border-radius:8px;border-width:1px}
+ #deal .t03-discount-value{font-size:clamp(15px,6.5vw,29px)}
+ #deal .t03-discount-star{font-size:15px}
 }
