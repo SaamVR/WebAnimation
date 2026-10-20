@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "name": "desktop card present once",
+      "pass": true
+    },
+    {
+      "name": "desktop placeholder only",
+      "pass": true
+    },
+    {
+      "name": "desktop card hidden at rest",
+      "pass": true
+    },
+    {
+      "name": "desktop offer emerges above flap",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "name": "desktop existing cart count untouched",
+      "pass": true
+    },
+    {
+      "name": "desktop no checkout coupon invented",
+      "pass": true
+    },
+    {
+      "name": "desktop close restores hidden offer",
+      "pass": true
+    },
+    {
+      "name": "desktop original closed image retained",
+      "pass": true
+    },
+    {
+      "name": "mobile card present once",
+      "pass": true
+    },
+    {
+      "name": "mobile placeholder only",
+      "pass": true
+    },
+    {
+      "name": "mobile card hidden at rest",
+      "pass": true
+    },
+    {
+      "name": "mobile offer emerges above flap",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "name": "mobile existing cart count untouched",
+      "pass": true
+    },
+    {
+      "name": "mobile no checkout coupon invented",
+      "pass": true
+    },
+    {
+      "name": "mobile close restores hidden offer",
+      "pass": true
+    },
+    {
+      "name": "mobile original closed image retained",
+      "pass": true
+    },
+    {
+      "name": "no JS exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "passed": 17,
+  "total": 17
+}
