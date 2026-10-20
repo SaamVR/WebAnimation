@@ -2,6 +2,7 @@ import {catalog, catalogById, productMeta, productGallery, catalogFilters, merch
 import {initInlineSearch} from './search-header.mjs';
 import {initT01Spotlight} from './t01-spotlight.mjs';
 import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
+import {playT04Approved} from './t04-payment-approved.mjs';
 import {getCart,cartSummary,cartCount,addCartItem,updateCartItem,removeCartItem,variantAvailable,getFavorites,toggleFavorite,startDemoPayment,resolveDemoPayment,getAttempt,resetAttempt,getOrder} from './store-core.mjs';
 
 const $=id=>document.getElementById(id);
@@ -120,7 +121,23 @@ function checkoutPage(){
    start.disabled=false;stage.innerHTML='<h2>Payment status: Idle</h2><p>Only a simulated successful payment creates a confirmation.</p>';
   }
  };
- const resolve=result=>{try{const a=resolveDemoPayment(result);if(result==='succeeded')window.location.replace('/order/?ref='+encodeURIComponent(a.ref));else renderStatus(result,'No order was created or charged. You can retry your simulated transaction.')}catch(err){showError('checkout-error',err.message)}};
+ let resolving=false;
+ const resolve=async result=>{
+  if(resolving)return;
+  resolving=true;
+  try{
+   // Authoritative demo state transition FIRST. Never animate a failed payment as approved.
+   const a=resolveDemoPayment(result);
+   if(result==='succeeded'){
+    start.dataset.t04Stage='succeeded';
+    await playT04Approved(stage);
+    window.location.replace('/order/?ref='+encodeURIComponent(a.ref));
+   }else{
+    renderStatus(result,'No order was created or charged. You can retry your simulated transaction.');
+   }
+  }catch(err){showError('checkout-error',err.message)}
+  finally{resolving=false}
+ };
  form.addEventListener('submit',e=>{
   e.preventDefault(); if(!form.reportValidity())return;
   try{const fields=Object.fromEntries(new FormData(form));startDemoPayment(fields);showError('checkout-error','');renderStatus('pending');stage.scrollIntoView({behavior:'auto',block:'center'})}catch(err){showError('checkout-error',err.message)}

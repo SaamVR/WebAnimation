@@ -1,0 +1,16 @@
+/* T04 only: choreographed approval of committed SIMULATED payment. */
+.store-payment-stage.t04-is-approved{background:linear-gradient(145deg,#F1EFEB,#F9F9F7);border:1px solid #D8E0D8;border-radius:24px;overflow:hidden;padding:32px 20px}
+.t04-approved{text-align:center;max-width:500px;margin:auto;color:#172B2E}
+.t04-approval-visual{position:relative;width:190px;height:155px;margin:3px auto 24px}
+.t04-demo-card{width:133px;height:93px;box-sizing:border-box;border-radius:13px;position:absolute;left:4px;top:24px;padding:15px;text-align:left;background:#2E453A;color:#F9F9F7;box-shadow:0 15px 27px rgba(23,43,46,.17);display:flex;flex-direction:column;justify-content:space-between}
+.t04-demo-card__brand{font-size:13px;font-weight:850;letter-spacing:.2em}
+.t04-demo-card__chip{height:13px;width:20px;border:1.5px solid #AED5A9;border-radius:4px}
+.t04-demo-card__note{font-size:7px;letter-spacing:.13em;font-weight:750;opacity:.8}
+.t04-approval-seal{position:absolute;right:0;bottom:0;width:108px;height:108px;overflow:visible;filter:drop-shadow(0 4px 8px rgba(46,69,58,.10))}
+.t04-seal-bg{fill:#AED5A9;stroke:#F9F9F7;stroke-width:5}
+.t04-seal-stroke{fill:none;stroke:#2E453A;stroke-width:4;stroke-linecap:round;transform-origin:58px 58px;transform:rotate(-90deg)}
+.t04-seal-check{fill:none;stroke:#2E453A;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+.t04-approved h2{font-size:clamp(26px,3vw,39px);line-height:1.1;margin:10px 0 9px;letter-spacing:-.045em}
+.t04-approved p{font-size:14px;line-height:1.5;color:#516159}
+.t04-approved .t04-status-kicker{letter-spacing:.18em;font-size:11px;color:#2E453A;font-weight:800;margin:0}
+@media(prefers-reduced-motion:reduce){.t04-demo-card,.t04-approval-seal,.t04-seal-stroke,.t04-seal-check{animation:none!important;transition:none!important}}
