@@ -1,0 +1,128 @@
+{
+  "base": "https://threads-t03-layered-flap-20261020.onrender.com",
+  "checks": [
+    {
+      "name": "desktop mouse hover opens",
+      "pass": true
+    },
+    {
+      "name": "desktop pointer leave reverses",
+      "pass": true
+    },
+    {
+      "name": "desktop click opens",
+      "pass": true
+    },
+    {
+      "name": "desktop click again closes",
+      "pass": true
+    },
+    {
+      "name": "desktop mid-flight keyboard reversal settles closed",
+      "pass": true
+    },
+    {
+      "name": "desktop full layered assets load",
+      "pass": true,
+      "details": {
+        "imgs": 7,
+        "original": {
+          "natural": 1085,
+          "src": "https://threads-t03-layered-flap-20261020.onrender.com/assets/t03-stage-closed.png"
+        }
+      }
+    },
+    {
+      "name": "desktop no fabricated offers",
+      "pass": true
+    },
+    {
+      "name": "desktop unchanged Shop CTA",
+      "pass": true
+    },
+    {
+      "name": "mobile mouse hover opens",
+      "pass": true
+    },
+    {
+      "name": "mobile pointer leave reverses",
+      "pass": true
+    },
+    {
+      "name": "mobile click opens",
+      "pass": true
+    },
+    {
+      "name": "mobile click again closes",
+      "pass": true
+    },
+    {
+      "name": "mobile mid-flight keyboard reversal settles closed",
+      "pass": true
+    },
+    {
+      "name": "mobile full layered assets load",
+      "pass": true,
+      "details": {
+        "imgs": 7,
+        "original": {
+          "natural": 1085,
+          "src": "https://threads-t03-layered-flap-20261020.onrender.com/assets/t03-stage-closed.png"
+        }
+      }
+    },
+    {
+      "name": "mobile no fabricated offers",
+      "pass": true
+    },
+    {
+      "name": "mobile unchanged Shop CTA",
+      "pass": true
+    },
+    {
+      "name": "reduced click opens",
+      "pass": true
+    },
+    {
+      "name": "reduced click again closes",
+      "pass": true
+    },
+    {
+      "name": "reduced mid-flight keyboard reversal settles closed",
+      "pass": true
+    },
+    {
+      "name": "reduced full layered assets load",
+      "pass": true,
+      "details": {
+        "imgs": 7,
+        "original": {
+          "natural": 1085,
+          "src": "https://threads-t03-layered-flap-20261020.onrender.com/assets/t03-stage-closed.png"
+        }
+      }
+    },
+    {
+      "name": "reduced no fabricated offers",
+      "pass": true
+    },
+    {
+      "name": "reduced unchanged Shop CTA",
+      "pass": true
+    },
+    {
+      "name": "T01 Spotlight runs",
+      "pass": true
+    },
+    {
+      "name": "T01 Spotlight settles",
+      "pass": true
+    },
+    {
+      "name": "no JS exceptions",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "errors": []
+}
