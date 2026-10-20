@@ -1,0 +1,143 @@
+{
+  "base": "https://threads-t04-payment-approved-20261020.onrender.com",
+  "checks": [
+    {
+      "name": "desktop-approved real demo cart mutation",
+      "pass": true
+    },
+    {
+      "name": "desktop-approved pending explicitly simulated",
+      "pass": true
+    },
+    {
+      "name": "desktop-approved no premature approval",
+      "pass": true
+    },
+    {
+      "name": "desktop-approved approved visual starts after committed success",
+      "pass": true
+    },
+    {
+      "name": "desktop-approved no real charge claim",
+      "pass": true
+    },
+    {
+      "name": "desktop-approved order confirmed only after committed result",
+      "pass": true
+    },
+    {
+      "name": "desktop-approved no real payment on order",
+      "pass": true
+    },
+    {
+      "name": "desktop-approved cart correctly cleared",
+      "pass": true
+    },
+    {
+      "name": "mobile-approved real demo cart mutation",
+      "pass": true
+    },
+    {
+      "name": "mobile-approved pending explicitly simulated",
+      "pass": true
+    },
+    {
+      "name": "mobile-approved no premature approval",
+      "pass": true
+    },
+    {
+      "name": "mobile-approved approved visual starts after committed success",
+      "pass": true
+    },
+    {
+      "name": "mobile-approved no real charge claim",
+      "pass": true
+    },
+    {
+      "name": "mobile-approved order confirmed only after committed result",
+      "pass": true
+    },
+    {
+      "name": "mobile-approved no real payment on order",
+      "pass": true
+    },
+    {
+      "name": "mobile-approved cart correctly cleared",
+      "pass": true
+    },
+    {
+      "name": "reduced-approved real demo cart mutation",
+      "pass": true
+    },
+    {
+      "name": "reduced-approved pending explicitly simulated",
+      "pass": true
+    },
+    {
+      "name": "reduced-approved no premature approval",
+      "pass": true
+    },
+    {
+      "name": "reduced-approved reduced motion bypasses visual",
+      "pass": true
+    },
+    {
+      "name": "reduced-approved order confirmed only after committed result",
+      "pass": true
+    },
+    {
+      "name": "reduced-approved no real payment on order",
+      "pass": true
+    },
+    {
+      "name": "reduced-approved cart correctly cleared",
+      "pass": true
+    },
+    {
+      "name": "failed real demo cart mutation",
+      "pass": true
+    },
+    {
+      "name": "failed status correct",
+      "pass": true
+    },
+    {
+      "name": "failed no successful animation",
+      "pass": true
+    },
+    {
+      "name": "failed cart remains intact",
+      "pass": true
+    },
+    {
+      "name": "failed can retry",
+      "pass": true
+    },
+    {
+      "name": "cancelled real demo cart mutation",
+      "pass": true
+    },
+    {
+      "name": "cancelled status correct",
+      "pass": true
+    },
+    {
+      "name": "cancelled no successful animation",
+      "pass": true
+    },
+    {
+      "name": "cancelled cart remains intact",
+      "pass": true
+    },
+    {
+      "name": "cancelled can retry",
+      "pass": true
+    },
+    {
+      "name": "zero JS exceptions",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "errors": []
+}
