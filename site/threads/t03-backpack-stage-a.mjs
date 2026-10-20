@@ -1,75 +1,134 @@
 /**
- * THREADS T03 — Stage A ONLY.
- * Non-destructive image-layer opening study. No promotional cards or fabricated offers.
- * Owner artwork is under /assets/t03-backpack-{closed,open}-original.png.
- * These two references are the only source artwork.
+ * THREADS T03 Stage A — playful, reversible flap reveal.
+ * The original owner PNGs remain pixel-exact; straps and fasteners never detach.
+ * Stage B / promotional offer cards intentionally absent.
  */
 import {loadMotionLibrary} from './t02-motion-runtime.mjs';
-const trigger=document.getElementById('t03-backpack-trigger');
-const stage=document.getElementById('t03-stage');
-const caption=document.getElementById('t03-backpack-state');
-const cta=document.querySelector('#deal .threads-deal__copy .pill');
-let progress='closed',busy=false,timeline=null;
-if(trigger&&stage){
- const closed=stage.querySelector('.t03-flap-closed');
- const opened=stage.querySelector('.t03-flap-open');
- const under=stage.querySelector('.t03-base-open');
- const left=stage.querySelector('.t03-buckle-left');
- const right=stage.querySelector('.t03-buckle-right');
- const reduced=matchMedia('(prefers-reduced-motion: reduce)');
- const setAccessible=(open)=>{
+
+const trigger=document.querySelector('#t03-backpack-trigger');
+const stage=document.querySelector('#t03-stage');
+const status=document.querySelector('#t03-backpack-state');
+const deal=document.querySelector('#deal');
+
+if(trigger&&stage&&deal){
+ const base=stage.querySelector('.t03-base-closed');
+ const body=stage.querySelector('.t03-body');
+ const rim=stage.querySelector('.t03-rim');
+ const underside=stage.querySelector('.t03-flap-underside');
+ const rig=stage.querySelector('.t03-flap-rig');
+ const flap=stage.querySelector('.t03-flap-exterior');
+ const hardware=stage.querySelectorAll('.t03-buckle');
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+ let master,invite,gsap,ready=false,pinned=false,hovered=false,invited=false;
+ let mode='closed';
+
+ const announce=open=>{
+  mode=open?'open':'closed';
   trigger.setAttribute('aria-expanded',String(open));
-  trigger.setAttribute('aria-label',open?'Close the illustrated backpack':'Open the illustrated backpack');
-  caption.textContent=open?'Backpack open':'Backpack closed';
+  trigger.setAttribute('aria-label',open?'Close illustrated backpack':'Open illustrated backpack');
+  status.textContent=open?'Backpack open':'Backpack closed';
+ };
+ const stopInvitation=()=>{
+  if(!invite)return;
+  invite.kill();invite=null;
+  if(master?.progress()===0)gsap.set(rig,{rotationX:0,y:0});
+ };
+ const setEndpoint=(open)=>{
+  if(!gsap)return;
+  if(open){
+   gsap.set([body,rim,underside],{autoAlpha:1});
+   gsap.set(rig,{autoAlpha:0,rotationX:-104,y:-20});
+  }else{
+   gsap.set([body,rim,underside,rig],{autoAlpha:0});
+   gsap.set(rig,{rotationX:0,y:0});
+  }
+  gsap.set(base,{autoAlpha:1});
+  announce(open);
  };
  const setup=async()=>{
-  const gs=await loadMotionLibrary();
-  if(!gs)return;
-  gs.set(opened,{rotationX:-84,visibility:'hidden',transformOrigin:'56% 24%'});
-  gs.set(closed,{rotationX:0,y:0,transformOrigin:'56% 15%'});
-  gs.set(under,{clipPath:'circle(0% at 57% 32%)'});
-  gs.set([left,right],{rotation:0,x:0,y:0,autoAlpha:1});
-  timeline=gs.timeline({
+  gsap=await loadMotionLibrary();
+  if(!gsap)return;
+  gsap.set(base,{autoAlpha:1});
+  gsap.set([body,rim,underside,rig],{autoAlpha:0});
+  gsap.set(rig,{rotationX:0,y:0,transformOrigin:'59% 21%',transformPerspective:850});
+  gsap.set(underside,{rotationX:-11,y:7,transformOrigin:'59% 23%',transformPerspective:850});
+  gsap.set(flap,{autoAlpha:1});
+  gsap.set(hardware,{autoAlpha:1}); // all three children of the SAME rig
+  master=gsap.timeline({
    paused:true,
-   onComplete:()=>{opened.style.visibility='hidden';progress='open';busy=false;setAccessible(true)},
-   onReverseComplete:()=>{progress='closed';busy=false;setAccessible(false)}
+   onComplete:()=>{announce(true)},
+   onReverseComplete:()=>{setEndpoint(false)}
   });
-  // Anticipation: minimal global flex, without moving unrelated props separately.
-  timeline.to(stage,{y:-3,rotation:-.35,duration:.16,ease:'sine.inOut'},0)
-   .to(stage,{y:0,rotation:0,duration:.22,ease:'power2.out'},.17)
-   // Both original fasteners visibly release before opening.
-   .to(left,{x:-7,y:10,rotation:-12,duration:.28,ease:'power2.out'},.12)
-   .to(right,{x:8,y:9,rotation:11,duration:.28,ease:'power2.out'},.16)
-   // Flap rotates away in 3D around its upper joint. Both textures are separate,
-   // not an opacity crossfade between two complete images.
-   .to(closed,{rotationX:-89,y:-31,duration:.72,ease:'power2.inOut'},.33)
-   // Reveal happens BEHIND the lifting flap, through an SVG/CSS clipping window.
-   .to(under,{clipPath:'circle(160% at 57% 32%)',duration:.75,ease:'power2.inOut'},.42)
-   .set(opened,{visibility:'visible'},.75)
-   .to(opened,{rotationX:0,duration:.56,ease:'power2.out'},.77)
-   .to(left,{autoAlpha:0,duration:.12},.87)
-   .to(right,{autoAlpha:0,duration:.12},.87)
-   .to({}, {duration:.07},1.39);
+  // Gentle whole-bag invitation is separate; opening itself leaves the entire
+  // unrelated cap/sneaker/bottle resting on the unchanged closed-image plate.
+  master
+   .set(rig,{autoAlpha:1},0)
+   .to(body,{autoAlpha:1,duration:.24,ease:'sine.out'},.10)
+   .to(rim,{autoAlpha:1,duration:.32,ease:'power1.out'},.30)
+   .to(rig,{rotationX:-104,y:-20,duration:.87,ease:'power2.inOut'},.18)
+   .to(rig,{autoAlpha:0,duration:.16,ease:'sine.in'},.95)
+   .to(underside,{autoAlpha:1,rotationX:0,y:0,duration:.31,ease:'power2.out'},.80)
+   .to(underside,{y:-2,duration:.10,ease:'sine.out'},1.08)
+   .to(underside,{y:0,duration:.17,ease:'sine.inOut'},1.18);
+  ready=true;
  };
- const ready=setup();
- async function toggle(){
-  await ready;if(!timeline||busy)return;
-  busy=true;
-  if(reduced.matches){
-   const go=progress!=='open';
-   timeline.progress(go?1:0).pause();
-   progress=go?'open':'closed';busy=false;setAccessible(go);
+ const prepared=setup();
+ async function control(open){
+  await prepared;
+  if(!ready)return;
+  stopInvitation();
+  if(reduce.matches){
+   master.pause(open?master.duration():0);
+   setEndpoint(open);
    return;
   }
-  if(progress==='closed'){timeline.timeScale(1).play(0)}
-  else {opened.style.visibility='visible';timeline.timeScale(1).reverse()}
+  if(open){
+   master.play();
+  }else{
+   // GSAP reverses its actual current playhead even while mid-flight.
+   master.reverse();
+  }
  }
- trigger.addEventListener('click',()=>void toggle());
- // Existing promotional CTA also triggers Stage A for an ordinary click.
- // Modified-click navigation to the existing Shop destination remains available.
- cta?.addEventListener('click',event=>{
-  if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-  event.preventDefault();void toggle();
+ const openForHover=()=>{
+  hovered=true;
+  if(!pinned)void control(true);
+ };
+ const closeForLeave=()=>{
+  hovered=false;
+  if(!pinned)void control(false);
+ };
+ trigger.addEventListener('pointerenter',event=>{
+  if(event.pointerType==='mouse')openForHover();
  });
- window.addEventListener('pagehide',()=>{timeline?.pause()},{once:true});
+ trigger.addEventListener('pointerleave',event=>{
+  if(event.pointerType==='mouse')closeForLeave();
+ });
+ trigger.addEventListener('click',()=>{
+  pinned=!pinned;
+  void control(pinned);
+ });
+ trigger.addEventListener('keydown',event=>{
+  if(event.key==='Escape'){
+   event.preventDefault();
+   pinned=false;hovered=false;void control(false);
+  }
+ });
+ async function inviteOnce(){
+  await prepared;
+  if(invited||!ready||reduce.matches||pinned||hovered||master.progress()>0)return;
+  invited=true;
+  invite=gsap.timeline({onComplete:()=>{invite=null}});
+  invite.set(rig,{autoAlpha:1},0)
+   .to(rig,{rotationX:-11,y:-3,duration:.27,ease:'sine.out'},0)
+   .to(rig,{rotationX:0,y:0,duration:.43,ease:'elastic.out(1,.8)'},.28)
+   .set(rig,{autoAlpha:0},.72);
+ }
+ const observer=new IntersectionObserver(entries=>{
+  if(entries.some(e=>e.isIntersecting&&e.intersectionRatio>=.26)){
+   observer.disconnect();
+   void inviteOnce();
+  }
+ },{threshold:[0,.26,.6]});
+ observer.observe(deal);
+ window.addEventListener('pagehide',()=>{invite?.kill();master?.pause();observer.disconnect()},{once:true});
 }

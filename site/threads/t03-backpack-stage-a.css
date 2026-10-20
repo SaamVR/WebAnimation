@@ -1,37 +1,42 @@
-/* THREADS T03 Stage A only. Uses the exact owner PNGs and their masked derivatives.
-   Existing deal layout and T01/T02 CSS remain untouched. */
+/* THREADS T03 Stage A: same original Deal grid; seven owner PNGs, one pivot.
+   No generated illustrations, detached buckles or separate strap mechanics. */
 #deal .t03-backpack-trigger {
-  appearance:none; border:0; background:transparent; cursor:pointer;
-  padding:0; margin:0; display:flex; justify-content:center; align-items:flex-end;
-  width:100%; min-width:0; touch-action:manipulation; overflow:visible;
+  appearance:none;display:flex;justify-content:center;align-items:flex-end;
+  width:100%;padding:0;margin:0;border:0;background:transparent;
+  cursor:pointer;touch-action:manipulation;position:relative;overflow:visible;
 }
 #deal .t03-backpack-trigger:focus-visible {
-  outline:3px solid #2E453A; outline-offset:3px; border-radius:8px;
+  outline:3px solid #2E453A;outline-offset:4px;border-radius:12px;
 }
 #deal .t03-stage {
-  position:relative; display:block; flex:0 1 auto;
-  width:min(100%,575px); height:auto; aspect-ratio:1090 / 1024;
-  transform-style:preserve-3d; perspective:950px;
-  overflow:visible; will-change:transform;
+  display:block;position:relative;flex:0 1 auto;
+  width:min(100%,690px);height:auto;aspect-ratio:1085/845;
+  perspective:930px;transform-style:preserve-3d;overflow:visible;
 }
 #deal .t03-stage .t03-layer {
-  position:absolute; display:block; inset:0;
-  width:100%; height:100%; min-width:0; max-width:none; max-height:none;
-  pointer-events:none; user-select:none; -webkit-user-drag:none;
-  transform-style:preserve-3d; object-fit:fill; object-position:top left;
-  filter:none; opacity:1; mix-blend-mode:normal; backface-visibility:hidden;
+  display:block;position:absolute;inset:0;width:100%;height:100%;
+  max-width:none;max-height:none;min-width:0;object-fit:fill;
+  object-position:center;pointer-events:none;user-select:none;
+  -webkit-user-drag:none;mix-blend-mode:normal;filter:none;
+  opacity:1;transform-origin:center center;backface-visibility:visible;
 }
-#deal .t03-base-closed {z-index:1}
-#deal .t03-base-open {z-index:2;clip-path:circle(0% at 57% 32%)}
-#deal .t03-flap-closed {z-index:3;transform-origin:56% 15%}
-#deal .t03-buckle {z-index:4;transform-origin:50% 32%}
-#deal .t03-flap-open {z-index:5;visibility:hidden;transform-origin:56% 24%}
-@media (max-width:900px){
-  #deal .t03-stage {width:min(100%,420px)}
+#deal .t03-base-closed{z-index:1}
+#deal .t03-body{z-index:2}
+#deal .t03-rim{z-index:3}
+#deal .t03-flap-underside{z-index:4}
+#deal .t03-flap-rig{
+  position:absolute;inset:0;display:block;z-index:5;
+  width:100%;height:100%;pointer-events:none;
+  transform-style:preserve-3d;transform-origin:59% 21%;
 }
-@media (max-width:620px){
-  #deal .t03-stage {width:100%}
+#deal .t03-flap-rig .t03-flap-exterior{z-index:1}
+#deal .t03-flap-rig .t03-buckle{z-index:2}
+/* Hidden until GSAP is ready: no content flicker or unfinished layered flash. */
+#deal .t03-body,#deal .t03-rim,#deal .t03-flap-underside,#deal .t03-flap-rig{
+  visibility:hidden;opacity:0;
 }
-@media (prefers-reduced-motion:reduce) {
-  #deal .t03-stage,#deal .t03-layer {animation:none!important;transition:none!important}
+@media(max-width:900px){#deal .t03-stage{width:min(100%,590px)}}
+@media(max-width:620px){#deal .t03-stage{width:100%}}
+@media(prefers-reduced-motion:reduce){
+  #deal .t03-stage,#deal .t03-stage *{transition:none!important;animation:none!important}
 }

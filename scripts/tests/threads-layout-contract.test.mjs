@@ -35,12 +35,12 @@ test('approved supplied header identity and hero/deal image assets are reference
   for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/header-'+name+'.png'));
   for(const link of ['HOME','SHOP','COLLECTION','ABOUT']) assert.ok(html.includes('>'+link+'</a>'));
   assert.match(html,/assets\/threads-hero\.webp/);
-  assert.match(html,/assets\/t03-closed-crop\.png/);
+  assert.match(html,/assets\/t03-stage-closed\.png/);
   assert.doesNotMatch(html,/class="hero-doodle"|data-ref-img="hero"|data-ref-img="backpack"/);
   assert.match(html,/Shopping cart/);
 });
 
-test('Deal of the Week has the owner-original reversible Stage A image layers',()=>{assert.match(html,/t03-closed-crop\.png/);assert.match(html,/t03-open-aligned\.png/);assert.match(html,/t03-backpack-trigger/)});
+test('Deal of the Week has the owner-original reversible Stage A image layers',()=>{assert.match(html,/t03-stage-closed\.png/);assert.match(html,/t03-stage-flap-underside\.png/);assert.match(html,/t03-backpack-trigger/)});
 
 const css = readFileSync(new URL('../../site/threads/styles.css', import.meta.url), 'utf8');
 test('desktop content max width does not revert to the narrow 1140px demo',()=>{
@@ -61,7 +61,7 @@ test('Deal of the Week uses one SVG panel and editable accessible copy',()=>{
   const section=html.split('<section class="content-wrap threads-deal')[1].split('</section>')[0];
   assert.equal((section.match(/<svg /g)||[]).length,1);
   assert.equal((section.match(/<path /g)||[]).length,1);
-  assert.equal((section.match(/<img /g)||[]).length,6);
+  assert.equal((section.match(/<img /g)||[]).length,7);
   assert.match(section,/data-t03-layer="backpack"/);
   assert.match(section,/Deal Of<br>the Week/);
   assert.match(section,/Shop the Deals/);
@@ -75,12 +75,12 @@ test('Deal of the Week uses one SVG panel and editable accessible copy',()=>{
 });
 
 test('all six approved artwork sections use owned local media and keep their order',()=>{
-  const paths=['header-search.png','header-favorite.png','header-cart.png','featured-olive-sneaker-owner-20261018.webp','featured-yellow-cap-owner-20261018.webp','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp','editorial-main.webp','editorial-detail-1.webp','editorial-detail-2.webp','editorial-detail-3.webp','editorial-detail-4.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp','t03-closed-crop.png','t03-open-aligned.png'];
+  const paths=['header-search.png','header-favorite.png','header-cart.png','featured-olive-sneaker-owner-20261018.webp','featured-yellow-cap-owner-20261018.webp','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp','editorial-main.webp','editorial-detail-1.webp','editorial-detail-2.webp','editorial-detail-3.webp','editorial-detail-4.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp','t03-stage-closed.png','t03-stage-flap-underside.png'];
   for(const name of paths){
     assert.ok(readFileSync(new URL('../../site/threads/assets/'+name,import.meta.url)).length>800,'missing/empty '+name);
   }
   assert.ok(html.includes('./artwork-review-20261018.css'));
-  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-complete-20261018.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp','t03-closed-crop.png','t03-open-aligned.png']) assert.ok(html.includes(name),'not wired '+name);
+  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-complete-20261018.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp','t03-stage-closed.png','t03-stage-flap-underside.png']) assert.ok(html.includes(name),'not wired '+name);
   for(const name of ['featured-olive-sneaker-owner-20261018.webp','featured-yellow-cap-owner-20261018.webp','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp']) assert.ok(script.includes(name),'not wired '+name);
   assert.doesNotMatch(html,/data-ref-img="editorial|data-ref-img="campaign"|data-ref-img="sale"/);
   assert.match(html,/id="featured-products"/);
@@ -184,7 +184,7 @@ test('2026-10-18 full owner campaign and independent Deal backpack preserve the 
   const artCss=readFileSync(new URL('../../site/threads/threads-asset-fidelity-20261018.css',import.meta.url),'utf8');
   assert.ok(html.includes('threads-asset-fidelity-20261018.css'));
   assert.ok(html.includes('campaign-owner-full-20261018.webp'));
-  assert.ok(html.includes('t03-closed-crop.png') && html.includes('t03-open-aligned.png'));
+  assert.ok(html.includes('t03-stage-closed.png') && html.includes('t03-stage-flap-underside.png'));
  assert.ok(html.includes('t03-backpack-stage-a.mjs'));
  assert.ok(!html.includes('data-t03-offer-card'));
   assert.ok(html.includes('data-t03-layer="backpack"'));
