@@ -165,3 +165,6 @@
 .store-quick-add:hover{background:var(--store-deep)}
 .store-product-card__footer{flex-wrap:wrap}
 @media(prefers-reduced-motion:reduce){.t02-motion-layer{display:none}}
+
+/* Shared storefront shell: sticky REAL navigation/cart across all routes. */
+#site-shell > header.site-header.store-site-header{position:sticky;top:0;z-index:75;background:var(--store-bg)}
