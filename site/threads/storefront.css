@@ -169,3 +169,13 @@
 
 /* T04 final: retain original real header on downward AND upward scroll. */
 #site-shell > header.site-header.store-site-header{position:sticky!important;top:0!important;transform:none!important;translate:none!important;opacity:1!important;visibility:visible!important;z-index:75}
+
+/* Only Orange Weekender Duffel (f3): hold a true 1:1 frame through all views.
+   The image changes independently; neither the main frame nor surrounding layout moves. */
+.store-detail[data-f3-square-gallery] .store-detail__image{
+  width:100%;height:auto;min-height:0;aspect-ratio:1 / 1;align-self:start;
+}
+.store-detail[data-f3-square-gallery] .store-detail__image img{
+  position:absolute;inset:0;box-sizing:border-box;width:100%;height:100%;
+  max-height:none;object-fit:contain;object-position:center;
+}
