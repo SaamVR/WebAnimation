@@ -3,6 +3,7 @@ import {initInlineSearch} from './search-header.mjs';
 import {initT01Spotlight} from './t01-spotlight.mjs';
 import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
 import {playT04Approved} from './t04-payment-approved.mjs';
+import {initT04PaymentOverlay} from './t04-payment-overlay.mjs';
 import {getCart,cartSummary,cartCount,addCartItem,updateCartItem,removeCartItem,variantAvailable,getFavorites,toggleFavorite,startDemoPayment,resolveDemoPayment,getAttempt,resetAttempt,getOrder} from './store-core.mjs';
 
 const $=id=>document.getElementById(id);
@@ -103,45 +104,9 @@ function checkoutPage(){
  const bag=cartSummary();
  if(!bag.count){mount(`<div class="store-empty"><h1>Nothing to check out</h1><p>Your bag is empty or the demo payment has already completed.</p><a class="store-primary-btn" href="/search/">Browse products</a></div>`);return}
  resetAttempt();
- mount(`<nav class="store-breadcrumb"><a href="/cart/">Cart</a> › Checkout</nav><section class="store-page-heading"><span class="store-kicker">SECURE DEMONSTRATION</span><h1>Demo Checkout</h1><p>No actual card details, charges, or deliveries. Test the transaction state machine below.</p></section><div class="store-checkout-layout"><form id="checkout-form" class="store-checkout-form"><h2>Contact & delivery</h2><div class="store-form-grid"><label>Full name<input name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your name"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label>Phone<input name="phone" type="tel" required minlength="8" autocomplete="tel" placeholder="01XXXXXXXXX"></label><label>City<input name="city" required minlength="2" autocomplete="address-level2" placeholder="Dhaka"></label><label class="store-col-span">Delivery address<textarea name="address" required minlength="5" autocomplete="street-address" placeholder="Street and building"></textarea></label></div><h2>Demo payment</h2><div class="store-demo-method"><strong>Simulated digital payment</strong><p>The demo does not use any real payment processor. It does not store or transmit contact information. You will choose the simulated outcome after starting the transaction.</p></div><p class="store-form-error" id="checkout-error" role="alert" hidden></p><button type="submit" class="store-primary-btn store-block" id="begin-payment" data-t04-stage="idle">Start Demo Payment · ${money(bag.total)}</button></form><aside class="store-summary"><h2>Your Order</h2>${bag.items.map(x=>`<div class="store-checkout-line"><img src="${imageUrl(x.product)}" alt=""><div><strong>${escape(x.product.name)}</strong><p>${escape(productMeta(x.product).colors.find(c=>c.id===x.color)?.name)} / ${escape(x.size)} × ${x.quantity}</p></div><strong>${money(x.subtotal)}</strong></div>`).join('')}<div class="store-summary-line store-summary-total"><span>Total</span><strong>${money(bag.total)}</strong></div><a href="/cart/" class="store-quiet-link">← Edit cart</a></aside></div><section id="payment-stage" class="store-payment-stage" data-t04-stage="idle" aria-live="polite"><h2>Payment status: Idle</h2><p>Fill in delivery details, then start the demo payment.</p></section>`);
- const stage=$('payment-stage'),form=$('checkout-form'),start=$('begin-payment');
- const renderStatus=(status,message='')=>{
-  stage.dataset.t04Stage=status;start.dataset.t04Stage=status;
-  if(status==='pending'){
-   start.disabled=true;
-   stage.innerHTML=`<span class="store-badge">Processing · Demo</span><h2>Payment pending</h2><p>Choose a simulated result. This is not a live bank transaction.</p><div class="store-payment-actions"><button type="button" id="simulate-success" class="store-primary-btn">Approve demo payment</button><button type="button" id="simulate-fail" class="store-outline-btn">Simulate failure</button><button type="button" id="simulate-cancel" class="store-outline-btn">Cancel payment</button></div>`;
-   stage.querySelector('#simulate-success').addEventListener('click',()=>resolve('succeeded'));
-   stage.querySelector('#simulate-fail').addEventListener('click',()=>resolve('failed'));
-   stage.querySelector('#simulate-cancel').addEventListener('click',()=>resolve('cancelled'));
-  }else if(status==='failed'||status==='cancelled'){
-   start.disabled=false;
-   stage.innerHTML=`<span class="store-badge">${status==='failed'?'Failed':'Cancelled'} · Demo</span><h2>${status==='failed'?'Payment failed':'Payment cancelled'}</h2><p>${escape(message||'No order was created or charged. Correct your details and try again.')}</p><button type="button" class="store-outline-btn" id="try-again">Try again</button>`;
-   stage.querySelector('#try-again').addEventListener('click',()=>{resetAttempt();renderStatus('idle')});
-  }else{
-   start.disabled=false;stage.innerHTML='<h2>Payment status: Idle</h2><p>Only a simulated successful payment creates a confirmation.</p>';
-  }
- };
- let resolving=false;
- const resolve=async result=>{
-  if(resolving)return;
-  resolving=true;
-  try{
-   // Authoritative demo state transition FIRST. Never animate a failed payment as approved.
-   const a=resolveDemoPayment(result);
-   if(result==='succeeded'){
-    start.dataset.t04Stage='succeeded';
-    await playT04Approved(stage);
-    window.location.replace('/order/?ref='+encodeURIComponent(a.ref));
-   }else{
-    renderStatus(result,'No order was created or charged. You can retry your simulated transaction.');
-   }
-  }catch(err){showError('checkout-error',err.message)}
-  finally{resolving=false}
- };
- form.addEventListener('submit',e=>{
-  e.preventDefault(); if(!form.reportValidity())return;
-  try{const fields=Object.fromEntries(new FormData(form));startDemoPayment(fields);showError('checkout-error','');renderStatus('pending');stage.scrollIntoView({behavior:'auto',block:'center'})}catch(err){showError('checkout-error',err.message)}
- });
+ mount(`<nav class="store-breadcrumb"><a href="/cart/">Cart</a> › Checkout</nav><section class="store-page-heading"><span class="store-kicker">SECURE DEMONSTRATION</span><h1>Demo Checkout</h1><p>No actual card details, charges, or deliveries. Test the transaction state machine below.</p></section><div class="store-checkout-layout"><form id="checkout-form" class="store-checkout-form"><h2>Contact & delivery</h2><div class="store-form-grid"><label>Full name<input name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your name"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label>Phone<input name="phone" type="tel" required minlength="8" autocomplete="tel" placeholder="01XXXXXXXXX"></label><label>City<input name="city" required minlength="2" autocomplete="address-level2" placeholder="Dhaka"></label><label class="store-col-span">Delivery address<textarea name="address" required minlength="5" autocomplete="street-address" placeholder="Street and building"></textarea></label></div><p class="t04-payment-disclosure">Simulation only · No money is charged or payment details collected.</p><p class="store-form-error" id="checkout-error" role="alert" hidden></p><button type="submit" class="store-primary-btn store-block" id="begin-payment" data-t04-stage="idle">Confirm Demo Payment · ${money(bag.total)}</button></form><aside class="store-summary"><h2>Your Order</h2>${bag.items.map(x=>`<div class="store-checkout-line"><img src="${imageUrl(x.product)}" alt=""><div><strong>${escape(x.product.name)}</strong><p>${escape(productMeta(x.product).colors.find(c=>c.id===x.color)?.name)} / ${escape(x.size)} × ${x.quantity}</p></div><strong>${money(x.subtotal)}</strong></div>`).join('')}<div class="store-summary-line store-summary-total"><span>Total</span><strong>${money(bag.total)}</strong></div><a href="/cart/" class="store-quiet-link">← Edit cart</a></aside></div>`);
+ const form=$('checkout-form'),start=$('begin-payment');
+ initT04PaymentOverlay({form,start,showError:message=>showError('checkout-error',message)});
 }
 function orderPage(){
  const order=getOrder(args.get('ref'));

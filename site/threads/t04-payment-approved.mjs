@@ -22,7 +22,7 @@ export async function playT04Approved(stage){
    <p>Your simulated order was committed successfully. No money was charged.</p>
   </div>`;
  stage.setAttribute('tabindex','-1');stage.focus({preventScroll:true});
- stage.scrollIntoView({behavior:'auto',block:'center'});
+
  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
  const gsap=await loadMotionLibrary();if(!gsap||!stage.isConnected)return;
  const card=stage.querySelector('.t04-demo-card'),seal=stage.querySelector('.t04-approval-seal');
