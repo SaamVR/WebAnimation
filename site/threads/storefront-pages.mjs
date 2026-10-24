@@ -104,9 +104,56 @@ function checkoutPage(){
  const bag=cartSummary();
  if(!bag.count){mount(`<div class="store-empty"><h1>Nothing to check out</h1><p>Your bag is empty or the demo payment has already completed.</p><a class="store-primary-btn" href="/search/">Browse products</a></div>`);return}
  resetAttempt();
- mount(`<nav class="store-breadcrumb"><a href="/cart/">Cart</a> › Checkout</nav><section class="store-page-heading"><span class="store-kicker">SECURE DEMONSTRATION</span><h1>Demo Checkout</h1><p>No actual card details, charges, or deliveries. Test the transaction state machine below.</p></section><div class="store-checkout-layout"><form id="checkout-form" class="store-checkout-form"><h2>Contact & delivery</h2><div class="store-form-grid"><label>Full name<input name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your name"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label>Phone<input name="phone" type="tel" required minlength="8" autocomplete="tel" placeholder="01XXXXXXXXX"></label><label>City<input name="city" required minlength="2" autocomplete="address-level2" placeholder="Dhaka"></label><label class="store-col-span">Delivery address<textarea name="address" required minlength="5" autocomplete="street-address" placeholder="Street and building"></textarea></label></div><p class="t04-payment-disclosure">Simulation only · No money is charged or payment details collected.</p><p class="store-form-error" id="checkout-error" role="alert" hidden></p><button type="submit" class="store-primary-btn store-block" id="begin-payment" data-t04-stage="idle">Confirm Demo Payment · ${money(bag.total)}</button></form><aside class="store-summary"><h2>Your Order</h2>${bag.items.map(x=>`<div class="store-checkout-line"><img src="${imageUrl(x.product)}" alt=""><div><strong>${escape(x.product.name)}</strong><p>${escape(productMeta(x.product).colors.find(c=>c.id===x.color)?.name)} / ${escape(x.size)} × ${x.quantity}</p></div><strong>${money(x.subtotal)}</strong></div>`).join('')}<div class="store-summary-line store-summary-total"><span>Total</span><strong>${money(bag.total)}</strong></div><a href="/cart/" class="store-quiet-link">← Edit cart</a></aside></div>`);
- const form=$('checkout-form'),start=$('begin-payment');
- initT04PaymentOverlay({form,start,showError:message=>showError('checkout-error',message)});
+ mount(`<nav class="store-breadcrumb"><a href="/cart/">Cart</a> › Checkout</nav>
+ <section class="store-page-heading"><span class="store-kicker">TEST CHECKOUT — NO REAL CHARGES</span>
+ <h1>Checkout</h1><p>Contact & Delivery → Card Details → Proceed to Pay → Confirmation</p></section>
+ <div class="store-checkout-layout">
+  <div class="t04-checkout-steps">
+   <form id="checkout-form" class="store-checkout-form" autocomplete="on">
+    <h2>1. Contact & delivery</h2>
+    <div class="store-form-grid">
+     <label>Full name<input name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your name"></label>
+     <label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+     <label>Phone<input name="phone" type="tel" required minlength="8" autocomplete="tel" placeholder="01XXXXXXXXX"></label>
+     <label>City<input name="city" required minlength="2" autocomplete="address-level2" placeholder="Dhaka"></label>
+     <label class="store-col-span">Delivery address<textarea name="address" required minlength="5" autocomplete="street-address" placeholder="Street and building"></textarea></label>
+    </div>
+    <p class="store-form-error" id="checkout-error" role="alert" hidden></p>
+    <button type="submit" id="continue-to-card" class="store-primary-btn store-block">Continue to Card Details →</button>
+   </form>
+   <section id="checkout-card-step" class="store-checkout-form" aria-labelledby="card-step-heading" hidden>
+    <h2 id="card-step-heading">2. Card Details</h2>
+    <p class="t04-test-warning"><strong>TEST CARDS ONLY — no real payments.</strong> Never enter a real card number or CVV. Use the sample values below; they are not sent to a payment provider or saved.</p>
+    <form id="checkout-card-form" autocomplete="off">
+     <div class="store-form-grid">
+      <label class="store-col-span">Cardholder name<input name="demoCardholder" type="text" required minlength="2" maxlength="80" autocomplete="off" placeholder="Test Cardholder"></label>
+      <label class="store-col-span">Card number <small>Test: 4242 4242 4242 4242</small>
+       <input name="demoCardNumber" type="text" required inputmode="numeric" maxlength="19" autocomplete="off" placeholder="4242 4242 4242 4242" pattern="4242 4242 4242 4242"></label>
+      <label>Expiration <small>Test: 12/30</small><input name="demoCardExpiry" type="text" required inputmode="numeric" maxlength="5" autocomplete="off" placeholder="12/30" pattern="12/30"></label>
+      <label>CVV <small>Test: 123</small><input name="demoCardCvv" type="password" required inputmode="numeric" maxlength="3" autocomplete="off" placeholder="123" pattern="123"></label>
+     </div>
+     <p id="checkout-card-error" class="store-form-error" role="alert" hidden></p>
+     <button type="button" id="back-to-contact" class="store-outline-btn">← Back to contact</button>
+    </form>
+   </section>
+  </div>
+  <aside class="store-summary"><h2>Your Order</h2>
+   `+bag.items.map(x=>`<div class="store-checkout-line"><img src="${imageUrl(x.product)}" alt=""><div><strong>${escape(x.product.name)}</strong><p>${escape(productMeta(x.product).colors.find(c=>c.id===x.color)?.name)} / ${escape(x.size)} × ${x.quantity}</p></div><strong>${money(x.subtotal)}</strong></div>`).join('')+`
+   <div class="store-summary-line store-summary-total"><span>Total</span><strong>${money(bag.total)}</strong></div>
+   <button type="button" class="store-primary-btn store-block" id="proceed-payment" disabled>Proceed to Pay · ${money(bag.total)}</button>
+   <p class="t04-summary-disclaimer">Demo simulation only · No money is charged.</p>
+   <a href="/cart/" class="store-quiet-link">← Edit cart</a>
+  </aside>
+ </div>`);
+ const form=$('checkout-form'),cardStep=$('checkout-card-step'),cardForm=$('checkout-card-form');
+ const proceed=$('proceed-payment'),back=$('back-to-contact');
+ form.addEventListener('submit',event=>{
+  event.preventDefault();if(!form.reportValidity())return;
+  showError('checkout-error','');form.hidden=true;cardStep.hidden=false;
+  cardForm.dispatchEvent(new Event('change',{bubbles:true}));cardForm.elements.demoCardholder.focus({preventScroll:true});
+ });
+ back.addEventListener('click',()=>{cardStep.hidden=true;form.hidden=false;cardForm.dispatchEvent(new Event('change',{bubbles:true}));form.elements.name.focus({preventScroll:true})});
+ initT04PaymentOverlay({form,cardForm,proceed,showError:message=>{showError('checkout-error',message);showError('checkout-card-error',message)}});
 }
 function orderPage(){
  const order=getOrder(args.get('ref'));

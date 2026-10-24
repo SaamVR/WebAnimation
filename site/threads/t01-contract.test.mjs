@@ -33,7 +33,7 @@ test('T01 remains isolated from T02 and T04 mutations; existing hooks remain pre
  const app=read('app.mjs'),page=read('storefront-pages.mjs');
  assert.match(app,/data-t02-add/);
  assert.match(page,/data-t02-image/);
- assert.match(page,/data-t04-stage/);
+ assert.match(page,/initT04PaymentOverlay/);
  const t01=read('t01-spotlight.mjs');
  assert.doesNotMatch(t01,/addCartItem|startDemoPayment|resolveDemoPayment|fetch\(|\.requestSubmit\(/);
 });

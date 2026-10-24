@@ -37,7 +37,9 @@ test('all five static route pages exist and defer cinematic animations',()=>{
  assert.doesNotMatch(read('storefront-pages.mjs'),/gsap|requestAnimationFrame|anime\(/i);
  assert.ok(read('storefront-pages.mjs').includes('data-t01-card'));
  assert.ok(read('storefront-pages.mjs').includes('data-t02-image'));
- assert.ok(read('storefront-pages.mjs').includes('data-t04-stage'));
+ assert.ok(read('storefront-pages.mjs').includes('initT04PaymentOverlay'));
+ assert.ok(read('storefront-pages.mjs').includes('proceed-payment'));
+ assert.ok(read('t04-payment-overlay.mjs').includes('data-t04-stage'));
 });
 test('homepage search field expands left of its header icon on one row',()=>{
  const home=read('index.html'),style=read('storefront.css');

@@ -20,3 +20,14 @@
 @keyframes t04-processing-turn{to{transform:rotate(360deg)}}
 @media(max-width:540px){.t04-overlay{padding:12px}.t04-overlay__dialog{border-radius:17px;max-height:calc(100dvh - 24px)}.t04-overlay .store-payment-stage{padding:45px 18px 26px}.t04-overlay .store-payment-actions{display:grid;grid-template-columns:1fr;gap:9px}.t04-overlay .store-payment-actions button{width:100%}}
 @media(prefers-reduced-motion:reduce){.t04-pending-spinner{animation:none;border-top-color:#AED5A9}.t04-overlay__dialog{transition:none!important}}
+/* Restore the REAL shared cart/header at the top of every storefront scroll. */
+/* Native step visibility must win over existing authored .store-checkout-form rules. */
+#checkout-form[hidden],#checkout-card-step[hidden]{display:none!important}
+.t04-checkout-steps{min-width:0}
+#checkout-card-step .store-form-grid{margin-bottom:20px}
+#checkout-card-step small{display:block;font-size:11px;color:#68766b;font-weight:400;margin-top:4px}
+.t04-test-warning{font-size:12px;line-height:1.6;background:#f1f5ee;border:1px solid #d1dccd;border-radius:12px;padding:14px;color:#2E453A;margin:15px 0 22px}
+.t04-summary-disclaimer{font-size:11px;line-height:1.55;color:#68766b;margin:11px 0 13px}
+#proceed-payment{margin-top:17px}
+#proceed-payment:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.45)}
+@media (max-width:760px){#checkout-card-step .store-form-grid{gap:12px}}
