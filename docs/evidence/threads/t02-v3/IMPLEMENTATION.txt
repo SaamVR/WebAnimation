@@ -1,7 +1,0 @@
-THREADS T02 V3 Product Cutout Fly-to-Cart
-Reference: source branch SaamVR/WebAnimation. T01 source immutable; V2 checkpoint separate.
-Motion: real clicked media image temporarily cloned (currentSrc, contain, image padding / transform), no background/card copied, direct GSAP x/y translation with progressive scale and deep reduction at entry; existing basket and independently animated wheels catch, token clipped at basket entry.
-State: addCartItem commits before animation; accessible nav aria-label updated synchronously; visible badge visually held until ~1.03s of motion after load; rapid clicks supersede pending visual and settle latest real count; reduced-motion immediate.
-Storewide: same header sticky desktop/mobile with z-index under T01 overlay; homepage, search/shop cards, product detail all use shared function. Shop/search only existing detail links were present; minimal Add to Cart controls added while retaining detail links.
-Testing: 37 source contracts PASS, 62 Chrome choreography checks PASS, 17 extra integration checks PASS on localhost; public Render browser acceptance remains next.
-No T03/T04, no EcomCMS, no code changes to T01 spotlight module. User creative approval pending.
