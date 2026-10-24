@@ -1,0 +1,22 @@
+
+/* T04 overlay: approved card/checkmark geometry and timeline are untouched. */
+.t04-payment-disclosure{font-size:12px;line-height:1.55;color:#627467;margin:22px 0 10px}
+.t04-overlay[hidden]{display:none!important}
+.t04-overlay{position:fixed;inset:0;z-index:5000;display:grid;place-items:center;isolation:isolate;padding:clamp(12px,3vw,28px)}
+.t04-overlay__backdrop{position:absolute;inset:0;background:rgba(23,43,46,.22);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.t04-overlay__dialog{position:relative;z-index:1;width:min(100%,560px);max-height:min(90dvh,850px);overflow:auto;background:#F9F9F7;border:1px solid #E2E7E0;border-radius:23px;box-shadow:0 20px 65px rgba(22,41,35,.18);outline:0;overscroll-behavior:contain}
+.t04-overlay__close{position:absolute;right:13px;top:10px;width:34px;height:34px;border:0;border-radius:50%;background:#E9EDE7;color:#2E453A;display:grid;place-items:center;font-size:25px;cursor:pointer;z-index:3}
+.t04-overlay__close:focus-visible{outline:3px solid #2E453A;outline-offset:2px}
+.t04-overlay__close:disabled{opacity:.45;cursor:not-allowed}
+.t04-overlay .store-payment-stage{max-width:none;min-height:0;margin:0;padding:clamp(26px,5vw,42px) clamp(20px,5vw,38px);border:0;border-radius:23px;background:transparent;text-align:center}
+.t04-overlay .store-payment-stage.t04-is-approved{max-width:none;margin:0;border:0;border-radius:23px;padding:clamp(26px,5vw,42px) clamp(20px,5vw,38px)}
+.t04-overlay .store-payment-actions{justify-content:center}
+.t04-overlay .store-payment-actions .store-primary-btn,.t04-overlay .store-payment-actions .store-outline-btn{white-space:normal}
+.t04-pending,.t04-outcome{max-width:450px;margin:auto}
+.t04-pending .store-badge,.t04-outcome .store-badge{margin-bottom:8px}
+.t04-pending h2,.t04-outcome h2{font-size:clamp(23px,3vw,30px);line-height:1.12}
+.t04-pending .t04-approval-visual{margin-top:0}
+.t04-pending-spinner{display:block;position:absolute;right:0;bottom:0;width:102px;height:102px;border-radius:100%;border:6px solid #AED5A9;border-top-color:#2E453A;box-sizing:border-box;animation:t04-processing-turn 1.7s linear infinite}
+@keyframes t04-processing-turn{to{transform:rotate(360deg)}}
+@media(max-width:540px){.t04-overlay{padding:12px}.t04-overlay__dialog{border-radius:17px;max-height:calc(100dvh - 24px)}.t04-overlay .store-payment-stage{padding:45px 18px 26px}.t04-overlay .store-payment-actions{display:grid;grid-template-columns:1fr;gap:9px}.t04-overlay .store-payment-actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){.t04-pending-spinner{animation:none;border-top-color:#AED5A9}.t04-overlay__dialog{transition:none!important}}

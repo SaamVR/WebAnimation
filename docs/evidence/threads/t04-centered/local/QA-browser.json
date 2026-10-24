@@ -1,0 +1,347 @@
+{
+  "url": "http://127.0.0.1:8778",
+  "checks": [
+    {
+      "name": "desktop cart genuine item",
+      "pass": true
+    },
+    {
+      "name": "desktop left form payment CTA",
+      "pass": true
+    },
+    {
+      "name": "desktop right order summary exists",
+      "pass": true
+    },
+    {
+      "name": "desktop no inline payment stage",
+      "pass": true
+    },
+    {
+      "name": "desktop modal initially hidden",
+      "pass": true
+    },
+    {
+      "name": "desktop native validation blocks invalid fields",
+      "pass": true
+    },
+    {
+      "name": "desktop accessible centered dialog",
+      "pass": true
+    },
+    {
+      "name": "desktop backdrop blur 4px",
+      "pass": true
+    },
+    {
+      "name": "desktop no page jump",
+      "pass": true
+    },
+    {
+      "name": "desktop success not premature",
+      "pass": true
+    },
+    {
+      "name": "desktop overlay horizontally centered",
+      "pass": true,
+      "details": {
+        "x": 443.3039855957031,
+        "width": 553.3920593261719
+      }
+    },
+    {
+      "name": "desktop dialog fits viewport",
+      "pass": true,
+      "details": {
+        "y": 209.25259399414062,
+        "height": 502.7621765136719
+      }
+    },
+    {
+      "name": "desktop approved artwork unchanged",
+      "pass": true
+    },
+    {
+      "name": "desktop real success status",
+      "pass": true
+    },
+    {
+      "name": "desktop order confirmed",
+      "pass": true
+    },
+    {
+      "name": "desktop no money charged",
+      "pass": true
+    },
+    {
+      "name": "desktop cart cleared only after success",
+      "pass": true
+    },
+    {
+      "name": "mobile cart genuine item",
+      "pass": true
+    },
+    {
+      "name": "mobile left form payment CTA",
+      "pass": true
+    },
+    {
+      "name": "mobile right order summary exists",
+      "pass": true
+    },
+    {
+      "name": "mobile no inline payment stage",
+      "pass": true
+    },
+    {
+      "name": "mobile modal initially hidden",
+      "pass": true
+    },
+    {
+      "name": "mobile native validation blocks invalid fields",
+      "pass": true
+    },
+    {
+      "name": "mobile accessible centered dialog",
+      "pass": true
+    },
+    {
+      "name": "mobile backdrop blur 4px",
+      "pass": true
+    },
+    {
+      "name": "mobile no page jump",
+      "pass": true
+    },
+    {
+      "name": "mobile success not premature",
+      "pass": true
+    },
+    {
+      "name": "mobile overlay horizontally centered",
+      "pass": true,
+      "details": {
+        "x": 12.841796875,
+        "width": 364.31640625
+      }
+    },
+    {
+      "name": "mobile dialog fits viewport",
+      "pass": true,
+      "details": {
+        "y": 143.6654052734375,
+        "height": 564.9983520507812
+      }
+    },
+    {
+      "name": "mobile approved artwork unchanged",
+      "pass": true
+    },
+    {
+      "name": "mobile real success status",
+      "pass": true
+    },
+    {
+      "name": "mobile order confirmed",
+      "pass": true
+    },
+    {
+      "name": "mobile no money charged",
+      "pass": true
+    },
+    {
+      "name": "mobile cart cleared only after success",
+      "pass": true
+    },
+    {
+      "name": "reduced cart genuine item",
+      "pass": true
+    },
+    {
+      "name": "reduced left form payment CTA",
+      "pass": true
+    },
+    {
+      "name": "reduced right order summary exists",
+      "pass": true
+    },
+    {
+      "name": "reduced no inline payment stage",
+      "pass": true
+    },
+    {
+      "name": "reduced modal initially hidden",
+      "pass": true
+    },
+    {
+      "name": "reduced native validation blocks invalid fields",
+      "pass": true
+    },
+    {
+      "name": "reduced accessible centered dialog",
+      "pass": true
+    },
+    {
+      "name": "reduced backdrop blur 4px",
+      "pass": true
+    },
+    {
+      "name": "reduced no page jump",
+      "pass": true
+    },
+    {
+      "name": "reduced success not premature",
+      "pass": true
+    },
+    {
+      "name": "reduced overlay horizontally centered",
+      "pass": true,
+      "details": {
+        "x": 12,
+        "width": 366
+      }
+    },
+    {
+      "name": "reduced dialog fits viewport",
+      "pass": true,
+      "details": {
+        "y": 138.1875,
+        "height": 567.609375
+      }
+    },
+    {
+      "name": "reduced order confirmed",
+      "pass": true
+    },
+    {
+      "name": "reduced no money charged",
+      "pass": true
+    },
+    {
+      "name": "reduced cart cleared only after success",
+      "pass": true
+    },
+    {
+      "name": "failed cart genuine item",
+      "pass": true
+    },
+    {
+      "name": "failed left form payment CTA",
+      "pass": true
+    },
+    {
+      "name": "failed right order summary exists",
+      "pass": true
+    },
+    {
+      "name": "failed no inline payment stage",
+      "pass": true
+    },
+    {
+      "name": "failed modal initially hidden",
+      "pass": true
+    },
+    {
+      "name": "failed remains in overlay",
+      "pass": true
+    },
+    {
+      "name": "failed state is not success",
+      "pass": true
+    },
+    {
+      "name": "failed cart remains intact",
+      "pass": true
+    },
+    {
+      "name": "failed recovery buttons",
+      "pass": true
+    },
+    {
+      "name": "failed retry returns to pending",
+      "pass": true
+    },
+    {
+      "name": "failed dialog closes and focus returns",
+      "pass": true
+    },
+    {
+      "name": "cancelled cart genuine item",
+      "pass": true
+    },
+    {
+      "name": "cancelled left form payment CTA",
+      "pass": true
+    },
+    {
+      "name": "cancelled right order summary exists",
+      "pass": true
+    },
+    {
+      "name": "cancelled no inline payment stage",
+      "pass": true
+    },
+    {
+      "name": "cancelled modal initially hidden",
+      "pass": true
+    },
+    {
+      "name": "cancelled remains in overlay",
+      "pass": true
+    },
+    {
+      "name": "cancelled state is not success",
+      "pass": true
+    },
+    {
+      "name": "cancelled cart remains intact",
+      "pass": true
+    },
+    {
+      "name": "cancelled recovery buttons",
+      "pass": true
+    },
+    {
+      "name": "cancelled retry returns to pending",
+      "pass": true
+    },
+    {
+      "name": "cancelled dialog closes and focus returns",
+      "pass": true
+    },
+    {
+      "name": "escape cart genuine item",
+      "pass": true
+    },
+    {
+      "name": "escape left form payment CTA",
+      "pass": true
+    },
+    {
+      "name": "escape right order summary exists",
+      "pass": true
+    },
+    {
+      "name": "escape no inline payment stage",
+      "pass": true
+    },
+    {
+      "name": "escape modal initially hidden",
+      "pass": true
+    },
+    {
+      "name": "Escape cancels pending without success",
+      "pass": true
+    },
+    {
+      "name": "Escape closes recoverable dialog",
+      "pass": true
+    },
+    {
+      "name": "no browser JS exceptions",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "errors": []
+}
