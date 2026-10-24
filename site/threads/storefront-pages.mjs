@@ -4,6 +4,7 @@ import {initT01Spotlight} from './t01-spotlight.mjs';
 import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
 import {playT04Approved} from './t04-payment-approved.mjs';
 import {initT04PaymentOverlay} from './t04-payment-overlay.mjs';
+import {stabilizeCheckoutViewport} from './t04-viewport-stability.mjs';
 import {getCart,cartSummary,cartCount,addCartItem,updateCartItem,removeCartItem,variantAvailable,getFavorites,toggleFavorite,startDemoPayment,resolveDemoPayment,getAttempt,resetAttempt,getOrder} from './store-core.mjs';
 
 const $=id=>document.getElementById(id);
@@ -123,14 +124,14 @@ function checkoutPage(){
    </form>
    <section id="checkout-card-step" class="store-checkout-form" aria-labelledby="card-step-heading" hidden>
     <h2 id="card-step-heading">2. Card Details</h2>
-    <p class="t04-test-warning"><strong>TEST CARDS ONLY — no real payments.</strong> Never enter a real card number or CVV. Use the sample values below; they are not sent to a payment provider or saved.</p>
+    <p class="t04-test-warning"><strong>TEST CARDS ONLY — no real payments.</strong> Never enter a real card number or CVV. Enter sample text in every field; no real card details. Values are not sent to a payment provider or saved.</p>
     <form id="checkout-card-form" autocomplete="off">
      <div class="store-form-grid">
-      <label class="store-col-span">Cardholder name<input name="demoCardholder" type="text" required minlength="2" maxlength="80" autocomplete="off" placeholder="Test Cardholder"></label>
-      <label class="store-col-span">Card number <small>Test: 4242 4242 4242 4242</small>
-       <input name="demoCardNumber" type="text" required inputmode="numeric" maxlength="19" autocomplete="off" placeholder="4242 4242 4242 4242" pattern="4242 4242 4242 4242"></label>
-      <label>Expiration <small>Test: 12/30</small><input name="demoCardExpiry" type="text" required inputmode="numeric" maxlength="5" autocomplete="off" placeholder="12/30" pattern="12/30"></label>
-      <label>CVV <small>Test: 123</small><input name="demoCardCvv" type="password" required inputmode="numeric" maxlength="3" autocomplete="off" placeholder="123" pattern="123"></label>
+      <label class="store-col-span">Cardholder name<input name="demoCardholder" type="text" required autocomplete="off" placeholder="Sample name"></label>
+      <label class="store-col-span">Card number <small>Any sample text</small>
+       <input name="demoCardNumber" type="text" required autocomplete="off" placeholder="Sample card text"></label>
+      <label>Expiration <small>Any sample text</small><input name="demoCardExpiry" type="text" required autocomplete="off" placeholder="Sample expiration"></label>
+      <label>CVV <small>Any sample text</small><input name="demoCardCvv" type="password" required autocomplete="off" placeholder="Sample CVV"></label>
      </div>
      <p id="checkout-card-error" class="store-form-error" role="alert" hidden></p>
      <button type="button" id="back-to-contact" class="store-outline-btn">← Back to contact</button>
@@ -154,6 +155,7 @@ function checkoutPage(){
  });
  back.addEventListener('click',()=>{cardStep.hidden=true;form.hidden=false;cardForm.dispatchEvent(new Event('change',{bubbles:true}));form.elements.name.focus({preventScroll:true})});
  initT04PaymentOverlay({form,cardForm,proceed,showError:message=>{showError('checkout-error',message);showError('checkout-card-error',message)}});
+ stabilizeCheckoutViewport({form,cardForm});
 }
 function orderPage(){
  const order=getOrder(args.get('ref'));

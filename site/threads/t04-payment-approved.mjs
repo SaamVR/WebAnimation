@@ -19,7 +19,7 @@ export async function playT04Approved(stage){
    </div>
    <p class="t04-status-kicker">THREADS · DEMONSTRATION</p>
    <h2>Demo payment approved</h2>
-   <p>Your simulated order was committed successfully. No money was charged.</p>
+   <p>Demo payment · No money charged.</p>
   </div>`;
  stage.setAttribute('tabindex','-1');stage.focus({preventScroll:true});
 

@@ -16,27 +16,37 @@ export function initT04PaymentOverlay({form,cardForm,proceed,showError}){
  const closeButton=overlay.querySelector('#t04-dialog-close'),shell=document.querySelector('#site-shell');
  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
  const motion=loadMotionLibrary();let processing=false,exiting=false,previousFocus,overflow='',token=0;
- const validCard=()=>cardForm.checkValidity() &&
-  cardForm.elements.demoCardNumber.value.replace(/\s/g,'')==='4242424242424242' &&
-  cardForm.elements.demoCardExpiry.value.trim()==='12/30' &&
-  cardForm.elements.demoCardCvv.value==='123' &&
-  cardForm.elements.demoCardholder.value.trim().length>=2;
+ const vv=window.visualViewport;
+ const syncOverlayViewport=()=>{
+  if(overlay.hidden)return;
+  // Safari fixed elements follow the *visual* viewport, including home-indicator area.
+  overlay.style.top=(vv?.offsetTop||0)+'px';
+  overlay.style.left=(vv?.offsetLeft||0)+'px';
+  overlay.style.width=(vv?.width||window.innerWidth)+'px';
+  overlay.style.height=(vv?.height||window.innerHeight)+'px';
+ };
+ vv?.addEventListener('resize',syncOverlayViewport,{passive:true});
+ vv?.addEventListener('scroll',syncOverlayViewport,{passive:true});
+ window.addEventListener('orientationchange',syncOverlayViewport,{passive:true});
+ const fields=['demoCardholder','demoCardNumber','demoCardExpiry','demoCardCvv'];
+ const validCard=()=>fields.every(name=>String(cardForm.elements[name]?.value||'').trim().length>0);
  const sync=()=>{proceed.disabled=processing||cardForm.closest('#checkout-card-step')?.hidden||!form.checkValidity()||!validCard()};
- const clearCard=()=>{for(const key of ['demoCardholder','demoCardNumber','demoCardExpiry','demoCardCvv'])cardForm.elements[key].value='';sync()};
+ const clearCard=()=>{for(const key of fields)cardForm.elements[key].value='';sync()};
  const gsEnter=async()=>{const gs=await motion;if(overlay.hidden)return;
   if(reduce.matches||!gs)return;
   gs.fromTo(dialog,{opacity:0,y:18,scale:.98},{opacity:1,y:0,scale:1,duration:.28,ease:'power2.out',clearProps:'transform,opacity'})};
  const gsExit=async()=>{const gs=await motion;if(!reduce.matches&&gs&&!overlay.hidden)
   await new Promise(done=>gs.to(dialog,{opacity:0,y:10,scale:.985,duration:.18,ease:'power1.in',onComplete:done}))};
  const open=()=>{previousFocus=document.activeElement;overflow=document.body.style.overflow;
-  document.body.style.overflow='hidden';overlay.hidden=false;shell.inert=true;
+  document.activeElement instanceof HTMLElement&&document.activeElement.blur();
+  document.body.style.overflow='hidden';overlay.hidden=false;syncOverlayViewport();shell.inert=true;
   dialog.focus({preventScroll:true});void gsEnter()};
  const close=async()=>{
   if(overlay.hidden||exiting||stage.dataset.t04Stage==='succeeded')return;
   exiting=true;token++;
   if(getAttempt()?.status==='pending')try{resolveDemoPayment('cancelled')}catch{}
   clearCard();await gsExit();
-  overlay.hidden=true;dialog.removeAttribute('style');shell.inert=false;document.body.style.overflow=overflow;
+  overlay.hidden=true;overlay.removeAttribute('style');dialog.removeAttribute('style');shell.inert=false;document.body.style.overflow=overflow;
   resetAttempt();processing=false;sync();(previousFocus?.isConnected?previousFocus:proceed).focus({preventScroll:true});exiting=false;
  };
  const pending=()=>{
@@ -46,8 +56,8 @@ export function initT04PaymentOverlay({form,cardForm,proceed,showError}){
     <span class="t04-demo-card__brand">THREADS</span><span class="t04-demo-card__chip"></span>
     <span class="t04-demo-card__note">PAYMENT SIMULATION</span>
    </div><span class="t04-pending-spinner"></span></div>
-   <span class="store-badge">Processing · Demo</span>
-   <h2>Processing test payment</h2><p>Simulated authorization only. No money is charged.</p>
+   <span class="sr-only" role="status">Processing simulated payment</span>
+   <p class="t04-visual-status-line">Demo payment · No money charged.</p>
   </div>`;
  };
  const failure=message=>{
@@ -62,7 +72,7 @@ export function initT04PaymentOverlay({form,cardForm,proceed,showError}){
   if(processing||exiting||!overlay.hidden)return;
   if(!form.reportValidity())return;
   if(!cardForm.reportValidity()||!validCard()){
-   showError('Use the provided test card 4242 4242 4242 4242, expiry 12/30 and CVV 123. Do not enter real card details.');
+   showError('Enter sample text in all four test-only card fields. Never enter real card details.');
    return;
   }
   processing=true;sync();const current=++token;
@@ -70,7 +80,7 @@ export function initT04PaymentOverlay({form,cardForm,proceed,showError}){
    // Important: only contact/delivery fields are passed to session state, never test PAN/CVV.
    const contact=Object.fromEntries(new FormData(form));
    startDemoPayment({name:contact.name,email:contact.email,phone:contact.phone,city:contact.city,address:contact.address});
-   clearCard();showError('');open();pending();closeButton.focus({preventScroll:true});
+   showError('');open();pending();closeButton.focus({preventScroll:true});
    await new Promise(done=>setTimeout(done,reduce.matches?250:1050));
    if(token!==current||overlay.hidden)return;
    const result=resolveDemoPayment('succeeded');
