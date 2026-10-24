@@ -2,7 +2,7 @@
  * T01 spotlight and T02 symbolic fly-to-cart are isolated approved interactions.
  * T03 backpack reveal and T04 payment cinematics remain unimplemented. */
 import {refreshReferenceCrops} from './art-crops.mjs';
-import {catalog,productMeta,imageUrl,priceTk,safeHTML} from './catalog.mjs';
+import {catalog,productMeta,imageUrl,priceTk,safeHTML,curateShopProducts,merchandisingCategory} from './catalog.mjs';
 import {addCartItem,cartSummary,cartCount,getFavorites,toggleFavorite} from './store-core.mjs';
 import {initInlineSearch} from './search-header.mjs';
 import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
@@ -23,7 +23,11 @@ function productMarkup(p){
 }
 function renderProducts(){
  for(const [group,target] of [['featured','featured-products'],['arrival','arrival-products']]){
-  const list=catalog.filter(p=>p.group===group&&(state.filter==='All'||(state.filter==='Favorites'?getFavorites().has(p.id):p.category===state.filter)));
+  const candidates=group==='featured'
+    ? catalog.filter(p=>p.id==='sho-08'||p.group==='featured')
+    : catalog.filter(p=>p.group===group);
+  const list=curateShopProducts(candidates.filter(p=>state.filter==='All'||
+    (state.filter==='Favorites'?getFavorites().has(p.id):merchandisingCategory(p)===state.filter)));
   byId(target).innerHTML=list.length?list.map(productMarkup).join(''):'<p class="empty-products">No products in this collection.</p>';
  }
  void refreshReferenceCrops();

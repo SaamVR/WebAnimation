@@ -5,11 +5,11 @@ import {catalog,searchCatalog,productMeta,productGallery,galleryAssetManifest,ca
 import {variantAvailable,priceTk,cartKey} from './store-core.mjs';
 const here=import.meta.url;
 const read=p=>readFileSync(new URL(p,here),'utf8');
-test('shared catalog preserves the original ten IDs and adds 29 genuine owner-image mappings',()=>{
- assert.equal(catalog.length,39);
- assert.deepEqual(catalog.slice(0,10).map(p=>p.id),['f1','f2','f3','f4','n1','n2','n3','n4','n5','n6']);
+test('shared catalog removes retired f1 and keeps 29 owner-image mappings',()=>{
+ assert.equal(catalog.length,38);
+ assert.deepEqual(catalog.slice(0,10).map(p=>p.id),['f2','f3','f4','n1','n2','n3','n4','n5','n6','sho-01']);
  assert.equal(catalog.filter(p=>p.group==='catalog').length,29);
- assert.equal(catalog.filter(p=>p.group==='featured').length,4);
+ assert.equal(catalog.filter(p=>p.group==='featured').length,3);
  assert.equal(catalog.filter(p=>p.group==='arrival').length,6);
 });
 test('search matches synonyms, terms, case-insensitive partials and vintage sneaker query',()=>{
@@ -26,7 +26,7 @@ test('variant selection and limited availability are real demo state',()=>{
  assert.equal(variantAvailable(p,'nonexistent','40'),false);
  assert.equal(productMeta(catalog.find(x=>x.id==='f2')).sizes[0],'One Size');
  assert.equal(priceTk(5990),'Tk 5,990');
- assert.equal(cartKey({id:'f1',color:'color-0',size:'40'}),'f1~color-0~40');
+ assert.equal(cartKey({id:'sho-08',color:'color-0',size:'40'}),'sho-08~color-0~40');
 });
 test('all five static route pages exist and defer cinematic animations',()=>{
  for(const p of ['search','product','cart','checkout','order']) {
@@ -50,22 +50,22 @@ test('homepage search field expands left of its header icon on one row',()=>{
  assert.ok(home.includes('href="/cart/"'));
 });
 test('merchandising filters distinguish caps from accessories, and bags from backpacks',()=>{
- assert.deepEqual(catalogFilters.map(x=>x.id),['All','Sneakers','Hats','Bags','Accessories']);
- assert.equal(merchandisingCategory(catalog.find(p=>p.id==='f2')),'Hats');
+ assert.deepEqual(catalogFilters.map(x=>x.id),['All','Sneakers','Bags','Accessories']);
+ assert.equal(merchandisingCategory(catalog.find(p=>p.id==='f2')),'Accessories');
  assert.ok(searchCatalog('Hat').length>=7);
  assert.ok(searchCatalog('CAP').length>=7);
- assert.equal(searchCatalog('', 'Hats').length,7);
- assert.equal(searchCatalog('', 'Accessories').length,8);
+ assert.equal(searchCatalog('', 'Hats').length,15);
+ assert.equal(searchCatalog('', 'Accessories').length,15);
  assert.equal(searchCatalog('Backpack').length,4,'Only genuine backpack images match; duffels do not');
  assert.equal(searchCatalog('duffel').length,4);
  assert.ok(searchCatalog('Vintage Sneakers').length>=3);
  assert.equal(searchCatalog('not-a-product-ever').length,0);
 });
 test('product images support owner-supplied independent gallery views, without invented angles',()=>{
- const p=catalog.find(x=>x.id==='f1');
+ const p=catalog.find(x=>x.id==='f3');
  const old=productGallery(p);
- assert.equal(old.length,1,'unmatched legacy items should show one honest source view');
- assert.ok(old.every(v=>v.asset===p.asset&&!v.isAlternate));
+ assert.equal(old.length,4,'genuine duffel views accompany original cover');
+ assert.equal(old.filter(v=>v.isAlternate).length,3);
  const supplied={asset:'./assets/products/new/cover.webp',gallery:[
   {asset:'./assets/products/new/front.webp',label:'Front'},
   {asset:'./assets/products/new/side.webp',label:'Side profile'},
@@ -84,7 +84,7 @@ test('product images support owner-supplied independent gallery views, without i
 
 test('Batch 1 image mapping, category counts, one honest cover per new product',()=>{
  const latest=catalog.filter(p=>p.group==='catalog');
- assert.deepEqual([['Sneakers',9],['Hats',6],['Bags',7],['Accessories',7]].map(([c,n])=>[c,latest.filter(p=>p.category===c).length,n]),[['Sneakers',9,9],['Hats',6,6],['Bags',7,7],['Accessories',7,7]]);
+ assert.deepEqual([['Sneakers',9],['Bags',7],['Accessories',13]].map(([c,n])=>[c,latest.filter(p=>p.category===c).length,n]),[['Sneakers',9,9],['Bags',7,7],['Accessories',13,13]]);
  assert.equal(new Set(catalog.map(p=>p.id)).size,catalog.length);
  for(const p of latest){
   assert.ok(p.price>0&&Number.isInteger(p.price));
@@ -104,10 +104,10 @@ test('Batch 1 image mapping, category counts, one honest cover per new product',
 
 test('unfiltered Shop groups category-major, row-major and keeps related variations adjacent',()=>{
  const ordered=curateShopProducts(catalog);
- assert.equal(ordered.length,39);
- assert.equal(new Set(ordered.map(p=>p.id)).size,39);
+ assert.equal(ordered.length,38);
+ assert.equal(new Set(ordered.map(p=>p.id)).size,38);
  const sequence=ordered.map(merchandisingCategory);
- const categoryOrder=['Sneakers','Hats','Bags','Accessories'];
+ const categoryOrder=['Sneakers','Bags','Accessories'];
  assert.deepEqual([...new Set(sequence)],categoryOrder);
  for(let i=1;i<sequence.length;i++) assert.ok(categoryOrder.indexOf(sequence[i])>=categoryOrder.indexOf(sequence[i-1]),'Category groups are contiguous');
  const belts=ordered.filter(p=>p.type==='belt');
@@ -130,11 +130,11 @@ test('storefront uses full, absolutely constrained cover images and category hea
  assert.ok(page.includes('fullShop'));
 });
 
-test('Batch 2 gallery manifest maps 119 unique real angles across 36 matching products',()=>{
+test('owner gallery manifest maps 126 authentic angles across 38 products',()=>{
  const matches=catalog.filter(p=>galleryAssetManifest[p.id]);
- assert.equal(matches.length,36);
- assert.equal(Object.values(galleryAssetManifest).reduce((sum,a)=>sum+a.length,0),119);
- assert.deepEqual(catalog.filter(p=>!galleryAssetManifest[p.id]).map(p=>p.id),['f1','f3','f4']);
+ assert.equal(matches.length,38);
+ assert.equal(Object.values(galleryAssetManifest).reduce((sum,a)=>sum+a.length,0),126);
+ assert.deepEqual(catalog.filter(p=>!galleryAssetManifest[p.id]).map(p=>p.id),[]);
  const paths=new Set();
  for(const p of matches){
   const views=productGallery(p);
@@ -147,7 +147,7 @@ test('Batch 2 gallery manifest maps 119 unique real angles across 36 matching pr
    paths.add(view.asset);
   }
  }
- assert.equal(paths.size,119);
+ assert.equal(paths.size,126);
  for(const p of catalog.filter(p=>!galleryAssetManifest[p.id])){
   assert.equal(productGallery(p).length,1);
   assert.equal(productGallery(p)[0].isAlternate,false);

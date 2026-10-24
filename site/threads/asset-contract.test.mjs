@@ -21,9 +21,9 @@ test('Batch 1 product covers exist as genuine WebP files in the site tree',()=>{
  assert.deepEqual(invalid,[],'Expected actual WebP cover images, not placeholder files');
 });
 
-test('All 119 owner Batch 2 gallery angles are real, nonempty WebPs mapped to one product only',()=>{
+test('All 126 owner gallery angles are real, nonempty WebPs mapped to one product only',()=>{
  const all=catalog.filter(p=>galleryAssetManifest[p.id]);
- assert.equal(all.length,36);
+ assert.equal(all.length,38);
  const used=new Set(),missing=[],invalid=[];
  for(const product of all){
    for(const angle of productGallery(product).slice(1)){
@@ -35,7 +35,7 @@ test('All 119 owner Batch 2 gallery angles are real, nonempty WebPs mapped to on
      if(bytes.length<2048 || bytes.toString('ascii',0,4)!=='RIFF' || bytes.toString('ascii',8,12)!=='WEBP')invalid.push(angle.asset);
    }
  }
- assert.equal(used.size,119);
+ assert.equal(used.size,126);
  assert.deepEqual(missing,[],'All Batch 2 collage cutouts must be committed before deploy');
  assert.deepEqual(invalid,[],'Invalid or placeholder gallery media');
 });
