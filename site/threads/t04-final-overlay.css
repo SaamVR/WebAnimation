@@ -1,0 +1,55 @@
+/* T04 final: bare motion only, no white modal surface or pale success flash. */
+.t04-overlay{padding:0;inset:auto;top:0;left:0;width:100vw;height:100dvh;min-height:0;overflow:hidden;place-items:center;box-sizing:border-box;transform:none;background:transparent;}
+.t04-overlay__backdrop{position:absolute;inset:0;width:100%;height:100%;background:rgba(20,39,32,.26);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.t04-overlay__dialog{
+ width:min(100%,480px);max-height:100%;padding:0 14px;box-sizing:border-box;
+ background:transparent!important;border:0!important;border-radius:0!important;
+ box-shadow:none!important;overflow:visible!important;outline:none;
+ color:#f5f7f2;display:grid;place-items:center;
+}
+.t04-overlay .store-payment-stage,
+.t04-overlay .store-payment-stage.t04-is-approved{
+ margin:0!important;padding:20px 0!important;max-width:100%!important;min-height:0;
+ background:transparent!important;background-image:none!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;
+ overflow:visible!important;color:#f5f7f2;
+}
+.t04-overlay .t04-pending,.t04-overlay .t04-approved{max-width:100%;margin:0 auto;overflow:visible}
+.t04-overlay .t04-approval-visual{
+ width:clamp(250px,72vw,330px);height:clamp(185px,47vw,260px);
+ margin:0 auto 8px;overflow:visible;
+}
+.t04-overlay .t04-demo-card{
+ width:clamp(175px,48vw,230px);height:clamp(122px,33vw,158px);
+ left:0;top:22px;padding:19px;border-radius:16px;
+ background:#2E453A!important;color:#fffdf6;box-shadow:0 14px 34px rgba(8,27,18,.22);
+}
+.t04-overlay .t04-demo-card__brand{font-size:clamp(15px,3vw,19px)}
+.t04-overlay .t04-demo-card__chip{width:27px;height:18px}
+.t04-overlay .t04-demo-card__note{font-size:9px}
+.t04-overlay .t04-pending-spinner{
+ width:clamp(133px,35vw,182px);height:clamp(133px,35vw,182px);
+ right:0;bottom:0;border-width:8px;background:transparent;box-shadow:none;
+}
+.t04-overlay .t04-approval-seal{
+ width:clamp(132px,35vw,182px);height:clamp(132px,35vw,182px);right:0;bottom:0;
+}
+.t04-overlay .t04-visual-status-line,
+.t04-overlay .t04-approved>p:last-child{
+ display:block;margin:7px auto 0!important;color:#fffdf6!important;
+ font-size:clamp(13px,3vw,16px)!important;font-weight:600;line-height:1.45;
+ letter-spacing:.005em;text-align:center;white-space:nowrap;
+}
+.t04-overlay .t04-approved .t04-status-kicker,
+.t04-overlay .t04-approved h2{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.t04-overlay__close{right:0;top:0;background:rgba(46,69,58,.82);color:white;z-index:20}
+.t04-overlay .t04-outcome{background:rgba(249,249,247,.98);border-radius:16px;padding:20px;max-width:360px;color:#2E453A}
+.t04-overlay .t04-outcome h2,.t04-overlay .t04-outcome p{color:#2E453A}
+@media(max-width:620px){
+ .t04-overlay__dialog{padding:0 12px}
+ .t04-overlay .store-payment-stage{padding:12px 0!important}
+ .t04-overlay .t04-visual-status-line,.t04-overlay .t04-approved>p:last-child{white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){
+ .t04-overlay .t04-pending-spinner{animation:none!important}
+}

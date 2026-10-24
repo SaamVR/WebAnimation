@@ -168,3 +168,4 @@
 
 /* Shared storefront shell: sticky REAL navigation/cart across all routes. */
 #site-shell > header.site-header.store-site-header{position:sticky;top:0;z-index:75;background:var(--store-bg)}
+\n/* T04 final: retain original real header on downward AND upward scroll. */\n#site-shell > header.site-header.store-site-header{position:sticky!important;top:0!important;transform:none!important;translate:none!important;opacity:1!important;visibility:visible!important;z-index:75}\n
