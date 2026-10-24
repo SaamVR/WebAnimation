@@ -76,14 +76,14 @@ test('Deal of the Week uses one SVG panel and editable accessible copy',()=>{
 });
 
 test('all six approved artwork sections use owned local media and keep their order',()=>{
-  const paths=['header-search.png','header-favorite.png','header-cart.png','featured-yellow-cap-owner-20261018.webp','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp','editorial-main.webp','editorial-detail-1.webp','editorial-detail-2.webp','editorial-detail-3.webp','editorial-detail-4.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp','deal-backpack-static-20261020.png'];
+  const paths=['header-search.png','header-favorite.png','header-cart.png','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp','editorial-main.webp','editorial-detail-1.webp','editorial-detail-2.webp','editorial-detail-3.webp','editorial-detail-4.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp','deal-backpack-static-20261020.png'];
   for(const name of paths){
     assert.ok(readFileSync(new URL('../../site/threads/assets/'+name,import.meta.url)).length>800,'missing/empty '+name);
   }
   assert.ok(readFileSync(new URL('../../site/threads/assets/products/sho-08/cover.webp',import.meta.url)).length>8000);
   assert.ok(html.includes('./artwork-review-20261018.css'));
   for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-complete-20261018.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp','deal-backpack-static-20261020.png']) assert.ok(html.includes(name),'not wired '+name);
-  for(const name of ['featured-yellow-cap-owner-20261018.webp','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp']) assert.ok(script.includes(name),'not wired '+name);
+  for(const name of ['featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp']) assert.ok(script.includes(name),'not wired '+name);
   assert.doesNotMatch(html,/data-ref-img="editorial|data-ref-img="campaign"|data-ref-img="sale"/);
   assert.match(html,/id="featured-products"/);
   assert.match(html,/id="arrival-products"/);
@@ -92,7 +92,8 @@ test('all six approved artwork sections use owned local media and keep their ord
 test('browser-safe asset layer retains exact product photos and deal compositing',()=>{
  const compat=readFileSync(new URL('../../site/threads/artwork-paint-fix-20261018.css',import.meta.url),'utf8');
  assert.ok(html.includes('artwork-paint-fix-20261018.css'));
- for(const name of ["featured-yellow-cap-owner-20261018.webp","featured-orange-duffel-owner-20261018.webp","featured-black-headphones-owner-20261018.webp"]){
+ assert.ok(readFileSync(new URL('../../site/threads/assets/products/f2/cover.webp',import.meta.url)).length>2000);
+ for(const name of ["featured-orange-duffel-owner-20261018.webp","featured-black-headphones-owner-20261018.webp"]){
    assert.ok(script.includes(name));
    assert.ok(readFileSync(new URL('../../site/threads/assets/'+name,import.meta.url)).length>2000);
  }
@@ -173,7 +174,7 @@ test('three complete top-row owner shoes are local and no longer overridden by a
 
 test('2026-10-18 latest owner featured art and three previously approved bottom-row shoes',()=>{
   const source=readFileSync(new URL('../../site/threads/catalog.mjs',import.meta.url),'utf8');
-  for(const filename of ['featured-yellow-cap-owner-20261018.webp','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp','arrival-bottom-orange-cream-20261018.webp','arrival-bottom-lime-20261018.webp','arrival-bottom-black-teal-20261018.webp']){
+  for(const filename of ['featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp','arrival-bottom-orange-cream-20261018.webp','arrival-bottom-lime-20261018.webp','arrival-bottom-black-teal-20261018.webp']){
     assert.ok(source.includes(filename),filename);
     assert.ok(readFileSync(new URL('../../site/threads/assets/'+filename,import.meta.url)).length>12000,filename);
   }
@@ -202,7 +203,7 @@ test('homepage features the existing sho-08 replacement plus f2, f3 and f4, with
  for(const name of ['Sunburst Baseball Cap','Orange Weekender Duffel','Studio Wireless Headphones'])
   assert.ok(source.includes(name),name);
  assert.ok(!source.includes('Olive Sport Runner'));
- for(const asset of ['featured-yellow-cap-owner-20261018.webp','featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp'])
+ for(const asset of ['featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp'])
   assert.ok(source.includes(asset),asset);
  assert.ok(readFileSync(new URL('../../site/threads/assets/products/sho-08/cover.webp',import.meta.url)).length>8000);
  assert.ok(html.includes('app.mjs?v=t02-v3-20261019'));

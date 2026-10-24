@@ -130,10 +130,10 @@ test('storefront uses full, absolutely constrained cover images and category hea
  assert.ok(page.includes('fullShop'));
 });
 
-test('owner gallery manifest maps 126 authentic angles across 38 products',()=>{
+test('owner gallery manifest maps 120 authentic distinct angles across 38 products',()=>{
  const matches=catalog.filter(p=>galleryAssetManifest[p.id]);
  assert.equal(matches.length,38);
- assert.equal(Object.values(galleryAssetManifest).reduce((sum,a)=>sum+a.length,0),126);
+ assert.equal(Object.values(galleryAssetManifest).reduce((sum,a)=>sum+a.length,0),120);
  assert.deepEqual(catalog.filter(p=>!galleryAssetManifest[p.id]).map(p=>p.id),[]);
  const paths=new Set();
  for(const p of matches){
@@ -147,7 +147,7 @@ test('owner gallery manifest maps 126 authentic angles across 38 products',()=>{
    paths.add(view.asset);
   }
  }
- assert.equal(paths.size,126);
+ assert.equal(paths.size,120);
  for(const p of catalog.filter(p=>!galleryAssetManifest[p.id])){
   assert.equal(productGallery(p).length,1);
   assert.equal(productGallery(p)[0].isAlternate,false);

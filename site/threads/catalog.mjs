@@ -1,5 +1,5 @@
 export const catalog = [
-  { id:'f2', group:'featured', asset:'./assets/featured-yellow-cap-owner-20261018.webp', name:'Sunburst Baseball Cap', subtitle:'Yellow / Navy Everyday Cap', category:'Accessories', type:'cap', price:1390, swatches:['#f5ad1d','#192740','#e6dfcf'], image:'feat-2' },
+  { id:'f2', group:'featured', asset:'./assets/products/f2/cover.webp', name:'Sunburst Baseball Cap', subtitle:'Yellow / Navy Everyday Cap', category:'Accessories', type:'cap', price:1390, swatches:['#f5ad1d','#192740','#e6dfcf'], image:'feat-2' },
   { id:'f3', group:'featured', asset:'./assets/featured-orange-duffel-owner-20261018.webp', name:'Orange Weekender Duffel', subtitle:'Orange / Travel Duffel Bag', category:'Bags', type:'duffel', price:4490, swatches:['#d46a24','#292b2e','#e7d5bd'], image:'feat-3' },
   { id:'f4', group:'featured', asset:'./assets/featured-black-headphones-owner-20261018.webp', name:'Studio Wireless Headphones', subtitle:'Black / Over-Ear Audio', category:'Accessories', type:'headphones', price:8990, swatches:['#222427','#3b4e61','#dcd7c9'], image:'feat-4' },
   { id:'n1', group:'arrival', asset:'./assets/arrival-aqua-runner.webp', name:'Aqua Motion Runner', subtitle:'Aqua / Coral Everyday Sneaker', category:'Sneakers', price:5490, swatches:['#b4d4d3','#ef565c','#b9da52'], image:'arrival-1' },
@@ -26,7 +26,7 @@ export const catalog = [
   {"id":"bag-01","group":"catalog","asset":"./assets/products/bag-01/cover.webp","name":"Forest Everyday Backpack","subtitle":"Forest Green / City Backpack","category":"Bags","type":"backpack","price":3990,"swatches":["#10563e"],"colors":[{"id":"color-0","name":"Forest green","hex":"#10563e"}],"sizes":["One Size"],"description":"A practical backpack for commutes, study or travel. Owner-supplied photograph; illustrative THREADS demo price.","tags":["backpack","school","commuter","everyday","rucksack"],"gallery":[{"asset":"./assets/products/bag-01/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"bag-02","group":"catalog","asset":"./assets/products/bag-02/cover.webp","name":"Olive Utility Backpack","subtitle":"Olive / Organizer Backpack","category":"Bags","type":"backpack","price":4690,"swatches":["#677f3e"],"colors":[{"id":"color-0","name":"Olive","hex":"#677f3e"}],"sizes":["One Size"],"description":"A practical backpack for commutes, study or travel. Owner-supplied photograph; illustrative THREADS demo price.","tags":["backpack","rucksack","travel","utility","organizer"],"gallery":[{"asset":"./assets/products/bag-02/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"bag-03","group":"catalog","asset":"./assets/products/bag-03/cover.webp","name":"Navy Gold Trek Pack","subtitle":"Navy / Mustard Hiking Backpack","category":"Bags","type":"backpack","price":8990,"swatches":["#21375a"],"colors":[{"id":"color-0","name":"Navy","hex":"#21375a"}],"sizes":["One Size"],"description":"A practical backpack for commutes, study or travel. Owner-supplied photograph; illustrative THREADS demo price.","tags":["backpack","hiking","trekking","travel","large","outdoors"],"gallery":[{"asset":"./assets/products/bag-03/cover.webp","label":"Owner-supplied cover view"}]},
-  {"id":"bag-04","group":"catalog","asset":"./assets/products/bag-04/cover.webp","name":"Mustard City Backpack","subtitle":"Mustard Yellow / Everyday Pack","category":"Bags","type":"backpack","price":3990,"swatches":["#d2a218"],"colors":[{"id":"color-0","name":"Mustard","hex":"#d2a218"}],"sizes":["One Size"],"description":"A practical backpack for commutes, study or travel. Owner-supplied photograph; illustrative THREADS demo price.","tags":["backpack","school","daypack","casual","canvas"],"gallery":[{"asset":"./assets/products/bag-04/cover.webp","label":"Owner-supplied cover view"}]},
+  {"id":"bag-04","group":"catalog","asset":"./assets/products/bag-04/cover.webp","name":"Mustard City Backpack","subtitle":"Mustard Yellow / Everyday Pack","category":"Bags","type":"backpack","price":3990,"swatches":["#d2a218"],"colors":[{"id":"color-0","name":"Mustard","hex":"#d2a218"}],"sizes":["One Size"],"description":"A practical backpack for commutes, study or travel. Owner-supplied photograph; illustrative THREADS demo price.","tags":["backpack","school","daypack","casual","canvas"],"gallery":[{"asset":"./assets/products/bag-04/cover.webp","label":"Owner-supplied front cover view"}]},
   {"id":"bag-05","group":"catalog","asset":"./assets/products/bag-05/cover.webp","name":"Burgundy Weekender Duffel","subtitle":"Burgundy / Travel Holdall","category":"Bags","type":"duffel","price":4990,"swatches":["#a5424c"],"colors":[{"id":"color-0","name":"Burgundy","hex":"#a5424c"}],"sizes":["One Size"],"description":"An easy-carry duffel for weekend travel or gym essentials. Owner-supplied photograph; illustrative THREADS demo price.","tags":["bag","duffel","weekender","travel","holdall","overnight"],"gallery":[{"asset":"./assets/products/bag-05/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"bag-06","group":"catalog","asset":"./assets/products/bag-06/cover.webp","name":"Graphite Travel Duffel","subtitle":"Graphite Grey / Travel Holdall","category":"Bags","type":"duffel","price":4890,"swatches":["#777a77"],"colors":[{"id":"color-0","name":"Graphite grey","hex":"#777a77"}],"sizes":["One Size"],"description":"An easy-carry duffel for weekend travel or gym essentials. Owner-supplied photograph; illustrative THREADS demo price.","tags":["bag","duffel","gym","weekender","travel","charcoal"],"gallery":[{"asset":"./assets/products/bag-06/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"bag-07","group":"catalog","asset":"./assets/products/bag-07/cover.webp","name":"Cobalt Campus Duffel","subtitle":"Royal Blue / Athletic Holdall","category":"Bags","type":"duffel","price":3790,"swatches":["#2866ae"],"colors":[{"id":"color-0","name":"Royal blue","hex":"#2866ae"}],"sizes":["One Size"],"description":"An easy-carry duffel for weekend travel or gym essentials. Owner-supplied photograph; illustrative THREADS demo price.","tags":["bag","duffel","gym","campus","training","weekend"],"gallery":[{"asset":"./assets/products/bag-07/cover.webp","label":"Owner-supplied cover view"}]},
@@ -68,7 +68,6 @@ export const galleryAssetManifest = Object.freeze({
   ],
   "acc-03": [
     "front",
-    "angled",
     "profile",
     "side"
   ],
@@ -89,19 +88,18 @@ export const galleryAssetManifest = Object.freeze({
   ],
   "acc-07": [
     "front",
-    "angled",
     "profile",
     "side"
   ],
   "bag-01": [
     "front",
-    "angled",
-    "side"
+    "side",
+    "angled"
   ],
   "bag-02": [
     "front",
-    "angled",
-    "side"
+    "side",
+    "angled"
   ],
   "bag-03": [
     "front",
@@ -109,14 +107,13 @@ export const galleryAssetManifest = Object.freeze({
     "side"
   ],
   "bag-04": [
-    "front",
-    "angled",
-    "side"
+    "side",
+    "angled"
   ],
   "bag-05": [
     "front",
-    "angled",
-    "side"
+    "side",
+    "angled"
   ],
   "bag-06": [
     "front",
@@ -130,13 +127,11 @@ export const galleryAssetManifest = Object.freeze({
   ],
   "f2": [
     "front",
-    "angled",
     "profile",
     "rear"
   ],
   "hat-01": [
     "front",
-    "angled",
     "profile",
     "rear"
   ],
@@ -154,7 +149,6 @@ export const galleryAssetManifest = Object.freeze({
   ],
   "hat-04": [
     "front",
-    "angled",
     "profile",
     "rear"
   ],
