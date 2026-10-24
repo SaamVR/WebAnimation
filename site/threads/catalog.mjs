@@ -1,8 +1,7 @@
 export const catalog = [
-  { id:'f1', group:'featured', asset:'./assets/featured-olive-sneaker-owner-20261018.webp', name:'Olive Sport Runner', subtitle:'Olive / Everyday Sneaker', category:'Sneakers', price:5990, swatches:['#596639','#e6dfcf','#292b25'], image:'feat-1' },
   { id:'f2', group:'featured', asset:'./assets/featured-yellow-cap-owner-20261018.webp', name:'Sunburst Baseball Cap', subtitle:'Yellow / Navy Everyday Cap', category:'Accessories', type:'cap', price:1390, swatches:['#f5ad1d','#192740','#e6dfcf'], image:'feat-2' },
-  { id:'f3', group:'featured', asset:'./assets/featured-orange-duffel-owner-20261018.webp', name:'Orange Weekender Duffel', subtitle:'Orange / Travel Duffel Bag', category:'Bags', price:4490, swatches:['#d46a24','#292b2e','#e7d5bd'], image:'feat-3' },
-  { id:'f4', group:'featured', asset:'./assets/featured-black-headphones-owner-20261018.webp', name:'Studio Wireless Headphones', subtitle:'Black / Over-Ear Audio', category:'Accessories', price:8990, swatches:['#222427','#3b4e61','#dcd7c9'], image:'feat-4' },
+  { id:'f3', group:'featured', asset:'./assets/featured-orange-duffel-owner-20261018.webp', name:'Orange Weekender Duffel', subtitle:'Orange / Travel Duffel Bag', category:'Bags', type:'duffel', price:4490, swatches:['#d46a24','#292b2e','#e7d5bd'], image:'feat-3' },
+  { id:'f4', group:'featured', asset:'./assets/featured-black-headphones-owner-20261018.webp', name:'Studio Wireless Headphones', subtitle:'Black / Over-Ear Audio', category:'Accessories', type:'headphones', price:8990, swatches:['#222427','#3b4e61','#dcd7c9'], image:'feat-4' },
   { id:'n1', group:'arrival', asset:'./assets/arrival-aqua-runner.webp', name:'Aqua Motion Runner', subtitle:'Aqua / Coral Everyday Sneaker', category:'Sneakers', price:5490, swatches:['#b4d4d3','#ef565c','#b9da52'], image:'arrival-1' },
   { id:'n2', group:'arrival', asset:'./assets/arrival-crimson-runner.webp', name:'Crimson Track Runner', subtitle:'Crimson / Black Athletic Sneaker', category:'Sneakers', price:4690, swatches:['#c71937','#161718','#e2e0d9'], image:'arrival-2' },
   { id:'n3', group:'arrival', asset:'./assets/arrival-amber-runner.webp', name:'Amber Street Runner', subtitle:'Mustard / Black Everyday Sneaker', category:'Sneakers', price:4990, swatches:['#f5b820','#1a1b1b','#e5e4de'], image:'arrival-3' },
@@ -18,12 +17,12 @@ export const catalog = [
   {"id":"sho-07","group":"catalog","asset":"./assets/products/sho-07/cover.webp","name":"Cocoa Vintage Runner","subtitle":"Chocolate / Everyday Sneaker","category":"Sneakers","type":"sneaker","price":6490,"swatches":["#613f2e"],"colors":[{"id":"color-0","name":"Chocolate","hex":"#613f2e"}],"sizes":["38","39","40","41","42","43","44"],"description":"A versatile sneaker silhouette for everyday styling. Image supplied by the owner; catalog name and BDT price are illustrative demo metadata.","tags":["vintage","retro","brown","leather","classic","heritage"],"gallery":[{"asset":"./assets/products/sho-07/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"sho-08","group":"catalog","asset":"./assets/products/sho-08/cover.webp","name":"Olive Trail Tech","subtitle":"Olive / Technical Running Sneaker","category":"Sneakers","type":"sneaker","price":7290,"swatches":["#59634a"],"colors":[{"id":"color-0","name":"Olive","hex":"#59634a"}],"sizes":["38","39","40","41","42","43","44"],"description":"A versatile sneaker silhouette for everyday styling. Image supplied by the owner; catalog name and BDT price are illustrative demo metadata.","tags":["trail","runner","olive","technical","outdoor","sport"],"gallery":[{"asset":"./assets/products/sho-08/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"sho-09","group":"catalog","asset":"./assets/products/sho-09/cover.webp","name":"Deep Teal Heritage Runner","subtitle":"Teal / Retro Everyday Sneaker","category":"Sneakers","type":"sneaker","price":6790,"swatches":["#174947"],"colors":[{"id":"color-0","name":"Deep teal","hex":"#174947"}],"sizes":["38","39","40","41","42","43","44"],"description":"A versatile sneaker silhouette for everyday styling. Image supplied by the owner; catalog name and BDT price are illustrative demo metadata.","tags":["vintage","retro","teal","green","heritage"],"gallery":[{"asset":"./assets/products/sho-09/cover.webp","label":"Owner-supplied cover view"}]},
-  {"id":"hat-01","group":"catalog","asset":"./assets/products/hat-01/cover.webp","name":"Sky Blue Two-Tone Cap","subtitle":"Sky Blue / Forest Brim","category":"Hats","type":"cap","price":1590,"swatches":["#a4dce9"],"colors":[{"id":"color-0","name":"Sky blue","hex":"#a4dce9"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["baseball","cap","two","tone","threads","sky","blue","forest","green"],"gallery":[{"asset":"./assets/products/hat-01/cover.webp","label":"Owner-supplied cover view"}]},
-  {"id":"hat-02","group":"catalog","asset":"./assets/products/hat-02/cover.webp","name":"Charcoal THREADS Cap","subtitle":"Washed Black / Logo Cap","category":"Hats","type":"cap","price":1490,"swatches":["#2b2b2b"],"colors":[{"id":"color-0","name":"Charcoal","hex":"#2b2b2b"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["black","charcoal","baseball","threads"],"gallery":[{"asset":"./assets/products/hat-02/cover.webp","label":"Owner-supplied cover view"}]},
-  {"id":"hat-03","group":"catalog","asset":"./assets/products/hat-03/cover.webp","name":"Terracotta THREADS Cap","subtitle":"Terracotta / Logo Cap","category":"Hats","type":"cap","price":1490,"swatches":["#a44331"],"colors":[{"id":"color-0","name":"Terracotta","hex":"#a44331"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["rust","terracotta","red","baseball","threads"],"gallery":[{"asset":"./assets/products/hat-03/cover.webp","label":"Owner-supplied cover view"}]},
-  {"id":"hat-04","group":"catalog","asset":"./assets/products/hat-04/cover.webp","name":"Sunshine Monogram Cap","subtitle":"Yellow / Orange Brim","category":"Hats","type":"cap","price":1390,"swatches":["#ffce00"],"colors":[{"id":"color-0","name":"Yellow","hex":"#ffce00"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["two","tone","yellow","orange","monogram","baseball"],"gallery":[{"asset":"./assets/products/hat-04/cover.webp","label":"Owner-supplied cover view"}]},
-  {"id":"hat-05","group":"catalog","asset":"./assets/products/hat-05/cover.webp","name":"Burgundy Corduroy Cap","subtitle":"Burgundy / Heritage Lettering","category":"Hats","type":"cap","price":1690,"swatches":["#643139"],"colors":[{"id":"color-0","name":"Burgundy","hex":"#643139"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["corduroy","burgundy","maroon","threads","heritage"],"gallery":[{"asset":"./assets/products/hat-05/cover.webp","label":"Owner-supplied cover view"}]},
-  {"id":"hat-06","group":"catalog","asset":"./assets/products/hat-06/cover.webp","name":"Navy Script Cap","subtitle":"Navy / Embroidered Monogram","category":"Hats","type":"cap","price":1590,"swatches":["#1d304b"],"colors":[{"id":"color-0","name":"Navy","hex":"#1d304b"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["baseball","navy","blue","monogram","embroidered"],"gallery":[{"asset":"./assets/products/hat-06/cover.webp","label":"Owner-supplied cover view"}]},
+  {"id":"hat-01","group":"catalog","asset":"./assets/products/hat-01/cover.webp","name":"Sky Blue Two-Tone Cap","subtitle":"Sky Blue / Forest Brim","category":"Accessories","type":"cap","price":1590,"swatches":["#a4dce9"],"colors":[{"id":"color-0","name":"Sky blue","hex":"#a4dce9"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["baseball","cap","two","tone","threads","sky","blue","forest","green"],"gallery":[{"asset":"./assets/products/hat-01/cover.webp","label":"Owner-supplied cover view"}]},
+  {"id":"hat-02","group":"catalog","asset":"./assets/products/hat-02/cover.webp","name":"Charcoal THREADS Cap","subtitle":"Washed Black / Logo Cap","category":"Accessories","type":"cap","price":1490,"swatches":["#2b2b2b"],"colors":[{"id":"color-0","name":"Charcoal","hex":"#2b2b2b"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["black","charcoal","baseball","threads"],"gallery":[{"asset":"./assets/products/hat-02/cover.webp","label":"Owner-supplied cover view"}]},
+  {"id":"hat-03","group":"catalog","asset":"./assets/products/hat-03/cover.webp","name":"Terracotta THREADS Cap","subtitle":"Terracotta / Logo Cap","category":"Accessories","type":"cap","price":1490,"swatches":["#a44331"],"colors":[{"id":"color-0","name":"Terracotta","hex":"#a44331"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["rust","terracotta","red","baseball","threads"],"gallery":[{"asset":"./assets/products/hat-03/cover.webp","label":"Owner-supplied cover view"}]},
+  {"id":"hat-04","group":"catalog","asset":"./assets/products/hat-04/cover.webp","name":"Sunshine Monogram Cap","subtitle":"Yellow / Orange Brim","category":"Accessories","type":"cap","price":1390,"swatches":["#ffce00"],"colors":[{"id":"color-0","name":"Yellow","hex":"#ffce00"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["two","tone","yellow","orange","monogram","baseball"],"gallery":[{"asset":"./assets/products/hat-04/cover.webp","label":"Owner-supplied cover view"}]},
+  {"id":"hat-05","group":"catalog","asset":"./assets/products/hat-05/cover.webp","name":"Burgundy Corduroy Cap","subtitle":"Burgundy / Heritage Lettering","category":"Accessories","type":"cap","price":1690,"swatches":["#643139"],"colors":[{"id":"color-0","name":"Burgundy","hex":"#643139"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["corduroy","burgundy","maroon","threads","heritage"],"gallery":[{"asset":"./assets/products/hat-05/cover.webp","label":"Owner-supplied cover view"}]},
+  {"id":"hat-06","group":"catalog","asset":"./assets/products/hat-06/cover.webp","name":"Navy Script Cap","subtitle":"Navy / Embroidered Monogram","category":"Accessories","type":"cap","price":1590,"swatches":["#1d304b"],"colors":[{"id":"color-0","name":"Navy","hex":"#1d304b"}],"sizes":["One Size"],"description":"An embroidered or printed everyday cap for easy styling. Owner-supplied photograph; illustrative THREADS demo price.","tags":["baseball","navy","blue","monogram","embroidered"],"gallery":[{"asset":"./assets/products/hat-06/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"bag-01","group":"catalog","asset":"./assets/products/bag-01/cover.webp","name":"Forest Everyday Backpack","subtitle":"Forest Green / City Backpack","category":"Bags","type":"backpack","price":3990,"swatches":["#10563e"],"colors":[{"id":"color-0","name":"Forest green","hex":"#10563e"}],"sizes":["One Size"],"description":"A practical backpack for commutes, study or travel. Owner-supplied photograph; illustrative THREADS demo price.","tags":["backpack","school","commuter","everyday","rucksack"],"gallery":[{"asset":"./assets/products/bag-01/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"bag-02","group":"catalog","asset":"./assets/products/bag-02/cover.webp","name":"Olive Utility Backpack","subtitle":"Olive / Organizer Backpack","category":"Bags","type":"backpack","price":4690,"swatches":["#677f3e"],"colors":[{"id":"color-0","name":"Olive","hex":"#677f3e"}],"sizes":["One Size"],"description":"A practical backpack for commutes, study or travel. Owner-supplied photograph; illustrative THREADS demo price.","tags":["backpack","rucksack","travel","utility","organizer"],"gallery":[{"asset":"./assets/products/bag-02/cover.webp","label":"Owner-supplied cover view"}]},
   {"id":"bag-03","group":"catalog","asset":"./assets/products/bag-03/cover.webp","name":"Navy Gold Trek Pack","subtitle":"Navy / Mustard Hiking Backpack","category":"Bags","type":"backpack","price":8990,"swatches":["#21375a"],"colors":[{"id":"color-0","name":"Navy","hex":"#21375a"}],"sizes":["One Size"],"description":"A practical backpack for commutes, study or travel. Owner-supplied photograph; illustrative THREADS demo price.","tags":["backpack","hiking","trekking","travel","large","outdoors"],"gallery":[{"asset":"./assets/products/bag-03/cover.webp","label":"Owner-supplied cover view"}]},
@@ -43,15 +42,18 @@ export const catalog = [
 export const catalogFilters = Object.freeze([
   {id:'All', label:'All Products'},
   {id:'Sneakers', label:'Shoes / Sneakers'},
-  {id:'Hats', label:'Hats / Caps'},
   {id:'Bags', label:'Backpacks / Bags'},
   {id:'Accessories', label:'Accessories'}
 ]);
 export const merchandisingCategory = product =>
-  product.type==='cap'||product.category==='Hats' ? 'Hats' : product.category;
+  product.type==='cap'||product.category==='Hats' ? 'Accessories' : product.category;
+export const normalizeCatalogCategory = category =>
+  category==='Hats'||category==='Caps' ? 'Accessories' : category;
 // Batch 2: mapped strictly to authenticated owner collage cutouts, not synthetic views.
 // Gallery paths are kept independent of the product cover image for future T02 overlays.
 export const galleryAssetManifest = Object.freeze({
+  "f3": ["front","side","angled"],
+  "f4": ["front","profile","side","angled"],
   "acc-01": [
     "front",
     "angled",
@@ -262,26 +264,37 @@ export function productGallery(product) {
     }));
   return [{asset:product.asset,label:'Catalog cover image',crop:0,isAlternate:false}];
 }
-// Rotate categories on the unfiltered Shop page after the four familiar feature cards.
-// Search relevance and filtered-category order stay untouched.
-export function curateShopProducts(products) {
-  // Deterministic category-major merchandising; never column-cycle categories.
-  const order=['Sneakers','Hats','Bags','Accessories'];
-  const subtype={Bags:['backpack','duffel'],Accessories:['belt','bottle','watch','headphones']};
-  const rank=(list,value)=>{const n=list?.indexOf(value);return n===undefined||n<0?999:n};
-  return [...products].sort((a,b)=>
-    rank(order,merchandisingCategory(a))-rank(order,merchandisingCategory(b)) ||
-    rank(subtype[merchandisingCategory(a)],a.type||a.id==='f4'&&'headphones')-rank(subtype[merchandisingCategory(b)],b.type||b.id==='f4'&&'headphones') ||
+// Deterministic category -> subtype -> A-Z merchandising, also for filtered Shop.
+export const categoryOrder = Object.freeze(['Sneakers','Bags','Accessories']);
+export const subtypeOrder = Object.freeze({
+  Sneakers:['sneaker'],
+  Bags:['backpack','duffel'],
+  Accessories:['cap','belt','bottle','watch','headphones']
+});
+export function catalogProductType(product){
+ if(product.type)return product.type;
+ if(product.category==='Sneakers')return 'sneaker';
+ if(product.id==='f3')return 'duffel';
+ if(product.id==='f4')return 'headphones';
+ if(product.category==='Bags')return 'backpack';
+ return 'accessory';
+}
+export function curateShopProducts(products){
+ const index=(order,value)=>{const n=order?.indexOf(value)??-1;return n<0?999:n};
+ return [...products].sort((a,b)=>{
+  const ca=merchandisingCategory(a),cb=merchandisingCategory(b);
+  return index(categoryOrder,ca)-index(categoryOrder,cb) ||
+    index(subtypeOrder[ca],catalogProductType(a))-index(subtypeOrder[cb],catalogProductType(b)) ||
     a.name.localeCompare(b.name,'en',{sensitivity:'base'}) ||
-    a.id.localeCompare(b.id)
-  );
+    a.id.localeCompare(b.id);
+ });
 }
 export const catalogById = Object.freeze(Object.fromEntries(catalog.map(product=>[product.id, product])));
 export const imageUrl = product => '/'+(product.asset || product.fallback || '').replace(/^\.\//,'');
 export const priceTk = amount => 'Tk ' + Math.round(amount).toLocaleString('en-BD');
 export const safeHTML = value => String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const sneakerIds = new Set(['f1','n1','n2','n3','n4','n5','n6']);
-const vintageIds = new Set(['f1','n2','n3','n4','n6']);
+const sneakerIds = new Set(['n1','n2','n3','n4','n5','n6']);
+const vintageIds = new Set(['n2','n3','n4','n6']);
 export const productMeta = product => ({
   id:product.id,
   description: product.description || (product.category==='Sneakers'
@@ -290,7 +303,7 @@ export const productMeta = product => ({
       ? 'A practical everyday travel companion with a standout finish. Illustrative THREADS demo product.'
       : 'Everyday accessory with a clean, versatile finish. Illustrative THREADS demo product.'),
   colors: Array.isArray(product.colors)&&product.colors.length ? product.colors : product.swatches.map((hex,i)=>({id:'color-'+i,name:({
-    f1:['Olive','Ivory','Charcoal'],f2:['Yellow','Navy','Cream'],f3:['Orange','Black','Sand'],
+    f2:['Yellow','Navy','Cream'],f3:['Orange','Black','Sand'],
     f4:['Black','Slate','Ivory'],n1:['Aqua','Coral','Lime'],n2:['Crimson','Black','Ivory'],
     n3:['Amber','Black','White'],n4:['Orange','Black','Cream'],n5:['Lime','Graphite','Ivory'],
     n6:['Black','Teal','Grey']
@@ -303,7 +316,7 @@ export const productMeta = product => ({
     product.type==='backpack'?'backpack backpacks rucksack daypack':'',
     product.type==='duffel'||product.id==='f3'?'duffel weekender luggage':'',
     merchandisingCategory(product)==='Accessories'?'accessories accessory':'',
-    merchandisingCategory(product)==='Hats'?'cap caps hat hats headwear baseball':'',
+    catalogProductType(product)==='cap'?'cap caps hat hats headwear baseball':'',
     product.id==='f4'?'headphones audio earphones':'',
     vintageIds.has(product.id)?'vintage retro classic heritage inspired sneakers':'',
     product.group==='arrival'?'new arrivals new':'',
@@ -312,9 +325,9 @@ export const productMeta = product => ({
 });
 export function searchCatalog(query='',category=''){
   const tokens=String(query).toLowerCase().trim().split(/\s+/).filter(Boolean).map(t=>t.endsWith('s')&&t.length>4?t.slice(0,-1):t);
-  return catalog.filter(p=>{
-    if(category && category!=='All' && merchandisingCategory(p).toLowerCase()!==category.toLowerCase())return false;
+  return curateShopProducts(catalog.filter(p=>{
+    if(category && category!=='All' && merchandisingCategory(p).toLowerCase()!==normalizeCatalogCategory(category).toLowerCase())return false;
     const hay=(p.name+' '+p.subtitle+' '+merchandisingCategory(p)+' '+productMeta(p).keywords).toLowerCase();
     return tokens.every(token=>hay.includes(token));
-  });
+  }));
 }
