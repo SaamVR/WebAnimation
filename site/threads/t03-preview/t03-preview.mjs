@@ -31,7 +31,6 @@ function seek(t){
 function reset(){
  if(phase==='loading')return;
  clearTimeout(timer);phase='closed';
- for(const el of tracks){el.style.removeProperty('transform');el.style.removeProperty('opacity')}
  coupon.classList.remove('is-visible');coupon.setAttribute('aria-hidden','true');
  cardLabel.textContent='Mystery';status.textContent='Tap the backpack to reveal your surprise.';
  status.dataset.empty='true';bag.disabled=false;bag.setAttribute('aria-label','Open backpack to discover a surprise');
@@ -71,12 +70,6 @@ document.addEventListener('visibilitychange',()=>{
   const doc=new DOMParser().parseFromString(source,'image/svg+xml');
   if(doc.querySelector('parsererror'))throw Error('Supplied SVG failed XML parse');
   svg=document.importNode(doc.documentElement,true);
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-   // Preserve every original motion/keyframe, but let our controller seek
-   // instantly between authored frames instead of the SVG's animation:none rule.
-   const style=svg.querySelector('style');
-   if(style)style.textContent=style.textContent.replace('@media (prefers-reduced-motion:reduce) { #backpack-scene * {animation:none!important;} }','');
-  }
   svg.setAttribute('aria-label','Illustrated closed backpack with animated hinged flap');
   svg.setAttribute('focusable','false');
   svg.removeAttribute('width');svg.removeAttribute('height');
