@@ -25,7 +25,7 @@ test('variant selection and limited availability are real demo state',()=>{
  assert.equal(variantAvailable(p,'color-0','40'),true);
  assert.equal(variantAvailable(p,'nonexistent','40'),false);
  assert.equal(productMeta(catalog.find(x=>x.id==='f2')).sizes[0],'One Size');
- assert.equal(priceTk(5990),'Tk 5,990');
+ assert.equal(priceTk(59),'$59.00');
  assert.equal(cartKey({id:'sho-08',color:'color-0',size:'40'}),'sho-08~color-0~40');
 });
 test('all five static route pages exist and defer cinematic animations',()=>{
@@ -130,10 +130,10 @@ test('storefront uses full, absolutely constrained cover images and category hea
  assert.ok(page.includes('fullShop'));
 });
 
-test('owner gallery manifest maps 126 authentic angles across 38 products',()=>{
+test('owner gallery manifest maps 120 authentic distinct angles across 38 products',()=>{
  const matches=catalog.filter(p=>galleryAssetManifest[p.id]);
  assert.equal(matches.length,38);
- assert.equal(Object.values(galleryAssetManifest).reduce((sum,a)=>sum+a.length,0),126);
+ assert.equal(Object.values(galleryAssetManifest).reduce((sum,a)=>sum+a.length,0),120);
  assert.deepEqual(catalog.filter(p=>!galleryAssetManifest[p.id]).map(p=>p.id),[]);
  const paths=new Set();
  for(const p of matches){
@@ -147,7 +147,7 @@ test('owner gallery manifest maps 126 authentic angles across 38 products',()=>{
    paths.add(view.asset);
   }
  }
- assert.equal(paths.size,126);
+ assert.equal(paths.size,120);
  for(const p of catalog.filter(p=>!galleryAssetManifest[p.id])){
   assert.equal(productGallery(p).length,1);
   assert.equal(productGallery(p)[0].isAlternate,false);

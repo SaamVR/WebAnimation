@@ -1,0 +1,274 @@
+{
+  "reference_fractions": {
+    "cover": [
+      0.9706972402189042,
+      0.9599335755522369
+    ],
+    "front": [
+      0.9387415539382975,
+      0.9047618382923601
+    ],
+    "profile": [
+      0.9488253491791228,
+      0.8706000886424309
+    ],
+    "rear": [
+      0.9515669098331039,
+      0.8755525042817566
+    ]
+  },
+  "assets": [
+    {
+      "product": "f2",
+      "view": "cover",
+      "from": [
+        902,
+        664
+      ],
+      "to": [
+        902,
+        664
+      ],
+      "reference_subject_fill": [
+        0.9707,
+        0.9599
+      ],
+      "result_subject_fill": [
+        0.9712,
+        0.9593
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "f2",
+      "view": "front",
+      "from": [
+        780,
+        767
+      ],
+      "to": [
+        780,
+        767
+      ],
+      "reference_subject_fill": [
+        0.9387,
+        0.9048
+      ],
+      "result_subject_fill": [
+        0.9385,
+        0.9048
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "f2",
+      "view": "profile",
+      "from": [
+        949,
+        571
+      ],
+      "to": [
+        949,
+        571
+      ],
+      "reference_subject_fill": [
+        0.9488,
+        0.8706
+      ],
+      "result_subject_fill": [
+        0.9484,
+        0.8704
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "f2",
+      "view": "rear",
+      "from": [
+        822,
+        585
+      ],
+      "to": [
+        822,
+        585
+      ],
+      "reference_subject_fill": [
+        0.9516,
+        0.8756
+      ],
+      "result_subject_fill": [
+        0.9513,
+        0.8752
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "hat-01",
+      "view": "cover",
+      "from": [
+        844,
+        621
+      ],
+      "to": [
+        844,
+        621
+      ],
+      "reference_subject_fill": [
+        0.9707,
+        0.9599
+      ],
+      "result_subject_fill": [
+        0.9704,
+        0.9597
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "hat-01",
+      "view": "front",
+      "from": [
+        721,
+        718
+      ],
+      "to": [
+        721,
+        718
+      ],
+      "reference_subject_fill": [
+        0.9387,
+        0.9048
+      ],
+      "result_subject_fill": [
+        0.939,
+        0.9053
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "hat-01",
+      "view": "profile",
+      "from": [
+        949,
+        562
+      ],
+      "to": [
+        949,
+        562
+      ],
+      "reference_subject_fill": [
+        0.9488,
+        0.8706
+      ],
+      "result_subject_fill": [
+        0.9484,
+        0.8701
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "hat-01",
+      "view": "rear",
+      "from": [
+        810,
+        579
+      ],
+      "to": [
+        810,
+        579
+      ],
+      "reference_subject_fill": [
+        0.9516,
+        0.8756
+      ],
+      "result_subject_fill": [
+        0.9519,
+        0.8756
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "hat-04",
+      "view": "cover",
+      "from": [
+        833,
+        606
+      ],
+      "to": [
+        833,
+        606
+      ],
+      "reference_subject_fill": [
+        0.9707,
+        0.9599
+      ],
+      "result_subject_fill": [
+        0.9712,
+        0.9604
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "hat-04",
+      "view": "front",
+      "from": [
+        737,
+        731
+      ],
+      "to": [
+        737,
+        731
+      ],
+      "reference_subject_fill": [
+        0.9387,
+        0.9048
+      ],
+      "result_subject_fill": [
+        0.9389,
+        0.9042
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "hat-04",
+      "view": "profile",
+      "from": [
+        949,
+        558
+      ],
+      "to": [
+        949,
+        558
+      ],
+      "reference_subject_fill": [
+        0.9488,
+        0.8706
+      ],
+      "result_subject_fill": [
+        0.9484,
+        0.871
+      ],
+      "visible_pixels_and_alpha": "exact"
+    },
+    {
+      "product": "hat-04",
+      "view": "rear",
+      "from": [
+        824,
+        581
+      ],
+      "to": [
+        824,
+        581
+      ],
+      "reference_subject_fill": [
+        0.9516,
+        0.8756
+      ],
+      "result_subject_fill": [
+        0.9515,
+        0.8761
+      ],
+      "visible_pixels_and_alpha": "exact"
+    }
+  ]
+}

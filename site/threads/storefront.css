@@ -68,8 +68,6 @@
 .store-thumbnails .thumb-more{transform:scale(1.9)}
 .store-detail__image{background:var(--store-light);min-height:clamp(360px,42vw,660px);border-radius:24px;display:grid;place-items:center;overflow:hidden;position:relative}
 .store-detail__image img{width:100%;height:100%;max-height:630px;object-fit:contain;transition:transform .17s ease;transform-origin:55% 49%;padding:30px}
-.store-detail__image img.view-1{transform:scale(1.42)}
-.store-detail__image img.view-2{transform:scale(1.82)}
 .store-image-note{grid-column:2;color:#687b6c;font-size:11px;line-height:1.5;margin:0}
 .store-detail__info{padding-top:22px;min-width:0}
 .store-detail__info h1{font-size:clamp(34px,3.5vw,55px);margin:16px 0 13px}
@@ -171,3 +169,40 @@
 
 /* T04 final: retain original real header on downward AND upward scroll. */
 #site-shell > header.site-header.store-site-header{position:sticky!important;top:0!important;transform:none!important;translate:none!important;opacity:1!important;visibility:visible!important;z-index:75}
+
+/* Only Orange Weekender Duffel (f3): hold a true 1:1 frame through all views.
+   The image changes independently; neither the main frame nor surrounding layout moves. */
+.store-detail[data-f3-square-gallery] .store-detail__image{
+  width:100%;height:auto;min-height:0;aspect-ratio:1 / 1;align-self:start;
+}
+.store-detail[data-f3-square-gallery] .store-detail__image img{
+  position:absolute;inset:0;box-sizing:border-box;width:100%;height:100%;
+  max-height:none;object-fit:contain;object-position:center;
+}
+
+/* sho-04 only: a fixed 1:1 media frame keeps the four new genuine camera
+   perspectives steady. Surrounding product layout and other galleries are untouched. */
+.store-detail[data-sho04-square-gallery] .store-detail__image{
+ width:100%;height:auto;min-height:0;aspect-ratio:1/1;align-self:start;
+}
+.store-detail[data-sho04-square-gallery] .store-detail__image img{
+ position:absolute;inset:0;box-sizing:border-box;width:100%;height:100%;max-height:none;
+ object-fit:contain;object-position:center;
+}
+
+/* Header permanence — same existing header and design, all storefront routes.
+   Never translate/hide it on downward scroll; keep T01 above at z-index 95. */
+body > header.site-header,
+#site-shell > header.site-header.store-site-header {
+  position:sticky!important;
+  inset-block-start:0!important;
+  top:0!important;
+  transform:none!important;
+  translate:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  z-index:75;
+}
+
+/* Secondary pages use exactly the homepage footer presentation/spacing. */
+body .store-site-footer { margin:clamp(28px,3vw,48px) auto 0; }
