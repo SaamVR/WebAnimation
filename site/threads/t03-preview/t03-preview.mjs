@@ -44,7 +44,7 @@ function showAuthoredOpenStill(){
  for(const el of tracks){
   const name='anim-'+el.id;
   const block=stylesheet.match(new RegExp('@keyframes '+name+'\\s*\\{([\\s\\S]*?)\\n\\}'))?.[1];
-  const frame=block?.match(/50\\.000%\\s*\\{([^}]+)\\}/)?.[1];
+  const frame=block?.match(new RegExp('50\\.000%\\s*\\{([^}]+)\\}'))?.[1];
   if(!frame)throw Error('Missing authored open keyframe for '+el.id);
   for(const declaration of frame.split(';')){
    const pos=declaration.indexOf(':');if(pos<0)continue;
