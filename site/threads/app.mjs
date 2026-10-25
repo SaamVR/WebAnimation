@@ -3,7 +3,7 @@
  * T03 backpack reveal and T04 payment cinematics remain unimplemented. */
 import {refreshReferenceCrops} from './art-crops.mjs';
 import {favoriteButton,installNavbarHeart,syncNavbarFavorites} from './favorite-icon.mjs';
-import {dealDisplay,offerIsActive,countdownParts,OFFER_EXPIRES_AT} from './deals.mjs';
+import {dealDisplay,countdownParts,offerCycleEnd} from './deals.mjs';
 import {catalog,productMeta,imageUrl,priceTk,safeHTML,curateShopProducts,merchandisingCategory} from './catalog.mjs';
 import {addCartItem,cartSummary,cartCount,getFavorites,toggleFavorite} from './store-core.mjs';
 import {initInlineSearch} from './search-header.mjs';
@@ -54,11 +54,9 @@ window.addEventListener('storage',()=>{syncCart();renderProducts()});
 function tickOffer(){
  const clock=byId('offer-countdown'),status=byId('offer-status');
  if(!clock)return;
- const parts=countdownParts();
- const ended=!offerIsActive();
+ const now=Date.now(),parts=countdownParts(now);
  clock.querySelectorAll('[data-countdown]').forEach((node,i)=>{node.textContent=String(parts[i]).padStart(2,'0')});
- status.textContent=ended?'Offer Ended':'15% off selected demo products · Ends '+new Date(OFFER_EXPIRES_AT).toLocaleDateString('en-US',{timeZone:'UTC',month:'short',day:'numeric',year:'numeric'})+' UTC';
- if(ended&&!tickOffer.ended){tickOffer.ended=true;renderProducts();syncCart()}
+ status.textContent='15% off selected demo products · Recurring 21-day cycle ends '+new Date(offerCycleEnd(now)).toLocaleDateString('en-US',{timeZone:'UTC',month:'short',day:'numeric',year:'numeric'})+' UTC · Demo offers continue';
 }
 tickOffer();setInterval(tickOffer,1000);window.addEventListener('focus',tickOffer);
 renderProducts();syncCart();
