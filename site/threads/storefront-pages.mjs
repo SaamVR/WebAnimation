@@ -21,7 +21,40 @@ const header=()=>`<a class="skip-link" href="#page-main">Skip to content</a><hea
  <a class="wordmark" href="/" aria-label="Threads home"><img src="/assets/threads-wordmark-2e453a.png" alt="THREADS" width="850" height="105"></a>
  <nav class="main-nav" aria-label="Main navigation"><a href="/">HOME</a><a href="/search/">SHOP</a><a href="/search/?category=Sneakers">COLLECTION</a><a href="/#about">ABOUT</a></nav>
  <div class="header-tools"><form id="search-area" class="inline-search" role="search" action="/search/" method="get" aria-hidden="true"><label class="sr-only" for="search-input">Search the Threads catalog</label><input id="search-input" type="search" name="q" placeholder="Search products…" autocomplete="off" tabindex="-1" aria-label="Search products"></form><button class="icon-btn" id="search-button" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="search-area"><img class="header-icon" src="/assets/header-search.png" alt=""></button><a href="/search/?favorites=1" class="icon-btn" id="favorites-button" aria-label="Saved favorites">${favoriteSvg()}</a><a href="/cart/" class="icon-btn bag-button" id="bag-button" aria-label="View shopping cart"><img class="header-icon" src="/assets/header-cart.png" alt=""><span class="bag-count" id="bag-count">${cartCount()}</span></a><span id="t02-cart-status" class="sr-only" role="status" aria-live="polite"></span></div></div></header>`;
-const footer=()=>`<footer class="site-footer store-site-footer"><div class="threads-footer-inner"><div class="threads-footer-top"><div class="threads-footer-brand"><a class="threads-footer-logo" href="/" aria-label="Threads home"><img src="/assets/threads-footer-logo-inverted.png" alt="THREADS" width="900" height="112"></a><p>Premium sneakers, bags and everyday essentials for a brighter everyday.</p></div><div class="threads-footer-newsletter"><span class="threads-footer-kicker">STAY CONNECTED</span><h2>Get Our News And Updates</h2><p>Standalone THREADS storefront · simulated checkout · no real payments.</p></div></div><nav class="threads-footer-nav" aria-label="Footer navigation"><div class="threads-footer-links"><h3>Shop</h3><a href="/search/?category=Sneakers">Sneakers</a><a href="/search/?category=Bags">Bags</a><a href="/search/?category=Accessories">Accessories</a></div><div class="threads-footer-links"><h3>About</h3><a href="/#about">Our Story</a></div><div class="threads-footer-links"><h3>Help</h3><a href="/cart/">Your Cart</a><a href="/checkout/">Checkout</a></div><div class="threads-footer-links"><h3>Company</h3><p class="threads-footer-legal">© 2026 THREADS · Demo preview</p></div></nav></div></footer>`;
+const footer=()=>`  <footer class="site-footer store-site-footer" aria-label="THREADS footer">
+    <div class="threads-footer-inner">
+      <div class="threads-footer-top">
+        <div class="threads-footer-brand">
+          <a class="threads-footer-logo" href="/" aria-label="THREADS home">
+            <img src="/assets/threads-footer-logo-inverted.png" width="900" height="112" alt="THREADS" loading="eager" decoding="async">
+          </a>
+          <p>Premium sneakers, bags and everyday<br class="footer-desktop-break"> essentials for a brighter everyday.</p>
+          <div class="threads-footer-social" role="img" aria-label="Social media: Instagram, Facebook, YouTube and Pinterest (illustrative icons)">
+            <span title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.8" cy="6.4" r=".75" fill="currentColor" stroke="none"/></svg></span>
+            <span title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14.6 22v-8.7h3l.45-3.5H14.6V7.5c0-1 .28-1.67 1.72-1.67h1.84V2.7a25 25 0 0 0-2.68-.14c-2.66 0-4.48 1.63-4.48 4.6v2.64H8v3.5h3V22h3.6Z"/></svg></span>
+            <span title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.65"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor" stroke="none"/><path d="m10 8.7 6 3.3-6 3.3Z" fill="#172B2E" stroke="none"/></svg></span>
+            <span title="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.34c-.06-.84 0-1.7.2-2.5l1.2-5.13s-.3-.59-.3-1.45c0-1.35.78-2.37 1.75-2.37.83 0 1.23.62 1.23 1.37 0 .83-.53 2.07-.8 3.22-.23.96.47 1.74 1.4 1.74 1.68 0 2.98-1.77 2.98-4.33 0-2.27-1.63-3.86-3.97-3.86-2.7 0-4.29 2.02-4.29 4.11 0 .82.31 1.7.71 2.18a.29.29 0 0 1 .06.28l-.27 1.1c-.04.18-.15.22-.34.14-1.27-.6-2.06-2.47-2.06-3.97 0-3.23 2.35-6.2 6.77-6.2 3.55 0 6.31 2.53 6.31 5.91 0 3.52-2.22 6.36-5.3 6.36-1.03 0-2-.54-2.34-1.17l-.63 2.4c-.23.91-.85 2.05-1.26 2.83A10 10 0 1 0 12 2Z"/></svg></span>
+          </div>
+        </div>
+        <div id="footer-news" class="threads-footer-newsletter">
+          <span class="threads-footer-kicker">STAY CONNECTED</span>
+          <h2>Get Our News And Updates</h2>
+          <form id="newsletter-form">
+            <label for="newsletter-email" class="sr-only">Email address for newsletter demo</label>
+            <input id="newsletter-email" type="email" autocomplete="email" placeholder="Enter your email" aria-describedby="newsletter-status" required>
+            <button type="submit">Subscribe</button>
+          </form>
+          <p id="newsletter-status" role="status" aria-live="polite">Demo preview only — email addresses are not collected.</p>
+        </div>
+      </div>
+      <nav class="threads-footer-nav" aria-label="Footer navigation">
+        <div class="threads-footer-links"><h3>Shop</h3><a href="/search/">Sneakers</a><a href="/search/?category=Bags">Bags</a><a href="/search/?category=Accessories">Accessories</a><a href="/#arrivals">New Arrivals</a></div>
+        <div class="threads-footer-links"><h3>About</h3><a href="/#about">Our Story</a><a href="/#mission">Sustainability</a><a href="/#about">Careers</a><a href="/#about">Press</a></div>
+        <div class="threads-footer-links"><h3>Help</h3><a href="/#footer-news">Help Center</a><a href="/#footer-news">Shipping &amp; Returns</a><a href="/#footer-news">Size Guide</a><a href="/#footer-news">Contact Us</a></div>
+        <div class="threads-footer-links threads-footer-company"><h3>Company</h3><a href="/#about">Terms of Service</a><a href="/#about">Privacy Policy</a><a href="/#about">Cookie Policy</a><p class="threads-footer-legal">© 2026 THREADS · Demo preview</p></div>
+      </nav>
+    </div>
+  </footer>`;
 const card=p=>`<article class="store-product-card" data-t01-card data-product-id="${escape(p.id)}"><a href="${link(p.id)}" class="store-product-card__link"><div class="store-product-card__media" data-t02-image><img src="${imageUrl(p)}" alt="${escape(p.name)}" loading="lazy"></div><span class="store-product-card__name">${escape(p.name)}</span><span class="store-product-card__subtitle">${escape(p.subtitle)}</span></a>${favoriteButton(p,getFavorites().has(p.id))}<div class="store-product-card__footer"><span class="store-price">${dealDisplay(p)}</span><a class="store-small-link" href="${link(p.id)}">View details →</a><button type="button" class="store-quick-add" data-add="${escape(p.id)}" data-t02-add aria-label="Add ${escape(p.name)} to cart">Add to Cart</button></div></article>`;
 function mount(html){$('page-content').innerHTML=html}
 function setCartBadge(){const c=$('bag-count');syncCartVisual(cartCount())}
@@ -232,6 +265,13 @@ function orderPage(){
  mount(`<section class="store-order-confirmation"><div class="store-confirm-icon" aria-hidden="true">✓</div><span class="store-kicker">SUCCESSFUL DEMO TRANSACTION</span><h1>Order Confirmed</h1><p>Thank you for testing the THREADS storefront. No real payment was taken and no delivery will be made.</p><div class="store-order-paper"><div class="store-summary-line"><span>Order reference</span><strong>${escape(order.ref)}</strong></div><div class="store-summary-line"><span>Status</span><strong>Demo payment approved</strong></div><div class="store-summary-line"><span>Placed</span><span>${escape(new Date(order.createdAt).toLocaleString())}</span></div>${order.items.map(x=>{const p=catalogById[x.id];return p?`<div class="store-checkout-line"><img src="${imageUrl(p)}" alt=""><div><strong>${escape(p.name)}</strong><p>${escape(productMeta(p).colors.find(c=>c.id===x.color)?.name)} / ${escape(x.size)} × ${x.quantity}</p></div><strong>${money(x.price*x.quantity)}</strong></div>`:`<div class="store-checkout-line"><div><strong>Discontinued product</strong><p>Archived item × ${Number(x.quantity)||1}</p></div><strong>${money((Number(x.price)||0)*(Number(x.quantity)||1))}</strong></div>`}).join('')}<div class="store-summary-line store-summary-total"><span>Demo total</span><strong>${money(order.total)}</strong></div></div><a href="/search/" class="store-primary-btn">Return to shop →</a></section>`);
 }
 $('site-shell').innerHTML=header()+'<main id="page-main" class="store-main content-wrap"><div id="page-content"></div></main>'+footer();
+// Exactly the homepage newsletter behavior: demo only, never collect addresses.
+$('newsletter-form')?.addEventListener('submit',event=>{
+ event.preventDefault();
+ if(!event.currentTarget.reportValidity())return;
+ $('newsletter-status').textContent='Thanks for exploring! This is a visual-only demo; your email has not been saved.';
+ event.currentTarget.reset();
+});
 installArticulatedHeaderCart();initInlineSearch();installNavbarHeart();syncNavbarFavorites(getFavorites().size);setCartBadge();
 window.addEventListener('threads:cartchange',setCartBadge);
 window.addEventListener('storage',setCartBadge);

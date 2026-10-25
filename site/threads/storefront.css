@@ -203,3 +203,6 @@ body > header.site-header,
   visibility:visible!important;
   z-index:75;
 }
+
+/* Secondary pages use exactly the homepage footer presentation/spacing. */
+body .store-site-footer { margin:clamp(28px,3vw,48px) auto 0; }
