@@ -1,0 +1,21 @@
+Chrome / {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":3650,"docHeight":5194}
+Chrome /search/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":3699,"docHeight":5252}
+Chrome /product/?id=f3 {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":535,"docHeight":1529}
+Chrome /cart/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":287,"docHeight":1238}
+Chrome /checkout/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":196,"docHeight":1130}
+Chrome /order/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":196,"docHeight":1130}
+Chrome /deals/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":835,"docHeight":1882}
+mobile / {"top":0,"bottom":62,"position":"sticky","opacity":"1","scroll":3345,"docHeight":4779}
+mobile /search/ {"top":0,"bottom":62,"position":"sticky","opacity":"1","scroll":5585,"docHeight":7414}
+mobile /product/?id=f3 {"top":0,"bottom":62,"position":"sticky","opacity":"1","scroll":1053,"docHeight":2083}
+mobile /cart/ {"top":0,"bottom":62,"position":"sticky","opacity":"1","scroll":453,"docHeight":1377}
+mobile /checkout/ {"top":0,"bottom":62,"position":"sticky","opacity":"1","scroll":347,"docHeight":1252}
+mobile /order/ {"top":0,"bottom":62,"position":"sticky","opacity":"1","scroll":407,"docHeight":1323}
+mobile /deals/ {"top":0,"bottom":62,"position":"sticky","opacity":"1","scroll":1437,"docHeight":2535}
+WebKit iPad / {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":2506,"docHeight":4163}
+WebKit iPad /search/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":3752,"docHeight":5595}
+WebKit iPad /product/?id=f3 {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":166,"docHeight":1376}
+WebKit iPad /cart/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":111,"docHeight":1311}
+WebKit iPad /checkout/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":111,"docHeight":1311}
+WebKit iPad /order/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":111,"docHeight":1311}
+WebKit iPad /deals/ {"top":0,"bottom":68,"position":"sticky","opacity":"1","scroll":720,"docHeight":2028}
