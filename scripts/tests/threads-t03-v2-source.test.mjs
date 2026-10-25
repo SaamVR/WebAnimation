@@ -55,7 +55,8 @@ test('T03 compositing and clipping: one visible source SVG after ready, full ope
  assert.match(css,/\.t03-svg-holder svg\{[^}]*overflow:visible/);
  assert.match(css,/\.t03-bag-button\.is-ready \.t03-still\{opacity:0;visibility:hidden\}/);
  assert.doesNotMatch(css,/\.is-in-motion \.t03-still/);
- assert.match(js,/seek\(0\);phase='closed';targetOpen=false;button\.disabled=false/);
+ assert.match(js,/phase='closed';targetOpen=false/);
+ assert.match(js,/button.disabled=false/);
  assert.match(js,/button\.classList\.add\('is-ready'\)/);
 });
 test('T03 queued interaction: no transition-time disabled button or dropped second click',()=>{
@@ -68,5 +69,34 @@ test('T03 queued interaction: no transition-time disabled button or dropped seco
  assert.match(js,/schedule\(closed,END_AT-CLOSE_FROM\)/);
  assert.doesNotMatch(js,/phase='opening';button\.disabled=true/);
  assert.doesNotMatch(js,/phase='closing';button\.disabled=true/);
- assert.doesNotMatch(js,/animation\.reverse\(|playbackRate|requestAnimationFrame\(|gsap\./);
+ assert.doesNotMatch(js,/animation\.reverse\(|playbackRate|gsap\./);
+});
+
+test('T03 cold-start gate decodes every original embedded image and paints before enabling',()=>{
+ const js=txt('t03.mjs');
+ assert.match(js,/svg\.querySelectorAll\('image'\)/);
+ assert.match(js,/imageSources\.length!==10/);
+ assert.match(js,/await Promise\.all\(imageSources\.map\(async src/);
+ assert.match(js,/await image\.decode\(\)/);
+ assert.match(js,/await document\.fonts\.ready/);
+ assert.match(js,/requestAnimationFrame\(\(\)=>requestAnimationFrame\(resolve\)\)/);
+ const endReady=js.indexOf("button.disabled=false");
+ const decodeIndex=js.indexOf('await Promise.all(imageSources.map');
+ const paintIndex=js.lastIndexOf("button.classList.add('is-ready')",endReady);
+ assert.ok(decodeIndex>0&&paintIndex>decodeIndex&&endReady>paintIndex,'tap remains locked through decode and visible paints');
+ assert.match(js,/node\.style\.animationPlayState='paused'/);
+});
+test('T03 coupon uses SVG-space rim occlusion without changing original reward easing',()=>{
+ const js=txt('t03.mjs'),css=txt('t03.css');
+ assert.match(js,/document\.createElementNS\(ns,'foreignObject'\)/);
+ assert.match(js,/svg\.querySelector\('#open-flap-group'\)/);
+ assert.match(js,/document\.createElementNS\(ns,'clipPath'\)/);
+ assert.match(js,/clipPathUnits','userSpaceOnUse'/);
+ assert.match(js,/couponLayer\.setAttribute\('clip-path','url\(#t03-coupon-opening-mask\)'\)/);
+ assert.match(js,/front\.parentNode\.insertBefore\(couponLayer,front\)/);
+ assert.match(js,/couponLayer\.appendChild\(coupon\)/);
+ assert.match(css,/-webkit-tap-highlight-color:transparent/);
+ assert.match(css,/\.t03-bag-button:focus-visible\{outline:3px solid var\(--forest\)\}/);
+ assert.match(css,/transition:opacity 320ms ease,transform 650ms cubic-bezier\(\.25,\.55,\.25,1\),visibility 0s/);
+ assert.doesNotMatch(js,/animation\.reverse\(|gsap\./);
 });

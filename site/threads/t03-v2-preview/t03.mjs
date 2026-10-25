@@ -101,17 +101,57 @@ window.addEventListener('pageshow',syncOnReturn);
   const svg=document.importNode(doc.documentElement,true);
   svg.removeAttribute('width');svg.removeAttribute('height');
   svg.setAttribute('role','img');svg.setAttribute('aria-label','THREADS backpack opening and closing');svg.setAttribute('focusable','false');
-  // Only runtime playback controls change. All source paths, artwork, layers, keyframes and easing remain unchanged.
-  vector.replaceChildren(svg);
+  // Move the existing HTML coupon behind the original raised flap, with a stationary SVG depth mask, not above
+  // the bag. This inserts a runtime foreignObject; the owner's SVG file, image
+  // nodes, seven animation tracks, styles, and keyframes remain byte-identical.
+  const ns='http://www.w3.org/2000/svg',front=svg.querySelector('#open-flap-group');
+  const couponLayer=document.createElementNS(ns,'foreignObject');
+  for(const [key,value] of Object.entries({x:'1083',y:'470',width:'445',height:'380'}))couponLayer.setAttribute(key,value);
+  couponLayer.setAttribute('class','t03-coupon-depth');
+  couponLayer.style.overflow='visible';couponLayer.style.pointerEvents='none';
+  // An SVG user-space clipping plane hides the lower card behind the rim.
+  // It masks only the runtime coupon, never the owner's artwork or motion.
+  const clipDefs=document.createElementNS(ns,'defs');
+  const depthClip=document.createElementNS(ns,'clipPath');
+  depthClip.setAttribute('id','t03-coupon-opening-mask');
+  depthClip.setAttribute('clipPathUnits','userSpaceOnUse');
+  const cut=document.createElementNS(ns,'rect');
+  for(const [key,value] of Object.entries({x:'1083',y:'470',width:'445',height:'118'}))cut.setAttribute(key,value);
+  depthClip.appendChild(cut);clipDefs.appendChild(depthClip);svg.insertBefore(clipDefs,svg.firstChild);
+  couponLayer.setAttribute('clip-path','url(#t03-coupon-opening-mask)');
+  // Keep coupon in its existing layout tree until all assets are prepared.
+  // Insert it after the interior collar but before the authored open-flap layer at readiness.
   for(const node of svg.querySelectorAll('#backpack-scene,#top-handle-group,#lower-straps-group,#open-collar-group,#outer-hood-hinge-group,#buckles-unclip-group,#open-flap-group')){
-   node.style.animationIterationCount='1';node.style.animationFillMode='both';
+   node.style.animationIterationCount='1';node.style.animationFillMode='both';node.style.animationPlayState='paused';
   }
+  vector.replaceChildren(svg);
   animations=svg.getAnimations({subtree:true});
   if(animations.length!==7)throw Error('Expected seven unmodified animation tracks; got '+animations.length);
-  seek(0);phase='closed';targetOpen=false;button.disabled=false;
-  // SVG becomes the sole visible layer when ready, before any user interaction.
-  // PNG serves only as the aligned loading/fallback illustration.
+  seek(0);
+  // Safari can present the first CSS transform before PNG data-URI images have
+  // decoded. Decode all ten full-resolution embedded layers before interaction.
+  const imageSources=[...svg.querySelectorAll('image')].map(el=>el.getAttribute('href')||el.getAttributeNS('http://www.w3.org/1999/xlink','href')).filter(Boolean);
+  if(imageSources.length!==10)throw Error('The original ten embedded PNG layers are required.');
+  await Promise.all(imageSources.map(async src=>{
+   const image=new Image();image.src=src;
+   if(typeof image.decode==='function')await image.decode();
+   else await new Promise((resolve,reject)=>{if(image.complete&&image.naturalWidth)return resolve();image.onload=resolve;image.onerror=reject;});
+   if(!image.naturalWidth||!image.naturalHeight)throw Error('Failed to decode a backpack PNG layer.');
+  }));
+  if(document.fonts?.ready)await document.fonts.ready;
+  // Force a closed-frame layout and two paints before accepting the first tap.
+  svg.getBoundingClientRect();
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  seek(0);
+  if(!front?.parentNode)throw Error('Original raised flap layer not found.');
+  front.parentNode.insertBefore(couponLayer,front);
+  couponLayer.appendChild(coupon);
+  phase='closed';targetOpen=false;
   button.classList.add('is-ready');
+  // The first paint with the SVG visible must complete before a tap can
+  // start its seven transform animations; two frames cross that paint boundary.
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  button.disabled=false;
   announcement.textContent='Backpack ready.';
  }catch(err){phase='error';button.disabled=true;announcement.textContent='Animation unavailable.';console.error('THREADS T03 source',err)}
 })();
