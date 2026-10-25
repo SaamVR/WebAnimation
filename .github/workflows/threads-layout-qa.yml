@@ -7,6 +7,7 @@ on:
       - "scripts/tests/threads-layout-contract.test.mjs"
       - "scripts/tests/threads-t01-camera-integrity.test.mjs"
       - "scripts/tests/threads-usd-deals-favorites.test.mjs"
+      - "scripts/tests/threads-t03-isolated.test.mjs"
       - ".github/workflows/threads-layout-qa.yml"
 jobs:
   contract:
@@ -15,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate standalone layout contract
-        run: node --test scripts/tests/threads-layout-contract.test.mjs scripts/tests/threads-t01-camera-integrity.test.mjs scripts/tests/threads-usd-deals-favorites.test.mjs site/threads/storefront-contract.test.mjs site/threads/asset-contract.test.mjs site/threads/gallery-asset-contract.test.mjs site/threads/t01-contract.test.mjs
+        run: node --test scripts/tests/threads-layout-contract.test.mjs scripts/tests/threads-t01-camera-integrity.test.mjs scripts/tests/threads-usd-deals-favorites.test.mjs scripts/tests/threads-t03-isolated.test.mjs site/threads/storefront-contract.test.mjs site/threads/asset-contract.test.mjs site/threads/gallery-asset-contract.test.mjs site/threads/t01-contract.test.mjs
       - name: Syntax check client modules
         run: |
           node --check site/threads/app.mjs
@@ -26,4 +27,5 @@ jobs:
           node --check site/threads/search-header.mjs
           node --check site/threads/t01-spotlight.mjs
           node --check site/threads/art-crops.mjs
+          node --check site/threads/t03-preview/t03-preview.mjs
           test -f site/threads/backpack.svg
