@@ -1,5 +1,7 @@
 import {catalog, catalogById, productMeta, productGallery, catalogFilters, merchandisingCategory, imageUrl, priceTk, safeHTML, searchCatalog,curateShopProducts,normalizeCatalogCategory} from './catalog.mjs';
 import {initInlineSearch} from './search-header.mjs';
+import {favoriteSvg,favoriteButton,installNavbarHeart,syncNavbarFavorites} from './favorite-icon.mjs';
+import {DEAL_PRODUCT_IDS,DEAL_PERCENT,OFFER_EXPIRES_AT,offerIsActive,dealDisplay,dealSavings,countdownParts} from './deals.mjs';
 import {initT01Spotlight} from './t01-spotlight.mjs';
 import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
 import {playT04Approved} from './t04-payment-approved.mjs';
@@ -17,15 +19,15 @@ const showError=(target,message)=>{const node=$(target);if(node){node.textConten
 const header=()=>`<a class="skip-link" href="#page-main">Skip to content</a><header class="site-header store-site-header" id="top"><div class="header-inner">
  <a class="wordmark" href="/" aria-label="Threads home"><img src="/assets/threads-wordmark-2e453a.png" alt="THREADS" width="850" height="105"></a>
  <nav class="main-nav" aria-label="Main navigation"><a href="/">HOME</a><a href="/search/">SHOP</a><a href="/search/?category=Sneakers">COLLECTION</a><a href="/#about">ABOUT</a></nav>
- <div class="header-tools"><form id="search-area" class="inline-search" role="search" action="/search/" method="get" aria-hidden="true"><label class="sr-only" for="search-input">Search the Threads catalog</label><input id="search-input" type="search" name="q" placeholder="Search products…" autocomplete="off" tabindex="-1" aria-label="Search products"></form><button class="icon-btn" id="search-button" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="search-area"><img class="header-icon" src="/assets/header-search.png" alt=""></button><a href="/search/?favorites=1" class="icon-btn" id="favorites-button" aria-label="Saved favorites"><img class="header-icon" src="/assets/header-favorite.png" alt=""></a><a href="/cart/" class="icon-btn bag-button" id="bag-button" aria-label="View shopping cart"><img class="header-icon" src="/assets/header-cart.png" alt=""><span class="bag-count" id="bag-count">${cartCount()}</span></a><span id="t02-cart-status" class="sr-only" role="status" aria-live="polite"></span></div></div></header>`;
+ <div class="header-tools"><form id="search-area" class="inline-search" role="search" action="/search/" method="get" aria-hidden="true"><label class="sr-only" for="search-input">Search the Threads catalog</label><input id="search-input" type="search" name="q" placeholder="Search products…" autocomplete="off" tabindex="-1" aria-label="Search products"></form><button class="icon-btn" id="search-button" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="search-area"><img class="header-icon" src="/assets/header-search.png" alt=""></button><a href="/search/?favorites=1" class="icon-btn" id="favorites-button" aria-label="Saved favorites">${favoriteSvg()}</a><a href="/cart/" class="icon-btn bag-button" id="bag-button" aria-label="View shopping cart"><img class="header-icon" src="/assets/header-cart.png" alt=""><span class="bag-count" id="bag-count">${cartCount()}</span></a><span id="t02-cart-status" class="sr-only" role="status" aria-live="polite"></span></div></div></header>`;
 const footer=()=>`<footer class="site-footer store-site-footer"><div class="threads-footer-inner"><div class="threads-footer-top"><div class="threads-footer-brand"><a class="threads-footer-logo" href="/" aria-label="Threads home"><img src="/assets/threads-footer-logo-inverted.png" alt="THREADS" width="900" height="112"></a><p>Premium sneakers, bags and everyday essentials for a brighter everyday.</p></div><div class="threads-footer-newsletter"><span class="threads-footer-kicker">STAY CONNECTED</span><h2>Get Our News And Updates</h2><p>Standalone THREADS storefront · simulated checkout · no real payments.</p></div></div><nav class="threads-footer-nav" aria-label="Footer navigation"><div class="threads-footer-links"><h3>Shop</h3><a href="/search/?category=Sneakers">Sneakers</a><a href="/search/?category=Bags">Bags</a><a href="/search/?category=Accessories">Accessories</a></div><div class="threads-footer-links"><h3>About</h3><a href="/#about">Our Story</a></div><div class="threads-footer-links"><h3>Help</h3><a href="/cart/">Your Cart</a><a href="/checkout/">Checkout</a></div><div class="threads-footer-links"><h3>Company</h3><p class="threads-footer-legal">© 2026 THREADS · Demo preview</p></div></nav></div></footer>`;
-const card=p=>`<article class="store-product-card" data-t01-card data-product-id="${escape(p.id)}"><a href="${link(p.id)}" class="store-product-card__link"><div class="store-product-card__media" data-t02-image><img src="${imageUrl(p)}" alt="${escape(p.name)}" loading="lazy"></div><span class="store-product-card__name">${escape(p.name)}</span><span class="store-product-card__subtitle">${escape(p.subtitle)}</span></a><div class="store-product-card__footer"><span class="store-price">${money(p.price)}</span><a class="store-small-link" href="${link(p.id)}">View details <span aria-hidden="true">→</span></a><button type="button" class="store-quick-add" data-add="${escape(p.id)}" data-t02-add aria-label="Add ${escape(p.name)} to cart">Add to Cart</button></div></article>`;
+const card=p=>`<article class="store-product-card" data-t01-card data-product-id="${escape(p.id)}"><a href="${link(p.id)}" class="store-product-card__link"><div class="store-product-card__media" data-t02-image><img src="${imageUrl(p)}" alt="${escape(p.name)}" loading="lazy"></div><span class="store-product-card__name">${escape(p.name)}</span><span class="store-product-card__subtitle">${escape(p.subtitle)}</span></a>${favoriteButton(p,getFavorites().has(p.id))}<div class="store-product-card__footer"><span class="store-price">${dealDisplay(p)}</span><a class="store-small-link" href="${link(p.id)}">View details →</a><button type="button" class="store-quick-add" data-add="${escape(p.id)}" data-t02-add aria-label="Add ${escape(p.name)} to cart">Add to Cart</button></div></article>`;
 function mount(html){$('page-content').innerHTML=html}
 function setCartBadge(){const c=$('bag-count');syncCartVisual(cartCount())}
 function searchPage(){
  const query=args.get('q')||'',category=normalizeCatalogCategory(args.get('category')||''),favorites=args.get('favorites')==='1';
  let activeCategory=category;
- mount(`<section class="store-page-heading"><div class="store-kicker">THREADS COLLECTION</div><h1>${favorites?'Saved favorites':'Discover your next essential'}</h1><p>Curated sneakers, headwear, travel bags and everyday accessories. Every item has its own details.</p></section><section class="store-search-toolbar"><form id="catalog-search-form" role="search"><label for="catalog-search">Search the collection</label><div class="store-search-row"><input type="search" id="catalog-search" name="q" value="${escape(query)}" placeholder="Try vintage sneakers…"><button type="submit" class="store-primary-btn">Search <span aria-hidden="true">→</span></button></div></form><div class="store-filter-row" aria-label="Product categories" id="catalog-filters">${catalogFilters.map(x=>`<button type="button" class="store-chip" data-category="${x.id}" aria-pressed="${(category||'All')===x.id}">${x.label}</button>`).join('')}</div></section><section class="store-catalog-results" aria-live="polite"><div class="store-results-top"><h2 id="results-title">Search Results</h2><span id="results-count"></span></div><div id="results-grid" class="store-results-grid" data-t01-results></div></section>`);
+ mount(`<section class="store-page-heading"><div class="store-kicker">THREADS COLLECTION</div><h1>${favorites?'Saved favorites':'Discover your next essential'}</h1><p>Curated sneakers, headwear, travel bags and everyday accessories. Every item has its own details.</p></section><section class="store-search-toolbar"><form id="catalog-search-form" role="search"><label for="catalog-search">Search the collection</label><div class="store-search-row"><input type="search" id="catalog-search" name="q" value="${escape(query)}" placeholder="Try vintage sneakers…"><button type="submit" class="store-primary-btn">Search <span aria-hidden="true">→</span></button></div></form><div class="store-filter-row" aria-label="Product categories" id="catalog-filters">${catalogFilters.map(x=>`<button type="button" class="store-chip" data-category="${x.id}" aria-pressed="${(category||'All')===x.id}">${x.label}</button>`).join('')}</div><a class="deals-shop-link" href="/deals/">Deals / Offers · 15% off selected styles →</a></section><section class="store-catalog-results" aria-live="polite"><div class="store-results-top"><h2 id="results-title">Search Results</h2><span id="results-count"></span></div><div id="results-grid" class="store-results-grid" data-t01-results></div></section>`);
  const spotlight=initT01Spotlight();
  const input=$('catalog-search');const current=query;
  const syncUrl=(q,cat)=>{const p=new URLSearchParams();if(q)p.set('q',q);if(cat)p.set('category',cat);if(favorites)p.set('favorites','1');window.history.replaceState({},'', '/search/'+(p.size?'?'+p.toString():''));};
@@ -44,12 +46,17 @@ function searchPage(){
   $('results-title').textContent=q?'Results for “'+q+'”':'All Products';
   for(const b of document.querySelectorAll('[data-category]'))b.setAttribute('aria-pressed',String((cat||'All')===b.dataset.category));
   spotlight.schedule(q,list);
+  syncNavbarFavorites(getFavorites().size);
  }
  update(current,category);
  $('catalog-search-form').addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();syncUrl(q,activeCategory);update(q,activeCategory)});
+ window.addEventListener('threads:favoriteschange',()=>syncNavbarFavorites(getFavorites().size));
+ window.addEventListener('storage',()=>update(input.value,activeCategory));
  $('catalog-filters').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(!b)return;const c=b.dataset.category==='All'?'':b.dataset.category;activeCategory=c;const q=input.value.trim();syncUrl(q,c);update(q,c)});
  // Shop/Search cards reuse the same cart mutation and T02.
  $('results-grid').addEventListener('click',e=>{
+  const heart=e.target.closest('[data-save]');
+  if(heart){toggleFavorite(heart.dataset.save);update(input.value,activeCategory);return}
   const button=e.target.closest('[data-t02-add]');if(!button)return;
   const p=catalogById[button.dataset.add];if(!p)return;
   const m=productMeta(p),color=m.colors[0]?.id;
@@ -65,12 +72,61 @@ function searchPage(){
    const status=$('t02-cart-status');if(status)status.textContent=err.message;
   }
  });
+ const beganWithOffers=offerIsActive();
+ if(beganWithOffers){
+  let active=true;
+  const expire=()=>{if(active&&!offerIsActive()){active=false;update(input.value,activeCategory)}};
+  setInterval(expire,1000);window.addEventListener('focus',expire);
+ }
 }
+function dealsPage(){
+ const products=DEAL_PRODUCT_IDS.map(id=>catalogById[id]).filter(Boolean);
+ mount('<section class="store-page-heading"><span class="store-kicker">THREADS FLASH DEALS</span><h1>Deals / Offers</h1>'+
+  '<p>Eight existing THREADS products. A single '+DEAL_PERCENT+'% discount policy applies to eligible items until the shared expiration.</p>'+
+  '<p id="deals-expiry" role="status" class="deals-expiry"></p><div id="deals-clock" class="deals-countdown" role="timer"></div>'+
+  '<a href="/search/" class="deals-shop-link">← Browse All Products</a></section>'+
+  '<section class="store-catalog-results"><div class="store-results-top"><h2>Selected styles</h2><span>4 sneakers · 2 accessories · 2 bags</span></div>'+
+  '<div id="results-grid" class="store-results-grid deals-grid"></div></section>');
+ function render(){
+  const live=offerIsActive();
+  $('results-grid').innerHTML=products.map(p=>'<div class="deal-grid-item">'+card(p)+
+   '<span class="deal-card-ribbon">'+(live?DEAL_PERCENT+'% OFF':'Offer Ended')+'</span>'+
+   '<p class="deal-card-savings">'+(live?'You save '+money(dealSavings(p))+' · Demo offer':'Regular USD price')+'</p></div>').join('');
+  $('deals-expiry').textContent=live?'Valid until '+new Date(OFFER_EXPIRES_AT).toLocaleString('en-US',{timeZone:'UTC',timeZoneName:'short'}):'Offer Ended';
+  syncNavbarFavorites(getFavorites().size);
+ }
+ render();
+ $('results-grid').addEventListener('click',e=>{
+  const save=e.target.closest('[data-save]');
+  if(save){toggleFavorite(save.dataset.save);render();return}
+  const button=e.target.closest('[data-t02-add]');if(!button)return;
+  const product=catalogById[button.dataset.add];if(!product)return;
+  const meta=productMeta(product),color=meta.colors[0].id;
+  const size=meta.sizes.find(value=>variantAvailable(product,color,value));
+  try{
+   prepareCartBadge();
+   const receipt=addCartItem({id:product.id,color,size,quantity:1});
+   setCartBadge();void playT02({button,quantity:receipt.count}).catch(()=>settleCartBadge());
+  }catch(error){
+   settleCartBadge();$('t02-cart-status').textContent=error.message;
+  }
+ });
+ window.addEventListener('threads:favoriteschange',()=>syncNavbarFavorites(getFavorites().size));
+ window.addEventListener('storage',render);
+ let wasActive=offerIsActive();
+ const tick=()=>{
+  const active=offerIsActive(),parts=countdownParts();
+  $('deals-clock').textContent=active?parts.map((n,i)=>String(n).padStart(2,'0')+[' days',' hours',' min',' sec'][i]).join(' : '):'Offer Ended';
+  if(wasActive&&!active){wasActive=false;render()}
+ };
+ tick();setInterval(tick,1000);window.addEventListener('focus',tick);
+}
+
 function detailPage(){
  const p=catalogById[args.get('id')];
  if(!p){mount(`<section class="store-empty"><h1>Product not found</h1><p>Return to the collection to find an available demo product.</p><a class="store-primary-btn" href="/search/">View collection</a></section>`);return}
  const m=productMeta(p),primary=m.colors[0],first=m.sizes[0],gallery=productGallery(p),firstView=gallery[0],singlePhoto=gallery.every(x=>!x.isAlternate);
- mount(`<nav class="store-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/search/?category=${encodeURIComponent(merchandisingCategory(p))}">${escape(merchandisingCategory(p))}</a><span>›</span>${escape(p.name)}</nav><section class="store-detail"${p.id==='f3'?' data-f3-square-gallery':''}${p.id==='sho-04'?' data-sho04-square-gallery':''}><div class="store-detail__gallery"><div class="store-thumbnails" role="group" aria-label="Image views">${gallery.map((view,i)=>`<button type="button" data-view="${i}" aria-label="${escape(view.label)}" aria-pressed="${i===0}"><img class="${view.crop===1?'thumb-zoom':view.crop===2?'thumb-more':''}" src="${imageUrl(view)}" alt="${escape(p.name)} · ${escape(view.label)}"></button>`).join('')}</div><div class="store-detail__image" data-t02-image><img id="detail-main-image" class="view-0" src="${imageUrl(firstView)}" alt="${escape(p.name)} · ${escape(firstView.label)}"></div><p class="store-image-note" id="gallery-view-note">${singlePhoto?(gallery.length===1?'Owner-supplied cover image only. Additional camera angles have not been supplied yet.':'Cropped views of the same source photograph. Additional camera angles have not been supplied yet.'):escape(firstView.label)}</p></div><div class="store-detail__info"><span class="store-badge">${escape(m.status)}</span><h1>${escape(p.name)}</h1><p class="store-detail__intro">${escape(m.description)}</p><strong class="store-detail__price">${money(p.price)}</strong><div class="store-option-label">Color <span id="selected-color-name">${escape(primary.name)}</span></div><div id="color-options" class="store-color-options" role="group" aria-label="Choose a color">${m.colors.map((x,i)=>`<button type="button" data-color="${x.id}" aria-label="${escape(x.name)}" title="${escape(x.name)}" aria-pressed="${i===0}" style="--swatch:${x.hex}"></button>`).join('')}</div><div class="store-option-label">Size <span id="selected-size-name">${escape(first)}</span></div><div id="size-options" class="store-size-options" role="group" aria-label="Choose a size">${m.sizes.map((x,i)=>`<button type="button" data-size="${escape(x)}" aria-pressed="${i===0}"${!variantAvailable(p,primary.id,x)?' disabled title="Unavailable"':''}>${escape(x)}</button>`).join('')}</div><p class="store-availability" id="stock-notice">Select your options to check demo availability.</p><div class="store-purchase-row"><div class="store-stepper" aria-label="Quantity"><button type="button" data-adjust="-1" aria-label="Decrease quantity">−</button><output id="detail-qty" aria-live="polite">1</output><button type="button" data-adjust="1" aria-label="Increase quantity">+</button></div><button type="button" id="detail-add" class="store-primary-btn" data-t02-add>Add to Cart <span aria-hidden="true">→</span></button></div><p class="store-form-error" id="detail-error" role="alert" hidden></p><div class="store-confirm-inline" id="detail-success" aria-live="polite"></div><p class="store-trust">Standalone storefront demonstration · No actual inventory or purchases.</p></div></section><div class="store-back-link"><a href="/search/?category=${encodeURIComponent(merchandisingCategory(p))}">← Back to ${escape(merchandisingCategory(p))}</a></div>`);
+ mount(`<nav class="store-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/search/?category=${encodeURIComponent(merchandisingCategory(p))}">${escape(merchandisingCategory(p))}</a><span>›</span>${escape(p.name)}</nav><section class="store-detail"${p.id==='f3'?' data-f3-square-gallery':''}${p.id==='sho-04'?' data-sho04-square-gallery':''}><div class="store-detail__gallery"><div class="store-thumbnails" role="group" aria-label="Image views">${gallery.map((view,i)=>`<button type="button" data-view="${i}" aria-label="${escape(view.label)}" aria-pressed="${i===0}"><img class="${view.crop===1?'thumb-zoom':view.crop===2?'thumb-more':''}" src="${imageUrl(view)}" alt="${escape(p.name)} · ${escape(view.label)}"></button>`).join('')}</div><div class="store-detail__image" data-t02-image><img id="detail-main-image" class="view-0" src="${imageUrl(firstView)}" alt="${escape(p.name)} · ${escape(firstView.label)}"></div><p class="store-image-note" id="gallery-view-note">${singlePhoto?(gallery.length===1?'Owner-supplied cover image only. Additional camera angles have not been supplied yet.':'Cropped views of the same source photograph. Additional camera angles have not been supplied yet.'):escape(firstView.label)}</p></div><div class="store-detail__info"><span class="store-badge">${escape(m.status)}</span><h1>${escape(p.name)}</h1><p class="store-detail__intro">${escape(m.description)}</p><strong class="store-detail__price">${dealDisplay(p)}</strong><div class="store-option-label">Color <span id="selected-color-name">${escape(primary.name)}</span></div><div id="color-options" class="store-color-options" role="group" aria-label="Choose a color">${m.colors.map((x,i)=>`<button type="button" data-color="${x.id}" aria-label="${escape(x.name)}" title="${escape(x.name)}" aria-pressed="${i===0}" style="--swatch:${x.hex}"></button>`).join('')}</div><div class="store-option-label">Size <span id="selected-size-name">${escape(first)}</span></div><div id="size-options" class="store-size-options" role="group" aria-label="Choose a size">${m.sizes.map((x,i)=>`<button type="button" data-size="${escape(x)}" aria-pressed="${i===0}"${!variantAvailable(p,primary.id,x)?' disabled title="Unavailable"':''}>${escape(x)}</button>`).join('')}</div><p class="store-availability" id="stock-notice">Select your options to check demo availability.</p><div class="store-purchase-row"><div class="store-stepper" aria-label="Quantity"><button type="button" data-adjust="-1" aria-label="Decrease quantity">−</button><output id="detail-qty" aria-live="polite">1</output><button type="button" data-adjust="1" aria-label="Increase quantity">+</button></div><button type="button" id="detail-add" class="store-primary-btn" data-t02-add>Add to Cart <span aria-hidden="true">→</span></button></div><p class="store-form-error" id="detail-error" role="alert" hidden></p><div class="store-confirm-inline" id="detail-success" aria-live="polite"></div><p class="store-trust">Standalone storefront demonstration · No actual inventory or purchases.</p></div></section><div class="store-back-link"><a href="/search/?category=${encodeURIComponent(merchandisingCategory(p))}">← Back to ${escape(merchandisingCategory(p))}</a></div>`);
  let color=primary.id,size=first,qty=1;
  const colorWrap=$('color-options'),sizeWrap=$('size-options'),add=$('detail-add');
  const update=()=>{
@@ -87,6 +143,11 @@ function detailPage(){
  document.querySelectorAll('[data-adjust]').forEach(b=>b.addEventListener('click',()=>{qty=Math.max(1,Math.min(10,qty+Number(b.dataset.adjust)));update()}));
  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{const i=Number(b.dataset.view),view=gallery[i];if(!view)return;document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const image=$('detail-main-image');image.src=imageUrl(view);image.alt=p.name+' · '+view.label;image.className=view.crop?'view-'+view.crop:'view-0';$('gallery-view-note').textContent=singlePhoto?(gallery.length===1?'Owner-supplied cover image only. Additional camera angles have not been supplied yet.':'Cropped views of the same source photograph. Additional camera angles have not been supplied yet.'):view.label;}));
  add.addEventListener('click',()=>{try{prepareCartBadge();const receipt=addCartItem({id:p.id,color,size,quantity:qty});setCartBadge();void playT02({button:add,quantity:receipt.count}).catch(()=>settleCartBadge());$('detail-success').innerHTML='Added to cart. <a href="/cart/">View cart →</a>';showError('detail-error','')}catch(err){settleCartBadge();showError('detail-error',err.message)}});
+ if(offerIsActive()&&dealSavings(p)>0){
+  let active=true;
+  const expire=()=>{if(active&&!offerIsActive()){active=false;const el=document.querySelector('.store-detail__price');if(el)el.innerHTML=dealDisplay(p)}};
+  setInterval(expire,1000);window.addEventListener('focus',expire);
+ }
 }
 function cartPage(){
  mount(`<nav class="store-breadcrumb"><a href="/">Home</a> › Cart</nav><section class="store-page-heading"><span class="store-kicker">YOUR THREADS BAG</span><h1>Shopping Cart</h1><p>Review your selected demo products and variants.</p></section><div id="cart-content"></div>`);
@@ -94,12 +155,16 @@ function cartPage(){
  const render=()=>{
   const bag=cartSummary();
   if(!bag.count){container.innerHTML=`<div class="store-empty"><h2>Your cart is empty</h2><p>Find your next everyday essential.</p><a href="/search/" class="store-primary-btn">Browse products</a></div>`;setCartBadge();return}
-  container.innerHTML=`<div class="store-cart-layout"><div class="store-cart-items">${bag.items.map(x=>{const p=x.product,m=productMeta(p),color=m.colors.find(c=>c.id===x.color);return `<article class="store-cart-line" data-cart-key="${escape([x.id,x.color,x.size].join('~'))}"><a href="${link(x.id)}"><img src="${imageUrl(p)}" alt="${escape(p.name)}"></a><div><a class="store-cart-line__title" href="${link(x.id)}">${escape(p.name)}</a><p>${escape(color?.name)} · Size ${escape(x.size)}</p><p>${money(p.price)} each</p><button type="button" class="store-text-button" data-remove="${escape([x.id,x.color,x.size].join('~'))}">Remove</button></div><div class="store-cart-line__end"><strong>${money(x.subtotal)}</strong><div class="store-stepper"><button type="button" data-qty="-1" data-key="${escape([x.id,x.color,x.size].join('~'))}" aria-label="Decrease ${escape(p.name)}">−</button><output>${x.quantity}</output><button type="button" data-qty="1" data-key="${escape([x.id,x.color,x.size].join('~'))}" aria-label="Increase ${escape(p.name)}">+</button></div></div></article>`}).join('')}</div><aside class="store-summary"><h2>Order Summary</h2><div class="store-summary-line"><span>${bag.count} items</span><strong>${money(bag.total)}</strong></div><div class="store-summary-line"><span>Demo delivery</span><span>Free</span></div><div class="store-summary-line store-summary-total"><span>Total</span><strong>${money(bag.total)}</strong></div><a class="store-primary-btn store-block" href="/checkout/">Proceed to Checkout →</a><p>Demo only. No real purchases or payment gateway.</p></aside></div><p class="store-form-error" id="cart-error" role="alert" hidden></p>`;
+  container.innerHTML=`<div class="store-cart-layout"><div class="store-cart-items">${bag.items.map(x=>{const p=x.product,m=productMeta(p),color=m.colors.find(c=>c.id===x.color);return `<article class="store-cart-line" data-cart-key="${escape([x.id,x.color,x.size].join('~'))}"><a href="${link(x.id)}"><img src="${imageUrl(p)}" alt="${escape(p.name)}"></a><div><a class="store-cart-line__title" href="${link(x.id)}">${escape(p.name)}</a><p>${escape(color?.name)} · Size ${escape(x.size)}</p><p>${x.savings?`<s>${money(p.price)}</s> `:""}${money(x.unitPrice)} each</p><button type="button" class="store-text-button" data-remove="${escape([x.id,x.color,x.size].join('~'))}">Remove</button></div><div class="store-cart-line__end"><strong>${money(x.subtotal)}</strong><div class="store-stepper"><button type="button" data-qty="-1" data-key="${escape([x.id,x.color,x.size].join('~'))}" aria-label="Decrease ${escape(p.name)}">−</button><output>${x.quantity}</output><button type="button" data-qty="1" data-key="${escape([x.id,x.color,x.size].join('~'))}" aria-label="Increase ${escape(p.name)}">+</button></div></div></article>`}).join('')}</div><aside class="store-summary"><h2>Order Summary</h2><div class="store-summary-line"><span>${bag.count} items</span><strong>${money(bag.total)}</strong></div><div class="store-summary-line" ${bag.savings?"":"hidden"}><span>Demo savings</span><strong>−${money(bag.savings)}</strong></div><div class="store-summary-line"><span>Demo delivery</span><span>Free</span></div><div class="store-summary-line store-summary-total"><span>Total</span><strong>${money(bag.total)}</strong></div><a class="store-primary-btn store-block" href="/checkout/">Proceed to Checkout →</a><p>Demo only. No real purchases or payment gateway.</p></aside></div><p class="store-form-error" id="cart-error" role="alert" hidden></p>`;
   container.querySelectorAll('[data-qty]').forEach(b=>b.addEventListener('click',()=>{try{let [id,color,size]=b.dataset.key.split('~');const old=bag.items.find(x=>x.id===id&&x.color===color&&x.size===size);updateCartItem({id,color,size},old.quantity+Number(b.dataset.qty));render()}catch(e){showError('cart-error',e.message)}}));
   container.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{let [id,color,size]=b.dataset.remove.split('~');removeCartItem({id,color,size});render()}));
   setCartBadge();
  };
  render();
+ if(cartSummary().savings>0){let active=true;
+  const expire=()=>{if(active&&!offerIsActive()){active=false;render()}};
+  setInterval(expire,1000);window.addEventListener('focus',expire);
+ }
 }
 function checkoutPage(){
  const bag=cartSummary();
@@ -140,6 +205,7 @@ function checkoutPage(){
   </div>
   <aside class="store-summary"><h2>Your Order</h2>
    `+bag.items.map(x=>`<div class="store-checkout-line"><img src="${imageUrl(x.product)}" alt=""><div><strong>${escape(x.product.name)}</strong><p>${escape(productMeta(x.product).colors.find(c=>c.id===x.color)?.name)} / ${escape(x.size)} × ${x.quantity}</p></div><strong>${money(x.subtotal)}</strong></div>`).join('')+`
+   ${bag.savings?`<div class="store-summary-line"><span>Flash Deals savings</span><strong>−${money(bag.savings)}</strong></div>`:""}
    <div class="store-summary-line store-summary-total"><span>Total</span><strong>${money(bag.total)}</strong></div>
    <button type="button" class="store-primary-btn store-block" id="proceed-payment" disabled>Proceed to Pay · ${money(bag.total)}</button>
    <p class="t04-summary-disclaimer">Demo simulation only · No money is charged.</p>
@@ -156,6 +222,7 @@ function checkoutPage(){
  back.addEventListener('click',()=>{cardStep.hidden=true;form.hidden=false;cardForm.dispatchEvent(new Event('change',{bubbles:true}));form.elements.name.focus({preventScroll:true})});
  initT04PaymentOverlay({form,cardForm,proceed,showError:message=>{showError('checkout-error',message);showError('checkout-card-error',message)}});
  stabilizeCheckoutViewport({form,cardForm});
+ if(bag.savings>0){const expire=()=>{if(!offerIsActive())window.location.reload()};setInterval(expire,1000);window.addEventListener('focus',expire)}
 }
 function orderPage(){
  const order=getOrder(args.get('ref'));
@@ -163,7 +230,9 @@ function orderPage(){
  mount(`<section class="store-order-confirmation"><div class="store-confirm-icon" aria-hidden="true">✓</div><span class="store-kicker">SUCCESSFUL DEMO TRANSACTION</span><h1>Order Confirmed</h1><p>Thank you for testing the THREADS storefront. No real payment was taken and no delivery will be made.</p><div class="store-order-paper"><div class="store-summary-line"><span>Order reference</span><strong>${escape(order.ref)}</strong></div><div class="store-summary-line"><span>Status</span><strong>Demo payment approved</strong></div><div class="store-summary-line"><span>Placed</span><span>${escape(new Date(order.createdAt).toLocaleString())}</span></div>${order.items.map(x=>{const p=catalogById[x.id];return p?`<div class="store-checkout-line"><img src="${imageUrl(p)}" alt=""><div><strong>${escape(p.name)}</strong><p>${escape(productMeta(p).colors.find(c=>c.id===x.color)?.name)} / ${escape(x.size)} × ${x.quantity}</p></div><strong>${money(x.price*x.quantity)}</strong></div>`:`<div class="store-checkout-line"><div><strong>Discontinued product</strong><p>Archived item × ${Number(x.quantity)||1}</p></div><strong>${money((Number(x.price)||0)*(Number(x.quantity)||1))}</strong></div>`}).join('')}<div class="store-summary-line store-summary-total"><span>Demo total</span><strong>${money(order.total)}</strong></div></div><a href="/search/" class="store-primary-btn">Return to shop →</a></section>`);
 }
 $('site-shell').innerHTML=header()+'<main id="page-main" class="store-main content-wrap"><div id="page-content"></div></main>'+footer();
-installArticulatedHeaderCart();initInlineSearch();setCartBadge();
+installArticulatedHeaderCart();initInlineSearch();installNavbarHeart();syncNavbarFavorites(getFavorites().size);setCartBadge();
 window.addEventListener('threads:cartchange',setCartBadge);
 window.addEventListener('storage',setCartBadge);
-({search:searchPage,product:detailPage,cart:cartPage,checkout:checkoutPage,order:orderPage}[page]||searchPage)();
+window.addEventListener('threads:favoriteschange',()=>syncNavbarFavorites(getFavorites().size));
+window.addEventListener('storage',()=>syncNavbarFavorites(getFavorites().size));
+({search:searchPage,deals:dealsPage,product:detailPage,cart:cartPage,checkout:checkoutPage,order:orderPage}[page]||searchPage)();

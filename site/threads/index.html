@@ -18,7 +18,8 @@
   <link rel="stylesheet" href="./market-catalog-polish-20261018.css">
   <link rel="stylesheet" href="./threads-asset-fidelity-20261018.css?v=20261018-featured-v2">
   <link rel="stylesheet" href="./storefront.css?v=t02-v3-20261019">
-  <script type="module" src="./app.mjs?v=t02-v3-20261019"></script>
+  <link rel="stylesheet" href="/commerce-ui.css?v=20261025-deals">
+<script type="module" src="./app.mjs?v=t02-v3-20261019"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -88,7 +89,7 @@
 
     <section class="panel-wrap sale section-space" aria-labelledby="sale-heading">
       <div class="sale-art"><img src="./assets/sale-moody-sneakers.webp" width="1850" height="811" alt="Two grey-green sneakers in a moody dark-green product editorial" loading="lazy"></div><div class="sale-overlay"></div>
-      <div class="sale-copy"><h2 id="sale-heading">Last Chance to Save.</h2><p>Premium sneakers. Exclusive prices. This deal won't last—shop now before time runs out.</p><div class="countdown" aria-label="Decorative promotional countdown"><div><strong>02</strong><span>Days</span></div><div><strong>21</strong><span>Hours</span></div><div><strong>44</strong><span>Minutes</span></div><div><strong>54</strong><span>Seconds</span></div></div><a href="/search/?category=Sneakers" class="pill pill-lime">Grab The Deal <span aria-hidden="true">→</span></a></div>
+      <div class="sale-copy"><h2 id="sale-heading">Last Chance to Save.</h2><p>Premium sneakers. Exclusive prices. This deal won't last—shop now before time runs out.</p><div class="countdown" id="offer-countdown" role="timer" aria-label="Time remaining on the shared demo offer"><div><strong data-countdown="days">--</strong><span>Days</span></div><div><strong data-countdown="hours">--</strong><span>Hours</span></div><div><strong data-countdown="minutes">--</strong><span>Minutes</span></div><div><strong data-countdown="seconds">--</strong><span>Seconds</span></div></div><p id="offer-status" class="offer-expiration-status" role="status" aria-live="polite"></p><a href="/deals/" class="pill pill-lime">Grab The Deal <span aria-hidden="true">→</span></a></div>
     </section>
 
 
@@ -108,7 +109,7 @@
         <span class="eyebrow with-line dark">Special offer</span>
         <h2 id="deal-heading">Deal Of<br>the Week</h2>
         <p>Handpicked essentials at unbeatable prices. Don't miss out on this week's special picks.</p>
-        <a href="/search/" class="pill pill-green">Shop the Deals <span aria-hidden="true">→</span></a>
+        <a href="/deals/" class="pill pill-green">Shop the Deals <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>
@@ -152,7 +153,7 @@
   <aside class="bag-drawer" id="bag-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart" hidden>
     <div class="bag-title"><h2>Your Cart</h2><button type="button" id="bag-close" class="icon-btn" aria-label="Close shopping cart">×</button></div>
     <div id="bag-lines" class="bag-lines"></div>
-    <div class="bag-summary"><div><span>Subtotal</span><strong id="bag-total">Tk 0</strong></div><p>Sample products and demo cart only. Checkout animation will be added separately.</p><button class="pill pill-green full-width" disabled type="button">T04 · Checkout coming next</button></div>
+    <div class="bag-summary"><div><span>Subtotal</span><strong id="bag-total">$0.00</strong></div><p>Demo cart only · No real payment or shipping.</p><a class="pill pill-green full-width" href="/cart/">View Cart</a></div>
   </aside>
 </body>
 </html>

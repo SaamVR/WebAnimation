@@ -25,7 +25,7 @@ test('variant selection and limited availability are real demo state',()=>{
  assert.equal(variantAvailable(p,'color-0','40'),true);
  assert.equal(variantAvailable(p,'nonexistent','40'),false);
  assert.equal(productMeta(catalog.find(x=>x.id==='f2')).sizes[0],'One Size');
- assert.equal(priceTk(5990),'Tk 5,990');
+ assert.equal(priceTk(59),'$59.00');
  assert.equal(cartKey({id:'sho-08',color:'color-0',size:'40'}),'sho-08~color-0~40');
 });
 test('all five static route pages exist and defer cinematic animations',()=>{

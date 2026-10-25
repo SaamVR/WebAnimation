@@ -15,12 +15,12 @@ test('T01/T02/T03 locations exist but choreographies and T04 are deferred',()=>{
   assert.match(script,/data-add=/);
   assert.match(html,/id="deal-heading"/);
   assert.doesNotMatch(html,/GSAP|gsap|payment-modal/i);
-  assert.match(html,/T04 · Checkout coming next/);
+  assert.match(html,/View Cart/);
 });
 test('independent of CMS runtime and real payment',()=>{
   assert.doesNotMatch(html,/EcomCMS|ezcomo|checkout\.stripe|paystack/i);
   assert.doesNotMatch(script,/supabase|stripe|checkout/i);
-  assert.match(html,/Sample products and demo cart only/);
+  assert.match(html,/Demo cart only/);
   assert.match(pack,/<svg/);
   assert.match(cropper,/art-atlas\.webp/);
   assert.doesNotMatch(cropper,/EcomCMS|ezcomo|fetch\(/i);
@@ -153,10 +153,10 @@ test('catalog polish follows the approved palette and currency, without changing
  assert.ok(polish.includes('border-radius: 21px')&&polish.includes('box-shadow:'));
  assert.ok(polish.includes('.category-card:nth-child(2) img'));
  assert.ok(polish.includes('.category-card:nth-child(3) img'));
- assert.ok(html.includes('id="bag-total">Tk 0'));
- assert.ok(script.includes("export const priceTk = amount => 'Tk ' + Math.round(amount).toLocaleString('en-BD')"));
+ assert.ok(html.includes('id="bag-total">$0.00'));
+ assert.ok(script.includes('export const priceTk=moneyUSD'));
  assert.doesNotMatch(script,/price:\d+\.\d+/);
- assert.doesNotMatch(html,/\$\d/);
+ assert.match(html,/\$0\.00/);
 });
 
 test('three complete top-row owner shoes are local and no longer overridden by atlas crops',()=>{

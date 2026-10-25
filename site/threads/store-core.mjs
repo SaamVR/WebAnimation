@@ -1,3 +1,4 @@
+import {dealUnitPrice,dealSavings,roundMoney,offerIsActive,OFFER_EXPIRY_MS} from './deals.mjs';
 import {catalogById,productMeta,priceTk} from './catalog.mjs';
 export const CART_KEY='threads.demo.cart.v1';
 export const ORDER_KEY='threads.demo.orders.v1';
@@ -30,7 +31,17 @@ function sanitizedCart(raw){
 }
 export const getCart=()=>sanitizedCart(parse(CART_KEY,[]));
 export const cartCount=()=>getCart().reduce((n,x)=>n+x.quantity,0);
-export const cartSummary=()=>{const items=getCart().map(x=>({...x,product:catalogById[x.id],subtotal:catalogById[x.id].price*x.quantity}));return {items,count:items.reduce((n,x)=>n+x.quantity,0),total:items.reduce((n,x)=>n+x.subtotal,0)}};
+export const cartSummary=(at=Date.now())=>{
+ const items=getCart().map(x=>{
+  const product=catalogById[x.id],unitPrice=dealUnitPrice(product,at);
+  return {...x,product,unitPrice,originalPrice:product.price,
+          subtotal:roundMoney(unitPrice*x.quantity),
+          savings:roundMoney(dealSavings(product,at)*x.quantity)};
+ });
+ return {items,count:items.reduce((n,x)=>n+x.quantity,0),
+  total:roundMoney(items.reduce((n,x)=>n+x.subtotal,0)),
+  savings:roundMoney(items.reduce((n,x)=>n+x.savings,0))};
+};
 function writeCart(items){save(CART_KEY,items);signal();return cartSummary()}
 export function addCartItem({id,color='color-0',size,quantity=1}){
  const product=catalogById[id],meta=product&&productMeta(product);
@@ -78,7 +89,7 @@ export function startDemoPayment(form){
  if(name.length<2||name.length>80||!/.+@.+\..+/.test(email)||address.length<5||city.length<2||phone.replace(/\D/g,'').length<8)throw Error('Enter valid contact and delivery details.');
  // The demo does not transmit or persist contact/delivery details; only a flag is retained.
  const a={id:randomId(),status:'pending',startedAt:new Date().toISOString(),
-   items:cart.items.map(x=>({id:x.id,color:x.color,size:x.size,quantity:x.quantity,price:x.product.price})),total:cart.total,contactProvided:true};
+   items:cart.items.map(x=>({id:x.id,color:x.color,size:x.size,quantity:x.quantity,price:x.unitPrice,originalPrice:x.originalPrice})),total:cart.total,contactProvided:true};
  save(ATTEMPT_KEY,a,'session');return a;
 }
 export function resolveDemoPayment(result){
@@ -87,6 +98,11 @@ export function resolveDemoPayment(result){
  if(attempt.status==='succeeded'&&getOrder(attempt.ref))return attempt;
  if(attempt.status!=='pending')throw Error('This transaction is not pending. Retry checkout to begin a new one.');
  if(!['succeeded','failed','cancelled'].includes(result))throw Error('Invalid demo payment outcome.');
+ if(result==='succeeded'&&attempt.items.some(x=>x.price<catalogById[x.id]?.price)&&!offerIsActive()){
+  attempt.status='failed';
+  save(ATTEMPT_KEY,attempt,'session');
+  throw Error('The demo offer has ended. Return to Cart to review the updated USD total.');
+ }
  if(result==='succeeded'){
   const exists=getOrders().find(x=>x.paymentAttemptId===attempt.id);
   const order=exists||{ref:'THR-'+Date.now().toString(36).toUpperCase()+'-'+attempt.id.slice(0,6).toUpperCase(),
