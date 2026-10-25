@@ -1,0 +1,48 @@
+{
+  "base": "https://threads-final-gallery-replacement.onrender.com",
+  "results": [
+    {
+      "name": "desktop",
+      "initial": 235,
+      "finalScroll": 237,
+      "minScroll": 235,
+      "maxScroll": 292,
+      "maxMagnifierY": 427.06048583984375,
+      "height": 650,
+      "headersStable": true,
+      "restored": true,
+      "followed": true,
+      "completed": true,
+      "frames": 43
+    },
+    {
+      "name": "ipad-webkit",
+      "initial": 520,
+      "finalScroll": 522,
+      "minScroll": 520,
+      "maxScroll": 559,
+      "maxMagnifierY": 398.60528564453125,
+      "height": 610,
+      "headersStable": true,
+      "restored": true,
+      "followed": true,
+      "completed": true,
+      "frames": 39
+    },
+    {
+      "name": "mobile",
+      "initial": 520,
+      "finalScroll": 522,
+      "minScroll": 520,
+      "maxScroll": 571,
+      "maxMagnifierY": 452.47698974609375,
+      "height": 700,
+      "headersStable": true,
+      "restored": true,
+      "followed": true,
+      "completed": true,
+      "frames": 39
+    }
+  ],
+  "errors": []
+}
