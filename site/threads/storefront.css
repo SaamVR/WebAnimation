@@ -189,3 +189,17 @@
  position:absolute;inset:0;box-sizing:border-box;width:100%;height:100%;max-height:none;
  object-fit:contain;object-position:center;
 }
+
+/* Header permanence — same existing header and design, all storefront routes.
+   Never translate/hide it on downward scroll; keep T01 above at z-index 95. */
+body > header.site-header,
+#site-shell > header.site-header.store-site-header {
+  position:sticky!important;
+  inset-block-start:0!important;
+  top:0!important;
+  transform:none!important;
+  translate:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  z-index:75;
+}
