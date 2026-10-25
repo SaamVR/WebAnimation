@@ -37,26 +37,9 @@ function reset(){
  status.dataset.empty='true';bag.disabled=false;bag.setAttribute('aria-label','Open backpack to discover a surprise');
  resetButton.disabled=true;seek(0);
 }
-function showAuthoredOpenStill(){
- // Honor the SVG's animation:none media rule. Read its original 50% values
- // as a STATIC accessible frame, not as a replacement animation.
- const stylesheet=svg.querySelector('style')?.textContent||'';
- for(const el of tracks){
-  const name='anim-'+el.id;
-  const block=stylesheet.match(new RegExp('@keyframes '+name+'\\s*\\{([\\s\\S]*?)\\n\\}'))?.[1];
-  const frame=block?.match(new RegExp('50\\.000%\\s*\\{([^}]+)\\}'))?.[1];
-  if(!frame)throw Error('Missing authored open keyframe for '+el.id);
-  for(const declaration of frame.split(';')){
-   const pos=declaration.indexOf(':');if(pos<0)continue;
-   const property=declaration.slice(0,pos).trim(),value=declaration.slice(pos+1).trim();
-   if(property==='transform'||property==='opacity')el.style.setProperty(property,value,'important');
-  }
- }
-}
 function reveal(){
  if(phase!=='opening')return;
  seek(OPEN_TIME_MS);
- if(matchMedia('(prefers-reduced-motion: reduce)').matches)showAuthoredOpenStill();
  phase='opened';
  const result=OUTCOMES[savedResult()];cardLabel.textContent=result;
  coupon.setAttribute('aria-hidden','false');
@@ -88,6 +71,12 @@ document.addEventListener('visibilitychange',()=>{
   const doc=new DOMParser().parseFromString(source,'image/svg+xml');
   if(doc.querySelector('parsererror'))throw Error('Supplied SVG failed XML parse');
   svg=document.importNode(doc.documentElement,true);
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+   // Preserve every original motion/keyframe, but let our controller seek
+   // instantly between authored frames instead of the SVG's animation:none rule.
+   const style=svg.querySelector('style');
+   if(style)style.textContent=style.textContent.replace('@media (prefers-reduced-motion:reduce) { #backpack-scene * {animation:none!important;} }','');
+  }
   svg.setAttribute('aria-label','Illustrated closed backpack with animated hinged flap');
   svg.setAttribute('focusable','false');
   svg.removeAttribute('width');svg.removeAttribute('height');
