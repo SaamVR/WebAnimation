@@ -1,0 +1,90 @@
+[
+  {
+    "product": "bag-01",
+    "references": [
+      "bag-04"
+    ],
+    "before": [
+      1100,
+      1100
+    ],
+    "after": [
+      750,
+      946
+    ],
+    "original_visible_bound": [
+      197,
+      104,
+      903,
+      995
+    ],
+    "target_occupancy": [
+      0.9418,
+      0.9424
+    ],
+    "new_occupancy": [
+      0.9413,
+      0.9419
+    ],
+    "alpha_and_visible_RGB": "identical to original"
+  },
+  {
+    "product": "bag-02",
+    "references": [
+      "bag-04"
+    ],
+    "before": [
+      1100,
+      1100
+    ],
+    "after": [
+      760,
+      899
+    ],
+    "original_visible_bound": [
+      192,
+      126,
+      908,
+      973
+    ],
+    "target_occupancy": [
+      0.9418,
+      0.9424
+    ],
+    "new_occupancy": [
+      0.9421,
+      0.9422
+    ],
+    "alpha_and_visible_RGB": "identical to original"
+  },
+  {
+    "product": "bag-05",
+    "references": [
+      "bag-06",
+      "bag-07"
+    ],
+    "before": [
+      1100,
+      1100
+    ],
+    "after": [
+      754,
+      643
+    ],
+    "original_visible_bound": [
+      183,
+      241,
+      916,
+      859
+    ],
+    "target_occupancy": [
+      0.9725,
+      0.9614
+    ],
+    "new_occupancy": [
+      0.9721,
+      0.9611
+    ],
+    "alpha_and_visible_RGB": "identical to original"
+  }
+]
