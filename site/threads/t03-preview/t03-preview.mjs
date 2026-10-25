@@ -31,22 +31,32 @@ function seek(t){
 function reset(){
  if(phase==='loading')return;
  clearTimeout(timer);phase='closed';
+ for(const el of tracks){el.style.removeProperty('transform');el.style.removeProperty('opacity')}
  coupon.classList.remove('is-visible');coupon.setAttribute('aria-hidden','true');
  cardLabel.textContent='Mystery';status.textContent='Tap the backpack to reveal your surprise.';
  status.dataset.empty='true';bag.disabled=false;bag.setAttribute('aria-label','Open backpack to discover a surprise');
  resetButton.disabled=true;seek(0);
 }
-function reveal(){
- if(phase!=='opening')return;
- if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-  // The supplied SVG itself disables animations for reduced motion.
-  // Restore its EXACT authored keyframe at a paused instant, with no movement.
-  for(const el of tracks){
-   el.style.setProperty('animation','anim-'+el.id+' 8s linear 1 both','important');
-   el.style.setProperty('animation-play-state','paused','important');
+function showAuthoredOpenStill(){
+ // Honor the SVG's animation:none media rule. Read its original 50% values
+ // as a STATIC accessible frame, not as a replacement animation.
+ const stylesheet=svg.querySelector('style')?.textContent||'';
+ for(const el of tracks){
+  const name='anim-'+el.id;
+  const block=stylesheet.match(new RegExp('@keyframes '+name+'\\s*\\{([\\s\\S]*?)\\n\\}'))?.[1];
+  const frame=block?.match(/50\\.000%\\s*\\{([^}]+)\\}/)?.[1];
+  if(!frame)throw Error('Missing authored open keyframe for '+el.id);
+  for(const declaration of frame.split(';')){
+   const pos=declaration.indexOf(':');if(pos<0)continue;
+   const property=declaration.slice(0,pos).trim(),value=declaration.slice(pos+1).trim();
+   if(property==='transform'||property==='opacity')el.style.setProperty(property,value,'important');
   }
  }
+}
+function reveal(){
+ if(phase!=='opening')return;
  seek(OPEN_TIME_MS);
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches)showAuthoredOpenStill();
  phase='opened';
  const result=OUTCOMES[savedResult()];cardLabel.textContent=result;
  coupon.setAttribute('aria-hidden','false');
