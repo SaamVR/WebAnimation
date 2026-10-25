@@ -1,0 +1,37 @@
+
+/* THREADS unified heart icon: same vector shape and stroke for real nav + all cards. */
+.threads-navbar-heart{display:inline-grid;place-items:center;vertical-align:middle;color:#2E453A}
+.threads-navbar-heart .threads-heart{width:24px;height:24px;display:block;stroke:#2E453A}
+.threads-navbar-heart.has-favorites .threads-heart{fill:#2E453A;fill-opacity:.18}
+.store-product-card{position:relative}
+.threads-product-favorite{position:absolute;right:17px;top:17px;z-index:4;display:grid;place-items:center;
+ width:34px;height:34px;padding:4px;border:0;border-radius:50%;background:#f9f9f7e8;
+ cursor:pointer;color:#2E453A;box-shadow:0 2px 6px #122b2018;transition:transform .14s ease,background .14s ease}
+.threads-product-favorite .threads-heart{display:block;width:23px;height:23px;color:#2E453A;stroke:#2E453A}
+.threads-product-favorite:hover{transform:scale(1.055)}
+.threads-product-favorite[aria-pressed="true"] .threads-heart{fill:#2E453A;fill-opacity:.76}
+.threads-product-favorite:focus-visible,.threads-navbar-heart:focus-visible{outline:2px solid #2E453A;outline-offset:3px}
+.product-media>.threads-product-favorite{top:9px;right:9px}
+.product-media .threads-product-favorite{top:9px;right:9px}
+.store-product-card__footer{gap:7px;flex-wrap:wrap}
+.store-price,.home-product-price{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:5px;color:#172B2E}
+.deal-original{font-size:.8em;color:#8a8e88;text-decoration:line-through;font-weight:500}
+.deal-current{color:#2E453A;font-weight:800;white-space:nowrap}
+.deals-shop-link{display:inline-block;margin-top:15px;color:#2E453A;font-size:13px;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.store-search-toolbar>.deals-shop-link{margin-top:17px}
+.deals-grid .deal-grid-item{position:relative;min-width:0}
+.deal-grid-item>.store-product-card{min-height:100%}
+.deal-card-ribbon{position:absolute;top:14px;left:14px;z-index:3;background:#2E453A;color:#fff;
+ font-size:10px;font-weight:800;padding:6px 9px;border-radius:6px;letter-spacing:.025em;pointer-events:none}
+.deal-card-savings{position:relative;margin:7px 2px 0;font-size:11px;line-height:1.4;color:#526658;font-weight:650}
+.deals-expiry{font-size:13px;color:#2E453A;font-weight:750}
+.deals-countdown{margin:8px 0 15px;color:#2E453A;letter-spacing:.06em;font-size:20px;font-weight:800;word-spacing:5px}
+.offer-expiration-status{font-size:12px;line-height:1.5;margin-top:10px;color:inherit}
+@media(max-width:600px){.threads-product-favorite{width:32px;height:32px;right:9px;top:9px}
+ .deals-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .deals-countdown{font-size:15px}.store-product-card__footer{gap:6px}.store-price{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.threads-product-favorite{transition:none}}
+/* Deal savings stay below each card, not beneath the next row on narrow screens. */
+.deals-grid .deal-grid-item{display:flex;flex-direction:column;gap:6px;min-height:0}
+.deals-grid .deal-grid-item>.store-product-card{height:auto;min-height:0;flex:1 1 auto}
+.deals-grid .deal-card-savings{margin:0 3px;min-height:18px;flex:none}
