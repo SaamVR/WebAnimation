@@ -210,7 +210,7 @@ export const galleryAssetManifest = Object.freeze({
     "action"
   ],
   "sho-04": [
-    "profile",
+    "angled",
     "back",
     "action"
   ],
@@ -245,7 +245,7 @@ for (const product of catalog) {
   const views=galleryAssetManifest[product.id];
   if(!views) continue;
   product.gallery=[
-    {asset:product.asset,label:product.id==='sho-04'?'Three-quarter angled view':'Catalog cover image'},
+    {asset:product.asset,label:product.id==='sho-04'?'Side profile':'Catalog cover image'},
     ...views.map(view=>({asset:'./assets/products/'+product.id+'/'+view+'.webp',label:galleryViewLabels[view]}))
   ];
 }

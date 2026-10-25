@@ -9,10 +9,10 @@ test('sho-04 uses only the four new authentic angles, all gallery assets are dis
  const p=catalogById['sho-04'];
  assert.equal(p.name,'Burnt Orange Vintage Runner');
  const g=productGallery(p);
- assert.deepEqual(g.map(v=>v.label),['Three-quarter angled view','Side profile','Back view','Alternative action angle']);
+ assert.deepEqual(g.map(v=>v.label),['Side profile','Three-quarter angle','Back view','Alternative action angle']);
  assert.deepEqual(g.map(v=>imageUrl(v)),[
   '/assets/products/sho-04/cover.webp',
-  '/assets/products/sho-04/profile.webp',
+  '/assets/products/sho-04/angled.webp',
   '/assets/products/sho-04/back.webp',
   '/assets/products/sho-04/action.webp'
  ]);
