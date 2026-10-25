@@ -38,6 +38,14 @@ function reset(){
 }
 function reveal(){
  if(phase!=='opening')return;
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+  // The supplied SVG itself disables animations for reduced motion.
+  // Restore its EXACT authored keyframe at a paused instant, with no movement.
+  for(const el of tracks){
+   el.style.setProperty('animation','anim-'+el.id+' 8s linear 1 both','important');
+   el.style.setProperty('animation-play-state','paused','important');
+  }
+ }
  seek(OPEN_TIME_MS);
  phase='opened';
  const result=OUTCOMES[savedResult()];cardLabel.textContent=result;
