@@ -1,0 +1,103 @@
+/** THREADS T03: use the exact 5.2-second owner SVG as supplied, without editing tracks. */
+const SOURCE_URL='./assets/backpack_animated%20(2).svg';
+const RESULT_KEY='threads.t03.reward.v2';
+const OPEN_AT=0.5*5200; // Source's 50%–65% fully opened hold.
+const CLOSE_FROM=0.65*5200; // Source's existing authored close begins at 65%.
+const END_AT=5200;
+const $=id=>document.getElementById(id);
+const button=$('t03-bag-trigger'),vector=$('t03-svg-holder'),coupon=$('t03-coupon'),rewardText=$('t03-reward'),announcement=$('t03-announcement');
+let animations=[],phase='loading',activeTimer=0,transitionStarted=0,transitionEnd=0;
+let savedReward=null;
+const outcomes=[
+ {end:500,label:'Free Delivery'},
+ {end:800,label:'5% OFF'},
+ {end:920,label:'7% OFF'},
+ {end:999,label:'10% OFF'},
+ {end:1000,label:'50% OFF'}
+];
+function uniformThousand(){
+ if(!globalThis.crypto?.getRandomValues)return Math.floor(Math.random()*1000);
+ const x=new Uint32Array(1),limit=Math.floor(0x100000000/1000)*1000;
+ do {crypto.getRandomValues(x)}while(x[0]>=limit); // No modulo bias.
+ return x[0]%1000;
+}
+function selectReward(){
+ if(savedReward!==null)return savedReward;
+ try{
+  const cached=sessionStorage.getItem(RESULT_KEY);
+  if(cached!==null && outcomes.some(x=>x.label===cached))return savedReward=cached;
+ }catch{}
+ const ticket=uniformThousand();
+ savedReward=outcomes.find(x=>ticket<x.end).label;
+ try{sessionStorage.setItem(RESULT_KEY,savedReward)}catch{}
+ return savedReward;
+}
+function seek(time,play=false){
+ for(const animation of animations){
+  try{animation.pause();animation.currentTime=time;if(play)animation.play()}catch(err){console.warn('T03 animation seek failed',err)}
+ }
+}
+function schedule(fn,ms){
+ clearTimeout(activeTimer);
+ transitionStarted=performance.now();transitionEnd=transitionStarted+ms;
+ activeTimer=setTimeout(fn,ms);
+}
+function syncOnReturn(){
+ if(phase!=='opening'&&phase!=='closing')return;
+ const remaining=transitionEnd-performance.now();
+ if(remaining<=0){clearTimeout(activeTimer);phase==='opening'?opened():closed()}
+}
+function opened(){
+ if(phase!=='opening')return;
+ clearTimeout(activeTimer);seek(OPEN_AT);
+ phase='opened';button.disabled=false;button.setAttribute('aria-expanded','true');button.setAttribute('aria-label','Close backpack');
+ rewardText.textContent=selectReward();coupon.classList.add('is-visible');coupon.setAttribute('aria-hidden','false');announcement.textContent=rewardText.textContent;
+}
+function closed(){
+ if(phase!=='closing')return;
+ clearTimeout(activeTimer);seek(0);
+ phase='closed';button.disabled=false;button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','Open backpack');
+ button.classList.remove('is-in-motion');announcement.textContent='Backpack closed.';
+}
+function open(){
+ if(phase!=='closed')return;
+ phase='opening';button.disabled=true;button.classList.add('is-in-motion');
+ coupon.classList.remove('is-visible');coupon.setAttribute('aria-hidden','true');
+ seek(0,true);
+ // Preserve the original SVG's 0%-50% timeline. No recreated transforms.
+ schedule(opened,OPEN_AT);
+}
+function close(){
+ if(phase!=='opened')return;
+ phase='closing';button.disabled=true;button.setAttribute('aria-label','Closing backpack');
+ coupon.classList.remove('is-visible');coupon.setAttribute('aria-hidden','true');
+ // The source closes during 65%-100%; play its authored closing keyframes.
+ seek(CLOSE_FROM,true);
+ schedule(closed,END_AT-CLOSE_FROM);
+}
+button.addEventListener('click',()=>phase==='closed'?open():phase==='opened'?close():undefined);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncOnReturn()});
+window.addEventListener('pageshow',syncOnReturn);
+(async()=>{
+ try{
+  const url=globalThis.__THREADS_T03_EMBEDDED_SVG__||SOURCE_URL;
+  const response=await fetch(url);
+  if(!response.ok)throw new Error('SVG unavailable ('+response.status+')');
+  const source=await response.text();
+  if(!source.includes('--dur: 5.2s')||!source.includes('id="outer-hood-hinge-group"')||!source.includes('data:image/png;base64,'))throw Error('Incorrect backpack asset; exact 5.2s source required.');
+  const doc=new DOMParser().parseFromString(source,'image/svg+xml');
+  if(doc.querySelector('parsererror'))throw Error('Supplied SVG cannot be parsed.');
+  const svg=document.importNode(doc.documentElement,true);
+  svg.removeAttribute('width');svg.removeAttribute('height');
+  svg.setAttribute('role','img');svg.setAttribute('aria-label','THREADS backpack opening and closing');svg.setAttribute('focusable','false');
+  // Only runtime playback controls change. All source paths, artwork, layers, keyframes and easing remain unchanged.
+  vector.replaceChildren(svg);
+  for(const node of svg.querySelectorAll('#backpack-scene,#top-handle-group,#lower-straps-group,#open-collar-group,#outer-hood-hinge-group,#buckles-unclip-group,#open-flap-group')){
+   node.style.animationIterationCount='1';node.style.animationFillMode='both';
+  }
+  animations=svg.getAnimations({subtree:true});
+  if(animations.length!==7)throw Error('Expected seven unmodified animation tracks; got '+animations.length);
+  seek(0);phase='closed';button.disabled=false;button.classList.add('is-ready');
+  announcement.textContent='Backpack ready.';
+ }catch(err){phase='error';button.disabled=true;announcement.textContent='Animation unavailable.';console.error('THREADS T03 source',err)}
+})();
