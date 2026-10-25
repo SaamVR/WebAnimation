@@ -1,7 +1,7 @@
 import {catalog, catalogById, productMeta, productGallery, catalogFilters, merchandisingCategory, imageUrl, priceTk, safeHTML, searchCatalog,curateShopProducts,normalizeCatalogCategory} from './catalog.mjs';
 import {initInlineSearch} from './search-header.mjs';
 import {favoriteSvg,favoriteButton,installNavbarHeart,syncNavbarFavorites} from './favorite-icon.mjs';
-import {DEAL_PRODUCT_IDS,DEAL_PERCENT,OFFER_EXPIRES_AT,offerIsActive,dealDisplay,dealSavings,countdownParts} from './deals.mjs';
+import {DEAL_PRODUCT_IDS,DEAL_PERCENT,offerCycleEnd,dealDisplay,dealSavings,countdownParts} from './deals.mjs';
 import {initT01Spotlight} from './t01-spotlight.mjs';
 import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
 import {playT04Approved} from './t04-payment-approved.mjs';
@@ -105,27 +105,19 @@ function searchPage(){
    const status=$('t02-cart-status');if(status)status.textContent=err.message;
   }
  });
- const beganWithOffers=offerIsActive();
- if(beganWithOffers){
-  let active=true;
-  const expire=()=>{if(active&&!offerIsActive()){active=false;update(input.value,activeCategory)}};
-  setInterval(expire,1000);window.addEventListener('focus',expire);
- }
 }
 function dealsPage(){
  const products=DEAL_PRODUCT_IDS.map(id=>catalogById[id]).filter(Boolean);
  mount('<section class="store-page-heading"><span class="store-kicker">THREADS FLASH DEALS</span><h1>Deals / Offers</h1>'+
-  '<p>Eight existing THREADS products. A single '+DEAL_PERCENT+'% discount policy applies to eligible items until the shared expiration.</p>'+
+  '<p>Eight existing THREADS products. The '+DEAL_PERCENT+'% demo discount continues through every 21-day UTC countdown cycle.</p>'+
   '<p id="deals-expiry" role="status" class="deals-expiry"></p><div id="deals-clock" class="deals-countdown" role="timer"></div>'+
   '<a href="/search/" class="deals-shop-link">← Browse All Products</a></section>'+
   '<section class="store-catalog-results"><div class="store-results-top"><h2>Selected styles</h2><span>4 sneakers · 2 accessories · 2 bags</span></div>'+
   '<div id="results-grid" class="store-results-grid deals-grid"></div></section>');
  function render(){
-  const live=offerIsActive();
   $('results-grid').innerHTML=products.map(p=>'<div class="deal-grid-item">'+card(p)+
-   '<span class="deal-card-ribbon">'+(live?DEAL_PERCENT+'% OFF':'Offer Ended')+'</span>'+
-   '<p class="deal-card-savings">'+(live?'You save '+money(dealSavings(p))+' · Demo offer':'Regular USD price')+'</p></div>').join('');
-  $('deals-expiry').textContent=live?'Valid until '+new Date(OFFER_EXPIRES_AT).toLocaleString('en-US',{timeZone:'UTC',timeZoneName:'short'}):'Offer Ended';
+   '<span class="deal-card-ribbon">'+DEAL_PERCENT+'% OFF</span>'+
+   '<p class="deal-card-savings">You save '+money(dealSavings(p))+' · Demo offer</p></div>').join('');
   syncNavbarFavorites(getFavorites().size);
  }
  render();
@@ -146,11 +138,11 @@ function dealsPage(){
  });
  window.addEventListener('threads:favoriteschange',()=>syncNavbarFavorites(getFavorites().size));
  window.addEventListener('storage',render);
- let wasActive=offerIsActive();
  const tick=()=>{
-  const active=offerIsActive(),parts=countdownParts();
-  $('deals-clock').textContent=active?parts.map((n,i)=>String(n).padStart(2,'0')+[' days',' hours',' min',' sec'][i]).join(' : '):'Offer Ended';
-  if(wasActive&&!active){wasActive=false;render()}
+  const now=Date.now(),parts=countdownParts(now);
+  $('deals-clock').textContent=parts.map((n,i)=>String(n).padStart(2,'0')+[' days',' hours',' min',' sec'][i]).join(' : ');
+  const label='Current 21-day demo cycle ends '+new Date(offerCycleEnd(now)).toLocaleString('en-US',{timeZone:'UTC',timeZoneName:'short'});
+  if($('deals-expiry').textContent!==label)$('deals-expiry').textContent=label;
  };
  tick();setInterval(tick,1000);window.addEventListener('focus',tick);
 }
@@ -176,11 +168,6 @@ function detailPage(){
  document.querySelectorAll('[data-adjust]').forEach(b=>b.addEventListener('click',()=>{qty=Math.max(1,Math.min(10,qty+Number(b.dataset.adjust)));update()}));
  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{const i=Number(b.dataset.view),view=gallery[i];if(!view)return;document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const image=$('detail-main-image');image.src=imageUrl(view);image.alt=p.name+' · '+view.label;image.className=view.crop?'view-'+view.crop:'view-0';$('gallery-view-note').textContent=singlePhoto?(gallery.length===1?'Owner-supplied cover image only. Additional camera angles have not been supplied yet.':'Cropped views of the same source photograph. Additional camera angles have not been supplied yet.'):view.label;}));
  add.addEventListener('click',()=>{try{prepareCartBadge();const receipt=addCartItem({id:p.id,color,size,quantity:qty});setCartBadge();void playT02({button:add,quantity:receipt.count}).catch(()=>settleCartBadge());$('detail-success').innerHTML='Added to cart. <a href="/cart/">View cart →</a>';showError('detail-error','')}catch(err){settleCartBadge();showError('detail-error',err.message)}});
- if(offerIsActive()&&dealSavings(p)>0){
-  let active=true;
-  const expire=()=>{if(active&&!offerIsActive()){active=false;const el=document.querySelector('.store-detail__price');if(el)el.innerHTML=dealDisplay(p)}};
-  setInterval(expire,1000);window.addEventListener('focus',expire);
- }
 }
 function cartPage(){
  mount(`<nav class="store-breadcrumb"><a href="/">Home</a> › Cart</nav><section class="store-page-heading"><span class="store-kicker">YOUR THREADS BAG</span><h1>Shopping Cart</h1><p>Review your selected demo products and variants.</p></section><div id="cart-content"></div>`);
@@ -194,10 +181,6 @@ function cartPage(){
   setCartBadge();
  };
  render();
- if(cartSummary().savings>0){let active=true;
-  const expire=()=>{if(active&&!offerIsActive()){active=false;render()}};
-  setInterval(expire,1000);window.addEventListener('focus',expire);
- }
 }
 function checkoutPage(){
  const bag=cartSummary();
@@ -255,7 +238,6 @@ function checkoutPage(){
  back.addEventListener('click',()=>{cardStep.hidden=true;form.hidden=false;cardForm.dispatchEvent(new Event('change',{bubbles:true}));form.elements.name.focus({preventScroll:true})});
  initT04PaymentOverlay({form,cardForm,proceed,showError:message=>{showError('checkout-error',message);showError('checkout-card-error',message)}});
  stabilizeCheckoutViewport({form,cardForm});
- if(bag.savings>0){const expire=()=>{if(!offerIsActive())window.location.reload()};setInterval(expire,1000);window.addEventListener('focus',expire)}
 }
 function orderPage(){
  const order=getOrder(args.get('ref'));
