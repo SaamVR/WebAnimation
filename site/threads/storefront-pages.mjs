@@ -3,7 +3,6 @@ import {initInlineSearch} from './search-header.mjs';
 import {favoriteSvg,favoriteButton,installNavbarHeart,syncNavbarFavorites} from './favorite-icon.mjs';
 import {DEAL_PRODUCT_IDS,DEAL_PERCENT,OFFER_EXPIRES_AT,offerIsActive,dealDisplay,dealSavings,countdownParts} from './deals.mjs';
 import {initT01Spotlight} from './t01-spotlight.mjs';
-import {installT01CameraFollow} from './t01-camera-follow.mjs';
 import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
 import {playT04Approved} from './t04-payment-approved.mjs';
 import {initT04PaymentOverlay} from './t04-payment-overlay.mjs';
@@ -62,7 +61,6 @@ function searchPage(){
  const query=args.get('q')||'',category=normalizeCatalogCategory(args.get('category')||''),favorites=args.get('favorites')==='1';
  let activeCategory=category;
  mount(`<section class="store-page-heading"><div class="store-kicker">THREADS COLLECTION</div><h1>${favorites?'Saved favorites':'Discover your next essential'}</h1><p>Curated sneakers, headwear, travel bags and everyday accessories. Every item has its own details.</p></section><section class="store-search-toolbar"><form id="catalog-search-form" role="search"><label for="catalog-search">Search the collection</label><div class="store-search-row"><input type="search" id="catalog-search" name="q" value="${escape(query)}" placeholder="Try vintage sneakers…"><button type="submit" class="store-primary-btn">Search <span aria-hidden="true">→</span></button></div></form><div class="store-filter-row" aria-label="Product categories" id="catalog-filters">${catalogFilters.map(x=>`<button type="button" class="store-chip" data-category="${x.id}" aria-pressed="${(category||'All')===x.id}">${x.label}</button>`).join('')}</div><a class="deals-shop-link" href="/deals/">Deals / Offers · 15% off selected styles →</a></section><section class="store-catalog-results" aria-live="polite"><div class="store-results-top"><h2 id="results-title">Search Results</h2><span id="results-count"></span></div><div id="results-grid" class="store-results-grid" data-t01-results></div></section>`);
- installT01CameraFollow();
  const spotlight=initT01Spotlight();
  const input=$('catalog-search');const current=query;
  const syncUrl=(q,cat)=>{const p=new URLSearchParams();if(q)p.set('q',q);if(cat)p.set('category',cat);if(favorites)p.set('favorites','1');window.history.replaceState({},'', '/search/'+(p.size?'?'+p.toString():''));};
