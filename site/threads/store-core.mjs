@@ -1,4 +1,4 @@
-import {dealUnitPrice,dealSavings,roundMoney,offerIsActive,OFFER_EXPIRY_MS} from './deals.mjs';
+import {dealUnitPrice,dealSavings,roundMoney} from './deals.mjs';
 import {catalogById,productMeta,priceTk} from './catalog.mjs';
 export const CART_KEY='threads.demo.cart.v1';
 export const ORDER_KEY='threads.demo.orders.v1';
@@ -98,11 +98,6 @@ export function resolveDemoPayment(result){
  if(attempt.status==='succeeded'&&getOrder(attempt.ref))return attempt;
  if(attempt.status!=='pending')throw Error('This transaction is not pending. Retry checkout to begin a new one.');
  if(!['succeeded','failed','cancelled'].includes(result))throw Error('Invalid demo payment outcome.');
- if(result==='succeeded'&&attempt.items.some(x=>x.price<catalogById[x.id]?.price)&&!offerIsActive()){
-  attempt.status='failed';
-  save(ATTEMPT_KEY,attempt,'session');
-  throw Error('The demo offer has ended. Return to Cart to review the updated USD total.');
- }
  if(result==='succeeded'){
   const exists=getOrders().find(x=>x.paymentAttemptId===attempt.id);
   const order=exists||{ref:'THR-'+Date.now().toString(36).toUpperCase()+'-'+attempt.id.slice(0,6).toUpperCase(),
