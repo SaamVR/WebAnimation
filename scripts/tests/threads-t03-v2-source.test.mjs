@@ -46,3 +46,27 @@ test('T03 V2 uses approved compact copy and neutral coupon without reset',()=>{
  assert.doesNotMatch(css,/dashed|glow|overshoot|#ffe4a0/i);
  assert.match(css,/#2E453A/);
 });
+
+test('T03 compositing and clipping: one visible source SVG after ready, full open artwork visible',()=>{
+ const css=txt('t03.css'),js=txt('t03.mjs');
+ assert.match(css,/\.t03-panel\{[^}]*overflow:visible/);
+ assert.match(css,/\.t03-illustration\{[^}]*overflow:visible/);
+ assert.match(css,/\.t03-svg-holder\{[^}]*overflow:visible/);
+ assert.match(css,/\.t03-svg-holder svg\{[^}]*overflow:visible/);
+ assert.match(css,/\.t03-bag-button\.is-ready \.t03-still\{opacity:0;visibility:hidden\}/);
+ assert.doesNotMatch(css,/\.is-in-motion \.t03-still/);
+ assert.match(js,/seek\(0\);phase='closed';targetOpen=false;button\.disabled=false/);
+ assert.match(js,/button\.classList\.add\('is-ready'\)/);
+});
+test('T03 queued interaction: no transition-time disabled button or dropped second click',()=>{
+ const js=txt('t03.mjs');
+ assert.match(js,/targetOpen=!targetOpen/);
+ assert.match(js,/if\(!targetOpen\)\{close\(\);return;\}/);
+ assert.match(js,/if\(targetOpen\)open\(\)/);
+ assert.match(js,/else if\(phase==='opened'&&!targetOpen\)close\(\)/);
+ assert.match(js,/schedule\(opened,OPEN_AT\)/);
+ assert.match(js,/schedule\(closed,END_AT-CLOSE_FROM\)/);
+ assert.doesNotMatch(js,/phase='opening';button\.disabled=true/);
+ assert.doesNotMatch(js,/phase='closing';button\.disabled=true/);
+ assert.doesNotMatch(js,/animation\.reverse\(|playbackRate|requestAnimationFrame\(|gsap\./);
+});
