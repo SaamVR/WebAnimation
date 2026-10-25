@@ -8,6 +8,8 @@ const $=id=>document.getElementById(id);
 const button=$('t03-bag-trigger'),vector=$('t03-svg-holder'),coupon=$('t03-coupon'),rewardText=$('t03-reward'),announcement=$('t03-announcement');
 let animations=[],phase='loading',activeTimer=0,transitionStarted=0,transitionEnd=0;
 let savedReward=null;
+// Last click wins; changes requested while a native SVG segment plays are queued.
+let targetOpen=false;
 const outcomes=[
  {end:500,label:'Free Delivery'},
  {end:800,label:'5% OFF'},
@@ -50,32 +52,41 @@ function syncOnReturn(){
 function opened(){
  if(phase!=='opening')return;
  clearTimeout(activeTimer);seek(OPEN_AT);
- phase='opened';button.disabled=false;button.setAttribute('aria-expanded','true');button.setAttribute('aria-label','Close backpack');
+ phase='opened';button.setAttribute('aria-expanded','true');button.setAttribute('aria-busy','false');
+ if(!targetOpen){close();return;}
+ button.setAttribute('aria-label','Close backpack');
  rewardText.textContent=selectReward();coupon.classList.add('is-visible');coupon.setAttribute('aria-hidden','false');announcement.textContent=rewardText.textContent;
 }
 function closed(){
  if(phase!=='closing')return;
  clearTimeout(activeTimer);seek(0);
- phase='closed';button.disabled=false;button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','Open backpack');
- button.classList.remove('is-in-motion');announcement.textContent='Backpack closed.';
+ phase='closed';button.setAttribute('aria-expanded','false');button.setAttribute('aria-busy','false');button.setAttribute('aria-label','Open backpack');
+ announcement.textContent='Backpack closed.';
+ if(targetOpen)open();
 }
 function open(){
  if(phase!=='closed')return;
- phase='opening';button.disabled=true;button.classList.add('is-in-motion');
+ phase='opening';button.setAttribute('aria-busy','true');button.setAttribute('aria-label','Close backpack after opening');
  coupon.classList.remove('is-visible');coupon.setAttribute('aria-hidden','true');
  seek(0,true);
- // Preserve the original SVG's 0%-50% timeline. No recreated transforms.
+ // Original SVG 0–50% timeline. No reconstructed transforms or timing.
  schedule(opened,OPEN_AT);
 }
 function close(){
  if(phase!=='opened')return;
- phase='closing';button.disabled=true;button.setAttribute('aria-label','Closing backpack');
+ phase='closing';button.setAttribute('aria-busy','true');button.setAttribute('aria-label','Open backpack after closing');
  coupon.classList.remove('is-visible');coupon.setAttribute('aria-hidden','true');
- // The source closes during 65%-100%; play its authored closing keyframes.
+ // Original SVG 65–100% closing keyframes, not a reverse or redraw.
  seek(CLOSE_FROM,true);
  schedule(closed,END_AT-CLOSE_FROM);
 }
-button.addEventListener('click',()=>phase==='closed'?open():phase==='opened'?close():undefined);
+button.addEventListener('click',()=>{
+ if(phase==='loading'||phase==='error')return;
+ targetOpen=!targetOpen;
+ if(phase==='closed'&&targetOpen)open();
+ else if(phase==='opened'&&!targetOpen)close();
+ // During motion, queue the latest desired state instead of disabling or dropping clicks.
+});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncOnReturn()});
 window.addEventListener('pageshow',syncOnReturn);
 (async()=>{
@@ -97,7 +108,10 @@ window.addEventListener('pageshow',syncOnReturn);
   }
   animations=svg.getAnimations({subtree:true});
   if(animations.length!==7)throw Error('Expected seven unmodified animation tracks; got '+animations.length);
-  seek(0);phase='closed';button.disabled=false;button.classList.add('is-ready');
+  seek(0);phase='closed';targetOpen=false;button.disabled=false;
+  // SVG becomes the sole visible layer when ready, before any user interaction.
+  // PNG serves only as the aligned loading/fallback illustration.
+  button.classList.add('is-ready');
   announcement.textContent='Backpack ready.';
  }catch(err){phase='error';button.disabled=true;announcement.textContent='Animation unavailable.';console.error('THREADS T03 source',err)}
 })();
