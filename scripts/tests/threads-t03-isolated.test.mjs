@@ -16,16 +16,16 @@ test('supplied SVG is preserved byte-for-byte including original 8-second 7-trac
  assert.match(svg,/viewBox="800 240 950 1090"/);
  assert.doesNotMatch(svg,/<image\b/);
 });
-test('T03 creative preview is isolated and does not replace the homepage yet',()=>{
+test('legacy T03 experiment remains isolated; approved final native SVG is on the homepage',()=>{
  const html=read('t03-preview/index.html');
  const home=read('index.html');
  assert.match(html,/Unpack<br>Your Luck/);
  assert.match(html,/Tap the backpack\. Discover your surprise\./);
  assert.match(html,/t03-bag-trigger/);
  assert.match(html,/Not redeemable/);
- assert.match(home,/Deal Of<br>the Week/);
- assert.match(home,/deal-backpack-static-20261020\.png/);
- assert.doesNotMatch(home,/t03-preview|t03-bag-trigger|t03-coupon/);
+ assert.match(home,/Unpack Your Luck/);
+ assert.match(home,/t03-v2-preview\/assets\/backpack_animated\(2\)\.svg/);
+ assert.doesNotMatch(home,/deal-backpack-static-20261020\.png|t03-bag-trigger|t03-coupon/);
 });
 test('T03 uses the SVG timeline without redrawing its seven motion tracks',()=>{
  const js=read('t03-preview/t03-preview.mjs');
