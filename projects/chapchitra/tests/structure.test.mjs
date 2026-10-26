@@ -15,7 +15,7 @@ test('eleven homepage units and functional UX controller contracts',async()=>{
  assert.match(app,/app\.innerHTML=announcement\(\)\+header\(\)/);
  assert.match(app,/mainPage\(\)\+'<\/main>'\+footer\(\)/);
  for(const label of ['Free delivery over ৳2000','Artist-Inspired Drop','Color, by hand','Your idea, printed','From the Journal'])assert.ok(app.includes(label),label);
- assert.match(app,/setInterval\(\(\)=>changeHero\(\(active\+1\)%slides.length,false\),6000\)/);
+ assert.match(app,/setInterval\(\(\)=>changeHero\(\(active\+1\)%slides.length,false\),4000\)/);
  assert.match(app,/aria-pressed/);
  assert.match(app,/mouseenter/);
  assert.match(app,/touchend/);
@@ -51,4 +51,32 @@ test('favorite state bootstraps before product detail rendering',async()=>{
  assert.ok(app.indexOf('let favoritesState=new Set()')<app.indexOf('app.innerHTML='),'favorites must initialize before any route HTML');
  assert.doesNotMatch(app,/\bisFavorite\(/,'only the initialized isFavoriteNow helper should be referenced');
  assert.ok(app.includes("$$('[data-favorite]').filter"),'all heart controls must be updated through querySelectorAll rather than a single Element');
+});
+
+test('Featured Prints uses stable five-card presentation with independent accessible UI timing',async()=>{
+ const app=await read('src/app.mjs');
+ const css=await read('src/styles.css');
+ assert.match(app,/FEATURE_INTERVAL_MS=8200/);
+ assert.match(app,/featureStage\.innerHTML=featureNames\.map/);
+ assert.match(app,/frame\.dataset\.slot=slot/);
+ assert.match(app,/featureStage\.addEventListener\('keydown'/);
+ assert.match(app,/featureStage\.addEventListener\('touchend'/);
+ assert.match(app,/featureRoot\.addEventListener\('mouseenter'/);
+ assert.match(app,/mediaReduced\.matches/);
+ assert.match(app,/feature-detail-link/);
+ assert.match(app,/Price pending/);
+ assert.match(css,/\.feature-frame\[data-slot="near-left"\]/);
+ assert.match(css,/\.feature-frame\[data-slot="far-right"\]/);
+ assert.match(css,/\.featured-zone\{background:#0c0b0b/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+});
+test('surgical refinements keep approved header, category/collection and C01-C04 alone',async()=>{
+ const css=await read('src/styles.css');
+ const app=await read('src/app.mjs');
+ assert.match(css,/\.editorial-banners\{\s*width:min\(1290px/);
+ assert.match(css,/#values>\.section-title\{/);
+ assert.match(css,/\.story-section\{padding-top:60px\}/);
+ assert.match(app,/function categoriesSection\(\)/);
+ assert.match(app,/function collection\(\)/);
+ assert.doesNotMatch(app,/import.*threads|from.*EcomCMS/i);
 });
