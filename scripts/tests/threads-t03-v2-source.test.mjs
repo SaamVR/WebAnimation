@@ -6,97 +6,77 @@ const root=new URL('../../site/threads/t03-v2-preview/',import.meta.url);
 const bytes=name=>readFileSync(new URL(name,root));
 const txt=name=>bytes(name).toString('utf8');
 const sha=data=>createHash('sha256').update(data).digest('hex');
-test('T03 V2 retains exact owner-supplied 5.2s SVG with all embedded artwork',()=>{
- const svg=bytes('assets/backpack_animated%20(2).svg'),s=svg.toString();
- assert.equal(svg.length,2400642);
- assert.equal(sha(svg),'c9e2ec66f68de42dd41c4a8b9b491928416017abf7172d5e99c84fa10696cf51');
- assert.match(s,/--dur: 5\.2s/);
- assert.match(s,/viewBox="800 260 950 1060"/);
- assert.equal((s.match(/data:image\/png;base64,/g)||[]).length,10);
- for(const id of ['backpack-scene','top-handle-group','lower-straps-group','open-collar-group','outer-hood-hinge-group','buckles-unclip-group','open-flap-group'])assert.match(s,new RegExp('id="'+id+'"'));
- for(const k of ['bagPhysics','handleFold','lowerStrapsRelax','collarExpand','bucklesSlide','outerHoodHinge','innerHoodHinge'])assert.match(s,new RegExp('@keyframes '+k));
- assert.equal((s.match(/@keyframes /g)||[]).length,7);
+test('owner final postcard SVG is stored byte-for-byte and has native artwork and timing',()=>{
+ const original=bytes('assets/backpack_animated_postcard.svg'),source=original.toString();
+ assert.equal(original.length,2439189);
+ assert.equal(sha(original),'025cb57273465c938177ad9da4778ccb2edaf8cbd8f66631344e4f0afa3858f2');
+ assert.match(source,/--dur: 5s/);
+ assert.equal((source.match(/data:image\/png;base64,/g)||[]).length,9);
+ assert.equal((source.match(/@keyframes /g)||[]).length,8);
+ for(const id of ['popout-card-group','open-collar-front-rim-group','rimPocketClip','closed-flap-group','open-flap-group'])assert.ok(source.includes('id="'+id+'"'),id);
+ assert.match(source,/animation: cardPopOut var\(--dur\) cubic-bezier\(0\.34, 1\.45, 0\.64, 1\) infinite/);
 });
-test('T03 V2 keeps native-resolution PNG source and pixel-preserving cropped presentation',()=>{
- const original=bytes('assets/1-backpack-closed.png'),trim=bytes('assets/backpack-closed-aligned.png');
- assert.equal(original.length,1278396);
- assert.equal(sha(original),'6b216a79fb3387718f11a7ac1f66ea7a8661b153d239252f0ef3823df7fe3701');
- assert.deepEqual([original.readUInt32BE(16),original.readUInt32BE(20)],[2048,1365]);
+test('owner full-size closed PNG remains byte-exact and cropped presentation preserved',()=>{
+ const p=bytes('assets/1-backpack-closed.png'),trim=bytes('assets/backpack-closed-aligned.png');
+ assert.equal(p.length,1278396);
+ assert.equal(sha(p),'6b216a79fb3387718f11a7ac1f66ea7a8661b153d239252f0ef3823df7fe3701');
+ assert.deepEqual([p.readUInt32BE(16),p.readUInt32BE(20)],[2048,1365]);
  assert.deepEqual([trim.readUInt32BE(16),trim.readUInt32BE(20)],[1015,993]);
- assert.match(txt('index.html'),/backpack-closed-aligned\.png/);
 });
-test('T03 V2 exact reward weights, one session result, source-authored open and close',()=>{
+test('one weighted reward per browser session: unchanged 50/30/12/7.9/0.1 distribution',()=>{
  const js=txt('t03.mjs');
  const bands=[...js.matchAll(/\{end:(\d+),label:'([^']+)'\}/g)].map(m=>({end:Number(m[1]),label:m[2]}));
- assert.deepEqual(bands.map((v,i)=>[v.label,v.end-(bands[i-1]?.end||0)]),[
-  ['Free Delivery',500],['5% OFF',300],['7% OFF',120],['10% OFF',79],['50% OFF',1]]);
+ assert.deepEqual(bands.map((v,i)=>[v.label,v.end-(bands[i-1]?.end||0)]),[['Free Delivery',500],['5% OFF',300],['7% OFF',120],['10% OFF',79],['50% OFF',1]]);
  assert.match(js,/sessionStorage\.getItem/);
  assert.match(js,/sessionStorage\.setItem/);
- assert.match(js,/OPEN_AT=0\.5\*5200/);
- assert.match(js,/CLOSE_FROM=0\.65\*5200/);
- assert.match(js,/getAnimations\(\{subtree:true\}\)/);
+ assert.match(js,/reviewReward\|\|selectReward\(\)/);
  assert.doesNotMatch(js,/startDemoPayment|dealUnitPrice|dealSavings/);
 });
-test('T03 V2 uses approved compact copy and neutral coupon without reset',()=>{
- const html=txt('index.html'),css=txt('t03.css');
- assert.match(html,/Unpack Your Luck/);
- assert.match(html,/Tap the backpack\. Discover your surprise\./);
- assert.match(html,/✦ Up to 50% OFF/);
- assert.doesNotMatch(html,/Reset backpack|Deal of the Week/i);
- assert.doesNotMatch(css,/dashed|glow|overshoot|#ffe4a0/i);
- assert.match(css,/#2E453A/);
-});
-
-test('T03 compositing and clipping: one visible source SVG after ready, full open artwork visible',()=>{
- const css=txt('t03.css'),js=txt('t03.mjs');
- assert.match(css,/\.t03-panel\{[^}]*overflow:visible/);
- assert.match(css,/\.t03-illustration\{[^}]*overflow:visible/);
- assert.match(css,/\.t03-svg-holder\{[^}]*overflow:visible/);
- assert.match(css,/\.t03-svg-holder svg\{[^}]*overflow:visible/);
- assert.match(css,/\.t03-bag-button\.is-ready \.t03-still\{opacity:0;visibility:hidden\}/);
- assert.doesNotMatch(css,/\.is-in-motion \.t03-still/);
- assert.match(js,/phase='closed';targetOpen=false/);
- assert.match(js,/button.disabled=false/);
- assert.match(js,/button\.classList\.add\('is-ready'\)/);
-});
-test('T03 queued interaction: no transition-time disabled button or dropped second click',()=>{
+test('postcard renderer changes only lower body and widens outer frame 12.5% about same centre',()=>{
  const js=txt('t03.mjs');
+ assert.match(js,/svg\.querySelector\('#popout-card-group'\)/);
+ assert.match(js,/children\.slice\(7\)/);
+ assert.match(js,/children\[1\]\.setAttribute\('x','1148'\)/);
+ assert.match(js,/children\[1\]\.setAttribute\('width','252'\)/);
+ assert.match(js,/children\[2\]\.setAttribute\('x','1158'\)/);
+ assert.match(js,/children\[2\]\.setAttribute\('width','232'\)/);
+ assert.match(js,/textNode\('FREE',501,48/);
+ assert.match(js,/textNode\('DELIVERY',550,37/);
+ assert.match(js,/textNode\(reward\.replace\(' OFF',''\),544,102/);
+ assert.match(js,/#2E453A/);
+ assert.doesNotMatch(js,/couponLayer|foreignObject|coupon\.classList/);
+});
+test('native original nine animation groups play unmodified 5-second SVG segments',()=>{
+ const js=txt('t03.mjs');
+ assert.match(js,/OPEN_AT=0\.5\*5000/);
+ assert.match(js,/CLOSE_FROM=0\.62\*5000/);
+ assert.match(js,/END_AT=5000/);
+ assert.match(js,/svg\.getAnimations\(\{subtree:true\}\)/);
+ assert.match(js,/animationIterationCount='1'/);
+ assert.match(js,/schedule\(opened,OPEN_AT\)/);
+ assert.match(js,/schedule\(closed,END_AT-CLOSE_FROM\)/);
+ assert.doesNotMatch(js,/animation\.reverse\(|playbackRate|gsap\./);
+});
+test('first click still waits for every image and visible paint; queued clicks intact',()=>{
+ const js=txt('t03.mjs');
+ assert.match(js,/imageSources\.length!==9/);
+ assert.match(js,/await image\.decode\(\)/);
+ assert.match(js,/await Promise\.all\(imageSources\.map/);
+ assert.match(js,/requestAnimationFrame\(\(\)=>requestAnimationFrame\(resolve\)\)/);
  assert.match(js,/targetOpen=!targetOpen/);
  assert.match(js,/if\(!targetOpen\)\{close\(\);return;\}/);
  assert.match(js,/if\(targetOpen\)open\(\)/);
- assert.match(js,/else if\(phase==='opened'&&!targetOpen\)close\(\)/);
- assert.match(js,/schedule\(opened,OPEN_AT\)/);
- assert.match(js,/schedule\(closed,END_AT-CLOSE_FROM\)/);
  assert.doesNotMatch(js,/phase='opening';button\.disabled=true/);
- assert.doesNotMatch(js,/phase='closing';button\.disabled=true/);
- assert.doesNotMatch(js,/animation\.reverse\(|playbackRate|gsap\./);
 });
-
-test('T03 cold-start gate decodes every original embedded image and paints before enabling',()=>{
- const js=txt('t03.mjs');
- assert.match(js,/svg\.querySelectorAll\('image'\)/);
- assert.match(js,/imageSources\.length!==10/);
- assert.match(js,/await Promise\.all\(imageSources\.map\(async src/);
- assert.match(js,/await image\.decode\(\)/);
- assert.match(js,/await document\.fonts\.ready/);
- assert.match(js,/requestAnimationFrame\(\(\)=>requestAnimationFrame\(resolve\)\)/);
- const endReady=js.indexOf("button.disabled=false");
- const decodeIndex=js.indexOf('await Promise.all(imageSources.map');
- const paintIndex=js.lastIndexOf("button.classList.add('is-ready')",endReady);
- assert.ok(decodeIndex>0&&paintIndex>decodeIndex&&endReady>paintIndex,'tap remains locked through decode and visible paints');
- assert.match(js,/node\.style\.animationPlayState='paused'/);
-});
-test('T03 coupon uses SVG-space rim occlusion without changing original reward easing',()=>{
- const js=txt('t03.mjs'),css=txt('t03.css');
- assert.match(js,/document\.createElementNS\(ns,'foreignObject'\)/);
- assert.match(js,/svg\.querySelector\('#open-flap-group'\)/);
- assert.match(js,/document\.createElementNS\(ns,'clipPath'\)/);
- assert.match(js,/clipPathUnits','userSpaceOnUse'/);
- assert.match(js,/couponLayer\.setAttribute\('clip-path','url\(#t03-coupon-opening-mask\)'\)/);
- assert.match(js,/front\.parentNode\.insertBefore\(couponLayer,front\)/);
- assert.match(js,/couponLayer\.appendChild\(coupon\)/);
+test('review-only reward query parameter has five variants and no independent card',()=>{
+ const html=txt('index.html'),js=txt('t03.mjs'),css=txt('t03.css');
+ for(const key of ['5','7','10','50','free'])assert.ok(html.includes('?reward='+key),key);
+ assert.match(js,/URLSearchParams\(location\.search\)/);
+ assert.match(html,/Unpack Your Luck/);
+ assert.match(html,/Tap the backpack\. Discover your surprise\./);
+ assert.match(html,/✦ Up to 50% OFF/);
+ assert.doesNotMatch(html,/id="t03-coupon"|id="t03-reward"|Reset Backpack/);
+ assert.doesNotMatch(css,/\.t03-coupon/);
  assert.match(css,/-webkit-tap-highlight-color:transparent/);
  assert.match(css,/\.t03-bag-button:focus-visible\{outline:3px solid var\(--forest\)\}/);
- assert.match(css,/transition:opacity 320ms ease,transform 650ms cubic-bezier\(\.25,\.55,\.25,1\),visibility 0s/);
- assert.doesNotMatch(js,/animation\.reverse\(|gsap\./);
 });
