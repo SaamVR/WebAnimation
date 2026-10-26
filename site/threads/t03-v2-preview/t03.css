@@ -39,3 +39,6 @@ body{margin:0;background:var(--cream);color:var(--forest);font-family:Inter,syst
 .t03-variant-preview span{font-size:10px;letter-spacing:.12em;font-weight:800;color:#66776c;margin-right:6px}
 .t03-variant-preview a{font-size:12px;font-weight:700;color:var(--forest);text-decoration:none;border:1px solid #cbd3c9;border-radius:999px;padding:8px 12px;background:#fffdf9}
 .t03-variant-preview a:hover,.t03-variant-preview a:focus-visible{background:#e7eee8;outline-offset:3px}
+
+/* Controller only pauses the exact SVG native tracks as one synchronized clock. */
+#t03-svg-holder svg.t03-native-paused #backpack-scene,#t03-svg-holder svg.t03-native-paused #buckle-left,#t03-svg-holder svg.t03-native-paused #buckle-right,#t03-svg-holder svg.t03-native-paused #closed-flap-group,#t03-svg-holder svg.t03-native-paused #top-handle-group,#t03-svg-holder svg.t03-native-paused #open-collar-back-group,#t03-svg-holder svg.t03-native-paused #open-collar-front-rim-group,#t03-svg-holder svg.t03-native-paused #open-flap-group,#t03-svg-holder svg.t03-native-paused #popout-card-group{animation-play-state:paused!important}

@@ -1,15 +1,10 @@
 /** THREADS T03: use the owner's final 5-second postcard SVG as supplied, without editing tracks. */
 const SOURCE_URL='./assets/backpack_animated_postcard.svg';
 const RESULT_KEY='threads.t03.reward.v2';
-const OPEN_AT=0.5*5000; // Source postcard display hold: 41%–62%.
-const CLOSE_FROM=0.62*5000; // Source's existing authored close begins after its 62% hold.
-const END_AT=5000;
 const $=id=>document.getElementById(id);
 const button=$('t03-bag-trigger'),vector=$('t03-svg-holder'),announcement=$('t03-announcement');
-let animations=[],phase='loading',activeTimer=0,transitionStarted=0,transitionEnd=0;
 let savedReward=null;
 // Last click wins; changes requested while a native SVG segment plays are queued.
-let targetOpen=false;
 const outcomes=[
  {end:500,label:'Free Delivery'},
  {end:800,label:'5% OFF'},
@@ -68,64 +63,126 @@ function populatePostcard(svg,reward){
  // The owner's original rimPocketClip and layer order conceal the lower card.
  return group;
 }
-function seek(time,play=false){
- for(const animation of animations){
-  try{animation.pause();animation.currentTime=time;if(play)animation.play()}catch(err){console.warn('T03 animation seek failed',err)}
- }
+// Native single-clock CSS playback: no Animation.seek/pause/play/currentTime writes,
+ // no setTimeout, and no per-layer timeline mutations. All nine source animations
+ // start simultaneously paused at frame 0 and resume together through one class.
+const DURATION_MS=5000;
+const HOLD_MS=0.60*DURATION_MS; // Inside the owner's exact 41%-62% fully-open postcard hold.
+let svgActor=null,master=null,frameHandle=0,desiredOpen=false,phase='loading';
+let holdBoundary=HOLD_MS,cycleBoundary=DURATION_MS;
+let suspendedByVisibility=false;
+function nativeTime(){return Number(master?.currentTime)||0}
+function pauseAll(){
+ if(!svgActor)return;
+ svgActor.classList.add('t03-native-paused');
 }
-function schedule(fn,ms){
- clearTimeout(activeTimer);
- transitionStarted=performance.now();transitionEnd=transitionStarted+ms;
- activeTimer=setTimeout(fn,ms);
+function resumeAll(){
+ if(!svgActor)return;
+ svgActor.classList.remove('t03-native-paused');
 }
-function syncOnReturn(){
- if(phase!=='opening'&&phase!=='closing')return;
- const remaining=transitionEnd-performance.now();
- if(remaining<=0){clearTimeout(activeTimer);phase==='opening'?opened():closed()}
+function setStatus(open){
+ button.setAttribute('aria-expanded',String(open));
+ button.setAttribute('aria-busy','false');
+ button.setAttribute('aria-label',open?'Close backpack':'Open backpack');
+ announcement.textContent=open?displayReward():'Backpack closed.';
 }
-function opened(){
- if(phase!=='opening')return;
- clearTimeout(activeTimer);seek(OPEN_AT);
- phase='opened';button.setAttribute('aria-expanded','true');button.setAttribute('aria-busy','false');
- if(!targetOpen){close();return;}
- button.setAttribute('aria-label','Close backpack');
- announcement.textContent=displayReward();
-}
-function closed(){
+function finishClosed(){
  if(phase!=='closing')return;
- clearTimeout(activeTimer);seek(0);
- phase='closed';button.setAttribute('aria-expanded','false');button.setAttribute('aria-busy','false');button.setAttribute('aria-label','Open backpack');
- announcement.textContent='Backpack closed.';
- if(targetOpen)open();
+ if(desiredOpen){
+  // No reset: allow the exact CSS animation's next native iteration to
+  // advance from the matching closed frame at 100%/0% into opening.
+  phase='opening';
+  holdBoundary=Math.floor((nativeTime()+1)/DURATION_MS)*DURATION_MS+HOLD_MS;
+  button.setAttribute('aria-label','Close backpack after opening');
+  watchNativeFrame();
+  return;
+ }
+ pauseAll();
+ phase='closed';
+ setStatus(false);
+}
+function watchNativeFrame(){
+ if(frameHandle)cancelAnimationFrame(frameHandle);
+ const check=()=>{
+  frameHandle=0;
+  if(suspendedByVisibility)return;
+  const t=nativeTime();
+  if(phase==='opening' && t>=holdBoundary){
+   if(desiredOpen){
+    // Freeze all nine authored layers at the end of the original open pose.
+    pauseAll();
+    phase='opened';
+    setStatus(true);
+    return;
+   }
+   // Second click was queued during opening. Keep running naturally into
+   // the authored closing keyframes; never jump from 50% to 62%.
+   phase='closing';
+   cycleBoundary=Math.floor(t/DURATION_MS)*DURATION_MS+DURATION_MS;
+  }
+  if(phase==='closing' && t>=cycleBoundary){
+   finishClosed();
+   return;
+  }
+  if(phase==='opening'||phase==='closing')frameHandle=requestAnimationFrame(check);
+ };
+ frameHandle=requestAnimationFrame(check);
 }
 function open(){
  if(phase!=='closed')return;
- phase='opening';button.setAttribute('aria-busy','true');button.setAttribute('aria-label','Close backpack after opening');
- seek(0,true);
- // Original SVG 0–50% timeline. No reconstructed transforms or timing.
- schedule(opened,OPEN_AT);
+ phase='opening';
+ button.setAttribute('aria-busy','true');
+ button.setAttribute('aria-label','Close backpack after opening');
+ const t=nativeTime();
+ holdBoundary=Math.floor(t/DURATION_MS)*DURATION_MS+HOLD_MS;
+ // If the native iteration stopped fractionally past its boundary, target
+ // the next complete hold rather than rewinding any authored animation.
+ if(t>holdBoundary)holdBoundary+=DURATION_MS;
+ resumeAll();
+ watchNativeFrame();
 }
 function close(){
  if(phase!=='opened')return;
- phase='closing';button.setAttribute('aria-busy','true');button.setAttribute('aria-label','Open backpack after closing');
- // Original SVG 65–100% closing keyframes, not a reverse or redraw.
- seek(CLOSE_FROM,true);
- schedule(closed,END_AT-CLOSE_FROM);
+ phase='closing';
+ button.setAttribute('aria-busy','true');
+ button.setAttribute('aria-label','Open backpack after closing');
+ const t=nativeTime();
+ cycleBoundary=(Math.floor(t/DURATION_MS)+1)*DURATION_MS;
+ resumeAll();
+ watchNativeFrame();
 }
 button.addEventListener('click',()=>{
  if(phase==='loading'||phase==='error')return;
- targetOpen=!targetOpen;
- if(phase==='closed'&&targetOpen)open();
- else if(phase==='opened'&&!targetOpen)close();
- // During motion, queue the latest desired state instead of disabling or dropping clicks.
+ desiredOpen=!desiredOpen;
+ if(phase==='closed'&&desiredOpen)open();
+ else if(phase==='opened'&&!desiredOpen)close();
+ // Motion in progress? Queue the latest click intent. No pause/seek.
 });
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncOnReturn()});
-window.addEventListener('pageshow',syncOnReturn);
+// CSS animationiteration fires at the single shared native cycle boundary.
+function nativeIteration(event){
+ if(event.target?.id!=='backpack-scene'||event.animationName!=='bagBounce')return;
+ if(phase==='closing')finishClosed();
+}
+// Avoid throttled-frame tab resumption drifting past the hold/close boundary.
+// This special lifecycle suspension never changes the artwork or progress.
+document.addEventListener('visibilitychange',()=>{
+ if(phase!=='opening'&&phase!=='closing')return;
+ if(document.hidden){
+  suspendedByVisibility=true;
+  pauseAll();
+  if(frameHandle)cancelAnimationFrame(frameHandle);
+  frameHandle=0;
+ }else if(suspendedByVisibility){
+  suspendedByVisibility=false;
+  resumeAll();
+  watchNativeFrame();
+ }
+});
 (async()=>{
  try{
   const url=globalThis.__THREADS_T03_EMBEDDED_SVG__||SOURCE_URL;
   const response=await fetch(url);
-  if(!response.ok)throw new Error('SVG unavailable ('+response.status+')');
+  if(!response.ok)throw Error('SVG unavailable ('+response.status+')');
   const source=await response.text();
   if(!source.includes('--dur: 5s')||!source.includes('id="popout-card-group"')||!source.includes('id="rimPocketClip"')||!source.includes('data:image/png;base64,'))throw Error('Incorrect final postcard animation source.');
   const doc=new DOMParser().parseFromString(source,'image/svg+xml');
@@ -134,38 +191,32 @@ window.addEventListener('pageshow',syncOnReturn);
   svg.removeAttribute('width');svg.removeAttribute('height');
   svg.setAttribute('role','img');svg.setAttribute('aria-label','THREADS backpack opening and closing');svg.setAttribute('focusable','false');
   populatePostcard(svg,displayReward());
-  // Animation ownership remains with the source's nine group CSS animations.
-  const animatedIds=['backpack-scene','buckle-left','buckle-right','closed-flap-group','top-handle-group','open-collar-back-group','open-collar-front-rim-group','open-flap-group','popout-card-group'];
-  for(const id of animatedIds){
-   const node=svg.getElementById(id);
-   if(!node)throw Error('Missing original animated group: '+id);
-   node.style.animationIterationCount='1';node.style.animationFillMode='both';node.style.animationPlayState='paused';
-  }
+  // Class-based pause affects every native CSS track atomically.
+  // No overrides of original keyframes, easing, iteration count or transforms.
+  svg.classList.add('t03-native-paused');
   vector.replaceChildren(svg);
-  animations=svg.getAnimations({subtree:true});
-  if(animations.length!==animatedIds.length)throw Error('Expected nine native animation tracks; got '+animations.length);
-  seek(0);
-  // Safari can present the first CSS transform before PNG data-URI images have
-  // decoded. Decode all original embedded layers before interaction.
+  svgActor=svg;
+  const tracks=svg.getAnimations({subtree:true});
+  if(tracks.length!==9)throw Error('Expected the nine source CSS animations, got '+tracks.length);
+  master=svg.getElementById('backpack-scene')?.getAnimations()[0];
+  if(!master||master.animationName!=='bagBounce')throw Error('Source master animation missing.');
+  svg.getElementById('backpack-scene').addEventListener('animationiteration',nativeIteration);
+  // Keep the previous Safari first-frame decode/paint gate.
   const imageSources=[...svg.querySelectorAll('image')].map(el=>el.getAttribute('href')||el.getAttributeNS('http://www.w3.org/1999/xlink','href')).filter(Boolean);
-  if(imageSources.length!==9)throw Error("The original nine embedded PNG layers are required.");
+  if(imageSources.length!==9)throw Error('Original nine embedded image layers required.');
   await Promise.all(imageSources.map(async src=>{
    const image=new Image();image.src=src;
    if(typeof image.decode==='function')await image.decode();
    else await new Promise((resolve,reject)=>{if(image.complete&&image.naturalWidth)return resolve();image.onload=resolve;image.onerror=reject;});
-   if(!image.naturalWidth||!image.naturalHeight)throw Error('Failed to decode a backpack PNG layer.');
+   if(!image.naturalWidth||!image.naturalHeight)throw Error('Failed to decode a native PNG layer.');
   }));
   if(document.fonts?.ready)await document.fonts.ready;
-  // Force a closed-frame layout and two paints before accepting the first tap.
   svg.getBoundingClientRect();
   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
-  seek(0);
-  phase='closed';targetOpen=false;
+  phase='closed';desiredOpen=false;
   button.classList.add('is-ready');
-  // The first paint with the SVG visible must complete before a tap can
-  // start its seven transform animations; two frames cross that paint boundary.
   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   button.disabled=false;
   announcement.textContent='Backpack ready.';
- }catch(err){phase='error';button.disabled=true;announcement.textContent='Animation unavailable.';console.error('THREADS T03 source',err)}
+ }catch(err){phase='error';button.disabled=true;announcement.textContent='Animation unavailable.';console.error('THREADS T03 native playback',err)}
 })();

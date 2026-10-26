@@ -46,27 +46,43 @@ test('postcard renderer changes only lower body and widens outer frame 12.5% abo
  assert.match(js,/#2E453A/);
  assert.doesNotMatch(js,/couponLayer|foreignObject|coupon\.classList/);
 });
-test('native original nine animation groups play unmodified 5-second SVG segments',()=>{
- const js=txt('t03.mjs');
- assert.match(js,/OPEN_AT=0\.5\*5000/);
- assert.match(js,/CLOSE_FROM=0\.62\*5000/);
- assert.match(js,/END_AT=5000/);
+test('native CSS playback holds at full postcard opening without mutating keyframes',()=>{
+ const js=txt('t03.mjs'),css=txt('t03.css'),reference=txt('native-motion.html');
+ assert.match(js,/const DURATION_MS=5000/);
+ assert.match(js,/const HOLD_MS=0\.60\*DURATION_MS/);
  assert.match(js,/svg\.getAnimations\(\{subtree:true\}\)/);
- assert.match(js,/animationIterationCount='1'/);
- assert.match(js,/schedule\(opened,OPEN_AT\)/);
- assert.match(js,/schedule\(closed,END_AT-CLOSE_FROM\)/);
- assert.doesNotMatch(js,/animation\.reverse\(|playbackRate|gsap\./);
+ assert.match(js,/animationiteration',nativeIteration/);
+ assert.match(js,/master\?\.currentTime/); // Observes progress, never writes to timeline.
+ assert.match(js,/svgActor\.classList\.add\('t03-native-paused'\)/);
+ assert.match(js,/svgActor\.classList\.remove\('t03-native-paused'\)/);
+ assert.match(css,/svg\.t03-native-paused #popout-card-group\{animation-play-state:paused!important\}/);
+ assert.doesNotMatch(js,/(?:\.currentTime\s*=|\.pause\(|\.play\(|setTimeout\(|\.finish\(|\.cancel\(|animationIterationCount\s*=|style\.animationIterationCount\s*=|style\.animationPlayState\s*=)/);
+ assert.doesNotMatch(js,/(?:playbackRate|animation\.reverse\(|gsap\.)/);
+ assert.match(reference,/<object data="\.\/assets\/backpack_animated_postcard\.svg" type="image\/svg\+xml"/);
+ assert.doesNotMatch(reference,/<script|currentTime|animation-play-state/);
 });
-test('first click still waits for every image and visible paint; queued clicks intact',()=>{
+test('all native group motion starts together and opening/closing clicks are queued without seeking',()=>{
+ const js=txt('t03.mjs');
+ assert.match(js,/const tracks=svg\.getAnimations\(\{subtree:true\}\)/);
+ assert.match(js,/if\(tracks.length!==9\)/);
+ assert.match(js,/phase='opened'/);
+ assert.match(js,/phase='closing'/);
+ assert.match(js,/desiredOpen=!desiredOpen/);
+ assert.match(js,/if\(phase==='closed'&&desiredOpen\)open\(\)/);
+ assert.match(js,/else if\(phase==='opened'&&!desiredOpen\)close\(\)/);
+ assert.match(js,/requestAnimationFrame\(check\)/);
+ assert.match(js,/finishClosed\(\)/);
+ assert.doesNotMatch(js,/targetOpen|function seek\(|function schedule\(|transitionEnd|OPEN_AT|CLOSE_FROM|setTimeout\(/);
+});
+test('cold first click waits for all native images and paint; rewards still session-scoped',()=>{
  const js=txt('t03.mjs');
  assert.match(js,/imageSources\.length!==9/);
  assert.match(js,/await image\.decode\(\)/);
  assert.match(js,/await Promise\.all\(imageSources\.map/);
  assert.match(js,/requestAnimationFrame\(\(\)=>requestAnimationFrame\(resolve\)\)/);
- assert.match(js,/targetOpen=!targetOpen/);
- assert.match(js,/if\(!targetOpen\)\{close\(\);return;\}/);
- assert.match(js,/if\(targetOpen\)open\(\)/);
- assert.doesNotMatch(js,/phase='opening';button\.disabled=true/);
+ assert.match(js,/sessionStorage\.getItem/);
+ assert.match(js,/sessionStorage\.setItem/);
+ assert.match(js,/button.disabled=false/);
 });
 test('review-only reward query parameter has five variants and no independent card',()=>{
  const html=txt('index.html'),js=txt('t03.mjs'),css=txt('t03.css');
