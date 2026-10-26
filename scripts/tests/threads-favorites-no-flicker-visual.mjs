@@ -13,9 +13,10 @@ const cases=[
 ];
 const runs=[];
 const visit=async(page,path)=>{await page.goto(new URL(path,base).href,{waitUntil:'load'});await page.locator('[data-save]').first().waitFor({timeout:15000});};
-async function verifyStableToggle(page,gridSelector,label){
+async function verifyStableToggle(page,gridSelector,label,touch=false){
  const button=page.locator(gridSelector+' [data-save]').first();
  await button.scrollIntoViewIfNeeded();
+ await page.waitForTimeout(350); // Let any smooth scrolling settle before measuring click behavior.
  const pre=await button.getAttribute('aria-pressed');
  const id=await button.getAttribute('data-save');
  const snapshot=await page.evaluate(({selector,id})=>{
@@ -33,7 +34,10 @@ async function verifyStableToggle(page,gridSelector,label){
  const listener=req=>{if(/\.(webp|png|jpe?g)(\?|$)/i.test(req.url()))imagesRequested.push(req.url())};
  page.on('request',listener);
  for(let i=0;i<6;i++){
-  await button.click();
+  const rect=await button.boundingBox();
+  assert.ok(rect?.width>0&&rect?.height>0,'Heart not visible');
+  if(touch)await page.touchscreen.tap(rect.x+rect.width/2,rect.y+rect.height/2);
+  else await page.mouse.click(rect.x+rect.width/2,rect.y+rect.height/2);
   assert.equal(await button.getAttribute('aria-pressed'),i%2===0?String(pre!=='true'):pre,'Incorrect rapid heart state '+label);
   assert.match(await button.getAttribute('aria-label'),i%2===0?(pre==='true'?/^Add .* to favorites$/:/^Remove .* from favorites$/):(pre==='true'?/^Remove .* from favorites$/:/^Add .* to favorites$/));
  }
@@ -51,7 +55,7 @@ async function verifyStableToggle(page,gridSelector,label){
  assert.ok(after.good,'Products were recreated/reordered: '+label);
  assert.ok(after.sameImages,'Original image elements lost: '+label);
  assert.equal(after.changes,0,'Grid children changed from heart clicks: '+label);
- assert.ok(after.scroll<=2,'Scroll position shifted: '+label);
+ assert.ok(after.scroll<=2,'Scroll position shifted: '+label+' delta='+after.scroll);
  assert.equal(imagesRequested.length,0,'Image requests on favorite toggle: '+label+' '+imagesRequested.slice(0,3));
  const count=await page.evaluate(()=>JSON.parse(localStorage.getItem('threads.demo.favorites.v1')||'[]').length);
  assert.equal((await page.locator('#favorites-button').getAttribute('aria-label')).includes('('+count+')'),count>0,'Navbar count mismatch: '+label);
@@ -68,13 +72,13 @@ try{
   const offset=await page.locator('#deal .threads-deal__copy').evaluate(node=>parseFloat(getComputedStyle(node).top));
   assert.ok(offset>=7,'Text offset not applied on '+device.name);
   await banner.screenshot({path:`${out}/${device.name}-t03-copy.png`});
-  const home=await verifyStableToggle(page,'#featured-products',device.name+' home');
+  const home=await verifyStableToggle(page,'#featured-products',device.name+' home',device.touch);
   await page.locator('#featured-products').screenshot({path:`${out}/${device.name}-home-hearts.png`});
   await visit(page,'/search/');
-  const shop=await verifyStableToggle(page,'#results-grid',device.name+' shop');
+  const shop=await verifyStableToggle(page,'#results-grid',device.name+' shop',device.touch);
   await page.locator('#results-grid').screenshot({path:`${out}/${device.name}-shop-hearts.png`});
   await visit(page,'/deals/');
-  const deals=await verifyStableToggle(page,'#results-grid',device.name+' deals');
+  const deals=await verifyStableToggle(page,'#results-grid',device.name+' deals',device.touch);
   await page.locator('#results-grid').screenshot({path:`${out}/${device.name}-deals-hearts.png`});
   runs.push({device:device.name,offset,home,shop,deals});
   await context.close();
