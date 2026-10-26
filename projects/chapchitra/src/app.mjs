@@ -255,7 +255,7 @@ async function boot(){
    $('#shopPager').innerHTML=pager(pages,pageNum,'shop');
    $('#filterSummary').textContent=filtered.length+' sample studies · Page '+pageNum+' of '+pages+'. No items are for sale.';
    syncQuery();
-  }
+  };
   [category,audience,print].forEach(el=>el.addEventListener('change',()=>{pageNum=1;renderShop()}));
   $('#clearFilters').addEventListener('click',()=>{category.value='';audience.value='';print.value='';pageNum=1;history.replaceState(null,'',location.pathname);renderShop()});
   $('#shopPager').addEventListener('click',e=>{const b=e.target.closest('[data-page-number]');if(!b||b.disabled)return;pageNum=Number(b.dataset.pageNumber);renderShop();$('.route-head').scrollIntoView({behavior:mediaReduced.matches?'instant':'smooth'})});
