@@ -45,3 +45,10 @@ test('provisional graphite palette, responsive breakpoints and C01-C04 isolation
  const doc=await read('src/motion/README.md');
  assert.match(doc,/No timelines/);
 });
+
+test('favorite state bootstraps before product detail rendering',async()=>{
+ const app=await read('src/app.mjs');
+ assert.ok(app.indexOf('let favoritesState=new Set()')<app.indexOf('app.innerHTML='),'favorites must initialize before any route HTML');
+ assert.doesNotMatch(app,/\bisFavorite\(/,'only the initialized isFavoriteNow helper should be referenced');
+ assert.ok(app.includes("$$('[data-favorite]').filter"),'all heart controls must be updated through querySelectorAll rather than a single Element');
+});
