@@ -130,7 +130,7 @@ async function boot(){
  }
  function product(){
   const item=catalog.find(p=>p.id===qs.get('id'))||catalog[0];
-  return '<section class="wrap route-content detail-layout"><div class="detail-art">'+shirtSilhouette(item.visual)+'</div><div><p class="eyebrow">SAMPLE PRODUCT · NOT FOR SALE</p><h1>'+esc(item.name)+'</h1><p>'+esc(item.subtitle)+'</p><p>'+esc(item.fit)+' · '+item.audience.map(esc).join(' / ')+'</p><h2>Tk — <small>Price not provided</small></h2><p>Neutral silhouette only; there are no physical product photographs or available stock in this preview.</p><button class="button dark" type="button" data-favorite="'+item.id+'">'+(isFavorite(item.id)?'Remove from Favorites':'Save to Favorites')+'</button><a href="/shop/" class="text-link">Continue exploring ↗</a><p class="route-disclaimer">Adding to bag or purchasing is unavailable until real products and order workflows are approved.</p></div></section>';
+  return '<section class="wrap route-content detail-layout"><div class="detail-art">'+shirtSilhouette(item.visual)+'</div><div><p class="eyebrow">SAMPLE PRODUCT · NOT FOR SALE</p><h1>'+esc(item.name)+'</h1><p>'+esc(item.subtitle)+'</p><p>'+esc(item.fit)+' · '+item.audience.map(esc).join(' / ')+'</p><h2>Tk — <small>Price not provided</small></h2><p>Neutral silhouette only; there are no physical product photographs or available stock in this preview.</p><button class="button dark" type="button" data-favorite="'+item.id+'">'+(isFavoriteNow(item.id)?'Remove from Favorites':'Save to Favorites')+'</button><a href="/shop/" class="text-link">Continue exploring ↗</a><p class="route-disclaimer">Adding to bag or purchasing is unavailable until real products and order workflows are approved.</p></div></section>';
  }
  function favorites(){
   return pageTop('YOUR SAVED STUDIES','Favorites','Selections are stored locally in this browser; no account or server sync.')+'<section class="wrap route-content"><div id="favoriteGrid" class="product-grid"></div><p id="favoriteEmpty"></p></section>';
@@ -156,6 +156,8 @@ async function boot(){
   }
  }
  const app=$('#app');
+ let favoritesState=new Set();
+ try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
  app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
  // Global navigation and keyboard behavior.
@@ -168,10 +170,8 @@ async function boot(){
  const newsletter=$('#newsletterForm');
  newsletter.addEventListener('submit',e=>{e.preventDefault();const input=$('#newsletterEmail');if(!input.checkValidity()){input.reportValidity();return;}$('#newsletterMessage').textContent='Preview only: your email was not submitted or stored. Mailing-list integration is pending.';});
  let renderHomeCollection=()=>{},renderShop=()=>{},renderFavoriteGrid=()=>{};
- let favoritesState=new Set();
- try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  function isFavoriteNow(id){return favoritesState.has(id)}
- // initial render called before favorite-state setup; repaint after initialization.
+ // Favorites loaded before page rendering and refreshed only on user intent.
  function updateFav(id){
   if(favoritesState.has(id))favoritesState.delete(id);else favoritesState.add(id);
   try{localStorage.setItem('chapchitra-v3-sample-favorites',JSON.stringify([...favoritesState]))}catch{}
