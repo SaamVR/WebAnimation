@@ -1,11 +1,11 @@
-/** THREADS T03: use the exact 5.2-second owner SVG as supplied, without editing tracks. */
-const SOURCE_URL='./assets/backpack_animated%20(2).svg';
+/** THREADS T03: use the owner's final 5-second postcard SVG as supplied, without editing tracks. */
+const SOURCE_URL='./assets/backpack_animated_postcard.svg';
 const RESULT_KEY='threads.t03.reward.v2';
-const OPEN_AT=0.5*5200; // Source's 50%–65% fully opened hold.
-const CLOSE_FROM=0.65*5200; // Source's existing authored close begins at 65%.
-const END_AT=5200;
+const OPEN_AT=0.5*5000; // Source postcard display hold: 41%–62%.
+const CLOSE_FROM=0.62*5000; // Source's existing authored close begins after its 62% hold.
+const END_AT=5000;
 const $=id=>document.getElementById(id);
-const button=$('t03-bag-trigger'),vector=$('t03-svg-holder'),coupon=$('t03-coupon'),rewardText=$('t03-reward'),announcement=$('t03-announcement');
+const button=$('t03-bag-trigger'),vector=$('t03-svg-holder'),announcement=$('t03-announcement');
 let animations=[],phase='loading',activeTimer=0,transitionStarted=0,transitionEnd=0;
 let savedReward=null;
 // Last click wins; changes requested while a native SVG segment plays are queued.
@@ -34,6 +34,40 @@ function selectReward(){
  try{sessionStorage.setItem(RESULT_KEY,savedReward)}catch{}
  return savedReward;
 }
+// Review-only override displays each reward without changing the weighted session draw.
+const previewChoices=Object.freeze({'5':'5% OFF','7':'7% OFF','10':'10% OFF','50':'50% OFF',free:'Free Delivery'});
+const reviewCode=new URLSearchParams(location.search).get('reward')?.toLowerCase();
+const reviewReward=Object.hasOwn(previewChoices,reviewCode)?previewChoices[reviewCode]:null;
+function displayReward(){return reviewReward||selectReward()}
+function populatePostcard(svg,reward){
+ const ns='http://www.w3.org/2000/svg';
+ const group=svg.querySelector('#popout-card-group'),rim=svg.querySelector('#open-collar-front-rim-group');
+ const clipping=svg.querySelector('#rimPocketClip');
+ if(!group||!rim||!clipping)throw Error('Exact owner postcard and front-rim layers required');
+ const children=[...group.children];
+ // Keep the source gradients, teal header, orange circle, and white bars unchanged.
+ if(children.length<13||children[1].getAttribute('x')!=='1162'||children[2].getAttribute('x')!=='1172')throw Error('Unexpected postcard source structure');
+ for(const node of children.slice(7))node.remove(); // Drop only body illustration/bars below header.
+ // Expand card width 12.5% about its existing x=1274 centre; no header or timing edits.
+ children[1].setAttribute('x','1148');children[1].setAttribute('width','252');
+ children[2].setAttribute('x','1158');children[2].setAttribute('width','232');
+ const textNode=(value,y,size,id)=>{
+  const node=document.createElementNS(ns,'text');
+  node.setAttribute('id',id);
+  for(const [k,v] of Object.entries({x:'1274',y:String(y),'text-anchor':'middle',fill:'#2E453A','font-family':'Inter, Arial, sans-serif','font-weight':'900','font-size':String(size),'letter-spacing':'-1.2'}))node.setAttribute(k,v);
+  node.textContent=value;group.appendChild(node);
+  return node;
+ };
+ if(reward==='Free Delivery'){
+  textNode('FREE',501,48,'t03-reward-vector');
+  textNode('DELIVERY',550,37,'t03-reward-vector-line-2');
+ }else{
+  textNode(reward.replace(' OFF',''),544,102,'t03-reward-vector');
+ }
+ group.setAttribute('data-reward',reward);
+ // The owner's original rimPocketClip and layer order conceal the lower card.
+ return group;
+}
 function seek(time,play=false){
  for(const animation of animations){
   try{animation.pause();animation.currentTime=time;if(play)animation.play()}catch(err){console.warn('T03 animation seek failed',err)}
@@ -55,7 +89,7 @@ function opened(){
  phase='opened';button.setAttribute('aria-expanded','true');button.setAttribute('aria-busy','false');
  if(!targetOpen){close();return;}
  button.setAttribute('aria-label','Close backpack');
- rewardText.textContent=selectReward();coupon.classList.add('is-visible');coupon.setAttribute('aria-hidden','false');announcement.textContent=rewardText.textContent;
+ announcement.textContent=displayReward();
 }
 function closed(){
  if(phase!=='closing')return;
@@ -67,7 +101,6 @@ function closed(){
 function open(){
  if(phase!=='closed')return;
  phase='opening';button.setAttribute('aria-busy','true');button.setAttribute('aria-label','Close backpack after opening');
- coupon.classList.remove('is-visible');coupon.setAttribute('aria-hidden','true');
  seek(0,true);
  // Original SVG 0–50% timeline. No reconstructed transforms or timing.
  schedule(opened,OPEN_AT);
@@ -75,7 +108,6 @@ function open(){
 function close(){
  if(phase!=='opened')return;
  phase='closing';button.setAttribute('aria-busy','true');button.setAttribute('aria-label','Open backpack after closing');
- coupon.classList.remove('is-visible');coupon.setAttribute('aria-hidden','true');
  // Original SVG 65–100% closing keyframes, not a reverse or redraw.
  seek(CLOSE_FROM,true);
  schedule(closed,END_AT-CLOSE_FROM);
@@ -95,43 +127,28 @@ window.addEventListener('pageshow',syncOnReturn);
   const response=await fetch(url);
   if(!response.ok)throw new Error('SVG unavailable ('+response.status+')');
   const source=await response.text();
-  if(!source.includes('--dur: 5.2s')||!source.includes('id="outer-hood-hinge-group"')||!source.includes('data:image/png;base64,'))throw Error('Incorrect backpack asset; exact 5.2s source required.');
+  if(!source.includes('--dur: 5s')||!source.includes('id="popout-card-group"')||!source.includes('id="rimPocketClip"')||!source.includes('data:image/png;base64,'))throw Error('Incorrect final postcard animation source.');
   const doc=new DOMParser().parseFromString(source,'image/svg+xml');
-  if(doc.querySelector('parsererror'))throw Error('Supplied SVG cannot be parsed.');
+  if(doc.querySelector('parsererror'))throw Error('Owner SVG cannot be parsed.');
   const svg=document.importNode(doc.documentElement,true);
   svg.removeAttribute('width');svg.removeAttribute('height');
   svg.setAttribute('role','img');svg.setAttribute('aria-label','THREADS backpack opening and closing');svg.setAttribute('focusable','false');
-  // Move the existing HTML coupon behind the original raised flap, with a stationary SVG depth mask, not above
-  // the bag. This inserts a runtime foreignObject; the owner's SVG file, image
-  // nodes, seven animation tracks, styles, and keyframes remain byte-identical.
-  const ns='http://www.w3.org/2000/svg',front=svg.querySelector('#open-flap-group');
-  const couponLayer=document.createElementNS(ns,'foreignObject');
-  for(const [key,value] of Object.entries({x:'1083',y:'470',width:'445',height:'380'}))couponLayer.setAttribute(key,value);
-  couponLayer.setAttribute('class','t03-coupon-depth');
-  couponLayer.style.overflow='visible';couponLayer.style.pointerEvents='none';
-  // An SVG user-space clipping plane hides the lower card behind the rim.
-  // It masks only the runtime coupon, never the owner's artwork or motion.
-  const clipDefs=document.createElementNS(ns,'defs');
-  const depthClip=document.createElementNS(ns,'clipPath');
-  depthClip.setAttribute('id','t03-coupon-opening-mask');
-  depthClip.setAttribute('clipPathUnits','userSpaceOnUse');
-  const cut=document.createElementNS(ns,'rect');
-  for(const [key,value] of Object.entries({x:'1083',y:'470',width:'445',height:'118'}))cut.setAttribute(key,value);
-  depthClip.appendChild(cut);clipDefs.appendChild(depthClip);svg.insertBefore(clipDefs,svg.firstChild);
-  couponLayer.setAttribute('clip-path','url(#t03-coupon-opening-mask)');
-  // Keep coupon in its existing layout tree until all assets are prepared.
-  // Insert it after the interior collar but before the authored open-flap layer at readiness.
-  for(const node of svg.querySelectorAll('#backpack-scene,#top-handle-group,#lower-straps-group,#open-collar-group,#outer-hood-hinge-group,#buckles-unclip-group,#open-flap-group')){
+  populatePostcard(svg,displayReward());
+  // Animation ownership remains with the source's nine group CSS animations.
+  const animatedIds=['backpack-scene','buckle-left','buckle-right','closed-flap-group','top-handle-group','open-collar-back-group','open-collar-front-rim-group','open-flap-group','popout-card-group'];
+  for(const id of animatedIds){
+   const node=svg.getElementById(id);
+   if(!node)throw Error('Missing original animated group: '+id);
    node.style.animationIterationCount='1';node.style.animationFillMode='both';node.style.animationPlayState='paused';
   }
   vector.replaceChildren(svg);
   animations=svg.getAnimations({subtree:true});
-  if(animations.length!==7)throw Error('Expected seven unmodified animation tracks; got '+animations.length);
+  if(animations.length!==animatedIds.length)throw Error('Expected nine native animation tracks; got '+animations.length);
   seek(0);
   // Safari can present the first CSS transform before PNG data-URI images have
-  // decoded. Decode all ten full-resolution embedded layers before interaction.
+  // decoded. Decode all original embedded layers before interaction.
   const imageSources=[...svg.querySelectorAll('image')].map(el=>el.getAttribute('href')||el.getAttributeNS('http://www.w3.org/1999/xlink','href')).filter(Boolean);
-  if(imageSources.length!==10)throw Error('The original ten embedded PNG layers are required.');
+  if(imageSources.length!==9)throw Error('The owner's nine embedded PNG layers are required.');
   await Promise.all(imageSources.map(async src=>{
    const image=new Image();image.src=src;
    if(typeof image.decode==='function')await image.decode();
@@ -143,9 +160,6 @@ window.addEventListener('pageshow',syncOnReturn);
   svg.getBoundingClientRect();
   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   seek(0);
-  if(!front?.parentNode)throw Error('Original raised flap layer not found.');
-  front.parentNode.insertBefore(couponLayer,front);
-  couponLayer.appendChild(coupon);
   phase='closed';targetOpen=false;
   button.classList.add('is-ready');
   // The first paint with the SVG visible must complete before a tap can
