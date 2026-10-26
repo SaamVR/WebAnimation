@@ -6,7 +6,7 @@
   display: block;
   position: relative;
   flex: 0 1 auto;
-  width: min(100%, 500px);
+  width: min(100%, 480px);
   height: auto;
   aspect-ratio: 950 / 1060;
   border: 0;
