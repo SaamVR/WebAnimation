@@ -1,227 +1,437 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="800 260 950 1060" width="100%" height="100%">
-  <title>Backpack - Animated Opening and Pop-Out Card SVG</title>
+<svg id="backpack-svg" class="is-closed" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="800 260 950 1060" width="100%" height="100%" role="button" tabindex="0" aria-label="Interactive backpack - click to open or close">
+  <title>Backpack - Interactive Click-to-Open and Pop-Out Card SVG</title>
   <style>
     :root {
-      --dur: 5s;
+      --dur: 1.55s;
       --ease: cubic-bezier(0.45, 0.05, 0.2, 1);
+      --card-open-ease: cubic-bezier(0.34, 1.45, 0.64, 1);
     }
 
     svg {
       cursor: pointer;
       overflow: visible;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
     }
 
-    /* Subtle bounce on the whole bag as it unbuckles and pops open */
+    /* Subtle hover feedback so the user knows the bag is clickable */
     #backpack-scene {
       transform-origin: 1275px 1240px;
-      animation: bagBounce var(--dur) var(--ease) infinite;
+      transition: filter 0.25s ease;
+    }
+    svg:hover #backpack-scene {
+      filter: drop-shadow(0px 6px 14px rgba(24, 18, 16, 0.12));
     }
 
-    /* Left and right buckles unclip first (0% -> 12%), then re-clip on close (82% -> 92%) */
+    /* Transform origins for each animated part */
     #buckle-left {
       transform-origin: 1180px 690px;
-      animation: unclipLeft var(--dur) var(--ease) infinite;
     }
-
     #buckle-right {
       transform-origin: 1425px 710px;
-      animation: unclipRight var(--dur) var(--ease) infinite;
     }
-
-    /* Closed cream flap lifts upward from its top hinge (1260, 485) */
     #closed-flap-group {
       transform-origin: 1260px 485px;
-      animation: closedFlapLift var(--dur) var(--ease) infinite;
     }
-
-    /* Top orange loop handle tucks behind as the open flap rises */
     #top-handle-group {
       transform-origin: 1235px 475px;
-      animation: handleTuck var(--dur) var(--ease) infinite;
     }
-
-    /* Open drawstring collar (both back wall and front rim) expands into view */
     #open-collar-back-group,
     #open-collar-front-rim-group {
       transform-origin: 1256px 580px;
-      animation: collarReveal var(--dur) var(--ease) infinite;
     }
-
-    /* Open underside flap unfolds upward from the hinge line (1260, 505) */
     #open-flap-group {
       transform-origin: 1260px 505px;
-      animation: openFlapUnfold var(--dur) var(--ease) infinite;
     }
-
-    /* Card pops up from inside the collar rim, over the back flap, without poking above the flap top */
     #popout-card-group {
-      transform-origin: 1274px 635px;
-      animation: cardPopOut var(--dur) cubic-bezier(0.34, 1.45, 0.64, 1) infinite;
+      transform-origin: 1277px 635px;
     }
 
-    @keyframes bagBounce {
-      0%, 7%, 100% { transform: scale(1, 1) translateY(0px); }
-      13% { transform: scale(1.012, 0.988) translateY(3px); }
-      26% { transform: scale(0.993, 1.008) translateY(-4px); }
-      36%, 68% { transform: scale(1, 1) translateY(0px); }
-      78% { transform: scale(1.008, 0.992) translateY(2px); }
-      88% { transform: scale(0.996, 1.004) translateY(-1px); }
+    /* =========================================================
+       DEFAULT RESTING STATE: CLOSED (.is-closed)
+       ========================================================= */
+    svg.is-closed #backpack-scene {
+      transform: scale(1, 1) translateY(0px);
+    }
+    svg.is-closed #buckle-left,
+    svg.is-closed #buckle-right {
+      opacity: 1;
+      transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+    svg.is-closed #closed-flap-group {
+      opacity: 1;
+      transform: translateY(0px) scaleY(1) scaleX(1);
+    }
+    svg.is-closed #top-handle-group {
+      opacity: 1;
+      transform: translateY(0px) scaleY(1);
+    }
+    svg.is-closed #open-collar-back-group,
+    svg.is-closed #open-collar-front-rim-group {
+      opacity: 0;
+      transform: translateY(14px) scale(0.94, 0.82);
+      pointer-events: none;
+    }
+    svg.is-closed #open-flap-group {
+      opacity: 0;
+      transform: translateY(20px) scaleY(0.12) scaleX(0.94);
+      pointer-events: none;
+    }
+    svg.is-closed #popout-card-group {
+      opacity: 0;
+      transform: translateY(195px) scale(0.82, 0.35);
+      pointer-events: none;
     }
 
-    @keyframes unclipLeft {
-      0%, 5% {
-        opacity: 1;
-        transform: translate(0px, 0px) rotate(0deg) scale(1);
-      }
-      12% {
-        opacity: 1;
-        transform: translate(-4px, -24px) rotate(6deg) scale(1.04);
-      }
-      18%, 76% {
-        opacity: 0;
-        transform: translate(-8px, -85px) rotate(12deg) scale(0.85);
-      }
-      83% {
-        opacity: 1;
-        transform: translate(-3px, -18px) rotate(4deg) scale(1.03);
-      }
-      90%, 100% {
-        opacity: 1;
-        transform: translate(0px, 0px) rotate(0deg) scale(1);
-      }
+    /* =========================================================
+       OPENING SEQUENCE (.is-opening):
+       1. Buckles unclip (0% -> 26%)
+       2. Closed flap lifts and handle tucks (12% -> 46%)
+       3. Collar and open top flap unfold (22% -> 64%)
+       4. Card pops out from inside the rim (46% -> 100%)
+       ========================================================= */
+    svg.is-opening #backpack-scene {
+      animation: bagBounceOpen var(--dur) var(--ease) forwards;
+    }
+    svg.is-opening #buckle-left {
+      animation: unclipLeftOpen var(--dur) var(--ease) forwards;
+    }
+    svg.is-opening #buckle-right {
+      animation: unclipRightOpen var(--dur) var(--ease) forwards;
+    }
+    svg.is-opening #closed-flap-group {
+      animation: closedFlapLiftOpen var(--dur) var(--ease) forwards;
+    }
+    svg.is-opening #top-handle-group {
+      animation: handleTuckOpen var(--dur) var(--ease) forwards;
+    }
+    svg.is-opening #open-collar-back-group,
+    svg.is-opening #open-collar-front-rim-group {
+      animation: collarRevealOpen var(--dur) var(--ease) forwards;
+    }
+    svg.is-opening #open-flap-group {
+      animation: openFlapUnfoldOpen var(--dur) var(--ease) forwards;
+    }
+    svg.is-opening #popout-card-group {
+      animation: cardPopOutOpen var(--dur) var(--card-open-ease) forwards;
     }
 
-    @keyframes unclipRight {
-      0%, 5% {
-        opacity: 1;
-        transform: translate(0px, 0px) rotate(0deg) scale(1);
-      }
-      12% {
-        opacity: 1;
-        transform: translate(4px, -24px) rotate(-6deg) scale(1.04);
-      }
-      18%, 76% {
-        opacity: 0;
-        transform: translate(8px, -85px) rotate(-12deg) scale(0.85);
-      }
-      83% {
-        opacity: 1;
-        transform: translate(3px, -18px) rotate(-4deg) scale(1.03);
-      }
-      90%, 100% {
-        opacity: 1;
-        transform: translate(0px, 0px) rotate(0deg) scale(1);
-      }
+    /* =========================================================
+       CLOSING SEQUENCE (.is-closing):
+       1. Card slides back down into the bag FIRST (0% -> 38%)
+       2. Open top flap and collar fold down (28% -> 68%)
+       3. Closed cream flap hinges down and handle pops up (44% -> 84%)
+       4. Left and right buckles snap shut (64% -> 100%)
+       ========================================================= */
+    svg.is-closing #backpack-scene {
+      animation: bagBounceClose var(--dur) var(--ease) forwards;
+    }
+    svg.is-closing #buckle-left {
+      animation: unclipLeftClose var(--dur) var(--ease) forwards;
+    }
+    svg.is-closing #buckle-right {
+      animation: unclipRightClose var(--dur) var(--ease) forwards;
+    }
+    svg.is-closing #closed-flap-group {
+      animation: closedFlapLiftClose var(--dur) var(--ease) forwards;
+    }
+    svg.is-closing #top-handle-group {
+      animation: handleTuckClose var(--dur) var(--ease) forwards;
+    }
+    svg.is-closing #open-collar-back-group,
+    svg.is-closing #open-collar-front-rim-group {
+      animation: collarRevealClose var(--dur) var(--ease) forwards;
+    }
+    svg.is-closing #open-flap-group {
+      animation: openFlapUnfoldClose var(--dur) var(--ease) forwards;
+    }
+    svg.is-closing #popout-card-group {
+      animation: cardPopOutClose var(--dur) var(--ease) forwards;
     }
 
-    @keyframes closedFlapLift {
-      0%, 8% {
+    /* --- OPENING KEYFRAMES --- */
+    @keyframes bagBounceOpen {
+      0%, 10% { transform: scale(1, 1) translateY(0px); }
+      24% { transform: scale(1.012, 0.988) translateY(3px); }
+      52% { transform: scale(0.993, 1.008) translateY(-4px); }
+      78%, 100% { transform: scale(1, 1) translateY(0px); }
+    }
+
+    @keyframes unclipLeftOpen {
+      0%, 6% {
         opacity: 1;
-        transform: translateY(0px) scaleY(1) scaleX(1);
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
       }
       16% {
         opacity: 1;
-        transform: translateY(-10px) scaleY(0.48) scaleX(1.02);
+        transform: translate(-4px, -24px) rotate(6deg) scale(1.04);
       }
-      22%, 72% {
+      28%, 100% {
         opacity: 0;
-        transform: translateY(-22px) scaleY(0.08) scaleX(0.95);
+        transform: translate(-8px, -85px) rotate(12deg) scale(0.85);
       }
-      78% {
+    }
+
+    @keyframes unclipRightOpen {
+      0%, 6% {
         opacity: 1;
-        transform: translateY(-8px) scaleY(0.52) scaleX(1.02);
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
       }
-      88%, 100% {
+      16% {
+        opacity: 1;
+        transform: translate(4px, -24px) rotate(-6deg) scale(1.04);
+      }
+      28%, 100% {
+        opacity: 0;
+        transform: translate(8px, -85px) rotate(-12deg) scale(0.85);
+      }
+    }
+
+    @keyframes closedFlapLiftOpen {
+      0%, 12% {
         opacity: 1;
         transform: translateY(0px) scaleY(1) scaleX(1);
-      }
-    }
-
-    @keyframes handleTuck {
-      0%, 10% {
-        opacity: 1;
-        transform: translateY(0px) scaleY(1);
-      }
-      20%, 74% {
-        opacity: 0;
-        transform: translateY(18px) scaleY(0.5);
-      }
-      84%, 100% {
-        opacity: 1;
-        transform: translateY(0px) scaleY(1);
-      }
-    }
-
-    @keyframes collarReveal {
-      0%, 10% {
-        opacity: 0;
-        transform: translateY(14px) scale(0.94, 0.82);
-      }
-      22%, 74% {
-        opacity: 1;
-        transform: translateY(0px) scale(1, 1);
-      }
-      85%, 100% {
-        opacity: 0;
-        transform: translateY(14px) scale(0.94, 0.82);
-      }
-    }
-
-    @keyframes openFlapUnfold {
-      0%, 14% {
-        opacity: 0;
-        transform: translateY(20px) scaleY(0.12) scaleX(0.94);
-      }
-      20% {
-        opacity: 1;
-        transform: translateY(6px) scaleY(0.55) scaleX(0.98);
       }
       28% {
         opacity: 1;
+        transform: translateY(-10px) scaleY(0.48) scaleX(1.02);
+      }
+      42%, 100% {
+        opacity: 0;
+        transform: translateY(-22px) scaleY(0.08) scaleX(0.95);
+      }
+    }
+
+    @keyframes handleTuckOpen {
+      0%, 16% {
+        opacity: 1;
+        transform: translateY(0px) scaleY(1);
+      }
+      38%, 100% {
+        opacity: 0;
+        transform: translateY(18px) scaleY(0.5);
+      }
+    }
+
+    @keyframes collarRevealOpen {
+      0%, 18% {
+        opacity: 0;
+        transform: translateY(14px) scale(0.94, 0.82);
+      }
+      44%, 100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1, 1);
+      }
+    }
+
+    @keyframes openFlapUnfoldOpen {
+      0%, 24% {
+        opacity: 0;
+        transform: translateY(20px) scaleY(0.12) scaleX(0.94);
+      }
+      38% {
+        opacity: 1;
+        transform: translateY(6px) scaleY(0.55) scaleX(0.98);
+      }
+      56% {
+        opacity: 1;
         transform: translateY(-4px) scaleY(1.03) scaleX(1.01);
       }
-      34%, 68% {
+      70%, 100% {
         opacity: 1;
         transform: translateY(0px) scaleY(1) scaleX(1);
       }
-      75% {
+    }
+
+    @keyframes cardPopOutOpen {
+      0%, 46% {
+        opacity: 0;
+        transform: translateY(195px) scale(0.82, 0.35);
+      }
+      56% {
+        opacity: 1;
+        transform: translateY(110px) scale(0.94, 0.72);
+      }
+      84% {
+        opacity: 1;
+        transform: translateY(-6px) scale(1.01, 1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1, 1);
+      }
+    }
+
+    /* --- CLOSING KEYFRAMES (Card goes inside FIRST, then flap closes, then buckles snap) --- */
+    @keyframes bagBounceClose {
+      0%, 30% { transform: scale(1, 1) translateY(0px); }
+      58% { transform: scale(1.008, 0.992) translateY(2px); }
+      82% { transform: scale(0.996, 0.996) translateY(-1px); }
+      100% { transform: scale(1, 1) translateY(0px); }
+    }
+
+    @keyframes cardPopOutClose {
+      0% {
+        opacity: 1;
+        transform: translateY(0px) scale(1, 1);
+      }
+      10% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.005, 1.01);
+      }
+      28% {
+        opacity: 1;
+        transform: translateY(120px) scale(0.93, 0.65);
+      }
+      38%, 100% {
+        opacity: 0;
+        transform: translateY(195px) scale(0.82, 0.35);
+      }
+    }
+
+    @keyframes openFlapUnfoldClose {
+      0%, 28% {
+        opacity: 1;
+        transform: translateY(0px) scaleY(1) scaleX(1);
+      }
+      46% {
         opacity: 1;
         transform: translateY(6px) scaleY(0.50) scaleX(0.98);
       }
-      81%, 100% {
+      62%, 100% {
         opacity: 0;
         transform: translateY(20px) scaleY(0.12) scaleX(0.94);
       }
     }
 
-    @keyframes cardPopOut {
-      0%, 20% {
-        opacity: 0;
-        transform: translateY(195px) scale(0.82, 0.35);
-      }
-      24% {
-        opacity: 1;
-        transform: translateY(110px) scale(0.94, 0.72);
-      }
-      35% {
-        opacity: 1;
-        transform: translateY(-6px) scale(1.01, 1.02);
-      }
-      41%, 62% {
+    @keyframes collarRevealClose {
+      0%, 36% {
         opacity: 1;
         transform: translateY(0px) scale(1, 1);
       }
-      69% {
-        opacity: 1;
-        transform: translateY(120px) scale(0.93, 0.65);
-      }
-      73%, 100% {
+      68%, 100% {
         opacity: 0;
-        transform: translateY(195px) scale(0.82, 0.35);
+        transform: translateY(14px) scale(0.94, 0.82);
+      }
+    }
+
+    @keyframes closedFlapLiftClose {
+      0%, 44% {
+        opacity: 0;
+        transform: translateY(-22px) scaleY(0.08) scaleX(0.95);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(-8px) scaleY(0.52) scaleX(1.02);
+      }
+      80%, 100% {
+        opacity: 1;
+        transform: translateY(0px) scaleY(1) scaleX(1);
+      }
+    }
+
+    @keyframes handleTuckClose {
+      0%, 48% {
+        opacity: 0;
+        transform: translateY(18px) scaleY(0.5);
+      }
+      76%, 100% {
+        opacity: 1;
+        transform: translateY(0px) scaleY(1);
+      }
+    }
+
+    @keyframes unclipLeftClose {
+      0%, 64% {
+        opacity: 0;
+        transform: translate(-8px, -85px) rotate(12deg) scale(0.85);
+      }
+      80% {
+        opacity: 1;
+        transform: translate(-3px, -18px) rotate(4deg) scale(1.03);
+      }
+      94%, 100% {
+        opacity: 1;
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes unclipRightClose {
+      0%, 64% {
+        opacity: 0;
+        transform: translate(8px, -85px) rotate(-12deg) scale(0.85);
+      }
+      80% {
+        opacity: 1;
+        transform: translate(3px, -18px) rotate(-4deg) scale(1.03);
+      }
+      94%, 100% {
+        opacity: 1;
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
       }
     }
   </style>
+
+  <script type="application/ecmascript"><![CDATA[
+    (function () {
+      var svg = document.getElementById('backpack-svg') || document.documentElement;
+      var isOpen = false;
+      var isAnimating = false;
+      var ANIM_MS = 1550;
+      var rewardIds = ['reward-7', 'reward-10', 'reward-5', 'reward-free-delivery'];
+      var lastRewardIdx = -1;
+
+      function pickRandomReward() {
+        var idx = Math.floor(Math.random() * rewardIds.length);
+        if (rewardIds.length > 1 && idx === lastRewardIdx && Math.random() < 0.75) {
+          idx = (idx + 1 + Math.floor(Math.random() * (rewardIds.length - 1))) % rewardIds.length;
+        }
+        lastRewardIdx = idx;
+        for (var i = 0; i < rewardIds.length; i++) {
+          var el = document.getElementById(rewardIds[i]);
+          if (el) {
+            el.setAttribute('display', i === idx ? 'inline' : 'none');
+          }
+        }
+      }
+
+      // Initialize with a random coupon variant on load
+      pickRandomReward();
+
+      function toggleBackpack(evt) {
+        if (evt && evt.type === 'keydown' && evt.key !== 'Enter' && evt.key !== ' ') {
+          return;
+        }
+        if (evt && evt.type === 'keydown') {
+          evt.preventDefault();
+        }
+        if (isAnimating) {
+          return;
+        }
+        isAnimating = true;
+
+        if (!isOpen) {
+          pickRandomReward();
+          svg.classList.remove('is-closed', 'is-closing');
+          svg.classList.add('is-opening');
+          isOpen = true;
+        } else {
+          svg.classList.remove('is-opening');
+          svg.classList.add('is-closing');
+          isOpen = false;
+        }
+
+        setTimeout(function () {
+          isAnimating = false;
+        }, ANIM_MS);
+      }
+
+      svg.addEventListener('click', toggleBackpack, false);
+      svg.addEventListener('keydown', toggleBackpack, false);
+    })();
+  ]]></script>
 
   <g id="backpack-scene">
     <!-- Static Base: Backpack lower body, side pocket, cap, sneaker, water bottle -->
@@ -255,43 +465,111 @@
     <g id="popout-card-group">
       <defs>
         <linearGradient id="cardBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FFFDF9" />
-          <stop offset="100%" stop-color="#FCEFD8" />
+          <stop offset="0%" stop-color="#FFFDF8" />
+          <stop offset="100%" stop-color="#FCF3E1" />
         </linearGradient>
         <linearGradient id="cardBannerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stop-color="#228B94" />
           <stop offset="100%" stop-color="#38B2AC" />
         </linearGradient>
-        <filter id="cardDropShadow" x="-12%" y="-10%" width="124%" height="124%">
+        <radialGradient id="couponCenterGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F6AD55" stop-opacity="0.22" />
+          <stop offset="65%" stop-color="#F6AD55" stop-opacity="0.08" />
+          <stop offset="100%" stop-color="#F6AD55" stop-opacity="0" />
+        </radialGradient>
+        <filter id="cardDropShadow" x="-14%" y="-12%" width="128%" height="128%">
+          <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#F6AD55" flood-opacity="0.24" />
           <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#1A0E0A" flood-opacity="0.32" />
         </filter>
+        <!-- Subtle discount coupon highlight (soft warm outer glow + slight crisp drop shadow) -->
+        <filter id="couponTextHighlight" x="-25%" y="-25%" width="150%" height="150%">
+          <feDropShadow dx="0" dy="0" stdDeviation="5.5" flood-color="#F6AD55" flood-opacity="0.48" />
+          <feDropShadow dx="0" dy="2.5" stdDeviation="1.8" flood-color="#181210" flood-opacity="0.16" />
+        </filter>
       </defs>
-      <!-- Outer Hand-Drawn Style Card Body (x=1162, y=354, width=224, height=306) -->
-      <rect x="1162" y="354" width="224" height="306" rx="18" ry="18"
+      <!-- Outer Hand-Drawn Style Card Body (x=1146, y=354, width=262, height=306) -->
+      <rect x="1146" y="354" width="262" height="306" rx="18" ry="18"
             fill="url(#cardBgGrad)" stroke="#181210" stroke-width="5.5" stroke-linejoin="round"
             filter="url(#cardDropShadow)" />
-      <!-- Subtle Inner Highlight Frame -->
-      <rect x="1172" y="364" width="204" height="286" rx="12" ry="12"
-            fill="none" stroke="#F4A261" stroke-width="2" stroke-dasharray="6 4" opacity="0.65" />
+      <!-- Subtle Inner Highlight Dashed Coupon Frame -->
+      <rect x="1156" y="364" width="242" height="286" rx="12" ry="12"
+            fill="none" stroke="#F4A261" stroke-width="2" stroke-dasharray="6 4" opacity="0.72" />
       <!-- Top Decorative Header Banner -->
-      <rect x="1182" y="378" width="184" height="54" rx="10" ry="10"
+      <rect x="1166" y="378" width="222" height="54" rx="10" ry="10"
             fill="url(#cardBannerGrad)" stroke="#181210" stroke-width="3.5" />
       <!-- Accent Sun/Badge Icon inside Header -->
-      <circle cx="1212" cy="405" r="14" fill="#F6AD55" stroke="#181210" stroke-width="3" />
-      <rect x="1238" y="394" width="108" height="10" rx="5" fill="#FFFDF9" />
-      <rect x="1238" y="411" width="72" height="8" rx="4" fill="#E6FFFA" opacity="0.85" />
-      <!-- Card Body Content Lines / Illustration Placeholder -->
-      <rect x="1184" y="450" width="180" height="86" rx="10" ry="10"
-            fill="#FDE4CF" stroke="#181210" stroke-width="3" />
-      <!-- stylized mountain/wave graphic matching the front pocket art -->
-      <path d="M 1187 520 Q 1230 475 1275 502 T 1361 490 L 1361 533 L 1187 533 Z"
-            fill="#F3722C" opacity="0.85" />
-      <path d="M 1187 528 Q 1245 498 1305 518 T 1361 510 L 1361 533 L 1187 533 Z"
-            fill="#E63946" opacity="0.85" />
-      <!-- Bottom Text/Detail Bars above the Collar Rim -->
-      <rect x="1186" y="554" width="140" height="11" rx="5.5" fill="#2B2D42" opacity="0.85" />
-      <rect x="1186" y="575" width="176" height="9" rx="4.5" fill="#8D99AE" opacity="0.65" />
-      <rect x="1186" y="593" width="115" height="9" rx="4.5" fill="#8D99AE" opacity="0.65" />
+      <circle cx="1198" cy="405" r="14" fill="#F6AD55" stroke="#181210" stroke-width="3" />
+      <rect x="1224" y="394" width="136" height="10" rx="5" fill="#FFFDF9" />
+      <rect x="1224" y="411" width="92" height="8" rx="4" fill="#E6FFFA" opacity="0.85" />
+
+      <!-- Soft Warm Coupon Aura in Center of Card Body -->
+      <ellipse cx="1277" cy="518" rx="108" ry="62" fill="url(#couponCenterGlow)" />
+
+      <!-- Randomized Discount Coupon Variants (Middle-Aligned at Center of Card Body: x=1277, y=518) -->
+      <g id="coupon-rewards-container" filter="url(#couponTextHighlight)">
+        <!-- Variant 1: 7% (7 is bigger at 116px, % is current 94px size, middle-aligned on the card) -->
+        <g id="reward-7" display="inline">
+          <text x="1277" y="556"
+                text-anchor="middle"
+                fill="#2F4539"
+                stroke="#FFFDF9"
+                stroke-width="2.5"
+                paint-order="stroke fill"
+                font-family="system-ui, -apple-system, &apos;Segoe UI&apos;, Roboto, &apos;Helvetica Neue&apos;, Arial, sans-serif"
+                font-weight="800"
+                letter-spacing="-2"><tspan font-size="116">7</tspan><tspan font-size="94" dy="-8" dx="1">%</tspan></text>
+        </g>
+
+        <!-- Variant 2: 10% (10 is bigger at 108px, % is 86px inside the wider card, middle-aligned) -->
+        <g id="reward-10" display="none">
+          <text x="1277" y="554"
+                text-anchor="middle"
+                fill="#2F4539"
+                stroke="#FFFDF9"
+                stroke-width="2.5"
+                paint-order="stroke fill"
+                font-family="system-ui, -apple-system, &apos;Segoe UI&apos;, Roboto, &apos;Helvetica Neue&apos;, Arial, sans-serif"
+                font-weight="800"
+                letter-spacing="-3"><tspan font-size="108">10</tspan><tspan font-size="86" dy="-8" dx="1">%</tspan></text>
+        </g>
+
+        <!-- Variant 3: 5% (5 is bigger at 116px, % is current 94px size, middle-aligned on the card) -->
+        <g id="reward-5" display="none">
+          <text x="1277" y="556"
+                text-anchor="middle"
+                fill="#2F4539"
+                stroke="#FFFDF9"
+                stroke-width="2.5"
+                paint-order="stroke fill"
+                font-family="system-ui, -apple-system, &apos;Segoe UI&apos;, Roboto, &apos;Helvetica Neue&apos;, Arial, sans-serif"
+                font-weight="800"
+                letter-spacing="-2"><tspan font-size="116">5</tspan><tspan font-size="94" dy="-8" dx="1">%</tspan></text>
+        </g>
+
+        <!-- Variant 4: FREE DELIVERY (Two-line stacked & middle-aligned inside the coupon body) -->
+        <g id="reward-free-delivery" display="none">
+          <text x="1277" y="512"
+                text-anchor="middle"
+                fill="#2F4539"
+                stroke="#FFFDF9"
+                stroke-width="2.5"
+                paint-order="stroke fill"
+                font-family="system-ui, -apple-system, &apos;Segoe UI&apos;, Roboto, &apos;Helvetica Neue&apos;, Arial, sans-serif"
+                font-size="54"
+                font-weight="900"
+                letter-spacing="1.5">FREE</text>
+          <text x="1277" y="554"
+                text-anchor="middle"
+                fill="#228B94"
+                stroke="#FFFDF9"
+                stroke-width="2"
+                paint-order="stroke fill"
+                font-family="system-ui, -apple-system, &apos;Segoe UI&apos;, Roboto, &apos;Helvetica Neue&apos;, Arial, sans-serif"
+                font-size="36"
+                font-weight="800"
+                letter-spacing="1.2">DELIVERY</text>
+        </g>
+      </g>
     </g>
     </g>
 

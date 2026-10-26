@@ -1,0 +1,202 @@
+[
+  {
+    "device": "desktop",
+    "status": 200,
+    "initial": {
+      "cls": "is-closed",
+      "keyframes": 16,
+      "rewards": [
+        "reward-7"
+      ],
+      "svgWidth": 500,
+      "svgHeight": 557.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "open": {
+      "cls": "is-opening",
+      "keyframes": 16,
+      "rewards": [
+        "reward-5"
+      ],
+      "svgWidth": 500,
+      "svgHeight": 557.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "closed": {
+      "cls": "is-closing",
+      "keyframes": 16,
+      "rewards": [
+        "reward-5"
+      ],
+      "svgWidth": 500,
+      "svgHeight": 557.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "reopened": {
+      "cls": "is-opening",
+      "keyframes": 16,
+      "rewards": [
+        "reward-free-delivery"
+      ],
+      "svgWidth": 500,
+      "svgHeight": 557.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "reclosed": {
+      "cls": "is-closing",
+      "keyframes": 16,
+      "rewards": [
+        "reward-free-delivery"
+      ],
+      "svgWidth": 500,
+      "svgHeight": 557.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "pass": true,
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ]
+  },
+  {
+    "device": "ipad-touch",
+    "status": 200,
+    "initial": {
+      "cls": "is-closed",
+      "keyframes": 16,
+      "rewards": [
+        "reward-7"
+      ],
+      "svgWidth": 347.640625,
+      "svgHeight": 387.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "open": {
+      "cls": "is-opening",
+      "keyframes": 16,
+      "rewards": [
+        "reward-free-delivery"
+      ],
+      "svgWidth": 347.640625,
+      "svgHeight": 387.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "closed": {
+      "cls": "is-closing",
+      "keyframes": 16,
+      "rewards": [
+        "reward-free-delivery"
+      ],
+      "svgWidth": 347.640625,
+      "svgHeight": 387.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "reopened": {
+      "cls": "is-opening",
+      "keyframes": 16,
+      "rewards": [
+        "reward-10"
+      ],
+      "svgWidth": 347.640625,
+      "svgHeight": 387.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "reclosed": {
+      "cls": "is-closing",
+      "keyframes": 16,
+      "rewards": [
+        "reward-10"
+      ],
+      "svgWidth": 347.640625,
+      "svgHeight": 387.890625,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "pass": true,
+    "errors": []
+  },
+  {
+    "device": "mobile-touch",
+    "status": 200,
+    "initial": {
+      "cls": "is-closed",
+      "keyframes": 16,
+      "rewards": [
+        "reward-7"
+      ],
+      "svgWidth": 332.78125,
+      "svgHeight": 371.3125,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "open": {
+      "cls": "is-opening",
+      "keyframes": 16,
+      "rewards": [
+        "reward-5"
+      ],
+      "svgWidth": 332.78125,
+      "svgHeight": 371.3125,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "closed": {
+      "cls": "is-closing",
+      "keyframes": 16,
+      "rewards": [
+        "reward-5"
+      ],
+      "svgWidth": 332.78125,
+      "svgHeight": 371.3125,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "reopened": {
+      "cls": "is-opening",
+      "keyframes": 16,
+      "rewards": [
+        "reward-free-delivery"
+      ],
+      "svgWidth": 332.78125,
+      "svgHeight": 371.3125,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "reclosed": {
+      "cls": "is-closing",
+      "keyframes": 16,
+      "rewards": [
+        "reward-free-delivery"
+      ],
+      "svgWidth": 332.78125,
+      "svgHeight": 371.3125,
+      "objectTag": "OBJECT",
+      "objectSrc": "./assets/backpack_animated(2).svg",
+      "overflow": 0
+    },
+    "pass": true,
+    "errors": []
+  }
+]
