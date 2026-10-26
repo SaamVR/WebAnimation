@@ -91,7 +91,9 @@ async function boot(){
  }
  function featured(){
   return '<section id="featured" class="section-pad featured-zone" aria-labelledby="featuredTitle"><div class="wrap">'+titleBlock('03 / THE GALLERY','Featured Prints','Five framed slots reserved for owner-supplied artwork and inspiration credits.')+
-   '<div id="featuredFrames" class="featured-stage"></div><div class="featured-controls"><button type="button" id="featuredPrev" aria-label="Previous featured print">‹</button><div id="featuredCaption" aria-live="polite"></div><button type="button" id="featuredNext" aria-label="Next featured print">›</button></div></div></section>';
+   '<div id="featuredFrames" class="featured-stage" role="group" tabindex="0" aria-roledescription="carousel" aria-label="Featured print studies. Select cards or use left and right arrow keys." aria-describedby="featuredHint"></div>'+
+   '<div class="featured-controls"><button type="button" id="featuredPrev" aria-label="Previous featured print">‹</button><div id="featuredCaption" aria-live="polite" aria-atomic="true"></div><button type="button" id="featuredNext" aria-label="Next featured print">›</button></div>'+
+   '<p id="featuredHint" class="featured-hint">Select side cards or swipe to change print · Sample imagery and prices are pending</p></div></section>';
  }
  function values(){
   const items=[['01','Stories You Can Wear','An illustrated canvas for everyday storytelling.'],['02','Rooted in Bengal','A place for local culture and creative observation.'],['03','Made Through Print','Marks, materials and the studio process.'],['04','Wear It Your Way','Find a silhouette or customize your own.']];
@@ -200,7 +202,7 @@ async function boot(){
   let active=0,timer=null,hovered=false,focused=false,touchX=null;
   function pauseHero(){if(timer!==null){clearInterval(timer);timer=null}}
   function canPlay(){return !mediaReduced.matches&&!hovered&&!focused&&!document.hidden}
-  function scheduleHero(){pauseHero();if(canPlay())timer=setInterval(()=>changeHero((active+1)%slides.length,false),6000)}
+  function scheduleHero(){pauseHero();if(canPlay())timer=setInterval(()=>changeHero((active+1)%slides.length,false),4000)}
   function changeHero(index,manual){active=(index+slides.length)%slides.length;slides.forEach((s,i)=>{s.hidden=i!==active;s.classList.toggle('is-active',i===active)});dots.forEach((d,i)=>{d.classList.toggle('active',i===active);d.setAttribute('aria-pressed',String(i===active))});$('#heroCount').textContent=String(active+1).padStart(2,'0')+' / 05';if(manual)scheduleHero()}
   dots.forEach(dot=>dot.addEventListener('click',()=>changeHero(Number(dot.dataset.slideTo),true)));
   heroRoot.addEventListener('mouseenter',()=>{hovered=true;pauseHero()});
@@ -222,20 +224,77 @@ async function boot(){
   }
   $('#homePager').addEventListener('click',e=>{const btn=e.target.closest('[data-page-number]');if(!btn||btn.disabled)return;homePage=Number(btn.dataset.pageNumber);renderHomeCollection();$('#collection').scrollIntoView({behavior:mediaReduced.matches?'instant':'smooth',block:'start'})});
   renderHomeCollection();
+  // Five real card nodes persist while positions animate; never rebuild the frames on selection.
   let focusedPrint=2;
   const featureNames=['Original Mark Study','Layered Colour Study','Everyday Print Study','Paper to Textile Study','Studio Composition Study'];
-  function renderFeatured(){
-   const el=$('#featuredFrames');
-   el.innerHTML=featureNames.map((title,i)=>{
-    let offset=(i-focusedPrint+5)%5;if(offset>2)offset-=5;
-    const c=offset===0?'center':Math.abs(offset)===1?'near':'far';
-    return '<div class="feature-frame '+c+(offset<0?' left':' right')+(offset===0?' current':'')+'" aria-hidden="'+(offset!==0)+'" data-feature-index="'+i+'">'+paperVisual(i)+'</div>';
-   }).join('');
-   $('#featuredCaption').innerHTML='<strong>'+featureNames[focusedPrint]+'</strong><small>Artist / art-form inspiration credit pending · '+(focusedPrint+1)+' / 5</small>';
+  const featureRoot=$('#featured'),featureStage=$('#featuredFrames');
+  const featureMobile=window.matchMedia('(max-width:600px)');
+  const FEATURE_INTERVAL_MS=8200; // Separate from hero timing.
+  let featuredTimer=null,featuredHover=false,featuredFocus=false,featuredTouch=false,touchStartX=null,ignoreClickUntil=0;
+  featureStage.innerHTML=featureNames.map((title,i)=>
+   '<article class="feature-frame" data-feature-index="'+i+'" data-slot="far-left" aria-label="'+esc(title)+'">'+
+    '<button type="button" class="feature-select" data-feature-select="'+i+'" aria-label="Select '+esc(title)+'" aria-pressed="false"><span class="feature-image">'+paperVisual(i)+'</span></button>'+
+    '<div class="feature-product-info"><span class="feature-product-kicker">FEATURED PRINT · STUDY 0'+(i+1)+'</span>'+
+    '<h3>'+esc(title)+'</h3><p>'+esc(catalog[i].fit)+' · Artist credit pending</p>'+
+    '<div class="feature-product-bottom"><strong>Tk — <small>Price pending</small></strong><a class="feature-detail-link" href="/product/?id='+catalog[i].id+'" tabindex="-1">View Details ↗</a></div></div></article>'
+  ).join('');
+  const frames=$$('.feature-frame',featureStage);
+  const slots=['center','near-right','far-right','far-left','near-left'];
+  const stopFeatured=()=>{if(featuredTimer!==null){clearTimeout(featuredTimer);featuredTimer=null}};
+  const canAutoFeatured=()=>!mediaReduced.matches&&!featuredHover&&!featuredFocus&&!featuredTouch&&!document.hidden;
+  function scheduleFeatured(){
+    stopFeatured();
+    if(canAutoFeatured())featuredTimer=setTimeout(()=>{featuredTimer=null;selectFeatured(focusedPrint+1,false)},FEATURE_INTERVAL_MS);
   }
-  $('#featuredPrev').addEventListener('click',()=>{focusedPrint=(focusedPrint+4)%5;renderFeatured()});
-  $('#featuredNext').addEventListener('click',()=>{focusedPrint=(focusedPrint+1)%5;renderFeatured()});
-  renderFeatured();
+  function paintFeatured(){
+    frames.forEach((frame,i)=>{
+      const slot=slots[(i-focusedPrint+5)%5],active=i===focusedPrint;
+      const hiddenOnMobile=featureMobile.matches&&slot.startsWith('far-');
+      frame.dataset.slot=slot;
+      frame.setAttribute('aria-current',String(active));
+      const choice=frame.querySelector('.feature-select');
+      choice.setAttribute('aria-pressed',String(active));
+      choice.tabIndex=hiddenOnMobile?-1:0;
+      const link=frame.querySelector('.feature-detail-link');
+      link.tabIndex=active?0:-1;
+      link.setAttribute('aria-hidden',String(!active));
+    });
+    $('#featuredCaption').innerHTML='<strong>'+esc(featureNames[focusedPrint])+'</strong><small>Artist / art-form credit pending · '+(focusedPrint+1)+' / 5</small>';
+  }
+  function selectFeatured(index,manual=true){
+    focusedPrint=(index+featureNames.length)%featureNames.length;paintFeatured();scheduleFeatured();
+  }
+  featureStage.addEventListener('click',event=>{
+    const btn=event.target.closest('[data-feature-select]');
+    if(btn&&Date.now()>=ignoreClickUntil)selectFeatured(Number(btn.dataset.featureSelect));
+  });
+  $('#featuredPrev').addEventListener('click',()=>selectFeatured(focusedPrint-1));
+  $('#featuredNext').addEventListener('click',()=>selectFeatured(focusedPrint+1));
+  featureStage.addEventListener('keydown',event=>{
+    if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
+      event.preventDefault();selectFeatured(focusedPrint+(event.key==='ArrowRight'?1:-1));
+    }
+  });
+  featureRoot.addEventListener('mouseenter',()=>{featuredHover=true;stopFeatured()});
+  featureRoot.addEventListener('mouseleave',()=>{featuredHover=false;scheduleFeatured()});
+  featureRoot.addEventListener('focusin',()=>{featuredFocus=true;stopFeatured()});
+  featureRoot.addEventListener('focusout',()=>{featuredFocus=featureRoot.contains(document.activeElement);scheduleFeatured()});
+  featureStage.addEventListener('touchstart',event=>{
+    if(event.touches.length!==1)return;
+    touchStartX=event.touches[0].clientX;featuredTouch=true;stopFeatured();
+  },{passive:true});
+  featureStage.addEventListener('touchend',event=>{
+    if(touchStartX!==null&&event.changedTouches.length){
+      const dx=event.changedTouches[0].clientX-touchStartX;
+      if(Math.abs(dx)>=48){ignoreClickUntil=Date.now()+450;selectFeatured(focusedPrint+(dx<0?1:-1))}
+    }
+    touchStartX=null;featuredTouch=false;scheduleFeatured();
+  },{passive:true});
+  featureStage.addEventListener('touchcancel',()=>{touchStartX=null;featuredTouch=false;scheduleFeatured()},{passive:true});
+  document.addEventListener('visibilitychange',scheduleFeatured);
+  mediaReduced.addEventListener('change',scheduleFeatured);
+  featureMobile.addEventListener('change',paintFeatured);
+  paintFeatured();scheduleFeatured();
  }
  if(route==='shop'){
   const category=$('#filterCategory'),audience=$('#filterAudience'),print=$('#filterPrint');
