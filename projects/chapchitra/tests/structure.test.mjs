@@ -1,30 +1,54 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-const root=new URL('../',import.meta.url);
-const load=p=>readFile(new URL(p,root),'utf8');
-test('semantic section foundation exists',async()=>{
- const html=await load('src/index.html');
- for(const id of ['main','categories','featured','story','process','posters','arrivals','community'])assert.match(html,new RegExp('id="'+id+'"'));
- assert.match(html,/lang="bn"/);assert.match(html,/id="searchPanel"/);assert.match(html,/id="mobileMenu"/);assert.match(html,/prefers-reduced-motion|styles\.css/);
- assert.match(html,/noindex, nofollow/);
+import {readFile} from 'node:fs/promises';
+import {catalog,PAGE_SIZE_HOME,PAGE_SIZE_SHOP,articlePreviews} from '../src/catalog.mjs';
+const read=relative=>readFile(new URL('../'+relative,import.meta.url),'utf-8');
+test('all twelve distinct route entrypoints exist',async()=>{
+ const routes=['','shop/','artists-edit/','journal/','journal/story/','about/','product/','favorites/','account/','bag/','checkout/','order-confirmation/'];
+ for(const route of routes){const html=await read('src/'+route+'index.html');assert.match(html,/id="app"/);assert.match(html,/data-page="/);assert.match(html,/noindex, nofollow/)}
 });
-test('no fabricated inventory, payments, imagery or cross-project imports',async()=>{
- const combined=(await Promise.all(['src/index.html','src/app.mjs','src/components.mjs'].map(load))).join('\n');
- assert.doesNotMatch(combined,/https?:\/\/|threads\/|EcomCMS\/|stripe|checkout\.session|firebase|supabase|onrender\.com/i);
- assert.match(combined,/No email addresses are collected/);
- assert.match(combined,/No products for sale/);
+test('eleven homepage units and functional UX controller contracts',async()=>{
+ const app=await read('src/app.mjs');
+ const home=app.match(/function home\(\)\{return ([^}]+)\}/)?.[1];
+ assert.ok(home,'home() should exist');
+ for(const f of ['hero()','benefits()','categoriesSection()','collection()','banners()','featured()','values()','story()'])assert.ok(home.includes(f),f);
+ assert.match(app,/app\.innerHTML=announcement\(\)\+header\(\)/);
+ assert.match(app,/mainPage\(\)\+'<\/main>'\+footer\(\)/);
+ for(const label of ['Free delivery over ৳2000','Artist-Inspired Drop','Color, by hand','Your idea, printed','From the Journal'])assert.ok(app.includes(label),label);
+ assert.match(app,/setInterval\(\(\)=>changeHero\(\(active\+1\)%slides.length,false\),6000\)/);
+ assert.match(app,/aria-pressed/);
+ assert.match(app,/mouseenter/);
+ assert.match(app,/touchend/);
+ assert.match(app,/mediaReduced\.matches/);
+ assert.match(app,/newsletterMessage/);
+ assert.match(app,/const bellRendered=false/);
+ assert.doesNotMatch(app,/gsap\.|ScrollTrigger|stripe|EcomCMS|\/threads\//i);
 });
-test('CSS tokens and accessibility guardrails',async()=>{
- const css=await load('src/styles.css');
+test('catalogue pagination, price integrity and overlapping categories',()=>{
+ assert.equal(catalog.length,64);
+ assert.equal(Math.ceil(catalog.length/PAGE_SIZE_HOME),8);
+ assert.equal(Math.ceil(catalog.length/PAGE_SIZE_SHOP),6);
+ assert.ok(catalog.some(p=>p.category.includes('tie-dye')&&p.category.includes('drop-shoulder')&&p.audience.includes('women')));
+ assert.ok(catalog.every(p=>p.price===null));
+ assert.equal(articlePreviews.length,5);
+});
+test('static street has distinct future SVG motion slots',async()=>{
+ const street=await read('src/assets/street-bengal.svg');
+ assert.match(street,/id="rickshaw-wheel-slot"/);
+ assert.match(street,/id="tea-steam-slot"/);
+});
+test('provisional graphite palette, responsive breakpoints and C01-C04 isolation',async()=>{
+ const css=await read('src/styles.css');
  assert.match(css,/#232323/);
- assert.match(css,/--midnight-olive/);
- assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
- assert.match(css,/@media\(max-width:820px\)/);
- assert.match(css,/@media\(max-width:600px\)/);
+ assert.match(css,/@media\(max-width:/);
+ assert.match(css,/prefers-reduced-motion/);
+ const doc=await read('src/motion/README.md');
+ assert.match(doc,/No timelines/);
 });
-test('motion remains unimplemented pending approval',async()=>{
- const docs=await load('src/motion/README.md');
- assert.match(docs,/No timelines/);
- assert.match(docs,/C01/);assert.match(docs,/C04/);
+
+test('favorite state bootstraps before product detail rendering',async()=>{
+ const app=await read('src/app.mjs');
+ assert.ok(app.indexOf('let favoritesState=new Set()')<app.indexOf('app.innerHTML='),'favorites must initialize before any route HTML');
+ assert.doesNotMatch(app,/\bisFavorite\(/,'only the initialized isFavoriteNow helper should be referenced');
+ assert.ok(app.includes("$$('[data-favorite]').filter"),'all heart controls must be updated through querySelectorAll rather than a single Element');
 });

@@ -1,12 +1,12 @@
 {
   "name": "chapchitra-motion-demo",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.3.0",
   "type": "module",
-  "description": "Isolated CHAPCHITRA structural preview",
+  "description": "Independent CHAPCHITRA V3 preview",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "check": "node --check src/app.mjs && node --check src/components.mjs && node --test tests/*.test.mjs",
+    "build": "npm run check && node scripts/build.mjs",
+    "check": "node --check src/app.mjs && node --check src/catalog.mjs && node --check src/components.mjs && node --test tests/*.test.mjs",
     "preview": "node scripts/preview.mjs"
   }
 }

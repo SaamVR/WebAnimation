@@ -11,3 +11,10 @@ This is a standalone **structural proof**, not a creatively approved visual desi
 - Accessible menus, semantic landmarks, keyboard interaction, reduced-motion, touch sizes and responsive breakpoints are expected.
 - Motion assets and GSAP may be added later behind `src/motion/`; do not install dependencies or write timelines until approved.
 - Verify no modifications outside this app on every PR. Keep owner-approved THREADS intact.
+
+## V3 approval boundaries
+- Approved: exact eleven-section structural architecture, responsive menus, filters, pagers, accessible hero/Journal carousel UI.
+- Not approved: final imagery, typography, logo, palette, C01–C04 or street animation.
+- Synthetic 64-item catalog is marked as placeholders and displays Tk — pending real prices. Do not imply inventory.
+- Always default to logged out with no bell until genuine authentication exists.
+- Keep all work inside this application and do not edit THREADS, EZCOMO or root deployment.

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 490" role="img" aria-labelledby="streetTitle streetDesc">
+<title id="streetTitle">Bangladeshi street scene — structural illustration study</title><desc id="streetDesc">An original provisional line illustration showing shops, a tea stall, hanging lanterns, a cycle rickshaw, and a street. Wheel and steam layers are reserved for future approved motion.</desc>
+<defs><linearGradient id="sky" y2="1"><stop stop-color="#e1e8df"/><stop offset="1" stop-color="#ede7da"/></linearGradient></defs><rect width="1440" height="490" fill="url(#sky)"/>
+<g stroke="#34493d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<path d="M0 350H1440M0 415H1440" stroke-width="2"/>
+<path d="M50 352V125H350V353M85 125V93H320V125M110 155h170v115H110zM110 295h170v58H110z"/>
+<path d="M373 350V75H675V352M407 122h230v195H407zM407 190h230M465 124v194M572 124v194"/>
+<path d="M704 355V160H1013V356M738 160V125H988V160M740 210h230M762 242h182v113H762z"/>
+<path d="M1050 355V100H1385V355M1082 153h260v177h-260zM1116 153v177M1200 153v177M1280 153v177"/>
+</g>
+<g fill="#637a6b" opacity=".38"><rect x="108" y="161" width="170" height="108"/><rect x="405" y="188" width="231" height="127"/><rect x="762" y="244" width="181" height="110"/><rect x="1084" y="153" width="256" height="175"/></g>
+<g stroke="#334b3e" stroke-width="3" fill="#f7eddd"><path d="M88 125h244l-21 45H108zM730 160h270l-22 49H745z"/></g>
+<g font-family="sans-serif" font-size="17" fill="#334b3e" letter-spacing="5"><text x="137" y="245">PRINT</text><text x="494" y="107">STUDIO</text><text x="802" y="190">CHA</text><text x="1162" y="131">MARKET</text></g>
+<g id="tea-stall" stroke="#34493d" stroke-width="3" fill="none"><path d="M770 358h186v-98H770zM790 306h150M792 284l-14-30h171l-13 30"/><path d="M823 305h24l-4 20h-18zM854 304h26l-5 21h-16z"/><path d="M896 307v-13c15-13 24 1 17 13z"/></g>
+<g id="tea-steam-slot" fill="none" stroke="#ad7457" stroke-width="2" opacity=".5"><path d="M830 295q-11-16 2-31t1-24M864 295q-9-19 4-30t3-20"/></g>
+<g id="rickshaw" stroke="#34493d" stroke-width="4" fill="none"><path d="M330 386l85-113 86 113H330l56-75 62 75M415 273h92l38 40M505 274q35-80 104-36l-23 41H505zM546 312l55 74M508 271l-7 67"/><path d="M430 274h-49q-7-48 26-63 39 6 47 52z" fill="#bb8065" fill-opacity=".55"/><path d="M543 312h45l23 18"/></g>
+<g id="rickshaw-wheel-slot" fill="none" stroke="#34493d" stroke-width="3"><circle cx="335" cy="387" r="53"/><circle cx="600" cy="387" r="53"/><circle cx="335" cy="387" r="7"/><circle cx="600" cy="387" r="7"/><path d="M335 335v104M282 387h106M600 335v104M547 387h106" stroke-width="1.5"/></g>
+<g fill="#b7775a" opacity=".68"><path d="M0 422h1440v68H0z"/></g><text x="20" y="471" font-size="13" fill="#243b32" font-family="sans-serif" letter-spacing="3">STREET SCENE STUDY / FINAL ARTWORK AND ANIMATION PENDING</text>
+</svg>

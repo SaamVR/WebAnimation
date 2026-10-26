@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 730" role="img" aria-label="Neutral abstract paper and ink background study">
+<defs><pattern id="paper" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M0 47H48M47 0V48" fill="none" stroke="#f5f1e9" stroke-opacity=".15"/></pattern><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#314b3f"/><stop offset="1" stop-color="#1c352c"/></linearGradient></defs>
+<rect width="1600" height="730" fill="url(#bg)"/><rect width="1600" height="730" fill="url(#paper)"/>
+<g fill="none" stroke="#ecdbbf" stroke-opacity=".16" stroke-width="35"><circle cx="1330" cy="320" r="285"/><circle cx="1330" cy="320" r="150"/><path d="M40 690Q500 130 990 750"/></g>
+<g fill="none" stroke="#e2bf99" stroke-opacity=".55"><path d="M1120 80h55m-28-28v56M170 590h55m-28-28v56"/></g>
+</svg>
