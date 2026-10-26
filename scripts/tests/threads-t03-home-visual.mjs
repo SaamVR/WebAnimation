@@ -15,10 +15,15 @@ const devices=[
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const records=[];
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-const root=page=>page.frameLocator('#t03-home-backpack').locator('#backpack-svg');
+async function rootClass(page){
+ return page.evaluate(()=>document.getElementById('t03-home-backpack')?.contentDocument?.getElementById('backpack-svg')?.getAttribute('class'));
+}
+async function waitObject(page){
+ await page.waitForFunction(()=>Boolean(document.getElementById('t03-home-backpack')?.contentDocument?.getElementById('backpack-svg')),null,{timeout:20000});
+}
 async function ready(page) {
  await page.goto(base,{waitUntil:'load'});
- await root(page).waitFor({state:'visible',timeout:20000});
+ await waitObject(page);
 }
 async function tap(page){
  await page.locator('#t03-home-backpack').scrollIntoViewIfNeeded();
@@ -39,29 +44,29 @@ try{
   assert.equal(await page.locator('#deal .threads-deal__panel').count(),1);
   assert.equal(await page.locator('#deal img[src*="deal-backpack-static"]').count(),0);
   assert.equal(await page.locator('#deal object').count(),1);
-  assert.equal(await root(page).getAttribute('class'),'is-closed','Fresh page must start closed');
+  assert.equal(await rootClass(page),'is-closed','Fresh page must start closed');
   assert.ok((await page.locator('#deal').boundingBox())?.width>100,'Section missing');
   await page.locator('#deal').screenshot({path:`${output}/${device.name}-closed.png`});
   await tap(page);
   await wait(1650);
-  const opened=await root(page).getAttribute('class');
+  const opened=await rootClass(page);
   assert.match(opened,/is-opening/,'First click should open');
   const assigned=await page.evaluate(k=>localStorage.getItem(k),key);
   assert.ok(rewards.includes(assigned),'A valid reward should be persisted');
   await page.locator('#deal').screenshot({path:`${output}/${device.name}-opened.png`});
   await tap(page);
   await wait(1650);
-  assert.match(await root(page).getAttribute('class'),/is-closing/,'Second click should close');
+  assert.match(await rootClass(page),/is-closing/,'Second click should close');
   await tap(page);
   await wait(1650);
-  assert.match(await root(page).getAttribute('class'),/is-opening/,'Third click should reopen');
+  assert.match(await rootClass(page),/is-opening/,'Third click should reopen');
   assert.equal(await page.evaluate(k=>localStorage.getItem(k),key),assigned,'Reward should not change on repeat');
   await page.reload({waitUntil:'load'});
-  await root(page).waitFor({state:'visible',timeout:20000});
+  await waitObject(page);
   assert.equal(await page.evaluate(k=>localStorage.getItem(k),key),assigned,'Reward should survive reload');
   await tap(page);
   await wait(1650);
-  assert.match(await root(page).getAttribute('class'),/is-opening/);
+  assert.match(await rootClass(page),/is-opening/);
   assert.equal(await page.evaluate(k=>localStorage.getItem(k),key),assigned,'Same reward on revisit');
   assert.equal(await page.evaluate(()=>Math.max(0,document.documentElement.scrollWidth-window.innerWidth)),0,'Horizontal overflow');
   assert.deepEqual(errors,[],'Browser runtime exceptions');
@@ -75,11 +80,11 @@ try{
   await ready(page);
   await page.evaluate(({key,reward})=>localStorage.setItem(key,reward),{key,reward});
   await page.reload({waitUntil:'load'});
-  await root(page).waitFor({state:'visible',timeout:20000});
+  await waitObject(page);
   await tap(page);
   await wait(1650);
-  assert.match(await root(page).getAttribute('class'),/is-opening/);
-  const visible=await page.frameLocator('#t03-home-backpack').locator('#'+reward).getAttribute('display');
+  assert.match(await rootClass(page),/is-opening/);
+  const visible=await page.evaluate(id=>document.getElementById('t03-home-backpack').contentDocument.getElementById(id)?.getAttribute('display'),reward);
   assert.notEqual(visible,'none','Expected reward artwork must be visible');
   await page.locator('#deal').screenshot({path:`${output}/reward-${reward}.png`});
   records.push({reward,result:'PASS',reviewOnly:true});
