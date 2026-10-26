@@ -25,11 +25,12 @@ async function ready(page) {
  await page.goto(base,{waitUntil:'load'});
  await waitObject(page);
 }
-async function tap(page){
+async function tap(page,touch=false){
  await page.locator('#t03-home-backpack').scrollIntoViewIfNeeded();
  const box=await page.locator('#t03-home-backpack').boundingBox();
  assert.ok(box?.width>90 && box?.height>90,'SVG object is not visible');
- await page.mouse.click(box.x+box.width/2,box.y+box.height/2);
+ if(touch) await page.touchscreen.tap(box.x+box.width/2,box.y+box.height/2);
+ else await page.mouse.click(box.x+box.width/2,box.y+box.height/2);
 }
 try{
  for(const device of devices){
@@ -47,24 +48,24 @@ try{
   assert.equal(await rootClass(page),'is-closed','Fresh page must start closed');
   assert.ok((await page.locator('#deal').boundingBox())?.width>100,'Section missing');
   await page.locator('#deal').screenshot({path:`${output}/${device.name}-closed.png`});
-  await tap(page);
+  await tap(page,device.touch);
   await wait(1650);
   const opened=await rootClass(page);
   assert.match(opened,/is-opening/,'First click should open');
   const assigned=await page.evaluate(k=>localStorage.getItem(k),key);
   assert.ok(rewards.includes(assigned),'A valid reward should be persisted');
   await page.locator('#deal').screenshot({path:`${output}/${device.name}-opened.png`});
-  await tap(page);
+  await tap(page,device.touch);
   await wait(1650);
   assert.match(await rootClass(page),/is-closing/,'Second click should close');
-  await tap(page);
+  await tap(page,device.touch);
   await wait(1650);
   assert.match(await rootClass(page),/is-opening/,'Third click should reopen');
   assert.equal(await page.evaluate(k=>localStorage.getItem(k),key),assigned,'Reward should not change on repeat');
   await page.reload({waitUntil:'load'});
   await waitObject(page);
   assert.equal(await page.evaluate(k=>localStorage.getItem(k),key),assigned,'Reward should survive reload');
-  await tap(page);
+  await tap(page,device.touch);
   await wait(1650);
   assert.match(await rootClass(page),/is-opening/);
   assert.equal(await page.evaluate(k=>localStorage.getItem(k),key),assigned,'Same reward on revisit');
