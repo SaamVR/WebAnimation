@@ -18,3 +18,18 @@ export function syncNavbarFavorites(count){
  nav.classList.toggle('has-favorites',count>0);
  nav.setAttribute('aria-label',count?`Saved favorites (${count})`:'View saved favorites');
 }
+
+/** State-only update: do not replace SVGs or parent product cards. */
+export function setFavoriteButtonState(button, selected) {
+ if(!button)return;
+ button.setAttribute('aria-pressed',String(selected));
+ const label=button.getAttribute('aria-label')||'';
+ const productName=label.replace(/^(?:Add|Remove) /,'').replace(/ (?:to|from) favorites$/,'');
+ button.setAttribute('aria-label',`${selected?'Remove':'Add'} ${productName} ${selected?'from':'to'} favorites`);
+}
+/** Reconcile only heart attributes, preserving every product image and DOM node. */
+export function syncFavoriteButtons(root, favorites) {
+ for(const button of root.querySelectorAll('.threads-product-favorite[data-save]')){
+  setFavoriteButtonState(button,favorites.has(button.dataset.save));
+ }
+}
