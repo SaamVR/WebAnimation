@@ -1,0 +1,86 @@
+[
+  {
+    "case": "before_cold_desktop",
+    "readyElapsedMs": 1035,
+    "status": 200,
+    "ready": {
+      "decoded": 10,
+      "originalTracks": 7,
+      "svgClip": false,
+      "tapHighlight": "rgba(0, 0, 0, 0.18)",
+      "disabled": false,
+      "visibleCoupon": false
+    },
+    "first": {
+      "expanded": "true",
+      "reward": "Free Delivery",
+      "visible": "t03-coupon is-visible"
+    },
+    "close": {
+      "expanded": "false"
+    },
+    "reopen": {
+      "expanded": "true",
+      "reward": "Free Delivery"
+    },
+    "reclose": "false",
+    "noHorizontalOverflow": true,
+    "errors": []
+  },
+  {
+    "case": "after_cold_desktop",
+    "readyElapsedMs": 1448,
+    "status": 200,
+    "ready": {
+      "decoded": 10,
+      "originalTracks": 7,
+      "svgClip": true,
+      "tapHighlight": "rgba(0, 0, 0, 0)",
+      "disabled": false,
+      "visibleCoupon": true
+    },
+    "first": {
+      "expanded": "true",
+      "reward": "Free Delivery",
+      "visible": "t03-coupon is-visible"
+    },
+    "close": {
+      "expanded": "false"
+    },
+    "reopen": {
+      "expanded": "true",
+      "reward": "Free Delivery"
+    },
+    "reclose": "false",
+    "noHorizontalOverflow": true,
+    "errors": []
+  },
+  {
+    "case": "after_touch_ipad_size",
+    "readyElapsedMs": 912,
+    "status": 200,
+    "ready": {
+      "decoded": 10,
+      "originalTracks": 7,
+      "svgClip": true,
+      "tapHighlight": "rgba(0, 0, 0, 0)",
+      "disabled": false,
+      "visibleCoupon": true
+    },
+    "first": {
+      "expanded": "true",
+      "reward": "5% OFF",
+      "visible": "t03-coupon is-visible"
+    },
+    "close": {
+      "expanded": "false"
+    },
+    "reopen": {
+      "expanded": "true",
+      "reward": "5% OFF"
+    },
+    "reclose": "false",
+    "noHorizontalOverflow": true,
+    "errors": []
+  }
+]

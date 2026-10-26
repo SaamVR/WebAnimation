@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2E453A">
+<link rel="icon" href="data:,">
+<title>THREADS T03 — Six Rewards QA (review only)</title>
+<link rel="stylesheet" href="./t03.css">
+<style>
+.qa-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:15px 0 22px}
+.qa-controls label{font-weight:800}
+.qa-controls select{background:#fffdf9;color:#2E453A;border:1px solid #bdc7bc;border-radius:9px;padding:10px 15px;font:inherit}
+.qa-note{font-size:14px;line-height:1.6;color:#506358;max-width:760px}
+.qa-preview{width:min(100%,500px);aspect-ratio:950/1060;margin:0 auto}
+.qa-panel{background:#eeece8;border-radius:24px;padding:12px 24px 24px;max-width:750px}
+</style>
+</head>
+<body>
+<header class="t03-reviewhead"><strong>THREADS</strong><span>REWARD VISUAL QA — ISOLATED</span></header>
+<main class="t03-standalone">
+  <h1>Six coupon variants — reviewer only</h1>
+  <p class="qa-note">Select any reward, then tap the backpack to watch the original native open/close postcard animation. This page only changes which reward the SVG displays; it never accesses or changes your saved visitor reward.</p>
+  <div class="qa-controls">
+    <label for="reward-choice">Inspect coupon</label>
+    <select id="reward-choice">
+      <option value="reward-free-delivery">Free Delivery — 50%</option>
+      <option value="reward-5">5% OFF — 30%</option>
+      <option value="reward-7">7% OFF — 12%</option>
+      <option value="reward-10">10% OFF — 6.9%</option>
+      <option value="reward-30">30% OFF — 1%</option>
+      <option value="reward-50">50% OFF — 0.1%</option>
+    </select>
+    <a href="./" style="color:#2E453A">Back to public T03 preview</a>
+  </div>
+  <section class="qa-panel">
+    <div class="qa-preview">
+      <object id="review-backpack" class="t03-backpack-object" data="./assets/backpack_animated(2).svg?threads-review-reward=reward-free-delivery" type="image/svg+xml" aria-label="Tap to reveal the selected QA reward"></object>
+    </div>
+  </section>
+</main>
+<script>
+  // Changes only the review object's source. All interaction, timing and keyframes remain inside the original SVG.
+  var choice = document.getElementById('reward-choice');
+  var backpack = document.getElementById('review-backpack');
+  choice.addEventListener('change', function () {
+    backpack.data = './assets/backpack_animated(2).svg?threads-review-reward=' + encodeURIComponent(choice.value);
+  });
+</script>
+</body>
+</html>

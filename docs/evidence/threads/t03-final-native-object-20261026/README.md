@@ -1,0 +1,11 @@
+# THREADS T03 — exact owner 1.55s interactive SVG in same-origin object
+
+**Source:** user-uploaded file `backpack_animated(2).svg`; 2,449,136 bytes; SHA-256 `ecf3beac81c873b8303d8df9d25003d1075386bbd35921a9ebbd929dc15cbc01`. Stored byte-for-byte at `site/threads/t03-v2-preview/assets/backpack_animated(2).svg`. The original inline SVG CSS, all 16 @keyframes, 9 embedded PNG layers, and self-contained click/keydown JavaScript are unchanged.
+
+**Integration:** isolated `site/threads/t03-v2-preview/index.html` references only a responsive same-origin `<object type="image/svg+xml">`. The earlier external t03.mjs script and its playback controls are removed, together with rendered duplicate static PNG and previously selected older animated SVG assets. No HTML coupon, no external JS controller, no external reward logic, no GSAP. Existing standalone reference page uses the same exact file via object.
+
+**Native reward behavior:** preserve user SVG's four rewards and original random selection on each opening. No 50% rarity, no session persistence, no checkout integration added. Existing text '✦ Up to 50% OFF' comes from the inherited demo layout and does not reflect the four rewards in this newly supplied SVG; revisit promotional copy with owner after creative animation approval.
+
+**Browser QA:** Playwright Chromium through same-origin local HTTP. Fresh page load shows class is-closed and no autoplay, first click is-opening, second click is-closing, third is-opening, fourth is-closing. Tested at desktop 1200×800, iPad-sized touch 834×1194, mobile touch 390×844. Open/close/repeat PASS 3/3; all sixteen authored @keyframes observed in object document; no horizontal overflow or page JavaScript errors. Desktop's observed 404 was a missing local favicon request, corrected with a data favicon in final HTML. Touch checks run in Chromium emulation, NOT physical iPad Safari. Browser videos, closed/opened PNGs, and results.json are attached.
+
+**Ownership/safety:** changes restricted to isolated T03 preview assets, its source contract test, and evidence. Draft PR #28; do not merge, integrate homepage, or touch T01/T02/T04, navbar/footer, catalog/pricing, Deals or SaamVR/EcomCMS. Creative approval pending.

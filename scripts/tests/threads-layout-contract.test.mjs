@@ -10,7 +10,7 @@ test('all canonical sections appear in screenshot order', () => {
   let last = -1;
   for(const marker of sections){const i=html.indexOf(marker);assert(i>=0, marker);assert(i>last,marker+' must follow the previous section');last=i;}
 });
-test('T01/T02/T03 locations exist but choreographies and T04 are deferred',()=>{
+test('approved T01/T02 and T03 homepage locations remain connected',()=>{
   assert.match(html,/id="search-button"/);
   assert.match(script,/data-add=/);
   assert.match(html,/id="deal-heading"/);
@@ -31,17 +31,21 @@ test('three remaining originals plus one existing Olive Trail Tech feature and s
   assert.equal((script.match(/group:'arrival'/g)||[]).length,6);
 });
 
-test('approved supplied header identity and hero/deal image assets are referenced',()=>{
+test('approved supplied header identity, hero image and native T03 artwork are referenced',()=>{
   assert.match(html,/assets\/threads-wordmark-2e453a\.png/);
   for(const name of ['search','favorite','cart']) assert.ok(html.includes('assets/header-'+name+'.png'));
   for(const link of ['HOME','SHOP','COLLECTION','ABOUT']) assert.ok(html.includes('>'+link+'</a>'));
   assert.match(html,/assets\/threads-hero\.webp/);
-  assert.match(html,/assets\/deal-backpack-static-20261020\.png/);
+  assert.match(html,/t03-v2-preview\/assets\/backpack_animated\(2\)\.svg/);
   assert.doesNotMatch(html,/class="hero-doodle"|data-ref-img="hero"|data-ref-img="backpack"/);
   assert.match(html,/Shopping cart/);
 });
 
-test('Deal of the Week uses the isolated backpack as a separate image',()=>{assert.match(html,/deal-backpack-static-20261020\.png/)});
+test('homepage T03 uses one native object, never a static image or animation controller',()=>{
+  assert.match(html,/<object id="t03-home-backpack" class="threads-deal__backpack"/);
+  assert.match(html,/data="\.\/t03-v2-preview\/assets\/backpack_animated\(2\)\.svg" type="image\/svg\+xml"/);
+  assert.doesNotMatch(html,/deal-backpack-static-20261020\.png|t03-preview\/t03-preview\.mjs|t03-backpack-trigger|GSAP/);
+});
 
 const css = readFileSync(new URL('../../site/threads/styles.css', import.meta.url), 'utf8');
 test('desktop content max width does not revert to the narrow 1140px demo',()=>{
@@ -62,10 +66,12 @@ test('Deal of the Week uses one SVG panel and editable accessible copy',()=>{
   const section=html.split('<section class="content-wrap threads-deal')[1].split('</section>')[0];
   assert.equal((section.match(/<svg /g)||[]).length,1);
   assert.equal((section.match(/<path /g)||[]).length,1);
-  assert.equal((section.match(/<img /g)||[]).length,1);
+  assert.equal((section.match(/<img /g)||[]).length,0);
+  assert.equal((section.match(/<object /g)||[]).length,1);
   assert.doesNotMatch(section,/data-t03-layer|t03-backpack-trigger|t03-discount-card/);
-  assert.match(section,/Deal Of<br>the Week/);
-  assert.match(section,/Shop the Deals/);
+  assert.match(section,/Unpack Your Luck/);
+  assert.match(section,/Tap the backpack\. Discover your surprise\./);
+  assert.match(section,/✦ Up to 50% OFF/);
   assert.doesNotMatch(section,/backpack-promo|promo-image|deal-week-original-panel|deal-week-mobile/);
   const layout=readFileSync(new URL('../../site/threads/deal-of-week-rebuild-20261018.css',import.meta.url),'utf8');
   assert.match(layout,/display: grid/);
@@ -82,7 +88,7 @@ test('all six approved artwork sections use owned local media and keep their ord
   }
   assert.ok(readFileSync(new URL('../../site/threads/assets/products/sho-08/cover.webp',import.meta.url)).length>8000);
   assert.ok(html.includes('./artwork-review-20261018.css'));
-  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-complete-20261018.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp','deal-backpack-static-20261020.png']) assert.ok(html.includes(name),'not wired '+name);
+  for(const name of ['header-search.png','header-favorite.png','header-cart.png','editorial-complete-20261018.webp','campaign-owner-full-20261018.webp','sale-moody-sneakers.webp']) assert.ok(html.includes(name),'not wired '+name);
   for(const name of ['featured-orange-duffel-owner-20261018.webp','featured-black-headphones-owner-20261018.webp']) assert.ok(script.includes(name),'not wired '+name);
   assert.doesNotMatch(html,/data-ref-img="editorial|data-ref-img="campaign"|data-ref-img="sale"/);
   assert.match(html,/id="featured-products"/);
@@ -187,7 +193,7 @@ test('2026-10-18 full owner campaign and independent Deal backpack preserve the 
   const artCss=readFileSync(new URL('../../site/threads/threads-asset-fidelity-20261018.css',import.meta.url),'utf8');
   assert.ok(html.includes('threads-asset-fidelity-20261018.css'));
   assert.ok(html.includes('campaign-owner-full-20261018.webp'));
-  assert.ok(html.includes('deal-backpack-static-20261020.png'));
+  assert.ok(html.includes('t03-v2-preview/assets/backpack_animated(2).svg'));
   assert.ok(!html.includes('data-t03-layer'));
   assert.match(artCss,/object-position: right center/);
   assert.match(artCss,/max-width: 620px/);
