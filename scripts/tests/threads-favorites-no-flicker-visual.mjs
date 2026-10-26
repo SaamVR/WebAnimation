@@ -90,6 +90,8 @@ try{
  await visit(page,'/search/?favorites=1');
  const initial=page.locator('#results-grid [data-product-id]');
  assert.equal(await initial.count(),2);
+ const removedId=await initial.nth(0).getAttribute('data-product-id');
+ const remainingId=await initial.nth(1).getAttribute('data-product-id');
  await page.evaluate(()=>{window.__keep=document.querySelectorAll('#results-grid [data-product-id]')[1]});
  await page.locator('#results-grid [data-save]').first().click();
  assert.equal(await page.locator('#results-grid [data-product-id]').count(),1);
@@ -97,17 +99,17 @@ try{
  assert.equal(await page.locator('#results-count').textContent(),'1 relevant demo product');
  await page.reload({waitUntil:'load'});
  assert.equal(await page.locator('#results-grid [data-product-id]').count(),1);
- assert.equal(await page.locator('#results-grid [data-product-id]').first().getAttribute('data-product-id'),secondId);
+ assert.equal(await page.locator('#results-grid [data-product-id]').first().getAttribute('data-product-id'),remainingId);
  // A second tab changes favorites; existing card should remain mounted while membership updates.
  const other=await context.newPage();
  await visit(other,'/search/');
- const third=other.locator(`#results-grid [data-save="${firstId}"]`);
+ const third=other.locator(`#results-grid [data-save="${removedId}"]`);
  await third.click();
  await page.waitForFunction(()=>document.querySelectorAll('#results-grid [data-product-id]').length===2);
  assert.ok(await page.evaluate(ids=>{
   const cards=[...document.querySelectorAll('#results-grid [data-product-id]')];
   return ids.every(id=>cards.some(node=>node.dataset.productId===id));
- },[firstId,secondId]),'Cross-tab membership missing');
+ },[removedId,remainingId]),'Cross-tab membership missing');
  await page.locator('#results-grid').screenshot({path:`${out}/favorites-filter-membership.png`});
  runs.push({favoritesFilter:'PASS',persistent:true,crossTab:true});
  await context.close();
