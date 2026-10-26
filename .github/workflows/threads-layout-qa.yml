@@ -29,5 +29,5 @@ jobs:
           node --check site/threads/t01-spotlight.mjs
           node --check site/threads/art-crops.mjs
           node --check site/threads/t03-preview/t03-preview.mjs
-          node --check site/threads/t03-v2-preview/t03.mjs
+          # Final T03 SVG is self-contained; its authored script is guarded by the source contract test.
           test -f site/threads/backpack.svg
