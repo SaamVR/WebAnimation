@@ -11,7 +11,8 @@ test('uploaded final interactive SVG is byte-exact and self-contained',()=>{
  assert.equal(createHash('sha256').update(b).digest('hex').length,64);
  assert.match(source,/<svg[^>]+id="backpack-svg"[^>]+class="is-closed"/);
  assert.equal((source.match(/<script(?:\s|>)/g)||[]).length,1);
- assert.equal((source.match(/<image\b/g)||[]).length,9);
+ assert.equal((source.match(/<image\\b/g)||[]).length,10);
+ assert.equal((source.match(/<image id="layer-/g)||[]).length,9, 'the nine original embedded artwork images must remain unchanged');
  assert.equal((source.match(/@keyframes\s+[\w-]+/g)||[]).length,16);
  for(const id of ['backpack-scene','popout-card-group','open-collar-front-rim-group','coupon-rewards-container','reward-5','reward-7','reward-10','reward-free-delivery'])
    assert.ok(source.includes('id="'+id+'"'),id);
@@ -113,4 +114,26 @@ test('native six-outcome picker uses exact boundary values, persistence, migrati
  assert.deepEqual(review.visible(),['reward-50']);
  assert.equal(visitor['threads-t03-backpack-reward-v1'],'reward-5');
  assert.equal(review.changes.length,0,'review must never write visitor storage');
+});
+
+
+test('approved postcard visual-only correction preserves genuine wordmark and removes truck',()=>{
+ const svg=txt('assets/backpack_animated(2).svg');
+ const artwork=bytes('assets/backpack_animated(2).svg');
+ assert.ok(artwork.length > 2451120, 'original artwork and genuine PNG wordmark must both be embedded');
+ assert.match(svg,/<image id="threads-postcard-wordmark" x="1223" y="396" width="152" height="19" preserveAspectRatio="xMidYMid meet" href="data:image\\/png;base64,iVBORw0KGgo/);
+ assert.doesNotMatch(svg,/<rect x="1224" y="394" width="136" height="10"/);
+ assert.doesNotMatch(svg,/<rect x="1224" y="411" width="92" height="8"/);
+ assert.doesNotMatch(svg,/transform="translate\\(1250 450\\)"/);
+ const free=svg.match(/<g id="reward-free-delivery"[^>]*>([\\s\\S]*?)<\\/g>/)?.[1] || '';
+ assert.ok(free.includes('>FREE</text>') && free.includes('>DELIVERY</text>'));
+ const texts=[...free.matchAll(/<text\\s+([^>]+)>(FREE|DELIVERY)<\\/text>/g)];
+ assert.equal(texts.length,2);
+ for(const key of ['x','text-anchor','fill','font-family','font-size','font-weight','letter-spacing']){
+  const extract=t=>t[1].match(new RegExp('(?:^|\\\\s)'+key+'="([^"]+)"'))?.[1];
+  assert.equal(extract(texts[0]),extract(texts[1]),'Free Delivery style mismatch: '+key);
+ }
+ assert.match(texts[0][1],/fill="#2E453A"/);
+ assert.equal((svg.match(/@keyframes\\s+[\\w-]+/g)||[]).length,16);
+ for(const id of ['reward-5','reward-7','reward-10','reward-30','reward-50','reward-free-delivery']) assert.ok(svg.includes('id="'+id+'"'));
 });
