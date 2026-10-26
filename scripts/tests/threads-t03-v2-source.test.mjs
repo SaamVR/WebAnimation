@@ -54,3 +54,63 @@ test('preview preserves content and responsive panel without changing storefront
  assert.match(css,/aspect-ratio:950\/1060/);
  assert.doesNotMatch(html,/Confirm Payment|15% OFF|Checkout/);
 });
+
+
+test('QA URL selection is isolated from visitor storage and uses the native SVG object',()=>{
+ const src=txt('assets/backpack_animated(2).svg');
+ const review=txt('rewards-review.html');
+ assert.match(src,/URLSearchParams\(window\.location\.search\)\.get\('threads-review-reward'\)/);
+ assert.match(src,/selectedReward = reviewReward \|\| readSavedReward\(\)/);
+ assert.match(review,/<object id="review-backpack"[^>]*type="image\/svg\+xml"/);
+ for(const id of ['reward-free-delivery','reward-5','reward-7','reward-10','reward-30','reward-50']){
+  assert.ok(review.includes('value="'+id+'"'),id);
+ }
+ assert.doesNotMatch(review,/localStorage|sessionStorage|animation-play-state|currentTime|GSAP|gsap/);
+});
+test('native six-outcome picker uses exact boundary values, persistence, migration, and QA isolation',async()=>{
+ const {runInNewContext}=await import('node:vm');
+ const source=txt('assets/backpack_animated(2).svg');
+ const script=source.match(/<script[^>]*><!\[CDATA\[([\s\S]*?)\]\]><\/script>/)[1];
+ const ids=['reward-free-delivery','reward-5','reward-7','reward-10','reward-30','reward-50'];
+ function simulate(random,store,search=''){
+  const views=new Map(ids.map(id=>[id,{display:'none',setAttribute(k,v){if(k==='display')this.display=v;}}]));
+  const handlers={}; const timers=[];
+  const classes=new Set(['is-closed']);
+  const svg={classList:{add(...n){n.forEach(x=>classes.add(x));},remove(...n){n.forEach(x=>classes.delete(x));}},addEventListener(n,fn){handlers[n]=fn;}};
+  const math=Object.create(Math);math.random=()=>random;
+  const changes=[];
+  const localStorage={getItem(k){return store[k]??null;},setItem(k,v){changes.push([k,v]);store[k]=v;}};
+  const document={getElementById(k){return k==='backpack-svg'?svg:views.get(k);},documentElement:svg};
+  runInNewContext(script,{document,window:{location:{search}},localStorage,Math:math,URLSearchParams,setTimeout(fn){timers.push(fn);}});
+  return {tap(){handlers.click({type:'click'});timers.shift()?.();},visible(){return ids.filter(id=>views.get(id).display==='inline');},classes,changes};
+ }
+ const bounds=[
+  [0,'reward-free-delivery'],[0.499999,'reward-free-delivery'],
+  [0.5,'reward-5'],[0.799999,'reward-5'],
+  [0.8,'reward-7'],[0.919999,'reward-7'],
+  [0.92,'reward-10'],[0.988999,'reward-10'],
+  [0.989,'reward-30'],[0.998999,'reward-30'],
+  [0.999,'reward-50'],[0.999999999,'reward-50']
+ ];
+ for(const [value,id] of bounds){
+  const store={};const trial=simulate(value,store);
+  assert.deepEqual(trial.visible(),[]);
+  trial.tap();
+  assert.deepEqual(trial.visible(),[id],String(value));
+  assert.equal(store['threads-t03-backpack-reward-v1'],id);
+  trial.tap();trial.tap();
+  assert.deepEqual(trial.visible(),[id]);
+  assert.equal(trial.changes.length,1,'must not reroll on reopen');
+  const revisit=simulate(0.999999,store);revisit.tap();
+  assert.deepEqual(revisit.visible(),[id],'must persist through revisit');
+ }
+ const migrated={'threads-t03-reward':'reward-7'};
+ const carry=simulate(0.9999,migrated);carry.tap();
+ assert.deepEqual(carry.visible(),['reward-7']);
+ assert.equal(migrated['threads-t03-backpack-reward-v1'],'reward-7');
+ const visitor={'threads-t03-backpack-reward-v1':'reward-5'};
+ const review=simulate(0.1,visitor,'?threads-review-reward=reward-50');review.tap();
+ assert.deepEqual(review.visible(),['reward-50']);
+ assert.equal(visitor['threads-t03-backpack-reward-v1'],'reward-5');
+ assert.equal(review.changes.length,0,'review must never write visitor storage');
+});

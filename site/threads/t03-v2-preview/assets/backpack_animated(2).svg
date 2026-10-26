@@ -384,6 +384,12 @@
       var storageKey = 'threads-t03-backpack-reward-v1';
       var selectedReward = null;
       var thresholds = [0.5, 0.8, 0.92, 0.989, 0.999, 1];
+      // QA-only SVG URL parameter. Does not read or write the real visitor reward.
+      var reviewReward = null;
+      try {
+        var requested = new URLSearchParams(window.location.search).get('threads-review-reward');
+        if (rewardIds.indexOf(requested) !== -1) reviewReward = requested;
+      } catch (error) {}
       function readSavedReward() {
         try {
           var saved = localStorage.getItem(storageKey);
@@ -409,7 +415,7 @@
           if (el) el.setAttribute('display', rewardIds[i] === id ? 'inline' : 'none');
         }
       }
-      selectedReward = readSavedReward();
+      selectedReward = reviewReward || readSavedReward();
       if (selectedReward) showReward(selectedReward);
       else showReward(null);
       function revealReward() {
