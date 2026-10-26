@@ -20,7 +20,8 @@
   outline: 3px solid #2E453A;
   outline-offset: 3px;
 }
-#deal .threads-deal__copy { color: #2E453A; }
+/* Lower only the copy group, leaving the angled panel and backpack stage fixed. */
+#deal .threads-deal__copy { color: #2E453A; top: clamp(12px, 1.7vw, 23px); }
 #deal .threads-deal__copy h2 {
   color: #2E453A;
   font-size: clamp(39px, 5.7vw, 68px);
@@ -44,12 +45,14 @@
   letter-spacing: .025em;
 }
 @media (max-width: 900px) {
+  #deal .threads-deal__copy { top: 13px; }
   #deal .threads-deal__art .threads-deal__backpack { width: min(100%, 400px); }
   #deal .threads-deal__copy h2 { font-size: clamp(32px, 5.3vw, 48px); }
   #deal .threads-deal__copy p { font-size: clamp(12px, 1.65vw, 16px); }
   #deal .threads-deal__copy p.threads-deal__promo { margin-top: 20px; font-size: clamp(14px, 1.9vw, 19px); }
 }
 @media (max-width: 620px) {
+  #deal .threads-deal__copy { top: 7px; }
   #deal .threads-deal__art .threads-deal__backpack { width: 100%; }
   #deal .threads-deal__copy h2 { font-size: clamp(24px, 7vw, 39px); margin-bottom: 9px; }
   #deal .threads-deal__copy p { font-size: clamp(11px, 2.8vw, 14px); line-height: 1.45; }
