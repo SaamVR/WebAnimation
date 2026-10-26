@@ -380,25 +380,45 @@
       var isOpen = false;
       var isAnimating = false;
       var ANIM_MS = 1550;
-      var rewardIds = ['reward-7', 'reward-10', 'reward-5', 'reward-free-delivery'];
-      var lastRewardIdx = -1;
-
-      function pickRandomReward() {
-        var idx = Math.floor(Math.random() * rewardIds.length);
-        if (rewardIds.length > 1 && idx === lastRewardIdx && Math.random() < 0.75) {
-          idx = (idx + 1 + Math.floor(Math.random() * (rewardIds.length - 1))) % rewardIds.length;
+      var rewardIds = ['reward-free-delivery', 'reward-5', 'reward-7', 'reward-10', 'reward-30', 'reward-50'];
+      var storageKey = 'threads-t03-backpack-reward-v1';
+      var selectedReward = null;
+      var thresholds = [0.5, 0.8, 0.92, 0.989, 0.999, 1];
+      function readSavedReward() {
+        try {
+          var saved = localStorage.getItem(storageKey);
+          if (rewardIds.indexOf(saved) !== -1) return saved;
+          // Migrate legacy reward values without rerolling.
+          var legacy = localStorage.getItem('threads-t03-reward') || localStorage.getItem('threads-backpack-reward');
+          if (legacy && rewardIds.indexOf(legacy) !== -1) {
+            localStorage.setItem(storageKey, legacy);
+            return legacy;
+          }
+        } catch (error) { /* Private storage restrictions: preserve in-memory choice. */ }
+        return null;
+      }
+      function pickWeightedReward(randomValue) {
+        for (var i = 0; i < thresholds.length; i++) {
+          if (randomValue < thresholds[i]) return rewardIds[i];
         }
-        lastRewardIdx = idx;
+        return rewardIds[rewardIds.length - 1];
+      }
+      function showReward(id) {
         for (var i = 0; i < rewardIds.length; i++) {
           var el = document.getElementById(rewardIds[i]);
-          if (el) {
-            el.setAttribute('display', i === idx ? 'inline' : 'none');
-          }
+          if (el) el.setAttribute('display', rewardIds[i] === id ? 'inline' : 'none');
         }
       }
-
-      // Initialize with a random coupon variant on load
-      pickRandomReward();
+      selectedReward = readSavedReward();
+      if (selectedReward) showReward(selectedReward);
+      else showReward(null);
+      function revealReward() {
+        if (!selectedReward) {
+          selectedReward = pickWeightedReward(Math.random());
+          try { localStorage.setItem(storageKey, selectedReward); } catch (error) {}
+        }
+        showReward(selectedReward);
+      }
 
       function toggleBackpack(evt) {
         if (evt && evt.type === 'keydown' && evt.key !== 'Enter' && evt.key !== ' ') {
@@ -413,7 +433,7 @@
         isAnimating = true;
 
         if (!isOpen) {
-          pickRandomReward();
+          revealReward();
           svg.classList.remove('is-closed', 'is-closing');
           svg.classList.add('is-opening');
           isOpen = true;
@@ -546,28 +566,20 @@
                 letter-spacing="-2"><tspan font-size="116">5</tspan><tspan font-size="94" dy="-8" dx="1">%</tspan></text>
         </g>
 
+        <g id="reward-30" display="none"><text x="1277" y="553" text-anchor="middle" fill="#2E453A" stroke="#FFFDF9" stroke-width="2.5" paint-order="stroke fill" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="105" font-weight="800" letter-spacing="-3">30%</text></g>
+
+        <g id="reward-50" display="none"><text x="1277" y="553" text-anchor="middle" fill="#2E453A" stroke="#FFFDF9" stroke-width="2.5" paint-order="stroke fill" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="105" font-weight="800" letter-spacing="-3">50%</text></g>
+
         <!-- Variant 4: FREE DELIVERY (Two-line stacked & middle-aligned inside the coupon body) -->
         <g id="reward-free-delivery" display="none">
-          <text x="1277" y="512"
-                text-anchor="middle"
-                fill="#2F4539"
-                stroke="#FFFDF9"
-                stroke-width="2.5"
-                paint-order="stroke fill"
-                font-family="system-ui, -apple-system, &apos;Segoe UI&apos;, Roboto, &apos;Helvetica Neue&apos;, Arial, sans-serif"
-                font-size="54"
-                font-weight="900"
-                letter-spacing="1.5">FREE</text>
-          <text x="1277" y="554"
-                text-anchor="middle"
-                fill="#228B94"
-                stroke="#FFFDF9"
-                stroke-width="2"
-                paint-order="stroke fill"
-                font-family="system-ui, -apple-system, &apos;Segoe UI&apos;, Roboto, &apos;Helvetica Neue&apos;, Arial, sans-serif"
-                font-size="36"
-                font-weight="800"
-                letter-spacing="1.2">DELIVERY</text>
+          <g fill="none" stroke="#2E453A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="translate(1250 450)">
+            <rect x="-31" y="-18" width="40" height="27" rx="3"/>
+            <path d="M9 -9 H24 L36 3 V9 H9 Z M24 -9 V3 H36"/>
+            <circle cx="-19" cy="13" r="6" fill="#FFFDF9"/>
+            <circle cx="24" cy="13" r="6" fill="#FFFDF9"/>
+          </g>
+          <text x="1277" y="523" text-anchor="middle" fill="#2E453A" stroke="#FFFDF9" stroke-width="2" paint-order="stroke fill" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="43" font-weight="900" letter-spacing="0.5">FREE</text>
+          <text x="1277" y="566" text-anchor="middle" fill="#2E453A" stroke="#FFFDF9" stroke-width="2" paint-order="stroke fill" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="43" font-weight="900" letter-spacing="0.5">DELIVERY</text>
         </g>
       </g>
     </g>
