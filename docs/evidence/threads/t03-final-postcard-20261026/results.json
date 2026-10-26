@@ -1,0 +1,354 @@
+[
+  {
+    "viewport": "desktop",
+    "reward": "5",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "5% OFF",
+      "text": [
+        "5%"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "5% OFF",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 1200,
+      "innerWidth": 1200,
+      "cardBBox": {
+        "x": 296.22015380859375,
+        "y": 393.82879638671875,
+        "width": 108.75711059570312,
+        "height": 56.36798095703125,
+        "top": 393.82879638671875,
+        "right": 404.9772644042969,
+        "bottom": 450.19677734375,
+        "left": 296.22015380859375
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "reward": "7",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "7% OFF",
+      "text": [
+        "7%"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "7% OFF",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 1200,
+      "innerWidth": 1200,
+      "cardBBox": {
+        "x": 296.22015380859375,
+        "y": 393.82879638671875,
+        "width": 108.75711059570312,
+        "height": 56.36798095703125,
+        "top": 393.82879638671875,
+        "right": 404.9772644042969,
+        "bottom": 450.19677734375,
+        "left": 296.22015380859375
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "reward": "10",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "10% OFF",
+      "text": [
+        "10%"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "10% OFF",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 1200,
+      "innerWidth": 1200,
+      "cardBBox": {
+        "x": 296.22015380859375,
+        "y": 393.82879638671875,
+        "width": 108.75711059570312,
+        "height": 56.36798095703125,
+        "top": 393.82879638671875,
+        "right": 404.9772644042969,
+        "bottom": 450.19677734375,
+        "left": 296.22015380859375
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "reward": "free",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "Free Delivery",
+      "text": [
+        "FREE",
+        "DELIVERY"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "Free Delivery",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 1200,
+      "innerWidth": 1200,
+      "cardBBox": {
+        "x": 296.22015380859375,
+        "y": 393.82879638671875,
+        "width": 108.75711059570312,
+        "height": 56.36798095703125,
+        "top": 393.82879638671875,
+        "right": 404.9772644042969,
+        "bottom": 450.19677734375,
+        "left": 296.22015380859375
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "reward": "50",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "50% OFF",
+      "text": [
+        "50%"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "50% OFF",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 1200,
+      "innerWidth": 1200,
+      "cardBBox": {
+        "x": 296.22015380859375,
+        "y": 393.82879638671875,
+        "width": 108.75711059570312,
+        "height": 56.36798095703125,
+        "top": 393.82879638671875,
+        "right": 404.9772644042969,
+        "bottom": 450.19677734375,
+        "left": 296.22015380859375
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "ipad",
+    "reward": "5",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "5% OFF",
+      "text": [
+        "5%"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "5% OFF",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 834,
+      "innerWidth": 834,
+      "cardBBox": {
+        "x": 205.8647918701172,
+        "y": 366.827392578125,
+        "width": 75.61671447753906,
+        "height": 39.19158935546875,
+        "top": 366.827392578125,
+        "right": 281.48150634765625,
+        "bottom": 406.01898193359375,
+        "left": 205.8647918701172
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "ipad",
+    "reward": "7",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "7% OFF",
+      "text": [
+        "7%"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "7% OFF",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 834,
+      "innerWidth": 834,
+      "cardBBox": {
+        "x": 205.8647918701172,
+        "y": 366.827392578125,
+        "width": 75.61671447753906,
+        "height": 39.19158935546875,
+        "top": 366.827392578125,
+        "right": 281.48150634765625,
+        "bottom": 406.01898193359375,
+        "left": 205.8647918701172
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "ipad",
+    "reward": "10",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "10% OFF",
+      "text": [
+        "10%"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "10% OFF",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 834,
+      "innerWidth": 834,
+      "cardBBox": {
+        "x": 205.8647918701172,
+        "y": 366.827392578125,
+        "width": 75.61671447753906,
+        "height": 39.19158935546875,
+        "top": 366.827392578125,
+        "right": 281.48150634765625,
+        "bottom": 406.01898193359375,
+        "left": 205.8647918701172
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "ipad",
+    "reward": "free",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "Free Delivery",
+      "text": [
+        "FREE",
+        "DELIVERY"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "Free Delivery",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 834,
+      "innerWidth": 834,
+      "cardBBox": {
+        "x": 205.8647918701172,
+        "y": 366.827392578125,
+        "width": 75.61671447753906,
+        "height": 39.19158935546875,
+        "top": 366.827392578125,
+        "right": 281.48150634765625,
+        "bottom": 406.01898193359375,
+        "left": 205.8647918701172
+      }
+    },
+    "errors": []
+  },
+  {
+    "viewport": "ipad",
+    "reward": "50",
+    "status": 200,
+    "initial": {
+      "visible": "0",
+      "disabled": false,
+      "trackCount": 9,
+      "numberImages": 9,
+      "outerWidth": "252",
+      "rim": true,
+      "reward": "50% OFF",
+      "text": [
+        "50%"
+      ]
+    },
+    "opened": "true",
+    "visibleReward": "50% OFF",
+    "closed": "false",
+    "layout": {
+      "documentWidth": 834,
+      "innerWidth": 834,
+      "cardBBox": {
+        "x": 205.8647918701172,
+        "y": 366.827392578125,
+        "width": 75.61671447753906,
+        "height": 39.19158935546875,
+        "top": 366.827392578125,
+        "right": 281.48150634765625,
+        "bottom": 406.01898193359375,
+        "left": 205.8647918701172
+      }
+    },
+    "errors": []
+  }
+]
