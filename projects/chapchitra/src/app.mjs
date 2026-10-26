@@ -71,7 +71,7 @@ async function boot(){
   '<div class="category-grid">'+categories.map((cat,i)=>'<article class="category-card"><div class="category-image">'+(i===2?printSilhouette(i):shirtSilhouette(i))+'<span class="proof-tag">Sample silhouette</span></div><div class="category-copy"><h3>'+cat.title+'</h3><p>'+cat.desc+'</p><div class="filter-chips" aria-label="'+cat.title+' filters"><a href="'+linkFiltered(cat.id,'')+'">All</a><a href="'+linkFiltered(cat.id,'men')+'">Men</a><a href="'+linkFiltered(cat.id,'women')+'">Women</a></div></div></article>').join('')+'</div></section>';
  }
  function productCard(item){
-  const liked=isFavorite(item.id);
+  const liked=isFavoriteNow(item.id);
   return '<article class="product-card"><a href="/product/?id='+item.id+'" class="product-visual" aria-label="View '+esc(item.name)+' sample detail">'+shirtSilhouette(item.visual)+'<span class="proof-tag">DEMO / NO STOCK</span></a><button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+svg('heart')+'</button><div class="product-meta"><a href="/product/?id='+item.id+'"><strong>'+esc(item.name)+'</strong></a><span>'+esc(item.fit)+'</span><div class="product-price"><small>'+esc(item.subtitle)+'</small><b>Tk —</b></div></div></article>';
  }
  function pager(total,current,scope){
@@ -167,6 +167,7 @@ async function boot(){
  // Proper email validation, but never a simulated successful submission.
  const newsletter=$('#newsletterForm');
  newsletter.addEventListener('submit',e=>{e.preventDefault();const input=$('#newsletterEmail');if(!input.checkValidity()){input.reportValidity();return;}$('#newsletterMessage').textContent='Preview only: your email was not submitted or stored. Mailing-list integration is pending.';});
+ let renderHomeCollection=()=>{},renderShop=()=>{},renderFavoriteGrid=()=>{};
  let favoritesState=new Set();
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  function isFavoriteNow(id){return favoritesState.has(id)}
@@ -204,7 +205,7 @@ async function boot(){
   mediaReduced.addEventListener('change',scheduleHero);
   scheduleHero();
   let homePage=1;
-  function renderHomeCollection(){
+  renderHomeCollection=function(){
    const pages=Math.ceil(catalog.length/PAGE_SIZE_HOME);
    const block=catalog.slice((homePage-1)*PAGE_SIZE_HOME,homePage*PAGE_SIZE_HOME);
    $('#homeProducts').innerHTML=block.map(productCard).join('');
@@ -237,7 +238,7 @@ async function boot(){
   const searchText=(qs.get('q')||'').trim().toLowerCase();
   function matches(item){return(!category.value||item.category.includes(category.value))&&(!audience.value||item.audience.includes(audience.value))&&(!print.value||item.print===print.value)&&(!searchText||[item.name,item.fit,item.subtitle,item.print].some(v=>v.toLowerCase().includes(searchText)))}
   function syncQuery(){const p=new URLSearchParams();if(category.value)p.set('category',category.value);if(audience.value)p.set('audience',audience.value);if(print.value)p.set('print',print.value);if(searchText)p.set('q',searchText);if(pageNum>1)p.set('page',String(pageNum));history.replaceState(null,'',location.pathname+(p.toString()?'?'+p:''))}
-  function renderShop(){
+  renderShop=function(){
    const filtered=catalog.filter(matches);
    const pages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE_SHOP));
    pageNum=Math.min(pageNum,pages);
@@ -253,7 +254,7 @@ async function boot(){
   renderShop();
  }
  if(route==='favorites'){
-  function renderFavoriteGrid(){const items=catalog.filter(p=>favoritesState.has(p.id));$('#favoriteGrid').innerHTML=items.map(productCard).join('');$('#favoriteEmpty').textContent=items.length?'':'No demo samples saved. Use the heart icons on collection or shop cards.'}
+  renderFavoriteGrid=function(){const items=catalog.filter(p=>favoritesState.has(p.id));$('#favoriteGrid').innerHTML=items.map(productCard).join('');$('#favoriteEmpty').textContent=items.length?'':'No demo samples saved. Use the heart icons on collection or shop cards.'}
   renderFavoriteGrid();
  }
  if(route==='artists-edit'){
