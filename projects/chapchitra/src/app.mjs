@@ -177,7 +177,7 @@ async function boot(){
   try{localStorage.setItem('chapchitra-v3-sample-favorites',JSON.stringify([...favoritesState]))}catch{}
   // Preserve the live product grid and keyboard focus: update hearts in-place.
   const liked=favoritesState.has(id);
-  $('[data-favorite]').filter(btn=>btn.dataset.favorite===id).forEach(btn=>{
+  $$('[data-favorite]').filter(btn=>btn.dataset.favorite===id).forEach(btn=>{
    btn.classList.toggle('liked',liked);
    btn.setAttribute('aria-pressed',String(liked));
    if(btn.classList.contains('favorite-toggle')){
