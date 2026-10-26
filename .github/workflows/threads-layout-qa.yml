@@ -11,6 +11,7 @@ on:
       - "scripts/tests/threads-t03-v2-source.test.mjs"
       - "scripts/tests/threads-t03-home-integration.test.mjs"
       - "scripts/tests/threads-t03-home-visual.mjs"
+      - "scripts/tests/threads-favorites-no-flicker-visual.mjs"
       - ".github/workflows/threads-layout-qa.yml"
 jobs:
   contract:
@@ -54,11 +55,20 @@ jobs:
             sleep 1
           done
           node scripts/tests/threads-t03-home-visual.mjs
+          node scripts/tests/threads-favorites-no-flicker-visual.mjs
       - name: Upload homepage approval screenshots and QA results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: threads-t03-homepage-visual-qa
           path: artifacts/threads-t03-home/
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Upload favorites and T03 alignment QA screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: threads-favorites-final-qa
+          path: artifacts/threads-favorites-qa/
           retention-days: 7
           if-no-files-found: warn
