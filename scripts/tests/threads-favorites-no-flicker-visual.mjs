@@ -104,8 +104,10 @@ try{
  const third=other.locator(`#results-grid [data-save="${firstId}"]`);
  await third.click();
  await page.waitForFunction(()=>document.querySelectorAll('#results-grid [data-product-id]').length===2);
- assert.ok(await page.evaluate(()=>[...document.querySelectorAll('#results-grid [data-product-id]')].some(node=>node.dataset.productId===window.__savedSecond)), 'Cross-tab membership missing')
- .catch(()=>{}); // membership count is the authoritative cross-tab check.
+ assert.ok(await page.evaluate(ids=>{
+  const cards=[...document.querySelectorAll('#results-grid [data-product-id]')];
+  return ids.every(id=>cards.some(node=>node.dataset.productId===id));
+ },[firstId,secondId]),'Cross-tab membership missing');
  await page.locator('#results-grid').screenshot({path:`${out}/favorites-filter-membership.png`});
  runs.push({favoritesFilter:'PASS',persistent:true,crossTab:true});
  await context.close();
