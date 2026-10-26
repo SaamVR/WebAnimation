@@ -13,23 +13,29 @@ body{margin:0;background:var(--cream);color:var(--forest);font-family:Inter,syst
 .t03-bag-button,.t03-bag-button *{-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
 .t03-bag-button{-webkit-appearance:none;appearance:none;user-select:none;-webkit-user-select:none}
 .t03-bag-button:active{background:transparent;box-shadow:none;filter:none}
-.t03-coupon-depth{overflow:visible;pointer-events:none}
-/* Compensate for the viewBox-to-CSS scale of the original SVG scene. */
-.t03-coupon-depth .t03-coupon strong{font-size:clamp(33px,3.6vw,43px)}
+
+
+
 .t03-bag-button:disabled{cursor:progress}
 .t03-svg-holder{position:absolute;inset:0;display:block;z-index:1;width:100%;height:100%;visibility:hidden;overflow:visible}
 .t03-svg-holder svg{display:block;width:100%;height:100%;overflow:visible}
 .t03-bag-button.is-ready .t03-svg-holder{visibility:visible}
 .t03-still{position:absolute;z-index:2;top:55%;left:50%;transform:translate(-50%,-50%);width:96%;height:auto;object-fit:contain;pointer-events:none;opacity:1;visibility:visible;transition:none}
 .t03-bag-button.is-ready .t03-still{opacity:0;visibility:hidden}
-.t03-coupon{position:absolute;z-index:3;top:36%;left:49%;max-width:76%;min-width:76%;width:76%;min-height:91px;padding:16px 12px;display:flex;align-items:center;justify-content:center;text-align:center;pointer-events:none;opacity:0;visibility:hidden;transform:translate(-50%,23px);background:#fffdf9;color:var(--forest);border:1px solid #d9d5c8;border-radius:10px;box-shadow:0 12px 28px rgba(46,69,58,.12);transition:opacity 300ms ease-out,transform 650ms cubic-bezier(.25,.55,.25,1),visibility 0s linear 650ms}
-.t03-coupon strong{font-size:clamp(19px,2.1vw,31px);font-weight:900;line-height:1.12;letter-spacing:-.025em;overflow-wrap:normal}
-.t03-coupon.is-visible{opacity:1;visibility:visible;transform:translate(-50%,-84px);transition:opacity 320ms ease,transform 650ms cubic-bezier(.25,.55,.25,1),visibility 0s}
+
+
+
 .t03-copy{position:relative;z-index:1;align-self:center}
 .t03-copy h1{margin:0 0 18px;font-size:clamp(39px,5.7vw,76px);line-height:1.02;letter-spacing:-.045em;font-weight:850}
 .t03-copy p{margin:0;font-size:clamp(15px,1.5vw,18px);line-height:1.55;color:#67776c}
 .t03-promo{margin-top:28px!important;color:var(--forest)!important;font-weight:900;font-size:clamp(16px,1.7vw,23px)!important;letter-spacing:.025em}
 .t03-screenreader{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-@media(max-width:760px){.t03-reviewhead span{display:none}.t03-panel{grid-template-columns:1fr;gap:0;padding:13px 5% 38px;min-height:0}.t03-illustration{width:min(100%,410px)}.t03-copy{text-align:center}.t03-copy h1{font-size:clamp(36px,8vw,55px);margin:0 0 10px}.t03-promo{margin-top:16px!important}.t03-coupon{min-height:75px;padding:12px 8px}.t03-coupon.is-visible{transform:translate(-50%,-72px)}}
-@media(max-width:390px){.t03-panel{padding:10px 3% 30px;border-radius:20px}.t03-illustration{width:100%}.t03-coupon strong{font-size:18px}}
-@media(prefers-reduced-motion:reduce){.t03-coupon,.t03-coupon.is-visible,.t03-still{transition:none}}
+@media(max-width:760px){.t03-reviewhead span{display:none}.t03-panel{grid-template-columns:1fr;gap:0;padding:13px 5% 38px;min-height:0}.t03-illustration{width:min(100%,410px)}.t03-copy{text-align:center}.t03-copy h1{font-size:clamp(36px,8vw,55px);margin:0 0 10px}.t03-promo{margin-top:16px!important}}
+@media(max-width:390px){.t03-panel{padding:10px 3% 30px;border-radius:20px}.t03-illustration{width:100%}}
+@media(prefers-reduced-motion:reduce){}
+
+/* Isolated T03 creative-review controls, not part of the live storefront. */
+.t03-variant-preview{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin:20px 0 0}
+.t03-variant-preview span{font-size:10px;letter-spacing:.12em;font-weight:800;color:#66776c;margin-right:6px}
+.t03-variant-preview a{font-size:12px;font-weight:700;color:var(--forest);text-decoration:none;border:1px solid #cbd3c9;border-radius:999px;padding:8px 12px;background:#fffdf9}
+.t03-variant-preview a:hover,.t03-variant-preview a:focus-visible{background:#e7eee8;outline-offset:3px}
