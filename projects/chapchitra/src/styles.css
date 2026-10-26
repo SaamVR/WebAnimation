@@ -197,3 +197,6 @@
 @media(prefers-reduced-motion:reduce){
  .feature-frame,.feature-select .feature-image{transition:none!important;animation:none!important}
 }
+
+/* Tablet banners remain modestly wider than the standard .wrap container. */
+@media (min-width:601px) and (max-width:1080px){.editorial-banners{width:calc(100% - 30px)}}
