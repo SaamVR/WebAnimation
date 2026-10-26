@@ -62,13 +62,13 @@ async function boot(){
   }).join('')+'</div><div class="hero-controls wrap"><div class="hero-dots" role="group" aria-label="Choose hero slide">'+slides.map((s,i)=>'<button class="hero-dot'+(i===0?' active':'')+'" type="button" data-slide-to="'+i+'" aria-label="Show slide '+(i+1)+': '+esc(s.title)+'" aria-pressed="'+(i===0?'true':'false')+'"></button>').join('')+'</div><span class="hero-count" id="heroCount">01 / 05</span></div></section>';
  }
  function benefits(){
-  const items=[['truck','Delivery','Delivery terms to be confirmed'],['return','Easy Returns','Policy details coming soon'],['card','Secure Payment','bKash · Nagad · Cards · Cash on Delivery'],['support','Order Support','Service contact details pending']];
+  const items=[['truck','Delivery','Delivery terms to be confirmed'],['return','Easy Returns','Policy details coming soon'],['card','Secure Payment','Planned: bKash · Nagad · Cards · Cash on Delivery'],['support','Order Support','Service contact details pending']];
   return '<section id="benefits" class="benefit-section" aria-labelledby="benefitsTitle"><h2 class="sr-only" id="benefitsTitle">Service benefits</h2><div class="wrap benefit-grid">'+items.map(([glyph,label,detail])=>'<div class="benefit">'+svg(glyph)+'<div><strong>'+label+'</strong><span>'+detail+'</span></div></div>').join('')+'</div></section>';
  }
  function titleBlock(label,title,desc){return '<div class="section-title"><div><p class="eyebrow">'+label+'</p><h2>'+title+'</h2></div><p>'+desc+'</p></div>'}
  function categoriesSection(){
   return '<section id="categories" class="section-pad wrap" aria-labelledby="categoriesTitle">'+titleBlock('01 / SHOP BY FIT','Shop by category','Wearable art in familiar silhouettes, awaiting the final product catalogue.')+
-  '<div class="category-grid">'+categories.map((cat,i)=>'<article class="category-card"><div class="category-image">'+(i===2?printSilhouette(i):shirtSilhouette(i))+'<span class="proof-tag">Sample silhouette</span></div><div class="category-copy"><h3>'+cat.title+'</h3><p>'+cat.desc+'</p><div class="filter-chips" aria-label="'+cat.title+' filters"><a href="'+linkFiltered(cat.id,'')+'">All</a><a href="'+linkFiltered(cat.id,'men')+'">Men</a><a href="'+linkFiltered(cat.id,'women')+'">Women</a></div></div></article>').join('')+'</div></section>';
+  '<div class="category-grid">'+categories.map((cat,i)=>'<article class="category-card"><div class="category-image">'+shirtSilhouette(i)+'<span class="proof-tag">Sample silhouette</span></div><div class="category-copy"><h3>'+cat.title+'</h3><p>'+cat.desc+'</p><div class="filter-chips" aria-label="'+cat.title+' filters"><a href="'+linkFiltered(cat.id,'')+'">All</a><a href="'+linkFiltered(cat.id,'men')+'">Men</a><a href="'+linkFiltered(cat.id,'women')+'">Women</a></div></div></article>').join('')+'</div></section>';
  }
  function productCard(item){
   const liked=isFavoriteNow(item.id);
@@ -175,11 +175,19 @@ async function boot(){
  function updateFav(id){
   if(favoritesState.has(id))favoritesState.delete(id);else favoritesState.add(id);
   try{localStorage.setItem('chapchitra-v3-sample-favorites',JSON.stringify([...favoritesState]))}catch{}
-  if(route==='home')renderHomeCollection();
-  if(route==='shop')renderShop();
+  // Preserve the live product grid and keyboard focus: update hearts in-place.
+  const liked=favoritesState.has(id);
+  $('[data-favorite]').filter(btn=>btn.dataset.favorite===id).forEach(btn=>{
+   btn.classList.toggle('liked',liked);
+   btn.setAttribute('aria-pressed',String(liked));
+   if(btn.classList.contains('favorite-toggle')){
+    const label=catalog.find(p=>p.id===id)?.name||'sample';
+    btn.setAttribute('aria-label',(liked?'Remove ':'Add ')+label+(liked?' from':' to')+' favorites');
+   }
+  });
   if(route==='favorites')renderFavoriteGrid();
   if(route==='product'){
-   const btn=$('[data-favorite]');if(btn)btn.textContent=favoritesState.has(id)?'Remove from Favorites':'Save to Favorites';
+   const btn=$('[data-favorite]');if(btn)btn.textContent=liked?'Remove from Favorites':'Save to Favorites';
   }
  }
  // Global delegation (no card flicker from full grid rebuild except explicit favorite interaction).
