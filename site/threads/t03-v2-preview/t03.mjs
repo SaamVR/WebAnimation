@@ -148,7 +148,7 @@ window.addEventListener('pageshow',syncOnReturn);
   // Safari can present the first CSS transform before PNG data-URI images have
   // decoded. Decode all original embedded layers before interaction.
   const imageSources=[...svg.querySelectorAll('image')].map(el=>el.getAttribute('href')||el.getAttributeNS('http://www.w3.org/1999/xlink','href')).filter(Boolean);
-  if(imageSources.length!==9)throw Error('The owner's nine embedded PNG layers are required.');
+  if(imageSources.length!==9)throw Error("The original nine embedded PNG layers are required.");
   await Promise.all(imageSources.map(async src=>{
    const image=new Image();image.src=src;
    if(typeof image.decode==='function')await image.decode();
