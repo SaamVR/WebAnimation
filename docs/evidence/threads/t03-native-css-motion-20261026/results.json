@@ -1,0 +1,95 @@
+[
+  {
+    "name": "before_desktop",
+    "initial": {
+      "time": 0,
+      "tracks": 9,
+      "svgImages": 9
+    },
+    "firstOpenSequence": {
+      "frames": 103,
+      "changes": 12,
+      "openedAt": 2503,
+      "after": {
+        "ms": 3386,
+        "t": 2500,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "open": "true"
+      },
+      "largestGap": 166,
+      "p95": 116
+    },
+    "closed": "false",
+    "reopened": "true",
+    "reclosed": "false",
+    "overflow": 0,
+    "errors": []
+  },
+  {
+    "name": "after_desktop",
+    "initial": {
+      "time": 0,
+      "tracks": 9,
+      "svgImages": 9
+    },
+    "firstOpenSequence": {
+      "frames": 122,
+      "changes": 18,
+      "openedAt": 3052,
+      "after": {
+        "ms": 3385,
+        "t": 3017,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "open": "true"
+      },
+      "largestGap": 150,
+      "p95": 66
+    },
+    "closed": "false",
+    "reopened": "true",
+    "reclosed": "false",
+    "overflow": 0,
+    "errors": []
+  },
+  {
+    "name": "after_ipad_touch",
+    "initial": {
+      "time": 0,
+      "tracks": 9,
+      "svgImages": 9
+    },
+    "firstOpenSequence": {
+      "frames": 124,
+      "changes": 18,
+      "openedAt": 3044,
+      "after": {
+        "ms": 3394,
+        "t": 3017,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "open": "true"
+      },
+      "largestGap": 99,
+      "p95": 60
+    },
+    "closed": "false",
+    "reopened": "true",
+    "reclosed": "false",
+    "overflow": 0,
+    "errors": []
+  },
+  {
+    "name": "after_rapid_taps",
+    "initial": {
+      "time": 0,
+      "tracks": 9,
+      "svgImages": 9
+    },
+    "queuedDuringOpening": true,
+    "afterRapidDouble": "false",
+    "afterNextOpen": "true",
+    "queuedDuringClosing": true,
+    "afterQueuedReopen": "true",
+    "overflow": 0,
+    "errors": []
+  }
+]

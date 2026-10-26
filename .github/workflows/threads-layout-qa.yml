@@ -7,6 +7,11 @@ on:
       - "scripts/tests/threads-layout-contract.test.mjs"
       - "scripts/tests/threads-t01-camera-integrity.test.mjs"
       - "scripts/tests/threads-usd-deals-favorites.test.mjs"
+      - "scripts/tests/threads-t03-isolated.test.mjs"
+      - "scripts/tests/threads-t03-v2-source.test.mjs"
+      - "scripts/tests/threads-t03-home-integration.test.mjs"
+      - "scripts/tests/threads-t03-home-visual.mjs"
+      - "scripts/tests/threads-favorites-no-flicker-visual.mjs"
       - ".github/workflows/threads-layout-qa.yml"
 jobs:
   contract:
@@ -15,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate standalone layout contract
-        run: node --test scripts/tests/threads-layout-contract.test.mjs scripts/tests/threads-t01-camera-integrity.test.mjs scripts/tests/threads-usd-deals-favorites.test.mjs site/threads/storefront-contract.test.mjs site/threads/asset-contract.test.mjs site/threads/gallery-asset-contract.test.mjs site/threads/t01-contract.test.mjs
+        run: node --test scripts/tests/threads-layout-contract.test.mjs scripts/tests/threads-t01-camera-integrity.test.mjs scripts/tests/threads-usd-deals-favorites.test.mjs scripts/tests/threads-t03-isolated.test.mjs scripts/tests/threads-t03-v2-source.test.mjs scripts/tests/threads-t03-home-integration.test.mjs site/threads/storefront-contract.test.mjs site/threads/asset-contract.test.mjs scripts/tests/threads-gallery-replacement-final.test.mjs site/threads/t01-contract.test.mjs
       - name: Syntax check client modules
         run: |
           node --check site/threads/app.mjs
@@ -26,4 +31,44 @@ jobs:
           node --check site/threads/search-header.mjs
           node --check site/threads/t01-spotlight.mjs
           node --check site/threads/art-crops.mjs
+          node --check site/threads/t03-preview/t03-preview.mjs
+          # Final T03 SVG is self-contained; its authored script is guarded by the source contract test.
           test -f site/threads/backpack.svg
+
+  browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install headless Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify native homepage SVG and capture screenshots
+        run: |
+          python3 -m http.server 8765 --directory site/threads >/tmp/threads-t03-server.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8765/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/tests/threads-t03-home-visual.mjs
+          node scripts/tests/threads-favorites-no-flicker-visual.mjs
+      - name: Upload homepage approval screenshots and QA results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: threads-t03-homepage-visual-qa
+          path: artifacts/threads-t03-home/
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Upload favorites and T03 alignment QA screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: threads-favorites-final-qa
+          path: artifacts/threads-favorites-qa/
+          retention-days: 7
+          if-no-files-found: warn

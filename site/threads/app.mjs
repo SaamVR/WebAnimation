@@ -2,10 +2,10 @@
  * T01 spotlight and T02 symbolic fly-to-cart are isolated approved interactions.
  * T03 backpack reveal and T04 payment cinematics remain unimplemented. */
 import {refreshReferenceCrops} from './art-crops.mjs';
-import {favoriteButton,installNavbarHeart,syncNavbarFavorites} from './favorite-icon.mjs';
+import {favoriteButton,installNavbarHeart,syncNavbarFavorites,syncFavoriteButtons} from './favorite-icon.mjs';
 import {dealDisplay,countdownParts,offerCycleEnd} from './deals.mjs';
 import {catalog,productMeta,imageUrl,priceTk,safeHTML,curateShopProducts,merchandisingCategory} from './catalog.mjs';
-import {addCartItem,cartSummary,cartCount,getFavorites,toggleFavorite} from './store-core.mjs';
+import {CART_KEY,FAVORITES_KEY,addCartItem,cartSummary,cartCount,getFavorites,toggleFavorite} from './store-core.mjs';
 import {initInlineSearch} from './search-header.mjs';
 import {playT02,installArticulatedHeaderCart,prepareCartBadge,syncCartVisual,settleCartBadge} from './t02-fly-cart.mjs';
 const state={filter:'All'};
@@ -35,12 +35,44 @@ function renderProducts(){
  syncNavbarFavorites(getFavorites().size);
  void refreshReferenceCrops();
 }
+/** Preserve existing card DOM on favorites changes, even in Favorites-filtered mode. */
+function reconcileFavoriteMembership(saved){
+ if(state.filter!=='Favorites')return;
+ for(const [group,target] of [['featured','featured-products'],['arrival','arrival-products']]){
+  const source=catalog.filter(p=>group==='featured'?(p.id==='sho-08'||p.group==='featured'):p.group==='arrival');
+  const desired=curateShopProducts(source.filter(p=>saved.has(p.id)));
+  const grid=byId(target),ids=new Set(desired.map(p=>p.id));
+  let membershipChanged=false;
+  for(const card of grid.querySelectorAll('[data-product-id]')){
+   if(!ids.has(card.dataset.productId)){card.remove();membershipChanged=true;}
+  }
+  for(const [index,p] of desired.entries()){
+   let card=[...grid.querySelectorAll('[data-product-id]')].find(el=>el.dataset.productId===p.id);
+   if(!card){
+    const template=document.createElement('template');template.innerHTML=productMarkup(p);
+    card=template.content.firstElementChild;membershipChanged=true;
+   }
+   const at=grid.querySelectorAll('[data-product-id]')[index]||null;
+   if(card!==at)grid.insertBefore(card,at);
+  }
+  const empty=grid.querySelector('.empty-products');
+  if(desired.length){empty?.remove()}
+  else if(!empty){const message=document.createElement('p');message.className='empty-products';message.textContent='No products in this collection.';grid.append(message)}
+  if(membershipChanged)void refreshReferenceCrops();
+ }
+}
+function syncFavorites(){
+ const saved=getFavorites();
+ syncFavoriteButtons(document,saved);
+ syncNavbarFavorites(saved.size);
+ reconcileFavoriteMembership(saved);
+}
 function syncCart(){const bag=cartSummary();syncCartVisual(bag.count);byId('bag-total').textContent=priceTk(bag.total)}
 function filterTo(category){state.filter=category;renderProducts();showToast(category==='All'?'Showing all products':'Showing '+category.toLowerCase())}
 document.addEventListener('click',e=>{
  const add=e.target.closest('[data-add]');
  if(add){try{const p=catalog.find(x=>x.id===add.dataset.add);if(!p)return;const meta=productMeta(p);prepareCartBadge();const receipt=addCartItem({id:p.id,color:meta.colors[0].id,size:p.category==='Sneakers'?'40':meta.sizes[0],quantity:1});syncCart();void playT02({button:add,quantity:receipt.count}).catch(()=>settleCartBadge());showToast('Added to cart. Choose other variants on the product page.')}catch(err){settleCartBadge();showToast(err.message)}return}
- const save=e.target.closest('[data-save]');if(save){const yes=toggleFavorite(save.dataset.save);renderProducts();showToast(yes?'Saved to favorites':'Removed from favorites');return}
+ const save=e.target.closest('[data-save]');if(save){const yes=toggleFavorite(save.dataset.save);showToast(yes?'Saved to favorites':'Removed from favorites');return}
  const category=e.target.closest('[data-filter-link]');if(category)filterTo(category.dataset.filterLink);
 });
 installNavbarHeart();
@@ -49,8 +81,11 @@ byId('newsletter-form').addEventListener('submit',e=>{e.preventDefault();byId('n
 installArticulatedHeaderCart();
 initInlineSearch();
 window.addEventListener('threads:cartchange',syncCart);
-window.addEventListener('threads:favoriteschange',renderProducts);
-window.addEventListener('storage',()=>{syncCart();renderProducts()});
+window.addEventListener('threads:favoriteschange',syncFavorites);
+window.addEventListener('storage',event=>{
+ if(event.key===FAVORITES_KEY||event.key===null)syncFavorites();
+ if(event.key===CART_KEY||event.key===null)syncCart();
+});
 function tickOffer(){
  const clock=byId('offer-countdown'),status=byId('offer-status');
  if(!clock)return;

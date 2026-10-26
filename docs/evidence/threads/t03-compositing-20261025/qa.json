@@ -1,0 +1,65 @@
+[
+  {
+    "case": "before_desktop",
+    "initial": {
+      "disabled": false,
+      "svg": "visible",
+      "png": "visible",
+      "panelOverflow": "hidden",
+      "animationTracks": 7
+    },
+    "disabledDuringOpening": true,
+    "queued": null,
+    "opened": null,
+    "reclosed": null,
+    "errors": []
+  },
+  {
+    "case": "after_desktop",
+    "initial": {
+      "disabled": false,
+      "svg": "visible",
+      "png": "hidden",
+      "panelOverflow": "visible",
+      "animationTracks": 7
+    },
+    "disabledDuringOpening": false,
+    "queued": {
+      "expanded": "false",
+      "busy": "false"
+    },
+    "opened": {
+      "expanded": "true",
+      "reward": "Free Delivery",
+      "coupon": "t03-coupon is-visible"
+    },
+    "reclosed": {
+      "expanded": "false"
+    },
+    "errors": []
+  },
+  {
+    "case": "after_ipad_touch",
+    "initial": {
+      "disabled": false,
+      "svg": "visible",
+      "png": "hidden",
+      "panelOverflow": "visible",
+      "animationTracks": 7
+    },
+    "disabledDuringOpening": false,
+    "queued": {
+      "expanded": "false",
+      "busy": "false"
+    },
+    "opened": {
+      "expanded": "true",
+      "reward": "5% OFF",
+      "coupon": "t03-coupon is-visible"
+    },
+    "reclosed": {
+      "expanded": "false"
+    },
+    "errors": []
+  }
+]

@@ -1,6 +1,7 @@
 import {dealUnitPrice,dealSavings,roundMoney} from './deals.mjs';
 import {catalogById,productMeta,priceTk} from './catalog.mjs';
 export const CART_KEY='threads.demo.cart.v1';
+export const FAVORITES_KEY='threads.demo.favorites.v1';
 export const ORDER_KEY='threads.demo.orders.v1';
 export const ATTEMPT_KEY='threads.demo.payment.v1';
 const storage=(kind='local')=>{try{return kind==='session'?globalThis.sessionStorage:globalThis.localStorage}catch{return null}};
@@ -67,12 +68,12 @@ export function updateCartItem({id,color,size},quantity){
 export function removeCartItem({id,color,size}){return writeCart(getCart().filter(x=>!(x.id===id&&x.color===color&&x.size===size)))}
 export function clearCart(){return writeCart([])}
 export const cartKey=({id,color,size})=>[id,color,size].join('~');
-export function getFavorites(){const raw=parse('threads.demo.favorites.v1',[]);return new Set(Array.isArray(raw)?raw.filter(x=>typeof x==='string'&&catalogById[x]):[])}
+export function getFavorites(){const raw=parse(FAVORITES_KEY,[]);return new Set(Array.isArray(raw)?raw.filter(x=>typeof x==='string'&&catalogById[x]):[])}
 export function toggleFavorite(id){
  if(!catalogById[id])return false;
  const fav=getFavorites();if(fav.has(id))fav.delete(id);else fav.add(id);
- save('threads.demo.favorites.v1',[...fav]);
- if(typeof window!=='undefined')window.dispatchEvent(new Event('threads:favoriteschange'));
+ save(FAVORITES_KEY,[...fav]);
+ if(typeof window!=='undefined')window.dispatchEvent(new CustomEvent('threads:favoriteschange',{detail:{id,selected:fav.has(id)}}));
  return fav.has(id);
 }
 export const getOrders=()=>{const o=parse(ORDER_KEY,[]);return Array.isArray(o)?o.filter(x=>x&&x.status==='succeeded'&&typeof x.ref==='string'):[]};

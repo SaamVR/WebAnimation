@@ -1,0 +1,18 @@
+/* THREADS isolated T03 preview: layout only. The embedded SVG owns ALL animation. */
+:root{--forest:#2E453A;--cream:#f8f7f2;--beige:#eeece8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--forest);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.t03-standalone{max-width:1250px;margin:0 auto;padding:clamp(18px,3.8vw,46px)}
+.t03-reviewhead{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(18px,4vw,54px);border-bottom:1px solid #e6e2dc}
+.t03-reviewhead strong{font-size:20px;font-weight:900;letter-spacing:.19em}
+.t03-reviewhead span{font-size:11px;letter-spacing:.11em;color:#7b867f}
+.t03-panel{position:relative;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:clamp(14px,3vw,48px);align-items:center;min-height:590px;padding:35px 5% 42px;background:var(--beige);border-radius:30px;overflow:visible}
+.t03-illustration{position:relative;isolation:isolate;width:min(100%,500px);aspect-ratio:950/1060;margin:auto;overflow:visible}
+.t03-backpack-object{display:block;width:100%;height:100%;border:0;background:transparent;overflow:visible;-webkit-tap-highlight-color:transparent}
+.t03-backpack-object:focus-visible{outline:3px solid var(--forest);outline-offset:4px;border-radius:12px}
+.t03-copy{position:relative;z-index:1;align-self:center}
+.t03-copy h1{margin:0 0 18px;font-size:clamp(39px,5.7vw,76px);line-height:1.02;letter-spacing:-.045em;font-weight:850}
+.t03-copy p{margin:0;font-size:clamp(15px,1.5vw,18px);line-height:1.55;color:#67776c}
+.t03-promo{margin-top:28px!important;color:var(--forest)!important;font-weight:900;font-size:clamp(16px,1.7vw,23px)!important;letter-spacing:.025em}
+@media(max-width:760px){.t03-reviewhead span{display:none}.t03-panel{grid-template-columns:1fr;gap:0;padding:13px 5% 38px;min-height:0}.t03-illustration{width:min(100%,410px)}.t03-copy{text-align:center}.t03-copy h1{font-size:clamp(36px,8vw,55px);margin:0 0 10px}.t03-promo{margin-top:16px!important}}
+@media(max-width:390px){.t03-panel{padding:10px 3% 30px;border-radius:20px}.t03-illustration{width:100%}}

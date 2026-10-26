@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2E453A"><title>THREADS T03 — Unpack Your Luck · Creative Preview</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../deal-of-week-rebuild-20261018.css">
+<style>
+body{min-height:100vh;background:#F8F7F2}
+.t03-preview-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px clamp(16px,3.5vw,56px);color:#2E453A;border-bottom:1px solid #deddd3;background:#f8f7f2}
+.t03-preview-header strong{letter-spacing:.2em;font-size:18px}
+.t03-preview-header a{font-size:13px;font-weight:700;text-decoration:underline}
+.t03-preview-header span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#708078}
+.t03-preview-label{text-align:center;max-width:780px;margin:35px auto 0;padding:0 20px;color:#53665e;font-size:13px;line-height:1.6}
+#deal.threads-deal{margin-top:40px;margin-bottom:35px}
+#deal .threads-deal__art{min-height:0}
+.t03-stage{position:relative;isolation:isolate;width:min(100%,470px);aspect-ratio:950 / 1090;flex:none}
+.t03-bag-trigger{position:relative;z-index:2;display:block;width:100%;height:100%;margin:0;border:0;background:none;padding:0;cursor:pointer;touch-action:manipulation;outline-offset:4px}
+.t03-bag-trigger[disabled]{cursor:progress}
+.t03-vector,.t03-vector svg{display:block;width:100%;height:100%}
+.t03-vector svg{overflow:visible}
+.t03-coupon{position:absolute;z-index:3;left:52%;top:35%;width:49%;padding:13px 9px;text-align:center;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#fffef5;color:#2E453A;border:2px dashed #c8a565;border-radius:9px;box-shadow:0 0 0 5px rgba(250,235,196,.62),0 12px 32px rgba(81,77,37,.15);opacity:0;transform:translate(-50%,45%) scale(.72) rotate(2deg);pointer-events:none;transition:none}
+.t03-coupon b{font-size:clamp(16px,2.4vw,27px);line-height:1.1;white-space:normal}
+.t03-coupon small{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9a7431;font-weight:800}
+.t03-coupon.is-visible{opacity:1;transform:translate(-50%,-145%) scale(1) rotate(-3deg);transition:transform 850ms cubic-bezier(.18,1.48,.28,1),opacity 290ms ease;animation:t03-glow 1.1s ease-out both}
+@keyframes t03-glow{from{filter:brightness(1.18) drop-shadow(0 0 26px #ffe4a0)}to{filter:brightness(1) drop-shadow(0 2px 2px transparent)}}
+.t03-copy-button{margin-top:10px;border:1px solid #2E453A;background:transparent;color:#2E453A;padding:10px 17px;border-radius:30px;font-size:12px;font-weight:700;cursor:pointer}
+.t03-copy-button:disabled{opacity:.45;cursor:not-allowed}
+.t03-result{margin-top:14px;font-size:14px;font-weight:800;min-height:35px;color:#2E453A}
+.t03-result[data-empty="true"]{font-size:12px;font-weight:500;color:#6c7068}
+.t03-help{font-size:11px!important;margin-top:4px!important}
+#deal .threads-deal__copy .eyebrow{font-size:11px}
+#deal .threads-deal__copy h2{font-size:clamp(36px,4.5vw,64px)}
+@media(max-width:900px){.t03-stage{width:min(100%,380px)}}
+@media(max-width:620px){#deal.threads-deal{min-height:340px;margin-top:18px}.t03-stage{width:100%}.t03-coupon{width:70%;padding:7px 5px;min-height:64px;gap:2px;border-width:1px}.t03-coupon.is-visible{transform:translate(-50%,-140%) scale(1) rotate(-3deg)}.t03-coupon small{font-size:5.6px;letter-spacing:.05em}.t03-coupon b{font-size:10px;line-height:1.12}.t03-preview-header span{display:none}#deal .threads-deal__copy h2{font-size:clamp(25px,7vw,36px)}.t03-result{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.t03-coupon.is-visible{transition:none;animation:none}}
+</style>
+</head>
+<body>
+<header class="t03-preview-header"><strong>THREADS</strong><span>T03 · Isolated creative preview · No live integration</span><a href="/">Current storefront</a></header>
+<p class="t03-preview-label">Creative-review sandbox: the existing homepage layout is reproduced here, but the approved storefront remains unchanged. This coupon is a visual-only surprise and cannot be redeemed.</p>
+<main>
+<section class="content-wrap threads-deal section-space" id="deal" aria-labelledby="deal-heading">
+  <svg class="threads-deal__panel" viewBox="0 0 1803 693" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M 93 0 L 1755 152 C 1785 156 1802 179 1802 210 L 1802 631 C 1802 667 1773 693 1735 693 L 116 693 C 48 693 0 663 0 612 L 0 61 C 0 26 42 0 93 0 Z" fill="#EEECE8"/></svg>
+  <div class="threads-deal__art"><div class="t03-stage" id="t03-stage">
+    <div class="t03-coupon" id="t03-coupon" aria-hidden="true"><small>THREADS · Demo surprise</small><b id="t03-card-label">Mystery</b><small>Not redeemable</small></div>
+    <button class="t03-bag-trigger" id="t03-bag-trigger" type="button" aria-label="Open backpack to discover a surprise" disabled><span class="t03-vector" id="t03-vector"></span></button>
+  </div></div>
+  <div class="threads-deal__copy"><span class="eyebrow with-line dark">A little surprise</span><h2 id="deal-heading">Unpack<br>Your Luck</h2>
+    <p>Tap the backpack. Discover your surprise.</p>
+    <div class="t03-result" id="t03-result" role="status" aria-live="polite" data-empty="true">Preparing the backpack…</div>
+    <button class="t03-copy-button" id="t03-reset" type="button" disabled>Reset backpack</button>
+    <p class="t03-help">One randomly selected result per browser session. Separate from the existing 15% demo deals.</p>
+  </div>
+</section></main>
+<script type="module" src="./t03-preview.mjs"></script>
+</body></html>
