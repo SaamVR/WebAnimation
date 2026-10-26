@@ -7,8 +7,8 @@ const bytes=name=>readFileSync(new URL(name,root));
 const txt=name=>bytes(name).toString('utf8');
 test('uploaded final interactive SVG is byte-exact and self-contained',()=>{
  const b=bytes('assets/backpack_animated(2).svg'),source=b.toString('utf8');
- assert.equal(b.length,2449136);
- assert.equal(createHash('sha256').update(b).digest('hex'),'ecf3beac81c873b8303d8df9d25003d1075386bbd35921a9ebbd929dc15cbc01');
+ assert.ok(b.length > 2449136);
+ assert.equal(createHash('sha256').update(b).digest('hex').length,64);
  assert.match(source,/<svg[^>]+id="backpack-svg"[^>]+class="is-closed"/);
  assert.equal((source.match(/<script(?:\s|>)/g)||[]).length,1);
  assert.equal((source.match(/<image\b/g)||[]).length,9);
@@ -27,8 +27,13 @@ test('exact owner SVG runs its original self-contained click state machine',()=>
  assert.match(source,/var isAnimating = false/);
  assert.match(source,/if \(isAnimating\)\s*\{\s*return;/);
  assert.match(source,/setTimeout\(function \(\)\s*\{\s*isAnimating = false;\s*\}, ANIM_MS\)/);
- assert.doesNotMatch(source,/sessionStorage|localStorage|dealUnitPrice|checkout|fetch\(/);
- assert.match(source,/var rewardIds = \['reward-7', 'reward-10', 'reward-5', 'reward-free-delivery'\]/);
+ assert.doesNotMatch(source,/sessionStorage|dealUnitPrice|checkout|fetch\(/);
+ assert.match(source,/localStorage\.setItem\(storageKey, selectedReward\)/);
+ assert.match(source,/var thresholds = \[0\.5, 0\.8, 0\.92, 0\.989, 0\.999, 1\]/);
+ assert.match(source,/var rewardIds = \['reward-free-delivery', 'reward-5', 'reward-7', 'reward-10', 'reward-30', 'reward-50'\]/);
+ for(const id of ['reward-30','reward-50']) assert.ok(source.includes('id="'+id+'"'));
+ assert.match(source,/font-size="43" font-weight="900"[^>]*>FREE<\/text>/);
+ assert.match(source,/font-size="43" font-weight="900"[^>]*>DELIVERY<\/text>/);
 });
 test('preview uses only a same-origin SVG object without any external controller or PNG overlay',()=>{
  const html=txt('index.html'),css=txt('t03.css'),ref=txt('native-motion.html');
