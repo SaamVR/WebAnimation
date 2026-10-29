@@ -132,7 +132,7 @@ test('exact homepage section and individual card background mapping is maintaine
 test('product hover and Add to Cart use one shared card component and retain motion boundaries',async()=>{
  const app=await read('src/app.mjs'),css=await read('src/styles.css');
  assert.match(app,/function productCard\(item\)/);
- assert.match(app,/class="product-add-button"/);
+ assert.match(app,/className:'product-add-button'/);
  assert.match(app,/data-add-to-bag/);
  assert.match(app,/related\.map\(productCard\)/);
  assert.match(app,/visible\.map\(productCard\)/);
@@ -187,4 +187,47 @@ test('Add to Cart has progressive left-to-right charcoal overlay and accessible 
  assert.match(css,/\.product-add-button > \.product-add-label/);
  assert.match(css,/\.product-add-button > \.product-add-arrow/);
  assert.match(css,/@media\(hover:none\),\(pointer:coarse\)/);
+});
+
+
+test('owner Buttons.png creates two distinct SVG contours and three tone variants',async()=>{
+ const {sketchButton,sketchArt,sketchVariants,sketchTones}=await import('../src/handdrawn-buttons.mjs');
+ assert.deepEqual(sketchVariants,['compact','long']);
+ assert.deepEqual(sketchTones,['forest','terracotta','beige']);
+ assert.notEqual(sketchArt('compact'),sketchArt('long'));
+ for(const variant of sketchVariants)for(const tone of sketchTones){
+  const html=sketchButton({label:'ADD TO BAG',variant,tone,attrs:'data-add-to-bag="sample"'});
+  assert.match(html,/<button type="button"/);
+  assert.match(html,/class="cc-sketch cc-sketch--/);
+  assert.ok(html.includes('cc-sketch--'+variant));
+  assert.ok(html.includes('cc-sketch--'+tone));
+  assert.match(html,/cc-sketch-shadow/);
+  assert.match(html,/cc-sketch-outline/);
+  assert.match(html,/cc-sketch-highlight/);
+  assert.match(html,/cc-sketch-face-ink/);
+  assert.match(html,/cc-sketch-label-ink/);
+  assert.doesNotMatch(html,/<img|\.png|product-add-arrow|↗|→|✓/);
+ }
+ assert.match(sketchButton({label:'Shop Now',href:'/shop/'}),/<a href="\/shop\/"/);
+});
+test('sketch SVG face and label share directional wipe and motion preferences',async()=>{
+ const css=await read('src/button-system.css');
+ const app=await read('src/app.mjs');
+ const preview=await read('src/buttons/index.html');
+ const previewJS=await read('src/button-preview.mjs');
+ assert.match(css,/\.cc-sketch-face-ink\{\s*fill:var\(--cc-ink\)/);
+ assert.match(css,/clip-path:inset\(0 100% 0 0\)/);
+ assert.match(css,/transition:clip-path 300ms cubic-bezier/);
+ assert.match(css,/\.cc-sketch\.added \.cc-sketch-face-ink/);
+ assert.match(css,/\.cc-sketch:focus-visible/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.match(css,/\.cc-sketch\.product-add-button::before\{content:none!important\}/);
+ assert.match(app,/sketchButton\(\{label:'ADD TO BAG',variant:'long'/);
+ assert.match(app,/const labels=add\.querySelectorAll\('\.cc-sketch-label,\.cc-sketch-label-ink'\)/);
+ assert.match(app,/labels\.forEach\(label=>label\.textContent='ADD TO BAG'\)/);
+ assert.match(app,/sheet\.href='\/button-system\.css'/);
+ assert.match(preview,/id="reviewButtons"/);
+ assert.match(previewJS,/states=\['default','hover','pressed','focus'\]/);
+ assert.match(previewJS,/sketchButton\(/);
+ assert.doesNotMatch(app,/product-add-arrow|ADDED ✓|ADD TO CART/);
 });
