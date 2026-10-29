@@ -67,3 +67,12 @@ Remaining known deviations: live product cards include more details, the moving 
 - Touch: no hover rotation/shadow; 44px Add button and brief active press feedback. Keyboard focus-visible and reduced-motion supported.
 - Clicking Add updates a session-only mock bag quantity, global header badge, and accessible status; button briefly reads ADDED ✓. Repeated adds increment; bag route has increase/decrease/remove and limits individual study quantity to 99. `sessionStorage` is tab-scoped; no backend requests, pricing, orders, payments, or purchasing.
 - Browser-tested on 1440×900, 820×1180 and 390×844, including layout stability, rapid pointer movements, cart state through navigation, Shop and related product actions, and reduced-motion/key activation.
+
+## Hand-Drawn Button Design System — Owner reference Buttons.png (2026-10-30)
+
+- Reference-faithful independent SVG silhouettes (short compact capsule; elongated low-profile long button), actual layered fill, curved secondary outline strokes, glints and heavy offset charcoal shadow. Not a PNG background.
+- Color variants: Press Green #293D2D, Dark Clay / Terracotta #8A503B, Beige #D8CEC2, matching approved palette. Charcoal hover ink #232323. Beige text uses an additional synchronously clipped white text overlay to preserve contrast.
+- Reusable source: src/handdrawn-buttons.mjs. Styling: src/button-system.css. Native button/anchor semantics, configurable label, tone and shape, keyboard focus, touch, reduced-motion support. Progressive 300ms directional fill via CSS clip-path.
+- Isolated clickable review: /buttons/ (src/buttons/index.html and src/button-preview.mjs); 2 shapes x 3 colors x Default/Hover/Pressed/Focus, responsive two-column layout on small screens.
+- Integrated: Long ADD TO BAG on Collection (8), Shop (12), Related Studies and product detail. Compact CTAs on hero, story, Journal, bag and empty routes; smaller compact controls for Search, newsletter Join and Clear Filters. Cart/session counts, native form submit and filter actions retained. Navigation icons, utility stepper/pager controls and Featured Prints are intentionally unchanged.
+- Cart remains sessionStorage-only demo, no pricing, checkout or payment. Click text temporarily displays ADDED (no icon/symbol) and resets to ADD TO BAG. Approved card tilt, 14px spacing and palette remain unchanged.
