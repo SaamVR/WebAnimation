@@ -165,7 +165,7 @@ test('session-only demo bag is not a real order flow',async()=>{
 });
 
 
-test('owner-approved card tilt is unchanged while product metadata gains exactly 14px inset',async()=>{
+test('approved tilt and legacy 14px baseline are preserved under the new Polaroid caption',async()=>{
  const css=await read('src/styles.css');
  const app=await read('src/app.mjs');
  assert.match(css,/\.product-card \.product-meta\{\s*padding-inline:14px;/);
@@ -315,4 +315,15 @@ test('polaroid card styles leave approved hover, Shop grid, pill and session car
  assert.match(app,/updateFav\(id\)/);
  assert.match(app,/data-add-to-bag/);
  assert.match(app,/FEATURE_INTERVAL_MS=8200/);
+});
+
+
+test('photo tone wins over legacy homepage and even-card backgrounds on all listings',async()=>{
+ const css=await read('src/styles.css');
+ assert.match(css,/\.product-card\.polaroid-card \.product-visual,\s*#collection \.product-card\.polaroid-card \.product-visual/);
+ assert.match(css,/\.product-card\.polaroid-card\[data-photo-tone="0"\]\{--photo-tone:#DDDAD3/);
+ assert.match(css,/\.product-card\.polaroid-card\[data-photo-tone="1"\]\{--photo-tone:var\(--cream\)/);
+ assert.match(css,/\.product-card\.polaroid-card\[data-photo-tone="2"\]\{--photo-tone:#D1D6C7/);
+ assert.match(css,/\.product-card\.polaroid-card\[data-photo-tone="3"\]\{--photo-tone:var\(--mist\)/);
+ assert.match(css,/\.product-card\.polaroid-card \.product-meta \.product-price\{\s*margin-top:7px;\s*padding-top:0/);
 });
