@@ -163,3 +163,28 @@ test('session-only demo bag is not a real order flow',async()=>{
  assert.match(app,/case 'checkout':return emptyRoute/);
  assert.doesNotMatch(app,/localStorage\.setItem\(demoBagKey/);
 });
+
+
+test('owner-approved card tilt is unchanged while product metadata gains exactly 14px inset',async()=>{
+ const css=await read('src/styles.css');
+ const app=await read('src/app.mjs');
+ assert.match(css,/\.product-card \.product-meta\{\s*padding-inline:14px;/);
+ assert.match(css,/transform:translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
+ assert.match(css,/transform:translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
+ assert.match(css,/transition:transform 300ms cubic-bezier\(\.22,\.7,\.18,1\)/);
+ assert.match(css,/\.product-grid\{display:grid;grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+ assert.match(app,/function productCard\(item\)/);
+ assert.match(app,/related\.map\(productCard\)/);
+});
+test('Add to Cart has progressive left-to-right charcoal overlay and accessible motion fallback',async()=>{
+ const css=await read('src/styles.css');
+ assert.match(css,/\.product-add-button::before\{\s*content:"";/);
+ assert.match(css,/background:var\(--ink\);\s*transform:scaleX\(0\)/);
+ assert.match(css,/transform-origin:left center;\s*transition:transform 300ms/);
+ assert.match(css,/\.product-add-button\.added::before\{\s*transform:scaleX\(1\)/);
+ assert.match(css,/\.product-add-button:hover::before\{\s*transform:scaleX\(1\)/);
+ assert.match(css,/\.product-add-button::before\{\s*transition:none!important;/);
+ assert.match(css,/\.product-add-button > \.product-add-label/);
+ assert.match(css,/\.product-add-button > \.product-add-arrow/);
+ assert.match(css,/@media\(hover:none\),\(pointer:coarse\)/);
+});

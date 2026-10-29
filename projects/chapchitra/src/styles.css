@@ -703,3 +703,61 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
  .product-add-button:hover .product-add-arrow{transform:none!important}
  .product-add-button:active{transform:none}
 }
+
+
+/* CHAPCHITRA V3 owner refinement — 2026-10-30
+   Only information insets and the Add to Cart color-wipe change here.
+   Approved card transforms, imagery, four-column grid and carousel are untouched. */
+.product-card .product-meta{
+  padding-inline:14px;
+  box-sizing:border-box;
+}
+.product-card .product-meta > a,
+.product-card .product-meta > span,
+.product-card .product-meta > .product-price{
+  min-width:0;
+}
+/* The base remains Press Green. The charcoal overlay advances from left to
+   right without changing button geometry or abruptly swapping backgrounds. */
+.product-add-button,
+.product-add-button:hover,
+.product-add-button.added,
+.product-add-button:active{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:var(--press);
+  border-color:var(--press);
+  color:#fff;
+  transition:none;
+}
+.product-add-button::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:var(--ink);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform 300ms cubic-bezier(.45,0,.55,1);
+}
+.product-add-button > .product-add-label,
+.product-add-button > .product-add-arrow{
+  position:relative;
+  z-index:1;
+  color:#fff;
+}
+.product-add-button.added::before{
+  transform:scaleX(1);
+}
+@media(hover:hover) and (pointer:fine){
+  .product-add-button:hover::before{
+    transform:scaleX(1);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .product-add-button::before{
+    transition:none!important;
+  }
+}
