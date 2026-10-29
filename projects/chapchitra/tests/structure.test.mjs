@@ -219,7 +219,7 @@ test('true capsule geometry and directional fill preserve accessibility',async()
  assert.match(css,/border:0;border-radius:9999px/);
  assert.match(css,/inset:var\(--cc-offset\) 0 0 var\(--cc-offset\)/);
  assert.match(css,/inset:0 var\(--cc-offset\) var\(--cc-offset\) 0/);
- assert.match(css,/background:#242424/);
+ assert.match(css,/background:var\(--cc-shadow-color\)/);
  assert.match(css,/\.cc-pill-wipe\{/);
  assert.match(css,/clip-path:inset\(0 100% 0 0\)/);
  assert.match(css,/transition:clip-path 300ms cubic-bezier/);
