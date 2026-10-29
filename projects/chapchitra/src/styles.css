@@ -761,3 +761,218 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
     transition:none!important;
   }
 }
+
+
+/* CHAPCHITRA / Product Card — Polaroid paper-frame integration.
+   Shared with Collection, Shop, Favorites, Related Studies. Scoped to the
+   product card; category, Featured Prints, gallery and site layout are intact.
+   The existing single-card alternating ±1.4deg/-5px hover rules remain above. */
+.product-card.polaroid-card{
+  background:#FBFAF6; /* warm off-white photo paper */
+  border:1px solid #E1DED5;
+  border-radius:2px;
+  box-sizing:border-box;
+  padding:0;
+  min-width:0;
+  overflow:visible;
+  align-self:stretch;
+}
+.product-card.polaroid-card:not(:hover){
+  box-shadow:0 4px 11px rgba(28,36,29,.075);
+}
+.product-card.polaroid-card[data-photo-tone="0"]{--photo-tone:#DDDAD3} /* warm gray */
+.product-card.polaroid-card[data-photo-tone="1"]{--photo-tone:var(--cream)} /* cream */
+.product-card.polaroid-card[data-photo-tone="2"]{--photo-tone:#D1D6C7} /* muted olive */
+.product-card.polaroid-card[data-photo-tone="3"]{--photo-tone:var(--mist)} /* mist */
+.polaroid-card .polaroid-photo{
+  display:block;
+  flex:none;
+  min-width:0;
+  padding:13px 13px 0;
+}
+.polaroid-card .product-visual,
+#collection .polaroid-card .product-visual{
+  display:grid;
+  position:relative;
+  place-items:center;
+  width:100%;
+  height:259px;
+  min-width:0;
+  overflow:hidden;
+  border:0;
+  background:var(--photo-tone);
+  text-decoration:none;
+}
+.polaroid-card .product-visual .shirt-svg{
+  display:block;
+  width:88%;
+  height:96%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  overflow:visible;
+}
+.polaroid-card .proof-tag{
+  top:9px;
+  left:10px;
+  max-width:calc(100% - 20px);
+  background:rgba(251,250,246,.84);
+  color:var(--ink);
+  border:0;
+  border-radius:1px;
+  white-space:normal;
+  text-align:left;
+}
+.product-card.polaroid-card .product-meta.polaroid-caption,
+#collection .polaroid-card .product-meta.polaroid-caption{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:165px;
+  gap:3px;
+  padding:21px 17px 17px 22px;
+  background:#FBFAF6;
+  box-sizing:border-box;
+}
+.polaroid-card .polaroid-caption-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:start;
+  column-gap:7px;
+  min-height:27px;
+}
+.polaroid-card .polaroid-name{
+  display:block;
+  min-width:0;
+  max-width:100%;
+  padding-top:1px;
+  font:inherit;
+  text-decoration:none;
+  text-align:left;
+  overflow-wrap:break-word;
+}
+.polaroid-card .polaroid-name strong{
+  display:block;
+  color:var(--ink);
+  font:600 13px/1.3 var(--sans);
+  letter-spacing:.004em;
+}
+.polaroid-card .polaroid-fit{
+  color:var(--mut);
+  font:400 11px/1.4 var(--sans);
+  text-align:left;
+}
+.polaroid-card .product-price{
+  margin-top:7px;
+  margin-bottom:8px;
+  padding:0;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  min-width:0;
+  gap:8px;
+}
+.polaroid-card .product-price small{
+  font:400 10px/1.35 var(--sans);
+  color:var(--mut);
+  min-width:0;
+}
+.polaroid-card .product-price b{
+  font:600 12px/1.35 var(--sans);
+  color:var(--deep);
+  white-space:nowrap;
+}
+.polaroid-card .favorite-toggle,
+#collection .polaroid-card .favorite-toggle{
+  position:relative;
+  top:auto;
+  right:auto;
+  justify-self:end;
+  align-self:start;
+  flex:none;
+  width:30px;
+  height:30px;
+  padding:0;
+  margin:-5px -3px 0 0;
+  background:transparent;
+  border:1px solid transparent;
+  border-radius:50%;
+  color:var(--deep);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+.polaroid-card .favorite-toggle:hover{background:var(--mist)}
+.polaroid-card .favorite-toggle svg{
+  display:block;
+  width:18px;
+  height:18px;
+}
+.polaroid-card .cc-sketch.product-add-button{
+  align-self:stretch;
+  flex:none;
+  margin-top:auto;
+  width:100%;
+}
+.polaroid-card .cc-sketch.product-add-button .cc-sketch-copy{
+  white-space:nowrap;
+}
+/* Desktop and tablet preserve the approved 4-column Shop structure. */
+@media(max-width:1100px){
+ .polaroid-card .product-visual,
+ #collection .polaroid-card .product-visual{height:232px}
+ .polaroid-card .polaroid-photo{padding:12px 12px 0}
+ .product-card.polaroid-card .product-meta.polaroid-caption,
+ #collection .polaroid-card .product-meta.polaroid-caption{
+   padding:18px 15px 15px 19px;
+ }
+}
+@media(max-width:860px){
+ .polaroid-card .product-visual,
+ #collection .polaroid-card .product-visual{height:204px}
+ .polaroid-card .polaroid-photo{padding:11px 11px 0}
+}
+@media(max-width:600px){
+ .polaroid-card .polaroid-photo{padding:9px 9px 0}
+ .polaroid-card .product-visual,
+ #collection .polaroid-card .product-visual{height:178px}
+ .polaroid-card .product-visual .shirt-svg{
+   width:96%;
+   height:97%;
+ }
+ .product-card.polaroid-card .product-meta.polaroid-caption,
+ #collection .polaroid-card .product-meta.polaroid-caption{
+   min-height:164px;
+   gap:3px;
+   padding:16px 11px 13px 14px;
+ }
+ .polaroid-card .polaroid-caption-head{column-gap:2px;min-height:27px}
+ .polaroid-card .polaroid-name strong{font-size:11px;line-height:1.25}
+ .polaroid-card .polaroid-fit{font-size:10px}
+ .polaroid-card .product-price{gap:3px;margin-top:5px;margin-bottom:7px;flex-wrap:wrap}
+ .polaroid-card .product-price small{font-size:9px}
+ .polaroid-card .product-price b{font-size:10px}
+ .polaroid-card .favorite-toggle,
+ #collection .polaroid-card .favorite-toggle{
+   height:27px;width:27px;
+   margin:-5px -4px 0 0;
+ }
+ .polaroid-card .favorite-toggle svg{height:16px;width:16px}
+ .polaroid-card .proof-tag{font-size:8px;top:7px;left:7px}
+}
+@media(max-width:365px){
+ .polaroid-card .product-visual,
+ #collection .polaroid-card .product-visual{height:153px}
+ .product-card.polaroid-card .product-meta.polaroid-caption,
+ #collection .polaroid-card .product-meta.polaroid-caption{
+   padding:14px 9px 12px 12px;
+ }
+}
+/* Preserve a grounded paper edge on touch without simulating pointer hover. */
+@media(hover:none),(pointer:coarse){
+ .product-card.polaroid-card,
+ .product-card.polaroid-card:hover{
+   box-shadow:0 4px 11px rgba(28,36,29,.075)!important;
+   transform:none!important;
+ }
+}
