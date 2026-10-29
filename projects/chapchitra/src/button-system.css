@@ -1,25 +1,27 @@
-/* CHAPCHITRA: Buttons.png hand-drawn ink system.
-   Real independent SVG silhouettes: compact 270×138; long 720×100.
-   The face, sketch strokes, glints, and offset dark shadow remain vector paths. */
+/* CHAPCHITRA — clean pill button system
+   Exact semicircular caps at ANY responsive width. No decorative SVG paths,
+   strokes, exterior outlines, highlights, textures, borders or blurred shadows.
+   Face and shadow are IDENTICAL capsules with a 7px right/down offset. */
 .cc-sketch{
   --cc-paint:var(--press,#293D2D);
-  --cc-edge:#273d2d;
   --cc-ink:var(--ink,#232323);
   --cc-label:#fff;
-  --cc-glint:rgba(239,240,233,.38);
+  --cc-offset:7px;
   position:relative;
   isolation:isolate;
   display:inline-grid;
   place-items:center;
   flex:none;
   box-sizing:border-box;
-  width:fit-content;
   min-width:0;
-  border:0;
+  width:fit-content;
   margin:0;
   padding:0;
+  border:0;
+  border-radius:0;
   background:transparent!important;
   color:var(--cc-label)!important;
+  box-shadow:none!important;
   font:600 11px/1.22 var(--sans,system-ui,sans-serif);
   letter-spacing:.075em;
   text-align:center;
@@ -28,74 +30,118 @@
   -webkit-tap-highlight-color:transparent;
   transition:transform 130ms ease;
 }
-.cc-sketch--forest{--cc-paint:var(--press,#293D2D);--cc-edge:#24402d;--cc-label:#fff}
-.cc-sketch--terracotta{--cc-paint:var(--acc,#8A503B);--cc-edge:#91533b;--cc-label:#fff}
-.cc-sketch--beige{--cc-paint:var(--beige,#D8CEC2);--cc-edge:#765b47;--cc-label:var(--ink,#232323);--cc-glint:rgba(45,44,40,.30)}
-.cc-sketch--compact{min-width:164px;width:max-content;max-width:100%;height:64px;min-height:64px;padding-inline:20px}
-.cc-sketch--long{width:100%;height:54px;min-height:54px;font-size:11px;letter-spacing:.095em}
-.cc-sketch-art{
-  position:absolute;inset:0;width:100%;height:100%;
-  max-width:none;overflow:visible;
-  pointer-events:none;
+.cc-sketch--forest{--cc-paint:var(--press,#293D2D);--cc-label:#fff}
+.cc-sketch--terracotta{--cc-paint:var(--acc,#8A503B);--cc-label:#fff}
+.cc-sketch--beige{--cc-paint:var(--beige,#D8CEC2);--cc-label:var(--ink,#232323)}
+.cc-sketch--compact{
+  min-width:164px;width:max-content;max-width:100%;
+  height:64px;min-height:64px;padding-inline:20px;
 }
-.cc-sketch-shadow{fill:#242424}
-.cc-sketch-face{fill:var(--cc-paint)}
-.cc-sketch-face-ink{
-  fill:var(--cc-ink);
+.cc-sketch--long{
+  width:100%;height:54px;min-height:54px;
+  font-size:11px;letter-spacing:.095em;
+}
+/* The art has no pointer handlers: events always reach the real button/link. */
+.cc-pill-art{
+  position:absolute;inset:0;z-index:0;
+  display:block;pointer-events:none;
+}
+/* Precisely matching width and height — only translated by the 7px offset. */
+.cc-pill-shadow{
+  position:absolute;
+  inset:var(--cc-offset) 0 0 var(--cc-offset);
+  display:block;
+  border:0;border-radius:9999px;
+  background:#242424;
+  box-shadow:none;
+}
+.cc-pill-face{
+  position:absolute;
+  inset:0 var(--cc-offset) var(--cc-offset) 0;
+  display:block;
+  overflow:hidden;
+  border:0;border-radius:9999px;
+  background:var(--cc-paint);
+  box-shadow:none;
+}
+.cc-pill-wipe{
+  position:absolute;inset:0;
+  display:block;
+  border:0;border-radius:inherit;
+  background:var(--cc-ink);
   clip-path:inset(0 100% 0 0);
   transition:clip-path 300ms cubic-bezier(.45,0,.55,1);
 }
-.cc-sketch-outline{
-  fill:none;stroke:var(--cc-edge);stroke-width:2.5px;
-  stroke-linecap:round;stroke-linejoin:round;
-  vector-effect:non-scaling-stroke;
-  pointer-events:none;
-}
-.cc-sketch-highlight{
-  fill:none;stroke:var(--cc-glint);stroke-width:2.5px;
-  stroke-linecap:round;
-  vector-effect:non-scaling-stroke;
-  pointer-events:none;
-}
-.cc-sketch-copy{
-  position:relative;
-  z-index:1;
-  display:grid;place-items:center;
+/* Text plane centered over the colored face, not the offset shadow.
+   The two text layers occupy identical geometry for contrast during the wipe. */
+.cc-sketch .cc-sketch-copy,
+.cc-sketch--compact .cc-sketch-copy,
+.cc-sketch--long .cc-sketch-copy,
+.cc-sketch--inline .cc-sketch-copy{
+  position:absolute;z-index:1;
+  left:calc(50% - var(--cc-offset)/2);
+  top:calc(50% - var(--cc-offset)/2);
+  transform:translate(-50%,-50%);
+  display:grid;grid-template-columns:minmax(0,1fr);
+  place-items:center;
   width:calc(100% - 28px);
-  max-width:100%;
-  margin-bottom:3px;
-  white-space:normal;
+  max-width:calc(100% - 28px);
+  min-width:0;
+  padding:0;margin:0;
+  color:var(--cc-label);
+  font:inherit;line-height:1.22;
   text-align:center;
-  overflow-wrap:anywhere;
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:normal;
+  pointer-events:none;
 }
-.cc-sketch-label,.cc-sketch-label-ink{grid-area:1/1;display:block;text-align:center;pointer-events:none}
-.cc-sketch-label{color:var(--cc-label)}
-.cc-sketch-label-ink{
+.cc-sketch .cc-sketch-label,
+.cc-sketch .cc-sketch-label-ink{
+  grid-area:1/1;
+  justify-self:center;align-self:center;
+  display:block;
+  width:max-content;max-width:100%;
+  min-width:0;
+  color:var(--cc-label);
+  font:inherit;line-height:inherit;
+  text-align:center;
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:normal;
+  pointer-events:none;
+}
+.cc-sketch .cc-sketch-label-ink{
   color:#fff;
   clip-path:inset(0 100% 0 0);
   transition:clip-path 300ms cubic-bezier(.45,0,.55,1);
 }
-/* One linear directional color-reveal, with a corresponding text mask for
-   legibility on beige. Unlike a background switch, both layers stay in sync. */
+/* Synchronized left-to-right dark fill with white text reveal on beige. */
 @media(hover:hover) and (pointer:fine){
-  .cc-sketch:hover:not(:disabled) .cc-sketch-face-ink,
-  .cc-sketch:hover:not(:disabled) .cc-sketch-label-ink{clip-path:inset(0 0 0 0)}
+  .cc-sketch:hover:not(:disabled) .cc-pill-wipe,
+  .cc-sketch:hover:not(:disabled) .cc-sketch-label-ink{
+    clip-path:inset(0 0 0 0);
+  }
 }
-.cc-sketch.added .cc-sketch-face-ink,
+.cc-sketch.added .cc-pill-wipe,
 .cc-sketch.added .cc-sketch-label-ink,
-.cc-sketch[data-preview-state="hover"] .cc-sketch-face-ink,
+.cc-sketch[data-preview-state="hover"] .cc-pill-wipe,
 .cc-sketch[data-preview-state="hover"] .cc-sketch-label-ink,
-.cc-sketch[data-preview-state="pressed"] .cc-sketch-face-ink,
-.cc-sketch[data-preview-state="pressed"] .cc-sketch-label-ink{clip-path:inset(0 0 0 0)}
-.cc-sketch:active,.cc-sketch[data-preview-state="pressed"]{transform:translateY(2px)}
+.cc-sketch[data-preview-state="pressed"] .cc-pill-wipe,
+.cc-sketch[data-preview-state="pressed"] .cc-sketch-label-ink{
+  clip-path:inset(0 0 0 0);
+}
+.cc-sketch:active,.cc-sketch[data-preview-state="pressed"]{
+  transform:translate(2px,2px);
+}
 .cc-sketch:focus-visible,.cc-sketch[data-preview-state="focus"]{
   outline:3px solid var(--acc,#8A503B);
   outline-offset:5px;
 }
 .cc-sketch[disabled],.cc-sketch[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
-.cc-sketch:disabled .cc-sketch-face-ink,.cc-sketch:disabled .cc-sketch-label-ink{transition:none}
-/* Integrates with original cart button and other primary CTA placements,
-   keeping 14px product-card information insets and fixed image size. */
+.cc-sketch:disabled .cc-pill-wipe,
+.cc-sketch:disabled .cc-sketch-label-ink{transition:none}
+/* Existing product structure and cart event handlers retained. */
 .product-card .cc-sketch--long{margin-top:11px}
 .detail-layout .cc-sketch--long{max-width:300px;margin:18px 0 14px}
 .story-summary .cc-sketch--compact{margin-top:6px}
@@ -103,49 +149,26 @@
 .hero-slide-copy .cc-sketch{margin-top:10px}
 .demo-bag-summary .cc-sketch{margin-top:6px}
 .empty-panel .cc-sketch{margin-top:12px}
-.cc-sketch--compact .cc-sketch-copy{width:calc(100% - 34px)}
-@media(max-width:600px){
-  .cc-sketch--compact{min-width:145px;height:58px;min-height:58px;padding-inline:15px;font-size:10px}
-  .cc-sketch--long{min-height:51px;height:51px;font-size:10px;letter-spacing:.055em}
-  .cc-sketch--long .cc-sketch-copy{width:calc(100% - 24px)}
-}
-/* Touch has no sticky hover; short press feedback only. */
-@media(hover:none),(pointer:coarse){
-  .cc-sketch:active{transform:translateY(2px)}
-}
-@media(prefers-reduced-motion:reduce){
-  .cc-sketch,.cc-sketch .cc-sketch-face-ink,.cc-sketch .cc-sketch-label-ink{
-    transition:none!important;
-  }
-  .cc-sketch:active{transform:none}
-}
-
-/* Override retired rectangular button primitives without changing cart data
-   attributes or approved card hover transforms. */
+/* Override retired rectangular ADD control without changing markup or JS. */
 .cc-sketch.product-add-button,
 .cc-sketch.product-add-button:hover,
 .cc-sketch.product-add-button:active,
 .cc-sketch.product-add-button.added{
+  position:relative;
   display:inline-grid;place-items:center;
-  position:relative;isolation:isolate;overflow:visible;
+  isolation:isolate;
+  overflow:visible;
   width:100%;height:54px;min-height:54px;
-  padding:0;border:0;border-radius:0;
-  background:transparent!important;color:var(--cc-label)!important;
-  text-align:center;box-shadow:none;
+  padding:0;
+  border:0;border-radius:0;
+  background:transparent!important;
+  color:var(--cc-label)!important;
+  text-align:center;box-shadow:none!important;
   transition:transform 130ms ease;
 }
 .cc-sketch.product-add-button::before{content:none!important}
-.cc-sketch.product-add-button .cc-sketch-art{overflow:visible}
 .cc-sketch.detail-add-button{max-width:300px}
-@media(max-width:600px){
- .cc-sketch.product-add-button{height:51px;min-height:51px;padding:0}
-}
-@media(prefers-reduced-motion:reduce){
- .cc-sketch.product-add-button{transition:none!important}
-}
-
-
-/* Compact controls embedded next to form inputs: preserve existing row heights. */
+/* Smaller compact CTAs alongside form inputs preserve row height/width. */
 .cc-sketch.cc-sketch--inline,
 .search-inline .cc-sketch,
 .newsletter-row .cc-sketch,
@@ -153,73 +176,33 @@
   box-sizing:border-box;
   min-width:98px;width:112px;max-width:100%;
   height:47px;min-height:47px;
-  padding:0;margin:0;border:0;
-  border-radius:0;
+  padding:0;margin:0;border:0;border-radius:0;
   background:transparent!important;
-  font-size:10px;
-  letter-spacing:.025em;
+  font-size:10px;letter-spacing:.025em;
   flex-shrink:0;
 }
 .search-inline .cc-sketch,
 .newsletter-row .cc-sketch{margin-left:5px}
 .shop-controls .cc-sketch{align-self:end}
-.cc-sketch--inline .cc-sketch-copy{width:calc(100% - 20px)}
 @media(max-width:600px){
- .cc-sketch.cc-sketch--inline,
- .search-inline .cc-sketch,
- .newsletter-row .cc-sketch,
- .shop-controls .cc-sketch{min-width:80px;width:92px;height:44px;min-height:44px;font-size:9px}
+  .cc-sketch--compact{min-width:145px;height:58px;min-height:58px;padding-inline:15px;font-size:10px}
+  .cc-sketch--long{height:51px;min-height:51px;font-size:10px;letter-spacing:.055em}
+  .cc-sketch.product-add-button{height:51px;min-height:51px;padding:0}
+  .cc-sketch.cc-sketch--inline,
+  .search-inline .cc-sketch,
+  .newsletter-row .cc-sketch,
+  .shop-controls .cc-sketch{
+    min-width:80px;width:92px;height:44px;min-height:44px;font-size:9px;
+  }
+  .cc-sketch--long .cc-sketch-copy{width:calc(100% - 24px);max-width:calc(100% - 24px)}
+  .cc-sketch--inline .cc-sketch-copy{width:calc(100% - 18px);max-width:calc(100% - 18px)}
 }
-
-
-/* PR #35 storefront label repair. Absolutely center the text plane in the
-   SVG control rather than letting an intrinsic grid track shrink to min-content.
-   Neither SVG path coordinates nor card animation/layout are modified. */
-.cc-sketch .cc-sketch-copy,
-.cc-sketch--compact .cc-sketch-copy,
-.cc-sketch--long .cc-sketch-copy,
-.cc-sketch--inline .cc-sketch-copy{
- position:absolute;
- z-index:1;
- left:50%;top:50%;
- transform:translate(-50%,-50%) translateY(-2px);
- display:grid;
- grid-template-columns:minmax(0,1fr);
- place-items:center;
- box-sizing:border-box;
- width:calc(100% - 28px);
- max-width:calc(100% - 28px);
- min-width:0;
- margin:0;
- padding:0;
- font:inherit;
- line-height:1.22;
- color:var(--cc-label);
- text-align:center;
- white-space:nowrap;
- overflow-wrap:normal;
- word-break:normal;
- pointer-events:none;
+@media(hover:none),(pointer:coarse){
+  .cc-sketch:active{transform:translate(2px,2px)}
 }
-.cc-sketch .cc-sketch-label,
-.cc-sketch .cc-sketch-label-ink{
- grid-area:1/1;
- display:block;
- justify-self:center;align-self:center;
- width:max-content;
- max-width:100%;
- min-width:0;
- font:inherit;
- line-height:inherit;
- color:var(--cc-label);
- text-align:center;
- white-space:nowrap;
- overflow-wrap:normal;
- word-break:normal;
- pointer-events:none;
-}
-.cc-sketch .cc-sketch-label-ink{color:#fff}
-@media(max-width:600px){
- .cc-sketch--long .cc-sketch-copy{width:calc(100% - 24px);max-width:calc(100% - 24px)}
- .cc-sketch--inline .cc-sketch-copy{width:calc(100% - 18px);max-width:calc(100% - 18px)}
+@media(prefers-reduced-motion:reduce){
+  .cc-sketch,.cc-pill-wipe,.cc-sketch .cc-sketch-label-ink{
+    transition:none!important;
+  }
+  .cc-sketch:active{transform:none}
 }
