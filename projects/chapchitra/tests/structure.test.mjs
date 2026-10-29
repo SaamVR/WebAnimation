@@ -368,6 +368,9 @@ test('hard-edged adaptive shadows have reusable light and dark surface tokens',a
  assert.match(css,/--cc-shadow-light-beige:var\(--olive,#1F2216\)/);
  assert.match(css,/--cc-shadow-dark:var\(--beige,#D8CEC2\)/);
  assert.match(css,/--cc-shadow-dark-olive:var\(--grey,#D9DCD7\)/);
+ assert.match(css,/--cc-shadow-dark-beige:var\(--mush,#A6A29B\)/);
+ assert.match(css,/\.cc-shadow-context--forest \.cc-sketch--beige/);
+ assert.match(css,/\.cc-shadow-context--olive \.cc-sketch--beige/);
  assert.match(css,/background:var\(--cc-shadow-color\)/);
  assert.match(css,/\.hero-cover \.cc-sketch/);
  assert.match(css,/\.site-footer \.cc-sketch/);
