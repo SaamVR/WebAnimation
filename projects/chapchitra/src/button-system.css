@@ -8,6 +8,7 @@
   --cc-label:#fff;
   --cc-offset:7px;
   --cc-half-offset:3.5px;
+  --cc-shadow-color:var(--cc-shadow-light-forest);
   position:relative;
   isolation:isolate;
   display:inline-grid;
@@ -53,7 +54,7 @@
   inset:var(--cc-offset) 0 0 var(--cc-offset);
   display:block;
   border:0;border-radius:9999px;
-  background:#242424;
+  background:var(--cc-shadow-color);
   box-shadow:none;
 }
 .cc-pill-face{
@@ -206,4 +207,67 @@
     transition:none!important;
   }
   .cc-sketch:active{transform:none}
+}
+
+/* Surface-aware shadow palette. The 7px solid pill silhouette never changes.
+   These tokens assign a contrasting hue per FACE and surrounding SURFACE,
+   not per individual button or layout position. */
+:root{
+  --cc-shadow-light-forest:var(--walnut,#6E523F);
+  --cc-shadow-light-terracotta:var(--deep,#1C241D);
+  --cc-shadow-light-beige:var(--olive,#1F2216);
+  --cc-shadow-dark:var(--beige,#D8CEC2);
+  --cc-shadow-dark-olive:var(--grey,#D9DCD7);
+  --cc-shadow-dark-beige:var(--mush,#A6A29B);
+}
+.cc-sketch--forest{--cc-shadow-color:var(--cc-shadow-light-forest)}
+.cc-sketch--terracotta{--cc-shadow-color:var(--cc-shadow-light-terracotta)}
+.cc-sketch--beige{--cc-shadow-color:var(--cc-shadow-light-beige)}
+/* Use actual ancestor surface context; no button-specific overrides. */
+.hero-cover .cc-sketch,
+.site-footer .cc-sketch,
+.cc-shadow-context--forest .cc-sketch,
+[data-cc-surface="forest"] .cc-sketch,
+[data-cc-surface="dark"] .cc-sketch{
+  --cc-shadow-color:var(--cc-shadow-dark);
+}
+.cc-shadow-context--olive .cc-sketch,
+[data-cc-surface="olive"] .cc-sketch{
+  --cc-shadow-color:var(--cc-shadow-dark-olive);
+}
+/* Light, cream, mist and gray surfaces deliberately share high-contrast
+   face-specific defaults; reusable context selectors retain their specificity. */
+.cc-shadow-context--light .cc-sketch--forest,
+.cc-shadow-context--cream .cc-sketch--forest,
+.cc-shadow-context--gray .cc-sketch--forest,
+.editorial-banner .cc-sketch--forest,
+.custom-settings .cc-sketch--forest{
+  --cc-shadow-color:var(--cc-shadow-light-forest);
+}
+.cc-shadow-context--light .cc-sketch--terracotta,
+.cc-shadow-context--cream .cc-sketch--terracotta,
+.cc-shadow-context--gray .cc-sketch--terracotta,
+.editorial-banner .cc-sketch--terracotta,
+.custom-settings .cc-sketch--terracotta{
+  --cc-shadow-color:var(--cc-shadow-light-terracotta);
+}
+.cc-shadow-context--light .cc-sketch--beige,
+.cc-shadow-context--cream .cc-sketch--beige,
+.cc-shadow-context--gray .cc-sketch--beige,
+.editorial-banner .cc-sketch--beige,
+.custom-settings .cc-sketch--beige{
+  --cc-shadow-color:var(--cc-shadow-light-beige);
+}
+
+/* Beige faces already contrast with dark surfaces; give them a distinct
+   medium-gray shadow, rather than accidentally stacking beige on beige.
+   This is a shared tone-in-context rule (not a one-off button override). */
+.hero-cover .cc-sketch--beige,
+.site-footer .cc-sketch--beige,
+.cc-shadow-context--forest .cc-sketch--beige,
+.cc-shadow-context--olive .cc-sketch--beige,
+[data-cc-surface="forest"] .cc-sketch--beige,
+[data-cc-surface="olive"] .cc-sketch--beige,
+[data-cc-surface="dark"] .cc-sketch--beige{
+  --cc-shadow-color:var(--cc-shadow-dark-beige);
 }
