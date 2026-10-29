@@ -274,3 +274,45 @@ test('integrated pill labels remain centered, single-line and inherit variant co
  assert.match(app,/const labels=add\.querySelectorAll/);
  assert.doesNotMatch(app,/product-add-arrow/);
 });
+
+
+test('polaroid cards are one reusable paper-photo retail component in every listing',async()=>{
+ const app=await read('src/app.mjs');
+ const css=await read('src/styles.css');
+ assert.match(app,/function productCard\(item\)/);
+ assert.match(app,/class="product-card polaroid-card"/);
+ assert.match(app,/class="polaroid-photo"/);
+ assert.match(app,/class="polaroid-caption-head"/);
+ assert.match(app,/class="product-meta polaroid-caption"/);
+ assert.match(app,/class="polaroid-name"/);
+ assert.match(app,/class="polaroid-fit"/);
+ assert.match(app,/data-photo-tone/);
+ assert.match(app,/Number\(item\.visual\)%4/);
+ assert.match(app,/class="favorite-toggle/);
+ assert.match(app,/related\.map\(productCard\)/);
+ assert.match(app,/visible\.map\(productCard\)/);
+ assert.match(app,/block\.map\(productCard\)/);
+ assert.match(app,/sketchButton\(\{label:'ADD TO BAG',variant:'long'/);
+ assert.match(css,/\.product-card\.polaroid-card\{/);
+ assert.match(css,/background:#FBFAF6/);
+ assert.match(css,/\.polaroid-card \.polaroid-photo/);
+ assert.match(css,/\.polaroid-card \.polaroid-caption-head/);
+ assert.match(css,/\.polaroid-card \.favorite-toggle/);
+ assert.match(css,/\.polaroid-card \.product-visual \.shirt-svg/);
+ for(const tone of ['0','1','2','3'])assert.ok(css.includes('data-photo-tone="'+tone+'"'));
+ assert.doesNotMatch(app,/polaroid[^\n]*placeholder\s+lines/i);
+});
+test('polaroid card styles leave approved hover, Shop grid, pill and session cart alone',async()=>{
+ const app=await read('src/app.mjs'),css=await read('src/styles.css');
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
+ assert.match(css,/300ms cubic-bezier\(\.22,\.7,\.18,1\)/);
+ assert.match(css,/\.product-grid\{display:grid;grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+ assert.match(css,/\.product-grid\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(css,/\.polaroid-card \.cc-sketch\.product-add-button/);
+ assert.match(css,/#collection \.polaroid-card \.product-visual/);
+ assert.match(app,/sessionStorage\.setItem\(demoBagKey/);
+ assert.match(app,/updateFav\(id\)/);
+ assert.match(app,/data-add-to-bag/);
+ assert.match(app,/FEATURE_INTERVAL_MS=8200/);
+});
