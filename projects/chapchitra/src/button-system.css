@@ -143,3 +143,30 @@
 @media(prefers-reduced-motion:reduce){
  .cc-sketch.product-add-button{transition:none!important}
 }
+
+
+/* Compact controls embedded next to form inputs: preserve existing row heights. */
+.cc-sketch.cc-sketch--inline,
+.search-inline .cc-sketch,
+.newsletter-row .cc-sketch,
+.shop-controls .cc-sketch{
+  box-sizing:border-box;
+  min-width:98px;width:112px;max-width:100%;
+  height:47px;min-height:47px;
+  padding:0;margin:0;border:0;
+  border-radius:0;
+  background:transparent!important;
+  font-size:10px;
+  letter-spacing:.025em;
+  flex-shrink:0;
+}
+.search-inline .cc-sketch,
+.newsletter-row .cc-sketch{margin-left:5px}
+.shop-controls .cc-sketch{align-self:end}
+.cc-sketch--inline .cc-sketch-copy{width:calc(100% - 20px)}
+@media(max-width:600px){
+ .cc-sketch.cc-sketch--inline,
+ .search-inline .cc-sketch,
+ .newsletter-row .cc-sketch,
+ .shop-controls .cc-sketch{min-width:80px;width:92px;height:44px;min-height:44px;font-size:9px}
+}
