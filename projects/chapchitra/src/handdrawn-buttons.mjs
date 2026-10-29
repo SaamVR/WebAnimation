@@ -39,10 +39,10 @@ export function sketchArt(variant='compact'){
     a.lights.map(d=>'<path class="cc-sketch-highlight" d="'+d+'"/>').join('')+
     '</svg>';
 }
-export function sketchButton({label,variant='compact',tone='forest',href=null,attrs='',className='',pressed=false}={}){
+export function sketchButton({label,variant='compact',tone='forest',href=null,attrs='',className='',type='button'}={}){
   if(!sketchVariants.includes(variant)||!sketchTones.includes(tone))throw new TypeError('Unsupported CHAPCHITRA sketch variant/tone');
   const tag=href===null?'button':'a';
-  const linkAttr=href===null?' type="button"':' href="'+escapeHTML(href)+'"';
+  const linkAttr=href===null?' type="'+(type==='submit'?'submit':'button')+'"':' href="'+escapeHTML(href)+'"';
   // attrs are supplied by trusted application callsites only, never entered by users.
   const classes=['cc-sketch','cc-sketch--'+variant,'cc-sketch--'+tone,className].filter(Boolean).join(' ');
   const text=escapeHTML(label??'');
