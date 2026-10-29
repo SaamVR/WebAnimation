@@ -14,7 +14,7 @@ test('eleven homepage units and functional UX controller contracts',async()=>{
  for(const f of ['hero()','benefits()','categoriesSection()','collection()','banners()','featured()','values()','story()'])assert.ok(home.includes(f),f);
  assert.match(app,/app\.innerHTML=announcement\(\)\+header\(\)/);
  assert.match(app,/mainPage\(\)\+'<\/main>'\+footer\(\)/);
- for(const label of ['Free delivery over ৳2000','Artist-Inspired Drop','Color, by hand','Your idea, printed','From the Journal'])assert.ok(app.includes(label),label);
+ for(const label of ['Free delivery on orders over ৳2000','Artist-Inspired Drop','Color, by hand','Your idea, printed','From the Journal'])assert.ok(app.includes(label),label);
  assert.match(app,/setInterval\(\(\)=>changeHero\(\(active\+1\)%slides.length,false\),4000\)/);
  assert.match(app,/aria-pressed/);
  assert.match(app,/mouseenter/);
@@ -79,4 +79,51 @@ test('surgical refinements keep approved header, category/collection and C01-C04
  assert.match(app,/function categoriesSection\(\)/);
  assert.match(app,/function collection\(\)/);
  assert.doesNotMatch(app,/import.*threads|from.*EcomCMS/i);
+});
+
+
+test('authoritative Forest + Olive reference tokens are exact, not genericized',async()=>{
+ const css=await read('src/styles.css');
+ const values={
+  '--deep':'#1C241D','--press':'#293D2D','--olive':'#1F2216',
+  '--walnut':'#6E523F','--ink':'#232323','--bg':'#F6F7F5',
+  '--grey':'#D9DCD7','--mist':'#E9EDEB','--beige':'#D8CEC2',
+  '--cream':'#E4E3DE','--mush':'#A6A29B','--acc':'#8A503B',
+  '--mut':'#5F625E'
+ };
+ for(const [token,hex] of Object.entries(values)){
+  assert.ok(css.includes(token+':'+hex),token+' must equal '+hex);
+ }
+});
+test('exact homepage section and individual card background mapping is maintained',async()=>{
+ const css=await read('src/styles.css');
+ const app=await read('src/app.mjs');
+ const required=[
+  '.announcement','background:var(--deep)',
+  '.site-header','background:var(--bg)',
+  '.hero-carousel','background:var(--bg)',
+  '.benefit-section','background:var(--mist)',
+  '.category-card:nth-child(1) .category-image{background:var(--cream)}',
+  '.category-card:nth-child(2) .category-image{background:var(--press)',
+  '.category-card:nth-child(3) .category-image{background:var(--acc)',
+  '#collection:before','background:var(--mist);z-index:-1',
+  '#collection .product-visual','background:#fff',
+  '.tie-banner{background:var(--beige)}',
+  '.edit-banner{background:var(--cream)}',
+  'banner-art-tie','banner-art-edit',
+  '.featured-zone{background:var(--deep)',
+  '.feature-frame:nth-child(even) .art-plate{background:var(--cream)}',
+  '.feature-frame:nth-child(odd) .art-plate{background:var(--mist)}',
+  '#values .value-card:nth-child(odd) .value-art{background:var(--mist)}',
+  '#values .value-card:nth-child(even) .value-art{background:var(--cream)}',
+  '.story-section','background:var(--cream)',
+  '.street-link:after','var(--olive)',
+  '.site-footer','background:var(--olive)'
+ ];
+ for(const needle of required){
+  assert.ok(css.includes(needle)||app.includes(needle),'Missing reference styling: '+needle);
+ }
+ assert.match(app,/FEATURE_INTERVAL_MS=8200/);
+ assert.match(app,/false\),4000\)/);
+ assert.match(app,/const bellRendered=false/);
 });

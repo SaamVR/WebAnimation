@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600&display=swap');
 /* CHAPCHITRA V3 editorial structural system — PROVISIONAL branding. */
 :root{--graphite:#232323;--midnight-pine:#243b32;--press-olive:#60796a;--clay:#b6795e;--paper:#f8f7f3;--cream:#efeee8;--fog:#e5e8df;--line:#d0d3ca;--muted:#626a64;--serif:Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 *,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--graphite);font:14px/1.65 var(--sans);-webkit-font-smoothing:antialiased}img,svg{max-width:100%}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}:focus-visible{outline:3px solid var(--clay);outline-offset:3px}[hidden]{display:none!important}.wrap{width:min(1200px,calc(100% - 76px));margin-inline:auto}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:absolute;top:-80px;left:12px;padding:10px;background:#fff;z-index:999}.skip-link:focus{top:8px}
@@ -200,3 +201,388 @@
 
 /* Tablet banners remain modestly wider than the standard .wrap container. */
 @media (min-width:601px) and (max-width:1080px){.editorial-banners{width:calc(100% - 30px)}}
+
+
+/* CHAPCHITRA v2 uploaded HTML — authoritative forest + olive palette.
+   This layer adjusts surfaces and layout ONLY, retaining all original app behavior.
+   CSS aliases keep supporting routes on the same coherent palette. */
+:root{
+ --deep:#1C241D;
+ --press:#293D2D;
+ --olive:#1F2216;
+ --walnut:#6E523F;
+ --ink:#232323;
+ --bg:#F6F7F5;
+ --grey:#D9DCD7;
+ --mist:#E9EDEB;
+ --beige:#D8CEC2;
+ --cream:#E4E3DE;
+ --mush:#A6A29B;
+ --acc:#8A503B;
+ --mut:#5F625E;
+ --graphite:var(--ink);
+ --midnight-pine:var(--deep);
+ --press-olive:var(--press);
+ --clay:var(--acc);
+ --paper:var(--bg);
+ --fog:var(--mist);
+ --line:var(--grey);
+ --muted:var(--mut);
+ --serif:"Noto Serif Bengali",Georgia,"Times New Roman",serif;
+ --sans:"Hind Siliguri",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html{scroll-padding-top:90px}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans)}
+h1,h2,h3,.logo-word{font-family:var(--serif)}
+.wrap{width:min(1160px,calc(100% - 40px))}
+.button.dark,.search-inline button{background:var(--press);color:#fff}
+.button{border-radius:4px;font-weight:500}
+.text-link{color:var(--acc)}
+/* 01. Deep Forest announcement with reference typography. */
+.announcement{
+ background:var(--deep);color:#fff;
+ font-size:12px;letter-spacing:0;min-height:34px;padding:7px 12px;
+}
+/* 02. Approved navigation architecture; only surface tokens change. */
+.site-header{
+ background:var(--bg);border-color:var(--grey);
+ backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+.nav-dropdown,.mobile-nav{background:var(--bg);border-color:var(--grey)}
+.nav-icon:hover{background:var(--mist)}
+.bag-count{background:var(--press)}
+/* 03. Original 5-slide hero, reference colors per slide. */
+.hero-carousel{background:var(--bg)}
+.hero-track{height:540px}
+.hero-slide{background:var(--bg)}
+.hero-cover{background:var(--deep)}
+.hero-background{opacity:.22;filter:saturate(.3)}
+.hero-shade{background:var(--deep);opacity:.68}
+.hero-cover-inner{align-items:center;text-align:center}
+.hero-cover-inner>p:not(.eyebrow),.hero-cover-inner>.button{align-self:center}
+.hero-display-word{
+ font:600 clamp(38px,8.2vw,112px)/1.02 var(--serif);
+ letter-spacing:.085em;text-align:center;max-width:100%;
+}
+.hero-translate{font-family:"Noto Serif Bengali",var(--serif)}
+.hero-cover h1{font-size:clamp(25px,3.2vw,37px)}
+.hero-cover .eyebrow{color:#e2e7df}
+.hero-split-inner{min-height:100%}
+.hero-slide-copy h2{font-weight:500;font-size:clamp(34px,4.2vw,56px);line-height:1.2;letter-spacing:-.025em}
+.hero-slide-copy .eyebrow{color:var(--acc)}
+.hero-visual{background:var(--mist)}
+.hero-visual-1{background:var(--acc)}
+.hero-visual-2{background:var(--press)}
+.hero-visual-3{background:var(--walnut)}
+.hero-visual-4{background:var(--mist)}
+.hero-visual:before{border-color:#ffffff22}
+.hero-placeholder{color:inherit;opacity:.7}
+.hero-visual-1,.hero-visual-2,.hero-visual-3{color:#fff}
+.hero-dot{
+ width:16px;height:16px;
+ position:relative;display:block;
+ border:1.5px solid currentColor;border-radius:50%;
+ background:none;color:var(--deep);opacity:.48;
+ transition:opacity .2s;cursor:pointer;
+}
+.hero-dot:before,.hero-dot:after{
+ content:"";position:absolute;background:currentColor;
+ border-radius:0;width:1.5px;height:auto;
+}
+.hero-dot:before{top:-5px;bottom:-5px;left:calc(50% - .75px)}
+.hero-dot:after{left:-5px;right:-5px;top:calc(50% - .75px);width:auto;height:1.5px}
+.hero-dot.active{opacity:1;background:transparent}
+.hero-dot.active:before{width:1.5px;border-radius:0;background:currentColor}
+#hero:has(.hero-cover:not([hidden])) .hero-dot{color:#fff}
+.hero-controls{bottom:24px;gap:16px}
+.hero-dots{gap:14px}
+.hero-count{border-radius:3px;background:rgba(246,247,245,.82)}
+/* 04. Light mist-gray service strip, green outlined circles. */
+.benefit-section{
+ background:var(--mist);border-top:1px solid var(--grey);
+ border-bottom:none;
+}
+.benefit-grid{padding-block:22px;gap:20px}
+.benefit{border:0;padding-inline:0;gap:12px}
+.benefit svg{
+ width:44px;height:44px;flex:0 0 44px;
+ border:1.5px solid var(--press);border-radius:50%;
+ padding:10px;color:var(--press);
+}
+.benefit strong{font-size:14px}
+.benefit span{font-size:11px;color:var(--mut);margin-top:1px}
+#categories,#collection,#banners,#featured,#values{padding-block:64px}
+.section-title h2{font-size:clamp(26px,4vw,38px);letter-spacing:-.02em;font-weight:500}
+.section-title{margin-bottom:28px}
+/* 05. Gallery white section with three DISTINCT category artwork surfaces. */
+#categories{background:var(--bg)}
+.category-grid{gap:20px}
+.category-image{
+ height:auto;aspect-ratio:4/4.5;
+ border-radius:6px;
+ overflow:hidden;
+ background:var(--cream);
+}
+.category-card:nth-child(1) .category-image{background:var(--cream)}
+.category-card:nth-child(2) .category-image{background:var(--press);color:white}
+.category-card:nth-child(3) .category-image{background:var(--acc);color:white}
+.category-image>.shirt-svg{width:72%;max-height:85%;filter:drop-shadow(5px 8px 5px #00000014)}
+.category-card:nth-child(2) .shirt-svg,.category-card:nth-child(3) .shirt-svg{
+ filter:drop-shadow(5px 9px 5px #00000033);
+}
+.category-copy h3{font:500 22px/1.3 var(--serif)}
+.category-copy p{color:var(--mut);font-size:13px}
+.filter-chips a{
+ border:1px solid var(--grey);border-radius:999px;
+ padding:4px 14px;background:none;font-size:13px;
+}
+.filter-chips a:first-child,.filter-chips a:hover{
+ color:white;background:var(--press);border-color:var(--press);
+}
+/* 06. FULL-BLEED mist section, WITHOUT tinting product-image cards. */
+#collection{
+ position:relative;isolation:isolate;
+ background:var(--mist);
+}
+#collection:before{
+ content:"";position:absolute;inset:0 auto 0 50%;
+ transform:translateX(-50%);width:100vw;
+ background:var(--mist);z-index:-1;pointer-events:none;
+}
+#collection .product-visual{
+ aspect-ratio:4/5;height:auto;min-height:0;
+ background:#fff;border-radius:5px;
+ box-shadow:none;
+}
+#collection .product-card:nth-child(even) .product-visual{background:#fff}
+#collection .product-meta{background:none}
+.product-card .favorite-toggle{
+ background:var(--bg);border-color:var(--grey);
+}
+#collection .product-meta{padding-top:9px}
+#collection .product-price b{color:var(--ink);font-weight:500}
+.pager button{
+ background:#fff;border:1px solid var(--grey);
+ border-radius:4px;min-width:38px;height:38px;
+}
+.pager button.page-current,.pager button:hover{
+ background:var(--deep);color:white;border-color:var(--deep);
+}
+#collection .section-actions{margin-top:16px}
+/* 07. Gallery-white section: beige vs cream banners and CONTRASTING insets. */
+.editorial-banners{
+ width:min(1230px,calc(100% - 32px));
+ max-width:none;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:20px;
+ background:var(--bg);
+}
+.editorial-banner{
+ display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+ gap:20px;align-items:center;
+ min-height:290px;
+ padding:20px 20px 20px 32px;
+ border-radius:8px;border:1px solid #0000001a;
+ box-shadow:none;
+}
+.tie-banner{background:var(--beige)}
+.edit-banner{background:var(--cream)}
+.banner-editorial-copy{min-width:0}
+.banner-editorial-copy h2{
+ font:500 clamp(26px,2.4vw,32px)/1.23 var(--serif);
+ letter-spacing:-.02em;margin:8px 0 10px;
+}
+.banner-editorial-copy .eyebrow{font-size:13px;color:var(--walnut);letter-spacing:0}
+.banner-editorial-copy p:not(.eyebrow){font-size:13px;color:var(--mut);margin:0 0 15px}
+.banner-editorial-copy .text-link{
+ font-size:12px;border:1px solid var(--press);border-radius:4px;
+ background:var(--press);color:#fff;padding:10px 12px;
+ margin-top:0;text-align:center;
+}
+.banner-art-panel{
+ background:var(--acc);color:white;display:flex;
+ flex-direction:column;align-items:center;justify-content:center;
+ gap:14px;min-width:0;width:100%;height:100%;min-height:220px;
+ border-radius:6px;
+}
+.banner-art-edit{background:var(--walnut)}
+.banner-icon-ring{
+ width:min(53%,110px);aspect-ratio:1;
+ display:grid;place-items:center;
+ border:1.5px solid currentColor;border-radius:50%;
+}
+.banner-icon-ring svg{width:56%;height:56%}
+.banner-art-panel small{font:12px var(--sans);color:#fff;opacity:.8;text-align:center}
+.banner-signature{display:none}
+/* 08. Forest gallery with individual PALE (gray/cream) framed prints. */
+.featured-zone{background:var(--deep);color:white;text-align:center}
+.featured-zone .section-title{display:block;text-align:center;margin-bottom:30px}
+.featured-zone .section-title p:last-child{max-width:none;color:#fff;opacity:.73;margin-top:8px}
+.featured-zone .eyebrow{color:#d5ddd3}
+.featured-stage{margin:18px auto 0}
+.feature-frame{
+ background:var(--bg);border:0;border-radius:3px;
+ box-shadow:0 8px 15px #0a100c45;
+}
+.feature-frame[data-slot="center"]{box-shadow:0 15px 34px #0a100c5e,0 0 0 1px #ffffff25}
+.feature-frame .art-plate{
+ background:var(--mist);
+ border:7px solid var(--bg);
+ border-radius:2px;box-shadow:none;
+}
+.feature-frame:nth-child(even) .art-plate{background:var(--cream)}
+.feature-frame:nth-child(odd) .art-plate{background:var(--mist)}
+.feature-frame .art-plate:before{display:none}
+.feature-select{background:var(--mist)}
+.feature-frame:nth-child(even) .feature-select{background:var(--cream)}
+.feature-product-info{
+ background:var(--bg);color:var(--ink);
+ border-top:1px solid var(--grey);
+}
+.feature-product-kicker{color:var(--walnut)}
+.feature-product-info p,.feature-product-bottom strong small{color:var(--mut)}
+.feature-product-bottom strong{color:var(--ink)}
+.feature-detail-link{color:var(--press);border-bottom-color:var(--press)}
+.feature-detail-link:hover{color:var(--acc)}
+.featured-controls button{background:transparent;border-color:#fff;color:#fff}
+.featured-controls button:hover{background:var(--bg);color:var(--deep)}
+/* 09. White background, alternating light-gray and cream illustration cards. */
+#values{background:var(--bg)}
+#values>.section-title{justify-content:center;text-align:center;align-items:center}
+#values .value-art{height:auto;aspect-ratio:1;border:0;border-radius:6px}
+#values .value-card:nth-child(odd) .value-art{background:var(--mist)}
+#values .value-card:nth-child(even) .value-art{background:var(--cream)}
+#values .value-print-motif{border-color:var(--press)}
+#values .value-card h3{font-size:20px;font-weight:500}
+#values .value-card p{font-size:14px;color:var(--mut)}
+/* 10. Centered, compact warm-cream story and seamless olive footer fade. */
+.story-section{
+ background:var(--cream);
+ padding-top:46px;
+ padding-bottom:0;
+ text-align:center;
+}
+.story-top{
+ display:flex;flex-direction:column;
+ align-items:center;justify-content:center;
+ gap:10px;text-align:center;
+ padding-bottom:36px;
+}
+.story-top h2{
+ font:500 clamp(35px,4.5vw,56px)/1.2 var(--serif);
+ letter-spacing:-.025em;margin:6px 0 0;
+}
+.story-top h2 em{font-style:normal}
+.story-summary{max-width:560px}
+.story-summary p{font-size:14px;line-height:1.65;color:var(--mut);margin:0 auto 18px}
+.story-summary .button{background:var(--acc);border-color:var(--acc)}
+.street-link{
+ position:relative;
+ display:block;margin-top:0;
+ background:var(--cream);
+ overflow:hidden;
+}
+.street-link img{
+ display:block;width:100%;
+ height:clamp(260px,36vw,500px);
+ object-fit:cover;
+ object-position:center bottom;
+}
+.street-link:after{
+ content:"";position:absolute;bottom:0;left:0;right:0;
+ height:38%;pointer-events:none;
+ background:linear-gradient(transparent,var(--olive));
+}
+.street-note{z-index:2;background:var(--ink);color:white;border-radius:3px}
+/* 11. Dark Olive footer and mushroom-gray supporting accents. */
+.site-footer{
+ background:var(--olive);color:#fff;
+ padding:30px 0 28px;
+}
+.footer-identity .logo-word{color:#fff}
+.footer-column h2,.footer-newsletter h2{color:var(--mush)}
+.footer-column a{color:#efeee9}
+.footer-identity small,.footer-newsletter p{color:#d7d6d0}
+.footer-newsletter .newsletter-row button{background:var(--acc);color:#fff}
+.footer-newsletter .newsletter-row input{background:#fff;color:var(--ink);border-radius:4px 0 0 4px}
+.newsletter-row button{border-radius:0 4px 4px 0}
+/* Responsive layout rhythms follow uploaded HTML. */
+@media(max-width:1080px){
+ .wrap{width:calc(100% - 40px)}
+ .editorial-banners{width:calc(100% - 28px)}
+ .category-image{height:auto;aspect-ratio:4/4.5}
+ #collection .product-visual{height:auto;aspect-ratio:4/5}
+}
+@media(max-width:900px){
+ .hero-track{height:600px}
+ .hero-slide{min-height:600px}
+ .hero-split-inner{min-height:600px}
+ .benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .editorial-banner{grid-template-columns:1fr;gap:16px;padding:22px;min-height:0}
+ .banner-art-panel{height:210px;min-height:210px}
+ .banner-editorial-copy h2{font-size:30px}
+ #categories,#collection,#banners,#featured,#values{padding-block:54px}
+}
+@media(max-width:600px){
+ .wrap{width:calc(100% - 32px)}
+ .hero-track{height:auto;min-height:600px}
+ .hero-slide,.hero-cover-inner,.hero-split-inner{min-height:600px}
+ .hero-slide-copy{min-height:290px}
+ .hero-visual{min-height:310px}
+ .hero-display-word{font-size:clamp(31px,9.3vw,52px);letter-spacing:.045em}
+ .hero-controls{bottom:15px}
+ .hero-dots{gap:11px}
+ .benefit-grid{row-gap:14px}
+ .benefit svg{width:38px;height:38px;flex-basis:38px;padding:8px}
+ .benefit strong{font-size:12px}
+ .benefit span{font-size:10px}
+ #categories,#collection,#banners,#featured,#values{padding-block:44px}
+ .category-image{height:auto;aspect-ratio:16/10}
+ .category-image>.shirt-svg{max-height:89%;width:46%}
+ .category-copy h3{font-size:22px}
+ .filter-chips a{font-size:12px}
+ #collection .product-visual{height:auto;aspect-ratio:4/5}
+ .editorial-banners{width:calc(100% - 24px);grid-template-columns:1fr;gap:13px}
+ .editorial-banner{grid-template-columns:1fr;min-height:0;padding:22px}
+ .banner-art-panel{height:210px;min-height:210px}
+ .featured-stage{height:405px}
+ .feature-frame .art-plate{border-width:5px}
+ #values .value-card h3{font-size:18px}
+ #values .value-card p{font-size:12px}
+ .story-section{padding-top:42px}
+ .story-top{padding-bottom:26px}
+ .story-top h2{font-size:clamp(31px,8vw,43px)}
+ .story-summary p{font-size:13px}
+ .street-link img{height:clamp(260px,70vw,390px)}
+ .site-footer{padding-top:28px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-dot,.feature-frame{transition:none!important}
+}
+
+
+/* Geometry pass: keep the uploaded 540px hero / 64px header rhythm and
+   bring existing richer card captions closer to the reference's vertical cadence. */
+.header-line{min-height:64px}
+.benefit-grid{padding-block:17px}
+#featured{padding-block:51px}
+#featured .featured-stage{height:440px}
+#featured .feature-frame{height:400px}
+#values{padding-block:56px}
+.story-top{padding-bottom:27px}
+.story-summary p{line-height:1.55;margin-bottom:14px}
+.site-footer{padding:24px 0 22px}
+.footer-bottom{margin-top:25px;padding-top:14px}
+#collection .product-grid{row-gap:20px}
+@media(max-width:900px){
+ .header-line{min-height:64px}
+ #featured .featured-stage{height:425px}
+ #featured .feature-frame{height:387px}
+}
+@media(max-width:600px){
+ #featured{padding-block:44px}
+ #featured .featured-stage{height:405px}
+ #featured .feature-frame{height:368px}
+ #values{padding-block:44px}
+ .story-top{padding-bottom:24px}
+}
