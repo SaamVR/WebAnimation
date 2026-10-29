@@ -127,3 +127,39 @@ test('exact homepage section and individual card background mapping is maintaine
  assert.match(app,/false\),4000\)/);
  assert.match(app,/const bellRendered=false/);
 });
+
+
+test('product hover and Add to Cart use one shared card component and retain motion boundaries',async()=>{
+ const app=await read('src/app.mjs'),css=await read('src/styles.css');
+ assert.match(app,/function productCard\(item\)/);
+ assert.match(app,/class="product-add-button"/);
+ assert.match(app,/data-add-to-bag/);
+ assert.match(app,/related\.map\(productCard\)/);
+ assert.match(app,/visible\.map\(productCard\)/);
+ assert.match(app,/block\.map\(productCard\)/);
+ assert.match(css,/\.product-card:hover\{/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
+ assert.match(css,/300ms cubic-bezier/);
+ assert.match(css,/@media\(hover:none\),\(pointer:coarse\)/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.match(css,/\.product-add-button:focus-visible/);
+ assert.match(css,/\.product-add-button:active/);
+ assert.match(css,/\.detail-add-button/);
+ assert.match(css,/\.related-studies/);
+ assert.doesNotMatch(app,/gsap\.|ScrollTrigger|ink-stamp|C04\s*implementation/i);
+});
+test('session-only demo bag is not a real order flow',async()=>{
+ const app=await read('src/app.mjs');
+ assert.match(app,/sessionStorage\.setItem\(demoBagKey/);
+ assert.match(app,/function demoBagCount\(/);
+ assert.match(app,/function setDemoBagQty\(/);
+ assert.match(app,/function renderDemoBag\(/);
+ assert.match(app,/data-bag-adjust/);
+ assert.match(app,/data-bag-remove/);
+ assert.match(app,/function bag\(\)/);
+ assert.match(app,/case 'bag':return bag\(\)/);
+ assert.match(app,/Demo cart only\. No stock, prices, checkout, payment or orders are available/);
+ assert.match(app,/No checkout, payment or order submission is enabled/);
+ assert.match(app,/case 'checkout':return emptyRoute/);
+ assert.doesNotMatch(app,/localStorage\.setItem\(demoBagKey/);
+});
