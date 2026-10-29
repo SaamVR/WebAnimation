@@ -1,0 +1,209 @@
+/* CHAPCHITRA — clean pill button system
+   Exact semicircular caps at ANY responsive width. No decorative SVG paths,
+   strokes, exterior outlines, highlights, textures, borders or blurred shadows.
+   Face and shadow are IDENTICAL capsules with a 7px right/down offset. */
+.cc-sketch{
+  --cc-paint:var(--press,#293D2D);
+  --cc-ink:var(--ink,#232323);
+  --cc-label:#fff;
+  --cc-offset:7px;
+  --cc-half-offset:3.5px;
+  position:relative;
+  isolation:isolate;
+  display:inline-grid;
+  place-items:center;
+  flex:none;
+  box-sizing:border-box;
+  min-width:0;
+  width:fit-content;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent!important;
+  color:var(--cc-label)!important;
+  box-shadow:none!important;
+  font:600 11px/1.22 var(--sans,system-ui,sans-serif);
+  letter-spacing:.075em;
+  text-align:center;
+  text-decoration:none!important;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform 130ms ease;
+}
+.cc-sketch--forest{--cc-paint:var(--press,#293D2D);--cc-label:#fff}
+.cc-sketch--terracotta{--cc-paint:var(--acc,#8A503B);--cc-label:#fff}
+.cc-sketch--beige{--cc-paint:var(--beige,#D8CEC2);--cc-label:var(--ink,#232323)}
+.cc-sketch--compact{
+  min-width:164px;width:max-content;max-width:100%;
+  height:64px;min-height:64px;padding-inline:20px;
+}
+.cc-sketch--long{
+  width:100%;height:54px;min-height:54px;
+  font-size:11px;letter-spacing:.095em;
+}
+/* The art has no pointer handlers: events always reach the real button/link. */
+.cc-pill-art{
+  position:absolute;inset:0;z-index:0;
+  display:block;pointer-events:none;
+}
+/* Precisely matching width and height — only translated by the 7px offset. */
+.cc-pill-shadow{
+  position:absolute;
+  inset:var(--cc-offset) 0 0 var(--cc-offset);
+  display:block;
+  border:0;border-radius:9999px;
+  background:#242424;
+  box-shadow:none;
+}
+.cc-pill-face{
+  position:absolute;
+  inset:0 var(--cc-offset) var(--cc-offset) 0;
+  display:block;
+  overflow:hidden;
+  border:0;border-radius:9999px;
+  background:var(--cc-paint);
+  box-shadow:none;
+}
+.cc-pill-wipe{
+  position:absolute;inset:0;
+  display:block;
+  border:0;border-radius:inherit;
+  background:var(--cc-ink);
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 300ms cubic-bezier(.45,0,.55,1);
+}
+/* Text plane centered over the colored face, not the offset shadow.
+   The two text layers occupy identical geometry for contrast during the wipe. */
+.cc-sketch .cc-sketch-copy,
+.cc-sketch--compact .cc-sketch-copy,
+.cc-sketch--long .cc-sketch-copy,
+.cc-sketch--inline .cc-sketch-copy{
+  position:absolute;z-index:1;
+  left:calc(50% - var(--cc-half-offset));
+  top:calc(50% - var(--cc-half-offset));
+  transform:translate(-50%,-50%);
+  display:grid;grid-template-columns:minmax(0,1fr);
+  place-items:center;
+  width:calc(100% - 28px);
+  max-width:calc(100% - 28px);
+  min-width:0;
+  padding:0;margin:0;
+  color:var(--cc-label);
+  font:inherit;line-height:1.22;
+  text-align:center;
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:normal;
+  pointer-events:none;
+}
+.cc-sketch .cc-sketch-label,
+.cc-sketch .cc-sketch-label-ink{
+  grid-area:1/1;
+  justify-self:center;align-self:center;
+  display:block;
+  width:max-content;max-width:100%;
+  min-width:0;
+  color:var(--cc-label);
+  font:inherit;line-height:inherit;
+  text-align:center;
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:normal;
+  pointer-events:none;
+}
+.cc-sketch .cc-sketch-label-ink{
+  color:#fff;
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 300ms cubic-bezier(.45,0,.55,1);
+}
+/* Synchronized left-to-right dark fill with white text reveal on beige. */
+@media(hover:hover) and (pointer:fine){
+  .cc-sketch:hover:not(:disabled) .cc-pill-wipe,
+  .cc-sketch:hover:not(:disabled) .cc-sketch-label-ink{
+    clip-path:inset(0 0 0 0);
+  }
+}
+.cc-sketch.added .cc-pill-wipe,
+.cc-sketch.added .cc-sketch-label-ink,
+.cc-sketch[data-preview-state="hover"] .cc-pill-wipe,
+.cc-sketch[data-preview-state="hover"] .cc-sketch-label-ink,
+.cc-sketch[data-preview-state="pressed"] .cc-pill-wipe,
+.cc-sketch[data-preview-state="pressed"] .cc-sketch-label-ink{
+  clip-path:inset(0 0 0 0);
+}
+.cc-sketch:active,.cc-sketch[data-preview-state="pressed"]{
+  transform:translate(2px,2px);
+}
+.cc-sketch:focus-visible,.cc-sketch[data-preview-state="focus"]{
+  outline:3px solid var(--acc,#8A503B);
+  outline-offset:5px;
+}
+.cc-sketch[disabled],.cc-sketch[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.cc-sketch:disabled .cc-pill-wipe,
+.cc-sketch:disabled .cc-sketch-label-ink{transition:none}
+/* Existing product structure and cart event handlers retained. */
+.product-card .cc-sketch--long{margin-top:11px}
+.detail-layout .cc-sketch--long{max-width:300px;margin:18px 0 14px}
+.story-summary .cc-sketch--compact{margin-top:6px}
+.hero-cover-inner>.cc-sketch{align-self:center}
+.hero-slide-copy .cc-sketch{margin-top:10px}
+.demo-bag-summary .cc-sketch{margin-top:6px}
+.empty-panel .cc-sketch{margin-top:12px}
+/* Override retired rectangular ADD control without changing markup or JS. */
+.cc-sketch.product-add-button,
+.cc-sketch.product-add-button:hover,
+.cc-sketch.product-add-button:active,
+.cc-sketch.product-add-button.added{
+  position:relative;
+  display:inline-grid;place-items:center;
+  isolation:isolate;
+  overflow:visible;
+  width:100%;height:54px;min-height:54px;
+  padding:0;
+  border:0;border-radius:0;
+  background:transparent!important;
+  color:var(--cc-label)!important;
+  text-align:center;box-shadow:none!important;
+  transition:transform 130ms ease;
+}
+.cc-sketch.product-add-button::before{content:none!important}
+.cc-sketch.detail-add-button{max-width:300px}
+/* Smaller compact CTAs alongside form inputs preserve row height/width. */
+.cc-sketch.cc-sketch--inline,
+.search-inline .cc-sketch,
+.newsletter-row .cc-sketch,
+.shop-controls .cc-sketch{
+  box-sizing:border-box;
+  min-width:98px;width:112px;max-width:100%;
+  height:47px;min-height:47px;
+  padding:0;margin:0;border:0;border-radius:0;
+  background:transparent!important;
+  font-size:10px;letter-spacing:.025em;
+  flex-shrink:0;
+}
+.search-inline .cc-sketch,
+.newsletter-row .cc-sketch{margin-left:5px}
+.shop-controls .cc-sketch{align-self:end}
+@media(max-width:600px){
+  .cc-sketch--compact{min-width:145px;height:58px;min-height:58px;padding-inline:15px;font-size:10px}
+  .cc-sketch--long{height:51px;min-height:51px;font-size:10px;letter-spacing:.055em}
+  .cc-sketch.product-add-button{height:51px;min-height:51px;padding:0}
+  .cc-sketch.cc-sketch--inline,
+  .search-inline .cc-sketch,
+  .newsletter-row .cc-sketch,
+  .shop-controls .cc-sketch{
+    min-width:80px;width:92px;height:44px;min-height:44px;font-size:9px;
+  }
+  .cc-sketch--long .cc-sketch-copy{width:calc(100% - 24px);max-width:calc(100% - 24px)}
+  .cc-sketch--inline .cc-sketch-copy{width:calc(100% - 18px);max-width:calc(100% - 18px)}
+}
+@media(hover:none),(pointer:coarse){
+  .cc-sketch:active{transform:translate(2px,2px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .cc-sketch,.cc-pill-wipe,.cc-sketch .cc-sketch-label-ink{
+    transition:none!important;
+  }
+  .cc-sketch:active{transform:none}
+}

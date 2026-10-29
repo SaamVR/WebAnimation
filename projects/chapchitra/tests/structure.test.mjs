@@ -132,7 +132,7 @@ test('exact homepage section and individual card background mapping is maintaine
 test('product hover and Add to Cart use one shared card component and retain motion boundaries',async()=>{
  const app=await read('src/app.mjs'),css=await read('src/styles.css');
  assert.match(app,/function productCard\(item\)/);
- assert.match(app,/class="product-add-button"/);
+ assert.match(app,/className:'product-add-button'/);
  assert.match(app,/data-add-to-bag/);
  assert.match(app,/related\.map\(productCard\)/);
  assert.match(app,/visible\.map\(productCard\)/);
@@ -187,4 +187,90 @@ test('Add to Cart has progressive left-to-right charcoal overlay and accessible 
  assert.match(css,/\.product-add-button > \.product-add-label/);
  assert.match(css,/\.product-add-button > \.product-add-arrow/);
  assert.match(css,/@media\(hover:none\),\(pointer:coarse\)/);
+});
+
+
+test('clean pill variants and color combinations use two solid matching layers',async()=>{
+ const {sketchButton,sketchArt,sketchVariants,sketchTones}=await import('../src/handdrawn-buttons.mjs');
+ assert.deepEqual(sketchVariants,['compact','long']);
+ assert.deepEqual(sketchTones,['forest','terracotta','beige']);
+ assert.notEqual(sketchArt('compact'),sketchArt('long'));
+ for(const variant of sketchVariants)for(const tone of sketchTones){
+  const html=sketchButton({label:'ADD TO BAG',variant,tone,attrs:'data-add-to-bag="sample"'});
+  assert.match(html,/<button type="button"/);
+  assert.ok(html.includes('cc-sketch--'+variant));
+  assert.ok(html.includes('cc-sketch--'+tone));
+  assert.match(html,/cc-pill-art--/);
+  assert.match(html,/cc-pill-shadow/);
+  assert.match(html,/cc-pill-face/);
+  assert.match(html,/cc-pill-wipe/);
+  assert.match(html,/cc-sketch-label-ink/);
+  assert.doesNotMatch(html,/<svg|<path|<rect|cc-sketch-outline|cc-sketch-highlight|\.png|product-add-arrow|↗|→|✓/);
+ }
+ assert.match(sketchButton({label:'Shop Now',href:'/shop/'}),/<a href="\/shop\/"/);
+});
+test('true capsule geometry and directional fill preserve accessibility',async()=>{
+ const css=await read('src/button-system.css');
+ const app=await read('src/app.mjs');
+ const preview=await read('src/buttons/index.html');
+ const previewJS=await read('src/button-preview.mjs');
+ assert.match(css,/\.cc-pill-face\{/);
+ assert.match(css,/\.cc-pill-shadow\{/);
+ assert.match(css,/border:0;border-radius:9999px/);
+ assert.match(css,/inset:var\(--cc-offset\) 0 0 var\(--cc-offset\)/);
+ assert.match(css,/inset:0 var\(--cc-offset\) var\(--cc-offset\) 0/);
+ assert.match(css,/background:#242424/);
+ assert.match(css,/\.cc-pill-wipe\{/);
+ assert.match(css,/clip-path:inset\(0 100% 0 0\)/);
+ assert.match(css,/transition:clip-path 300ms cubic-bezier/);
+ assert.match(css,/\.cc-sketch\.added \.cc-pill-wipe/);
+ assert.match(css,/\.cc-sketch:focus-visible/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.match(css,/\.cc-sketch\.product-add-button::before\{content:none!important\}/);
+ assert.doesNotMatch(css,/cc-sketch-outline|cc-sketch-highlight|cc-sketch-art|cc-sketch-face-ink|filter:blur/);
+ assert.match(app,/sketchButton\(\{label:'ADD TO BAG',variant:'long'/);
+ assert.match(app,/const labels=add\.querySelectorAll\('\.cc-sketch-label,\.cc-sketch-label-ink'\)/);
+ assert.match(app,/labels\.forEach\(label=>label\.textContent='ADD TO BAG'\)/);
+ assert.match(preview,/id="reviewButtons"/);
+ assert.match(previewJS,/states=\['default','hover','pressed','focus'\]/);
+ assert.match(previewJS,/sketchButton\(/);
+ assert.doesNotMatch(app,/product-add-arrow|ADDED ✓|ADD TO CART/);
+});
+test('compact sketch actions retain native submit semantics and working filter selectors',async()=>{
+ const {sketchButton}=await import('../src/handdrawn-buttons.mjs');
+ const markup=sketchButton({label:'Search',variant:'compact',className:'cc-sketch--inline',type:'submit'});
+ assert.match(markup,/<button type="submit"/);
+ const app=await read('src/app.mjs');
+ assert.match(app,/label:'Search',variant:'compact',tone:'forest'/);
+ assert.match(app,/label:'Join',variant:'compact',tone:'terracotta'/);
+ assert.match(app,/label:'Clear Filters',variant:'compact',tone:'beige'/);
+ assert.match(app,/attrs:'id="clearFilters"'/);
+ assert.match(app,/addEventListener\('submit'/);
+ assert.match(app,/clearFilters/);
+ const css=await read('src/button-system.css');
+ assert.match(css,/\.search-inline \.cc-sketch/);
+ assert.match(css,/\.newsletter-row \.cc-sketch/);
+});
+
+
+test('integrated pill labels remain centered, single-line and inherit variant contrast',async()=>{
+ const storefront=await read('src/styles.css');
+ const buttons=await read('src/button-system.css');
+ assert.doesNotMatch(storefront,/\.product-meta span,\.product-meta small/);
+ assert.equal((storefront.match(/\.product-meta > span,\.product-meta > \.product-price > small/g)||[]).length,2);
+ assert.match(buttons,/\.cc-sketch \.cc-sketch-copy,[\s\S]*?position:absolute/);
+ assert.match(buttons,/left:calc\(50% - var\(--cc-half-offset\)\)/);
+ assert.match(buttons,/top:calc\(50% - var\(--cc-half-offset\)\)/);
+ assert.match(buttons,/transform:translate\(-50%,-50%\)/);
+ assert.match(buttons,/grid-template-columns:minmax\(0,1fr\)/);
+ assert.match(buttons,/white-space:nowrap/);
+ assert.match(buttons,/overflow-wrap:normal/);
+ assert.match(buttons,/\.cc-sketch \.cc-sketch-label-ink\{\s*color:#fff/);
+ assert.match(buttons,/\.cc-sketch--beige\{--cc-paint:var\(--beige/);
+ assert.match(buttons,/\.cc-sketch--terracotta\{--cc-paint:var\(--acc/);
+ assert.match(buttons,/clip-path:inset\(0 100% 0 0\)/);
+ const app=await read('src/app.mjs');
+ assert.match(app,/sketchButton\(\{label:'ADD TO BAG',variant:'long',tone:'forest'/);
+ assert.match(app,/const labels=add\.querySelectorAll/);
+ assert.doesNotMatch(app,/product-add-arrow/);
 });

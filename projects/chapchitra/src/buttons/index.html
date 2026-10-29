@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="description" content="CHAPCHITRA hand-drawn button design system review">
+<title>Clean Pill Buttons · CHAPCHITRA Review</title>
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/button-system.css">
+<style>
+body{margin:0;background:#F6F7F5;color:#232323;font:14px/1.6 system-ui,sans-serif}
+.review-wrap{width:min(1280px,calc(100% - 32px));margin:auto;padding:40px 0 85px}
+.review-title{font:normal clamp(32px,5vw,62px)/1.05 Georgia,serif;letter-spacing:-.045em;margin:10px 0 17px}
+.review-intro{max-width:800px;color:#5F625E;margin:0 0 28px}
+.review-back{font-weight:600;color:#293D2D;text-decoration:underline;text-underline-offset:4px}
+.review-notice{margin-block:20px;padding:13px 18px;border-left:3px solid #8A503B;background:#E9EDEB}
+.review-section{margin:34px 0}
+.review-section h2{font:normal 32px Georgia,serif;margin:0 0 7px}
+.review-section p{font-size:13px;color:#5F625E;margin:0 0 16px}
+.review-board{padding:22px;border:1px solid #D9DCD7;background:white;margin:13px 0 24px;border-radius:7px}
+.review-board h3{font:600 14px system-ui;margin:0 0 4px}
+.review-board .ref{font-size:12px;color:#5F625E;margin-bottom:22px}
+.review-columns{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.review-case{min-width:0;min-height:116px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px}
+.review-case .state{font-size:11px;font-weight:700;letter-spacing:.12em;color:#5F625E;text-transform:uppercase}
+.review-case .helper{font-size:10px;color:#5F625E;margin-top:2px}
+.review-case .cc-sketch--long{max-width:100%}
+.review-case .cc-sketch--compact{max-width:100%}
+.review-status{display:block;min-height:25px;color:#293D2D;font-weight:600}
+.review-device{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:#5F625E}
+.review-device span{background:#E9EDEB;padding:5px 11px;border-radius:20px}
+@media(max-width:750px){
+ .review-wrap{padding-top:24px}
+ .review-board{padding:16px 10px}
+ .review-columns{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}
+ .review-case{min-height:104px}
+ .review-case .cc-sketch--compact{min-width:0;width:100%;max-width:200px}
+ .review-case .cc-sketch--long{width:100%}
+}
+@media(max-width:390px){
+ .review-columns{gap:8px}
+ .review-case .cc-sketch--compact{font-size:9px}
+}
+</style>
+<script type="module" src="/button-preview.mjs"></script>
+</head>
+<body>
+<main class="review-wrap">
+<a class="review-back" href="/">CHAPCHITRA / Back to storefront</a>
+<p class="eyebrow" style="margin-top:28px">OWNER REVIEW / CLEAN PILL UPDATE</p>
+<h1 class="review-title">True Pill Button System</h1>
+<p class="review-intro">Two clean solid capsule silhouettes, three approved colors, a thick solid charcoal pill shadow shifted down and right, progressive dark fill, and native focus/press interactions. No decorative outlines, strokes, highlights, or textures. Click any example; these are interface controls, not flat images.</p>
+<div class="review-device"><span>Desktop</span><span>Tablet</span><span>Mobile</span><span>Keyboard Tab / Enter</span><span>Reduced motion</span></div>
+<div class="review-notice">The Hover, Pressed and Focus columns are pinned examples for visual inspection. Every button is also interactive. Keyboard focus, touch and hover still work on the Default column.</div>
+<div id="reviewButtons"></div>
+<p id="reviewStatus" class="review-status" role="status" aria-live="polite">Choose a button to test interaction.</p>
+<a class="review-back" href="/shop/">Review integrated Shop buttons</a>
+</main>
+</body></html>
