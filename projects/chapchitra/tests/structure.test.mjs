@@ -280,7 +280,9 @@ test('polaroid cards are one reusable paper-photo retail component in every list
  const app=await read('src/app.mjs');
  const css=await read('src/styles.css');
  assert.match(app,/function productCard\(item\)/);
- assert.match(app,/class="product-card polaroid-card"/);
+ assert.match(app,/class="product-card product-card-shell"/);
+ assert.match(app,/class="polaroid-card"/);
+ assert.match(app,/class="polaroid-card-action"/);
  assert.match(app,/class="polaroid-photo"/);
  assert.match(app,/class="polaroid-caption-head"/);
  assert.match(app,/class="product-meta polaroid-caption"/);
@@ -293,7 +295,7 @@ test('polaroid cards are one reusable paper-photo retail component in every list
  assert.match(app,/visible\.map\(productCard\)/);
  assert.match(app,/block\.map\(productCard\)/);
  assert.match(app,/sketchButton\(\{label:'ADD TO BAG',variant:'long'/);
- assert.match(css,/\.product-card\.polaroid-card\{/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
  assert.match(css,/background:#FBFAF6/);
  assert.match(css,/\.polaroid-card \.polaroid-photo/);
  assert.match(css,/\.polaroid-card \.polaroid-caption-head/);
@@ -309,7 +311,7 @@ test('polaroid card styles leave approved hover, Shop grid, pill and session car
  assert.match(css,/300ms cubic-bezier\(\.22,\.7,\.18,1\)/);
  assert.match(css,/\.product-grid\{display:grid;grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
  assert.match(css,/\.product-grid\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
- assert.match(css,/\.polaroid-card \.cc-sketch\.product-add-button/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card-action > \.cc-sketch\.product-add-button/);
  assert.match(css,/#collection \.product-card\.polaroid-card \.product-visual/);
  assert.match(app,/sessionStorage\.setItem\(demoBagKey/);
  assert.match(app,/updateFav\(id\)/);
@@ -326,4 +328,57 @@ test('photo tone wins over legacy homepage and even-card backgrounds on all list
  assert.match(css,/\.product-card\.polaroid-card\[data-photo-tone="2"\]\{--photo-tone:#D1D6C7/);
  assert.match(css,/\.product-card\.polaroid-card\[data-photo-tone="3"\]\{--photo-tone:var\(--mist\)/);
  assert.match(css,/\.product-card\.polaroid-card \.product-meta \.product-price\{\s*margin-top:7px;\s*padding-top:0/);
+});
+
+
+test('owner-approved Polaroid compactness and external stationary CTA have independent motion',async()=>{
+ const css=await read('src/styles.css');
+ const app=await read('src/app.mjs');
+ assert.match(app,/class="product-card product-card-shell"/);
+ assert.match(app,/class="polaroid-card"/);
+ assert.match(app,/class="polaroid-card-action"/);
+ const a=app.indexOf('function productCard(item)');
+ const b=app.indexOf('function pager(',a);
+ const card=app.slice(a,b);
+ assert.ok(card.indexOf("'</div>'+\\n   '<div class=\"polaroid-card-action\"")<0 || card.includes("polaroid-card-action"));
+ assert.ok(card.indexOf('polaroid-card-action')>card.indexOf('product-meta polaroid-caption'));
+ assert.ok(card.indexOf('polaroid-card-action')>card.indexOf('product-price'));
+ assert.match(css,/\.product-card\.product-card-shell\{/);
+ assert.match(css,/width:96%/);
+ assert.match(css,/\.product-card\.product-card-shell:hover\{/);
+ assert.match(css,/transform:none!important/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
+ assert.match(css,/border-radius:10px/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card:hover\{/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
+ assert.match(css,/\.product-card-shell:nth-child\(even\) > \.polaroid-card:hover\{/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card-action\{/);
+ assert.match(css,/margin:9px 0 0/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card-action > \.cc-sketch\.product-add-button\{/);
+ assert.match(css,/@media\(hover:none\),\(pointer:coarse\)/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.doesNotMatch(card,/<div class="polaroid-card-action">[^]*?<div class="polaroid-card"/);
+});
+test('hard-edged adaptive shadows have reusable light and dark surface tokens',async()=>{
+ const css=await read('src/button-system.css');
+ const gallery=await read('src/button-preview.mjs');
+ assert.match(css,/--cc-shadow-light-forest:var\(--walnut,#6E523F\)/);
+ assert.match(css,/--cc-shadow-light-terracotta:var\(--deep,#1C241D\)/);
+ assert.match(css,/--cc-shadow-light-beige:var\(--olive,#1F2216\)/);
+ assert.match(css,/--cc-shadow-dark:var\(--beige,#D8CEC2\)/);
+ assert.match(css,/--cc-shadow-dark-olive:var\(--grey,#D9DCD7\)/);
+ assert.match(css,/background:var\(--cc-shadow-color\)/);
+ assert.match(css,/\.hero-cover \.cc-sketch/);
+ assert.match(css,/\.site-footer \.cc-sketch/);
+ assert.match(css,/\.cc-shadow-context--olive \.cc-sketch/);
+ assert.match(css,/\.cc-shadow-context--gray \.cc-sketch--forest/);
+ assert.match(css,/\.editorial-banner \.cc-sketch--forest/);
+ assert.match(css,/\.custom-settings \.cc-sketch--forest/);
+ assert.match(css,/border:0;border-radius:9999px/);
+ assert.match(css,/clip-path:inset\(0 100% 0 0\)/);
+ assert.match(gallery,/cc-shadow-context--/);
+ assert.match(gallery,/surface-preview/);
+ assert.match(gallery,/'forest','Forest Green'/);
+ assert.match(gallery,/'olive','Dark Olive'/);
 });
