@@ -1,6 +1,6 @@
 # CHAPCHITRA V3 — Isolated Architecture
 
-Structural implementation of the owner-approved eleven-section homepage. Brand visual approval remains pending.
+Owner-specified Forest + Olive visual layout and 13-color palette integrated into the existing eleven-section architecture. **Final logo, imagery, real merchandise, prices, and C01–C04 motion remain pending.**
 
 ## Preservation
 Source repository: SaamVR/WebAnimation; independent app: projects/chapchitra. Vercel project chapchitra-motion-demo builds ONLY from this directory. THREADS release is untouched.
@@ -8,7 +8,7 @@ Source repository: SaamVR/WebAnimation; independent app: projects/chapchitra. Ve
 ## Homepage section order
 1. Announcement bar with specified shipping/early-access copy
 2. Sticky navigation with dropdown, search, favorites, account, bag and guest-hidden bell
-3. Five-slide hero: auto every six seconds, focus/hover pause, dots, mobile swipe, reduced-motion disabled auto
+3. Five-slide hero: auto every four seconds, focus/hover pause, dots, mobile swipe, reduced-motion disabled auto
 4. Delivery, Returns, Payment-method and Support informational benefits
 5. Shop by Category: Regular Tees, Drop Shoulder, Tie-Dye with All/Men/Women chips
 6. Our Collection: eight per page, eight functional pages, visual placeholders
@@ -28,4 +28,35 @@ Source repository: SaamVR/WebAnimation; independent app: projects/chapchitra. Ve
 npm run check; npm run build; npm run preview. Build performs structure and isolation tests. Conduct separate live-browser verification at desktop 1440px, tablet 820px and mobile 390px; inspect page links, accessibility, carousel timers, filters, pagers, reduced motion and JS console.
 
 ## Creative approval
-V3 structure approved, branding pending. C01, C02, C03, C04, rickshaw wheel and tea stall steam animations reserved. No automatic approval inferred.
+V3 structure, the uploaded HTML's 13 colors and layout rhythm are the current visual reference. Final identity artwork and commercial content remain pending. C01, C02, C03, C04, rickshaw wheel and tea stall steam animations are reserved and not implemented. No automatic approval inferred.
+
+## Forest + Olive visual source of truth — 2026-10-29
+
+Primary source: owner's uploaded HTML file, Chapchitra – Homepage v2 · Forest + Olive Final Palette.html.
+Its exact semantic CSS colors are implemented without globalizing all cards to green.
+
+| Color token | Hex |
+| --- | --- |
+| Deep Forest | #1C241D |
+| Press Green | #293D2D |
+| Dark Olive | #1F2216 |
+| Walnut | #6E523F |
+| Graphite Ink | #232323 |
+| Gallery White | #F6F7F5 |
+| Soft Gray | #D9DCD7 |
+| Mist Gray | #E9EDEB |
+| Warm Beige | #D8CEC2 |
+| Warm Cream | #E4E3DE |
+| Mushroom Gray | #A6A29B |
+| Dark Clay | #8A503B |
+| Muted Gray | #5F625E |
+
+Reference mapping: Forest announcement; White nav and hero base; Clay/Press/Walnut/Mist slide artwork surfaces; Mist benefits with Press outline icon rings; White categories with distinct Cream, Press and Clay panels; full-bleed Mist collection with pure-white product-image cards; Beige/Cream banners with Clay/Walnut inset art; Forest Featured Prints with alternating Mist/Cream framed art; White values with alternating Mist/Cream illustration cards; Cream story and street fade to Dark Olive footer.
+
+Typography: Hind Siliguri body and Noto Serif Bengali headline families with system fallbacks, as in the HTML. This demo retains its approved interactive copy and sample catalogue instead of treating the HTML prototype merchandise as real stock.
+
+Interaction: hero 4 seconds, five registration-mark dots, hover/focus pause, touch and reduced-motion; Featured Prints independent 8.2-second timer, perspective transforms with persistent card nodes, prev/next, keyboard and swipe; guest navigation bell hidden.
+
+Validation: ten Node source tests passed. Chromium 1440x900, 820x1180, and 390x844 measured all 20 requested section/card computed surfaces at their exact colors, no horizontal overflow or JS errors. Shop, Artist's Edit, Journal, product/favorites, and guest pages remained functional.
+
+Remaining known deviations: live product cards include more details, the moving Featured Prints have actionable item titles/prices/links, and the footer is more informative than the static HTML; desktop document height approximately 5567px versus 5351px of the uploaded HTML. Creative SVG placeholders remain until final artwork is supplied. Physical iPad Safari review remains pending.
