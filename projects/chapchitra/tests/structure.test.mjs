@@ -248,3 +248,25 @@ test('compact sketch actions retain native submit semantics and working filter s
  assert.match(css,/\.search-inline \.cc-sketch/);
  assert.match(css,/\.newsletter-row \.cc-sketch/);
 });
+
+
+test('integrated sketch labels remain semantically isolated from product metadata styles',async()=>{
+ const storefront=await read('src/styles.css');
+ const buttons=await read('src/button-system.css');
+ assert.doesNotMatch(storefront,/\.product-meta span,\.product-meta small/);
+ assert.equal((storefront.match(/\.product-meta > span,\.product-meta > \.product-price > small/g)||[]).length,2);
+ assert.match(buttons,/\.cc-sketch \.cc-sketch-copy,[\s\S]*?position:absolute/);
+ assert.match(buttons,/left:50%;top:50%/);
+ assert.match(buttons,/transform:translate\(-50%,-50%\) translateY\(-2px\)/);
+ assert.match(buttons,/grid-template-columns:minmax\(0,1fr\)/);
+ assert.match(buttons,/white-space:nowrap/);
+ assert.match(buttons,/overflow-wrap:normal/);
+ assert.match(buttons,/\.cc-sketch \.cc-sketch-label-ink\{color:#fff\}/);
+ assert.match(buttons,/\.cc-sketch--beige\{--cc-paint:var\(--beige/);
+ assert.match(buttons,/\.cc-sketch--terracotta\{--cc-paint:var\(--acc/);
+ assert.match(buttons,/clip-path:inset\(0 100% 0 0\)/);
+ const app=await read('src/app.mjs');
+ assert.match(app,/sketchButton\(\{label:'ADD TO BAG',variant:'long',tone:'forest'/);
+ assert.match(app,/const labels=add\.querySelectorAll/);
+ assert.doesNotMatch(app,/product-add-arrow/);
+});
