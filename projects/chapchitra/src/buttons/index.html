@@ -24,6 +24,17 @@ body{margin:0;background:#F6F7F5;color:#232323;font:14px/1.6 system-ui,sans-seri
 .review-case .cc-sketch--long{max-width:100%}
 .review-case .cc-sketch--compact{max-width:100%}
 .review-status{display:block;min-height:25px;color:#293D2D;font-weight:600}
+
+.surface-preview{background:var(--sample-surface);padding:25px 22px 35px}
+.surface-preview h3{color:#232323;font-size:13px;margin-bottom:19px}
+.surface-preview:is([data-surface="forest"],[data-surface="olive"]) h3{color:#F6F7F5}
+.surface-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;place-items:center}
+.surface-buttons .cc-sketch{max-width:100%}
+@media(max-width:720px){
+ .surface-preview{padding:17px 13px 24px}
+ .surface-buttons{grid-template-columns:1fr;gap:15px}
+}
+
 .review-device{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:#5F625E}
 .review-device span{background:#E9EDEB;padding:5px 11px;border-radius:20px}
 @media(max-width:750px){
@@ -46,7 +57,7 @@ body{margin:0;background:#F6F7F5;color:#232323;font:14px/1.6 system-ui,sans-seri
 <a class="review-back" href="/">CHAPCHITRA / Back to storefront</a>
 <p class="eyebrow" style="margin-top:28px">OWNER REVIEW / CLEAN PILL UPDATE</p>
 <h1 class="review-title">True Pill Button System</h1>
-<p class="review-intro">Two clean solid capsule silhouettes, three approved colors, a thick solid charcoal pill shadow shifted down and right, progressive dark fill, and native focus/press interactions. No decorative outlines, strokes, highlights, or textures. Click any example; these are interface controls, not flat images.</p>
+<p class="review-intro">Two clean solid capsule silhouettes, three approved colors, a solid contrast-aware pill shadow shifted down and right, progressive dark fill, and native focus/press interactions. Light surfaces use grounded dark shadows; the dark Forest/Olive surfaces use pale shadows. No decorative outlines, strokes, highlights, or textures. Click any example; these are interface controls, not flat images.</p>
 <div class="review-device"><span>Desktop</span><span>Tablet</span><span>Mobile</span><span>Keyboard Tab / Enter</span><span>Reduced motion</span></div>
 <div class="review-notice">The Hover, Pressed and Focus columns are pinned examples for visual inspection. Every button is also interactive. Keyboard focus, touch and hover still work on the Default column.</div>
 <div id="reviewButtons"></div>
