@@ -559,3 +559,30 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
 @media(prefers-reduced-motion:reduce){
  .hero-dot,.feature-frame{transition:none!important}
 }
+
+
+/* Geometry pass: keep the uploaded 540px hero / 64px header rhythm and
+   bring existing richer card captions closer to the reference's vertical cadence. */
+.header-line{min-height:64px}
+.benefit-grid{padding-block:17px}
+#featured{padding-block:51px}
+#featured .featured-stage{height:440px}
+#featured .feature-frame{height:400px}
+#values{padding-block:56px}
+.story-top{padding-bottom:27px}
+.story-summary p{line-height:1.55;margin-bottom:14px}
+.site-footer{padding:24px 0 22px}
+.footer-bottom{margin-top:25px;padding-top:14px}
+#collection .product-grid{row-gap:20px}
+@media(max-width:900px){
+ .header-line{min-height:64px}
+ #featured .featured-stage{height:425px}
+ #featured .feature-frame{height:387px}
+}
+@media(max-width:600px){
+ #featured{padding-block:44px}
+ #featured .featured-stage{height:405px}
+ #featured .feature-frame{height:368px}
+ #values{padding-block:44px}
+ .story-top{padding-bottom:24px}
+}
