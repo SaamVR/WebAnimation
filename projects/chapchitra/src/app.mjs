@@ -249,7 +249,7 @@ async function boot(){
     add.classList.add('added');
     clickResetTimers.set(add,setTimeout(()=>{if(add.isConnected){label.textContent='ADD TO CART';add.classList.remove('added')}},950));
    }
-   $('#bagStatus').textContent=count===previous?'Demo bag item limit reached.':esc(item.name)+' added to demo bag. '+demoBagCount()+' total items. No purchase is possible.';
+   $('#bagStatus').textContent=count===previous?'Demo bag item limit reached.':item.name+' added to demo bag. '+demoBagCount()+' total items. No purchase is possible.';
    return;
   }
   const adjust=e.target.closest('[data-bag-adjust]');
