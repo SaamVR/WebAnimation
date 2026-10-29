@@ -231,3 +231,20 @@ test('sketch SVG face and label share directional wipe and motion preferences',a
  assert.match(previewJS,/sketchButton\(/);
  assert.doesNotMatch(app,/product-add-arrow|ADDED ✓|ADD TO CART/);
 });
+
+
+test('compact sketch actions retain native submit semantics and working filter selectors',async()=>{
+ const {sketchButton}=await import('../src/handdrawn-buttons.mjs');
+ const markup=sketchButton({label:'Search',variant:'compact',className:'cc-sketch--inline',type:'submit'});
+ assert.match(markup,/<button type="submit"/);
+ const app=await read('src/app.mjs');
+ assert.match(app,/label:'Search',variant:'compact',tone:'forest'/);
+ assert.match(app,/label:'Join',variant:'compact',tone:'terracotta'/);
+ assert.match(app,/label:'Clear Filters',variant:'compact',tone:'beige'/);
+ assert.match(app,/attrs:'id="clearFilters"'/);
+ assert.match(app,/addEventListener\('submit'/);
+ assert.match(app,/clearFilters/);
+ const css=await read('src/button-system.css');
+ assert.match(css,/\.search-inline \.cc-sketch/);
+ assert.match(css,/\.newsletter-row \.cc-sketch/);
+});
