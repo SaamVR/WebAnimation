@@ -218,6 +218,7 @@
   --cc-shadow-light-beige:var(--olive,#1F2216);
   --cc-shadow-dark:var(--beige,#D8CEC2);
   --cc-shadow-dark-olive:var(--grey,#D9DCD7);
+  --cc-shadow-dark-beige:var(--mush,#A6A29B);
 }
 .cc-sketch--forest{--cc-shadow-color:var(--cc-shadow-light-forest)}
 .cc-sketch--terracotta{--cc-shadow-color:var(--cc-shadow-light-terracotta)}
@@ -256,4 +257,17 @@
 .editorial-banner .cc-sketch--beige,
 .custom-settings .cc-sketch--beige{
   --cc-shadow-color:var(--cc-shadow-light-beige);
+}
+
+/* Beige faces already contrast with dark surfaces; give them a distinct
+   medium-gray shadow, rather than accidentally stacking beige on beige.
+   This is a shared tone-in-context rule (not a one-off button override). */
+.hero-cover .cc-sketch--beige,
+.site-footer .cc-sketch--beige,
+.cc-shadow-context--forest .cc-sketch--beige,
+.cc-shadow-context--olive .cc-sketch--beige,
+[data-cc-surface="forest"] .cc-sketch--beige,
+[data-cc-surface="olive"] .cc-sketch--beige,
+[data-cc-surface="dark"] .cc-sketch--beige{
+  --cc-shadow-color:var(--cc-shadow-dark-beige);
 }
