@@ -7,6 +7,7 @@
   --cc-ink:var(--ink,#232323);
   --cc-label:#fff;
   --cc-offset:7px;
+  --cc-half-offset:3.5px;
   position:relative;
   isolation:isolate;
   display:inline-grid;
@@ -79,8 +80,8 @@
 .cc-sketch--long .cc-sketch-copy,
 .cc-sketch--inline .cc-sketch-copy{
   position:absolute;z-index:1;
-  left:calc(50% - var(--cc-offset)/2);
-  top:calc(50% - var(--cc-offset)/2);
+  left:calc(50% - var(--cc-half-offset));
+  top:calc(50% - var(--cc-half-offset));
   transform:translate(-50%,-50%);
   display:grid;grid-template-columns:minmax(0,1fr);
   place-items:center;
