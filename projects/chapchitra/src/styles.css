@@ -678,7 +678,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
 .demo-bag-summary p:first-child{font-weight:600;color:var(--deep)}
 .demo-bag-summary p+ p{margin:8px 0 18px;font-size:13px;color:var(--mut)}
 @media(max-width:600px){
- .product-add-button{font-size:10px;min-height:38px;padding:7px 9px;gap:3px;letter-spacing:.02em}
+ .product-add-button{font-size:10px;min-height:44px;padding:7px 9px;gap:3px;letter-spacing:.02em}
  .product-add-button .product-add-arrow{font-size:16px}
  .detail-add-button{font-size:12px;padding:10px 15px}
  .related-studies{padding-bottom:44px}
