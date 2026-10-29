@@ -119,3 +119,27 @@
   }
   .cc-sketch:active{transform:none}
 }
+
+/* Override retired rectangular button primitives without changing cart data
+   attributes or approved card hover transforms. */
+.cc-sketch.product-add-button,
+.cc-sketch.product-add-button:hover,
+.cc-sketch.product-add-button:active,
+.cc-sketch.product-add-button.added{
+  display:inline-grid;place-items:center;
+  position:relative;isolation:isolate;overflow:visible;
+  width:100%;height:54px;min-height:54px;
+  padding:0;border:0;border-radius:0;
+  background:transparent!important;color:var(--cc-label)!important;
+  text-align:center;box-shadow:none;
+  transition:transform 130ms ease;
+}
+.cc-sketch.product-add-button::before{content:none!important}
+.cc-sketch.product-add-button .cc-sketch-art{overflow:visible}
+.cc-sketch.detail-add-button{max-width:300px}
+@media(max-width:600px){
+ .cc-sketch.product-add-button{height:51px;min-height:51px;padding:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .cc-sketch.product-add-button{transition:none!important}
+}
