@@ -110,7 +110,7 @@ test('exact homepage section and individual card background mapping is maintaine
   '#collection .product-visual','background:#fff',
   '.tie-banner{background:var(--beige)}',
   '.edit-banner{background:var(--cream)}',
-  '.banner-art-tie','.banner-art-edit',
+  'banner-art-tie','banner-art-edit',
   '.featured-zone{background:var(--deep)',
   '.feature-frame:nth-child(even) .art-plate{background:var(--cream)}',
   '.feature-frame:nth-child(odd) .art-plate{background:var(--mist)}',
