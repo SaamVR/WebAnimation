@@ -310,7 +310,7 @@ test('polaroid card styles leave approved hover, Shop grid, pill and session car
  assert.match(css,/\.product-grid\{display:grid;grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
  assert.match(css,/\.product-grid\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
  assert.match(css,/\.polaroid-card \.cc-sketch\.product-add-button/);
- assert.match(css,/#collection \.polaroid-card \.product-visual/);
+ assert.match(css,/#collection \.product-card\.polaroid-card \.product-visual/);
  assert.match(app,/sessionStorage\.setItem\(demoBagKey/);
  assert.match(app,/updateFav\(id\)/);
  assert.match(app,/data-add-to-bag/);
