@@ -790,7 +790,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   min-width:0;
   padding:13px 13px 0;
 }
-.polaroid-card .product-visual,
+.product-card.polaroid-card .product-visual,
 #collection .product-card.polaroid-card .product-visual{
   display:grid;
   position:relative;
