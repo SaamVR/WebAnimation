@@ -22,7 +22,7 @@ Source repository: SaamVR/WebAnimation; independent app: projects/chapchitra. Ve
 /shop/ twelve per page with independent category, audience and print filters; /artists-edit/ local-only brief builder; /journal/ and /journal/story/ for editorial rotation and detail; /about/; /product/; /favorites/ with browser-local demo favorites; /account/, /bag/, /checkout/, and /order-confirmation/ as explicit unavailable states.
 
 ## Important limitations
-64 synthetic catalogue records only; garment drawings are neutral SVG silhouettes, price is Tk — (unknown). There is no authentication, inventory, payments, account, email subscription, custom printing submission, real product photography or custom animation.
+64 synthetic catalogue records only; garment drawings are neutral SVG silhouettes, price is Tk — (unknown). There is no authentication, inventory, payments, account, email subscription, custom printing submission, real product photography or custom animation. Add to Cart is a **sessionStorage-only visual interaction**, not order placement; mock items have no real prices/stock, and checkout remains disabled.
 
 ## Build and QA
 npm run check; npm run build; npm run preview. Build performs structure and isolation tests. Conduct separate live-browser verification at desktop 1440px, tablet 820px and mobile 390px; inspect page links, accessibility, carousel timers, filters, pagers, reduced motion and JS console.
@@ -60,3 +60,10 @@ Interaction: hero 4 seconds, five registration-mark dots, hover/focus pause, tou
 Validation: ten Node source tests passed. Chromium 1440x900, 820x1180, and 390x844 measured all 20 requested section/card computed surfaces at their exact colors, no horizontal overflow or JS errors. Shop, Artist's Edit, Journal, product/favorites, and guest pages remained functional.
 
 Remaining known deviations: live product cards include more details, the moving Featured Prints have actionable item titles/prices/links, and the footer is more informative than the static HTML; desktop document height approximately 5567px versus 5351px of the uploaded HTML. Creative SVG placeholders remain until final artwork is supplied. Physical iPad Safari review remains pending.
+
+## Product Card Hover and Demo Bag — 2026-10-30
+- Reuses the same `.product-card` and rectangular left-text/right-arrow ADD TO CART button across homepage Collection (8), Shop (12/page), Favorites, and new Related Studies (4 on product detail).
+- Fine pointer with normal motion: hover the hovered card **only**, translateY(-5px), rotate ±1.4° (alternating card parity), softened direction-aware shadow, 300ms eased return. No grid reflow, no scaling, no constant pointer tracking, and no changes to Featured Prints.
+- Touch: no hover rotation/shadow; 44px Add button and brief active press feedback. Keyboard focus-visible and reduced-motion supported.
+- Clicking Add updates a session-only mock bag quantity, global header badge, and accessible status; button briefly reads ADDED ✓. Repeated adds increment; bag route has increase/decrease/remove and limits individual study quantity to 99. `sessionStorage` is tab-scoped; no backend requests, pricing, orders, payments, or purchasing.
+- Browser-tested on 1440×900, 820×1180 and 390×844, including layout stability, rapid pointer movements, cart state through navigation, Shop and related product actions, and reduced-motion/key activation.

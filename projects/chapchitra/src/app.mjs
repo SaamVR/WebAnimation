@@ -39,7 +39,7 @@ async function boot(){
    '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+svg('search')+'</button>'+
    '<a class="nav-icon" href="/favorites/" aria-label="Favorites">'+svg('heart')+'</a>'+
    '<a class="nav-icon" href="/account/" aria-label="Account">'+svg('account')+'</a>'+
-   '<a class="nav-icon bag-link" href="/bag/" aria-label="Shopping bag, zero items">'+svg('bag')+'<span class="bag-count">0</span></a>'+
+   '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+svg('bag')+'<span class="bag-count">'+demoBagCount()+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
    '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button>'+
    '</div></div>'+
@@ -72,7 +72,9 @@ async function boot(){
  }
  function productCard(item){
   const liked=isFavoriteNow(item.id);
-  return '<article class="product-card"><a href="/product/?id='+item.id+'" class="product-visual" aria-label="View '+esc(item.name)+' sample detail">'+shirtSilhouette(item.visual)+'<span class="proof-tag">DEMO / NO STOCK</span></a><button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+svg('heart')+'</button><div class="product-meta"><a href="/product/?id='+item.id+'"><strong>'+esc(item.name)+'</strong></a><span>'+esc(item.fit)+'</span><div class="product-price"><small>'+esc(item.subtitle)+'</small><b>Tk —</b></div></div></article>';
+  // One reusable card for Collection, Shop, Favorites and Related Studies.
+  // This is a session-only bag preview, not a saleable merchandise listing.
+  return '<article class="product-card" data-product-id="'+item.id+'"><a href="/product/?id='+item.id+'" class="product-visual" aria-label="View '+esc(item.name)+' sample detail">'+shirtSilhouette(item.visual)+'<span class="proof-tag">DEMO / NO STOCK</span></a><button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+svg('heart')+'</button><div class="product-meta"><a href="/product/?id='+item.id+'"><strong>'+esc(item.name)+'</strong></a><span>'+esc(item.fit)+'</span><div class="product-price"><small>'+esc(item.subtitle)+'</small><b>Tk —</b></div><button type="button" class="product-add-button" data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo cart"><span class="product-add-label">ADD TO CART</span><span class="product-add-arrow" aria-hidden="true">→</span></button></div></article>';
  }
  function pager(total,current,scope){
   if(total<=1)return '';
@@ -132,7 +134,13 @@ async function boot(){
  }
  function product(){
   const item=catalog.find(p=>p.id===qs.get('id'))||catalog[0];
-  return '<section class="wrap route-content detail-layout"><div class="detail-art">'+shirtSilhouette(item.visual)+'</div><div><p class="eyebrow">SAMPLE PRODUCT · NOT FOR SALE</p><h1>'+esc(item.name)+'</h1><p>'+esc(item.subtitle)+'</p><p>'+esc(item.fit)+' · '+item.audience.map(esc).join(' / ')+'</p><h2>Tk — <small>Price not provided</small></h2><p>Neutral silhouette only; there are no physical product photographs or available stock in this preview.</p><button class="button dark" type="button" data-favorite="'+item.id+'">'+(isFavoriteNow(item.id)?'Remove from Favorites':'Save to Favorites')+'</button><a href="/shop/" class="text-link">Continue exploring ↗</a><p class="route-disclaimer">Adding to bag or purchasing is unavailable until real products and order workflows are approved.</p></div></section>';
+  const related=catalog.filter(p=>p.id!==item.id&&p.category.some(c=>item.category.includes(c))).slice(0,4);
+  return '<section class="wrap route-content detail-layout"><div class="detail-art">'+shirtSilhouette(item.visual)+'</div><div><p class="eyebrow">SAMPLE PRODUCT · NOT FOR SALE</p><h1>'+esc(item.name)+'</h1><p>'+esc(item.subtitle)+'</p><p>'+esc(item.fit)+' · '+item.audience.map(esc).join(' / ')+'</p><h2>Tk — <small>Price not provided</small></h2><p>Neutral silhouette only; there are no physical product photographs or available stock in this preview.</p><button class="product-add-button detail-add-button" type="button" data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo cart"><span class="product-add-label">ADD TO CART</span><span class="product-add-arrow" aria-hidden="true">→</span></button><button class="button dark" type="button" data-favorite="'+item.id+'">'+(isFavoriteNow(item.id)?'Remove from Favorites':'Save to Favorites')+'</button><a href="/shop/" class="text-link">Continue exploring ↗</a><p class="route-disclaimer">Demo cart only. No stock, prices, checkout, payment or orders are available.</p></div></section>'+
+   '<section class="wrap route-content related-studies" aria-labelledby="relatedTitle"><div class="section-title"><div><p class="eyebrow">KEEP EXPLORING</p><h2 id="relatedTitle">Related studies</h2></div><p>More sample silhouettes from the same category.</p></div><div class="product-grid" id="relatedProducts">'+related.map(productCard).join('')+'</div></section>';
+ }
+ function bag(){
+  return pageTop('SESSION-ONLY DEMO','Your Demo Bag','A preview of added sample studies. This is not a real cart, and no order can be placed.')+
+   '<section class="wrap route-content demo-bag-section"><div id="bagItems" aria-live="polite"></div><div class="demo-bag-summary"><p id="bagQuantitySummary"></p><p>Prices and availability are pending. No checkout, payment or order submission is enabled.</p><a href="/shop/" class="button dark">Keep browsing ↗</a></div></section>';
  }
  function favorites(){
   return pageTop('YOUR SAVED STUDIES','Favorites','Selections are stored locally in this browser; no account or server sync.')+'<section class="wrap route-content"><div id="favoriteGrid" class="product-grid"></div><p id="favoriteEmpty"></p></section>';
@@ -151,13 +159,23 @@ async function boot(){
    case 'product':return product();
    case 'favorites':return favorites();
    case 'account':return emptyRoute('GUEST MODE','Your Account','Authentication has not been integrated, so every visitor is treated as logged out.','There is no login, customer profile, notification bell or order history in this structural demo.');
-   case 'bag':return emptyRoute('DEMO BAG','Shopping Bag','Bag and purchase functionality are intentionally disabled while inventory and commerce are unconnected.','Your real shopping bag is not being stored; checkout is not available.');
+   case 'bag':return bag();
    case 'checkout':return emptyRoute('NOT A LIVE PAYMENT PAGE','Checkout Preview','No payment integrations, order creation, or real inventory are connected.','This route remains an explicit informational placeholder and never collects sensitive payment details.');
    case 'confirmation':return emptyRoute('NO ORDER PLACED','Order Confirmation Preview','This demo has not created, charged, or confirmed an order.','After a future authorized commerce workflow, an actual order confirmation would appear here.');
    default:return emptyRoute('NOT FOUND','Page unavailable','The destination was not found.','Return to the demo storefront.');
   }
  }
  const app=$('#app');
+ // A session-only UI state for the demo; never treat these placeholders as merchandise.
+ const demoBagKey='chapchitra-session-demo-bag-v1';
+ let demoBag=new Map();
+ try{
+  const rows=JSON.parse(sessionStorage.getItem(demoBagKey)||'[]');
+  if(Array.isArray(rows))for(const row of rows){
+   if(Array.isArray(row)&&catalog.some(p=>p.id===row[0])&&Number.isInteger(row[1])&&row[1]>0&&row[1]<=99)demoBag.set(row[0],row[1]);
+  }
+ }catch{}
+ function demoBagCount(){return [...demoBag.values()].reduce((sum,qty)=>sum+qty,0)}
  let favoritesState=new Set();
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
@@ -192,6 +210,65 @@ async function boot(){
    const btn=$('[data-favorite]');if(btn)btn.textContent=liked?'Remove from Favorites':'Save to Favorites';
   }
  }
+ // Session-only sample bag: accurate quantity state, immediate button feedback, and no commerce.
+ const clickResetTimers=new WeakMap();
+ function persistDemoBag(){
+  try{sessionStorage.setItem(demoBagKey,JSON.stringify([...demoBag.entries()]))}catch{}
+ }
+ function updateBagCounter(){
+  const count=demoBagCount(),link=$('.bag-link');
+  link.querySelector('.bag-count').textContent=String(count);
+  link.setAttribute('aria-label','Demo shopping bag, '+count+' item'+(count===1?'':'s'));
+ }
+ function setDemoBagQty(id,qty){
+  if(!catalog.some(item=>item.id===id))return;
+  const next=Math.max(0,Math.min(99,qty));
+  if(next)demoBag.set(id,next);else demoBag.delete(id);
+  persistDemoBag();updateBagCounter();
+ }
+ function renderDemoBag(){
+  if(route!=='bag')return;
+  const entries=[...demoBag.entries()].map(([id,qty])=>({item:catalog.find(p=>p.id===id),qty})).filter(x=>x.item);
+  $('#bagItems').innerHTML=entries.length?entries.map(({item,qty})=>
+   '<article class="demo-bag-row" data-bag-row="'+item.id+'"><a class="demo-bag-thumb" href="/product/?id='+item.id+'" aria-label="View '+esc(item.name)+'">'+shirtSilhouette(item.visual)+'</a><div class="demo-bag-info"><h3><a href="/product/?id='+item.id+'">'+esc(item.name)+'</a></h3><p>'+esc(item.fit)+' · Tk — · Sample only</p><div class="demo-bag-stepper" aria-label="Quantity for '+esc(item.name)+'"><button type="button" data-bag-adjust="-1" data-bag-id="'+item.id+'" aria-label="Decrease '+esc(item.name)+' quantity">−</button><output aria-label="Quantity">'+qty+'</output><button type="button" data-bag-adjust="1" data-bag-id="'+item.id+'" aria-label="Increase '+esc(item.name)+' quantity"'+(qty===99?' disabled':'')+'>+</button></div><button type="button" class="demo-bag-remove" data-bag-remove="'+item.id+'">Remove</button></div></article>'
+  ).join(''):'<p class="demo-bag-empty">Your demo bag is empty. Explore sample cards and add a study to try the interface.</p>';
+  const n=demoBagCount();
+  $('#bagQuantitySummary').textContent=n+' sample '+(n===1?'item':'items')+' in this browser-session bag.';
+ }
+ document.addEventListener('click',e=>{
+  const add=e.target.closest('[data-add-to-bag]');
+  if(add){
+   const item=catalog.find(p=>p.id===add.dataset.addToBag);if(!item)return;
+   const previous=demoBag.get(item.id)||0;
+   setDemoBagQty(item.id,previous+1);
+   const count=demoBag.get(item.id);
+   const label=add.querySelector('.product-add-label');
+   if(label){
+    const old=clickResetTimers.get(add);if(old)clearTimeout(old);
+    label.textContent=count===previous?'LIMIT REACHED':'ADDED ✓';
+    add.classList.add('added');
+    clickResetTimers.set(add,setTimeout(()=>{if(add.isConnected){label.textContent='ADD TO CART';add.classList.remove('added')}},950));
+   }
+   $('#bagStatus').textContent=count===previous?'Demo bag item limit reached.':item.name+' added to demo bag. '+demoBagCount()+' total items. No purchase is possible.';
+   return;
+  }
+  const adjust=e.target.closest('[data-bag-adjust]');
+  if(adjust&&route==='bag'){
+   const id=adjust.dataset.bagId;const current=demoBag.get(id)||0;
+   setDemoBagQty(id,current+Number(adjust.dataset.bagAdjust));
+   renderDemoBag();
+   const button=$('[data-bag-row="'+id+'"] [data-bag-adjust="'+adjust.dataset.bagAdjust+'"]')||
+    $('[data-bag-adjust]')||$('.demo-bag-summary a');
+   if(button)button.focus();
+   return;
+  }
+  const remove=e.target.closest('[data-bag-remove]');
+  if(remove&&route==='bag'){
+   setDemoBagQty(remove.dataset.bagRemove,0);renderDemoBag();
+   const next=$('[data-bag-adjust]')||$('.demo-bag-summary a');if(next)next.focus();
+  }
+ });
+ if(route==='bag')renderDemoBag();
  // Global delegation (no card flicker from full grid rebuild except explicit favorite interaction).
  document.addEventListener('click',e=>{const btn=e.target.closest('[data-favorite]');if(btn)updateFav(btn.dataset.favorite)});
  // Navigation dropdown closes when leaving or using Escape.

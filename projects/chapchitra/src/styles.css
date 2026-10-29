@@ -586,3 +586,120 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
  #values{padding-block:44px}
  .story-top{padding-bottom:24px}
 }
+
+
+/* CHAPCHITRA card-motion milestone: one individual card only; Featured Prints is excluded.
+   Composition, per-card palette and silhouette containers stay unchanged. */
+.product-card{
+ position:relative;
+ z-index:0;
+ min-width:0;
+ display:flex;
+ flex-direction:column;
+ border-radius:5px;
+ transform-origin:center center;
+ transform:translate3d(0,0,0) rotate(0deg);
+ transition:transform 300ms cubic-bezier(.22,.7,.18,1),
+            box-shadow 300ms cubic-bezier(.22,.7,.18,1);
+ box-shadow:0 0 0 rgba(28,36,29,0);
+}
+.product-card .product-meta{flex:1;min-width:0;display:flex;flex-direction:column}
+.product-card .product-meta .product-price{margin-top:auto;padding-top:7px}
+.product-card .product-visual{flex:none;min-width:0}
+.product-card .product-visual .shirt-svg{object-fit:contain}
+/* Preserve controls outside the scaled/rotated silhouette: move whole card,
+   not each image or label independently. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .product-card:hover{
+  z-index:3;
+  transform:translate3d(0,-5px,0) rotate(-1.4deg);
+  box-shadow:11px 15px 27px rgba(28,36,29,.13);
+  will-change:transform;
+ }
+ .product-card:nth-child(even):hover{
+  transform:translate3d(0,-5px,0) rotate(1.4deg);
+  box-shadow:-11px 15px 27px rgba(28,36,29,.13);
+ }
+}
+.product-add-button{
+ --add-button-bg:var(--press);
+ display:flex;flex:none;align-items:center;justify-content:space-between;
+ gap:8px;width:100%;min-height:40px;
+ margin-top:11px;padding:8px 12px;
+ border:1px solid var(--press);border-radius:3px;
+ background:var(--add-button-bg);color:#fff;
+ text-align:left;text-transform:uppercase;
+ font:600 11px/1.25 var(--sans);letter-spacing:.065em;
+ cursor:pointer;
+ transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease;
+ -webkit-tap-highlight-color:transparent;
+}
+.product-add-button .product-add-label{min-width:0}
+.product-add-button .product-add-arrow{
+ flex:none;font-family:Arial,sans-serif;font-size:18px;font-weight:400;line-height:1;
+ transition:transform 200ms ease;
+}
+.product-add-button.added{background:var(--olive);border-color:var(--olive);color:var(--cream)}
+@media(hover:hover) and (pointer:fine){
+ .product-add-button:hover{
+  background:var(--olive);border-color:var(--olive);color:var(--cream);
+ }
+ .product-add-button:hover .product-add-arrow{transform:translateX(3px)}
+}
+.product-add-button:focus-visible,
+.favorite-toggle:focus-visible,
+.demo-bag-stepper button:focus-visible,
+.demo-bag-remove:focus-visible{
+ outline:2px solid var(--acc);
+ outline-offset:3px;
+}
+.product-add-button:active{
+ background:var(--deep);color:var(--cream);
+}
+.detail-add-button{max-width:300px;margin:18px 0 14px;font-size:12px;min-height:45px}
+.related-studies{padding-top:0;padding-bottom:76px}
+.related-studies .section-title{margin-bottom:22px}
+/* Demo bag is a deliberately non-commercial, single-tab, quantity-only preview. */
+.demo-bag-section{padding-block:10px 70px;max-width:850px}
+.demo-bag-row{display:grid;grid-template-columns:118px minmax(0,1fr);gap:20px;align-items:center;padding:21px 0;border-bottom:1px solid var(--grey)}
+.demo-bag-thumb{background:#fff;border:1px solid var(--grey);border-radius:4px;display:grid;place-items:center;aspect-ratio:4/5;overflow:hidden}
+.demo-bag-thumb .shirt-svg{width:92%;height:95%;object-fit:contain}
+.demo-bag-info h3{font:500 19px/1.3 var(--serif);color:var(--ink)}
+.demo-bag-info h3 a{text-decoration:none}
+.demo-bag-info p{margin:6px 0 11px;font-size:13px;color:var(--mut)}
+.demo-bag-stepper{display:inline-flex;align-items:center;border:1px solid var(--grey);border-radius:3px;overflow:visible;background:#fff}
+.demo-bag-stepper button,.demo-bag-stepper output{width:37px;height:36px;display:grid;place-items:center}
+.demo-bag-stepper button{border:0;background:var(--bg);color:var(--deep);cursor:pointer;font-size:19px}
+.demo-bag-stepper button:disabled{opacity:.45;cursor:default}
+.demo-bag-stepper output{font:600 13px/36px var(--sans);color:var(--ink);text-align:center;border-inline:1px solid var(--grey)}
+.demo-bag-remove{display:inline-block;margin-left:12px;border:0;background:transparent;color:var(--acc);font:500 12px var(--sans);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.demo-bag-empty{padding:38px 22px;background:var(--mist);border:1px solid var(--grey);border-radius:4px}
+.demo-bag-summary{margin-top:22px;padding:22px;background:var(--mist);border:1px solid var(--grey);border-radius:4px}
+.demo-bag-summary p:first-child{font-weight:600;color:var(--deep)}
+.demo-bag-summary p+ p{margin:8px 0 18px;font-size:13px;color:var(--mut)}
+@media(max-width:600px){
+ .product-add-button{font-size:10px;min-height:44px;padding:7px 9px;gap:3px;letter-spacing:.02em}
+ .product-add-button .product-add-arrow{font-size:16px}
+ .detail-add-button{font-size:12px;padding:10px 15px}
+ .related-studies{padding-bottom:44px}
+ .demo-bag-row{grid-template-columns:87px minmax(0,1fr);gap:14px}
+ .demo-bag-info h3{font-size:17px}
+ .demo-bag-remove{margin-left:8px}
+}
+@media(hover:none),(pointer:coarse){
+ .product-card,.product-card:hover{
+  transform:none!important;
+  box-shadow:none!important;
+  will-change:auto;
+ }
+ .product-add-button:active{transform:translateY(1px);background:var(--olive)}
+ .product-add-button .product-add-arrow{transition:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .product-card,.product-card:hover{
+  transition:none!important;transform:none!important;box-shadow:none!important;
+ }
+ .product-add-button,.product-add-button .product-add-arrow{transition:none!important}
+ .product-add-button:hover .product-add-arrow{transform:none!important}
+ .product-add-button:active{transform:none}
+}

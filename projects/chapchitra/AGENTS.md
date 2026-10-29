@@ -7,7 +7,7 @@ This is a standalone creative portfolio demo. Its **Forest + Olive homepage pale
 - Use the exact owner-provided 13-token palette from `Chapchitra – Homepage v2 · Forest + Olive Final Palette.html` as documented in `README.md`: Deep Forest #1C241D, Press Green #293D2D, Dark Olive #1F2216, Walnut #6E523F, Ink #232323, Gallery White #F6F7F5, Soft Gray #D9DCD7, Mist #E9EDEB, Beige #D8CEC2, Cream #E4E3DE, Mushroom #A6A29B, Clay #8A503B, Muted Gray #5F625E. Maintain EACH section and card's distinct assignment; never blanket the site with green.
 - Assets are own neutral SVG or CSS shapes only; do not import photos or simulate real products.
 - C01 story icons, C02 brass bell motion, C03 folding/packing and C04 ink-stamp add-to-cart have **no implementation authorization**. Static interface icons are not animation artwork.
-- Cart, checkout, payment, newsletter: do not pretend to accept orders or save data. Make staged/disabled controls explicit.
+- Cart: the owner approved a **sessionStorage-only demo bag** (card Add action, header quantity, bag +/- and remove) with explicit unavailable stock/pricing and no server persistence. Checkout, payment and newsletter must not pretend to accept orders/submit data; retain their explicit unavailable states.
 - Accessible menus, semantic landmarks, keyboard interaction, reduced-motion, touch sizes and responsive breakpoints are expected.
 - Motion assets and GSAP may be added later behind `src/motion/`; do not install dependencies or write timelines until approved.
 - Verify no modifications outside this app on every PR. Keep owner-approved THREADS intact.
