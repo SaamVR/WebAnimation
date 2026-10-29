@@ -1,5 +1,10 @@
 async function boot(){
  const {shirtSilhouette,printSilhouette}=await import('./components.mjs');
+ const {sketchButton}=await import('./handdrawn-buttons.mjs');
+ // Attach the dedicated sketch skin after the approved storefront stylesheet.
+ if(!document.querySelector('link[data-chapchitra-buttons]')){
+  const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/button-system.css';sheet.dataset.chapchitraButtons='';document.head.append(sheet);
+ }
  const {catalog,articlePreviews,PAGE_SIZE_HOME,PAGE_SIZE_SHOP}=await import('./catalog.mjs');
  const $=(sel,root=document)=>root.querySelector(sel);
  const $$=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
@@ -57,8 +62,8 @@ async function boot(){
    {title:'From the Journal',eyebrow:'05 / TODAY’S STORY',copy:'Read the studio notebook. Original articles and photography will be supplied later.',cta:'Open featured story',href:'/journal/story/?slug=prints-and-people'}
   ];
   return '<section id="hero" class="hero-carousel" aria-label="Five-slide editorial hero"><div class="hero-track">'+slides.map((s,i)=>{
-   if(i===0)return '<article class="hero-slide hero-cover '+(i===0?'is-active':'')+'" data-slide="'+i+'" '+(i===0?'':'hidden')+'><img class="hero-background" src="/assets/hero-paper.svg" alt="Abstract green ink and paper placeholder background"><div class="hero-shade"></div><div class="wrap hero-cover-inner"><p class="eyebrow on-dark">'+s.eyebrow+'</p><div class="hero-display-word">CHAPCHITRA</div><p class="hero-translate" lang="bn">ছাপচিত্র</p><h1>'+s.title+'</h1><p>'+s.copy+'</p><a class="button light" href="'+s.href+'">'+s.cta+' ↗</a><small>Temporary wordmark · final logo pending</small></div></article>';
-   return '<article class="hero-slide hero-split" data-slide="'+i+'" hidden><div class="wrap hero-split-inner"><div class="hero-slide-copy"><p class="eyebrow">'+s.eyebrow+'</p><h2>'+s.title+'</h2><p>'+s.copy+'</p><a class="button dark" href="'+s.href+'">'+s.cta+' ↗</a></div><div class="hero-visual hero-visual-'+i+'">'+(i===2?printSilhouette(i):i===4?'<div class="paper-editorial"><span>JOURNAL / STORY 01</span><strong>Notes from<br>the studio.</strong><span>Draft illustration</span></div>':shirtSilhouette(i))+'<span class="hero-placeholder">IMAGE / ART PENDING</span></div></div></article>'
+   if(i===0)return '<article class="hero-slide hero-cover '+(i===0?'is-active':'')+'" data-slide="'+i+'" '+(i===0?'':'hidden')+'><img class="hero-background" src="/assets/hero-paper.svg" alt="Abstract green ink and paper placeholder background"><div class="hero-shade"></div><div class="wrap hero-cover-inner"><p class="eyebrow on-dark">'+s.eyebrow+'</p><div class="hero-display-word">CHAPCHITRA</div><p class="hero-translate" lang="bn">ছাপচিত্র</p><h1>'+s.title+'</h1><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'beige',href:s.href})+'<small>Temporary wordmark · final logo pending</small></div></article>';
+   return '<article class="hero-slide hero-split" data-slide="'+i+'" hidden><div class="wrap hero-split-inner"><div class="hero-slide-copy"><p class="eyebrow">'+s.eyebrow+'</p><h2>'+s.title+'</h2><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'forest',href:s.href})+'</div><div class="hero-visual hero-visual-'+i+'">'+(i===2?printSilhouette(i):i===4?'<div class="paper-editorial"><span>JOURNAL / STORY 01</span><strong>Notes from<br>the studio.</strong><span>Draft illustration</span></div>':shirtSilhouette(i))+'<span class="hero-placeholder">IMAGE / ART PENDING</span></div></div></article>'
   }).join('')+'</div><div class="hero-controls wrap"><div class="hero-dots" role="group" aria-label="Choose hero slide">'+slides.map((s,i)=>'<button class="hero-dot'+(i===0?' active':'')+'" type="button" data-slide-to="'+i+'" aria-label="Show slide '+(i+1)+': '+esc(s.title)+'" aria-pressed="'+(i===0?'true':'false')+'"></button>').join('')+'</div><span class="hero-count" id="heroCount">01 / 05</span></div></section>';
  }
  function benefits(){
@@ -74,7 +79,7 @@ async function boot(){
   const liked=isFavoriteNow(item.id);
   // One reusable card for Collection, Shop, Favorites and Related Studies.
   // This is a session-only bag preview, not a saleable merchandise listing.
-  return '<article class="product-card" data-product-id="'+item.id+'"><a href="/product/?id='+item.id+'" class="product-visual" aria-label="View '+esc(item.name)+' sample detail">'+shirtSilhouette(item.visual)+'<span class="proof-tag">DEMO / NO STOCK</span></a><button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+svg('heart')+'</button><div class="product-meta"><a href="/product/?id='+item.id+'"><strong>'+esc(item.name)+'</strong></a><span>'+esc(item.fit)+'</span><div class="product-price"><small>'+esc(item.subtitle)+'</small><b>Tk —</b></div><button type="button" class="product-add-button" data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo cart"><span class="product-add-label">ADD TO CART</span><span class="product-add-arrow" aria-hidden="true">→</span></button></div></article>';
+  return '<article class="product-card" data-product-id="'+item.id+'"><a href="/product/?id='+item.id+'" class="product-visual" aria-label="View '+esc(item.name)+' sample detail">'+shirtSilhouette(item.visual)+'<span class="proof-tag">DEMO / NO STOCK</span></a><button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+svg('heart')+'</button><div class="product-meta"><a href="/product/?id='+item.id+'"><strong>'+esc(item.name)+'</strong></a><span>'+esc(item.fit)+'</span><div class="product-price"><small>'+esc(item.subtitle)+'</small><b>Tk —</b></div>'+sketchButton({label:'ADD TO BAG',variant:'long',tone:'forest',className:'product-add-button',attrs:'data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo bag"'})+'</div></article>';
  }
  function pager(total,current,scope){
   if(total<=1)return '';
@@ -103,7 +108,7 @@ async function boot(){
    '<div class="values-grid">'+items.map(([num,title,desc],i)=>'<article class="value-card" data-motion-slot="C01-'+num+'"><div class="value-art" aria-label="Temporary illustration frame for '+title+'"><span class="value-num">'+num+'</span><div class="value-print-motif motif-'+i+'"><span></span><span></span></div><small>Illustration pending</small></div><h3>'+title+'</h3><p>'+desc+'</p></article>').join('')+'</div></section>';
  }
  function story(){
-  return '<section id="story" class="story-section" aria-labelledby="storyTitle"><div class="wrap story-top"><div><p class="eyebrow">05 / THE STORY</p><h2 id="storyTitle">People. Places. <em>Prints.</em></h2></div><div class="story-summary"><p>CHAPCHITRA brings printmaking, illustration and everyday apparel into one evolving creative conversation. The full studio history and identity artwork will be added with approved brand copy.</p><a href="/about/" class="button dark">Read Our Story ↗</a></div></div><a class="street-link" href="/about/#street-story" aria-label="Learn more about the street-scene inspiration"><img src="/assets/street-bengal.svg" alt="Provisional line illustration of a Bangladeshi street with a tea stall, shops and a rickshaw."><span class="street-note">Bangladesh street illustration study · Explore the story ↗</span></a></section>';
+  return '<section id="story" class="story-section" aria-labelledby="storyTitle"><div class="wrap story-top"><div><p class="eyebrow">05 / THE STORY</p><h2 id="storyTitle">People. Places. <em>Prints.</em></h2></div><div class="story-summary"><p>CHAPCHITRA brings printmaking, illustration and everyday apparel into one evolving creative conversation. The full studio history and identity artwork will be added with approved brand copy.</p>'+sketchButton({label:'Read Our Story',variant:'compact',tone:'terracotta',href:'/about/'})+'</div></div><a class="street-link" href="/about/#street-story" aria-label="Learn more about the street-scene inspiration"><img src="/assets/street-bengal.svg" alt="Provisional line illustration of a Bangladeshi street with a tea stall, shops and a rickshaw."><span class="street-note">Bangladesh street illustration study · Explore the story ↗</span></a></section>';
  }
  function footer(){
   return '<footer class="site-footer" id="footer"><div class="wrap footer-grid"><div class="footer-identity"><a class="logo-word" href="/">CHAPCHITRA <small lang="bn">ছাপচিত্র</small></a><p>PEOPLE · PLACES · PRINTS</p><small>Art-led print and apparel demo. Identity, pricing and images remain provisional.</small></div><div class="footer-column"><h2>Shop</h2><a href="/shop/">All Samples</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'</div><div class="footer-column"><h2>Discover</h2><a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></div><div class="footer-column"><h2>Help</h2><a href="/account/">Account</a><a href="/bag/">Shopping Bag</a><a href="/checkout/">Checkout Preview</a><a href="/favorites/">Favorites</a></div><div class="footer-newsletter"><h2>Join the print studio</h2><p>Community emails are not yet connected to a mailing list.</p><form id="newsletterForm"><label for="newsletterEmail">Email address</label><div class="newsletter-row"><input id="newsletterEmail" name="email" type="email" autocomplete="email" placeholder="Your email address" required><button type="submit">Join</button></div><small id="newsletterMessage" aria-live="polite">Valid email required. No information will be transmitted.</small></form></div></div><div class="wrap footer-bottom"><span>© 2026 CHAPCHITRA · V3 architectural prototype</span><span>No orders, payments or subscriptions are processed.</span></div></footer>';
@@ -125,7 +130,7 @@ async function boot(){
  function article(){
   const slug=qs.get('slug')||articlePreviews[0].slug;
   const a=articlePreviews.find(x=>x.slug===slug);
-  if(!a)return pageTop('JOURNAL','Story unavailable','The requested studio outline does not exist.')+'<div class="wrap route-content"><a class="button dark" href="/journal/">Return to Journal</a></div>';
+  if(!a)return pageTop('JOURNAL','Story unavailable','The requested studio outline does not exist.')+'<div class="wrap route-content">'+sketchButton({label:'Return to Journal',variant:'compact',tone:'forest',href:'/journal/'})+'</div>';
   return '<article class="wrap article-detail route-content"><p class="eyebrow">'+a.eyebrow+'</p><h1>'+a.title+'</h1><p class="lead">'+a.teaser+'</p><div class="article-art">'+printSilhouette(articlePreviews.indexOf(a))+'</div><h2>Editorial outline</h2><p>This page reserves space for the original writing, process photographs and artist context associated with this story. The final article has not been supplied and this copy is intentionally not presented as researched reporting.</p><a href="/journal/" class="text-link">← All journal stories</a></article>';
  }
  function about(){
@@ -135,18 +140,18 @@ async function boot(){
  function product(){
   const item=catalog.find(p=>p.id===qs.get('id'))||catalog[0];
   const related=catalog.filter(p=>p.id!==item.id&&p.category.some(c=>item.category.includes(c))).slice(0,4);
-  return '<section class="wrap route-content detail-layout"><div class="detail-art">'+shirtSilhouette(item.visual)+'</div><div><p class="eyebrow">SAMPLE PRODUCT · NOT FOR SALE</p><h1>'+esc(item.name)+'</h1><p>'+esc(item.subtitle)+'</p><p>'+esc(item.fit)+' · '+item.audience.map(esc).join(' / ')+'</p><h2>Tk — <small>Price not provided</small></h2><p>Neutral silhouette only; there are no physical product photographs or available stock in this preview.</p><button class="product-add-button detail-add-button" type="button" data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo cart"><span class="product-add-label">ADD TO CART</span><span class="product-add-arrow" aria-hidden="true">→</span></button><button class="button dark" type="button" data-favorite="'+item.id+'">'+(isFavoriteNow(item.id)?'Remove from Favorites':'Save to Favorites')+'</button><a href="/shop/" class="text-link">Continue exploring ↗</a><p class="route-disclaimer">Demo cart only. No stock, prices, checkout, payment or orders are available.</p></div></section>'+
+  return '<section class="wrap route-content detail-layout"><div class="detail-art">'+shirtSilhouette(item.visual)+'</div><div><p class="eyebrow">SAMPLE PRODUCT · NOT FOR SALE</p><h1>'+esc(item.name)+'</h1><p>'+esc(item.subtitle)+'</p><p>'+esc(item.fit)+' · '+item.audience.map(esc).join(' / ')+'</p><h2>Tk — <small>Price not provided</small></h2><p>Neutral silhouette only; there are no physical product photographs or available stock in this preview.</p>'+sketchButton({label:'ADD TO BAG',variant:'long',tone:'forest',className:'product-add-button detail-add-button',attrs:'data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo bag"'})+sketchButton({label:isFavoriteNow(item.id)?'Remove from Favorites':'Save to Favorites',variant:'compact',tone:'beige',attrs:'data-favorite="'+item.id+'"'})+'<a href="/shop/" class="text-link">Continue exploring ↗</a><p class="route-disclaimer">Demo cart only. No stock, prices, checkout, payment or orders are available.</p></div></section>'+
    '<section class="wrap route-content related-studies" aria-labelledby="relatedTitle"><div class="section-title"><div><p class="eyebrow">KEEP EXPLORING</p><h2 id="relatedTitle">Related studies</h2></div><p>More sample silhouettes from the same category.</p></div><div class="product-grid" id="relatedProducts">'+related.map(productCard).join('')+'</div></section>';
  }
  function bag(){
   return pageTop('SESSION-ONLY DEMO','Your Demo Bag','A preview of added sample studies. This is not a real cart, and no order can be placed.')+
-   '<section class="wrap route-content demo-bag-section"><div id="bagItems" aria-live="polite"></div><div class="demo-bag-summary"><p id="bagQuantitySummary"></p><p>Prices and availability are pending. No checkout, payment or order submission is enabled.</p><a href="/shop/" class="button dark">Keep browsing ↗</a></div></section>';
+   '<section class="wrap route-content demo-bag-section"><div id="bagItems" aria-live="polite"></div><div class="demo-bag-summary"><p id="bagQuantitySummary"></p><p>Prices and availability are pending. No checkout, payment or order submission is enabled.</p>'+sketchButton({label:'Keep browsing',variant:'compact',tone:'forest',href:'/shop/'})+'</div></section>';
  }
  function favorites(){
   return pageTop('YOUR SAVED STUDIES','Favorites','Selections are stored locally in this browser; no account or server sync.')+'<section class="wrap route-content"><div id="favoriteGrid" class="product-grid"></div><p id="favoriteEmpty"></p></section>';
  }
  function emptyRoute(kicker,title,description,secondary){
-  return pageTop(kicker,title,description)+'<section class="wrap route-content empty-panel"><p>'+secondary+'</p><a href="/shop/" class="button dark">Explore sample collection ↗</a></section>';
+  return pageTop(kicker,title,description)+'<section class="wrap route-content empty-panel"><p>'+secondary+'</p>'+sketchButton({label:'Explore Samples',variant:'compact',tone:'forest',href:'/shop/'})+'</section>';
  }
  function mainPage(){
   switch(route){
@@ -207,7 +212,7 @@ async function boot(){
   });
   if(route==='favorites')renderFavoriteGrid();
   if(route==='product'){
-   const btn=$('[data-favorite]');if(btn)btn.textContent=liked?'Remove from Favorites':'Save to Favorites';
+   const btn=$('[data-favorite]');if(btn)btn.querySelectorAll('.cc-sketch-label,.cc-sketch-label-ink').forEach(label=>{label.textContent=liked?'Remove from Favorites':'Save to Favorites'});
   }
  }
  // Session-only sample bag: accurate quantity state, immediate button feedback, and no commerce.
@@ -242,12 +247,12 @@ async function boot(){
    const previous=demoBag.get(item.id)||0;
    setDemoBagQty(item.id,previous+1);
    const count=demoBag.get(item.id);
-   const label=add.querySelector('.product-add-label');
-   if(label){
+   const labels=add.querySelectorAll('.cc-sketch-label,.cc-sketch-label-ink');
+   if(labels.length){
     const old=clickResetTimers.get(add);if(old)clearTimeout(old);
-    label.textContent=count===previous?'LIMIT REACHED':'ADDED ✓';
+    labels.forEach(label=>label.textContent=count===previous?'LIMIT REACHED':'ADDED');
     add.classList.add('added');
-    clickResetTimers.set(add,setTimeout(()=>{if(add.isConnected){label.textContent='ADD TO CART';add.classList.remove('added')}},950));
+    clickResetTimers.set(add,setTimeout(()=>{if(add.isConnected){labels.forEach(label=>label.textContent='ADD TO BAG');add.classList.remove('added')}},950));
    }
    $('#bagStatus').textContent=count===previous?'Demo bag item limit reached.':item.name+' added to demo bag. '+demoBagCount()+' total items. No purchase is possible.';
    return;
@@ -411,7 +416,7 @@ async function boot(){
   const spotlight=$('#journalSpotlight');
   function renderJournalFeature(){
    const a=articlePreviews[index];
-   $('#journalFeatured').innerHTML='<div class="journal-feature-art">'+printSilhouette(index)+'</div><div class="journal-feature-copy"><p class="eyebrow">'+a.eyebrow+'</p><h2>'+a.title+'</h2><p>'+a.teaser+'</p><a href="/journal/story/?slug='+a.slug+'" class="button dark">Open story ↗</a></div>';
+   $('#journalFeatured').innerHTML='<div class="journal-feature-art">'+printSilhouette(index)+'</div><div class="journal-feature-copy"><p class="eyebrow">'+a.eyebrow+'</p><h2>'+a.title+'</h2><p>'+a.teaser+'</p>'+sketchButton({label:'Open story',variant:'compact',tone:'terracotta',href:'/journal/story/?slug='+a.slug})+'</div>';
    $('#journalIndex').textContent=String(index+1).padStart(2,'0')+' / 05';
   }
   function schedule(){if(interval){clearInterval(interval);interval=null}if(!hover&&!focus&&!document.hidden&&!mediaReduced.matches)interval=setInterval(()=>{index=(index+1)%articlePreviews.length;renderJournalFeature()},8000)}
