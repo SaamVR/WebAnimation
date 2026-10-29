@@ -791,7 +791,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   padding:13px 13px 0;
 }
 .polaroid-card .product-visual,
-#collection .polaroid-card .product-visual{
+#collection .product-card.polaroid-card .product-visual{
   display:grid;
   position:relative;
   place-items:center;
@@ -921,7 +921,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
 /* Desktop and tablet preserve the approved 4-column Shop structure. */
 @media(max-width:1100px){
  .polaroid-card .product-visual,
- #collection .polaroid-card .product-visual{height:232px}
+ #collection .product-card.polaroid-card .product-visual{height:232px}
  .polaroid-card .polaroid-photo{padding:12px 12px 0}
  .product-card.polaroid-card .product-meta.polaroid-caption,
  #collection .polaroid-card .product-meta.polaroid-caption{
@@ -930,13 +930,13 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
 }
 @media(max-width:860px){
  .polaroid-card .product-visual,
- #collection .polaroid-card .product-visual{height:204px}
+ #collection .product-card.polaroid-card .product-visual{height:204px}
  .polaroid-card .polaroid-photo{padding:11px 11px 0}
 }
 @media(max-width:600px){
  .polaroid-card .polaroid-photo{padding:9px 9px 0}
  .polaroid-card .product-visual,
- #collection .polaroid-card .product-visual{height:178px}
+ #collection .product-card.polaroid-card .product-visual{height:178px}
  .polaroid-card .product-visual .shirt-svg{
    width:96%;
    height:97%;
@@ -963,7 +963,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
 }
 @media(max-width:365px){
  .polaroid-card .product-visual,
- #collection .polaroid-card .product-visual{height:153px}
+ #collection .product-card.polaroid-card .product-visual{height:153px}
  .product-card.polaroid-card .product-meta.polaroid-caption,
  #collection .polaroid-card .product-meta.polaroid-caption{
    padding:14px 9px 12px 12px;
