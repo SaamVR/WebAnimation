@@ -77,18 +77,21 @@ async function boot(){
  }
  function productCard(item){
   const liked=isFavoriteNow(item.id);
-  // One shared Polaroid presentation for Collection, Shop, Favorites and Related.
-  // Window tones follow each sample's stable visual index, not its position in a grid.
+  // Separate the clickable merchandise action from the paper frame. Only the
+  // inner Polaroid receives the approved alternating hover transform.
   const tone=Number(item.visual)%4;
-  return '<article class="product-card polaroid-card" data-product-id="'+item.id+'" data-photo-tone="'+tone+'">'+
-   '<div class="polaroid-photo"><a href="/product/?id='+item.id+'" class="product-visual" aria-label="View '+esc(item.name)+' sample detail">'+
-    shirtSilhouette(item.visual)+'<span class="proof-tag">DEMO / NO STOCK</span></a></div>'+
-   '<div class="product-meta polaroid-caption"><div class="polaroid-caption-head">'+
-    '<a class="polaroid-name" href="/product/?id='+item.id+'"><strong>'+esc(item.name)+'</strong></a>'+
-    '<button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+svg('heart')+'</button>'+
-   '</div><span class="polaroid-fit">'+esc(item.fit)+'</span>'+
-   '<div class="product-price"><small>'+esc(item.subtitle)+'</small><b>Tk —</b></div>'+
-   sketchButton({label:'ADD TO BAG',variant:'long',tone:'forest',className:'product-add-button',attrs:'data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo bag"'})+
+  return '<article class="product-card product-card-shell" data-product-id="'+item.id+'" data-photo-tone="'+tone+'">'+
+   '<div class="polaroid-card">'+
+    '<div class="polaroid-photo"><a href="/product/?id='+item.id+'" class="product-visual" aria-label="View '+esc(item.name)+' sample detail">'+
+     shirtSilhouette(item.visual)+'<span class="proof-tag">DEMO / NO STOCK</span></a></div>'+
+    '<div class="product-meta polaroid-caption"><div class="polaroid-caption-head">'+
+     '<a class="polaroid-name" href="/product/?id='+item.id+'"><strong>'+esc(item.name)+'</strong></a>'+
+     '<button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+svg('heart')+'</button>'+
+    '</div><span class="polaroid-fit">'+esc(item.fit)+'</span>'+
+    '<div class="product-price"><small>'+esc(item.subtitle)+'</small><b>Tk —</b></div></div>'+
+   '</div>'+
+   '<div class="polaroid-card-action">'+
+     sketchButton({label:'ADD TO BAG',variant:'long',tone:'forest',className:'product-add-button',attrs:'data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo bag"'})+
    '</div></article>';
  }
  function pager(total,current,scope){
