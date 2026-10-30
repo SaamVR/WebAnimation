@@ -1390,5 +1390,8 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   #featured .featured-wide .featured-controls{inset-inline:8px}
   #featured .featured-wide .featured-controls button{
     width:38px;height:38px;font-size:21px;
+    color:var(--deep);
+    border-color:var(--deep);
   }
 }
+#featured .section-title p:last-child{display:none}
