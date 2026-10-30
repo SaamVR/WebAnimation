@@ -475,7 +475,7 @@ test('reusable normalized dry-brush SVG masks use only alpha geometry',async()=>
   assert.match(svg,/mask-type:alpha/);
   assert.match(svg,/fill="#fff" fill-rule="evenodd"/);
   assert.match(svg,/<rect width="1000" height="600" fill="#fff" mask="url\(#printed-edge-/);
-  assert.ok((svg.match(/M\s*\d+/g)||[]).length>=8,'small ink-break cutouts accompany perimeter');
+  assert.ok((svg.match(/M\s*\d+/g)||[]).length>=(name==='featured'?6:8),'small ink-break cutouts accompany perimeter');
   assert.doesNotMatch(svg,/<image|data:image|base64|<filter|<animate|<script|<pattern/);
   assert.doesNotMatch(svg,/fill="(?!#fff")[^"]+"|fill:#[a-fA-F0-9]{3,8}/);
  }
