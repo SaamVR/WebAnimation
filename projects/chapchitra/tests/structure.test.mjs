@@ -360,26 +360,32 @@ test('owner-approved Polaroid compactness and external stationary CTA have indep
  assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
  assert.doesNotMatch(card,/<div class="polaroid-card-action">[^]*?<div class="polaroid-card"/);
 });
-test('hard-edged adaptive shadows have reusable light and dark surface tokens',async()=>{
+test('graphite shadow defaults and reusable dark-context contrasts preserve pill geometry',async()=>{
  const css=await read('src/button-system.css');
  const gallery=await read('src/button-preview.mjs');
- assert.match(css,/--cc-shadow-light-forest:var\(--walnut,#6E523F\)/);
- assert.match(css,/--cc-shadow-light-terracotta:var\(--deep,#1C241D\)/);
- assert.match(css,/--cc-shadow-light-beige:var\(--olive,#1F2216\)/);
- assert.match(css,/--cc-shadow-dark:var\(--beige,#D8CEC2\)/);
- assert.match(css,/--cc-shadow-dark-olive:var\(--grey,#D9DCD7\)/);
- assert.match(css,/--cc-shadow-dark-beige:var\(--mush,#A6A29B\)/);
- assert.match(css,/\.cc-shadow-context--forest \.cc-sketch--beige/);
- assert.match(css,/\.cc-shadow-context--olive \.cc-sketch--beige/);
+ // One color source of truth: no prior Walnut, Olive or Mushroom shadow choices.
+ assert.match(css,/--cc-shadow-graphite:#232323/);
+ assert.match(css,/--cc-shadow-on-dark:#D9DCD7/);
+ assert.match(css,/--cc-shadow-on-dark-beige:#8FA3AF/);
+ assert.match(css,/--cc-shadow-color:var\(--cc-shadow-graphite\)/);
  assert.match(css,/background:var\(--cc-shadow-color\)/);
- assert.match(css,/\.hero-cover \.cc-sketch/);
- assert.match(css,/\.site-footer \.cc-sketch/);
- assert.match(css,/\.cc-shadow-context--olive \.cc-sketch/);
- assert.match(css,/\.cc-shadow-context--gray \.cc-sketch--forest/);
- assert.match(css,/\.editorial-banner \.cc-sketch--forest/);
- assert.match(css,/\.custom-settings \.cc-sketch--forest/);
+ assert.doesNotMatch(css,/--cc-shadow-light-forest|--cc-shadow-light-beige|--cc-shadow-light-terracotta|--cc-shadow-dark-beige/);
+ assert.doesNotMatch(css,/--cc-shadow-color:var\(--walnut|--cc-shadow-color:var\(--mush/);
+ assert.match(css,/\.hero-cover/);
+ assert.match(css,/\.site-footer/);
+ assert.match(css,/\.cc-shadow-context--forest/);
+ assert.match(css,/\.cc-shadow-context--olive/);
+ assert.match(css,/\.cc-shadow-context--dark/);
+ assert.match(css,/data-cc-surface="forest"/);
+ assert.match(css,/data-cc-surface="dark"/);
+ assert.match(css,/\.cc-sketch--beige\{\s*--cc-shadow-color:var\(--cc-shadow-on-dark-beige\)/);
+ // The approved pill/sweep/press and offset must remain exact.
+ assert.match(css,/--cc-offset:7px/);
  assert.match(css,/border:0;border-radius:9999px/);
- assert.match(css,/clip-path:inset\(0 100% 0 0\)/);
+ assert.match(css,/inset:var\(--cc-offset\) 0 0 var\(--cc-offset\)/);
+ assert.match(css,/transition:clip-path 300ms cubic-bezier\(\.45,0,\.55,1\)/);
+ assert.match(css,/\.cc-sketch:active,.cc-sketch\[data-preview-state="pressed"\]\{/);
+ assert.match(css,/transform:translate\(2px,2px\)/);
  assert.match(gallery,/cc-shadow-context--/);
  assert.match(gallery,/surface-preview/);
  assert.match(gallery,/'forest','Forest Green'/);
@@ -425,7 +431,7 @@ test('single SVG frame border and solid rounded shadow preserve CTA isolation',a
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
  assert.match(button,/--cc-offset:7px/);
- assert.match(button,/--cc-shadow-dark-beige:var\(--mush,#A6A29B\)/);
+ assert.match(button,/--cc-shadow-on-dark-beige:#8FA3AF/);
  assert.match(app,/class="polaroid-card-action"/);
  assert.match(app,/label:'ADD TO BAG',variant:'long',tone:'forest'/);
 });
