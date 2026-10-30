@@ -1,7 +1,7 @@
 /**
  * CHAPCHITRA — one continuous, variable-width print-ink outline.
  * One even-odd SVG path forms a subtly imperfect perimeter ribbon,
- * approximately 1.5–3.5 CSS px thick, with ~10px rounded corners.
+ * approximately 1–4 CSS px thick, with ~10px rounded corners.
  * ResizeObserver recalculates actual CSS-pixel geometry instead of
  * stretching a bitmap or stretching the SVG corner radii.
  * Neither the separate button nor shopping behavior is touched.
@@ -24,17 +24,28 @@ export function polaroidInkPath(width,height){
   'C',1.09,hy(.68),.38,hy(.32),.85,10.3,
   'C',.96,4.2,4.4,1.1,10.4,.85,'Z'
  ];
- // Inner counterclockwise edge is a *hole*, not another visible line.
+ // One counterclockwise INNER edge defines genuine variable-width ink.
+ // Selected confident stretches become ~3.5–4px thick; other stretches
+ // taper to ~1–1.8px. The outer edge stays restrained and straight.
+ // The interior is an even-odd hole: still ONE visible filled outline.
  const inner=[
-  'M',10.9,3.25,
-  'C',6.2,3.1,3.3,5.9,3.25,11.4,
-  'C',2.9,hy(.33),3.75,hy(.67),3.28,y(10.8),
-  'C',3.42,y(6.4),6,y(3.4),11.3,y(3.45),
-  'C',wx(.31),y(3.15),wx(.67),y(3.85),x(10.8),y(3.42),
-  'C',x(6.4),y(3.1),x(3.5),y(6.2),x(3.44),y(11),
-  'C',x(3.15),hy(.66),x(3.82),hy(.35),x(3.54),11,
-  'C',x(3.5),6.4,x(6.2),3.5,x(11.2),3.3,
-  'C',wx(.66),3.65,wx(.33),2.95,10.9,3.25,'Z'
+  'M',10.7,3.32,
+  // Upper-left rounded corner and left edge, deliberately uneven weight.
+  'C',6.05,3.09,3.46,6.13,3.45,10.9,
+  'C',3.10,hy(.25),4.62,hy(.37),4.35,hy(.51),
+  'C',4.03,hy(.66),2.29,hy(.77),2.58,y(11.0),
+  // Lower-left corner and bottom edge.
+  'C',2.64,y(6.2),6.10,y(3.35),11.15,y(3.2),
+  'C',wx(.24),y(3.65),wx(.31),y(4.46),wx(.48),y(4.23),
+  'C',wx(.65),y(4.11),wx(.74),y(2.46),x(10.95),y(2.76),
+  // Lower-right corner, then the two right-edge weight transitions.
+  'C',x(5.75),y(2.69),x(2.55),y(6.07),x(2.48),y(10.6),
+  'C',x(2.60),hy(.79),x(4.55),hy(.70),x(4.30),hy(.51),
+  'C',x(4.05),hy(.33),x(2.16),hy(.24),x(2.55),10.85,
+  // Upper-right rounded corner and subtly tapered top stroke.
+  'C',x(2.55),5.96,x(6.05),2.65,x(11.1),2.70,
+  'C',wx(.78),2.22,wx(.72),4.22,wx(.52),4.41,
+  'C',wx(.33),4.28,wx(.24),2.21,10.7,3.32,'Z'
  ];
  return [...outer,...inner].join(' ');
 }
