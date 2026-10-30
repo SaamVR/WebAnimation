@@ -423,10 +423,11 @@ test('single SVG frame border and solid rounded shadow preserve CTA isolation',a
  assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
  assert.match(css,/border:1px solid transparent/);
  assert.match(css,/border-radius:10px/);
- assert.match(css,/box-shadow:5px 6px 0 #242424/);
+ assert.match(css,/box-shadow:5px 5px 0 #D9DCD7/);
+ assert.doesNotMatch(css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')),/box-shadow:5px 6px 0 #242424/);
  assert.match(css,/\.product-card-shell > \.polaroid-card > \.polaroid-ink-outline\{/);
  assert.match(css,/max-width:none; \/\* override the global svg max-width:100% clamp \*\//);
- assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--deep,#1C241D\);\s*stroke:none/);
+ assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:#232323;\s*stroke:none/);
  assert.match(css,/\.product-card-shell > \.polaroid-card-action > \.cc-sketch\.product-add-button/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
@@ -434,4 +435,27 @@ test('single SVG frame border and solid rounded shadow preserve CTA isolation',a
  assert.match(button,/--cc-shadow-on-dark-beige:#8FA3AF/);
  assert.match(app,/class="polaroid-card-action"/);
  assert.match(app,/label:'ADD TO BAG',variant:'long',tone:'forest'/);
+});
+
+
+test('light-gray frame offset never modifies approved button shadows or outline geometry',async()=>{
+ const css=await read('src/styles.css');
+ const source=await read('src/polaroid-outline.mjs');
+ const buttons=await read('src/button-system.css');
+ const scoped=css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition'));
+ assert.equal((scoped.match(/box-shadow:5px 5px 0 #D9DCD7/g)||[]).length,5);
+ assert.doesNotMatch(scoped,/box-shadow:[^;\n]*#242424/);
+ assert.match(scoped,/border-radius:10px/);
+ assert.match(scoped,/border:1px solid transparent/);
+ assert.match(scoped,/\.product-card-shell > \.polaroid-card-action/);
+ assert.match(scoped,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
+ assert.match(scoped,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
+ assert.match(scoped,/\.polaroid-ink-perimeter\{\s*fill:#232323;\s*stroke:none/);
+ assert.match(source,/The interior is an even-odd hole/);
+ assert.match(source,/4\.35,hy\(\.51\)/);
+ assert.match(source,/wx\(\.52\),4\.41/);
+ assert.match(buttons,/--cc-shadow-graphite:#232323/);
+ assert.match(buttons,/--cc-shadow-on-dark:#D9DCD7/);
+ assert.match(buttons,/--cc-shadow-on-dark-beige:#8FA3AF/);
+ assert.match(buttons,/--cc-offset:7px/);
 });
