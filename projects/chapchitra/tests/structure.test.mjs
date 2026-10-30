@@ -385,3 +385,47 @@ test('hard-edged adaptive shadows have reusable light and dark surface tokens',a
  assert.match(gallery,/'forest','Forest Green'/);
  assert.match(gallery,/'olive','Dark Olive'/);
 });
+
+
+test('single gently imperfect SVG perimeter has responsive geometry and no decorative marks',async()=>{
+ const {polaroidInkPath}=await import('../src/polaroid-outline.mjs');
+ for(const [w,h] of [[266,348],[178,338],[168,337],[134,330]]){
+  const d=polaroidInkPath(w,h);
+  assert.ok(d.length>200);
+  assert.equal((d.match(/\bM\b/g)||[]).length,2,'one continuous outer ring and inner cutout');
+  assert.equal((d.match(/\bZ\b/g)||[]).length,2,'both contours closed');
+  assert.ok(!/\bL\b|\bQ\b|stroke|scribble/i.test(d),'only smoothly curved geometry');
+  assert.ok(d.includes(String(w-10.1))||d.includes(String(w-10.1+.0)));
+  assert.ok(!d.includes('NaN')&&!d.includes('Infinity'));
+ }
+ assert.equal(polaroidInkPath(0,0),'');
+ const js=await read('src/polaroid-outline.mjs');
+ assert.match(js,/new ResizeObserver/);
+ assert.match(js,/new MutationObserver/);
+ assert.match(js,/target.offsetWidth,height=target.offsetHeight/);
+ assert.match(js,/path.setAttribute\('fill-rule','evenodd'\)/);
+ assert.match(js,/root.body\|\|root/);
+ assert.match(js,/\.product-card-shell > \.polaroid-card/);
+ assert.doesNotMatch(js,/<rect|<circle|<line|<polyline/);
+});
+test('single SVG frame border and solid rounded shadow preserve CTA isolation',async()=>{
+ const css=await read('src/styles.css');
+ const app=await read('src/app.mjs');
+ const button=await read('src/button-system.css');
+ assert.match(app,/installPolaroidOutlines\(document\)/);
+ assert.match(app,/polaroid-outline\.mjs/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
+ assert.match(css,/border:1px solid transparent/);
+ assert.match(css,/border-radius:10px/);
+ assert.match(css,/box-shadow:5px 6px 0 #242424/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card > \.polaroid-ink-outline\{/);
+ assert.match(css,/max-width:none; \/\* override the global svg max-width:100% clamp \*\//);
+ assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--deep,#1C241D\);\s*stroke:none/);
+ assert.match(css,/\.product-card-shell > \.polaroid-card-action > \.cc-sketch\.product-add-button/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
+ assert.match(button,/--cc-offset:7px/);
+ assert.match(button,/--cc-shadow-dark-beige:var\(--mush,#A6A29B\)/);
+ assert.match(app,/class="polaroid-card-action"/);
+ assert.match(app,/label:'ADD TO BAG',variant:'long',tone:'forest'/);
+});

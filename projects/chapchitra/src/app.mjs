@@ -1,6 +1,8 @@
 async function boot(){
  const {shirtSilhouette,printSilhouette}=await import('./components.mjs');
  const {sketchButton}=await import('./handdrawn-buttons.mjs');
+ const {installPolaroidOutlines}=await import('./polaroid-outline.mjs');
+ installPolaroidOutlines(document);
  // Attach the dedicated sketch skin after the approved storefront stylesheet.
  if(!document.querySelector('link[data-chapchitra-buttons]')){
   const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/button-system.css';sheet.dataset.chapchitraButtons='';document.head.append(sheet);

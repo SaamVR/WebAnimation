@@ -1011,6 +1011,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
 .product-card-shell[data-photo-tone="2"]{--photo-tone:#D1D6C7}
 .product-card-shell[data-photo-tone="3"]{--photo-tone:var(--mist)}
 .product-card-shell > .polaroid-card{
+  position:relative;
   display:flex;
   flex:1 0 auto;
   flex-direction:column;
@@ -1018,14 +1019,14 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   min-width:0;
   box-sizing:border-box;
   background:#FBFAF6;
-  border:1px solid #E1DED5;
+  border:1px solid transparent;
   border-radius:10px;
   overflow:hidden;
   transform-origin:center center;
   transform:translate3d(0,0,0) rotate(0deg);
   transition:transform 300ms cubic-bezier(.22,.7,.18,1),
              box-shadow 300ms cubic-bezier(.22,.7,.18,1);
-  box-shadow:0 4px 11px rgba(28,36,29,.075);
+  box-shadow:5px 6px 0 #242424;
 }
 /* The existing alternating 1.4-degree/5px choreography is relocated to the
    inner frame, with exactly the same timing and directional depth. */
@@ -1033,12 +1034,12 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   .product-card-shell > .polaroid-card:hover{
     z-index:3;
     transform:translate3d(0,-5px,0) rotate(-1.4deg);
-    box-shadow:11px 15px 27px rgba(28,36,29,.13);
+    box-shadow:5px 6px 0 #242424;
     will-change:transform;
   }
   .product-card-shell:nth-child(even) > .polaroid-card:hover{
     transform:translate3d(0,-5px,0) rotate(1.4deg);
-    box-shadow:-11px 15px 27px rgba(28,36,29,.13);
+    box-shadow:5px 6px 0 #242424;
   }
 }
 /* Keep the existing photo art contained while compacting picture/caption. */
@@ -1146,7 +1147,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
  .product-card-shell > .polaroid-card,
  .product-card-shell > .polaroid-card:hover{
    transform:none!important;
-   box-shadow:0 4px 11px rgba(28,36,29,.075)!important;
+   box-shadow:5px 6px 0 #242424!important;
    will-change:auto;
  }
 }
@@ -1155,6 +1156,31 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
  .product-card-shell > .polaroid-card:hover{
    transition:none!important;
    transform:none!important;
-   box-shadow:0 4px 11px rgba(28,36,29,.075)!important;
+   box-shadow:5px 6px 0 #242424!important;
  }
 }
+
+
+/* One fitted SVG perimeter ink ribbon per paper frame. It is a single filled
+   even-odd path (the inside is a cutout), not layered decorative stroke marks.
+   SVG geometry uses native layout pixels to keep ~10px corners and variable
+   1.5–3.5px ink width across desktop, tablet and mobile. */
+.product-card-shell > .polaroid-card > .polaroid-ink-outline{
+  position:absolute;
+  inset:-1px;
+  width:calc(100% + 2px);
+  max-width:none; /* override the global svg max-width:100% clamp */
+  height:calc(100% + 2px);
+  max-height:none;
+  z-index:3;
+  overflow:visible;
+  display:block;
+  pointer-events:none;
+}
+.polaroid-ink-perimeter{
+  fill:var(--deep,#1C241D);
+  stroke:none;
+  pointer-events:none;
+}
+/* The hard-edged shadow is behind the real 10px frame and rotates with it.
+   Do not turn this into a blurred/pseudo floating shadow. */
