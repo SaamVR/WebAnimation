@@ -1169,7 +1169,9 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   position:absolute;
   inset:-1px;
   width:calc(100% + 2px);
+  max-width:none; /* override the global svg max-width:100% clamp */
   height:calc(100% + 2px);
+  max-height:none;
   z-index:3;
   overflow:visible;
   display:block;
