@@ -46,7 +46,9 @@ export function installPolaroidOutlines(root=document){
    const svg=target.querySelector(':scope > .polaroid-ink-outline');
    const path=svg?.firstElementChild;
    if(!svg||!path)continue;
-   const {width,height}=target.getBoundingClientRect();
+   // offset dimensions ignore the approved hover rotate/scale transform;
+   // the ink must always fit the actual paper's untransformed border box.
+   const width=target.offsetWidth,height=target.offsetHeight;
    if(width<40||height<40)continue;
    svg.setAttribute('viewBox','0 0 '+round(width)+' '+round(height));
    path.setAttribute('d',polaroidInkPath(width,height));
