@@ -423,10 +423,10 @@ test('single SVG frame border and solid rounded shadow preserve CTA isolation',a
  assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
  assert.match(css,/border:1px solid transparent/);
  assert.match(css,/border-radius:10px/);
- assert.match(css,/box-shadow:5px 6px 0 #242424/);
+ assert.match(css,/box-shadow:4px 5px 0 #D9DCD7/);
  assert.match(css,/\.product-card-shell > \.polaroid-card > \.polaroid-ink-outline\{/);
  assert.match(css,/max-width:none; \/\* override the global svg max-width:100% clamp \*\//);
- assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--deep,#1C241D\);\s*stroke:none/);
+ assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,#858981\);\s*stroke:none/);
  assert.match(css,/\.product-card-shell > \.polaroid-card-action > \.cc-sketch\.product-add-button/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
@@ -434,4 +434,32 @@ test('single SVG frame border and solid rounded shadow preserve CTA isolation',a
  assert.match(button,/--cc-shadow-on-dark-beige:#8FA3AF/);
  assert.match(app,/class="polaroid-card-action"/);
  assert.match(app,/label:'ADD TO BAG',variant:'long',tone:'forest'/);
+});
+
+
+test('Polaroid outline stays one variable-width SVG shape, with a light-gray frame shadow',async()=>{
+ const app=await read('src/app.mjs'),css=await read('src/styles.css');
+ const source=await read('src/polaroid-outline.mjs');
+ assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
+ assert.match(css,/border:1px solid transparent/);
+ assert.match(css,/border-radius:10px/);
+ assert.equal((css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')).match(/box-shadow:4px 5px 0 #D9DCD7/g)||[]).length,5);
+ assert.doesNotMatch(css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')),/box-shadow:5px 6px 0 #242424/);
+ assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,#858981\);\s*stroke:none/);
+ assert.match(source,/fill-rule','evenodd'/);
+ assert.match(source,/polaroidInkPath\(width,height\)/);
+ assert.match(app,/class="polaroid-card-action"/);
+});
+test('Hero 1 Terracotta and both banner CTAs reuse approved pill without changing destinations',async()=>{
+ const app=await read('src/app.mjs'),css=await read('src/styles.css'),buttons=await read('src/button-system.css');
+ assert.match(buttons,/\.hero-cover \.cc-sketch\.cc-sketch--beige\{\s*--cc-shadow-color:var\(--acc,#8A503B\)/);
+ assert.match(buttons,/--cc-shadow-graphite:#232323/);
+ assert.match(buttons,/--cc-shadow-on-dark:#D9DCD7/);
+ assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest',href:'\/shop\/\?category=tie-dye'/);
+ assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest',href:'\/artists-edit\/'/);
+ assert.doesNotMatch(app,/class="text-link">Explore hand-dye studies ↗|class="text-link">Visit Artist’s Edit ↗/);
+ assert.match(css,/\.banner-editorial-copy \.cc-sketch\.editorial-cta\{/);
+ assert.doesNotMatch(css,/\.banner-editorial-copy \.text-link\{/);
+ assert.match(buttons,/--cc-offset:7px/);
+ assert.match(buttons,/clip-path:inset\(0 100% 0 0\)/);
 });
