@@ -483,7 +483,7 @@ test('reusable normalized dry-brush SVG masks use only alpha geometry',async()=>
 test('printed masks only affect background pseudo-layers and preserve all live content',async()=>{
  const css=await read('src/styles.css');
  const app=await read('src/app.mjs');
- const segment=css.slice(css.indexOf('/* CHAPCHITRA — reusable dry-brush'));
+ const segment=css.slice(css.indexOf('/* CHAPCHITRA — reusable dry-brush'),css.indexOf('/* CHAPCHITRA — approved layout corrections'));
  assert.ok(segment.length>1900);
  assert.match(segment,/#banners > \.editorial-banner::before\{/);
  assert.match(segment,/#featured\.featured-zone::before\{/);
@@ -503,4 +503,35 @@ test('printed masks only affect background pseudo-layers and preserve all live c
  assert.match(app,/id="featuredFrames"/);
  assert.match(app,/id="featuredPrev"/);
  assert.match(app,/id="featuredNext"/);
+});
+
+
+test('sticky header, retone, and viewport carousel overrides stay localized',async()=>{
+ const css=await read('src/styles.css');
+ const app=await read('src/app.mjs');
+ const patch=css.slice(css.indexOf('/* CHAPCHITRA — approved layout corrections'));
+ assert.ok(patch.length>3600);
+ assert.match(patch,/#app > \.site-header\{\s*position:-webkit-sticky;\s*position:sticky;\s*top:0/);
+ assert.match(patch,/#banners > \.tie-banner\{\s*--cc-printed-surface:var\(--acc\);\s*color:#fff/);
+ assert.match(patch,/#banners > \.tie-banner \.banner-art-panel\{\s*background:var\(--beige\)/);
+ assert.match(patch,/#featured \.featured-wide\{[\s\S]*width:100vw/);
+ assert.match(patch,/#featured \.featured-wide \.featured-stage\{[\s\S]*max-width:none/);
+ assert.match(patch,/#featured \.featured-wide \.featured-controls\{[\s\S]*position:absolute/);
+ assert.match(patch,/#featured \.feature-product-info,[\s\S]*\.plate-disclaimer\{\s*display:none!important/);
+ assert.match(patch,/#benefits\.benefit-section\{background:#F6F7F5\}/);
+ assert.match(app,/class="featured-wide"/);
+ assert.match(app,/id="featuredCaption" class="sr-only"/);
+ assert.match(app,/id="featuredHint" class="sr-only"/);
+ assert.match(app,/FEATURE_INTERVAL_MS=8200/);
+ assert.match(app,/featuredTimer/);
+ assert.match(app,/featureStage\.addEventListener\('keydown'/);
+});
+test('provisional Featured mask keeps x=0 and x=1000 sides straight',async()=>{
+ const svg=await read('src/assets/printed-edge-featured.svg');
+ assert.match(svg,/PROVISIONAL EDGE GEOMETRY ONLY/);
+ assert.match(svg,/M 0 11/);
+ assert.match(svg,/L 1000 588/);
+ assert.match(svg,/C 41 588 17 589 0 589/);
+ assert.match(svg,/mask-type:alpha/);
+ assert.doesNotMatch(svg,/<image|base64|<animate|<filter/);
 });
