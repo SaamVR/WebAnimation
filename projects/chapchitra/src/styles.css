@@ -394,10 +394,10 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
 }
 .banner-editorial-copy .eyebrow{font-size:13px;color:var(--walnut);letter-spacing:0}
 .banner-editorial-copy p:not(.eyebrow){font-size:13px;color:var(--mut);margin:0 0 15px}
-.banner-editorial-copy .text-link{
- font-size:12px;border:1px solid var(--press);border-radius:4px;
- background:var(--press);color:#fff;padding:10px 12px;
- margin-top:0;text-align:center;
+.banner-editorial-copy .cc-sketch.editorial-cta{
+  width:100%;
+  max-width:272px;
+  margin-top:0;
 }
 .banner-art-panel{
  background:var(--acc);color:white;display:flex;
