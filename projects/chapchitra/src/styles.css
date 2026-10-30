@@ -1026,7 +1026,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   transform:translate3d(0,0,0) rotate(0deg);
   transition:transform 300ms cubic-bezier(.22,.7,.18,1),
              box-shadow 300ms cubic-bezier(.22,.7,.18,1);
-  box-shadow:5px 6px 0 #242424;
+  box-shadow:4px 5px 0 #D9DCD7;
 }
 /* The existing alternating 1.4-degree/5px choreography is relocated to the
    inner frame, with exactly the same timing and directional depth. */
@@ -1034,12 +1034,12 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   .product-card-shell > .polaroid-card:hover{
     z-index:3;
     transform:translate3d(0,-5px,0) rotate(-1.4deg);
-    box-shadow:5px 6px 0 #242424;
+    box-shadow:4px 5px 0 #D9DCD7;
     will-change:transform;
   }
   .product-card-shell:nth-child(even) > .polaroid-card:hover{
     transform:translate3d(0,-5px,0) rotate(1.4deg);
-    box-shadow:5px 6px 0 #242424;
+    box-shadow:4px 5px 0 #D9DCD7;
   }
 }
 /* Keep the existing photo art contained while compacting picture/caption. */
@@ -1147,7 +1147,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
  .product-card-shell > .polaroid-card,
  .product-card-shell > .polaroid-card:hover{
    transform:none!important;
-   box-shadow:5px 6px 0 #242424!important;
+   box-shadow:4px 5px 0 #D9DCD7!important;
    will-change:auto;
  }
 }
@@ -1156,7 +1156,7 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
  .product-card-shell > .polaroid-card:hover{
    transition:none!important;
    transform:none!important;
-   box-shadow:5px 6px 0 #242424!important;
+   box-shadow:4px 5px 0 #D9DCD7!important;
  }
 }
 
@@ -1178,9 +1178,9 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   pointer-events:none;
 }
 .polaroid-ink-perimeter{
-  fill:var(--deep,#1C241D);
+  fill:var(--cc-frame-ink,#858981);
   stroke:none;
   pointer-events:none;
 }
-/* The hard-edged shadow is behind the real 10px frame and rotates with it.
-   Do not turn this into a blurred/pseudo floating shadow. */
+/* A single muted variable-width ink contour and a thin light-gray 4x5px hard-edge
+   shadow; preserve the existing 10px frame and whole-card hover motion. */
