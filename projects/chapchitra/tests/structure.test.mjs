@@ -419,6 +419,7 @@ test('single SVG frame border and solid rounded shadow preserve CTA isolation',a
  assert.match(css,/border-radius:10px/);
  assert.match(css,/box-shadow:5px 6px 0 #242424/);
  assert.match(css,/\.product-card-shell > \.polaroid-card > \.polaroid-ink-outline\{/);
+ assert.match(css,/max-width:none; \/\* override the global svg max-width:100% clamp \*\//);
  assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--deep,#1C241D\);\s*stroke:none/);
  assert.match(css,/\.product-card-shell > \.polaroid-card-action > \.cc-sketch\.product-add-button/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
