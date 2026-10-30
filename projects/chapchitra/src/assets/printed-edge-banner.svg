@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+  <!-- Alpha-only mask: normalized artwork stretches with the background layer,
+       not the editorial banner's copy, CTA or illustration. -->
+  <defs>
+    <mask id="printed-edge-banner" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width="1000" height="600" style="mask-type:alpha">
+      <path fill="#fff" fill-rule="evenodd" d="
+        M 17 8
+        C 91 5 167 10 243 8
+        C 325 11 402 5 479 9
+        C 556 6 637 12 713 8
+        C 805 12 898 6 974 9
+        C 985 10 992 15 992 28
+        C 990 102 994 184 990 252
+        C 994 324 989 414 992 492
+        C 991 526 994 560 990 579
+        C 989 590 983 592 972 592
+        C 878 591 790 595 709 590
+        C 624 594 535 590 455 593
+        C 361 590 284 595 209 592
+        C 129 595 75 588 24 592
+        C 12 590 9 585 8 574
+        C 10 499 6 421 9 344
+        C 7 267 11 182 8 104
+        C 7 69 9 42 11 23
+        C 12 14 14 10 17 8 Z
+
+        M 120 8 C 124 6 130 7 132 10 C 128 10 124 11 120 8 Z
+        M 354 9 C 359 6 365 8 367 10 C 362 11 357 11 354 9 Z
+        M 751 9 C 757 7 763 8 767 11 C 761 11 756 12 751 9 Z
+        M 990 149 C 991 145 993 143 995 144 C 996 149 993 153 990 155 Z
+        M 991 402 C 993 399 995 398 997 400 C 998 404 994 407 992 409 Z
+        M 776 591 C 781 589 788 590 791 593 C 787 595 782 595 776 591 Z
+        M 291 592 C 297 590 302 591 306 594 C 302 595 296 595 291 592 Z
+        M 8 250 C 6 244 5 240 3 239 C 1 245 4 250 8 255 Z
+        M 9 493 C 7 489 5 487 3 489 C 2 494 5 499 8 499 Z
+      "/>
+    </mask>
+  </defs>
+  <rect width="1000" height="600" fill="#fff" mask="url(#printed-edge-banner)"/>
+</svg>

@@ -463,3 +463,44 @@ test('Hero 1 Terracotta and both banner CTAs reuse approved pill without changin
  assert.match(buttons,/--cc-offset:7px/);
  assert.match(buttons,/clip-path:inset\(0 100% 0 0\)/);
 });
+
+
+test('reusable normalized dry-brush SVG masks use only alpha geometry',async()=>{
+ for(const name of ['banner','featured']){
+  const svg=await read('src/assets/printed-edge-'+name+'.svg');
+  assert.match(svg,/<svg[^>]+viewBox="0 0 1000 600"[^>]*preserveAspectRatio="none"/);
+  assert.match(svg,new RegExp('<mask id="printed-edge-'+name+'"'));
+  assert.match(svg,/maskUnits="userSpaceOnUse"/);
+  assert.match(svg,/maskContentUnits="userSpaceOnUse"/);
+  assert.match(svg,/mask-type:alpha/);
+  assert.match(svg,/fill="#fff" fill-rule="evenodd"/);
+  assert.match(svg,/<rect width="1000" height="600" fill="#fff" mask="url\(#printed-edge-/);
+  assert.ok((svg.match(/M\s*\d+/g)||[]).length>=8,'small ink-break cutouts accompany perimeter');
+  assert.doesNotMatch(svg,/<image|data:image|base64|<filter|<animate|<script|<pattern/);
+  assert.doesNotMatch(svg,/fill="(?!#fff")[^"]+"|fill:#[a-fA-F0-9]{3,8}/);
+ }
+});
+test('printed masks only affect background pseudo-layers and preserve all live content',async()=>{
+ const css=await read('src/styles.css');
+ const app=await read('src/app.mjs');
+ const segment=css.slice(css.indexOf('/* CHAPCHITRA — reusable dry-brush'));
+ assert.ok(segment.length>1900);
+ assert.match(segment,/#banners > \.editorial-banner::before\{/);
+ assert.match(segment,/#featured\.featured-zone::before\{/);
+ assert.match(segment,/#banners > \.tie-banner\{--cc-printed-surface:var\(--beige\)\}/);
+ assert.match(segment,/#banners > \.edit-banner\{--cc-printed-surface:var\(--cream\)\}/);
+ assert.match(segment,/background:var\(--deep\)/);
+ assert.match(segment,/mask-image:url\("\/assets\/printed-edge-banner\.svg"\)/);
+ assert.match(segment,/mask-image:url\("\/assets\/printed-edge-featured\.svg"\)/);
+ assert.match(segment,/mask-size:100% 100%/);
+ assert.match(segment,/mask-mode:alpha/);
+ assert.match(segment,/pointer-events:none/);
+ assert.match(segment,/#banners > \.editorial-banner > \*\{/);
+ assert.match(segment,/#featured\.featured-zone > \.wrap\{/);
+ assert.doesNotMatch(segment,/animation:|transform:|clip-path:|padding:|min-height:|grid-template-columns:/);
+ assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest'/);
+ assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest'/);
+ assert.match(app,/id="featuredFrames"/);
+ assert.match(app,/id="featuredPrev"/);
+ assert.match(app,/id="featuredNext"/);
+});

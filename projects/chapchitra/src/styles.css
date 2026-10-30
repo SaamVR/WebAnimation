@@ -1184,3 +1184,74 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
 }
 /* A single muted variable-width ink contour and a thin light-gray 4x5px hard-edge
    shadow; preserve the existing 10px frame and whole-card hover motion. */
+
+
+/* CHAPCHITRA — reusable dry-brush, alpha-only SVG printed edges (C / art).
+   Move only each section's OWN approved color to a background pseudo-layer.
+   The mask never acts on children: copy, pill CTAs, illustration panels and
+   Featured carousel keep their DOM, padding, geometry and interactions.
+   Normalized viewBox SVG assets are reusable across viewport ratios. */
+#banners > .editorial-banner{
+  position:relative;
+  isolation:isolate;
+  background:transparent;
+  border-color:transparent;  /* retain border width but drop rectangular stroke */
+  overflow:visible;           /* the irregular alpha belongs to ::before only */
+}
+#banners > .tie-banner{--cc-printed-surface:var(--beige)}
+#banners > .edit-banner{--cc-printed-surface:var(--cream)}
+#banners > .editorial-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  display:block;
+  pointer-events:none;
+  background:var(--cc-printed-surface);
+  -webkit-mask-image:url("/assets/printed-edge-banner.svg");
+  mask-image:url("/assets/printed-edge-banner.svg");
+  -webkit-mask-size:100% 100%;
+  mask-size:100% 100%;
+  -webkit-mask-position:center;
+  mask-position:center;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-mode:alpha;
+  mask-mode:alpha;
+}
+#banners > .editorial-banner > *{
+  position:relative;
+  z-index:1;
+}
+
+/* Featured Prints: preserve the original forest tone and every carousel
+   dimension/overflow/transform; only the independent perimeter background
+   receives the mask. */
+#featured.featured-zone{
+  position:relative;
+  isolation:isolate;
+  background:transparent;
+}
+#featured.featured-zone::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  display:block;
+  pointer-events:none;
+  background:var(--deep);
+  -webkit-mask-image:url("/assets/printed-edge-featured.svg");
+  mask-image:url("/assets/printed-edge-featured.svg");
+  -webkit-mask-size:100% 100%;
+  mask-size:100% 100%;
+  -webkit-mask-position:center;
+  mask-position:center;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-mode:alpha;
+  mask-mode:alpha;
+}
+#featured.featured-zone > .wrap{
+  position:relative;
+  z-index:1;
+}

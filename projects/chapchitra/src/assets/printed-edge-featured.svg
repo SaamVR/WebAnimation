@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+  <!-- Alpha-only, normalized viewBox perimeter for the entire Featured Prints
+       background. The carousel/content remain unmasked on a separate layer. -->
+  <defs>
+    <mask id="printed-edge-featured" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width="1000" height="600" style="mask-type:alpha">
+      <path fill="#fff" fill-rule="evenodd" d="
+        M 9 12
+        C 79 9 161 13 235 10
+        C 319 13 394 8 465 11
+        C 544 8 621 14 697 11
+        C 783 14 861 8 939 11
+        C 969 10 990 12 996 16
+        C 994 97 998 171 995 241
+        C 997 328 994 414 996 497
+        C 997 526 996 568 995 584
+        C 941 585 869 589 796 585
+        C 715 588 632 583 549 588
+        C 466 586 386 589 311 586
+        C 231 589 149 584 71 587
+        C 44 584 18 588 6 584
+        C 8 495 4 420 7 350
+        C 4 270 9 177 5 98
+        C 8 66 5 33 9 12 Z
+
+        M 172 11 C 177 9 182 9 185 11 C 181 13 176 13 172 11 Z
+        M 406 10 C 412 8 417 9 421 12 C 416 12 411 13 406 10 Z
+        M 832 11 C 837 9 843 10 845 12 C 842 14 836 13 832 11 Z
+        M 996 128 C 994 125 992 123 990 125 C 992 131 993 135 996 136 Z
+        M 996 452 C 995 449 993 446 991 446 C 991 452 993 456 996 458 Z
+        M 645 586 C 651 584 657 584 661 588 C 655 589 650 588 645 586 Z
+        M 253 587 C 257 585 265 584 269 589 C 262 590 257 590 253 587 Z
+        M 6 329 C 8 325 10 322 13 324 C 11 330 9 334 6 335 Z
+      "/>
+    </mask>
+  </defs>
+  <rect width="1000" height="600" fill="#fff" mask="url(#printed-edge-featured)"/>
+</svg>
