@@ -1255,3 +1255,143 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   position:relative;
   z-index:1;
 }
+
+
+/* CHAPCHITRA — approved layout corrections, 2026-10-30.
+   Texture density remains PREVIEW-ONLY pending the owner's next brush ref. */
+
+/* Sticky header flush with the layout/visual viewport edge in WebKit.
+   Do not add a safe-area top offset: Safari already reserves its chrome.
+   Explicitly avoid a clipped/scrolling ancestor for the sticky node. */
+#app{overflow:visible}
+#app > .site-header{
+  position:-webkit-sticky;
+  position:sticky;
+  top:0;
+  inset-block-start:0;
+  margin-block-start:0;
+  z-index:80;
+}
+@supports (overflow:clip){
+  html,body{overflow-x:clip}
+}
+
+/* Existing editorial component and typography/padding/grid remain intact.
+   Only the exterior color and the interior art panel color change. */
+#banners > .tie-banner{
+  --cc-printed-surface:var(--acc);
+  color:#fff;
+}
+#banners > .tie-banner .banner-editorial-copy .eyebrow,
+#banners > .tie-banner .banner-editorial-copy h2{
+  color:#fff;
+}
+#banners > .tie-banner .banner-editorial-copy p:not(.eyebrow){
+  color:#fff;
+  opacity:.9;
+}
+#banners > .tie-banner .banner-art-panel{
+  background:var(--beige);
+  color:var(--ink);
+}
+#banners > .tie-banner .banner-art-panel small{
+  color:var(--ink);
+  opacity:.82;
+}
+
+/* Full-bleed carousel stage, without expanding the heading's .wrap.
+   Frame motion/timing and semantic selection remain owned by app.mjs. */
+#featured .featured-wide{
+  position:relative;
+  left:50%;
+  width:100vw;
+  max-width:none;
+  margin-left:-50vw;
+  margin-top:18px;
+}
+#featured .featured-wide .featured-stage{
+  display:block;
+  width:100%;
+  max-width:none;
+  margin:0;
+}
+#featured .feature-frame[data-slot="near-left"]{--f-x:calc(-1 * clamp(235px,24vw,440px))}
+#featured .feature-frame[data-slot="near-right"]{--f-x:clamp(235px,24vw,440px)}
+#featured .feature-frame[data-slot="far-left"]{--f-x:calc(-1 * clamp(435px,43vw,785px))}
+#featured .feature-frame[data-slot="far-right"]{--f-x:clamp(435px,43vw,785px)}
+
+/* Eliminate visible caption, prices, credits and bottom navigation.
+   Keep labels and the live caption accessible to screen readers. */
+#featured .feature-product-info,
+#featured .feature-frame .plate-disclaimer{
+  display:none!important;
+}
+#featured .feature-select{height:100%}
+#featured .feature-frame .blank-print small{visibility:hidden}
+#featured #featuredCaption.sr-only,
+#featured #featuredHint.sr-only{
+  position:absolute!important;
+  width:1px!important;height:1px!important;
+  padding:0!important;margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  clip-path:inset(50%)!important;
+  white-space:nowrap!important;
+  border:0!important;
+}
+#featured .featured-wide .featured-controls{
+  position:absolute;
+  z-index:10;
+  inset:0 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0;
+  margin:0;
+  padding:0;
+  pointer-events:none;
+}
+#featured .featured-wide .featured-controls button{
+  pointer-events:auto;
+  flex:none;
+  display:grid;
+  place-items:center;
+  width:44px;
+  height:44px;
+  padding:0;
+  background:transparent;
+  border:1.5px solid rgba(246,247,245,.85);
+  border-radius:50%;
+  color:var(--bg);
+  font-size:24px;
+  line-height:1;
+  box-shadow:none;
+}
+#featured .featured-wide .featured-controls button:hover,
+#featured .featured-wide .featured-controls button:focus-visible{
+  background:rgba(246,247,245,.13);
+  color:#fff;
+}
+
+/* Preserve background color and content; make left/right edges truly
+   full bleed by keeping their mask alpha opaque (SVG path corrected below). */
+#featured.featured-zone{overflow:clip}
+#benefits.benefit-section{background:#F6F7F5}
+
+@media(max-width:860px){
+  #featured .feature-frame[data-slot="near-left"]{--f-x:calc(-1 * clamp(185px,27vw,260px))}
+  #featured .feature-frame[data-slot="near-right"]{--f-x:clamp(185px,27vw,260px)}
+  #featured .feature-frame[data-slot="far-left"]{--f-x:-390px}
+  #featured .feature-frame[data-slot="far-right"]{--f-x:390px}
+}
+@media(max-width:600px){
+  #featured .feature-frame[data-slot="near-left"]{--f-x:calc(-1 * (50vw - 12px))}
+  #featured .feature-frame[data-slot="near-right"]{--f-x:calc(50vw - 12px)}
+  #featured .featured-wide .featured-controls{inset-inline:8px}
+  #featured .featured-wide .featured-controls button{
+    width:38px;height:38px;font-size:21px;
+    color:var(--deep);
+    border-color:var(--deep);
+  }
+}
+#featured .section-title p:last-child{display:none}

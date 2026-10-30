@@ -113,9 +113,9 @@ async function boot(){
  }
  function featured(){
   return '<section id="featured" class="section-pad featured-zone" aria-labelledby="featuredTitle"><div class="wrap">'+titleBlock('03 / THE GALLERY','Featured Prints','Five framed slots reserved for owner-supplied artwork and inspiration credits.')+
-   '<div id="featuredFrames" class="featured-stage" role="group" tabindex="0" aria-roledescription="carousel" aria-label="Featured print studies. Select cards or use left and right arrow keys." aria-describedby="featuredHint"></div>'+
-   '<div class="featured-controls"><button type="button" id="featuredPrev" aria-label="Previous featured print">‹</button><div id="featuredCaption" aria-live="polite" aria-atomic="true"></div><button type="button" id="featuredNext" aria-label="Next featured print">›</button></div>'+
-   '<p id="featuredHint" class="featured-hint">Select side cards or swipe to change print · Sample imagery and prices are pending</p></div></section>';
+   '<div class="featured-wide"><div id="featuredFrames" class="featured-stage" role="group" tabindex="0" aria-roledescription="carousel" aria-label="Featured print studies. Select cards or use left and right arrow keys." aria-describedby="featuredHint"></div>'+
+   '<div class="featured-controls"><button type="button" id="featuredPrev" aria-label="Previous featured print">‹</button><div id="featuredCaption" class="sr-only" aria-live="polite" aria-atomic="true"></div><button type="button" id="featuredNext" aria-label="Next featured print">›</button></div></div>'+
+   '<p id="featuredHint" class="sr-only">Select side cards or swipe to change print · Sample imagery and prices are pending</p></div></section>';
  }
  function values(){
   const items=[['01','Stories You Can Wear','An illustrated canvas for everyday storytelling.'],['02','Rooted in Bengal','A place for local culture and creative observation.'],['03','Made Through Print','Marks, materials and the studio process.'],['04','Wear It Your Way','Find a silhouette or customize your own.']];
