@@ -1186,76 +1186,101 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
    shadow; preserve the existing 10px frame and whole-card hover motion. */
 
 
-/* CHAPCHITRA — reusable dry-brush, alpha-only SVG printed edges (C / art).
-   Move only each section's OWN approved color to a background pseudo-layer.
-   The mask never acts on children: copy, pill CTAs, illustration panels and
-   Featured carousel keep their DOM, padding, geometry and interactions.
-   Normalized viewBox SVG assets are reusable across viewport ratios. */
+/* CHAPCHITRA / approved 2026-11-03 brush reference:
+   The 2 vector strips are painted alpha masks repeated at their natural CSS
+   pixel dimensions. No 100%-width distortion of 1–3px bristle details.
+   Dedicated, pointer-transparent backgrounds sit BEHIND all unmasked content.
+   Exactly the same approved foreground layout, colors and interactions. */
 #banners > .editorial-banner{
   position:relative;
   isolation:isolate;
   background:transparent;
-  border-color:transparent;  /* retain border width but drop rectangular stroke */
-  overflow:visible;           /* the irregular alpha belongs to ::before only */
+  border-color:transparent;
+  overflow:visible;
 }
 #banners > .tie-banner{--cc-printed-surface:var(--beige)}
 #banners > .edit-banner{--cc-printed-surface:var(--cream)}
-#banners > .editorial-banner::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  display:block;
-  pointer-events:none;
-  background:var(--cc-printed-surface);
-  -webkit-mask-image:url("/assets/printed-edge-banner.svg");
-  mask-image:url("/assets/printed-edge-banner.svg");
-  -webkit-mask-size:100% 100%;
-  mask-size:100% 100%;
-  -webkit-mask-position:center;
-  mask-position:center;
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-  -webkit-mask-mode:alpha;
-  mask-mode:alpha;
-}
-#banners > .editorial-banner > *{
+#banners > .editorial-banner > :not(.cc-printed-surface){
   position:relative;
   z-index:1;
 }
-
-/* Featured Prints: preserve the original forest tone and every carousel
-   dimension/overflow/transform; only the independent perimeter background
-   receives the mask. */
 #featured.featured-zone{
   position:relative;
   isolation:isolate;
   background:transparent;
 }
-#featured.featured-zone::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  display:block;
-  pointer-events:none;
-  background:var(--deep);
-  -webkit-mask-image:url("/assets/printed-edge-featured.svg");
-  mask-image:url("/assets/printed-edge-featured.svg");
-  -webkit-mask-size:100% 100%;
-  mask-size:100% 100%;
-  -webkit-mask-position:center;
-  mask-position:center;
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-  -webkit-mask-mode:alpha;
-  mask-mode:alpha;
-}
 #featured.featured-zone > .wrap{
   position:relative;
   z-index:1;
 }
-
+/* The legacy whole-section masks are retired; alpha is applied separately
+   to reusable fixed-size background strips, never to text or artwork. */
+#banners > .editorial-banner::before,
+#featured.featured-zone::before{content:none}
+#banners > .editorial-banner > .cc-printed-surface,
+#featured.featured-zone > .cc-printed-surface{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  display:block;
+  overflow:visible;
+  pointer-events:none;
+}
+.cc-printed-surface > i{
+  display:block;
+  position:absolute;
+  background:var(--cc-printed-surface);
+  border:0;
+  pointer-events:none;
+}
+/* Full-opacity center guarantees seamless continuity beneath all four strips. */
+.cc-printed-center{
+  inset:37px;
+}
+.cc-printed-top,
+.cc-printed-bottom{
+  right:0;
+  left:0;
+  height:62px;
+  -webkit-mask-image:url("/assets/printed-edge-brush-horizontal.svg");
+  mask-image:url("/assets/printed-edge-brush-horizontal.svg");
+  -webkit-mask-size:421px 62px;
+  mask-size:421px 62px;
+  -webkit-mask-repeat:repeat-x;
+  mask-repeat:repeat-x;
+  -webkit-mask-position:left top;
+  mask-position:left top;
+  -webkit-mask-mode:alpha;
+  mask-mode:alpha;
+}
+.cc-printed-top{top:0}
+.cc-printed-bottom{bottom:0;transform:scaleY(-1)}
+.cc-printed-left,
+.cc-printed-right{
+  top:0;
+  bottom:0;
+  width:62px;
+  -webkit-mask-image:url("/assets/printed-edge-brush-vertical.svg");
+  mask-image:url("/assets/printed-edge-brush-vertical.svg");
+  -webkit-mask-size:62px 307px;
+  mask-size:62px 307px;
+  -webkit-mask-repeat:repeat-y;
+  mask-repeat:repeat-y;
+  -webkit-mask-position:left top;
+  mask-position:left top;
+  -webkit-mask-mode:alpha;
+  mask-mode:alpha;
+}
+.cc-printed-left{left:0}
+.cc-printed-right{right:0;transform:scaleX(-1)}
+/* Featured deliberately has NO vertical strips. Its full-width center fill
+   reaches x=0 and x=100vw; only the top/bottom bands are distressed. */
+#featured.featured-zone > .cc-printed-surface{
+  --cc-printed-surface:var(--deep);
+}
+#featured .cc-printed-surface--featured > .cc-printed-center{
+  inset:37px 0;
+}
 
 /* CHAPCHITRA — approved layout corrections, 2026-10-30.
    Texture density remains PREVIEW-ONLY pending the owner's next brush ref. */
