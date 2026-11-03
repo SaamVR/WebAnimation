@@ -465,46 +465,55 @@ test('Hero 1 Terracotta and both banner CTAs reuse approved pill without changin
 });
 
 
-test('reusable normalized dry-brush SVG masks use only alpha geometry',async()=>{
- for(const name of ['banner','featured']){
-  const svg=await read('src/assets/printed-edge-'+name+'.svg');
-  assert.match(svg,/<svg[^>]+viewBox="0 0 1000 600"[^>]*preserveAspectRatio="none"/);
-  assert.match(svg,new RegExp('<mask id="printed-edge-'+name+'"'));
+test('authoritative SVG dry-brush tiles have high-frequency alpha paint deposits and voids',async()=>{
+ const horiz=await read('src/assets/printed-edge-brush-horizontal.svg');
+ const vert=await read('src/assets/printed-edge-brush-vertical.svg');
+ assert.match(horiz,/viewBox="0 0 421 62"/);
+ assert.match(vert,/viewBox="0 0 62 307"/);
+ assert.match(vert,/transform="translate\(0 307\) rotate\(-90\)"/);
+ for(const svg of [horiz,vert]){
   assert.match(svg,/maskUnits="userSpaceOnUse"/);
   assert.match(svg,/maskContentUnits="userSpaceOnUse"/);
   assert.match(svg,/mask-type:alpha/);
-  assert.match(svg,/fill="#fff" fill-rule="evenodd"/);
-  assert.match(svg,/<rect width="1000" height="600" fill="#fff" mask="url\(#printed-edge-/);
-  assert.ok((svg.match(/M\s*\d+/g)||[]).length>=(name==='featured'?6:8),'small ink-break cutouts accompany perimeter');
-  assert.doesNotMatch(svg,/<image|data:image|base64|<filter|<animate|<script|<pattern/);
-  assert.doesNotMatch(svg,/fill="(?!#fff")[^"]+"|fill:#[a-fA-F0-9]{3,8}/);
+  assert.match(svg,/fill-rule="evenodd"/);
+  assert.match(svg,/opacity="\.9"/);
+  assert.match(svg,/opacity="\.48"/);
+  assert.match(svg,/fill="#fff"/);
+  assert.ok((svg.match(/\bM\d/g)||[]).length>120,'varied bristle strokes, spray and transparent dry-ink slots');
+  assert.doesNotMatch(svg,/<image|base64|<filter|<animate|<script|<pattern/);
  }
 });
-test('printed masks only affect background pseudo-layers and preserve all live content',async()=>{
- const css=await read('src/styles.css');
- const app=await read('src/app.mjs');
- const segment=css.slice(css.indexOf('/* CHAPCHITRA — reusable dry-brush'),css.indexOf('/* CHAPCHITRA — approved layout corrections'));
- assert.ok(segment.length>1900);
- assert.match(segment,/#banners > \.editorial-banner::before\{/);
- assert.match(segment,/#featured\.featured-zone::before\{/);
- assert.match(segment,/#banners > \.tie-banner\{--cc-printed-surface:var\(--beige\)\}/);
- assert.match(segment,/#banners > \.edit-banner\{--cc-printed-surface:var\(--cream\)\}/);
- assert.match(segment,/background:var\(--deep\)/);
- assert.match(segment,/mask-image:url\("\/assets\/printed-edge-banner\.svg"\)/);
- assert.match(segment,/mask-image:url\("\/assets\/printed-edge-featured\.svg"\)/);
- assert.match(segment,/mask-size:100% 100%/);
- assert.match(segment,/mask-mode:alpha/);
- assert.match(segment,/pointer-events:none/);
- assert.match(segment,/#banners > \.editorial-banner > \*\{/);
- assert.match(segment,/#featured\.featured-zone > \.wrap\{/);
- assert.doesNotMatch(segment,/animation:|transform:|clip-path:|padding:|min-height:|grid-template-columns:/);
+test('banner four-edge and Featured top/bottom alpha masks are on unmasked background layers only',async()=>{
+ const css=await read('src/styles.css'),app=await read('src/app.mjs');
+ const section=css.slice(css.indexOf('/* CHAPCHITRA / approved 2026-11-03 brush reference'),
+                         css.indexOf('/* CHAPCHITRA — approved layout corrections'));
+ assert.ok(section.length>2000);
+ assert.match(app,/function printedEdgeSurface\(featured=false\)/);
+ assert.match(app,/cc-printed-surface--featured/);
+ assert.match(app,/cc-printed-top/);
+ assert.match(app,/cc-printed-bottom/);
+ assert.match(app,/cc-printed-left/);
+ assert.match(app,/cc-printed-right/);
+ assert.match(section,/#banners > \.editorial-banner > :not\(\.cc-printed-surface\)/);
+ assert.match(section,/#featured\.featured-zone > \.wrap/);
+ assert.match(section,/pointer-events:none/);
+ assert.match(section,/\.cc-printed-center\{\s*inset:37px/);
+ assert.match(section,/mask-image:url\("\/assets\/printed-edge-brush-horizontal\.svg"\)/);
+ assert.match(section,/mask-image:url\("\/assets\/printed-edge-brush-vertical\.svg"\)/);
+ assert.match(section,/mask-size:421px 62px/);
+ assert.match(section,/mask-size:62px 307px/);
+ assert.match(section,/mask-repeat:repeat-x/);
+ assert.match(section,/mask-repeat:repeat-y/);
+ assert.match(section,/mask-mode:alpha/);
+ assert.match(section,/#featured \.cc-printed-surface--featured > \.cc-printed-center\{\s*inset:37px 0/);
+ assert.match(section,/#featured\.featured-zone > \.cc-printed-surface\{\s*--cc-printed-surface:var\(--deep\)/);
+ assert.doesNotMatch(section,/animation:|transition:|grid-template-columns:|min-height:|filter:blur/);
  assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest'/);
  assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest'/);
  assert.match(app,/id="featuredFrames"/);
  assert.match(app,/id="featuredPrev"/);
  assert.match(app,/id="featuredNext"/);
 });
-
 
 test('sticky header, retone, and viewport carousel overrides stay localized',async()=>{
  const css=await read('src/styles.css');
@@ -526,12 +535,13 @@ test('sticky header, retone, and viewport carousel overrides stay localized',asy
  assert.match(app,/featuredTimer/);
  assert.match(app,/featureStage\.addEventListener\('keydown'/);
 });
-test('provisional Featured mask keeps x=0 and x=1000 sides straight',async()=>{
- const svg=await read('src/assets/printed-edge-featured.svg');
- assert.match(svg,/PROVISIONAL EDGE GEOMETRY ONLY/);
- assert.match(svg,/M 0 11/);
- assert.match(svg,/L 1000 588/);
- assert.match(svg,/C 41 588 17 589 0 589/);
- assert.match(svg,/mask-type:alpha/);
- assert.doesNotMatch(svg,/<image|base64|<animate|<filter/);
+test('Featured has straight full-bleed sides and zero vertical edge strips',async()=>{
+ const app=await read('src/app.mjs'),css=await read('src/styles.css');
+ const src=app.slice(app.indexOf('function printedEdgeSurface'),app.indexOf('function banners()'));
+ assert.match(src,/const sides=featured\?'':/);
+ assert.match(src,/cc-printed-left/);
+ assert.match(src,/cc-printed-right/);
+ assert.match(css,/#featured \.cc-printed-surface--featured > \.cc-printed-center\{\s*inset:37px 0/);
+ assert.match(css,/#featured\.featured-zone\{overflow:clip\}/);
+ assert.match(css,/#featured \.featured-wide\{[\s\S]*?width:100vw/);
 });
