@@ -545,3 +545,50 @@ test('Featured has straight full-bleed sides and zero vertical edge strips',asyn
  assert.match(css,/#featured\.featured-zone\{overflow:clip\}/);
  assert.match(css,/#featured \.featured-wide\{[\s\S]*?width:100vw/);
 });
+
+
+test('Safari viewport guard measures the real gap and ignores the announcement while visible',async()=>{
+ const {navGeometry}=await import('../src/nav-sticky-guard.mjs');
+ const header={getBoundingClientRect:()=>({top:24,height:82})};
+ let bottom=35;
+ const announcement={getBoundingClientRect:()=>({bottom})};
+ const view={scrollY:0,visualViewport:{offsetTop:0}};
+ const before=navGeometry(header,announcement,view);
+ assert.equal(before.headerTop,24);
+ assert.equal(before.scrollY,0);
+ assert.equal(before.visualOffsetTop,0);
+ assert.equal(before.announcementGone,false);
+ assert.equal(before.gap,0);
+ bottom=-12;
+ view.scrollY=1400;
+ const broken=navGeometry(header,announcement,view);
+ assert.equal(broken.announcementGone,true);
+ assert.equal(broken.headerTop,24);
+ assert.equal(broken.gap,24);
+ const correctedHeader={getBoundingClientRect:()=>({top:0,height:82})};
+ const fixed=navGeometry(correctedHeader,announcement,view,-24);
+ assert.equal(fixed.rawHeaderTop,24,'recover original unshifted geometry');
+ assert.equal(fixed.gap,24,'stable correction avoids oscillation');
+ assert.equal(fixed.adjustment,-24);
+ view.visualViewport.offsetTop=24;
+ const adjusted=navGeometry(header,announcement,view);
+ assert.equal(adjusted.gap,0,'do not compensate when already aligned to the visual viewport');
+});
+test('only header alignment is updated: no arbitrary margin, spacer or navigation redesign',async()=>{
+ const css=await read('src/styles.css'),app=await read('src/app.mjs'),guard=await read('src/nav-sticky-guard.mjs');
+ const rule=css.slice(css.indexOf('/* Sticky header flush'),css.indexOf('/* Existing editorial component'));
+ assert.match(rule,/#app\{overflow:visible\}/);
+ assert.match(rule,/#app > \.site-header\{[\s\S]*?position:sticky;[\s\S]*?top:0/);
+ assert.match(rule,/html,body\{overflow-x:visible\}/);
+ assert.doesNotMatch(rule,/html,body\{overflow-x:clip\}/);
+ assert.match(app,/announcement\(\)\+header\(\)/);
+ assert.match(app,/installStickyViewportGuard\(document, window\)/);
+ assert.match(guard,/visualViewport\?\.offsetTop/);
+ assert.match(guard,/announcementBottom <= visualTop \+ 1/);
+ assert.match(guard,/state\.announcementGone && state\.gap > 1/);
+ assert.match(guard,/header\.style\.translate/);
+ assert.match(guard,/requestAnimationFrame/);
+ assert.match(guard,/visualViewport/);
+ assert.match(guard,/navdebug/);
+ assert.doesNotMatch(guard,/marginTop|margin-top|position:\\s*fixed|scrollIntoView|scrollBy\(/);
+});

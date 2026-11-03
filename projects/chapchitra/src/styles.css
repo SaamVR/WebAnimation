@@ -1297,9 +1297,10 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   margin-block-start:0;
   z-index:80;
 }
-@supports (overflow:clip){
-  html,body{overflow-x:clip}
-}
+/* Leave the root scrollport genuinely unclipped on iPad Safari.
+   Page-specific bleed sections already own their overflow boundaries; a
+   root overflow-x:clip rule can interfere with WebKit's sticky scrollport. */
+html,body{overflow-x:visible}
 
 /* Existing editorial component and typography/padding/grid remain intact.
    Only the exterior color and the interior art panel color change. */
