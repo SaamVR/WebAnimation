@@ -1,3 +1,4 @@
+import { installStickyViewportGuard } from './nav-sticky-guard.mjs';
 async function boot(){
  const {shirtSilhouette,printSilhouette}=await import('./components.mjs');
  const {sketchButton}=await import('./handdrawn-buttons.mjs');
@@ -209,6 +210,7 @@ async function boot(){
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
  app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
+ installStickyViewportGuard(document, window);
  // Global navigation and keyboard behavior.
  const search=$('#searchPanel'),searchButton=$('#searchButton'),mobileNav=$('#mobileNav'),menuButton=$('#menuButton');
  const toggle=(el,trigger,show)=>{el.hidden=!show;trigger.setAttribute('aria-expanded',String(show));};
