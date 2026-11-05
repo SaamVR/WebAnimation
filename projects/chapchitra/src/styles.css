@@ -1544,14 +1544,14 @@ html,body{overflow-x:visible}
 
 
 /* CHAPCHITRA — content-fitted desktop/tablet priority.
-   The four original text links fit in one row down to 751px with equal
+   The four original text links fit in one row down to 741px with equal
    side tracks around the genuine owner-supplied centered image wordmark.
    A hamburger replaces the links ONLY below that fitted width. */
 #app > .site-header .nav-left .nav-center{display:flex}
 #app > .site-header .nav-left .hamburger{display:none}
 #app > .site-header .nav-center > a,
 #app > .site-header .shop-dropdown > summary{white-space:nowrap}
-@media (max-width:750px){
+@media (max-width:740px){
   #app > .site-header .header-line.wrap{
     min-height:65px;
     grid-template-rows:65px;
