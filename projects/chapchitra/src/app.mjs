@@ -225,7 +225,7 @@ async function boot(){
  menuButton.addEventListener('click',()=>{const show=mobileNav.hidden;toggle(mobileNav,menuButton,show);
   if(show){toggle(search,searchButton,false);shopDetails.open=false}
  });
- const compactNav=window.matchMedia('(max-width:750px)');
+ const compactNav=window.matchMedia('(max-width:740px)');
  compactNav.addEventListener('change',()=>{toggle(mobileNav,menuButton,false);shopDetails.open=false});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){
   if(!search.hidden){toggle(search,searchButton,false);searchButton.focus()}
