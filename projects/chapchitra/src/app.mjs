@@ -145,11 +145,17 @@ async function boot(){
  const pageTop=(kicker,title,desc)=>'<section class="route-head wrap"><p class="eyebrow">'+kicker+'</p><h1>'+title+'</h1><p>'+desc+'</p></section>';
  function shop(){
   const categoryOptions=[{value:'',label:'All Products'},...categories.map(c=>({value:c.id,label:c.id==='regular-tees'?'Regular':c.title}))];
-  const audienceOptions=[{value:'',label:'All Audiences'},{value:'men',label:'Men'},{value:'women',label:'Women'}];
-  const printOptions=[{value:'',label:'All Print Styles'},{value:'illustration',label:'Illustration'},{value:'studio-print',label:'Studio Print'},{value:'hand-dyed',label:'Hand-Dyed'}];
-  const filterGroup=(name,title,options)=>
-   '<fieldset class="shop-filter-group"><legend>'+title+'</legend><div class="shop-filter-options">'+
-   options.map((o,i)=>'<label class="shop-filter-option"><input type="radio" name="'+name+'" value="'+o.value+'"'+(!i?' checked':'')+'><span>'+o.label+'</span></label>').join('')+
+  // UI vocabulary only; do not imply these options exist in the demo inventory.
+  const sizeOptions=['S','M','L','XL','XXL'];
+  const colorOptions=['black','white','red','yellow','green','blue'];
+  const categoryGroup='<fieldset class="shop-filter-group shop-filter-group--category"><legend>Category</legend><div class="shop-filter-options">'+
+   categoryOptions.map((o,i)=>'<label class="shop-filter-option"><input type="radio" name="shopCategory" value="'+o.value+'"'+(!i?' checked':'')+'><span>'+o.label+'</span></label>').join('')+
+   '</div></fieldset>';
+  const sizeGroup='<fieldset class="shop-filter-group shop-filter-group--size"><legend>Size</legend><div class="shop-size-options">'+
+   sizeOptions.map(size=>'<label class="shop-size-option" title="Size '+size+'"><input type="checkbox" name="shopSize" value="'+size+'" aria-label="Size '+size+'"><span>'+size+'</span></label>').join('')+
+   '</div></fieldset>';
+  const colorGroup='<fieldset class="shop-filter-group shop-filter-group--color"><legend>Color</legend><div class="shop-color-options">'+
+   colorOptions.map(color=>'<label class="shop-color-option" data-color="'+color+'" title="'+color[0].toUpperCase()+color.slice(1)+'"><input type="checkbox" name="shopColor" value="'+color+'" aria-label="'+color[0].toUpperCase()+color.slice(1)+'"><span class="shop-color-dot" aria-hidden="true"></span></label>').join('')+
    '</div></fieldset>';
   return '<section class="shop-banner" aria-labelledby="shopBannerTitle"><div class="wrap shop-banner-inner">'+
    '<div class="shop-banner-copy"><p class="eyebrow">CHAPCHITRA · THE COLLECTION</p><h1 id="shopBannerTitle">Shop All</h1>'+
@@ -160,8 +166,8 @@ async function boot(){
    '<div id="shopFilterBackdrop" class="shop-filter-backdrop" hidden></div>'+
    '<div class="shop-layout"><aside id="shopFilterSidebar" class="shop-sidebar" aria-labelledby="shopFilterTitle" tabindex="-1">'+
    '<div class="shop-sidebar-head"><h2 id="shopFilterTitle">Filters</h2><button id="closeShopFilters" class="shop-filter-close" type="button" aria-label="Close filters">×</button></div>'+
-   '<form id="shopFilterForm">'+filterGroup('shopCategory','Categories',categoryOptions)+
-   filterGroup('shopAudience','Fit / Audience',audienceOptions)+filterGroup('shopPrint','Print Style',printOptions)+
+   '<form id="shopFilterForm">'+categoryGroup+sizeGroup+colorGroup+
+   '<p class="shop-filter-metadata-note">Size and color are previews. Product-specific details have not been supplied.</p>'+
    '<button type="button" id="clearFilters" class="shop-clear-filters">Clear Filters</button></form></aside>'+
    '<div class="shop-results" id="shopResults"><div class="shop-result-toolbar">'+
    '<div class="shop-result-heading"><p class="eyebrow">THE COLLECTION</p><h2 id="shopCollectionTitle">All Products</h2>'+
