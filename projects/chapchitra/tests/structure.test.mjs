@@ -603,8 +603,8 @@ test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only'
  for(const link of links)assert.ok(header.includes('href="'+link+'"'),link);
  for(const className of ['nav-left','nav-center','logo-word logo-word--image','nav-actions'])
   assert.ok(header.includes('class="'+className+'"'));
- assert.match(header,/class="shop-dropdown"/);
- assert.match(header,/class="nav-dropdown"/);
+ assert.match(header,/<a href="\/shop\/">Shop<\/a>/);
+ assert.doesNotMatch(header,/<details class="shop-dropdown"|class="nav-dropdown"/);
  assert.match(header,/id="menuButton"[^>]*aria-expanded="false"[^>]*aria-controls="mobileNav"/);
  assert.match(header,/id="mobileNav"[^>]*hidden/);
  assert.match(header,/id="searchPanel"[^>]*hidden/);
@@ -678,4 +678,69 @@ test('owner-rejected visible Polaroid border stays hidden without removing shado
  assert.match(css,/box-shadow:4px 5px 0 #D9DCD7/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
+});
+
+
+test('Shop page has one static banner and a metadata-supported responsive product layout',async()=>{
+ const src=await read('src/app.mjs'),css=await read('src/styles.css');
+ const shop=src.slice(src.indexOf(' function shop(){'),src.indexOf(' function artistsEdit(){'));
+ assert.ok(shop.includes('class="shop-banner"'),'dedicated static Shop banner');
+ assert.ok(shop.includes('id="shopBannerTitle">Shop All'));
+ assert.ok(shop.includes('shop-banner-art-frame'));
+ assert.doesNotMatch(shop,/hero-carousel|setInterval|autoplay|gsap|parallax|shop-controls/);
+ assert.ok(shop.includes('class="shop-layout"')&&shop.includes('id="shopFilterSidebar"'));
+ for(const term of ["All Products","Regular","Drop Shoulder","Tie-Dye","Men","Women","Clear Filters","Print Style"])
+  assert.ok(shop.includes(term),term);
+ assert.doesNotMatch(shop,/value="unisex"|filterPrice|filterSize|filterColor|Price Low|Price High|Newest/);
+ for(const id of ['shopFilterForm','shopResults','shopCollectionTitle','shopProducts','shopPager','shopSort',
+                   'filterSummary','shopFilterBackdrop','openShopFilters','closeShopFilters'])
+  assert.ok(shop.includes('id="'+id+'"'),id);
+ assert.ok(shop.includes('product-grid shop-product-grid'));
+ assert.ok(!shop.includes('Shop by category'),'no homepage category duplication');
+ const shopStyles=css.slice(css.indexOf('/* CHAPCHITRA Shop: static editorial banner'));
+ assert.match(shopStyles,/min-height:270px/);
+ assert.match(shopStyles,/\.shop-layout\{\s*display:grid/);
+ assert.match(shopStyles,/grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+ assert.match(shopStyles,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(shopStyles,/@media\(max-width:740px\)/);
+ assert.match(shopStyles,/\.shop-filter-backdrop:not\(\[hidden\]\)/);
+ assert.match(shopStyles,/\.shop-sidebar\.is-open/);
+ assert.doesNotMatch(shopStyles,/@keyframes|animation:/);
+});
+
+test('Shop filtering uses exact catalog metadata, URL state and supported sorts',async()=>{
+ const src=await read('src/app.mjs');
+ const h=src.slice(src.indexOf(" if(route==='shop'){"),src.indexOf(" if(route==='favorites'){"));
+ for(const key of ['shopCategory','shopAudience','shopPrint','category','audience','print','sort','page','q'])
+  assert.ok(h.includes(key),'state key '+key);
+ assert.match(h,/item\.category\.includes\(filters\.category\)/);
+ assert.match(h,/item\.audience\.includes\(filters\.audience\)/);
+ assert.match(h,/item\.print===filters\.print/);
+ assert.match(h,/item\.name\.localeCompare\(b\.name\)/);
+ assert.match(h,/b\.name\.localeCompare\(a\.name\)/);
+ assert.match(h,/filtered\.length\+' sample '/);
+ assert.match(h,/renderShop=function\(\)/);
+ assert.match(h,/pageNum=1;renderShop\(\)/);
+ assert.match(h,/history\.replaceState/);
+ assert.match(h,/mobileFilterQuery=window\.matchMedia\('\(max-width:740px\)'\)/);
+ assert.match(h,/sidebar\.setAttribute\('role','dialog'\)/);
+ assert.match(h,/sidebar\.setAttribute\('aria-modal','true'\)/);
+ assert.match(h,/sidebar\.addEventListener\('keydown'/);
+ assert.match(h,/id="shop/);
+ assert.doesNotMatch(h,/item\.price\s*[<>]|item\.size|item\.color|createdAt|dateAdded/);
+ assert.equal(catalog.length,64);
+ assert.ok(catalog.every(p=>p.price===null));
+ assert.ok(catalog.every(p=>p.audience.every(v=>v==='men'||v==='women')));
+});
+
+test('homepage and non-Shop sections retain their existing nav routes and assets',async()=>{
+ const app=await read('src/app.mjs'),css=await read('src/styles.css');
+ assert.match(app,/function home\(\)/);
+ assert.match(app,/function artistsEdit\(\)/);
+ assert.match(app,/function journal\(\)/);
+ assert.match(app,/function about\(\)/);
+ assert.match(app,/class="logo-word logo-word--image"/);
+ assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
+ assert.match(app,/setInterval\(\(\)=>changeHero\(\(active\+1\)%slides\.length,false\),4000\)/);
+ assert.match(css,/\.site-header\{position:sticky;top:0/);
 });
