@@ -604,6 +604,7 @@ test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only'
  for(const className of ['nav-left','nav-center','logo-word logo-word--image','nav-actions'])
   assert.ok(header.includes('class="'+className+'"'));
  assert.match(header,/<a href="\/shop\/">Shop<\/a>/);
+ assert.match(header,/<nav id="mobileNav"[^>]*hidden><a href="\/shop\/">Shop<\/a><a href="\/artists-edit\/">/);
  assert.doesNotMatch(header,/<details class="shop-dropdown"|class="nav-dropdown"/);
  assert.match(header,/id="menuButton"[^>]*aria-expanded="false"[^>]*aria-controls="mobileNav"/);
  assert.match(header,/id="mobileNav"[^>]*hidden/);
