@@ -459,21 +459,46 @@ async function boot(){
   const form=$('#shopFilterForm'),sidebar=$('#shopFilterSidebar'),backdrop=$('#shopFilterBackdrop');
   const openFilters=$('#openShopFilters'),closeFilters=$('#closeShopFilters'),sort=$('#shopSort');
   const allowedCategories=categories.map(c=>c.id);
-  const allowedAudiences=['men','women'],allowedPrints=['illustration','studio-print','hand-dyed'];
+  const allowedSizes=['S','M','L','XL','XXL'];
+  const allowedColors=['black','white','red','yellow','green','blue'];
+  // Supported future catalog data contract: item.sizes: string[] and
+  // item.colors: string[]. These are product descriptors, not stock levels.
+  // The current 64 demo studies have neither field; never infer them from
+  // artwork colors, garment shapes, titles, or unrelated audience/print tags.
   const readChoice=name=>form.querySelector('input[name="'+name+'"]:checked')?.value||'';
-  const setChoice=(name,value)=>{const options=$$('input[name="'+name+'"]',form);const found=options.find(e=>e.value===value);(found||options[0]).checked=true};
+  const readChecks=name=>$$('input[name="'+name+'"]:checked',form).map(input=>input.value);
+  const setChoice=(name,value)=>{
+   const options=$$('input[name="'+name+'"]',form);
+   (options.find(input=>input.value===value)||options[0]).checked=true;
+  };
+  const setChecks=(name,values)=>{
+   $$('input[name="'+name+'"]',form).forEach(input=>{input.checked=values.includes(input.value)});
+  };
+  const validated=(name,allowed)=>[...new Set(qs.getAll(name).filter(value=>allowed.includes(value)))];
   setChoice('shopCategory',allowedCategories.includes(qs.get('category'))?qs.get('category'):'');
-  setChoice('shopAudience',allowedAudiences.includes(qs.get('audience'))?qs.get('audience'):'');
-  setChoice('shopPrint',allowedPrints.includes(qs.get('print'))?qs.get('print'):'');
+  setChecks('shopSize',validated('size',allowedSizes));
+  setChecks('shopColor',validated('color',allowedColors));
   sort.value=['name-asc','name-desc'].includes(qs.get('sort'))?qs.get('sort'):'default';
   let pageNum=Math.max(1,Number.parseInt(qs.get('page')||'1',10)||1);
-  let searchText=(qs.get('q')||'').trim().toLowerCase();
-  const selected=()=>({category:readChoice('shopCategory'),audience:readChoice('shopAudience'),print:readChoice('shopPrint')});
+  const searchText=(qs.get('q')||'').trim().toLowerCase();
+  const selected=()=>({
+   category:readChoice('shopCategory'),
+   sizes:readChecks('shopSize'),
+   colors:readChecks('shopColor')
+  });
+  const hasSizeMetadata=catalog.some(item=>Array.isArray(item.sizes)&&item.sizes.length>0);
+  const hasColorMetadata=catalog.some(item=>Array.isArray(item.colors)&&item.colors.length>0);
+  const hasMatchingData=(item,field,choices)=>{
+   if(!choices.length)return true;
+   if(!Array.isArray(item[field]))return false;
+   // At least one chosen size/color may match (OR within each filter group).
+   return item[field].some(value=>choices.includes(field==='colors'?String(value).toLowerCase():String(value).toUpperCase()));
+  };
   function syncQuery(){
    const p=new URLSearchParams(),filters=selected();
    if(filters.category)p.set('category',filters.category);
-   if(filters.audience)p.set('audience',filters.audience);
-   if(filters.print)p.set('print',filters.print);
+   filters.sizes.forEach(size=>p.append('size',size));
+   filters.colors.forEach(color=>p.append('color',color));
    if(searchText)p.set('q',searchText);
    if(sort.value!=='default')p.set('sort',sort.value);
    if(pageNum>1)p.set('page',String(pageNum));
@@ -481,33 +506,41 @@ async function boot(){
   }
   renderShop=function(){
    const filters=selected();
+   const metadataPending=(filters.sizes.length&&!hasSizeMetadata)||(filters.colors.length&&!hasColorMetadata);
    const filtered=catalog.filter(item=>
     (!filters.category||item.category.includes(filters.category))&&
-    (!filters.audience||item.audience.includes(filters.audience))&&
-    (!filters.print||item.print===filters.print)&&
-    (!searchText||[item.name,item.fit,item.subtitle,item.print].some(v=>v.toLowerCase().includes(searchText))));
+    hasMatchingData(item,'sizes',filters.sizes)&&
+    hasMatchingData(item,'colors',filters.colors)&&
+    (!searchText||[item.name,item.fit,item.subtitle,item.print].some(value=>value.toLowerCase().includes(searchText))));
    if(sort.value==='name-asc')filtered.sort((a,b)=>a.name.localeCompare(b.name));
    else if(sort.value==='name-desc')filtered.sort((a,b)=>b.name.localeCompare(a.name));
    const pages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE_SHOP));
    pageNum=Math.min(pageNum,pages);
    const visible=filtered.slice((pageNum-1)*PAGE_SIZE_SHOP,pageNum*PAGE_SIZE_SHOP);
-   $('#shopProducts').innerHTML=visible.length?visible.map(productCard).join(''):'<p class="no-results">No sample products match these filters. Select another option or clear filters.</p>';
-   $('#shopPager').innerHTML=pager(pages,pageNum,'shop');
-   const title=filters.category?(filters.category==='regular-tees'?'Regular':categories.find(c=>c.id===filters.category)?.title):'All Products';
+   $('#shopProducts').innerHTML=visible.length?visible.map(productCard).join(''):
+    '<p class="no-results">'+(metadataPending?
+     'Size and color details have not been supplied for these samples. No verified matches can be shown yet. Clear size or color selections to browse the catalog.':
+     'No sample products match these filters. Try another selection or clear filters.')+'</p>';
+   $('#shopPager').innerHTML=visible.length?pager(pages,pageNum,'shop'):'';
+   const title=filters.category?(filters.category==='regular-tees'?'Regular':categories.find(category=>category.id===filters.category)?.title):'All Products';
    $('#shopCollectionTitle').textContent=title||'All Products';
-   $('#filterSummary').textContent=filtered.length+' sample '+(filtered.length===1?'product':'products')+(searchText?' matching “'+searchText+'”':'');
+   $('#filterSummary').textContent=metadataPending?
+    '0 verified matches · Size/color details pending':
+    filtered.length+' sample '+(filtered.length===1?'product':'products')+(searchText?' matching “'+searchText+'”':'');
    syncQuery();
   };
   form.addEventListener('change',()=>{pageNum=1;renderShop()});
-  form.addEventListener('submit',e=>e.preventDefault());
+  form.addEventListener('submit',event=>event.preventDefault());
   sort.addEventListener('change',()=>{pageNum=1;renderShop()});
   $('#clearFilters').addEventListener('click',()=>{
-   setChoice('shopCategory','');setChoice('shopAudience','');setChoice('shopPrint','');
-   sort.value='default';searchText='';pageNum=1;renderShop();
+   setChoice('shopCategory','');setChecks('shopSize',[]);setChecks('shopColor',[]);
+   // Sorting and text search are independent of the filter groups.
+   pageNum=1;renderShop();
   });
-  $('#shopPager').addEventListener('click',e=>{
-   const b=e.target.closest('[data-page-number]');if(!b||b.disabled)return;
-   pageNum=Number(b.dataset.pageNumber);renderShop();
+  $('#shopPager').addEventListener('click',event=>{
+   const button=event.target.closest('[data-page-number]');
+   if(!button||button.disabled)return;
+   pageNum=Number(button.dataset.pageNumber);renderShop();
    $('#shopResults').scrollIntoView({behavior:mediaReduced.matches?'instant':'smooth',block:'start'});
   });
   const mobileFilterQuery=window.matchMedia('(max-width:740px)');
