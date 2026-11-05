@@ -601,10 +601,10 @@ test('three-zone CHAPCHITRA header centers independently of nav and actions',asy
  const nav=src.slice(begin,end);
  assert.match(nav,/class="nav-left"/);
  assert.match(nav,/class="nav-center"/);
- assert.match(nav,/class="logo-word"/);
+ assert.match(nav,/class="logo-word logo-word--image"/);
  assert.match(nav,/class="nav-actions"/);
- assert.ok(nav.indexOf('class="nav-left"')<nav.indexOf('class="logo-word"'));
- assert.ok(nav.indexOf('class="logo-word"')<nav.indexOf('class="nav-actions"'));
+ assert.ok(nav.indexOf('class="nav-left"')<nav.indexOf('class="logo-word logo-word--image"'));
+ assert.ok(nav.indexOf('class="logo-word logo-word--image"')<nav.indexOf('class="nav-actions"'));
  assert.match(nav,/id="menuButton"/);
  assert.match(nav,/id="searchButton"/);
  assert.match(nav,/id="searchPanel"/);
@@ -629,13 +629,53 @@ test('three-zone CHAPCHITRA header centers independently of nav and actions',asy
  assert.match(nav,/mobile-quick-link" href="\/favorites\/"/);
  assert.match(nav,/mobile-quick-link" href="\/account\/"/);
 });
-test('navbar refactor does not invent the absent approved SVG artwork',async()=>{
- const app=await read('src/app.mjs');
- assert.match(app,/final owner-approved path-based SVG has not yet been supplied/);
- assert.match(app,/class="logo-word"/);
- assert.match(app,/<span>CHAPCHITRA<\/span>/);
- assert.doesNotMatch(app,/chapchitra-wordmark\.svg/);
+test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',async()=>{
+ const app=await read('src/app.mjs'),css=await read('src/styles.css'),html=await read('src/index.html');
  const guard=await read('src/nav-sticky-guard.mjs');
+ assert.match(app,/class="logo-word logo-word--image"/);
+ assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
+ assert.match(app,/src="\/assets\/chapchitra-full-on-dark\.webp"/);
+ assert.match(app,/class="hero-brand-lockup"/);
+ assert.match(app,/src="\/assets\/chapchitra-wordmark-light\.webp"/);
+ assert.match(app,/class="logo-word logo-word--footer"/);
+ assert.match(html,/rel="icon"[^>]*href="\/assets\/favicon\.png"/);
+ assert.match(html,/rel="apple-touch-icon"[^>]*href="\/assets\/apple-touch-icon\.png"/);
+ assert.match(html,/rel="preload" as="image" href="\/assets\/chapchitra-full-on-dark\.webp"/);
+ assert.doesNotMatch(app,/<div class="hero-display-word">CHAPCHITRA<\/div>/);
+ assert.doesNotMatch(app,/Temporary wordmark|final logo pending|Identity, pricing and images remain provisional/);
+ assert.doesNotMatch(app,/<span>CHAPCHITRA<\/span>/);
+ assert.match(css,/#app > \.site-header \.logo-word\.logo-word--image/);
+ assert.match(css,/\.hero-cover-inner > img\.hero-brand-lockup/);
+ assert.match(css,/\.footer-identity \.logo-word--footer img/);
+ assert.match(css,/grid-template-columns:minmax\(0,1fr\) auto minmax\(0,1fr\)/);
  assert.match(guard,/visualViewport/);
  assert.match(guard,/state\.announcementGone && state\.gap > 1/);
+});
+test('all final logo binaries are real optimized image files with expected magic bytes',async()=>{
+ const webps=['chapchitra-wordmark.webp','chapchitra-wordmark-light.webp',
+  'chapchitra-symbol.webp','chapchitra-full.webp','chapchitra-full-on-dark.webp'];
+ for(const file of webps){
+  const data=await readFile(new URL('../src/assets/'+file,import.meta.url));
+  assert.ok(data.length>2000,'real artwork content '+file);
+  assert.equal(data.toString('ascii',0,4),'RIFF');
+  assert.equal(data.toString('ascii',8,12),'WEBP');
+ }
+ for(const file of ['favicon.png','apple-touch-icon.png']){
+  const data=await readFile(new URL('../src/assets/'+file,import.meta.url));
+  assert.ok(data.length>3000);
+  assert.deepEqual([...data.subarray(0,8)],[137,80,78,71,13,10,26,10]);
+ }
+});
+
+
+test('owner-rejected visible Polaroid border stays hidden without removing shadow or tilt',async()=>{
+ const css=await read('src/styles.css');
+ const rule=css.match(/\.product-card-shell > \.polaroid-card > \.polaroid-ink-outline\{([\s\S]*?)\}/)?.[1];
+ assert.ok(rule,'exact Polaroid overlay selector exists');
+ assert.match(rule,/display:none;/,'no outline may be painted on the paper frame');
+ assert.doesNotMatch(rule,/display:block;/);
+ assert.match(css,/border:1px solid transparent/);
+ assert.match(css,/box-shadow:4px 5px 0 #D9DCD7/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
 });

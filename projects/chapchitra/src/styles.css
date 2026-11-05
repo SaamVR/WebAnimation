@@ -1174,7 +1174,9 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   max-height:none;
   z-index:3;
   overflow:visible;
-  display:block;
+  /* Owner rejected the visible perimeter: keep SVG geometry inert but unpainted.
+     The approved rounded paper surface, hard-edge shadow and tilt remain. */
+  display:none;
   pointer-events:none;
 }
 .polaroid-ink-perimeter{
@@ -1477,4 +1479,65 @@ html,body{overflow-x:visible}
   #app > .site-header .logo-word small{font-size:9px}
   #app > .site-header .nav-actions .nav-optional-action{display:none}
   #app > .site-header .mobile-nav .mobile-quick-link{display:block}
+}
+
+
+/* CHAPCHITRA approved final identity — extracted image assets, not font rebuilds.
+   Only identity rendering changes; existing three-zone grid, sticky geometry,
+   footer sections, Hero animation durations and CTA positioning stay intact. */
+#app > .site-header .logo-word.logo-word--image{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  width:clamp(130px,17vw,192px);
+  max-width:100%;
+  min-width:0;
+  margin:0;
+  padding:0;
+  line-height:normal;
+}
+#app > .site-header .logo-word--image img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:46px;
+  object-fit:contain;
+  object-position:center;
+}
+.hero-cover-inner > img.hero-brand-lockup{
+  display:block;
+  flex:0 0 auto;
+  align-self:center;
+  width:clamp(205px,26vw,285px);
+  max-width:calc(100% - 16px);
+  height:auto;
+  max-height:240px;
+  margin:3px auto 7px;
+  object-fit:contain;
+  object-position:center;
+}
+.footer-identity .logo-word.logo-word--footer{
+  display:block;
+  width:clamp(170px,20vw,220px);
+  max-width:100%;
+  margin:0;
+  line-height:normal;
+}
+.footer-identity .logo-word--footer img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:58px;
+  object-fit:contain;
+}
+@media(max-width:600px){
+  #app > .site-header .logo-word.logo-word--image{
+    width:clamp(128px,35vw,145px);
+  }
+  .hero-cover-inner > img.hero-brand-lockup{
+    width:clamp(200px,56vw,240px);
+    max-height:210px;
+  }
+  .footer-identity .logo-word.logo-word--footer{width:195px}
 }

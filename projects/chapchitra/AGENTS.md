@@ -3,7 +3,7 @@ Follow the repository-root `AGENTS.md` as binding policy.
 
 This is a standalone creative portfolio demo. Its **Forest + Olive homepage palette and HTML-derived layout** are now owner-specified; it is not an operational commercial storefront.
 - Scope every change to this directory. Vercel root = `projects/chapchitra`; no `site/` or THREADS dependency.
-- Typography wordmark is **temporary text**, never a recreated final logo.
+- The owner-approved CHAPCHITRA artwork is now integrated as cropped transparent WebP/PNG assets in `src/assets/` on the final-logo branch. Preserve its custom lettering and illustrated symbol exactly. Do not recreate it with fonts, invent vector paths, or claim the original editable SVG is available.
 - Use the exact owner-provided 13-token palette from `Chapchitra – Homepage v2 · Forest + Olive Final Palette.html` as documented in `README.md`: Deep Forest #1C241D, Press Green #293D2D, Dark Olive #1F2216, Walnut #6E523F, Ink #232323, Gallery White #F6F7F5, Soft Gray #D9DCD7, Mist #E9EDEB, Beige #D8CEC2, Cream #E4E3DE, Mushroom #A6A29B, Clay #8A503B, Muted Gray #5F625E. Maintain EACH section and card's distinct assignment; never blanket the site with green.
 - Assets are own neutral SVG or CSS shapes only; do not import photos or simulate real products.
 - C01 story icons, C02 brass bell motion, C03 folding/packing and C04 ink-stamp add-to-cart have **no implementation authorization**. Static interface icons are not animation artwork.
@@ -14,7 +14,7 @@ This is a standalone creative portfolio demo. Its **Forest + Olive homepage pale
 
 ## V3 approval boundaries
 - Approved: exact eleven-section structural architecture, responsive menus, filters, pagers, accessible hero/Journal carousel UI.
-- Owner-approved for this milestone: exact reference palette, its Hind Siliguri/Noto Serif Bengali font families, homepage surface distribution and normal V3 controls. Final logos, merchandise photography, real pricing, commerce, C01–C04 and street motion remain unapproved.
+- Owner-approved for this milestone: exact reference palette, its Hind Siliguri/Noto Serif Bengali font families, homepage surface distribution and normal V3 controls. Final logo raster placement is integrated for review; merchandise photography, real pricing, commerce, C01–C04 and street motion remain unapproved. Physical iPad Safari sticky confirmation and final owner visual acceptance remain pending.
 - Synthetic 64-item catalog is marked as placeholders and displays Tk — pending real prices. Do not imply inventory.
 - Always default to logged out with no bell until genuine authentication exists.
 - Keep all work inside this application and do not edit THREADS, EZCOMO or root deployment.
