@@ -592,3 +592,50 @@ test('only header alignment is updated: no arbitrary margin, spacer or navigatio
  assert.match(guard,/navdebug/);
  assert.doesNotMatch(guard,/marginTop|margin-top|position:\\s*fixed|scrollIntoView|scrollBy\(/);
 });
+
+
+test('three-zone CHAPCHITRA header centers independently of nav and actions',async()=>{
+ const src=await read('src/app.mjs');
+ const css=await read('src/styles.css');
+ const begin=src.indexOf('function header(){'),end=src.indexOf('const paperVisual=',begin);
+ const nav=src.slice(begin,end);
+ assert.match(nav,/class="nav-left"/);
+ assert.match(nav,/class="nav-center"/);
+ assert.match(nav,/class="logo-word"/);
+ assert.match(nav,/class="nav-actions"/);
+ assert.ok(nav.indexOf('class="nav-left"')<nav.indexOf('class="logo-word"'));
+ assert.ok(nav.indexOf('class="logo-word"')<nav.indexOf('class="nav-actions"'));
+ assert.match(nav,/id="menuButton"/);
+ assert.match(nav,/id="searchButton"/);
+ assert.match(nav,/id="searchPanel"/);
+ assert.match(nav,/id="mobileNav"/);
+ assert.match(nav,/href="\/favorites\/"/);
+ assert.match(nav,/href="\/account\/"/);
+ assert.match(nav,/href="\/bag\/"/);
+ assert.match(nav,/bellRendered\?/);
+ const start=css.indexOf('/* CHAPCHITRA — mathematical centered three-zone');
+ const rules=css.slice(start);
+ assert.match(rules,/grid-template-columns:minmax\(0,1fr\) auto minmax\(0,1fr\)/);
+ assert.match(rules,/align-items:center/);
+ assert.match(rules,/grid-column:1/);
+ assert.match(rules,/grid-column:2/);
+ assert.match(rules,/grid-column:3/);
+ assert.match(rules,/justify-self:center/);
+ assert.match(rules,/justify-self:end/);
+ assert.match(rules,/@media\(max-width:1000px\)/);
+ assert.match(rules,/@media\(max-width:600px\)/);
+ assert.match(rules,/\.nav-optional-action\{display:none\}/);
+ assert.match(rules,/\.mobile-nav \.mobile-quick-link\{display:block\}/);
+ assert.match(nav,/mobile-quick-link" href="\/favorites\/"/);
+ assert.match(nav,/mobile-quick-link" href="\/account\/"/);
+});
+test('navbar refactor does not invent the absent approved SVG artwork',async()=>{
+ const app=await read('src/app.mjs');
+ assert.match(app,/final owner-approved path-based SVG has not yet been supplied/);
+ assert.match(app,/class="logo-word"/);
+ assert.match(app,/<span>CHAPCHITRA<\/span>/);
+ assert.doesNotMatch(app,/chapchitra-wordmark\.svg/);
+ const guard=await read('src/nav-sticky-guard.mjs');
+ assert.match(guard,/visualViewport/);
+ assert.match(guard,/state\.announcementGone && state\.gap > 1/);
+});
