@@ -665,3 +665,16 @@ test('all final logo binaries are real optimized image files with expected magic
   assert.deepEqual([...data.subarray(0,8)],[137,80,78,71,13,10,26,10]);
  }
 });
+
+
+test('owner-rejected visible Polaroid border stays hidden without removing shadow or tilt',async()=>{
+ const css=await read('src/styles.css');
+ const rule=css.match(/\.product-card-shell > \.polaroid-card > \.polaroid-ink-outline\{([\s\S]*?)\}/)?.[1];
+ assert.ok(rule,'exact Polaroid overlay selector exists');
+ assert.match(rule,/display:none;/,'no outline may be painted on the paper frame');
+ assert.doesNotMatch(rule,/display:block;/);
+ assert.match(css,/border:1px solid transparent/);
+ assert.match(css,/box-shadow:4px 5px 0 #D9DCD7/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
+ assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
+});
