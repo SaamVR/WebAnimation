@@ -45,7 +45,7 @@ async function boot(){
    '<div class="nav-left">'+
    '<nav class="nav-center" aria-label="Main navigation"><details class="shop-dropdown"><summary>Shop</summary><div class="nav-dropdown"><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'</div></details>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
-   '</div>'+ 
+   '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+ 
    '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"></a>'+
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+svg('search')+'</button>'+
@@ -54,9 +54,8 @@ async function boot(){
    '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+svg('bag')+'<span class="bag-count">'+demoBagCount()+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
    '</div></div>'+
-   '<nav id="mobileShopPopover" class="mobile-shop-popover" aria-label="Shop collections" hidden><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'</nav>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
-   '</header>';
+   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a><a href="/favorites/">Favorites</a><a href="/account/">Account</a></nav></header>';
  }
  const paperVisual=(i)=>'<div class="art-plate art-plate-'+(i%3)+'">'+(i%2===0?shirtSilhouette(i):printSilhouette(i))+'<span class="plate-disclaimer">Illustration placeholder</span></div>';
  const linkFiltered=(category,audience)=>'/shop/?category='+encodeURIComponent(category)+(audience?'&audience='+audience:'');
@@ -216,22 +215,27 @@ async function boot(){
  app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
  installStickyViewportGuard(document, window);
  // Global navigation and keyboard behavior.
- const search=$('#searchPanel'),searchButton=$('#searchButton'),shopDetails=$('.shop-dropdown'),mobileShopPopover=$('#mobileShopPopover');
+ const search=$('#searchPanel'),searchButton=$('#searchButton'),shopDetails=$('.shop-dropdown');
+ const mobileNav=$('#mobileNav'),menuButton=$('#menuButton');
  const toggle=(el,trigger,show)=>{el.hidden=!show;trigger.setAttribute('aria-expanded',String(show));};
- const compactNav=window.matchMedia('(max-width:780px)');
- const syncShopPanel=()=>{mobileShopPopover.hidden=!(shopDetails.open&&compactNav.matches)};
- shopDetails.addEventListener('toggle',syncShopPanel);
- compactNav.addEventListener('change',syncShopPanel);
- searchButton.addEventListener('click',()=>{const show=search.hidden;toggle(search,searchButton,show);if(show){
-   shopDetails.open=false;mobileShopPopover.hidden=true;$('#globalSearch').focus();
-  }else searchButton.focus()});
+ searchButton.addEventListener('click',()=>{const show=search.hidden;toggle(search,searchButton,show);
+  if(show){toggle(mobileNav,menuButton,false);shopDetails.open=false;$('#globalSearch').focus()}
+  else searchButton.focus();
+ });
+ menuButton.addEventListener('click',()=>{const show=mobileNav.hidden;toggle(mobileNav,menuButton,show);
+  if(show){toggle(search,searchButton,false);shopDetails.open=false}
+ });
+ const compactNav=window.matchMedia('(max-width:740px)');
+ compactNav.addEventListener('change',()=>{toggle(mobileNav,menuButton,false);shopDetails.open=false});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){
   if(!search.hidden){toggle(search,searchButton,false);searchButton.focus()}
-  if(shopDetails.open){shopDetails.open=false;mobileShopPopover.hidden=true;shopDetails.querySelector('summary').focus()}
+  else if(!mobileNav.hidden){toggle(mobileNav,menuButton,false);menuButton.focus()}
+  if(shopDetails.open){shopDetails.open=false;shopDetails.querySelector('summary').focus()}
  }});
  document.addEventListener('pointerdown',e=>{
-  if(shopDetails.open&&!shopDetails.contains(e.target)&&!mobileShopPopover.contains(e.target)){
-   shopDetails.open=false;mobileShopPopover.hidden=true;
+  if(shopDetails.open&&!shopDetails.contains(e.target))shopDetails.open=false;
+  if(!mobileNav.hidden&&!mobileNav.contains(e.target)&&!menuButton.contains(e.target)){
+   toggle(mobileNav,menuButton,false);
   }
  });
  // Proper email validation, but never a simulated successful submission.
