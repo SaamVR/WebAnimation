@@ -618,13 +618,13 @@ test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only'
  const navPriority=css.slice(css.indexOf('/* CHAPCHITRA — content-fitted desktop\/tablet priority'));
  assert.match(navPriority,/\.nav-left \.nav-center\{display:flex\}/);
  assert.match(navPriority,/\.nav-left \.hamburger\{display:none\}/);
- assert.match(navPriority,/@media \(max-width:750px\)/);
+ assert.match(navPriority,/@media \(max-width:740px\)/);
  assert.match(navPriority,/\.nav-left \.nav-center\{display:none\}/);
  assert.match(navPriority,/\.nav-left \.hamburger\{\s*display:inline-grid/);
  assert.match(navPriority,/\.nav-actions \.nav-optional-action\{display:none\}/);
  assert.match(navPriority,/\.mobile-nav:not\(\[hidden\]\)/);
  assert.match(navPriority,/min-height:44px/);
- assert.match(src,/matchMedia\('\(max-width:750px\)'\)/);
+ assert.match(src,/matchMedia\('\(max-width:740px\)'\)/);
  assert.match(src,/menuButton\.addEventListener\('click'/);
  assert.match(src,/toggle\(mobileNav,menuButton,false\)/);
  assert.doesNotMatch(src,/mobileShopPopover|mobileShopPopover\.hidden/);
