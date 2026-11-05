@@ -243,8 +243,8 @@ test('compact sketch actions retain native submit semantics and working filter s
  const app=await read('src/app.mjs');
  assert.match(app,/label:'Search',variant:'compact',tone:'forest'/);
  assert.match(app,/label:'Join',variant:'compact',tone:'terracotta'/);
- assert.match(app,/label:'Clear Filters',variant:'compact',tone:'beige'/);
- assert.match(app,/attrs:'id="clearFilters"'/);
+ assert.match(app,/id="clearFilters"/);
+ assert.match(app,/class="shop-clear-filters"/);
  assert.match(app,/addEventListener\('submit'/);
  assert.match(app,/clearFilters/);
  const css=await read('src/button-system.css');
@@ -689,8 +689,9 @@ test('Shop page has one static banner and a metadata-supported responsive produc
  assert.ok(shop.includes('shop-banner-art-frame'));
  assert.doesNotMatch(shop,/hero-carousel|setInterval|autoplay|gsap|parallax|shop-controls/);
  assert.ok(shop.includes('class="shop-layout"')&&shop.includes('id="shopFilterSidebar"'));
- for(const term of ["All Products","Regular","Drop Shoulder","Tie-Dye","Men","Women","Clear Filters","Print Style"])
+ for(const term of ["All Products","Regular","Men","Women","Clear Filters","Print Style"])
   assert.ok(shop.includes(term),term);
+ assert.match(shop,/categories\.map\(c=>\(\{value:c\.id/);
  assert.doesNotMatch(shop,/value="unisex"|filterPrice|filterSize|filterColor|Price Low|Price High|Newest/);
  for(const id of ['shopFilterForm','shopResults','shopCollectionTitle','shopProducts','shopPager','shopSort',
                    'filterSummary','shopFilterBackdrop','openShopFilters','closeShopFilters'])
