@@ -603,8 +603,8 @@ test('three-zone CHAPCHITRA header centers independently of nav and actions',asy
  assert.match(nav,/class="nav-center"/);
  assert.match(nav,/class="logo-word logo-word--image"/);
  assert.match(nav,/class="nav-actions"/);
- assert.ok(nav.indexOf('class="nav-left"')<nav.indexOf('class="logo-word"'));
- assert.ok(nav.indexOf('class="logo-word"')<nav.indexOf('class="nav-actions"'));
+ assert.ok(nav.indexOf('class="nav-left"')<nav.indexOf('class="logo-word logo-word--image"'));
+ assert.ok(nav.indexOf('class="logo-word logo-word--image"')<nav.indexOf('class="nav-actions"'));
  assert.match(nav,/id="menuButton"/);
  assert.match(nav,/id="searchButton"/);
  assert.match(nav,/id="searchPanel"/);
