@@ -682,7 +682,7 @@ test('owner-rejected visible Polaroid border stays hidden without removing shado
 });
 
 
-test('Shop retains its static banner and exactly Category, Size and Color filters',async()=>{
+test('Shop retains its static banner and adds Price between existing Category, Size and Color',async()=>{
  const src=await read('src/app.mjs'),css=await read('src/styles.css');
  const shop=src.slice(src.indexOf(' function shop(){'),src.indexOf(' function artistsEdit(){'));
  assert.ok(shop.includes('class="shop-banner"'),'static approved Shop banner retained');
@@ -691,18 +691,27 @@ test('Shop retains its static banner and exactly Category, Size and Color filter
  assert.doesNotMatch(shop,/hero-carousel|setInterval|autoplay|gsap|parallax|shop-controls/);
  assert.match(shop,/class="shop-layout"/);
  assert.match(shop,/id="shopFilterSidebar"/);
- for(const title of ['All Products','Regular','Category','Size','Color','Clear Filters'])
+ for(const title of ['All Products','Regular','Category','Price','Size','Color','Clear Filters'])
   assert.ok(shop.includes(title),title);
- assert.match(shop,/categoryGroup\+sizeGroup\+colorGroup/);
- assert.equal((shop.match(/'<fieldset class="shop-filter-group /g)||[]).length,3);
+ assert.match(shop,/categoryGroup\+priceGroup\+sizeGroup\+colorGroup/);
+ assert.equal((shop.match(/'<fieldset class="shop-filter-group /g)||[]).length,4);
  assert.match(shop,/const sizeOptions=\['S','M','L','XL','XXL'\]/);
  assert.match(shop,/const colorOptions=\['black','white','red','yellow','green','blue'\]/);
  assert.match(shop,/type="checkbox" name="shopSize"/);
  assert.match(shop,/type="checkbox" name="shopColor"/);
+
+ assert.match(shop,/name="shopPriceOrder" value="default" checked/);
+ assert.match(shop,/name="shopPriceOrder" value="price-asc"/);
+ assert.match(shop,/name="shopPriceOrder" value="price-desc"/);
+ assert.match(shop,/Price: Low to High/);
+ assert.match(shop,/Price: High to Low/);
+ assert.match(shop,/shopHasVerifiedPrices\?'':' disabled'/);
+ assert.match(shop,/Price sorting is unavailable until approved prices are added/);
+
  assert.match(shop,/aria-label="Size /);
  assert.match(shop,/aria-label="'\+color\[0\]\.toUpperCase/);
  assert.match(shop,/categories\.map\(c=>\(\{value:c\.id/);
- assert.doesNotMatch(shop,/shopAudience|shopPrint|Fit \/ Audience|Print Style|Print Type|value="unisex"|filterPrice|Price Low|Price High|Newest/);
+ assert.doesNotMatch(shop,/shopAudience|shopPrint|Fit \/ Audience|Print Style|Print Type|value="unisex"|filterPrice|Newest/);
  for(const id of ['shopFilterForm','shopResults','shopCollectionTitle','shopProducts','shopPager','shopSort',
                    'filterSummary','shopFilterBackdrop','openShopFilters','closeShopFilters'])
   assert.ok(shop.includes('id="'+id+'"'),id);
@@ -754,6 +763,28 @@ test('Shop size/color filters map only verified metadata and persist multi-selec
  assert.equal(catalog.length,64);
  assert.ok(catalog.every(p=>p.price===null));
  assert.ok(catalog.every(p=>!('sizes' in p)&&!('colors' in p)),'no invented catalog metadata');
+});
+
+
+test('Price sorting is numeric, gated on verified prices, and happens before pagination',async()=>{
+ const src=await read('src/app.mjs'),css=await read('src/styles.css');
+ const h=src.slice(src.indexOf(" if(route==='shop'){"),src.indexOf(" if(route==='favorites'){"));
+ assert.match(src,/const shopHasVerifiedPrices=catalog\.length>0&&catalog\.every\(item=>/);
+ assert.match(src,/typeof item\.price==='number'&&Number\.isFinite\(item\.price\)&&item\.price>=0/);
+ assert.match(h,/setChoice\('shopPriceOrder',shopHasVerifiedPrices&&\['price-asc','price-desc'\]\.includes\(qs\.get\('sort'\)\)/);
+ assert.match(h,/const activeSort=\(\)=>/);
+ assert.match(h,/shopHasVerifiedPrices&&priceOrder!=='default'\?priceOrder:sort\.value/);
+ assert.match(h,/p\.set\('sort',activeSort\(\)\)/);
+ assert.match(h,/activeSort\(\)==='price-asc'\)filtered\.sort\(\(a,b\)=>a\.price-b\.price\)/);
+ assert.match(h,/activeSort\(\)==='price-desc'\)filtered\.sort\(\(a,b\)=>b\.price-a\.price\)/);
+ assert.ok(h.indexOf("if(activeSort()==='price-asc')")<h.indexOf('const visible=filtered.slice('),'price sorting before pagination');
+ assert.match(h,/if\(event\.target\.name==='shopPriceOrder'\)sort\.value='default'/);
+ assert.match(h,/sort\.addEventListener\('change',\(\)=>\{\s*setChoice\('shopPriceOrder','default'\)/);
+ assert.match(h,/pageNum=1;renderShop\(\)/);
+ assert.match(css,/\.shop-filter-group--price \.shop-filter-option--disabled/);
+ assert.match(css,/\.shop-filter-group--price \.shop-filter-option input:disabled/);
+ assert.equal(catalog.length,64);
+ assert.ok(catalog.every(item=>item.price===null),'no invented numeric product prices');
 });
 
 test('homepage and non-Shop sections retain their existing nav routes and assets',async()=>{
