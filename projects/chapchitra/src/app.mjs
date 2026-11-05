@@ -9,6 +9,10 @@ async function boot(){
   const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/button-system.css';sheet.dataset.chapchitraButtons='';document.head.append(sheet);
  }
  const {catalog,articlePreviews,PAGE_SIZE_HOME,PAGE_SIZE_SHOP}=await import('./catalog.mjs');
+ // Price sorting becomes available only after every catalog item has a real finite
+ // numeric price. The current demo catalog contains null prices.
+ const shopHasVerifiedPrices=catalog.length>0&&catalog.every(item=>
+  typeof item.price==='number'&&Number.isFinite(item.price)&&item.price>=0);
  const $=(sel,root=document)=>root.querySelector(sel);
  const $$=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -151,6 +155,12 @@ async function boot(){
   const categoryGroup='<fieldset class="shop-filter-group shop-filter-group--category"><legend>Category</legend><div class="shop-filter-options">'+
    categoryOptions.map((o,i)=>'<label class="shop-filter-option"><input type="radio" name="shopCategory" value="'+o.value+'"'+(!i?' checked':'')+'><span>'+o.label+'</span></label>').join('')+
    '</div></fieldset>';
+  const priceGroup='<fieldset class="shop-filter-group shop-filter-group--price"><legend>Price</legend>'+
+   '<div class="shop-filter-options"><label class="shop-filter-option"><input type="radio" name="shopPriceOrder" value="default" checked><span>Default / Featured</span></label>'+
+   '<label class="shop-filter-option'+(shopHasVerifiedPrices?'':' shop-filter-option--disabled')+'"><input type="radio" name="shopPriceOrder" value="price-asc"'+(shopHasVerifiedPrices?'':' disabled')+'><span>Price: Low to High</span></label>'+
+   '<label class="shop-filter-option'+(shopHasVerifiedPrices?'':' shop-filter-option--disabled')+'"><input type="radio" name="shopPriceOrder" value="price-desc"'+(shopHasVerifiedPrices?'':' disabled')+'><span>Price: High to Low</span></label></div>'+
+   (shopHasVerifiedPrices?'':'<p class="shop-price-unavailable" role="note">Price sorting is unavailable until approved prices are added.</p>')+
+   '</fieldset>';
   const sizeGroup='<fieldset class="shop-filter-group shop-filter-group--size"><legend>Size</legend><div class="shop-size-options">'+
    sizeOptions.map(size=>'<label class="shop-size-option" title="Size '+size+'"><input type="checkbox" name="shopSize" value="'+size+'" aria-label="Size '+size+'"><span>'+size+'</span></label>').join('')+
    '</div></fieldset>';
@@ -166,7 +176,7 @@ async function boot(){
    '<div id="shopFilterBackdrop" class="shop-filter-backdrop" hidden></div>'+
    '<div class="shop-layout"><aside id="shopFilterSidebar" class="shop-sidebar" aria-labelledby="shopFilterTitle" tabindex="-1">'+
    '<div class="shop-sidebar-head"><h2 id="shopFilterTitle">Filters</h2><button id="closeShopFilters" class="shop-filter-close" type="button" aria-label="Close filters">×</button></div>'+
-   '<form id="shopFilterForm">'+categoryGroup+sizeGroup+colorGroup+
+   '<form id="shopFilterForm">'+categoryGroup+priceGroup+sizeGroup+colorGroup+
    '<p class="shop-filter-metadata-note">Size and color are previews. Product-specific details have not been supplied.</p>'+
    '<button type="button" id="clearFilters" class="shop-clear-filters">Clear Filters</button></form></aside>'+
    '<div class="shop-results" id="shopResults"><div class="shop-result-toolbar">'+
@@ -478,6 +488,7 @@ async function boot(){
   setChoice('shopCategory',allowedCategories.includes(qs.get('category'))?qs.get('category'):'');
   setChecks('shopSize',validated('size',allowedSizes));
   setChecks('shopColor',validated('color',allowedColors));
+  setChoice('shopPriceOrder',shopHasVerifiedPrices&&['price-asc','price-desc'].includes(qs.get('sort'))?qs.get('sort'):'default');
   sort.value=['name-asc','name-desc'].includes(qs.get('sort'))?qs.get('sort'):'default';
   let pageNum=Math.max(1,Number.parseInt(qs.get('page')||'1',10)||1);
   const searchText=(qs.get('q')||'').trim().toLowerCase();
@@ -486,6 +497,10 @@ async function boot(){
    sizes:readChecks('shopSize'),
    colors:readChecks('shopColor')
   });
+  const activeSort=()=>{
+   const priceOrder=readChoice('shopPriceOrder');
+   return shopHasVerifiedPrices&&priceOrder!=='default'?priceOrder:sort.value;
+  };
   const hasSizeMetadata=catalog.some(item=>Array.isArray(item.sizes)&&item.sizes.length>0);
   const hasColorMetadata=catalog.some(item=>Array.isArray(item.colors)&&item.colors.length>0);
   const hasMatchingData=(item,field,choices)=>{
@@ -500,7 +515,7 @@ async function boot(){
    filters.sizes.forEach(size=>p.append('size',size));
    filters.colors.forEach(color=>p.append('color',color));
    if(searchText)p.set('q',searchText);
-   if(sort.value!=='default')p.set('sort',sort.value);
+   if(activeSort()!=='default')p.set('sort',activeSort());
    if(pageNum>1)p.set('page',String(pageNum));
    history.replaceState(null,'',location.pathname+(p.toString()?'?'+p.toString():''));
   }
@@ -512,8 +527,11 @@ async function boot(){
     hasMatchingData(item,'sizes',filters.sizes)&&
     hasMatchingData(item,'colors',filters.colors)&&
     (!searchText||[item.name,item.fit,item.subtitle,item.print].some(value=>value.toLowerCase().includes(searchText))));
-   if(sort.value==='name-asc')filtered.sort((a,b)=>a.name.localeCompare(b.name));
-   else if(sort.value==='name-desc')filtered.sort((a,b)=>b.name.localeCompare(a.name));
+   // Sorting operates on the full filtered array before pagination.
+   if(activeSort()==='price-asc')filtered.sort((a,b)=>a.price-b.price);
+   else if(activeSort()==='price-desc')filtered.sort((a,b)=>b.price-a.price);
+   else if(activeSort()==='name-asc')filtered.sort((a,b)=>a.name.localeCompare(b.name));
+   else if(activeSort()==='name-desc')filtered.sort((a,b)=>b.name.localeCompare(a.name));
    const pages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE_SHOP));
    pageNum=Math.min(pageNum,pages);
    const visible=filtered.slice((pageNum-1)*PAGE_SIZE_SHOP,pageNum*PAGE_SIZE_SHOP);
@@ -529,9 +547,15 @@ async function boot(){
     filtered.length+' sample '+(filtered.length===1?'product':'products')+(searchText?' matching “'+searchText+'”':'');
    syncQuery();
   };
-  form.addEventListener('change',()=>{pageNum=1;renderShop()});
+  form.addEventListener('change',event=>{
+   if(event.target.name==='shopPriceOrder')sort.value='default';
+   pageNum=1;renderShop();
+  });
   form.addEventListener('submit',event=>event.preventDefault());
-  sort.addEventListener('change',()=>{pageNum=1;renderShop()});
+  sort.addEventListener('change',()=>{
+   setChoice('shopPriceOrder','default');
+   pageNum=1;renderShop();
+  });
   $('#clearFilters').addEventListener('click',()=>{
    setChoice('shopCategory','');setChecks('shopSize',[]);setChecks('shopColor',[]);
    // Sorting and text search are independent of the filter groups.
