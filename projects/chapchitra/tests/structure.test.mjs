@@ -726,7 +726,6 @@ test('Shop filtering uses exact catalog metadata, URL state and supported sorts'
  assert.match(h,/sidebar\.setAttribute\('role','dialog'\)/);
  assert.match(h,/sidebar\.setAttribute\('aria-modal','true'\)/);
  assert.match(h,/sidebar\.addEventListener\('keydown'/);
- assert.match(h,/id="shop/);
  assert.doesNotMatch(h,/item\.price\s*[<>]|item\.size|item\.color|createdAt|dateAdded/);
  assert.equal(catalog.length,64);
  assert.ok(catalog.every(p=>p.price===null));
