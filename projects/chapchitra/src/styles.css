@@ -1598,3 +1598,345 @@ html,body{overflow-x:visible}
 @media (max-width:360px){
   #app > .site-header .logo-word.logo-word--image{width:120px}
 }
+
+
+/* CHAPCHITRA Shop: static editorial banner and metadata-driven collection UI.
+   Scoped to /shop/ classes. No animation or homepage layout changes. */
+#app > .site-header .nav-center > a[href="/shop/"]{
+  text-decoration:none;
+}
+.shop-banner{
+  width:100%;
+  background:var(--press);
+  color:var(--bg);
+}
+.shop-banner-inner{
+  display:grid;
+  grid-template-columns:minmax(0,1.18fr) minmax(260px,.82fr);
+  align-items:stretch;
+  min-height:270px;
+  gap:clamp(24px,4vw,64px);
+}
+.shop-banner-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  min-width:0;
+  padding:35px 0;
+}
+.shop-banner-copy .eyebrow{
+  font-size:11px;
+  letter-spacing:.19em;
+  color:var(--beige);
+  margin:0 0 12px;
+}
+.shop-banner-copy h1{
+  font:normal clamp(53px,6vw,83px)/.99 var(--serif);
+  letter-spacing:-.055em;
+  margin:0 0 12px;
+  color:var(--bg);
+}
+.shop-banner-copy p:last-child{
+  font-size:13px;
+  line-height:1.75;
+  color:var(--cream);
+  max-width:480px;
+  margin:0;
+}
+.shop-banner-art{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:19px 0;
+  min-width:0;
+}
+.shop-banner-art-frame{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  width:100%;
+  max-width:410px;
+  height:100%;
+  max-height:230px;
+  min-height:185px;
+  background:var(--olive);
+  border:1px solid #ffffff33;
+  overflow:hidden;
+}
+.shop-banner-art-frame .shirt-svg{
+  flex:1 1 auto;
+  min-height:0;
+  max-height:182px;
+  width:clamp(140px,50%,210px);
+  filter:none;
+}
+.shop-banner-art-frame span{
+  display:block;
+  margin-bottom:13px;
+  padding:0 8px;
+  color:var(--cream);
+  font-size:9px;
+  line-height:1.3;
+  letter-spacing:.16em;
+  text-align:center;
+}
+.shop-listing{padding-block:47px 90px}
+.shop-layout{
+  display:grid;
+  grid-template-columns:minmax(205px,235px) minmax(0,1fr);
+  gap:clamp(22px,3vw,44px);
+  align-items:start;
+}
+.shop-sidebar{
+  min-width:0;
+  padding:0 22px 22px 0;
+  border-right:1px solid var(--grey);
+  color:var(--ink);
+}
+.shop-sidebar-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+.shop-sidebar-head h2{
+  font:normal 27px/1.2 var(--serif);
+  letter-spacing:-.025em;
+  margin:0;
+}
+.shop-filter-close{display:none}
+.shop-filter-group{
+  padding:15px 0 20px;
+  margin:0;
+  border:0;
+  border-top:1px solid var(--grey);
+  min-width:0;
+}
+.shop-filter-group legend{
+  float:left;
+  width:100%;
+  font-size:12px;
+  line-height:1.4;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  margin:0 0 10px;
+  padding:0;
+}
+.shop-filter-options{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  gap:3px;
+  clear:both;
+}
+.shop-filter-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  font-weight:400;
+  line-height:1.45;
+  color:var(--ink);
+  padding:7px 0;
+  min-height:38px;
+  cursor:pointer;
+}
+.shop-filter-option input{
+  accent-color:var(--press);
+  width:16px;
+  height:16px;
+  flex:0 0 16px;
+  margin:0;
+}
+.shop-filter-option input:checked + span{font-weight:700;color:var(--press)}
+.shop-clear-filters{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--press);
+  border-radius:999px;
+  background:transparent;
+  color:var(--press);
+  min-height:42px;
+  padding:10px 20px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  width:100%;
+}
+.shop-clear-filters:hover{background:var(--press);color:var(--bg)}
+.shop-results{min-width:0;scroll-margin-top:98px}
+.shop-result-toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px 18px;
+  margin:0 0 24px;
+}
+.shop-result-heading{min-width:0}
+.shop-result-heading .eyebrow{
+  color:var(--mut);
+  font-size:10px;
+  letter-spacing:.18em;
+  margin:0 0 6px;
+}
+.shop-result-heading h2{
+  font:normal clamp(31px,3.4vw,47px)/1.04 var(--serif);
+  letter-spacing:-.045em;
+  margin:0 0 6px;
+}
+.shop-result-heading #filterSummary{
+  margin:0;
+  color:var(--mut);
+  font-size:12px;
+  line-height:1.5;
+}
+.shop-result-actions{
+  display:flex;
+  align-items:flex-end;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.shop-sort-label{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  font-size:11px;
+  font-weight:700;
+  color:var(--mut);
+}
+.shop-sort-label select{
+  border:1px solid var(--grey);
+  border-radius:4px;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:12px;
+  min-height:41px;
+  min-width:160px;
+  padding:8px 30px 8px 12px;
+  max-width:100%;
+  cursor:pointer;
+}
+.shop-filter-trigger{display:none}
+.shop-product-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:26px 16px;
+}
+.shop-product-grid .product-card-shell{min-width:0}
+#shopPager{margin-top:32px}
+.shop-listing-footnote{
+  font-size:11px;
+  line-height:1.65;
+  color:var(--mut);
+  margin:34px 0 0;
+}
+.shop-filter-backdrop{display:none}
+@media(max-width:1120px){
+  .shop-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shop-layout{grid-template-columns:minmax(180px,215px) minmax(0,1fr);gap:24px}
+  .shop-sidebar{padding-right:16px}
+}
+@media(max-width:860px){
+  .shop-banner-inner{min-height:245px;grid-template-columns:minmax(0,1fr) minmax(225px,.8fr);gap:18px}
+  .shop-banner-copy h1{font-size:clamp(47px,6.6vw,64px)}
+  .shop-banner-art-frame{min-height:175px}
+  .shop-layout{grid-template-columns:185px minmax(0,1fr);gap:18px}
+  .shop-sidebar{padding-right:13px}
+  .shop-listing{padding-top:36px}
+  .shop-product-grid{gap:22px 12px}
+}
+@media(max-width:740px){
+  .shop-banner-inner{min-height:220px;grid-template-columns:minmax(0,1fr) minmax(160px,.65fr);gap:12px}
+  .shop-banner-copy{padding:25px 0}
+  .shop-banner-copy h1{font-size:clamp(42px,8vw,59px)}
+  .shop-banner-copy p:last-child{font-size:12px;line-height:1.55}
+  .shop-banner-art-frame{min-height:165px}
+  .shop-banner-art-frame .shirt-svg{width:80%;max-height:148px}
+  .shop-layout{display:block}
+  .shop-result-toolbar{align-items:flex-start;gap:15px}
+  .shop-result-actions{margin-left:auto}
+  .shop-filter-trigger{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:43px;
+    border:1px solid var(--press);
+    border-radius:999px;
+    background:var(--bg);
+    color:var(--press);
+    padding:9px 20px;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .shop-filter-backdrop:not([hidden]){
+    display:block;
+    position:fixed;
+    inset:0;
+    z-index:125;
+    background:#101e18a6;
+  }
+  .shop-sidebar{
+    position:fixed;
+    z-index:126;
+    top:0;
+    left:0;
+    bottom:0;
+    width:min(355px,88vw);
+    max-width:none;
+    max-height:100dvh;
+    padding:22px 22px 34px;
+    border:0;
+    background:var(--bg);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    transform:translateX(-102%);
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .shop-sidebar.is-open{
+    transform:translateX(0);
+    visibility:visible;
+    pointer-events:auto;
+  }
+  .shop-filter-close{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:44px;
+    height:44px;
+    border:1px solid var(--grey);
+    border-radius:50%;
+    background:transparent;
+    font-size:26px;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .shop-sidebar-head{margin-bottom:8px}
+  body.shop-filters-open{overflow:hidden}
+  .shop-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+}
+@media(max-width:520px){
+  .shop-banner-inner{min-height:222px;grid-template-columns:minmax(0,1fr) minmax(105px,.55fr);gap:12px}
+  .shop-banner-copy .eyebrow{font-size:9px}
+  .shop-banner-copy h1{font-size:clamp(39px,9vw,52px)}
+  .shop-banner-copy p:last-child{font-size:11px}
+  .shop-banner-art{padding:18px 0}
+  .shop-banner-art-frame{min-height:150px}
+  .shop-banner-art-frame span{font-size:7px;letter-spacing:.06em}
+  .shop-listing{padding-block:28px 62px}
+  .shop-result-heading h2{font-size:35px}
+  .shop-result-toolbar{margin-bottom:18px}
+  .shop-sort-label select{min-width:145px}
+}
+@media(max-width:380px){
+  .shop-banner-inner{grid-template-columns:minmax(0,1fr) minmax(88px,.5fr)}
+  .shop-banner-copy h1{font-size:39px}
+  .shop-banner-art-frame span{font-size:7px}
+  .shop-product-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+}
