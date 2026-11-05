@@ -1753,6 +1753,22 @@ html,body{overflow-x:visible}
   margin:0;
 }
 .shop-filter-option input:checked + span{font-weight:700;color:var(--press)}
+/* Price radios share the approved compact sidebar controls. Unavailable prices
+   remain visibly and semantically disabled until real catalog data exists. */
+.shop-filter-group--price .shop-filter-option--disabled{
+  opacity:.48;
+  cursor:not-allowed;
+}
+.shop-filter-group--price .shop-filter-option input:disabled{
+  cursor:not-allowed;
+}
+.shop-price-unavailable{
+  margin:6px 0 0;
+  color:var(--mut);
+  font-size:10px;
+  line-height:1.5;
+}
+
 .shop-clear-filters{
   display:inline-flex;
   align-items:center;
