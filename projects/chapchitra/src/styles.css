@@ -1686,13 +1686,13 @@ html,body{overflow-x:visible}
 .shop-listing{padding-block:47px 90px}
 .shop-layout{
   display:grid;
-  grid-template-columns:minmax(205px,235px) minmax(0,1fr);
+  grid-template-columns:minmax(190px,205px) minmax(0,1fr);
   gap:clamp(22px,3vw,44px);
   align-items:start;
 }
 .shop-sidebar{
   min-width:0;
-  padding:0 22px 22px 0;
+  padding:0 14px 16px 0;
   border-right:1px solid var(--grey);
   color:var(--ink);
 }
@@ -1700,7 +1700,7 @@ html,body{overflow-x:visible}
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
+  margin-bottom:12px;
 }
 .shop-sidebar-head h2{
   font:normal 27px/1.2 var(--serif);
@@ -1709,7 +1709,7 @@ html,body{overflow-x:visible}
 }
 .shop-filter-close{display:none}
 .shop-filter-group{
-  padding:15px 0 20px;
+  padding:10px 0 13px;
   margin:0;
   border:0;
   border-top:1px solid var(--grey);
@@ -1723,14 +1723,14 @@ html,body{overflow-x:visible}
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:.05em;
-  margin:0 0 10px;
+  margin:0 0 6px;
   padding:0;
 }
 .shop-filter-options{
   display:flex;
   flex-direction:column;
   width:100%;
-  gap:3px;
+  gap:1px;
   clear:both;
 }
 .shop-filter-option{
@@ -1741,8 +1741,8 @@ html,body{overflow-x:visible}
   font-weight:400;
   line-height:1.45;
   color:var(--ink);
-  padding:7px 0;
-  min-height:38px;
+  padding:5px 0;
+  min-height:32px;
   cursor:pointer;
 }
 .shop-filter-option input{
@@ -1838,15 +1838,15 @@ html,body{overflow-x:visible}
 .shop-filter-backdrop{display:none}
 @media(max-width:1120px){
   .shop-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .shop-layout{grid-template-columns:minmax(180px,215px) minmax(0,1fr);gap:24px}
-  .shop-sidebar{padding-right:16px}
+  .shop-layout{grid-template-columns:minmax(185px,198px) minmax(0,1fr);gap:24px}
+  .shop-sidebar{padding-right:12px}
 }
 @media(max-width:860px){
   .shop-banner-inner{min-height:245px;grid-template-columns:minmax(0,1fr) minmax(225px,.8fr);gap:18px}
   .shop-banner-copy h1{font-size:clamp(47px,6.6vw,64px)}
   .shop-banner-art-frame{min-height:175px}
   .shop-layout{grid-template-columns:185px minmax(0,1fr);gap:18px}
-  .shop-sidebar{padding-right:13px}
+  .shop-sidebar{padding-right:11px}
   .shop-listing{padding-top:36px}
   .shop-product-grid{gap:22px 12px}
 }
@@ -1939,4 +1939,107 @@ html,body{overflow-x:visible}
   .shop-banner-copy h1{font-size:39px}
   .shop-banner-art-frame span{font-size:7px}
   .shop-product-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+}
+
+
+/* Three compact, accessible Shop filters. These swatches and size labels
+   are selectable criteria, not assertions of current sample inventory. */
+.shop-size-options{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:6px;
+  clear:both;
+}
+.shop-size-option,
+.shop-color-option{
+  position:relative;
+  display:grid;
+  place-items:center;
+  min-width:0;
+  cursor:pointer;
+}
+.shop-size-option{min-height:38px}
+.shop-size-option input,
+.shop-color-option input{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  margin:0;
+  cursor:pointer;
+}
+.shop-size-option > span{
+  display:grid;
+  place-items:center;
+  width:100%;
+  min-height:36px;
+  padding:5px 2px;
+  border:1px solid var(--grey);
+  border-radius:6px;
+  color:var(--ink);
+  font-size:11px;
+  font-weight:650;
+  background:var(--bg);
+}
+.shop-size-option input:checked + span{
+  background:var(--press);
+  border-color:var(--press);
+  color:var(--bg);
+}
+.shop-size-option input:focus-visible + span,
+.shop-color-option input:focus-visible + .shop-color-dot{
+  outline:2px solid var(--acc);
+  outline-offset:3px;
+}
+.shop-color-options{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  align-items:center;
+  gap:5px;
+  clear:both;
+}
+.shop-color-option{min-height:36px}
+.shop-color-dot{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:min(24px,100%);
+  height:24px;
+  border-radius:50%;
+  border:1px solid #575f59;
+  box-sizing:border-box;
+}
+.shop-color-option[data-color="black"] .shop-color-dot{background:#232323}
+.shop-color-option[data-color="white"] .shop-color-dot{background:#fff}
+.shop-color-option[data-color="red"] .shop-color-dot{background:#be4747}
+.shop-color-option[data-color="yellow"] .shop-color-dot{background:#e5c447}
+.shop-color-option[data-color="green"] .shop-color-dot{background:#3c7251}
+.shop-color-option[data-color="blue"] .shop-color-dot{background:#416eac}
+.shop-color-option input:checked + .shop-color-dot{
+  box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--press);
+}
+.shop-color-option input:checked + .shop-color-dot:after{
+  content:'✓';
+  position:absolute;
+  color:#fff;
+  font:700 15px/1 var(--sans);
+}
+.shop-color-option[data-color="white"] input:checked + .shop-color-dot:after,
+.shop-color-option[data-color="yellow"] input:checked + .shop-color-dot:after{
+  color:var(--ink);
+}
+.shop-filter-metadata-note{
+  font-size:10px;
+  line-height:1.55;
+  color:var(--mut);
+  margin:7px 0 14px;
+}
+@media(max-width:740px){
+  /* Drawer keeps comfortable finger-sized controls while desktop stays dense. */
+  .shop-filter-option{min-height:42px}
+  .shop-size-option{min-height:44px}
+  .shop-size-option > span{min-height:42px}
+  .shop-color-option{min-height:44px}
+  .shop-color-dot{width:28px;height:28px}
 }
