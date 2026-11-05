@@ -43,7 +43,7 @@ async function boot(){
   // a font approximation for the original custom lettering.
   return '<header class="site-header" id="siteHeader"><div class="header-line wrap">'+
    '<div class="nav-left">'+
-   '<nav class="nav-center" aria-label="Main navigation"><details class="shop-dropdown"><summary>Shop</summary><div class="nav-dropdown"><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'</div></details>'+
+   '<nav class="nav-center" aria-label="Main navigation"><a href="/shop/">Shop</a>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
    '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+ 
    '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"></a>'+
@@ -55,7 +55,7 @@ async function boot(){
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
    '</div></div>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
-   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a><a href="/favorites/">Favorites</a><a href="/account/">Account</a></nav></header>';
+   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop</a><a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a><a href="/favorites/">Favorites</a><a href="/account/">Account</a></nav></header>';
  }
  const paperVisual=(i)=>'<div class="art-plate art-plate-'+(i%3)+'">'+(i%2===0?shirtSilhouette(i):printSilhouette(i))+'<span class="plate-disclaimer">Illustration placeholder</span></div>';
  const linkFiltered=(category,audience)=>'/shop/?category='+encodeURIComponent(category)+(audience?'&audience='+audience:'');
@@ -144,8 +144,34 @@ async function boot(){
  function home(){return hero()+benefits()+categoriesSection()+collection()+banners()+featured()+values()+story()}
  const pageTop=(kicker,title,desc)=>'<section class="route-head wrap"><p class="eyebrow">'+kicker+'</p><h1>'+title+'</h1><p>'+desc+'</p></section>';
  function shop(){
-  return pageTop('DEMO CATALOGUE','Shop the Studies','Sample placeholders only. Filters and pagination are functional; inventory, imagery and prices have not been approved.')+
-  '<section class="wrap route-content"><div class="shop-controls"><label>Category<select id="filterCategory"><option value="">All categories</option>'+categories.map(c=>'<option value="'+c.id+'">'+c.title+'</option>').join('')+'</select></label><label>Fit / audience<select id="filterAudience"><option value="">All</option><option value="men">Men</option><option value="women">Women</option></select></label><label>Print type<select id="filterPrint"><option value="">All print types</option><option value="illustration">Illustration</option><option value="studio-print">Studio Print</option><option value="hand-dyed">Hand-Dyed</option></select></label>'+sketchButton({label:'Clear Filters',variant:'compact',tone:'beige',className:'cc-sketch--inline',attrs:'id="clearFilters"'})+'</div><p id="filterSummary" aria-live="polite"></p><div class="product-grid" id="shopProducts"></div><div id="shopPager"></div></section>';
+  const categoryOptions=[{value:'',label:'All Products'},...categories.map(c=>({value:c.id,label:c.id==='regular-tees'?'Regular':c.title}))];
+  const audienceOptions=[{value:'',label:'All Audiences'},{value:'men',label:'Men'},{value:'women',label:'Women'}];
+  const printOptions=[{value:'',label:'All Print Styles'},{value:'illustration',label:'Illustration'},{value:'studio-print',label:'Studio Print'},{value:'hand-dyed',label:'Hand-Dyed'}];
+  const filterGroup=(name,title,options)=>
+   '<fieldset class="shop-filter-group"><legend>'+title+'</legend><div class="shop-filter-options">'+
+   options.map((o,i)=>'<label class="shop-filter-option"><input type="radio" name="'+name+'" value="'+o.value+'"'+(!i?' checked':'')+'><span>'+o.label+'</span></label>').join('')+
+   '</div></fieldset>';
+  return '<section class="shop-banner" aria-labelledby="shopBannerTitle"><div class="wrap shop-banner-inner">'+
+   '<div class="shop-banner-copy"><p class="eyebrow">CHAPCHITRA · THE COLLECTION</p><h1 id="shopBannerTitle">Shop All</h1>'+
+   '<p>Explore garment and print studies made for everyday expression. Original product photography and pricing are coming soon.</p></div>'+
+   '<div class="shop-banner-art" aria-label="Placeholder for future collection artwork"><div class="shop-banner-art-frame">'+shirtSilhouette(0)+
+   '<span>COLLECTION ARTWORK PENDING</span></div></div></div></section>'+
+   '<section class="shop-listing wrap" aria-label="Browse products">'+
+   '<div id="shopFilterBackdrop" class="shop-filter-backdrop" hidden></div>'+
+   '<div class="shop-layout"><aside id="shopFilterSidebar" class="shop-sidebar" aria-labelledby="shopFilterTitle" tabindex="-1">'+
+   '<div class="shop-sidebar-head"><h2 id="shopFilterTitle">Filters</h2><button id="closeShopFilters" class="shop-filter-close" type="button" aria-label="Close filters">×</button></div>'+
+   '<form id="shopFilterForm">'+filterGroup('shopCategory','Categories',categoryOptions)+
+   filterGroup('shopAudience','Fit / Audience',audienceOptions)+filterGroup('shopPrint','Print Style',printOptions)+
+   '<button type="button" id="clearFilters" class="shop-clear-filters">Clear Filters</button></form></aside>'+
+   '<div class="shop-results" id="shopResults"><div class="shop-result-toolbar">'+
+   '<div class="shop-result-heading"><p class="eyebrow">THE COLLECTION</p><h2 id="shopCollectionTitle">All Products</h2>'+
+   '<p id="filterSummary" aria-live="polite"></p></div>'+
+   '<div class="shop-result-actions"><button type="button" id="openShopFilters" class="shop-filter-trigger" aria-controls="shopFilterSidebar" aria-expanded="false">Filters</button>'+
+   '<label class="shop-sort-label" for="shopSort">Sort by<select id="shopSort"><option value="default">Default order</option>'+
+   '<option value="name-asc">Name: A–Z</option><option value="name-desc">Name: Z–A</option></select></label></div></div>'+
+   '<div class="product-grid shop-product-grid" id="shopProducts"></div><div id="shopPager"></div>'+
+   '<p class="shop-listing-footnote">Sample product studies only. Prices, stock and final imagery are not yet available.</p>'+
+   '</div></div></section>';
  }
  function artistsEdit(){
   return pageTop('CUSTOM PRINTING',"Artist’s Edit",'Plan a custom print concept using the local-only preview configurator. No file upload, payment or inquiry submission is connected.')+
@@ -215,25 +241,23 @@ async function boot(){
  app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
  installStickyViewportGuard(document, window);
  // Global navigation and keyboard behavior.
- const search=$('#searchPanel'),searchButton=$('#searchButton'),shopDetails=$('.shop-dropdown');
+ const search=$('#searchPanel'),searchButton=$('#searchButton');
  const mobileNav=$('#mobileNav'),menuButton=$('#menuButton');
  const toggle=(el,trigger,show)=>{el.hidden=!show;trigger.setAttribute('aria-expanded',String(show));};
  searchButton.addEventListener('click',()=>{const show=search.hidden;toggle(search,searchButton,show);
-  if(show){toggle(mobileNav,menuButton,false);shopDetails.open=false;$('#globalSearch').focus()}
+  if(show){toggle(mobileNav,menuButton,false);$('#globalSearch').focus()}
   else searchButton.focus();
  });
  menuButton.addEventListener('click',()=>{const show=mobileNav.hidden;toggle(mobileNav,menuButton,show);
-  if(show){toggle(search,searchButton,false);shopDetails.open=false}
+  if(show)toggle(search,searchButton,false);
  });
  const compactNav=window.matchMedia('(max-width:740px)');
- compactNav.addEventListener('change',()=>{toggle(mobileNav,menuButton,false);shopDetails.open=false});
+ compactNav.addEventListener('change',()=>{toggle(mobileNav,menuButton,false)});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){
   if(!search.hidden){toggle(search,searchButton,false);searchButton.focus()}
   else if(!mobileNav.hidden){toggle(mobileNav,menuButton,false);menuButton.focus()}
-  if(shopDetails.open){shopDetails.open=false;shopDetails.querySelector('summary').focus()}
  }});
  document.addEventListener('pointerdown',e=>{
-  if(shopDetails.open&&!shopDetails.contains(e.target))shopDetails.open=false;
   if(!mobileNav.hidden&&!mobileNav.contains(e.target)&&!menuButton.contains(e.target)){
    toggle(mobileNav,menuButton,false);
   }
@@ -324,7 +348,7 @@ async function boot(){
  // Global delegation (no card flicker from full grid rebuild except explicit favorite interaction).
  document.addEventListener('click',e=>{const btn=e.target.closest('[data-favorite]');if(btn)updateFav(btn.dataset.favorite)});
  // Navigation dropdown closes when leaving or using Escape.
- document.addEventListener('keydown',e=>{if(e.key==='Escape')$$('.shop-dropdown[open]').forEach(d=>d.removeAttribute('open'))});
+
  // Hero rotation, exactly one timer. Keyboard focus and pointer hover pause.
  if(route==='home'){
   const heroRoot=$('#hero'),slides=$$('.hero-slide',heroRoot),dots=$$('.hero-dot',heroRoot);
@@ -426,27 +450,89 @@ async function boot(){
   paintFeatured();scheduleFeatured();
  }
  if(route==='shop'){
-  const category=$('#filterCategory'),audience=$('#filterAudience'),print=$('#filterPrint');
-  category.value=categories.some(c=>c.id===qs.get('category'))?qs.get('category'):'';
-  audience.value=['men','women'].includes(qs.get('audience'))?qs.get('audience'):'';
-  print.value=['illustration','studio-print','hand-dyed'].includes(qs.get('print'))?qs.get('print'):'';
+  const form=$('#shopFilterForm'),sidebar=$('#shopFilterSidebar'),backdrop=$('#shopFilterBackdrop');
+  const openFilters=$('#openShopFilters'),closeFilters=$('#closeShopFilters'),sort=$('#shopSort');
+  const allowedCategories=categories.map(c=>c.id);
+  const allowedAudiences=['men','women'],allowedPrints=['illustration','studio-print','hand-dyed'];
+  const readChoice=name=>form.querySelector('input[name="'+name+'"]:checked')?.value||'';
+  const setChoice=(name,value)=>{const options=$$('input[name="'+name+'"]',form);const found=options.find(e=>e.value===value);(found||options[0]).checked=true};
+  setChoice('shopCategory',allowedCategories.includes(qs.get('category'))?qs.get('category'):'');
+  setChoice('shopAudience',allowedAudiences.includes(qs.get('audience'))?qs.get('audience'):'');
+  setChoice('shopPrint',allowedPrints.includes(qs.get('print'))?qs.get('print'):'');
+  sort.value=['name-asc','name-desc'].includes(qs.get('sort'))?qs.get('sort'):'default';
   let pageNum=Math.max(1,Number.parseInt(qs.get('page')||'1',10)||1);
-  const searchText=(qs.get('q')||'').trim().toLowerCase();
-  function matches(item){return(!category.value||item.category.includes(category.value))&&(!audience.value||item.audience.includes(audience.value))&&(!print.value||item.print===print.value)&&(!searchText||[item.name,item.fit,item.subtitle,item.print].some(v=>v.toLowerCase().includes(searchText)))}
-  function syncQuery(){const p=new URLSearchParams();if(category.value)p.set('category',category.value);if(audience.value)p.set('audience',audience.value);if(print.value)p.set('print',print.value);if(searchText)p.set('q',searchText);if(pageNum>1)p.set('page',String(pageNum));history.replaceState(null,'',location.pathname+(p.toString()?'?'+p:''))}
+  let searchText=(qs.get('q')||'').trim().toLowerCase();
+  const selected=()=>({category:readChoice('shopCategory'),audience:readChoice('shopAudience'),print:readChoice('shopPrint')});
+  function syncQuery(){
+   const p=new URLSearchParams(),filters=selected();
+   if(filters.category)p.set('category',filters.category);
+   if(filters.audience)p.set('audience',filters.audience);
+   if(filters.print)p.set('print',filters.print);
+   if(searchText)p.set('q',searchText);
+   if(sort.value!=='default')p.set('sort',sort.value);
+   if(pageNum>1)p.set('page',String(pageNum));
+   history.replaceState(null,'',location.pathname+(p.toString()?'?'+p.toString():''));
+  }
   renderShop=function(){
-   const filtered=catalog.filter(matches);
+   const filters=selected();
+   const filtered=catalog.filter(item=>
+    (!filters.category||item.category.includes(filters.category))&&
+    (!filters.audience||item.audience.includes(filters.audience))&&
+    (!filters.print||item.print===filters.print)&&
+    (!searchText||[item.name,item.fit,item.subtitle,item.print].some(v=>v.toLowerCase().includes(searchText))));
+   if(sort.value==='name-asc')filtered.sort((a,b)=>a.name.localeCompare(b.name));
+   else if(sort.value==='name-desc')filtered.sort((a,b)=>b.name.localeCompare(a.name));
    const pages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE_SHOP));
    pageNum=Math.min(pageNum,pages);
    const visible=filtered.slice((pageNum-1)*PAGE_SIZE_SHOP,pageNum*PAGE_SIZE_SHOP);
-   $('#shopProducts').innerHTML=visible.length?visible.map(productCard).join(''):'<p class="no-results">No sample cards match these filters. Try clearing them.</p>';
+   $('#shopProducts').innerHTML=visible.length?visible.map(productCard).join(''):'<p class="no-results">No sample products match these filters. Select another option or clear filters.</p>';
    $('#shopPager').innerHTML=pager(pages,pageNum,'shop');
-   $('#filterSummary').textContent=filtered.length+' sample studies · Page '+pageNum+' of '+pages+'. No items are for sale.';
+   const title=filters.category?(filters.category==='regular-tees'?'Regular':categories.find(c=>c.id===filters.category)?.title):'All Products';
+   $('#shopCollectionTitle').textContent=title||'All Products';
+   $('#filterSummary').textContent=filtered.length+' sample '+(filtered.length===1?'product':'products')+(searchText?' matching “'+searchText+'”':'');
    syncQuery();
   };
-  [category,audience,print].forEach(el=>el.addEventListener('change',()=>{pageNum=1;renderShop()}));
-  $('#clearFilters').addEventListener('click',()=>{category.value='';audience.value='';print.value='';pageNum=1;history.replaceState(null,'',location.pathname);renderShop()});
-  $('#shopPager').addEventListener('click',e=>{const b=e.target.closest('[data-page-number]');if(!b||b.disabled)return;pageNum=Number(b.dataset.pageNumber);renderShop();$('.route-head').scrollIntoView({behavior:mediaReduced.matches?'instant':'smooth'})});
+  form.addEventListener('change',()=>{pageNum=1;renderShop()});
+  form.addEventListener('submit',e=>e.preventDefault());
+  sort.addEventListener('change',()=>{pageNum=1;renderShop()});
+  $('#clearFilters').addEventListener('click',()=>{
+   setChoice('shopCategory','');setChoice('shopAudience','');setChoice('shopPrint','');
+   sort.value='default';searchText='';pageNum=1;renderShop();
+  });
+  $('#shopPager').addEventListener('click',e=>{
+   const b=e.target.closest('[data-page-number]');if(!b||b.disabled)return;
+   pageNum=Number(b.dataset.pageNumber);renderShop();
+   $('#shopResults').scrollIntoView({behavior:mediaReduced.matches?'instant':'smooth',block:'start'});
+  });
+  const mobileFilterQuery=window.matchMedia('(max-width:740px)');
+  function closeDrawer(restoreFocus=true){
+   const wasOpen=sidebar.classList.contains('is-open');
+   sidebar.classList.remove('is-open');backdrop.hidden=true;
+   openFilters.setAttribute('aria-expanded','false');
+   sidebar.removeAttribute('role');sidebar.removeAttribute('aria-modal');
+   document.body.classList.remove('shop-filters-open');
+   if(wasOpen&&restoreFocus&&mobileFilterQuery.matches)openFilters.focus();
+  }
+  function openDrawer(){
+   sidebar.classList.add('is-open');backdrop.hidden=false;
+   openFilters.setAttribute('aria-expanded','true');
+   sidebar.setAttribute('role','dialog');sidebar.setAttribute('aria-modal','true');
+   document.body.classList.add('shop-filters-open');closeFilters.focus();
+  }
+  openFilters.addEventListener('click',openDrawer);
+  closeFilters.addEventListener('click',()=>closeDrawer());
+  backdrop.addEventListener('click',()=>closeDrawer());
+  mobileFilterQuery.addEventListener('change',()=>closeDrawer(false));
+  sidebar.addEventListener('keydown',e=>{
+   if(e.key!=='Tab'||!sidebar.classList.contains('is-open'))return;
+   const elements=$$('button:not([disabled]),input:not([disabled]),select:not([disabled]),a[href]',sidebar)
+    .filter(el=>el.getClientRects().length);
+   if(!elements.length)return;
+   const first=elements[0],last=elements[elements.length-1];
+   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sidebar.classList.contains('is-open')){e.preventDefault();closeDrawer()}});
   renderShop();
  }
  if(route==='favorites'){
