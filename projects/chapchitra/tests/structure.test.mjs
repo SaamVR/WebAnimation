@@ -594,7 +594,7 @@ test('only header alignment is updated: no arbitrary margin, spacer or navigatio
 });
 
 
-test('three-zone CHAPCHITRA header centers independently of nav and actions',async()=>{
+test('CHAPCHITRA three-zone text navigation replaces hamburger at every viewport',async()=>{
  const src=await read('src/app.mjs');
  const css=await read('src/styles.css');
  const begin=src.indexOf('function header(){'),end=src.indexOf('const paperVisual=',begin);
@@ -605,29 +605,28 @@ test('three-zone CHAPCHITRA header centers independently of nav and actions',asy
  assert.match(nav,/class="nav-actions"/);
  assert.ok(nav.indexOf('class="nav-left"')<nav.indexOf('class="logo-word logo-word--image"'));
  assert.ok(nav.indexOf('class="logo-word logo-word--image"')<nav.indexOf('class="nav-actions"'));
- assert.match(nav,/id="menuButton"/);
+ assert.doesNotMatch(nav,/hamburger|id="menuButton"|id="mobileNav"/);
+ for(const label of ['Shop','Artist’s Edit','Journal','About Us']) assert.ok(nav.includes(label),label);
+ for(const path of ['/artists-edit/','/journal/','/about/','/favorites/','/account/','/bag/']) assert.ok(nav.includes('href="'+path+'"'),path);
+ assert.match(nav,/class="shop-dropdown"/);
+ assert.match(nav,/class="nav-dropdown"/);
+ assert.match(nav,/id="mobileShopPopover"/);
  assert.match(nav,/id="searchButton"/);
  assert.match(nav,/id="searchPanel"/);
- assert.match(nav,/id="mobileNav"/);
- assert.match(nav,/href="\/favorites\/"/);
- assert.match(nav,/href="\/account\/"/);
- assert.match(nav,/href="\/bag\/"/);
  assert.match(nav,/bellRendered\?/);
- const start=css.indexOf('/* CHAPCHITRA — mathematical centered three-zone');
- const rules=css.slice(start);
+ const rules=css.slice(css.indexOf('/* CHAPCHITRA — mathematical centered three-zone'));
  assert.match(rules,/grid-template-columns:minmax\(0,1fr\) auto minmax\(0,1fr\)/);
- assert.match(rules,/align-items:center/);
- assert.match(rules,/grid-column:1/);
- assert.match(rules,/grid-column:2/);
- assert.match(rules,/grid-column:3/);
  assert.match(rules,/justify-self:center/);
  assert.match(rules,/justify-self:end/);
- assert.match(rules,/@media\(max-width:1000px\)/);
- assert.match(rules,/@media\(max-width:600px\)/);
- assert.match(rules,/\.nav-optional-action\{display:none\}/);
- assert.match(rules,/\.mobile-nav \.mobile-quick-link\{display:block\}/);
- assert.match(nav,/mobile-quick-link" href="\/favorites\/"/);
- assert.match(nav,/mobile-quick-link" href="\/account\/"/);
+ assert.match(rules,/@media \(max-width:780px\)/);
+ assert.match(rules,/grid-template-rows:65px 42px/);
+ assert.match(rules,/overflow-x:auto/);
+ assert.match(rules,/overflow-y:hidden/);
+ assert.match(rules,/\.nav-optional-action\{display:inline-grid\}/);
+ assert.match(rules,/\.mobile-shop-popover:not\(\[hidden\]\)/);
+ assert.match(src,/shopDetails\.addEventListener\('toggle',syncShopPanel\)/);
+ assert.match(src,/compactNav\.addEventListener\('change',syncShopPanel\)/);
+ assert.match(src,/mobileShopPopover\.hidden=true/);
 });
 test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',async()=>{
  const app=await read('src/app.mjs'),css=await read('src/styles.css'),html=await read('src/index.html');
