@@ -1174,7 +1174,9 @@ h1,h2,h3,.logo-word{font-family:var(--serif)}
   max-height:none;
   z-index:3;
   overflow:visible;
-  display:block;
+  /* Owner rejected the visible perimeter: keep SVG geometry inert but unpainted.
+     The approved rounded paper surface, hard-edge shadow and tilt remain. */
+  display:none;
   pointer-events:none;
 }
 .polaroid-ink-perimeter{
