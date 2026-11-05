@@ -682,45 +682,67 @@ test('owner-rejected visible Polaroid border stays hidden without removing shado
 });
 
 
-test('Shop page has one static banner and a metadata-supported responsive product layout',async()=>{
+test('Shop retains its static banner and exactly Category, Size and Color filters',async()=>{
  const src=await read('src/app.mjs'),css=await read('src/styles.css');
  const shop=src.slice(src.indexOf(' function shop(){'),src.indexOf(' function artistsEdit(){'));
- assert.ok(shop.includes('class="shop-banner"'),'dedicated static Shop banner');
+ assert.ok(shop.includes('class="shop-banner"'),'static approved Shop banner retained');
  assert.ok(shop.includes('id="shopBannerTitle">Shop All'));
  assert.ok(shop.includes('shop-banner-art-frame'));
  assert.doesNotMatch(shop,/hero-carousel|setInterval|autoplay|gsap|parallax|shop-controls/);
- assert.ok(shop.includes('class="shop-layout"')&&shop.includes('id="shopFilterSidebar"'));
- for(const term of ["All Products","Regular","Men","Women","Clear Filters","Print Style"])
-  assert.ok(shop.includes(term),term);
+ assert.match(shop,/class="shop-layout"/);
+ assert.match(shop,/id="shopFilterSidebar"/);
+ for(const title of ['All Products','Regular','Category','Size','Color','Clear Filters'])
+  assert.ok(shop.includes(title),title);
+ assert.match(shop,/categoryGroup\+sizeGroup\+colorGroup/);
+ assert.equal((shop.match(/'<fieldset class="shop-filter-group /g)||[]).length,3);
+ assert.match(shop,/const sizeOptions=\['S','M','L','XL','XXL'\]/);
+ assert.match(shop,/const colorOptions=\['black','white','red','yellow','green','blue'\]/);
+ assert.match(shop,/type="checkbox" name="shopSize"/);
+ assert.match(shop,/type="checkbox" name="shopColor"/);
+ assert.match(shop,/aria-label="Size /);
+ assert.match(shop,/aria-label="'\+color\[0\]\.toUpperCase/);
  assert.match(shop,/categories\.map\(c=>\(\{value:c\.id/);
- assert.doesNotMatch(shop,/value="unisex"|filterPrice|filterSize|filterColor|Price Low|Price High|Newest/);
+ assert.doesNotMatch(shop,/shopAudience|shopPrint|Fit \/ Audience|Print Style|Print Type|value="unisex"|filterPrice|Price Low|Price High|Newest/);
  for(const id of ['shopFilterForm','shopResults','shopCollectionTitle','shopProducts','shopPager','shopSort',
                    'filterSummary','shopFilterBackdrop','openShopFilters','closeShopFilters'])
   assert.ok(shop.includes('id="'+id+'"'),id);
  assert.ok(shop.includes('product-grid shop-product-grid'));
- assert.ok(!shop.includes('Shop by category'),'no homepage category duplication');
+ assert.doesNotMatch(shop,/Shop by category/);
  const shopStyles=css.slice(css.indexOf('/* CHAPCHITRA Shop: static editorial banner'));
  assert.match(shopStyles,/min-height:270px/);
+ assert.match(shopStyles,/grid-template-columns:minmax\(190px,205px\) minmax\(0,1fr\)/);
  assert.match(shopStyles,/\.shop-layout\{\s*display:grid/);
  assert.match(shopStyles,/grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
  assert.match(shopStyles,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(shopStyles,/\.shop-size-option input:checked \+ span/);
+ assert.match(shopStyles,/\.shop-color-option input:checked \+ \.shop-color-dot/);
+ assert.match(shopStyles,/\[data-color="white"\]/);
  assert.match(shopStyles,/@media\(max-width:740px\)/);
  assert.match(shopStyles,/\.shop-filter-backdrop:not\(\[hidden\]\)/);
  assert.match(shopStyles,/\.shop-sidebar\.is-open/);
  assert.doesNotMatch(shopStyles,/@keyframes|animation:/);
 });
 
-test('Shop filtering uses exact catalog metadata, URL state and supported sorts',async()=>{
+test('Shop size/color filters map only verified metadata and persist multi-selection',async()=>{
  const src=await read('src/app.mjs');
  const h=src.slice(src.indexOf(" if(route==='shop'){"),src.indexOf(" if(route==='favorites'){"));
- for(const key of ['shopCategory','shopAudience','shopPrint','category','audience','print','sort','page','q'])
+ for(const key of ['shopCategory','shopSize','shopColor','category','size','color','sort','page','q'])
   assert.ok(h.includes(key),'state key '+key);
  assert.match(h,/item\.category\.includes\(filters\.category\)/);
- assert.match(h,/item\.audience\.includes\(filters\.audience\)/);
- assert.match(h,/item\.print===filters\.print/);
+ assert.match(h,/Array\.isArray\(item\.sizes\)/);
+ assert.match(h,/Array\.isArray\(item\.colors\)/);
+ assert.match(h,/hasMatchingData\(item,'sizes',filters\.sizes\)/);
+ assert.match(h,/hasMatchingData\(item,'colors',filters\.colors\)/);
+ assert.match(h,/const validated=\(name,allowed\)=>\[\.\.\.new Set\(qs\.getAll\(name\)/);
+ assert.match(h,/filters\.sizes\.forEach\(size=>p\.append\('size',size\)\)/);
+ assert.match(h,/filters\.colors\.forEach\(color=>p\.append\('color',color\)\)/);
+ assert.match(h,/hasSizeMetadata/);
+ assert.match(h,/hasColorMetadata/);
+ assert.match(h,/metadataPending/);
+ assert.match(h,/0 verified matches/);
+ assert.match(h,/No verified matches can be shown yet/);
  assert.match(h,/a\.name\.localeCompare\(b\.name\)/);
  assert.match(h,/b\.name\.localeCompare\(a\.name\)/);
- assert.match(h,/filtered\.length\+' sample '/);
  assert.match(h,/renderShop=function\(\)/);
  assert.match(h,/pageNum=1;renderShop\(\)/);
  assert.match(h,/history\.replaceState/);
@@ -728,10 +750,10 @@ test('Shop filtering uses exact catalog metadata, URL state and supported sorts'
  assert.match(h,/sidebar\.setAttribute\('role','dialog'\)/);
  assert.match(h,/sidebar\.setAttribute\('aria-modal','true'\)/);
  assert.match(h,/sidebar\.addEventListener\('keydown'/);
- assert.doesNotMatch(h,/item\.price\s*[<>]|item\.size|item\.color|createdAt|dateAdded/);
+ assert.doesNotMatch(h,/shopAudience|shopPrint|allowedAudiences|allowedPrints|filters\.audience|filters\.print|createdAt|dateAdded|item\.price\s*[<>]/);
  assert.equal(catalog.length,64);
  assert.ok(catalog.every(p=>p.price===null));
- assert.ok(catalog.every(p=>p.audience.every(v=>v==='men'||v==='women')));
+ assert.ok(catalog.every(p=>!('sizes' in p)&&!('colors' in p)),'no invented catalog metadata');
 });
 
 test('homepage and non-Shop sections retain their existing nav routes and assets',async()=>{
