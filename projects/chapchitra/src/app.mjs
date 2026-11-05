@@ -34,9 +34,6 @@ async function boot(){
   {id:'tie-dye',title:'Tie-Dye',desc:'Color and hand-made exploration'}
  ];
  const bellRendered=false; // No existing authentication integration. Remain logged out.
- const navLinks=[
-  ['Shop','/shop/'],["Artist's Edit",'/artists-edit/'],['Journal','/journal/'],['About Us','/about/']
- ];
  function announcement(){return '<aside class="announcement" aria-label="Store announcement"><span>Free delivery on orders over ৳2000 · Join the list for early access to new drops</span></aside>'}
  function header(){
   // Three equal-side CSS grid tracks place the middle link at the mathematical
@@ -48,7 +45,7 @@ async function boot(){
    '<div class="nav-left">'+
    '<nav class="nav-center" aria-label="Main navigation"><details class="shop-dropdown"><summary>Shop</summary><div class="nav-dropdown"><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'</div></details>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
-   '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+
+   '</div>'+ 
    '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"></a>'+
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+svg('search')+'</button>'+
@@ -57,8 +54,9 @@ async function boot(){
    '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+svg('bag')+'<span class="bag-count">'+demoBagCount()+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
    '</div></div>'+
+   '<nav id="mobileShopPopover" class="mobile-shop-popover" aria-label="Shop collections" hidden><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'</nav>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
-   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+navLinks.slice(1).map(([s,href])=>'<a href="'+href+'">'+s+'</a>').join('')+'<a class="mobile-quick-link" href="/favorites/">Favorites</a><a class="mobile-quick-link" href="/account/">Account</a></nav></header>';
+   '</header>';
  }
  const paperVisual=(i)=>'<div class="art-plate art-plate-'+(i%3)+'">'+(i%2===0?shirtSilhouette(i):printSilhouette(i))+'<span class="plate-disclaimer">Illustration placeholder</span></div>';
  const linkFiltered=(category,audience)=>'/shop/?category='+encodeURIComponent(category)+(audience?'&audience='+audience:'');
@@ -218,11 +216,24 @@ async function boot(){
  app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
  installStickyViewportGuard(document, window);
  // Global navigation and keyboard behavior.
- const search=$('#searchPanel'),searchButton=$('#searchButton'),mobileNav=$('#mobileNav'),menuButton=$('#menuButton');
+ const search=$('#searchPanel'),searchButton=$('#searchButton'),shopDetails=$('.shop-dropdown'),mobileShopPopover=$('#mobileShopPopover');
  const toggle=(el,trigger,show)=>{el.hidden=!show;trigger.setAttribute('aria-expanded',String(show));};
- searchButton.addEventListener('click',()=>{const show=search.hidden;toggle(search,searchButton,show);if(show){toggle(mobileNav,menuButton,false);$('#globalSearch').focus();}else searchButton.focus()});
- menuButton.addEventListener('click',()=>{const show=mobileNav.hidden;toggle(mobileNav,menuButton,show);if(show)toggle(search,searchButton,false)});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!search.hidden){toggle(search,searchButton,false);searchButton.focus()}else if(!mobileNav.hidden){toggle(mobileNav,menuButton,false);menuButton.focus()}}});
+ const compactNav=window.matchMedia('(max-width:780px)');
+ const syncShopPanel=()=>{mobileShopPopover.hidden=!(shopDetails.open&&compactNav.matches)};
+ shopDetails.addEventListener('toggle',syncShopPanel);
+ compactNav.addEventListener('change',syncShopPanel);
+ searchButton.addEventListener('click',()=>{const show=search.hidden;toggle(search,searchButton,show);if(show){
+   shopDetails.open=false;mobileShopPopover.hidden=true;$('#globalSearch').focus();
+  }else searchButton.focus()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){
+  if(!search.hidden){toggle(search,searchButton,false);searchButton.focus()}
+  if(shopDetails.open){shopDetails.open=false;mobileShopPopover.hidden=true;shopDetails.querySelector('summary').focus()}
+ }});
+ document.addEventListener('pointerdown',e=>{
+  if(shopDetails.open&&!shopDetails.contains(e.target)&&!mobileShopPopover.contains(e.target)){
+   shopDetails.open=false;mobileShopPopover.hidden=true;
+  }
+ });
  // Proper email validation, but never a simulated successful submission.
  const newsletter=$('#newsletterForm');
  newsletter.addEventListener('submit',e=>{e.preventDefault();const input=$('#newsletterEmail');if(!input.checkValidity()){input.reportValidity();return;}$('#newsletterMessage').textContent='Preview only: your email was not submitted or stored. Mailing-list integration is pending.';});
