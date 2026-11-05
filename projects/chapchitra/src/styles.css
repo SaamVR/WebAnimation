@@ -1421,3 +1421,60 @@ html,body{overflow-x:visible}
   }
 }
 #featured .section-title p:last-child{display:none}
+
+
+/* CHAPCHITRA — mathematical centered three-zone editorial navigation.
+   Exactly equal side tracks place the wordmark at the viewport center.
+   The existing logo link is intentionally preserved pending receipt of the
+   exact final approved custom SVG (not reconstructed from system fonts). */
+#app > .site-header .header-line.wrap{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;
+  column-gap:0;
+}
+#app > .site-header .nav-left{
+  grid-column:1;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+#app > .site-header .nav-left .nav-center{
+  display:flex;
+  min-width:0;
+  align-items:center;
+  justify-content:flex-start;
+  gap:clamp(10px,1.45vw,22px);
+  margin:0;
+}
+#app > .site-header .logo-word{
+  grid-column:2;
+  justify-self:center;
+  align-self:center;
+  margin:0;
+  text-align:center;
+  width:max-content;
+  max-width:100%;
+  white-space:nowrap;
+}
+#app > .site-header .nav-actions{
+  grid-column:3;
+  min-width:0;
+  justify-self:end;
+  justify-content:flex-end;
+  align-self:center;
+  margin:0;
+}
+#app > .site-header .nav-left .hamburger{display:none}
+#app > .site-header .mobile-nav .mobile-quick-link{display:none}
+@media(max-width:1000px){
+  #app > .site-header .nav-left .nav-center{display:none}
+  #app > .site-header .nav-left .hamburger{display:inline-grid}
+}
+@media(max-width:600px){
+  #app > .site-header .logo-word{font-size:clamp(14px,4.4vw,19px)}
+  #app > .site-header .logo-word small{font-size:9px}
+  #app > .site-header .nav-actions .nav-optional-action{display:none}
+  #app > .site-header .mobile-nav .mobile-quick-link{display:block}
+}
