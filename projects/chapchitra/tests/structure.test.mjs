@@ -716,7 +716,7 @@ test('Shop filtering uses exact catalog metadata, URL state and supported sorts'
  assert.match(h,/item\.category\.includes\(filters\.category\)/);
  assert.match(h,/item\.audience\.includes\(filters\.audience\)/);
  assert.match(h,/item\.print===filters\.print/);
- assert.match(h,/item\.name\.localeCompare\(b\.name\)/);
+ assert.match(h,/a\.name\.localeCompare\(b\.name\)/);
  assert.match(h,/b\.name\.localeCompare\(a\.name\)/);
  assert.match(h,/filtered\.length\+' sample '/);
  assert.match(h,/renderShop=function\(\)/);
