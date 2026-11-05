@@ -601,7 +601,7 @@ test('three-zone CHAPCHITRA header centers independently of nav and actions',asy
  const nav=src.slice(begin,end);
  assert.match(nav,/class="nav-left"/);
  assert.match(nav,/class="nav-center"/);
- assert.match(nav,/class="logo-word"/);
+ assert.match(nav,/class="logo-word logo-word--image"/);
  assert.match(nav,/class="nav-actions"/);
  assert.ok(nav.indexOf('class="nav-left"')<nav.indexOf('class="logo-word"'));
  assert.ok(nav.indexOf('class="logo-word"')<nav.indexOf('class="nav-actions"'));
