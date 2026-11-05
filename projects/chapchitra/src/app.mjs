@@ -39,20 +39,26 @@ async function boot(){
  ];
  function announcement(){return '<aside class="announcement" aria-label="Store announcement"><span>Free delivery on orders over ৳2000 · Join the list for early access to new drops</span></aside>'}
  function header(){
+  // Three equal-side CSS grid tracks place the middle link at the mathematical
+  // viewport center, regardless of left-side links or right-side icon widths.
+  // The final owner-approved path-based SVG has not yet been supplied to this
+  // repository; retain the exact existing text wordmark ONLY as a temporary
+  // fallback. Do not generate or approximate approved vector art using fonts.
   return '<header class="site-header" id="siteHeader"><div class="header-line wrap">'+
-   '<a href="/" class="logo-word" aria-label="CHAPCHITRA home"><span>CHAPCHITRA</span><small lang="bn">ছাপচিত্র</small></a>'+
+   '<div class="nav-left">'+
    '<nav class="nav-center" aria-label="Main navigation"><details class="shop-dropdown"><summary>Shop</summary><div class="nav-dropdown"><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'</div></details>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
+   '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+
+   '<a href="/" class="logo-word" aria-label="CHAPCHITRA home"><span>CHAPCHITRA</span><small lang="bn">ছাপচিত্র</small></a>'+
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+svg('search')+'</button>'+
-   '<a class="nav-icon" href="/favorites/" aria-label="Favorites">'+svg('heart')+'</a>'+
-   '<a class="nav-icon" href="/account/" aria-label="Account">'+svg('account')+'</a>'+
+   '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites">'+svg('heart')+'</a>'+
+   '<a class="nav-icon nav-optional-action" href="/account/" aria-label="Account">'+svg('account')+'</a>'+
    '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+svg('bag')+'<span class="bag-count">'+demoBagCount()+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
-   '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button>'+
    '</div></div>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
-   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+navLinks.slice(1).map(([s,href])=>'<a href="'+href+'">'+s+'</a>').join('')+'</nav></header>';
+   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop All</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+navLinks.slice(1).map(([s,href])=>'<a href="'+href+'">'+s+'</a>').join('')+'<a class="mobile-quick-link" href="/favorites/">Favorites</a><a class="mobile-quick-link" href="/account/">Account</a></nav></header>';
  }
  const paperVisual=(i)=>'<div class="art-plate art-plate-'+(i%3)+'">'+(i%2===0?shirtSilhouette(i):printSilhouette(i))+'<span class="plate-disclaimer">Illustration placeholder</span></div>';
  const linkFiltered=(category,audience)=>'/shop/?category='+encodeURIComponent(category)+(audience?'&audience='+audience:'');
