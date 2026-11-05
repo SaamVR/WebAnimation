@@ -594,39 +594,40 @@ test('only header alignment is updated: no arbitrary margin, spacer or navigatio
 });
 
 
-test('CHAPCHITRA three-zone text navigation replaces hamburger at every viewport',async()=>{
- const src=await read('src/app.mjs');
- const css=await read('src/styles.css');
- const begin=src.indexOf('function header(){'),end=src.indexOf('const paperVisual=',begin);
- const nav=src.slice(begin,end);
- assert.match(nav,/class="nav-left"/);
- assert.match(nav,/class="nav-center"/);
- assert.match(nav,/class="logo-word logo-word--image"/);
- assert.match(nav,/class="nav-actions"/);
- assert.ok(nav.indexOf('class="nav-left"')<nav.indexOf('class="logo-word logo-word--image"'));
- assert.ok(nav.indexOf('class="logo-word logo-word--image"')<nav.indexOf('class="nav-actions"'));
- assert.doesNotMatch(nav,/hamburger|id="menuButton"|id="mobileNav"/);
- for(const label of ['Shop','Artist’s Edit','Journal','About Us']) assert.ok(nav.includes(label),label);
- for(const path of ['/artists-edit/','/journal/','/about/','/favorites/','/account/','/bag/']) assert.ok(nav.includes('href="'+path+'"'),path);
- assert.match(nav,/class="shop-dropdown"/);
- assert.match(nav,/class="nav-dropdown"/);
- assert.match(nav,/id="mobileShopPopover"/);
- assert.match(nav,/id="searchButton"/);
- assert.match(nav,/id="searchPanel"/);
- assert.match(nav,/bellRendered\?/);
+test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only',async()=>{
+ const src=await read('src/app.mjs'),css=await read('src/styles.css');
+ const header=src.slice(src.indexOf('function header(){'),src.indexOf('const paperVisual='));
+ const navLabels=['Shop','Artist’s Edit','Journal','About Us'];
+ const links=['/artists-edit/','/journal/','/about/','/favorites/','/account/','/bag/'];
+ for(const label of navLabels)assert.ok(header.includes(label),label);
+ for(const link of links)assert.ok(header.includes('href="'+link+'"'),link);
+ for(const className of ['nav-left','nav-center','logo-word logo-word--image','nav-actions'])
+  assert.ok(header.includes('class="'+className+'"'));
+ assert.match(header,/class="shop-dropdown"/);
+ assert.match(header,/class="nav-dropdown"/);
+ assert.match(header,/id="menuButton"[^>]*aria-expanded="false"[^>]*aria-controls="mobileNav"/);
+ assert.match(header,/id="mobileNav"[^>]*hidden/);
+ assert.match(header,/id="searchPanel"[^>]*hidden/);
+ assert.match(header,/id="searchButton"/);
+ assert.match(header,/src="\/assets\/chapchitra-wordmark\.webp"/);
+ assert.ok(header.indexOf('class="nav-left"')<header.indexOf('class="logo-word logo-word--image"'));
+ assert.ok(header.indexOf('class="logo-word logo-word--image"')<header.indexOf('class="nav-actions"'));
  const rules=css.slice(css.indexOf('/* CHAPCHITRA — mathematical centered three-zone'));
  assert.match(rules,/grid-template-columns:minmax\(0,1fr\) auto minmax\(0,1fr\)/);
  assert.match(rules,/justify-self:center/);
- assert.match(rules,/justify-self:end/);
- assert.match(rules,/@media \(max-width:780px\)/);
- assert.match(rules,/grid-template-rows:65px 42px/);
- assert.match(rules,/overflow-x:auto/);
- assert.match(rules,/overflow-y:hidden/);
- assert.match(rules,/\.nav-optional-action\{display:inline-grid\}/);
- assert.match(rules,/\.mobile-shop-popover:not\(\[hidden\]\)/);
- assert.match(src,/shopDetails\.addEventListener\('toggle',syncShopPanel\)/);
- assert.match(src,/compactNav\.addEventListener\('change',syncShopPanel\)/);
- assert.match(src,/mobileShopPopover\.hidden=true/);
+ const navPriority=css.slice(css.indexOf('/* CHAPCHITRA — content-fitted desktop\/tablet priority'));
+ assert.match(navPriority,/\.nav-left \.nav-center\{display:flex\}/);
+ assert.match(navPriority,/\.nav-left \.hamburger\{display:none\}/);
+ assert.match(navPriority,/@media \(max-width:750px\)/);
+ assert.match(navPriority,/\.nav-left \.nav-center\{display:none\}/);
+ assert.match(navPriority,/\.nav-left \.hamburger\{\s*display:inline-grid/);
+ assert.match(navPriority,/\.nav-actions \.nav-optional-action\{display:none\}/);
+ assert.match(navPriority,/\.mobile-nav:not\(\[hidden\]\)/);
+ assert.match(navPriority,/min-height:44px/);
+ assert.match(src,/matchMedia\('\(max-width:750px\)'\)/);
+ assert.match(src,/menuButton\.addEventListener\('click'/);
+ assert.match(src,/toggle\(mobileNav,menuButton,false\)/);
+ assert.doesNotMatch(src,/mobileShopPopover|mobileShopPopover\.hidden/);
 });
 test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',async()=>{
  const app=await read('src/app.mjs'),css=await read('src/styles.css'),html=await read('src/index.html');
