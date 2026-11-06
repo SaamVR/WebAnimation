@@ -82,18 +82,69 @@ test('surgical refinements keep approved header, category/collection and C01-C04
 });
 
 
-test('authoritative Forest + Olive reference tokens are exact, not genericized',async()=>{
+test('authoritative twelve brand colors have one canonical root and semantic aliases',async()=>{
  const css=await read('src/styles.css');
+ const buttons=await read('src/button-system.css');
  const values={
-  '--deep':'#1C241D','--press':'#293D2D','--olive':'#1F2216',
-  '--walnut':'#6E523F','--ink':'#232323','--bg':'#F6F7F5',
-  '--grey':'#D9DCD7','--mist':'#E9EDEB','--beige':'#D8CEC2',
-  '--cream':'#E4E3DE','--mush':'#A6A29B','--acc':'#8A503B',
-  '--mut':'#5F625E'
+  'gallery-white':'#F6F7F5','silver-mist':'#E9EDEB','warm-beige':'#D8CEC2',
+  'cream':'#E4E3DE','soft-gray':'#D9DCD7','mushroom-gray':'#A6A29B',
+  'deep-forest':'#172419','press-green':'#293D2D','dark-olive':'#1F2216',
+  'walnut':'#6E523F','terracotta':'#8A503B','graphite':'#232323'
  };
- for(const [token,hex] of Object.entries(values)){
-  assert.ok(css.includes(token+':'+hex),token+' must equal '+hex);
+ const roots=[...css.matchAll(/:root\s*\{([\s\S]*?)\}/g)];
+ assert.equal(roots.length,1,'only one authoritative :root block is permitted');
+ const root=roots[0][1];
+ const colors=[...root.matchAll(/--color-([a-z-]+):(#[A-F0-9]{6});/g)];
+ assert.equal(colors.length,12,'exactly twelve canonical palette literals');
+ assert.deepEqual(Object.fromEntries(colors.map(match=>[match[1],match[2]])),values);
+ for(const [alias,token] of Object.entries({
+  '--deep':'--color-deep-forest','--press':'--interactive-primary',
+  '--olive':'--color-dark-olive','--walnut':'--color-walnut',
+  '--ink':'--text-primary','--bg':'--surface-page',
+  '--grey':'--border-subtle','--mist':'--surface-secondary',
+  '--beige':'--surface-editorial','--cream':'--surface-paper',
+  '--mush':'--color-mushroom-gray','--acc':'--interactive-warm',
+  '--mut':'--text-secondary','--midnight-pine':'--deep',
+  '--graphite':'--ink','--paper':'--bg','--fog':'--mist',
+  '--line':'--grey','--clay':'--acc','--press-olive':'--press',
+  '--muted':'--mut'
+ })){
+  assert.ok(root.includes(alias+':var('+token+');'),'legacy alias '+alias);
  }
+ assert.match(root,/--text-secondary:color-mix\(in srgb,var\(--color-graphite\) 78%,var\(--color-gallery-white\)\)/);
+ assert.match(buttons,/--cc-shadow-graphite:var\(--ink\)/);
+ assert.match(buttons,/--cc-shadow-on-dark:var\(--grey\)/);
+ assert.match(buttons,/--cc-shadow-on-dark-beige:var\(--mush\)/);
+ for(const retired of ['#1C241D','#243b32','#8FA3AF','#5F625E']){
+  assert.ok(!css.toUpperCase().includes(retired.toUpperCase()),'retired color in CSS: '+retired);
+  assert.ok(!buttons.toUpperCase().includes(retired.toUpperCase()),'retired color in buttons: '+retired);
+ }
+ // Product swatches and image-only placeholder photo tones are NOT theme tokens.
+ assert.match(css,/\.shop-color-option\[data-color="red"\]/);
+ assert.match(css,/\.product-card\.polaroid-card\[data-photo-tone="0"\]/);
+});
+
+test('text and button contrast remain readable; minor Mushroom Gray is not small copy',async()=>{
+ const css=await read('src/styles.css');
+ const palette={bg:'#F6F7F5',deep:'#172419',press:'#293D2D',ink:'#232323',acc:'#8A503B',walnut:'#6E523F'};
+ const luminance=color=>{
+  const rgb=color.slice(1).match(/../g).map(hex=>parseInt(hex,16)/255);
+  const linear=rgb.map(channel=>channel<=.04045?channel/12.92:((channel+.055)/1.055)**2.4);
+  return linear[0]*.2126+linear[1]*.7152+linear[2]*.0722;
+ };
+ const contrast=(a,b)=>{
+  const light=Math.max(luminance(a),luminance(b)),dark=Math.min(luminance(a),luminance(b));
+  return (light+.05)/(dark+.05);
+ };
+ for(const [a,b] of [['ink','bg'],['bg','deep'],['bg','press']]){
+  assert.ok(contrast(palette[a],palette[b])>=7,a+' on '+b+' must meet enhanced text contrast');
+ }
+ for(const a of ['acc','walnut'])assert.ok(contrast(palette[a],palette.bg)>=4.5,a+' needs normal text AA contrast');
+ assert.match(css,/\.footer-column h2,\.footer-newsletter h2\{color:var\(--cream\)\}/);
+ assert.match(css,/\.shop-color-dot\{[\s\S]*?border:1px solid var\(--mush\)/);
+ assert.match(css,/\.benefit-section\{[\s\S]*?background:var\(--bg\)/);
+ assert.match(css,/#benefits\.benefit-section\{background:var\(--bg\)\}/);
+ assert.doesNotMatch(css,/\.benefit-section\{[^}]*background:var\(--grey\)/);
 });
 test('exact homepage section and individual card background mapping is maintained',async()=>{
  const css=await read('src/styles.css');
