@@ -3,9 +3,9 @@
    strokes, exterior outlines, highlights, textures, borders or blurred shadows.
    Face and shadow are IDENTICAL capsules with a 7px right/down offset. */
 .cc-sketch{
-  --cc-paint:var(--press,#293D2D);
-  --cc-ink:var(--ink,#232323);
-  --cc-label:#fff;
+  --cc-paint:var(--press);
+  --cc-ink:var(--ink);
+  --cc-label:var(--bg);
   --cc-offset:7px;
   --cc-half-offset:3.5px;
   --cc-shadow-color:var(--cc-shadow-graphite);
@@ -32,9 +32,9 @@
   -webkit-tap-highlight-color:transparent;
   transition:transform 130ms ease;
 }
-.cc-sketch--forest{--cc-paint:var(--press,#293D2D);--cc-label:#fff}
-.cc-sketch--terracotta{--cc-paint:var(--acc,#8A503B);--cc-label:#fff}
-.cc-sketch--beige{--cc-paint:var(--beige,#D8CEC2);--cc-label:var(--ink,#232323)}
+.cc-sketch--forest{--cc-paint:var(--press);--cc-label:var(--bg)}
+.cc-sketch--terracotta{--cc-paint:var(--acc);--cc-label:var(--bg)}
+.cc-sketch--beige{--cc-paint:var(--beige);--cc-label:var(--ink)}
 .cc-sketch--compact{
   min-width:164px;width:max-content;max-width:100%;
   height:64px;min-height:64px;padding-inline:20px;
@@ -114,7 +114,7 @@
   pointer-events:none;
 }
 .cc-sketch .cc-sketch-label-ink{
-  color:#fff;
+  color:var(--bg);
   clip-path:inset(0 100% 0 0);
   transition:clip-path 300ms cubic-bezier(.45,0,.55,1);
 }
@@ -137,7 +137,7 @@
   transform:translate(2px,2px);
 }
 .cc-sketch:focus-visible,.cc-sketch[data-preview-state="focus"]{
-  outline:3px solid var(--acc,#8A503B);
+  outline:3px solid var(--acc);
   outline-offset:5px;
 }
 .cc-sketch[disabled],.cc-sketch[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
@@ -213,11 +213,11 @@
    The actual offset, pill silhouette, font and 300ms fill above are unchanged.
    All light paper/cream/gray/editorial surfaces inherit Graphite #232323.
    Dark surfaces use a lighter solid shadow; beige faces specifically need a
-   cooler mid-gray, visibly separate from both their beige fill and dark ink. */
+   approved Mushroom Gray shadow, distinct from their Beige fill and dark ink. */
 :root{
-  --cc-shadow-graphite:#232323;
-  --cc-shadow-on-dark:#D9DCD7;
-  --cc-shadow-on-dark-beige:#8FA3AF;
+  --cc-shadow-graphite:var(--ink);
+  --cc-shadow-on-dark:var(--grey);
+  --cc-shadow-on-dark-beige:var(--mush);
 }
 
 /* Default for Press Green, Beige AND Terracotta on light backgrounds. */
