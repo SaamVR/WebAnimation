@@ -1,6 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600&display=swap');
-/* CHAPCHITRA V3 editorial structural system — PROVISIONAL branding. */
-:root{--graphite:#232323;--midnight-pine:#243b32;--press-olive:#60796a;--clay:#b6795e;--paper:#f8f7f3;--cream:#efeee8;--fog:#e5e8df;--line:#d0d3ca;--muted:#626a64;--serif:Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+/* CHAPCHITRA — authoritative 12-color brand system (owner approved 2026-11-06).
+   Canonical palette literals live ONLY here. Semantic roles and legacy aliases
+   all reference them, so older routes share the same values.
+   Product swatches and SVG artwork are content, not brand theme tokens. */
+:root{
+  /* Main surfaces */
+  --color-gallery-white:#F6F7F5;
+  --color-silver-mist:#E9EDEB;
+  /* Warm print-studio accents */
+  --color-warm-beige:#D8CEC2;
+  --color-cream:#E4E3DE;
+  /* Neutral structure and decorative accents */
+  --color-soft-gray:#D9DCD7;
+  --color-mushroom-gray:#A6A29B;
+  /* Forest greens */
+  --color-deep-forest:#172419;
+  --color-press-green:#293D2D;
+  --color-dark-olive:#1F2216;
+  /* Warm earth */
+  --color-walnut:#6E523F;
+  --color-terracotta:#8A503B;
+  /* Ink */
+  --color-graphite:#232323;
+
+  /* Semantic roles: do not add independent hex values here. */
+  --surface-page:var(--color-gallery-white);
+  --surface-secondary:var(--color-silver-mist);
+  --surface-editorial:var(--color-warm-beige);
+  --surface-paper:var(--color-cream);
+  --surface-brand:var(--color-deep-forest);
+  --text-primary:var(--color-graphite);
+  /* Derived muted TEXT (contrast-safe), not a thirteenth brand swatch. */
+  --text-secondary:color-mix(in srgb,var(--color-graphite) 78%,var(--color-gallery-white));
+  --border-subtle:var(--color-soft-gray);
+  --interactive-primary:var(--color-press-green);
+  --interactive-hover:var(--color-dark-olive);
+  --interactive-warm:var(--color-terracotta);
+
+  /* Existing component API / legacy naming compatibility. */
+  --deep:var(--color-deep-forest);
+  --press:var(--interactive-primary);
+  --olive:var(--color-dark-olive);
+  --walnut:var(--color-walnut);
+  --ink:var(--text-primary);
+  --bg:var(--surface-page);
+  --grey:var(--border-subtle);
+  --mist:var(--surface-secondary);
+  --beige:var(--surface-editorial);
+  --cream:var(--surface-paper);
+  --mush:var(--color-mushroom-gray);
+  --acc:var(--interactive-warm);
+  --mut:var(--text-secondary);
+  --graphite:var(--ink);
+  --midnight-pine:var(--deep);
+  --press-olive:var(--press);
+  --clay:var(--acc);
+  --paper:var(--bg);
+  --fog:var(--mist);
+  --line:var(--grey);
+  --muted:var(--mut);
+  --serif:"Noto Serif Bengali",Georgia,"Times New Roman",serif;
+  --sans:"Hind Siliguri",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
 *,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--graphite);font:14px/1.65 var(--sans);-webkit-font-smoothing:antialiased}img,svg{max-width:100%}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}:focus-visible{outline:3px solid var(--clay);outline-offset:3px}[hidden]{display:none!important}.wrap{width:min(1200px,calc(100% - 76px));margin-inline:auto}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:absolute;top:-80px;left:12px;padding:10px;background:#fff;z-index:999}.skip-link:focus{top:8px}
 .eyebrow{font-weight:750;font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--press-olive)}h1,h2,h3,p{overflow-wrap:break-word}.button{min-height:47px;display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:.02em}.button.dark{background:var(--midnight-pine);color:white}.button.light{background:var(--paper);color:var(--midnight-pine)}.text-link{display:inline-flex;font-size:12px;font-weight:700;border-bottom:1px solid currentColor;padding-bottom:5px}.text-link:hover{color:var(--clay)}
 .announcement{min-height:34px;padding:7px 18px;display:grid;place-items:center;text-align:center;background:var(--midnight-pine);color:var(--paper);font-size:11px;letter-spacing:.045em}
@@ -203,34 +264,8 @@
 @media (min-width:601px) and (max-width:1080px){.editorial-banners{width:calc(100% - 30px)}}
 
 
-/* CHAPCHITRA v2 uploaded HTML — authoritative forest + olive palette.
-   This layer adjusts surfaces and layout ONLY, retaining all original app behavior.
-   CSS aliases keep supporting routes on the same coherent palette. */
-:root{
- --deep:#1C241D;
- --press:#293D2D;
- --olive:#1F2216;
- --walnut:#6E523F;
- --ink:#232323;
- --bg:#F6F7F5;
- --grey:#D9DCD7;
- --mist:#E9EDEB;
- --beige:#D8CEC2;
- --cream:#E4E3DE;
- --mush:#A6A29B;
- --acc:#8A503B;
- --mut:#5F625E;
- --graphite:var(--ink);
- --midnight-pine:var(--deep);
- --press-olive:var(--press);
- --clay:var(--acc);
- --paper:var(--bg);
- --fog:var(--mist);
- --line:var(--grey);
- --muted:var(--mut);
- --serif:"Noto Serif Bengali",Georgia,"Times New Roman",serif;
- --sans:"Hind Siliguri",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
+/* 12-color token hierarchy defined once at the top of this stylesheet.
+   Below are the owner-approved section-specific composition rules. */
 html{scroll-padding-top:90px}
 body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans)}
 h1,h2,h3,.logo-word{font-family:var(--serif)}
