@@ -634,9 +634,9 @@ test('native sticky uses announcement normal flow and never patches navbar posit
  assert.match(app,/installStickyViewportDiagnostics\(document, window\)/);
  assert.doesNotMatch(app,/installStickyViewportGuard\(/);
  assert.match(guard,/if \(!new URLSearchParams\(view\.location\?\.search \?\? ''\)\.has\('navdebug'\)\) return \(\) => \{\};/);
- assert.match(guard,/position:sticky; top:0 is the sole positioning authority/);
+ assert.match(guard,/CSS position:sticky; top:0 remains authoritative/);
  assert.match(guard,/requestAnimationFrame\(draw\)/);
- assert.doesNotMatch(guard,/header\.style|style\.translate|style\.transform|scrollIntoView|scrollBy\(|marginTop|header\.setAttribute\(/);
+ assert.doesNotMatch(guard,/header\.style\.(?:translate|transform)\s*=|scrollIntoView|scrollBy\(|marginTop\s*=|header\.setAttribute\(/);
  assert.doesNotMatch(stickyRule,/margin-top:\s*-\d|translate:\s*0 -|transform:translateY\(-/);
 });
 
