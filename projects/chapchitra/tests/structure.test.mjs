@@ -622,52 +622,50 @@ test('Featured has straight full-bleed sides and zero vertical edge strips',asyn
 });
 
 
-test('Safari viewport guard measures the real gap and ignores the announcement while visible',async()=>{
- const {navGeometry}=await import('../src/nav-sticky-guard.mjs');
- const header={getBoundingClientRect:()=>({top:24,height:82})};
- let bottom=35;
- const announcement={getBoundingClientRect:()=>({bottom})};
- const view={scrollY:0,visualViewport:{offsetTop:0}};
- const before=navGeometry(header,announcement,view);
- assert.equal(before.headerTop,24);
- assert.equal(before.scrollY,0);
- assert.equal(before.visualOffsetTop,0);
- assert.equal(before.announcementGone,false);
- assert.equal(before.gap,0);
- bottom=-12;
- view.scrollY=1400;
- const broken=navGeometry(header,announcement,view);
- assert.equal(broken.announcementGone,true);
- assert.equal(broken.headerTop,24);
- assert.equal(broken.gap,24);
- const correctedHeader={getBoundingClientRect:()=>({top:0,height:82})};
- const fixed=navGeometry(correctedHeader,announcement,view,-24);
- assert.equal(fixed.rawHeaderTop,24,'recover original unshifted geometry');
- assert.equal(fixed.gap,24,'stable correction avoids oscillation');
- assert.equal(fixed.adjustment,-24);
- view.visualViewport.offsetTop=24;
- const adjusted=navGeometry(header,announcement,view);
- assert.equal(adjusted.gap,0,'do not compensate when already aligned to the visual viewport');
-});
-test('only header alignment is updated: no arbitrary margin, spacer or navigation redesign',async()=>{
- const css=await read('src/styles.css'),app=await read('src/app.mjs'),guard=await read('src/nav-sticky-guard.mjs');
- const rule=css.slice(css.indexOf('/* Sticky header flush'),css.indexOf('/* Existing editorial component'));
- assert.match(rule,/#app\{overflow:visible\}/);
- assert.match(rule,/#app > \.site-header\{[\s\S]*?position:sticky;[\s\S]*?top:0/);
- assert.match(rule,/html,body\{overflow-x:visible\}/);
- assert.doesNotMatch(rule,/html,body\{overflow-x:clip\}/);
- assert.match(app,/announcement\(\)\+header\(\)/);
- assert.match(app,/installStickyViewportGuard\(document, window\)/);
- assert.match(guard,/visualViewport\?\.offsetTop/);
- assert.match(guard,/announcementBottom <= visualTop \+ 1/);
- assert.match(guard,/state\.announcementGone && state\.gap > 1/);
- assert.match(guard,/header\.style\.translate/);
- assert.match(guard,/requestAnimationFrame/);
- assert.match(guard,/visualViewport/);
- assert.match(guard,/navdebug/);
- assert.doesNotMatch(guard,/marginTop|margin-top|position:\\s*fixed|scrollIntoView|scrollBy\(/);
+test('native sticky uses announcement normal flow and never patches navbar position',async()=>{
+ const css=await read('src/styles.css');
+ const app=await read('src/app.mjs');
+ const guard=await read('src/nav-sticky-guard.mjs');
+ const stickyRule=css.slice(css.indexOf('/* Sticky header flush'),css.indexOf('/* Existing editorial component'));
+ assert.match(stickyRule,/#app\{overflow:visible\}/);
+ assert.match(stickyRule,/#app > \.site-header\{[\s\S]*?position:-webkit-sticky;[\s\S]*?position:sticky;[\s\S]*?top:0;[\s\S]*?inset-block-start:0;[\s\S]*?margin-block-start:0/);
+ assert.match(stickyRule,/html,body\{overflow-x:visible\}/);
+ assert.match(app,/app\.innerHTML=announcement\(\)\+header\(\)/);
+ assert.match(app,/installStickyViewportDiagnostics\(document, window\)/);
+ assert.doesNotMatch(app,/installStickyViewportGuard\(/);
+ assert.match(guard,/if \(!new URLSearchParams\(view\.location\?\.search \?\? ''\)\.has\('navdebug'\)\) return \(\) => \{\};/);
+ assert.match(guard,/position:sticky; top:0 is the sole positioning authority/);
+ assert.match(guard,/requestAnimationFrame\(draw\)/);
+ assert.doesNotMatch(guard,/header\.style|style\.translate|style\.transform|scrollIntoView|scrollBy\(|marginTop|header\.setAttribute\(/);
+ assert.doesNotMatch(stickyRule,/margin-top:\s*-\d|translate:\s*0 -|transform:translateY\(-/);
 });
 
+test('Safari viewport offsets remain diagnostic-only, not navbar corrections',async()=>{
+ const {navGeometry,installStickyViewportDiagnostics}=await import('../src/nav-sticky-guard.mjs');
+ let top=34,bottom=34,scrollY=0,offset=0;
+ const header={getBoundingClientRect:()=>({top,height:65}),style:{}};
+ const announcement={getBoundingClientRect:()=>({bottom})};
+ const view={get scrollY(){return scrollY},visualViewport:{get offsetTop(){return offset}}};
+ let state=navGeometry(header,announcement,view);
+ assert.equal(state.announcementGone,false);
+ assert.equal(state.headerTop,34);
+ assert.equal(state.layoutGap,0);
+ top=0;bottom=-280;scrollY=300;
+ state=navGeometry(header,announcement,view);
+ assert.equal(state.announcementGone,true);
+ assert.equal(state.layoutGap,0);
+ offset=24;state=navGeometry(header,announcement,view);
+ assert.equal(state.visualOffsetTop,24);
+ assert.equal(state.visualRelativeTop,-24);
+ assert.equal(state.layoutGap,0,'Safari visual viewport movement must not create CSS sticky gap');
+ assert.deepEqual(header.style,{},'the header is never translated');
+ top=12;state=navGeometry(header,announcement,view);
+ assert.equal(state.layoutGap,12,'positive native layout gap must be exposed for diagnosis, not patched');
+ assert.deepEqual(header.style,{});
+ const result=installStickyViewportDiagnostics({}, {location:{search:''}});
+ assert.equal(typeof result,'function','normal storefront diagnostics short-circuit');
+ result();
+});
 
 test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only',async()=>{
  const src=await read('src/app.mjs'),css=await read('src/styles.css');
