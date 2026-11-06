@@ -439,7 +439,7 @@ test('graphite shadow defaults and reusable dark-context contrasts preserve pill
  assert.match(css,/transform:translate\(2px,2px\)/);
  assert.match(gallery,/cc-shadow-context--/);
  assert.match(gallery,/surface-preview/);
- assert.match(gallery,/'forest','Forest Green'/);
+ assert.match(gallery,/'forest','Deep Forest'/);
  assert.match(gallery,/'olive','Dark Olive'/);
 });
 
