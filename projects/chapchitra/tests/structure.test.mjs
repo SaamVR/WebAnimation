@@ -67,7 +67,7 @@ test('Featured Prints uses stable five-card presentation with independent access
  assert.match(app,/Price pending/);
  assert.match(css,/\.feature-frame\[data-slot="near-left"\]/);
  assert.match(css,/\.feature-frame\[data-slot="far-right"\]/);
- assert.match(css,/\.featured-zone\{background:#0c0b0b/);
+ assert.match(css,/\.featured-zone\{background:var\(--deep\)/);
  assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
 });
 test('surgical refinements keep approved header, category/collection and C01-C04 alone',async()=>{
@@ -153,12 +153,12 @@ test('exact homepage section and individual card background mapping is maintaine
   '.announcement','background:var(--deep)',
   '.site-header','background:var(--bg)',
   '.hero-carousel','background:var(--bg)',
-  '.benefit-section','background:var(--mist)',
+  '.benefit-section','background:var(--bg)',
   '.category-card:nth-child(1) .category-image{background:var(--cream)}',
   '.category-card:nth-child(2) .category-image{background:var(--press)',
   '.category-card:nth-child(3) .category-image{background:var(--acc)',
   '#collection:before','background:var(--mist);z-index:-1',
-  '#collection .product-visual','background:#fff',
+  '#collection .product-visual','background:var(--bg)',
   '.tie-banner{background:var(--beige)}',
   '.edit-banner{background:var(--cream)}',
   'banner-art-tie','banner-art-edit',
@@ -316,7 +316,7 @@ test('integrated pill labels remain centered, single-line and inherit variant co
  assert.match(buttons,/grid-template-columns:minmax\(0,1fr\)/);
  assert.match(buttons,/white-space:nowrap/);
  assert.match(buttons,/overflow-wrap:normal/);
- assert.match(buttons,/\.cc-sketch \.cc-sketch-label-ink\{\s*color:#fff/);
+ assert.match(buttons,/\.cc-sketch \.cc-sketch-label-ink\{\s*color:var\(--bg\)/);
  assert.match(buttons,/\.cc-sketch--beige\{--cc-paint:var\(--beige/);
  assert.match(buttons,/\.cc-sketch--terracotta\{--cc-paint:var\(--acc/);
  assert.match(buttons,/clip-path:inset\(0 100% 0 0\)/);
@@ -347,7 +347,7 @@ test('polaroid cards are one reusable paper-photo retail component in every list
  assert.match(app,/block\.map\(productCard\)/);
  assert.match(app,/sketchButton\(\{label:'ADD TO BAG',variant:'long'/);
  assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
- assert.match(css,/background:#FBFAF6/);
+ assert.match(css,/\.product-card\.polaroid-card\{\s*background:var\(--bg\)/);
  assert.match(css,/\.polaroid-card \.polaroid-photo/);
  assert.match(css,/\.polaroid-card \.polaroid-caption-head/);
  assert.match(css,/\.polaroid-card \.favorite-toggle/);
@@ -414,10 +414,10 @@ test('owner-approved Polaroid compactness and external stationary CTA have indep
 test('graphite shadow defaults and reusable dark-context contrasts preserve pill geometry',async()=>{
  const css=await read('src/button-system.css');
  const gallery=await read('src/button-preview.mjs');
- // One color source of truth: no prior Walnut, Olive or Mushroom shadow choices.
- assert.match(css,/--cc-shadow-graphite:#232323/);
- assert.match(css,/--cc-shadow-on-dark:#D9DCD7/);
- assert.match(css,/--cc-shadow-on-dark-beige:#8FA3AF/);
+ // One color source of truth: Graphite and approved surface-dependent gray shadows.
+ assert.match(css,/--cc-shadow-graphite:var\(--ink\)/);
+ assert.match(css,/--cc-shadow-on-dark:var\(--grey\)/);
+ assert.match(css,/--cc-shadow-on-dark-beige:var\(--mush\)/);
  assert.match(css,/--cc-shadow-color:var\(--cc-shadow-graphite\)/);
  assert.match(css,/background:var\(--cc-shadow-color\)/);
  assert.doesNotMatch(css,/--cc-shadow-light-forest|--cc-shadow-light-beige|--cc-shadow-light-terracotta|--cc-shadow-dark-beige/);
@@ -474,15 +474,15 @@ test('single SVG frame border and solid rounded shadow preserve CTA isolation',a
  assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
  assert.match(css,/border:1px solid transparent/);
  assert.match(css,/border-radius:10px/);
- assert.match(css,/box-shadow:4px 5px 0 #D9DCD7/);
+ assert.match(css,/box-shadow:4px 5px 0 var\(--grey\)/);
  assert.match(css,/\.product-card-shell > \.polaroid-card > \.polaroid-ink-outline\{/);
  assert.match(css,/max-width:none; \/\* override the global svg max-width:100% clamp \*\//);
- assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,#858981\);\s*stroke:none/);
+ assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,var\(--mush\)\);\s*stroke:none/);
  assert.match(css,/\.product-card-shell > \.polaroid-card-action > \.cc-sketch\.product-add-button/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
  assert.match(button,/--cc-offset:7px/);
- assert.match(button,/--cc-shadow-on-dark-beige:#8FA3AF/);
+ assert.match(button,/--cc-shadow-on-dark-beige:var\(--mush\)/);
  assert.match(app,/class="polaroid-card-action"/);
  assert.match(app,/label:'ADD TO BAG',variant:'long',tone:'forest'/);
 });
@@ -494,18 +494,18 @@ test('Polaroid outline stays one variable-width SVG shape, with a light-gray fra
  assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
  assert.match(css,/border:1px solid transparent/);
  assert.match(css,/border-radius:10px/);
- assert.equal((css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')).match(/box-shadow:4px 5px 0 #D9DCD7/g)||[]).length,5);
+ assert.equal((css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')).match(/box-shadow:4px 5px 0 var\(--grey\)/g)||[]).length,5);
  assert.doesNotMatch(css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')),/box-shadow:5px 6px 0 #242424/);
- assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,#858981\);\s*stroke:none/);
+ assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,var\(--mush\)\);\s*stroke:none/);
  assert.match(source,/fill-rule','evenodd'/);
  assert.match(source,/polaroidInkPath\(width,height\)/);
  assert.match(app,/class="polaroid-card-action"/);
 });
 test('Hero 1 Terracotta and both banner CTAs reuse approved pill without changing destinations',async()=>{
  const app=await read('src/app.mjs'),css=await read('src/styles.css'),buttons=await read('src/button-system.css');
- assert.match(buttons,/\.hero-cover \.cc-sketch\.cc-sketch--beige\{\s*--cc-shadow-color:var\(--acc,#8A503B\)/);
- assert.match(buttons,/--cc-shadow-graphite:#232323/);
- assert.match(buttons,/--cc-shadow-on-dark:#D9DCD7/);
+ assert.match(buttons,/\.hero-cover \.cc-sketch\.cc-sketch--beige\{\s*--cc-shadow-color:var\(--acc\)/);
+ assert.match(buttons,/--cc-shadow-graphite:var\(--ink\)/);
+ assert.match(buttons,/--cc-shadow-on-dark:var\(--grey\)/);
  assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest',href:'\/shop\/\?category=tie-dye'/);
  assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest',href:'\/artists-edit\/'/);
  assert.doesNotMatch(app,/class="text-link">Explore hand-dye studies ↗|class="text-link">Visit Artist’s Edit ↗/);
@@ -572,13 +572,13 @@ test('sticky header, retone, and viewport carousel overrides stay localized',asy
  const patch=css.slice(css.indexOf('/* CHAPCHITRA — approved layout corrections'));
  assert.ok(patch.length>3600);
  assert.match(patch,/#app > \.site-header\{\s*position:-webkit-sticky;\s*position:sticky;\s*top:0/);
- assert.match(patch,/#banners > \.tie-banner\{\s*--cc-printed-surface:var\(--acc\);\s*color:#fff/);
+ assert.match(patch,/#banners > \.tie-banner\{\s*--cc-printed-surface:var\(--acc\);\s*color:var\(--bg\)/);
  assert.match(patch,/#banners > \.tie-banner \.banner-art-panel\{\s*background:var\(--beige\)/);
  assert.match(patch,/#featured \.featured-wide\{[\s\S]*width:100vw/);
  assert.match(patch,/#featured \.featured-wide \.featured-stage\{[\s\S]*max-width:none/);
  assert.match(patch,/#featured \.featured-wide \.featured-controls\{[\s\S]*position:absolute/);
  assert.match(patch,/#featured \.feature-product-info,[\s\S]*\.plate-disclaimer\{\s*display:none!important/);
- assert.match(patch,/#benefits\.benefit-section\{background:#F6F7F5\}/);
+ assert.match(patch,/#benefits\.benefit-section\{background:var\(--bg\)\}/);
  assert.match(app,/class="featured-wide"/);
  assert.match(app,/id="featuredCaption" class="sr-only"/);
  assert.match(app,/id="featuredHint" class="sr-only"/);
@@ -727,7 +727,7 @@ test('owner-rejected visible Polaroid border stays hidden without removing shado
  assert.match(rule,/display:none;/,'no outline may be painted on the paper frame');
  assert.doesNotMatch(rule,/display:block;/);
  assert.match(css,/border:1px solid transparent/);
- assert.match(css,/box-shadow:4px 5px 0 #D9DCD7/);
+ assert.match(css,/box-shadow:4px 5px 0 var\(--grey\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
 });
