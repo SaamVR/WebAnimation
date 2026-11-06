@@ -1,4 +1,4 @@
-import { installStickyViewportGuard } from './nav-sticky-guard.mjs';
+import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
 async function boot(){
  const {shirtSilhouette,printSilhouette}=await import('./components.mjs');
  const {sketchButton}=await import('./handdrawn-buttons.mjs');
@@ -255,7 +255,8 @@ async function boot(){
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
  app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
- installStickyViewportGuard(document, window);
+ // Native CSS sticky handles alignment; optional ?navdebug=1 is read-only.
+ installStickyViewportDiagnostics(document, window);
  // Global navigation and keyboard behavior.
  const search=$('#searchPanel'),searchButton=$('#searchButton');
  const mobileNav=$('#mobileNav'),menuButton=$('#menuButton');
