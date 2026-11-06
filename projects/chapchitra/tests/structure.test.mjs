@@ -723,7 +723,8 @@ test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',a
  assert.match(css,/\.footer-identity \.logo-word--footer img/);
  assert.match(css,/grid-template-columns:minmax\(0,1fr\) auto minmax\(0,1fr\)/);
  assert.match(guard,/visualViewport/);
- assert.match(guard,/state\.announcementGone && state\.gap > 1/);
+ assert.match(guard,/installStickyViewportDiagnostics/);
+ assert.doesNotMatch(guard,/state\.announcementGone && state\.gap > 1/);
 });
 test('all final logo binaries are real optimized image files with expected magic bytes',async()=>{
  const webps=['chapchitra-wordmark.webp','chapchitra-wordmark-light.webp',
