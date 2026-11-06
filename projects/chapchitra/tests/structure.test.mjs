@@ -146,6 +146,30 @@ test('text and button contrast remain readable; minor Mushroom Gray is not small
  assert.match(css,/#benefits\.benefit-section\{background:var\(--bg\)\}/);
  assert.doesNotMatch(css,/\.benefit-section\{[^}]*background:var\(--grey\)/);
 });
+test('supporting-page UI uses palette roles without recoloring product previews',async()=>{
+ const css=await read('src/styles.css');
+ // Page panels and labels, not SVG / raster image content.
+ for(const re of [
+  /\.proof-tag\{[^}]*color:var\(--ink\)/,
+  /#featuredCaption small\{[^}]*color:var\(--cream\)/,
+  /\.featured-hint\{[^}]*color:var\(--cream\)/,
+  /\.journal-controls button\{[^}]*border-color:var\(--grey\)/,
+  /\.summary-panel\{[^}]*background:var\(--mist\)/,
+  /\.about-visual\{[^}]*background:var\(--beige\)/,
+  /\.journal-spotlight\{[^}]*background:var\(--mist\)/,
+  /\.journal-feature-art\{[^}]*background:var\(--cream\)/,
+  /\.custom-illustration\{[^}]*background:var\(--beige\)/,
+  /\.custom-settings select,\.custom-settings input,\.custom-settings textarea\{[^}]*color:var\(--ink\)/,
+  /\.pager button\{[^}]*color:var\(--ink\)/
+ ])assert.match(css,re);
+ for(const legacy of ['#475149','#b5a9a0','#a9a09a','#bbc6bc','#eceee8','#e5e7de','#e4e7df','#d9dfd5','#e2e6df'])assert.ok(!css.toLowerCase().includes(legacy),'UI legacy '+legacy);
+ // Artwork-specific demo backgrounds and six garment-color swatches deliberately remain.
+ assert.match(css,/\.product-card-shell\[data-photo-tone="0"\]\{--photo-tone:#DDDAD3\}/);
+ assert.match(css,/\.product-card-shell\[data-photo-tone="2"\]\{--photo-tone:#D1D6C7\}/);
+ assert.match(css,/\.shop-color-option\[data-color="red"\] \.shop-color-dot\{background:#be4747\}/);
+ assert.match(css,/\.shop-color-option\[data-color="blue"\] \.shop-color-dot\{background:#416eac\}/);
+});
+
 test('exact homepage section and individual card background mapping is maintained',async()=>{
  const css=await read('src/styles.css');
  const app=await read('src/app.mjs');
