@@ -108,7 +108,9 @@ export function installStickyViewportDiagnostics(root = document, view = window)
 
   const draw = () => {
     frame = 0;
-    const state = capture();
+    // Use event-time measurements so iPad Safari / background WebKit does
+    // not lose the trace when requestAnimationFrame is throttled.
+    const state = samples.at(-1) ?? capture();
     text.textContent =
       'iPad navbar diagnosis (read-only)\n' +
       'header.top: ' + state.headerTop + 'px; CSS top: ' + state.cssTop + '\n' +
@@ -124,7 +126,10 @@ export function installStickyViewportDiagnostics(root = document, view = window)
       'samples: ' + samples.length + ' (max 120)\n' +
       'While the strip is visible, tap Copy and paste the result into chat.';
   };
-  const schedule = () => { if (!frame) frame = view.requestAnimationFrame(draw); };
+  const schedule = () => {
+    capture();
+    if (!frame) frame = view.requestAnimationFrame(draw);
+  };
   const listeners = [
     ['scroll', view], ['resize', view], ['pageshow', view],
     ['orientationchange', view], ['scroll', view.visualViewport],
