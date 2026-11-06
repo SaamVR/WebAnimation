@@ -258,5 +258,5 @@
 /* Hero Slide 1 only: approved Beige face with Terracotta hard-edged shadow.
    More specific than the general dark-surface Beige rule above. */
 .hero-cover .cc-sketch.cc-sketch--beige{
-  --cc-shadow-color:var(--acc,#8A503B);
+  --cc-shadow-color:var(--acc);
 }
