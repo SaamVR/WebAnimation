@@ -12,11 +12,12 @@ container.innerHTML=variants.map(([variant,name])=>'<section class="review-secti
 // Reusable context classes are the same selectors used by the live storefront.
 // These examples actively sample computed shadow color on each background.
 const surfaces=[
- ['light','Gallery White','#F6F7F5'],
- ['cream','Soft Cream','#E4E3DE'],
- ['gray','Warm Gray','#DDDAD3'],
- ['forest','Forest Green','#293D2D'],
- ['olive','Dark Olive','#1F2216']
+ ['light','Gallery White','var(--bg)'],
+ ['cream','Cream','var(--cream)'],
+ // This is an isolated button shadow-contrast specimen, not a site section.
+ ['gray','Soft Gray','var(--grey)'],
+ ['forest','Deep Forest','var(--deep)'],
+ ['olive','Dark Olive','var(--olive)']
 ];
 container.insertAdjacentHTML('beforeend','<section class="review-section surface-review" aria-labelledby="surfaceReviewTitle">'+
  '<h2 id="surfaceReviewTitle">Shadow contrast by surface</h2>'+
