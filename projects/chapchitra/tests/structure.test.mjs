@@ -634,9 +634,9 @@ test('native sticky uses announcement normal flow and never patches navbar posit
  assert.match(app,/installStickyViewportDiagnostics\(document, window\)/);
  assert.doesNotMatch(app,/installStickyViewportGuard\(/);
  assert.match(guard,/if \(!new URLSearchParams\(view\.location\?\.search \?\? ''\)\.has\('navdebug'\)\) return \(\) => \{\};/);
- assert.match(guard,/position:sticky; top:0 is the sole positioning authority/);
+ assert.match(guard,/CSS position:sticky; top:0 remains authoritative/);
  assert.match(guard,/requestAnimationFrame\(draw\)/);
- assert.doesNotMatch(guard,/header\.style|style\.translate|style\.transform|scrollIntoView|scrollBy\(|marginTop|header\.setAttribute\(/);
+ assert.doesNotMatch(guard,/header\.style\.(?:translate|transform)\s*=|scrollIntoView|scrollBy\(|marginTop\s*=|header\.setAttribute\(/);
  assert.doesNotMatch(stickyRule,/margin-top:\s*-\d|translate:\s*0 -|transform:translateY\(-/);
 });
 
@@ -665,6 +665,37 @@ test('Safari viewport offsets remain diagnostic-only, not navbar corrections',as
  const result=installStickyViewportDiagnostics({}, {location:{search:''}});
  assert.equal(typeof result,'function','normal storefront diagnostics short-circuit');
  result();
+});
+
+test('opt-in physical iPad report distinguishes DOM gap from Safari browser chrome',async()=>{
+ const src=await read('src/nav-sticky-guard.mjs');
+ const app=await read('src/app.mjs');
+ const {navGeometry,installStickyViewportDiagnostics}=await import('../src/nav-sticky-guard.mjs');
+ assert.match(src,/new URLSearchParams\(view\.location\?\.search \?\? ''\)\.has\('navdebug'\)/);
+ assert.match(src,/root\.elementFromPoint\(cx, cy\)/);
+ assert.match(src,/DOM at screen top:/);
+ assert.match(src,/safeAreaTop/);
+ assert.match(src,/visualPageTop/);
+ assert.match(src,/ancestors: ancestorStyles\(\)/);
+ assert.match(src,/navigator\.clipboard\.writeText\(payload\)/);
+ assert.match(src,/samples\.length > 120/);
+ assert.match(src,/no analytics or cookies/);
+ assert.match(app,/installStickyViewportDiagnostics\(document, window\)/);
+ assert.doesNotMatch(src,/header\.style\.translate\s*=|header\.style\.transform\s*=|window\.scrollBy/);
+ const header={getBoundingClientRect:()=>({top:0,bottom:65})};
+ const announcement={getBoundingClientRect:()=>({bottom:-90})};
+ const visualViewport={offsetTop:24,pageTop:524,height:744,scale:1};
+ const geometry=navGeometry(header,announcement,{
+  scrollY:500,visualViewport,innerHeight:768,
+ });
+ assert.equal(geometry.layoutGap,0);
+ assert.equal(geometry.headerTop,0);
+ assert.equal(geometry.visualOffsetTop,24);
+ assert.equal(geometry.visualPageTop,524);
+ assert.equal(geometry.visualRelativeTop,-24);
+ const cleanup=installStickyViewportDiagnostics({}, {location:{search:''}});
+ assert.equal(typeof cleanup,'function');
+ cleanup();
 });
 
 test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only',async()=>{
