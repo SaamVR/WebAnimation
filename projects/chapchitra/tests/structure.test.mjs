@@ -67,7 +67,7 @@ test('Featured Prints uses stable five-card presentation with independent access
  assert.match(app,/Price pending/);
  assert.match(css,/\.feature-frame\[data-slot="near-left"\]/);
  assert.match(css,/\.feature-frame\[data-slot="far-right"\]/);
- assert.match(css,/\.featured-zone\{background:#0c0b0b/);
+ assert.match(css,/\.featured-zone\{background:var\(--deep\)/);
  assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
 });
 test('surgical refinements keep approved header, category/collection and C01-C04 alone',async()=>{
@@ -82,19 +82,94 @@ test('surgical refinements keep approved header, category/collection and C01-C04
 });
 
 
-test('authoritative Forest + Olive reference tokens are exact, not genericized',async()=>{
+test('authoritative twelve brand colors have one canonical root and semantic aliases',async()=>{
  const css=await read('src/styles.css');
+ const buttons=await read('src/button-system.css');
  const values={
-  '--deep':'#1C241D','--press':'#293D2D','--olive':'#1F2216',
-  '--walnut':'#6E523F','--ink':'#232323','--bg':'#F6F7F5',
-  '--grey':'#D9DCD7','--mist':'#E9EDEB','--beige':'#D8CEC2',
-  '--cream':'#E4E3DE','--mush':'#A6A29B','--acc':'#8A503B',
-  '--mut':'#5F625E'
+  'gallery-white':'#F6F7F5','silver-mist':'#E9EDEB','warm-beige':'#D8CEC2',
+  'cream':'#E4E3DE','soft-gray':'#D9DCD7','mushroom-gray':'#A6A29B',
+  'deep-forest':'#172419','press-green':'#293D2D','dark-olive':'#1F2216',
+  'walnut':'#6E523F','terracotta':'#8A503B','graphite':'#232323'
  };
- for(const [token,hex] of Object.entries(values)){
-  assert.ok(css.includes(token+':'+hex),token+' must equal '+hex);
+ const roots=[...css.matchAll(/:root\s*\{([\s\S]*?)\}/g)];
+ assert.equal(roots.length,1,'only one authoritative :root block is permitted');
+ const root=roots[0][1];
+ const colors=[...root.matchAll(/--color-([a-z-]+):(#[A-F0-9]{6});/g)];
+ assert.equal(colors.length,12,'exactly twelve canonical palette literals');
+ assert.deepEqual(Object.fromEntries(colors.map(match=>[match[1],match[2]])),values);
+ for(const [alias,token] of Object.entries({
+  '--deep':'--color-deep-forest','--press':'--interactive-primary',
+  '--olive':'--color-dark-olive','--walnut':'--color-walnut',
+  '--ink':'--text-primary','--bg':'--surface-page',
+  '--grey':'--border-subtle','--mist':'--surface-secondary',
+  '--beige':'--surface-editorial','--cream':'--surface-paper',
+  '--mush':'--color-mushroom-gray','--acc':'--interactive-warm',
+  '--mut':'--text-secondary','--midnight-pine':'--deep',
+  '--graphite':'--ink','--paper':'--bg','--fog':'--mist',
+  '--line':'--grey','--clay':'--acc','--press-olive':'--press',
+  '--muted':'--mut'
+ })){
+  assert.ok(root.includes(alias+':var('+token+');'),'legacy alias '+alias);
  }
+ assert.match(root,/--text-secondary:color-mix\(in srgb,var\(--color-graphite\) 78%,var\(--color-gallery-white\)\)/);
+ assert.match(buttons,/--cc-shadow-graphite:var\(--ink\)/);
+ assert.match(buttons,/--cc-shadow-on-dark:var\(--grey\)/);
+ assert.match(buttons,/--cc-shadow-on-dark-beige:var\(--mush\)/);
+ for(const retired of ['#1C241D','#243b32','#8FA3AF','#5F625E']){
+  assert.ok(!css.toUpperCase().includes(retired.toUpperCase()),'retired color in CSS: '+retired);
+  assert.ok(!buttons.toUpperCase().includes(retired.toUpperCase()),'retired color in buttons: '+retired);
+ }
+ // Product swatches and image-only placeholder photo tones are NOT theme tokens.
+ assert.match(css,/\.shop-color-option\[data-color="red"\]/);
+ assert.match(css,/\.product-card\.polaroid-card\[data-photo-tone="0"\]/);
 });
+
+test('text and button contrast remain readable; minor Mushroom Gray is not small copy',async()=>{
+ const css=await read('src/styles.css');
+ const palette={bg:'#F6F7F5',deep:'#172419',press:'#293D2D',ink:'#232323',acc:'#8A503B',walnut:'#6E523F'};
+ const luminance=color=>{
+  const rgb=color.slice(1).match(/../g).map(hex=>parseInt(hex,16)/255);
+  const linear=rgb.map(channel=>channel<=.04045?channel/12.92:((channel+.055)/1.055)**2.4);
+  return linear[0]*.2126+linear[1]*.7152+linear[2]*.0722;
+ };
+ const contrast=(a,b)=>{
+  const light=Math.max(luminance(a),luminance(b)),dark=Math.min(luminance(a),luminance(b));
+  return (light+.05)/(dark+.05);
+ };
+ for(const [a,b] of [['ink','bg'],['bg','deep'],['bg','press']]){
+  assert.ok(contrast(palette[a],palette[b])>=7,a+' on '+b+' must meet enhanced text contrast');
+ }
+ for(const a of ['acc','walnut'])assert.ok(contrast(palette[a],palette.bg)>=4.5,a+' needs normal text AA contrast');
+ assert.match(css,/\.footer-column h2,\.footer-newsletter h2\{color:var\(--cream\)\}/);
+ assert.match(css,/\.shop-color-dot\{[\s\S]*?border:1px solid var\(--mush\)/);
+ assert.match(css,/\.benefit-section\{[\s\S]*?background:var\(--bg\)/);
+ assert.match(css,/#benefits\.benefit-section\{background:var\(--bg\)\}/);
+ assert.doesNotMatch(css,/\.benefit-section\{[^}]*background:var\(--grey\)/);
+});
+test('supporting-page UI uses palette roles without recoloring product previews',async()=>{
+ const css=await read('src/styles.css');
+ // Page panels and labels, not SVG / raster image content.
+ for(const re of [
+  /\.proof-tag\{[^}]*color:var\(--ink\)/,
+  /#featuredCaption small\{[^}]*color:var\(--cream\)/,
+  /\.featured-hint\{[^}]*color:var\(--cream\)/,
+  /\.journal-controls button\{[^}]*border-color:var\(--grey\)/,
+  /\.summary-panel\{[^}]*background:var\(--mist\)/,
+  /\.about-visual\{[^}]*background:var\(--beige\)/,
+  /\.journal-spotlight\{[^}]*background:var\(--mist\)/,
+  /\.journal-feature-art\{[^}]*background:var\(--cream\)/,
+  /\.custom-illustration\{[^}]*background:var\(--beige\)/,
+  /\.custom-settings select,\.custom-settings input,\.custom-settings textarea\{[^}]*color:var\(--ink\)/,
+  /\.pager button\{[^}]*color:var\(--ink\)/
+ ])assert.match(css,re);
+ for(const legacy of ['#475149','#b5a9a0','#a9a09a','#bbc6bc','#eceee8','#e5e7de','#e4e7df','#d9dfd5','#e2e6df'])assert.ok(!css.toLowerCase().includes(legacy),'UI legacy '+legacy);
+ // Artwork-specific demo backgrounds and six garment-color swatches deliberately remain.
+ assert.match(css,/\.product-card-shell\[data-photo-tone="0"\]\{--photo-tone:#DDDAD3\}/);
+ assert.match(css,/\.product-card-shell\[data-photo-tone="2"\]\{--photo-tone:#D1D6C7\}/);
+ assert.match(css,/\.shop-color-option\[data-color="red"\] \.shop-color-dot\{background:#be4747\}/);
+ assert.match(css,/\.shop-color-option\[data-color="blue"\] \.shop-color-dot\{background:#416eac\}/);
+});
+
 test('exact homepage section and individual card background mapping is maintained',async()=>{
  const css=await read('src/styles.css');
  const app=await read('src/app.mjs');
@@ -102,12 +177,12 @@ test('exact homepage section and individual card background mapping is maintaine
   '.announcement','background:var(--deep)',
   '.site-header','background:var(--bg)',
   '.hero-carousel','background:var(--bg)',
-  '.benefit-section','background:var(--mist)',
+  '.benefit-section','background:var(--bg)',
   '.category-card:nth-child(1) .category-image{background:var(--cream)}',
   '.category-card:nth-child(2) .category-image{background:var(--press)',
   '.category-card:nth-child(3) .category-image{background:var(--acc)',
   '#collection:before','background:var(--mist);z-index:-1',
-  '#collection .product-visual','background:#fff',
+  '#collection .product-visual','background:var(--bg)',
   '.tie-banner{background:var(--beige)}',
   '.edit-banner{background:var(--cream)}',
   'banner-art-tie','banner-art-edit',
@@ -265,7 +340,7 @@ test('integrated pill labels remain centered, single-line and inherit variant co
  assert.match(buttons,/grid-template-columns:minmax\(0,1fr\)/);
  assert.match(buttons,/white-space:nowrap/);
  assert.match(buttons,/overflow-wrap:normal/);
- assert.match(buttons,/\.cc-sketch \.cc-sketch-label-ink\{\s*color:#fff/);
+ assert.match(buttons,/\.cc-sketch \.cc-sketch-label-ink\{\s*color:var\(--bg\)/);
  assert.match(buttons,/\.cc-sketch--beige\{--cc-paint:var\(--beige/);
  assert.match(buttons,/\.cc-sketch--terracotta\{--cc-paint:var\(--acc/);
  assert.match(buttons,/clip-path:inset\(0 100% 0 0\)/);
@@ -296,7 +371,7 @@ test('polaroid cards are one reusable paper-photo retail component in every list
  assert.match(app,/block\.map\(productCard\)/);
  assert.match(app,/sketchButton\(\{label:'ADD TO BAG',variant:'long'/);
  assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
- assert.match(css,/background:#FBFAF6/);
+ assert.match(css,/\.product-card\.polaroid-card\{\s*background:var\(--bg\)/);
  assert.match(css,/\.polaroid-card \.polaroid-photo/);
  assert.match(css,/\.polaroid-card \.polaroid-caption-head/);
  assert.match(css,/\.polaroid-card \.favorite-toggle/);
@@ -363,10 +438,10 @@ test('owner-approved Polaroid compactness and external stationary CTA have indep
 test('graphite shadow defaults and reusable dark-context contrasts preserve pill geometry',async()=>{
  const css=await read('src/button-system.css');
  const gallery=await read('src/button-preview.mjs');
- // One color source of truth: no prior Walnut, Olive or Mushroom shadow choices.
- assert.match(css,/--cc-shadow-graphite:#232323/);
- assert.match(css,/--cc-shadow-on-dark:#D9DCD7/);
- assert.match(css,/--cc-shadow-on-dark-beige:#8FA3AF/);
+ // One color source of truth: Graphite and approved surface-dependent gray shadows.
+ assert.match(css,/--cc-shadow-graphite:var\(--ink\)/);
+ assert.match(css,/--cc-shadow-on-dark:var\(--grey\)/);
+ assert.match(css,/--cc-shadow-on-dark-beige:var\(--mush\)/);
  assert.match(css,/--cc-shadow-color:var\(--cc-shadow-graphite\)/);
  assert.match(css,/background:var\(--cc-shadow-color\)/);
  assert.doesNotMatch(css,/--cc-shadow-light-forest|--cc-shadow-light-beige|--cc-shadow-light-terracotta|--cc-shadow-dark-beige/);
@@ -388,7 +463,7 @@ test('graphite shadow defaults and reusable dark-context contrasts preserve pill
  assert.match(css,/transform:translate\(2px,2px\)/);
  assert.match(gallery,/cc-shadow-context--/);
  assert.match(gallery,/surface-preview/);
- assert.match(gallery,/'forest','Forest Green'/);
+ assert.match(gallery,/'forest','Deep Forest'/);
  assert.match(gallery,/'olive','Dark Olive'/);
 });
 
@@ -423,15 +498,15 @@ test('single SVG frame border and solid rounded shadow preserve CTA isolation',a
  assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
  assert.match(css,/border:1px solid transparent/);
  assert.match(css,/border-radius:10px/);
- assert.match(css,/box-shadow:4px 5px 0 #D9DCD7/);
+ assert.match(css,/box-shadow:4px 5px 0 var\(--grey\)/);
  assert.match(css,/\.product-card-shell > \.polaroid-card > \.polaroid-ink-outline\{/);
  assert.match(css,/max-width:none; \/\* override the global svg max-width:100% clamp \*\//);
- assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,#858981\);\s*stroke:none/);
+ assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,var\(--mush\)\);\s*stroke:none/);
  assert.match(css,/\.product-card-shell > \.polaroid-card-action > \.cc-sketch\.product-add-button/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
  assert.match(button,/--cc-offset:7px/);
- assert.match(button,/--cc-shadow-on-dark-beige:#8FA3AF/);
+ assert.match(button,/--cc-shadow-on-dark-beige:var\(--mush\)/);
  assert.match(app,/class="polaroid-card-action"/);
  assert.match(app,/label:'ADD TO BAG',variant:'long',tone:'forest'/);
 });
@@ -443,18 +518,18 @@ test('Polaroid outline stays one variable-width SVG shape, with a light-gray fra
  assert.match(css,/\.product-card-shell > \.polaroid-card\{/);
  assert.match(css,/border:1px solid transparent/);
  assert.match(css,/border-radius:10px/);
- assert.equal((css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')).match(/box-shadow:4px 5px 0 #D9DCD7/g)||[]).length,5);
+ assert.equal((css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')).match(/box-shadow:4px 5px 0 var\(--grey\)/g)||[]).length,5);
  assert.doesNotMatch(css.slice(css.indexOf('/* CHAPCHITRA: approved compact paper-photo composition')),/box-shadow:5px 6px 0 #242424/);
- assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,#858981\);\s*stroke:none/);
+ assert.match(css,/\.polaroid-ink-perimeter\{\s*fill:var\(--cc-frame-ink,var\(--mush\)\);\s*stroke:none/);
  assert.match(source,/fill-rule','evenodd'/);
  assert.match(source,/polaroidInkPath\(width,height\)/);
  assert.match(app,/class="polaroid-card-action"/);
 });
 test('Hero 1 Terracotta and both banner CTAs reuse approved pill without changing destinations',async()=>{
  const app=await read('src/app.mjs'),css=await read('src/styles.css'),buttons=await read('src/button-system.css');
- assert.match(buttons,/\.hero-cover \.cc-sketch\.cc-sketch--beige\{\s*--cc-shadow-color:var\(--acc,#8A503B\)/);
- assert.match(buttons,/--cc-shadow-graphite:#232323/);
- assert.match(buttons,/--cc-shadow-on-dark:#D9DCD7/);
+ assert.match(buttons,/\.hero-cover \.cc-sketch\.cc-sketch--beige\{\s*--cc-shadow-color:var\(--acc\)/);
+ assert.match(buttons,/--cc-shadow-graphite:var\(--ink\)/);
+ assert.match(buttons,/--cc-shadow-on-dark:var\(--grey\)/);
  assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest',href:'\/shop\/\?category=tie-dye'/);
  assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest',href:'\/artists-edit\/'/);
  assert.doesNotMatch(app,/class="text-link">Explore hand-dye studies ↗|class="text-link">Visit Artist’s Edit ↗/);
@@ -521,13 +596,13 @@ test('sticky header, retone, and viewport carousel overrides stay localized',asy
  const patch=css.slice(css.indexOf('/* CHAPCHITRA — approved layout corrections'));
  assert.ok(patch.length>3600);
  assert.match(patch,/#app > \.site-header\{\s*position:-webkit-sticky;\s*position:sticky;\s*top:0/);
- assert.match(patch,/#banners > \.tie-banner\{\s*--cc-printed-surface:var\(--acc\);\s*color:#fff/);
+ assert.match(patch,/#banners > \.tie-banner\{\s*--cc-printed-surface:var\(--acc\);\s*color:var\(--bg\)/);
  assert.match(patch,/#banners > \.tie-banner \.banner-art-panel\{\s*background:var\(--beige\)/);
  assert.match(patch,/#featured \.featured-wide\{[\s\S]*width:100vw/);
  assert.match(patch,/#featured \.featured-wide \.featured-stage\{[\s\S]*max-width:none/);
  assert.match(patch,/#featured \.featured-wide \.featured-controls\{[\s\S]*position:absolute/);
  assert.match(patch,/#featured \.feature-product-info,[\s\S]*\.plate-disclaimer\{\s*display:none!important/);
- assert.match(patch,/#benefits\.benefit-section\{background:#F6F7F5\}/);
+ assert.match(patch,/#benefits\.benefit-section\{background:var\(--bg\)\}/);
  assert.match(app,/class="featured-wide"/);
  assert.match(app,/id="featuredCaption" class="sr-only"/);
  assert.match(app,/id="featuredHint" class="sr-only"/);
@@ -676,7 +751,7 @@ test('owner-rejected visible Polaroid border stays hidden without removing shado
  assert.match(rule,/display:none;/,'no outline may be painted on the paper frame');
  assert.doesNotMatch(rule,/display:block;/);
  assert.match(css,/border:1px solid transparent/);
- assert.match(css,/box-shadow:4px 5px 0 #D9DCD7/);
+ assert.match(css,/box-shadow:4px 5px 0 var\(--grey\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(-1\.4deg\)/);
  assert.match(css,/translate3d\(0,-5px,0\) rotate\(1\.4deg\)/);
 });

@@ -1,13 +1,13 @@
 # CHAPCHITRA V3 — Isolated Architecture
 
-Owner-specified Forest + Olive visual layout and 13-color palette integrated into the existing eleven-section architecture. **Final logo, imagery, real merchandise, prices, and C01–C04 motion remain pending.**
+The eleven-section CHAPCHITRA architecture uses the owner's **final 12-color palette (2026-11-06)** and established Forest + Olive compositions. **Approved raster logo integrated; genuine merchandise imagery, prices, and C01–C04 motion remain pending.**
 
 ## Preservation
 Source repository: SaamVR/WebAnimation; independent app: projects/chapchitra. Vercel project chapchitra-motion-demo builds ONLY from this directory. THREADS release is untouched.
 
 ## Homepage section order
 1. Announcement bar with specified shipping/early-access copy
-2. Sticky navigation with dropdown, search, favorites, account, bag and guest-hidden bell
+2. Sticky three-zone navigation with a direct Shop link, centered approved wordmark, search, favorites, account, bag and guest-hidden bell
 3. Five-slide hero: auto every four seconds, focus/hover pause, dots, mobile swipe, reduced-motion disabled auto
 4. Delivery, Returns, Payment-method and Support informational benefits
 5. Shop by Category: Regular Tees, Drop Shoulder, Tie-Dye with All/Men/Women chips
@@ -19,7 +19,7 @@ Source repository: SaamVR/WebAnimation; independent app: projects/chapchitra. Ve
 11. Footer with community signup validation and honest no-backend message
 
 ## Supporting routes
-/shop/ twelve per page with independent category, audience and print filters; /artists-edit/ local-only brief builder; /journal/ and /journal/story/ for editorial rotation and detail; /about/; /product/; /favorites/ with browser-local demo favorites; /account/, /bag/, /checkout/, and /order-confirmation/ as explicit unavailable states.
+/shop/ twelve per page with Category, Price (pending genuine pricing), Size and Color; /artists-edit/ local-only brief builder; /journal/ and /journal/story/ for editorial rotation and detail; /about/; /product/; /favorites/ with browser-local demo favorites; /account/, /bag/, /checkout/, and /order-confirmation/ as explicit unavailable states.
 
 ## Important limitations
 64 synthetic catalogue records only; garment drawings are neutral SVG silhouettes, price is Tk — (unknown). There is no authentication, inventory, payments, account, email subscription, custom printing submission, real product photography or custom animation. Add to Cart is a **sessionStorage-only visual interaction**, not order placement; mock items have no real prices/stock, and checkout remains disabled.
@@ -28,36 +28,34 @@ Source repository: SaamVR/WebAnimation; independent app: projects/chapchitra. Ve
 npm run check; npm run build; npm run preview. Build performs structure and isolation tests. Conduct separate live-browser verification at desktop 1440px, tablet 820px and mobile 390px; inspect page links, accessibility, carousel timers, filters, pagers, reduced motion and JS console.
 
 ## Creative approval
-V3 structure, the uploaded HTML's 13 colors and layout rhythm are the current visual reference. Final identity artwork and commercial content remain pending. C01, C02, C03, C04, rickshaw wheel and tea stall steam animations are reserved and not implemented. No automatic approval inferred.
+V3 structure and layout rhythm remain approved; the final 12-color owner specification supersedes the uploaded HTML's earlier 13 colors. Approved raster identity assets are integrated; commercial content remains pending. C01, C02, C03, C04, rickshaw wheel and tea stall steam animations are reserved and not implemented. No automatic approval inferred.
 
-## Forest + Olive visual source of truth — 2026-10-29
+## Final 12-color source of truth — 2026-11-06
 
-Primary source: owner's uploaded HTML file, Chapchitra – Homepage v2 · Forest + Olive Final Palette.html.
-Its exact semantic CSS colors are implemented without globalizing all cards to green.
+Current authority: owner's CHAPCHITRA — Final Color System Integration, 2026-11-06. This **supersedes the 2026-10-29 HTML palette only for color values and roles**. The HTML's approved layout, typography and animation assignments remain unchanged. All twelve literal hex definitions live once in `src/styles.css`; semantic roles and legacy aliases reference them.
 
 | Color token | Hex |
 | --- | --- |
-| Deep Forest | #1C241D |
+| Deep Forest | #172419 |
 | Press Green | #293D2D |
 | Dark Olive | #1F2216 |
 | Walnut | #6E523F |
 | Graphite Ink | #232323 |
 | Gallery White | #F6F7F5 |
 | Soft Gray | #D9DCD7 |
-| Mist Gray | #E9EDEB |
+| Silver Mist | #E9EDEB |
 | Warm Beige | #D8CEC2 |
-| Warm Cream | #E4E3DE |
+| Cream | #E4E3DE |
 | Mushroom Gray | #A6A29B |
-| Dark Clay | #8A503B |
-| Muted Gray | #5F625E |
+| Terracotta | #8A503B |
 
-Reference mapping: Forest announcement; White nav and hero base; Clay/Press/Walnut/Mist slide artwork surfaces; Mist benefits with Press outline icon rings; White categories with distinct Cream, Press and Clay panels; full-bleed Mist collection with pure-white product-image cards; Beige/Cream banners with Clay/Walnut inset art; Forest Featured Prints with alternating Mist/Cream framed art; White values with alternating Mist/Cream illustration cards; Cream story and street fade to Dark Olive footer.
+Current role mapping: **Gallery White** page backgrounds, navbar, Service Benefits, Shop, supporting routes; **Silver Mist** occasional secondary collection/artwork sections; **Warm Beige and Cream** print-studio, editorial and paper accents; **Soft Gray** borders, separators and subtle shadows only; **Mushroom Gray** decorative/large-label accents (not small copy); **Deep Forest** announcement and dark editorial sections; **Press Green** primary interactive surfaces; **Dark Olive** supporting dark accents and hover; **Walnut/Terracotta** illustration and contextual highlights; **Graphite** text, icons and solid shadows. Preserve the already-approved panel geometry and image-specific mockup colors; swatches that depict shop colors are content rather than brand palette additions.
 
 Typography: Hind Siliguri body and Noto Serif Bengali headline families with system fallbacks, as in the HTML. This demo retains its approved interactive copy and sample catalogue instead of treating the HTML prototype merchandise as real stock.
 
 Interaction: hero 4 seconds, five registration-mark dots, hover/focus pause, touch and reduced-motion; Featured Prints independent 8.2-second timer, perspective transforms with persistent card nodes, prev/next, keyboard and swipe; guest navigation bell hidden.
 
-Validation: ten Node source tests passed. Chromium 1440x900, 820x1180, and 390x844 measured all 20 requested section/card computed surfaces at their exact colors, no horizontal overflow or JS errors. Shop, Artist's Edit, Journal, product/favorites, and guest pages remained functional.
+Historical 2026-10-29 validation: older HTML-palette computed surfaces were measured at desktop, tablet and mobile; this is superseded for colors by the final 2026-11-06 palette integration QA. Shop, Artist's Edit, Journal, product/favorites, and guest pages remained functional.
 
 Remaining known deviations: live product cards include more details, the moving Featured Prints have actionable item titles/prices/links, and the footer is more informative than the static HTML; desktop document height approximately 5567px versus 5351px of the uploaded HTML. Creative SVG placeholders remain until final artwork is supplied. Physical iPad Safari review remains pending.
 
