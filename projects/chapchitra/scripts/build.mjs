@@ -8,8 +8,8 @@ await mkdir(output,{recursive:true});
 await cp(src,output,{recursive:true});
 const expected=['index.html','styles.css','app.mjs','components.mjs'];
 for (const name of expected) await stat(resolve(output,name));
-// The final, original 4000x2250 PNGs are held as checksummed archive parts.
-// No resizing, cropping, substitution, or partial asset publication.
+// Immutable 4000×2250 masters remain SHA-pinned in archive parts.
+// Only checksum-verified, registered WebP delivery variants reach dist.
 const { installWorktableAssets } = await import('./worktable-assets.mjs');
 const artwork=await installWorktableAssets(root,output);
 console.log('CHAPCHITRA exact original artwork verified:',artwork);

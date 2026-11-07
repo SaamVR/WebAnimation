@@ -1,0 +1,2406 @@
+{
+  "Artist-edit-backdrop-1.png": {
+    "path": "assets/worktable/Artist-edit-backdrop-1.png",
+    "bbox": [
+      0,
+      0,
+      2048,
+      1152
+    ],
+    "sha256": "92285314a0f9c8b54344ec0e39f7ef7d21bdf91fc091d87374d537c3b6be923f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 10826772,
+    "delivery": {
+      "crop": [
+        0,
+        0,
+        4000,
+        2250
+      ],
+      "stageBox": [
+        0,
+        0,
+        2048,
+        1152
+      ],
+      "variants": [
+        {
+          "path": "variants/Artist-edit-backdrop-1.w768.webp",
+          "width": 768,
+          "height": 432,
+          "bytes": 77650,
+          "sha256": "a51fc2e150253fcd8280dac2a6a033dcacf3cfab1b8aee6c0b6d6abce7d5674c"
+        },
+        {
+          "path": "variants/Artist-edit-backdrop-1.w1536.webp",
+          "width": 1536,
+          "height": 864,
+          "bytes": 235948,
+          "sha256": "a454eaf9b47356b7f5e109c616a480bb7cc74b3463aaefe6ff6570220d9a658d"
+        },
+        {
+          "path": "variants/Artist-edit-backdrop-1.w2560.webp",
+          "width": 2560,
+          "height": 1440,
+          "bytes": 459934,
+          "sha256": "7914179f5164679a6aeeba9fe3331c31e77db2b28893e605eb9190354010cfcd"
+        }
+      ]
+    }
+  },
+  "Tshirts/walnut_table_background_exact_tone_4K-4.png": {
+    "path": "assets/worktable/Tshirts/walnut_table_background_exact_tone_4K-4.png",
+    "bbox": [
+      524.288,
+      182.784,
+      1501.184,
+      1080.32
+    ],
+    "sha256": "479c6dbb0ab0e16670cc1ed27c7cdc9708bc0e763324140dbcf052c8c32f644a",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 2156912,
+    "delivery": {
+      "crop": [
+        1021,
+        354,
+        1914,
+        1759
+      ],
+      "stageBox": [
+        522.752,
+        181.248,
+        979.968,
+        900.608
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K-4.w768.webp",
+          "width": 367,
+          "height": 337,
+          "bytes": 21484,
+          "sha256": "462ccb699d1560b52e86fed6631fbe7571afa7f6112c31f8c8c75810a9974720"
+        },
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K-4.w1536.webp",
+          "width": 735,
+          "height": 675,
+          "bytes": 50304,
+          "sha256": "94a6446257c0e4d505a696a9933cd9bf793b465afe610828c57affc6a1d8865d"
+        },
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K-4.w2560.webp",
+          "width": 1225,
+          "height": 1126,
+          "bytes": 98618,
+          "sha256": "0d2bc7031ea4871ccc3b5f8d0c640f32f58138ec96b49a726b1641af20d7be38"
+        }
+      ]
+    }
+  },
+  "Tshirts/walnut_table_background_exact_tone_4K-3.png": {
+    "path": "assets/worktable/Tshirts/walnut_table_background_exact_tone_4K-3.png",
+    "bbox": [
+      614.4,
+      190.464,
+      1440.256,
+      1060.352
+    ],
+    "sha256": "1a7857307bd3c3f35f037e53be0ea3ec8316d047d239045953ad3d971e40417a",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 2170630,
+    "delivery": {
+      "crop": [
+        1197,
+        369,
+        1619,
+        1705
+      ],
+      "stageBox": [
+        612.864,
+        188.928,
+        828.928,
+        872.96
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K-3.w768.webp",
+          "width": 311,
+          "height": 328,
+          "bytes": 18266,
+          "sha256": "de6a02a2e92ce3005ba7d563f35a82d90f278c657c42256f58982f08541536e3"
+        },
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K-3.w1536.webp",
+          "width": 622,
+          "height": 655,
+          "bytes": 43874,
+          "sha256": "5eac2b5b6b5d974083c5fbc3822366c4413c7b4b7d921ef27b96e02ad254187d"
+        },
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K-3.w2560.webp",
+          "width": 1036,
+          "height": 1091,
+          "bytes": 87870,
+          "sha256": "9e75230b1b5af038ad202569c667b9e6052dd58b257d0c175cd1b1fdacb4cb62"
+        }
+      ]
+    }
+  },
+  "Tshirts/walnut_table_background_exact_tone_4K_2.png": {
+    "path": "assets/worktable/Tshirts/walnut_table_background_exact_tone_4K_2.png",
+    "bbox": [
+      559.616,
+      167.424,
+      1485.312,
+      1070.592
+    ],
+    "sha256": "379a63cf481072ec8a3f00e34fd58f2fb003cfb9577fd07f971cb435d2127a29",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 2359216,
+    "delivery": {
+      "crop": [
+        1090,
+        324,
+        1814,
+        1770
+      ],
+      "stageBox": [
+        558.08,
+        165.888,
+        928.768,
+        906.24
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K_2.w768.webp",
+          "width": 348,
+          "height": 340,
+          "bytes": 19366,
+          "sha256": "133b0627211b97c4592fbf40221078912cf1d2afdadd73e52e809b837ac13fd8"
+        },
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K_2.w1536.webp",
+          "width": 697,
+          "height": 680,
+          "bytes": 47074,
+          "sha256": "71f9c803d45caa1b5d966bda4546907721ea65030e61d85f2462fa5887a00297"
+        },
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K_2.w2560.webp",
+          "width": 1161,
+          "height": 1133,
+          "bytes": 102172,
+          "sha256": "b39d7378d9c569cf14eaec3aa1159bfa7a301544d68e4f7a8299280ea822a4c6"
+        }
+      ]
+    }
+  },
+  "Tshirts/walnut_table_background_exact_tone_4K_1.png": {
+    "path": "assets/worktable/Tshirts/walnut_table_background_exact_tone_4K_1.png",
+    "bbox": [
+      561.152,
+      184.32,
+      1484.8,
+      1061.888
+    ],
+    "sha256": "3392b71d3994fdae2cc94340f63fdc19f739b52755912126df11b5b0375c457c",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 2052671,
+    "delivery": {
+      "crop": [
+        1093,
+        357,
+        1810,
+        1720
+      ],
+      "stageBox": [
+        559.616,
+        182.784,
+        926.72,
+        880.64
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K_1.w768.webp",
+          "width": 348,
+          "height": 331,
+          "bytes": 17594,
+          "sha256": "a3b6ebe3b0520a7b54dd6f42d0ee683fec88fac1aa2bcb08e0cd84e422ec920a"
+        },
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K_1.w1536.webp",
+          "width": 695,
+          "height": 660,
+          "bytes": 40704,
+          "sha256": "be71d2b1e79fa351281df8e055cb95758703e763df76a2bb9eae58d0cb463c5b"
+        },
+        {
+          "path": "variants/Tshirts/walnut_table_background_exact_tone_4K_1.w2560.webp",
+          "width": 1158,
+          "height": 1100,
+          "bytes": 81072,
+          "sha256": "666a7d0e2a364f8633de305c2dd7f5cbffcae99d28d5cf5fd137a39a90cc55e6"
+        }
+      ]
+    }
+  },
+  "Worker/Mini_worker_1.png": {
+    "path": "assets/worktable/Worker/Mini_worker_1.png",
+    "bbox": [
+      569.344,
+      485.888,
+      712.192,
+      686.08
+    ],
+    "sha256": "10aa6d345c30e1aa73efb7dc54c4be43d0f4cd5cbdd6e09567a96b62c2986872",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 328445,
+    "delivery": {
+      "crop": [
+        1109,
+        945,
+        285,
+        398
+      ],
+      "stageBox": [
+        567.808,
+        483.84,
+        145.92,
+        203.776
+      ],
+      "variants": [
+        {
+          "path": "variants/Worker/Mini_worker_1.w768.webp",
+          "width": 55,
+          "height": 77,
+          "bytes": 3954,
+          "sha256": "5a155937d7498d2d26373b76574d389920bb908b5267b760898610ed37ba4cf8"
+        },
+        {
+          "path": "variants/Worker/Mini_worker_1.w1536.webp",
+          "width": 109,
+          "height": 152,
+          "bytes": 9952,
+          "sha256": "c9f64bbeeda053bc4dea50f45574363608fdf5d44a6e3f7a952ded97b044fa78"
+        },
+        {
+          "path": "variants/Worker/Mini_worker_1.w2560.webp",
+          "width": 182,
+          "height": 254,
+          "bytes": 21652,
+          "sha256": "80ebb504cf92dfef6a20b6a6b059173c791d4e3295e72fb05dfd45aa33d6da97"
+        }
+      ]
+    }
+  },
+  "Worker/Mini_worker_1.pn2.png": {
+    "path": "assets/worktable/Worker/Mini_worker_1.pn2.png",
+    "bbox": [
+      1216.512,
+      317.952,
+      1415.168,
+      541.184
+    ],
+    "sha256": "df9657c3a87733feb3433ae3f99fb69660723b1b55aa8673a80e802e3178efd4",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 324932,
+    "delivery": {
+      "crop": [
+        2373,
+        618,
+        394,
+        442
+      ],
+      "stageBox": [
+        1214.976,
+        316.416,
+        201.728,
+        226.304
+      ],
+      "variants": [
+        {
+          "path": "variants/Worker/Mini_worker_1.pn2.w768.webp",
+          "width": 76,
+          "height": 85,
+          "bytes": 5158,
+          "sha256": "52daaf4ba02d9fec7262fdf189f0632e7b0904fe031d89b6c99b68373d5f93c5"
+        },
+        {
+          "path": "variants/Worker/Mini_worker_1.pn2.w1536.webp",
+          "width": 151,
+          "height": 169,
+          "bytes": 12538,
+          "sha256": "477d67759ef0bc05f24e273f94829afab456231ee455741c45379879d5f7d808"
+        },
+        {
+          "path": "variants/Worker/Mini_worker_1.pn2.w2560.webp",
+          "width": 252,
+          "height": 283,
+          "bytes": 25470,
+          "sha256": "2a1e473fc268c7266c91449e3480f001d4464c13de50ce13c6962db57a7eb67d"
+        }
+      ]
+    }
+  },
+  "Worker/Mini_worker_1.pn3.png": {
+    "path": "assets/worktable/Worker/Mini_worker_1.pn3.png",
+    "bbox": [
+      709.12,
+      917.504,
+      833.536,
+      1075.712
+    ],
+    "sha256": "6f69697c8b12a4c70f2f32ddaf8b59e2c7b264498937008ac5698dcb05db6430",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 256806,
+    "delivery": {
+      "crop": [
+        1382,
+        1789,
+        249,
+        315
+      ],
+      "stageBox": [
+        707.584,
+        915.968,
+        127.488,
+        161.28
+      ],
+      "variants": [
+        {
+          "path": "variants/Worker/Mini_worker_1.pn3.w768.webp",
+          "width": 48,
+          "height": 61,
+          "bytes": 2916,
+          "sha256": "00c1d9fde59c168a1b91dd5c6098bfb35af5bec54d526d67732d5b6314ca3b88"
+        },
+        {
+          "path": "variants/Worker/Mini_worker_1.pn3.w1536.webp",
+          "width": 96,
+          "height": 121,
+          "bytes": 6858,
+          "sha256": "dcb1a34b03ee0b3f3f7fee00ddc504e67820d8d6be49d8930eddfce51ae45f0a"
+        },
+        {
+          "path": "variants/Worker/Mini_worker_1.pn3.w2560.webp",
+          "width": 159,
+          "height": 201,
+          "bytes": 12402,
+          "sha256": "063e134338c22a47546f41a87e342eb734f8fe01b2de603acb1b4be30bfedd58"
+        }
+      ]
+    }
+  },
+  "Upload image notebook/Upload_image_notebook_title_2.png": {
+    "path": "assets/worktable/Upload image notebook/Upload_image_notebook_title_2.png",
+    "bbox": [
+      1657.856,
+      212.48,
+      1883.648,
+      309.76
+    ],
+    "sha256": "664a65ec76255d5b2a43d1304742a408d6974269f70fa5275b8edc2f70f1c9be",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 269543,
+    "delivery": {
+      "crop": [
+        3235,
+        411,
+        447,
+        197
+      ],
+      "stageBox": [
+        1656.32,
+        210.432,
+        228.864,
+        100.864
+      ],
+      "variants": [
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_title_2.w768.webp",
+          "width": 86,
+          "height": 38,
+          "bytes": 5042,
+          "sha256": "378938589669bb851aff8a733abc8f9d8fdf3b674e35dac7eeca6047376d2397"
+        },
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_title_2.w1536.webp",
+          "width": 172,
+          "height": 76,
+          "bytes": 11394,
+          "sha256": "898fa6712de2b6cd05e200d449a4f98a731f8e9c190db609b2399edc5668a046"
+        },
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_title_2.w2560.webp",
+          "width": 286,
+          "height": 126,
+          "bytes": 20852,
+          "sha256": "eea375e0ac0a96ca99263fda7dee8c4d7d5d4d2c10c2a133bbcdcf6437ac5682"
+        }
+      ]
+    }
+  },
+  "Upload image notebook/Upload_image_notebook_title_3.png": {
+    "path": "assets/worktable/Upload image notebook/Upload_image_notebook_title_3.png",
+    "bbox": [
+      1672.704,
+      314.88,
+      1889.792,
+      342.016
+    ],
+    "sha256": "ce7e0d422f3f769fb5dc9efeea1545b539f4ea06932c66f4474b571409f280f7",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 178119,
+    "delivery": {
+      "crop": [
+        3264,
+        612,
+        430,
+        59
+      ],
+      "stageBox": [
+        1671.168,
+        313.344,
+        220.16,
+        30.208
+      ],
+      "variants": [
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_title_3.w768.webp",
+          "width": 83,
+          "height": 11,
+          "bytes": 1444,
+          "sha256": "f0be871357d023177f6f33cacf2a0aa14c0e561d63a11d140563bea9c84f0828"
+        },
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_title_3.w1536.webp",
+          "width": 165,
+          "height": 23,
+          "bytes": 2730,
+          "sha256": "10c1050614a6b850b44148e4dee043838fd82ef107826002b4f7010f10b32de2"
+        },
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_title_3.w2560.webp",
+          "width": 275,
+          "height": 38,
+          "bytes": 4878,
+          "sha256": "e00015f2a4330d741ce15c89595a0859f4429d0939e941e1f89ca5f7a33e1a64"
+        }
+      ]
+    }
+  },
+  "Upload image notebook/Upload_image_notebook_1.png": {
+    "path": "assets/worktable/Upload image notebook/Upload_image_notebook_1.png",
+    "bbox": [
+      1560.064,
+      168.448,
+      1969.664,
+      669.184
+    ],
+    "sha256": "fe2ea9139268f256f0eab45c76dd4322f72c78ddd0952221ecd234fc1a716ea8",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 673235,
+    "delivery": {
+      "crop": [
+        3044,
+        326,
+        806,
+        984
+      ],
+      "stageBox": [
+        1558.528,
+        166.912,
+        412.672,
+        503.808
+      ],
+      "variants": [
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_1.w768.webp",
+          "width": 155,
+          "height": 189,
+          "bytes": 6078,
+          "sha256": "bcf169ca425efe2b55b03a5fce93576f3e5f4adb2845d58cd9551db03bf798e0"
+        },
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_1.w1536.webp",
+          "width": 310,
+          "height": 378,
+          "bytes": 16564,
+          "sha256": "88dba686721c69ea032594f6e44f82be0332229970b0f015c349ed433cd36176"
+        },
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_1.w2560.webp",
+          "width": 516,
+          "height": 630,
+          "bytes": 34200,
+          "sha256": "cb833cda396cfca1de27ddd5160f40f3d553417c42ecdc8f6e364421b85481d2"
+        }
+      ]
+    }
+  },
+  "Upload image notebook/Upload_image_notebook_upload_button_4.png": {
+    "path": "assets/worktable/Upload image notebook/Upload_image_notebook_upload_button_4.png",
+    "bbox": [
+      1627.648,
+      384.512,
+      1899.52,
+      586.24
+    ],
+    "sha256": "18d2ca8f82b62399b47f9065c353d68b14f9c3b495a985b308c1a226b22b901e",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 268052,
+    "delivery": {
+      "crop": [
+        3175,
+        748,
+        538,
+        400
+      ],
+      "stageBox": [
+        1625.6,
+        382.976,
+        275.456,
+        204.8
+      ],
+      "variants": [
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_upload_button_4.w768.webp",
+          "width": 103,
+          "height": 77,
+          "bytes": 5760,
+          "sha256": "e5ce096a624b8da37ee8098c5f6d61da5c102a1412b723613c23c482d9ee7a92"
+        },
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_upload_button_4.w1536.webp",
+          "width": 207,
+          "height": 154,
+          "bytes": 13142,
+          "sha256": "f55ccf3b3d44450b5ca35bc4a786b7375af4c80f2f7762df70cedd757dae5725"
+        },
+        {
+          "path": "variants/Upload image notebook/Upload_image_notebook_upload_button_4.w2560.webp",
+          "width": 344,
+          "height": 256,
+          "bytes": 23626,
+          "sha256": "57ffb6cbba63fe5859f65837c044ec1161443429027ba5ea435f77f6156707e4"
+        }
+      ]
+    }
+  },
+  "Print size/Print_size_A3_1.png": {
+    "path": "assets/worktable/Print size/Print_size_A3_1.png",
+    "bbox": [
+      1700.864,
+      879.104,
+      1839.616,
+      1042.432
+    ],
+    "sha256": "104215eff9a484090992c8b4544896cbfa53d81339dffafedf956020caf2067d",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 269787,
+    "delivery": {
+      "crop": [
+        3319,
+        1714,
+        277,
+        325
+      ],
+      "stageBox": [
+        1699.328,
+        877.568,
+        141.824,
+        166.4
+      ],
+      "variants": [
+        {
+          "path": "variants/Print size/Print_size_A3_1.w768.webp",
+          "width": 53,
+          "height": 62,
+          "bytes": 2580,
+          "sha256": "39ba4d1fefb53f43974dc7688e82dcc4270a64092c6d0bd9b75abcae8f3fd01e"
+        },
+        {
+          "path": "variants/Print size/Print_size_A3_1.w1536.webp",
+          "width": 106,
+          "height": 124,
+          "bytes": 5808,
+          "sha256": "868e88dc151339ed643ce2b28095b2d20a5305a164eb7ba1cc0088e4534bd586"
+        },
+        {
+          "path": "variants/Print size/Print_size_A3_1.w2560.webp",
+          "width": 177,
+          "height": 208,
+          "bytes": 9982,
+          "sha256": "ce52cd6d7c2048bcac4bde293d27670d35fb2df5d153a41a18e52b3db0608213"
+        }
+      ]
+    }
+  },
+  "Print size/Print_size_A4_2.png": {
+    "path": "assets/worktable/Print size/Print_size_A4_2.png",
+    "bbox": [
+      1845.76,
+      899.584,
+      1953.792,
+      1041.92
+    ],
+    "sha256": "0f999148b6e8dbdf9f54fe2573a44f4739a56bd8c10e9af7bcade164f24889b0",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 239815,
+    "delivery": {
+      "crop": [
+        3602,
+        1753,
+        217,
+        285
+      ],
+      "stageBox": [
+        1844.224,
+        897.536,
+        111.104,
+        145.92
+      ],
+      "variants": [
+        {
+          "path": "variants/Print size/Print_size_A4_2.w768.webp",
+          "width": 42,
+          "height": 55,
+          "bytes": 2002,
+          "sha256": "8059d2a29c5816db5cf4c4f20a706f3829fa0ba8fb77fa71e331a4c1c9250dad"
+        },
+        {
+          "path": "variants/Print size/Print_size_A4_2.w1536.webp",
+          "width": 83,
+          "height": 109,
+          "bytes": 4522,
+          "sha256": "8683a0fdbaf073e9c1fd15d6c610b1d79107e49236fabca2bf50dac5c480cd2c"
+        },
+        {
+          "path": "variants/Print size/Print_size_A4_2.w2560.webp",
+          "width": 139,
+          "height": 183,
+          "bytes": 7926,
+          "sha256": "329a6fadb2dc9986f4aaecb71c52cdcb01adb71879531a9ea8dc1c3f4717a471"
+        }
+      ]
+    }
+  },
+  "Print size/Print_size_backboard_3.png": {
+    "path": "assets/worktable/Print size/Print_size_backboard_3.png",
+    "bbox": [
+      1679.872,
+      857.6,
+      1975.296,
+      1063.424
+    ],
+    "sha256": "269389431461dcffefc58cb41d3e07e6cf48ec75bd1734d15036a1e9f3bbcab7",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 211783,
+    "delivery": {
+      "crop": [
+        3278,
+        1672,
+        583,
+        408
+      ],
+      "stageBox": [
+        1678.336,
+        856.064,
+        298.496,
+        208.896
+      ],
+      "variants": [
+        {
+          "path": "variants/Print size/Print_size_backboard_3.w768.webp",
+          "width": 112,
+          "height": 78,
+          "bytes": 1576,
+          "sha256": "431ec6ce3dd12278f39770a84f7806e6aca57f16cb7c751b5211d6f25cd25ff4"
+        },
+        {
+          "path": "variants/Print size/Print_size_backboard_3.w1536.webp",
+          "width": 224,
+          "height": 157,
+          "bytes": 3350,
+          "sha256": "8f2ed476726a5c3c3d9b3bf176e91c4435090ebe70f55332b460e881e1e0165b"
+        },
+        {
+          "path": "variants/Print size/Print_size_backboard_3.w2560.webp",
+          "width": 373,
+          "height": 261,
+          "bytes": 8872,
+          "sha256": "e1ffc3a6245ee2e4131ca0516342a3d88a77aeaf45aaae26f08429986b9cc806"
+        }
+      ]
+    }
+  },
+  "Print size/Print_size_title_1.png": {
+    "path": "assets/worktable/Print size/Print_size_title_1.png",
+    "bbox": [
+      1652.224,
+      760.32,
+      1992.704,
+      872.96
+    ],
+    "sha256": "593b8547f007466cb00bc14dff0492215205c8854217a9c11a29a852c5a128d7",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 315430,
+    "delivery": {
+      "crop": [
+        3224,
+        1482,
+        671,
+        226
+      ],
+      "stageBox": [
+        1650.688,
+        758.784,
+        343.552,
+        115.712
+      ],
+      "variants": [
+        {
+          "path": "variants/Print size/Print_size_title_1.w768.webp",
+          "width": 129,
+          "height": 43,
+          "bytes": 3342,
+          "sha256": "6bbb9a53a4ec27935a90b62a1184e544fe3b3c52c9234054d5003a720b62a240"
+        },
+        {
+          "path": "variants/Print size/Print_size_title_1.w1536.webp",
+          "width": 258,
+          "height": 87,
+          "bytes": 8394,
+          "sha256": "bbd087af40b1c6864e20d67b98cceb849d0c273fae95165e20e33b6ba665c102"
+        },
+        {
+          "path": "variants/Print size/Print_size_title_1.w2560.webp",
+          "width": 429,
+          "height": 144,
+          "bytes": 13492,
+          "sha256": "4ca08a9662f3ad73dfd684548b72ce227432718f99257f05397f6331334f2fbb"
+        }
+      ]
+    }
+  },
+  "Print size/Print_size_title_2.png": {
+    "path": "assets/worktable/Print size/Print_size_title_2.png",
+    "bbox": [
+      1737.216,
+      842.24,
+      1892.864,
+      854.528
+    ],
+    "sha256": "342f200c919ef29a9c94fd6b51cd8dcd060d7bba2c19db105414ad63dd4ddb0f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 168641,
+    "delivery": {
+      "crop": [
+        3389,
+        1642,
+        311,
+        30
+      ],
+      "stageBox": [
+        1735.168,
+        840.704,
+        159.232,
+        15.36
+      ],
+      "variants": [
+        {
+          "path": "variants/Print size/Print_size_title_2.w768.webp",
+          "width": 60,
+          "height": 6,
+          "bytes": 840,
+          "sha256": "4d316f673bf4d0dbf900299cccba2ca90d1a293af71b3af1118080546cd16112"
+        },
+        {
+          "path": "variants/Print size/Print_size_title_2.w1536.webp",
+          "width": 119,
+          "height": 11,
+          "bytes": 1426,
+          "sha256": "137e96ca658e8e541f14c614d42c4e6f2b637e638874632b718d4bf14e7b4d99"
+        },
+        {
+          "path": "variants/Print size/Print_size_title_2.w2560.webp",
+          "width": 199,
+          "height": 19,
+          "bytes": 2934,
+          "sha256": "3a8fc2368de1ad41347c5472b4c1f372f3b3093bc07209740af782c7f95b1956"
+        }
+      ]
+    }
+  },
+  "Garment style/Garment_style_title_2.png": {
+    "path": "assets/worktable/Garment style/Garment_style_title_2.png",
+    "bbox": [
+      185.856,
+      403.968,
+      438.784,
+      442.88
+    ],
+    "sha256": "6a57eea2175482cb212b35dcd16c97138f2582844a332144241dc16f3717ef0a",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 200844,
+    "delivery": {
+      "crop": [
+        360,
+        786,
+        500,
+        82
+      ],
+      "stageBox": [
+        184.32,
+        402.432,
+        256,
+        41.984
+      ],
+      "variants": [
+        {
+          "path": "variants/Garment style/Garment_style_title_2.w768.webp",
+          "width": 96,
+          "height": 16,
+          "bytes": 2542,
+          "sha256": "6994f9ccc24c6c2a29ab56acf475cd89d834c01ca7450623eb2d3fac1484100e"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_title_2.w1536.webp",
+          "width": 192,
+          "height": 31,
+          "bytes": 7242,
+          "sha256": "6fd087f3c27d011de29b7bac7b14e8c305d6c5012a8e3b7e882352aff6d00ffb"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_title_2.w2560.webp",
+          "width": 320,
+          "height": 52,
+          "bytes": 13726,
+          "sha256": "805e0308e1546f9b736e49b3401ce71959a6017cf42ac7816e34ccd85d677c97"
+        }
+      ]
+    }
+  },
+  "Garment style/Garment_style_title_3.png": {
+    "path": "assets/worktable/Garment style/Garment_style_title_3.png",
+    "bbox": [
+      221.184,
+      440.32,
+      397.824,
+      454.144
+    ],
+    "sha256": "764b0d3325f0c94ca65868d3c7bfea32edd474c7c8a3d8921783c45c9d1aa048",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 169695,
+    "delivery": {
+      "crop": [
+        429,
+        857,
+        351,
+        33
+      ],
+      "stageBox": [
+        219.648,
+        438.784,
+        179.712,
+        16.896
+      ],
+      "variants": [
+        {
+          "path": "variants/Garment style/Garment_style_title_3.w768.webp",
+          "width": 67,
+          "height": 6,
+          "bytes": 946,
+          "sha256": "7e24b75f2a0d203a4820fdbe42d55756e2e288af1c759707a8a5ad346b7cbcb0"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_title_3.w1536.webp",
+          "width": 135,
+          "height": 13,
+          "bytes": 2068,
+          "sha256": "c95cf3aaf1672592da5997fe73abdee9745c6b2e1eca60b45c4a60949557cd27"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_title_3.w2560.webp",
+          "width": 225,
+          "height": 21,
+          "bytes": 3280,
+          "sha256": "d0b3d6648f932e2c1f3db3db9c9974a5e73d3de2608dcd263af4bea724db1440"
+        }
+      ]
+    }
+  },
+  "Garment style/Garment_style_title_1.png": {
+    "path": "assets/worktable/Garment style/Garment_style_title_1.png",
+    "bbox": [
+      171.008,
+      325.12,
+      452.608,
+      471.04
+    ],
+    "sha256": "28f9ad33cf2ff9bcfc02f0798d2e4fbd41f91568ca8998b203950c35c05186e1",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 304093,
+    "delivery": {
+      "crop": [
+        331,
+        632,
+        556,
+        291
+      ],
+      "stageBox": [
+        169.472,
+        323.584,
+        284.672,
+        148.992
+      ],
+      "variants": [
+        {
+          "path": "variants/Garment style/Garment_style_title_1.w768.webp",
+          "width": 107,
+          "height": 56,
+          "bytes": 3752,
+          "sha256": "52d545c4e019bc8366f0abd13f1cf92e4439ba71ca0379654a077fc6ba17af3f"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_title_1.w1536.webp",
+          "width": 214,
+          "height": 112,
+          "bytes": 8762,
+          "sha256": "34a8472695624c3a4bec999c39a519a3d1b3a9125e123c4c2371bfeba2810c86"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_title_1.w2560.webp",
+          "width": 356,
+          "height": 186,
+          "bytes": 15628,
+          "sha256": "b368f90c06208592b2e1ba74ef1ba298a5c1cd43acf1cccd25eaa4375deb5614"
+        }
+      ]
+    }
+  },
+  "Garment style/Garment_style_4_hoodie.png": {
+    "path": "assets/worktable/Garment style/Garment_style_4_hoodie.png",
+    "bbox": [
+      418.816,
+      494.08,
+      509.44,
+      621.056
+    ],
+    "sha256": "fd73b48abd601b98f00ac29d11add37177f54f7e3e464d982ba78829658a19e6",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 227030,
+    "delivery": {
+      "crop": [
+        814,
+        962,
+        184,
+        254
+      ],
+      "stageBox": [
+        416.768,
+        492.544,
+        94.208,
+        130.048
+      ],
+      "variants": [
+        {
+          "path": "variants/Garment style/Garment_style_4_hoodie.w768.webp",
+          "width": 35,
+          "height": 48,
+          "bytes": 1674,
+          "sha256": "68ffb4a87dcc2b23a8946bf581aa32f67bcd5aa956ef3c770e3aa96aa142d92e"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_4_hoodie.w1536.webp",
+          "width": 71,
+          "height": 98,
+          "bytes": 4274,
+          "sha256": "35b5481284417768d0434b95b4e4b09177a7aa456c10df6d7131e88b893ee765"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_4_hoodie.w2560.webp",
+          "width": 118,
+          "height": 163,
+          "bytes": 7864,
+          "sha256": "65f36a7ea48dfeacdd3f2e7ec143ac3824a534d18b949f1e7b95e29ec6d80c10"
+        }
+      ]
+    }
+  },
+  "Garment style/Garment_style_3_full_sleeve.png": {
+    "path": "assets/worktable/Garment style/Garment_style_3_full_sleeve.png",
+    "bbox": [
+      312.832,
+      494.08,
+      403.456,
+      621.056
+    ],
+    "sha256": "4168f808091689f247ef022bfaabdfdc52e7e77f8cc891e1eda11709d45b1d2c",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 225913,
+    "delivery": {
+      "crop": [
+        608,
+        962,
+        183,
+        254
+      ],
+      "stageBox": [
+        311.296,
+        492.544,
+        93.696,
+        130.048
+      ],
+      "variants": [
+        {
+          "path": "variants/Garment style/Garment_style_3_full_sleeve.w768.webp",
+          "width": 35,
+          "height": 49,
+          "bytes": 1686,
+          "sha256": "e855adcd108acad7a7eddce2307ad7cf1135079ecf56793e422b69f6ad38d33a"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_3_full_sleeve.w1536.webp",
+          "width": 70,
+          "height": 97,
+          "bytes": 3980,
+          "sha256": "e6be9522033bbe772e00aff3f193d17bcc39227438a8ee66b8d3a1619d0c64a1"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_3_full_sleeve.w2560.webp",
+          "width": 117,
+          "height": 162,
+          "bytes": 6726,
+          "sha256": "c5b9464132e3ab2b2e6029709136700c20d90287b726d21728f6374c7f6985fd"
+        }
+      ]
+    }
+  },
+  "Garment style/Garment_style_backboard_5.png": {
+    "path": "assets/worktable/Garment style/Garment_style_backboard_5.png",
+    "bbox": [
+      73.728,
+      447.488,
+      539.648,
+      645.632
+    ],
+    "sha256": "6e2cacbcb3fac76e9230b7bf7f6bb50fdcb94992f309c35b78d08ac81382d6fe",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 495009,
+    "delivery": {
+      "crop": [
+        141,
+        871,
+        916,
+        393
+      ],
+      "stageBox": [
+        72.192,
+        445.952,
+        468.992,
+        201.216
+      ],
+      "variants": [
+        {
+          "path": "variants/Garment style/Garment_style_backboard_5.w768.webp",
+          "width": 176,
+          "height": 76,
+          "bytes": 1574,
+          "sha256": "826e05123e467db34c8949d450ffa5cc3f0529596107220e8620696c23abfe9b"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_backboard_5.w1536.webp",
+          "width": 352,
+          "height": 151,
+          "bytes": 3622,
+          "sha256": "02741d2d9806e95cc05678da6bfe3b550fed2af8130ffc710cd705cef3de9e55"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_backboard_5.w2560.webp",
+          "width": 586,
+          "height": 251,
+          "bytes": 9102,
+          "sha256": "5ac201c61e9b6b51a09ee39abd3c6d02c896e152d746242b60d50d0ed772ae9c"
+        }
+      ]
+    }
+  },
+  "Garment style/Garment_style_2_drop_shoulder.png": {
+    "path": "assets/worktable/Garment style/Garment_style_2_drop_shoulder.png",
+    "bbox": [
+      205.824,
+      494.08,
+      296.448,
+      621.056
+    ],
+    "sha256": "eef7967cb44ee0c535f42dcec6413827c8bc99faf592f5ea4dbe8e9eeee933ab",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 224750,
+    "delivery": {
+      "crop": [
+        399,
+        962,
+        183,
+        254
+      ],
+      "stageBox": [
+        204.288,
+        492.544,
+        93.696,
+        130.048
+      ],
+      "variants": [
+        {
+          "path": "variants/Garment style/Garment_style_2_drop_shoulder.w768.webp",
+          "width": 35,
+          "height": 49,
+          "bytes": 1660,
+          "sha256": "a2b82191eaf0edfc550c23e52c625be76c55d9e8b71ae9f7c4bff5809f2a50db"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_2_drop_shoulder.w1536.webp",
+          "width": 70,
+          "height": 97,
+          "bytes": 3906,
+          "sha256": "9f7ea5965b1fc4d9498649b833819e19622ae85000102da7191950fd8ab0de31"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_2_drop_shoulder.w2560.webp",
+          "width": 117,
+          "height": 162,
+          "bytes": 6696,
+          "sha256": "e14986c34f842d8ce9e3cf85722a87280f0e4547abf2971782b4faae2d3e0917"
+        }
+      ]
+    }
+  },
+  "Garment style/Garment_style_1_regular.png": {
+    "path": "assets/worktable/Garment style/Garment_style_1_regular.png",
+    "bbox": [
+      99.84,
+      494.08,
+      190.976,
+      621.056
+    ],
+    "sha256": "1a8c7bf03ab3bf75bf43156279431660d826f9019d46efd9ba62e2cde27c84fd",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 224527,
+    "delivery": {
+      "crop": [
+        192,
+        962,
+        184,
+        254
+      ],
+      "stageBox": [
+        98.304,
+        492.544,
+        94.208,
+        130.048
+      ],
+      "variants": [
+        {
+          "path": "variants/Garment style/Garment_style_1_regular.w768.webp",
+          "width": 35,
+          "height": 48,
+          "bytes": 1614,
+          "sha256": "a6caeecea076821f41daf3f0b478f7fe17be332fffae3431c95fb8aaa65744fd"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_1_regular.w1536.webp",
+          "width": 71,
+          "height": 98,
+          "bytes": 4064,
+          "sha256": "9c6afbab8d6d22a7de8b0e25f464f801399f95174f7eee4872f5d140eb470608"
+        },
+        {
+          "path": "variants/Garment style/Garment_style_1_regular.w2560.webp",
+          "width": 118,
+          "height": 163,
+          "bytes": 6982,
+          "sha256": "fd3ff0dcc1d1a23be9b4368055f12aacb5ca8c652b8261e8d5bca6b29300b0e5"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_4.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_4.png",
+    "bbox": [
+      103.424,
+      921.088,
+      212.48,
+      1034.24
+    ],
+    "sha256": "6277ca41a77282a5afdbe78a496e3111ae1943a9ea4c8dbacbcff99b9b8ff7ac",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 226836,
+    "delivery": {
+      "crop": [
+        199,
+        1796,
+        219,
+        227
+      ],
+      "stageBox": [
+        101.888,
+        919.552,
+        112.128,
+        116.224
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_4.w768.webp",
+          "width": 42,
+          "height": 44,
+          "bytes": 1952,
+          "sha256": "eeba0e6298128e3948922609ece7435b6ddf54c4147267b04ef745fddd0fbe16"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_4.w1536.webp",
+          "width": 84,
+          "height": 87,
+          "bytes": 4524,
+          "sha256": "d5f529873f48159d00e09b4114094037c73f37629911a3708b249f3a899856f6"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_4.w2560.webp",
+          "width": 140,
+          "height": 145,
+          "bytes": 7966,
+          "sha256": "d6d40c1b2b9f1ffae977d61811c6bfeeba42ed0269e10298d3ad92a3228ef076"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_box_front_panel.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_box_front_panel.png",
+    "bbox": [
+      89.088,
+      1019.904,
+      428.032,
+      1067.008
+    ],
+    "sha256": "67ccad2ef3796c6e76a7a8303a0437afab05de0284a965a7537c8be1bfa7fd3f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 254237,
+    "delivery": {
+      "crop": [
+        170,
+        1989,
+        669,
+        98
+      ],
+      "stageBox": [
+        87.04,
+        1018.368,
+        342.528,
+        50.176
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_front_panel.w768.webp",
+          "width": 128,
+          "height": 19,
+          "bytes": 1772,
+          "sha256": "a81583dcb9d6f33d607495180fcd5fcd9476952b059f2be68bf3310b65d140b1"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_front_panel.w1536.webp",
+          "width": 257,
+          "height": 38,
+          "bytes": 4870,
+          "sha256": "7685e19caa333613602013b10bb936c3ebbc8b5b2304789d618b6d6c6a11e296"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_front_panel.w2560.webp",
+          "width": 428,
+          "height": 63,
+          "bytes": 9730,
+          "sha256": "bf234a24a2bb1e57f10fe83a7bc118b6e54d660eb69d9d975588de55a77e2afc"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_5.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_5.png",
+    "bbox": [
+      207.872,
+      924.672,
+      305.664,
+      1034.752
+    ],
+    "sha256": "77ef548351a4ab3e59b1bafadbe39c6bc62ad6abc571dc873c9bae27fab0c0cc",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 227690,
+    "delivery": {
+      "crop": [
+        403,
+        1803,
+        197,
+        221
+      ],
+      "stageBox": [
+        206.336,
+        923.136,
+        100.864,
+        113.152
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_5.w768.webp",
+          "width": 38,
+          "height": 43,
+          "bytes": 2044,
+          "sha256": "7564716e67d3fe59269731358476f9aaf52805a9436d65f9a5d256875794284d"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_5.w1536.webp",
+          "width": 76,
+          "height": 85,
+          "bytes": 4622,
+          "sha256": "d3549e3c50aa64acfdca1d3472abff02bf9795300684825b2980f9da86674e49"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_5.w2560.webp",
+          "width": 126,
+          "height": 141,
+          "bytes": 8200,
+          "sha256": "5a71e7c1ec3e24a3ea852e09619b3ec537edfbe6cda5b4cd7a5b95abc50888c6"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_box_back_without_front_panel.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_box_back_without_front_panel.png",
+    "bbox": [
+      87.04,
+      803.328,
+      432.64,
+      1070.08
+    ],
+    "sha256": "e95aeac8bba7c8ca3c1d99e16e4201bfbc72665bd1e34761e8cbc92a37fc370f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 589431,
+    "delivery": {
+      "crop": [
+        167,
+        1566,
+        681,
+        527
+      ],
+      "stageBox": [
+        85.504,
+        801.792,
+        348.672,
+        269.824
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_back_without_front_panel.w768.webp",
+          "width": 131,
+          "height": 101,
+          "bytes": 5802,
+          "sha256": "278a9b596fa9508815f10d5682de9eddfa0034fb749c5daea401cdf23a3feba6"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_back_without_front_panel.w1536.webp",
+          "width": 262,
+          "height": 203,
+          "bytes": 16860,
+          "sha256": "3e1f044da79b64e1437414f24b6df49b446dc30061b95d5cc01d664f59633100"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_back_without_front_panel.w2560.webp",
+          "width": 436,
+          "height": 337,
+          "bytes": 39122,
+          "sha256": "4e8625b3de10931c79d168c2fe42d53b234d9fb113e74ebc23eae02cc0ad9e51"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_6.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_6.png",
+    "bbox": [
+      288.768,
+      925.696,
+      413.184,
+      1035.264
+    ],
+    "sha256": "7afeb39fed91ca19a867d7e10b77b97efe150528a839e1c241da75bc233c612f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 227479,
+    "delivery": {
+      "crop": [
+        560,
+        1805,
+        250,
+        220
+      ],
+      "stageBox": [
+        286.72,
+        924.16,
+        128,
+        112.64
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_6.w768.webp",
+          "width": 48,
+          "height": 42,
+          "bytes": 1920,
+          "sha256": "3e6377e71d66239b1308c07437067dea2484f36785360bf44c5db0507fff6399"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_6.w1536.webp",
+          "width": 96,
+          "height": 84,
+          "bytes": 4188,
+          "sha256": "9ee5ac3ddc77665dfe33fa3255dc84a23026a5e35cb1e96ff12c5baf34b0ca1b"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_6.w2560.webp",
+          "width": 160,
+          "height": 141,
+          "bytes": 7440,
+          "sha256": "1cace5e41c88c4a881f90327ba56fc6d6e02d35dad969d6aef264917df4b9c9f"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_2.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_2.png",
+    "bbox": [
+      209.92,
+      834.048,
+      309.248,
+      942.08
+    ],
+    "sha256": "573ff1dfc51867c8ea161539e1978ba4132faeefb43eca849922f1f5ab503ac1",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 220791,
+    "delivery": {
+      "crop": [
+        406,
+        1626,
+        201,
+        217
+      ],
+      "stageBox": [
+        207.872,
+        832.512,
+        102.912,
+        111.104
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_2.w768.webp",
+          "width": 39,
+          "height": 42,
+          "bytes": 1476,
+          "sha256": "008651d2a459926093ef624cc708de49649ad5bc284f0ac1199c5d51ab904ecf"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_2.w1536.webp",
+          "width": 77,
+          "height": 83,
+          "bytes": 3502,
+          "sha256": "75fd86fc74aa7add5b4da90230eb0cbc5df6130ff78e648b56cd257be17b45d6"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_2.w2560.webp",
+          "width": 129,
+          "height": 139,
+          "bytes": 6682,
+          "sha256": "8149293d0d165d7e475e335528566a15f05fe609ed3ebd715cc35cabf92c4907"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_3.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_3.png",
+    "bbox": [
+      293.888,
+      834.048,
+      401.408,
+      940.544
+    ],
+    "sha256": "7312b455aa3d0e6f2af8b70064561b46c6504ba3b402a6a81b84caf60cd8e2c4",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 227814,
+    "delivery": {
+      "crop": [
+        570,
+        1626,
+        217,
+        214
+      ],
+      "stageBox": [
+        291.84,
+        832.512,
+        111.104,
+        109.568
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_3.w768.webp",
+          "width": 42,
+          "height": 41,
+          "bytes": 1888,
+          "sha256": "9c73eac818f568f61b4edc9b434919d6e39cb9804bdc384287e44c3835400ad7"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_3.w1536.webp",
+          "width": 83,
+          "height": 82,
+          "bytes": 4260,
+          "sha256": "2cea4efd9e2f19dab2bcbccfe7122dd9754ed470152c63d49401b64f3d7a630e"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_3.w2560.webp",
+          "width": 139,
+          "height": 137,
+          "bytes": 8006,
+          "sha256": "1d5eea38606c642e64a86893ffcdb24d1c1b5bf4449293f416735ba7175f6dde"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_1.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_1.png",
+    "bbox": [
+      117.248,
+      828.928,
+      208.384,
+      943.616
+    ],
+    "sha256": "90cb467457c98bf8379a20e3e4f9705adfc6e6bf1c123a14758399ea82c28a8b",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 224978,
+    "delivery": {
+      "crop": [
+        226,
+        1616,
+        184,
+        230
+      ],
+      "stageBox": [
+        115.712,
+        827.392,
+        94.208,
+        117.76
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_1.w768.webp",
+          "width": 35,
+          "height": 44,
+          "bytes": 1504,
+          "sha256": "f1fdc9f9572f296ea73ebf01aee75f18cda9c01a4f1ceba1338eae23f406d282"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_1.w1536.webp",
+          "width": 71,
+          "height": 89,
+          "bytes": 3776,
+          "sha256": "2aa6e407662bfebae1c11d5483a2311135e95bea580072e908e197415b8fab94"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_1.w2560.webp",
+          "width": 118,
+          "height": 148,
+          "bytes": 7454,
+          "sha256": "d72e1cfd33584bfc2c231e0b98c39499015e7a65100255b13f54a704b09f6c81"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_box_full.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_box_full.png",
+    "bbox": [
+      87.04,
+      803.328,
+      432.64,
+      1070.08
+    ],
+    "sha256": "92fbdce2cb64918b75203c8ad035095e5c007ac895ee87882a63ff151fae8d41",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 683827,
+    "delivery": {
+      "crop": [
+        167,
+        1566,
+        681,
+        527
+      ],
+      "stageBox": [
+        85.504,
+        801.792,
+        348.672,
+        269.824
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_full.w768.webp",
+          "width": 131,
+          "height": 101,
+          "bytes": 5832,
+          "sha256": "e66e44a292f72c0f1639f29be50c6d5c366f5b3622d5d668ce0c9ed682fe91be"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_full.w1536.webp",
+          "width": 262,
+          "height": 203,
+          "bytes": 18474,
+          "sha256": "2cb1e60ca1ee9420e3ce320f0b9de78838c4461e5a8877c32aa2ca701e346c47"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_box_full.w2560.webp",
+          "width": 436,
+          "height": 337,
+          "bytes": 43230,
+          "sha256": "950beb915589d9ecdba91fbafa43a1a3c6b95fd450b07b6c1f647201f16e1153"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_title_3.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_title_3.png",
+    "bbox": [
+      89.088,
+      774.656,
+      295.936,
+      811.008
+    ],
+    "sha256": "217b631404acab70ef710805e8d1ea616dd555128e243d04667c91ab4dbbd89b",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 176780,
+    "delivery": {
+      "crop": [
+        170,
+        1509,
+        411,
+        78
+      ],
+      "stageBox": [
+        87.04,
+        772.608,
+        210.432,
+        39.936
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_3.w768.webp",
+          "width": 79,
+          "height": 15,
+          "bytes": 1354,
+          "sha256": "acb7c114fdfbeccd95365480d471a852b04aa785cf2d7be0fbf79307e64ac9e8"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_3.w1536.webp",
+          "width": 158,
+          "height": 30,
+          "bytes": 2922,
+          "sha256": "709a434ca52259562df54bbb48a16bb24fd7b27755bc8dbcc3d491d5176b1bce"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_3.w2560.webp",
+          "width": 263,
+          "height": 50,
+          "bytes": 4736,
+          "sha256": "e3484d9603b02792d97c91a530637a74c2b5d0ae0ec25bc2e0c6d57a929b4a03"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_title_2.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_title_2.png",
+    "bbox": [
+      44.032,
+      730.112,
+      305.664,
+      795.136
+    ],
+    "sha256": "a46f41ad54ed48d8f4adf35f543e7a772127002b4f04fb35f1c07c683521c710",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 221423,
+    "delivery": {
+      "crop": [
+        82,
+        1423,
+        518,
+        133
+      ],
+      "stageBox": [
+        41.984,
+        728.576,
+        265.216,
+        68.096
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_2.w768.webp",
+          "width": 99,
+          "height": 25,
+          "bytes": 3020,
+          "sha256": "66257fd1781fd7031a0c60b2bab00c99b7a458321653e0d8b5d1796c1a56f476"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_2.w1536.webp",
+          "width": 199,
+          "height": 51,
+          "bytes": 7850,
+          "sha256": "b3d01e703660430ea52d929a7d6da1e82e5883360fe5ab05ff61b6dbf385c158"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_2.w2560.webp",
+          "width": 332,
+          "height": 85,
+          "bytes": 15266,
+          "sha256": "d488cf5b062133e75ff072d7b7dc0e9623dfc187d145fab9e05f8b144b414e15"
+        }
+      ]
+    }
+  },
+  "Tshirt color/Tshirt_color_title_1.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_title_1.png",
+    "bbox": [
+      23.552,
+      690.688,
+      336.384,
+      835.584
+    ],
+    "sha256": "f62063fb3e8f0e5bd2ba057931e982afb14e4bbc39d3af9125ba4aa675f72cc5",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 284578,
+    "delivery": {
+      "crop": [
+        43,
+        1346,
+        617,
+        289
+      ],
+      "stageBox": [
+        22.016,
+        689.152,
+        315.904,
+        147.968
+      ],
+      "variants": [
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_1.w768.webp",
+          "width": 118,
+          "height": 55,
+          "bytes": 3728,
+          "sha256": "b52316a462c41acbd398fd20f20e7f831b416481bff1b1524346b5965f339f03"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_1.w1536.webp",
+          "width": 237,
+          "height": 111,
+          "bytes": 7816,
+          "sha256": "53258c6540a52b4e14374b5e63799903b4b123eb032081899f20fcb5491217ec"
+        },
+        {
+          "path": "variants/Tshirt color/Tshirt_color_title_1.w2560.webp",
+          "width": 395,
+          "height": 185,
+          "bytes": 13392,
+          "sha256": "8b515cfccf8e7dcfa87be075958a41e8a7e5559ae45d6f3014cf908cf382c169"
+        }
+      ]
+    }
+  },
+  "Size/Tshirt_size_title_1.png": {
+    "path": "assets/worktable/Size/Tshirt_size_title_1.png",
+    "bbox": [
+      670.208,
+      0,
+      1375.232,
+      189.44
+    ],
+    "sha256": "4bbe4a1b7534e29ce9131585a71a9340c828542f434bc01844c961e12d59c769",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 447891,
+    "delivery": {
+      "crop": [
+        1306,
+        0,
+        1383,
+        373
+      ],
+      "stageBox": [
+        668.672,
+        0,
+        708.096,
+        190.976
+      ],
+      "variants": [
+        {
+          "path": "variants/Size/Tshirt_size_title_1.w768.webp",
+          "width": 266,
+          "height": 72,
+          "bytes": 8178,
+          "sha256": "179348d3e5e2c6f7a0b3c7ec127ea3ce1cb542d1cab750945814696df767d625"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_title_1.w1536.webp",
+          "width": 531,
+          "height": 143,
+          "bytes": 20720,
+          "sha256": "f832e26959f328ab6a5ee17d00492d75264bd231fd1af8e58b6aabc85b2737d0"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_title_1.w2560.webp",
+          "width": 885,
+          "height": 239,
+          "bytes": 43486,
+          "sha256": "886c37deb4bab239f68f1c3989c3debd2559bdaf700ad20ef74a2cbec94228e1"
+        }
+      ]
+    }
+  },
+  "Size/Tshirt_size_L_4.png": {
+    "path": "assets/worktable/Size/Tshirt_size_L_4.png",
+    "bbox": [
+      1057.792,
+      83.968,
+      1120.256,
+      170.496
+    ],
+    "sha256": "48796e8e5656bc29591f8fb2d04d282681a7beb7f0a53d32c9599c3eafbe42d8",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 186814,
+    "delivery": {
+      "crop": [
+        2063,
+        161,
+        128,
+        175
+      ],
+      "stageBox": [
+        1056.256,
+        82.432,
+        65.536,
+        89.6
+      ],
+      "variants": [
+        {
+          "path": "variants/Size/Tshirt_size_L_4.w768.webp",
+          "width": 25,
+          "height": 34,
+          "bytes": 1050,
+          "sha256": "3ff4314483c63eecd222782a48888e8c21dd84bcd33fb657d900bcdd43ae0022"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_L_4.w1536.webp",
+          "width": 49,
+          "height": 67,
+          "bytes": 2054,
+          "sha256": "74f9f2dc611571f0458b547721e28d7079627506515840fdbd1b1413a76193d1"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_L_4.w2560.webp",
+          "width": 82,
+          "height": 112,
+          "bytes": 3616,
+          "sha256": "33fbd5ff3d017d62b4ee09085e49395052969ad3fdd316dabf2472c12f8ea584"
+        }
+      ]
+    }
+  },
+  "Size/Tshirt_size_S_2.png": {
+    "path": "assets/worktable/Size/Tshirt_size_S_2.png",
+    "bbox": [
+      1198.08,
+      70.656,
+      1268.224,
+      174.08
+    ],
+    "sha256": "d48ed0335855ad4491ab2f2b98a374fa35d57ca5917c4b657cdbe336191bd0b1",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 199417,
+    "delivery": {
+      "crop": [
+        2337,
+        135,
+        143,
+        208
+      ],
+      "stageBox": [
+        1196.544,
+        69.12,
+        73.216,
+        106.496
+      ],
+      "variants": [
+        {
+          "path": "variants/Size/Tshirt_size_S_2.w768.webp",
+          "width": 27,
+          "height": 39,
+          "bytes": 1308,
+          "sha256": "0f87e9feba2dca58bf52653ce9b883e3b43e25af4e8cd44f72ad01b8c178c093"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_S_2.w1536.webp",
+          "width": 55,
+          "height": 80,
+          "bytes": 3016,
+          "sha256": "d4bc46d5e91f16571ae65da1f2a2289cb0f268e9ce4cb6252812b4c285c33e4f"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_S_2.w2560.webp",
+          "width": 92,
+          "height": 134,
+          "bytes": 5514,
+          "sha256": "03f6cdf2b3c935f2d121b31845ee41c1e9cd8bfc85ded982b9764b7b22c3c98f"
+        }
+      ]
+    }
+  },
+  "Size/Tshirt_size_XXL_6.png": {
+    "path": "assets/worktable/Size/Tshirt_size_XXL_6.png",
+    "bbox": [
+      913.92,
+      78.848,
+      979.968,
+      173.056
+    ],
+    "sha256": "a88c790a52974ed47b0888c7b03d49bf30382870bac7ea0ba9e5bb3c7fb34494",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 189983,
+    "delivery": {
+      "crop": [
+        1781,
+        151,
+        136,
+        190
+      ],
+      "stageBox": [
+        911.872,
+        77.312,
+        69.632,
+        97.28
+      ],
+      "variants": [
+        {
+          "path": "variants/Size/Tshirt_size_XXL_6.w768.webp",
+          "width": 26,
+          "height": 36,
+          "bytes": 1146,
+          "sha256": "7f0af64b422747c4c6353562cb3a35f5733b90e2812b4d502dfbefd604c9d0fb"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_XXL_6.w1536.webp",
+          "width": 52,
+          "height": 73,
+          "bytes": 2310,
+          "sha256": "9f50383f7cd7c039676afd7f8b3f482095b05a07a748f7717c67637bad6c2798"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_XXL_6.w2560.webp",
+          "width": 87,
+          "height": 122,
+          "bytes": 4258,
+          "sha256": "a82f2581919bdb71b1bfc0970528508562debf8d851362699578bec28d691eb6"
+        }
+      ]
+    }
+  },
+  "Size/Tshirt_size_M_3.png": {
+    "path": "assets/worktable/Size/Tshirt_size_M_3.png",
+    "bbox": [
+      1129.472,
+      81.408,
+      1193.472,
+      177.152
+    ],
+    "sha256": "b2d7bf05230b9d0facd093d48322d32241673e4e57dff9dfdf65b3292e1e1e60",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 192375,
+    "delivery": {
+      "crop": [
+        2203,
+        156,
+        131,
+        193
+      ],
+      "stageBox": [
+        1127.936,
+        79.872,
+        67.072,
+        98.816
+      ],
+      "variants": [
+        {
+          "path": "variants/Size/Tshirt_size_M_3.w768.webp",
+          "width": 25,
+          "height": 37,
+          "bytes": 1196,
+          "sha256": "55a989cf69c784a79bbc79657c29e22a5cc7ab4d2f69813f89b582f1ef842bad"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_M_3.w1536.webp",
+          "width": 50,
+          "height": 74,
+          "bytes": 2678,
+          "sha256": "17274eac84783e6dcd86f7161827818e8b0134a5858b83e309a01792e8d4c039"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_M_3.w2560.webp",
+          "width": 84,
+          "height": 124,
+          "bytes": 4568,
+          "sha256": "359c14bf3997cc6f71341c565a23414bca95be721d669f18ff67bbe9ea8160a6"
+        }
+      ]
+    }
+  },
+  "Size/Tshirt_size_XL_5.png": {
+    "path": "assets/worktable/Size/Tshirt_size_XL_5.png",
+    "bbox": [
+      985.6,
+      80.896,
+      1048.576,
+      175.104
+    ],
+    "sha256": "6c24d4dc3323cd11024b84d7fdb1c127fcc4a710e1f1acb3970b740287eda399",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 190525,
+    "delivery": {
+      "crop": [
+        1922,
+        155,
+        129,
+        190
+      ],
+      "stageBox": [
+        984.064,
+        79.36,
+        66.048,
+        97.28
+      ],
+      "variants": [
+        {
+          "path": "variants/Size/Tshirt_size_XL_5.w768.webp",
+          "width": 25,
+          "height": 37,
+          "bytes": 1114,
+          "sha256": "227ce3d3c2adf7d70b5413cfcd4a05245ea6abbf87ec709776b9975c9f026d50"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_XL_5.w1536.webp",
+          "width": 50,
+          "height": 74,
+          "bytes": 2378,
+          "sha256": "41af216d40686a057ba263a0baa93de6d734706ae3e4c3aef67940b550033cab"
+        },
+        {
+          "path": "variants/Size/Tshirt_size_XL_5.w2560.webp",
+          "width": 83,
+          "height": 122,
+          "bytes": 4230,
+          "sha256": "d4cddbb6d3593d1dd0e3e6a947788924a167a7573db178ea2c339f3504d25e42"
+        }
+      ]
+    }
+  },
+  "__initialScene": {
+    "generatedFromLayers": [
+      "Artist-edit-backdrop-1.png",
+      "Garment style/Garment_style_backboard_5.png",
+      "Garment style/Garment_style_title_1.png",
+      "Garment style/Garment_style_title_2.png",
+      "Garment style/Garment_style_title_3.png",
+      "Garment style/Garment_style_1_regular.png",
+      "Garment style/Garment_style_2_drop_shoulder.png",
+      "Garment style/Garment_style_3_full_sleeve.png",
+      "Garment style/Garment_style_4_hoodie.png",
+      "Tshirt color/Tshirt_color_box_back_without_front_panel.png",
+      "Tshirt color/Tshirt_color_title_1.png",
+      "Tshirt color/Tshirt_color_title_2.png",
+      "Tshirt color/Tshirt_color_title_3.png",
+      "Tshirt color/Tshirt_color_1.png",
+      "Tshirt color/Tshirt_color_2.png",
+      "Tshirt color/Tshirt_color_3.png",
+      "Tshirt color/Tshirt_color_4.png",
+      "Tshirt color/Tshirt_color_5.png",
+      "Tshirt color/Tshirt_color_6.png",
+      "Tshirt color/Tshirt_color_box_front_panel.png",
+      "Size/Tshirt_size_title_1.png",
+      "Size/Tshirt_size_XXL_6.png",
+      "Size/Tshirt_size_XL_5.png",
+      "Size/Tshirt_size_L_4.png",
+      "Size/Tshirt_size_M_3.png",
+      "Size/Tshirt_size_S_2.png",
+      "Upload image notebook/Upload_image_notebook_1.png",
+      "Upload image notebook/Upload_image_notebook_title_2.png",
+      "Upload image notebook/Upload_image_notebook_title_3.png",
+      "Upload image notebook/Upload_image_notebook_upload_button_4.png",
+      "Print size/Print_size_backboard_3.png",
+      "Print size/Print_size_title_1.png",
+      "Print size/Print_size_title_2.png",
+      "Print size/Print_size_A3_1.png",
+      "Print size/Print_size_A4_2.png",
+      "Tshirts/walnut_table_background_exact_tone_4K_1.png",
+      "Worker/Mini_worker_1.png",
+      "Worker/Mini_worker_1.pn2.png",
+      "Worker/Mini_worker_1.pn3.png"
+    ],
+    "variants": [
+      {
+        "path": "variants/preview/assembled-regular.w768.webp",
+        "width": 768,
+        "height": 432,
+        "bytes": 92304,
+        "sha256": "ec4b84b669f8980d8c16dbf528f9a742f5d81b4837f5eb0d934731af8a6f834b"
+      },
+      {
+        "path": "variants/preview/assembled-regular.w1536.webp",
+        "width": 1536,
+        "height": 864,
+        "bytes": 272404,
+        "sha256": "3f89f35d5d7f3012f3091f2f35ae48c2a8f6b6465276b44735253477fd884595"
+      },
+      {
+        "path": "variants/preview/assembled-regular.w2560.webp",
+        "width": 2560,
+        "height": 1440,
+        "bytes": 523188,
+        "sha256": "55e535fe664f8229115e4c3f0647a682e509d9544ecf90584d4028695c3a3f2c"
+      }
+    ],
+    "garments": {
+      "regular": {
+        "variants": [
+          {
+            "path": "variants/preview/assembled-regular.w768.webp",
+            "width": 768,
+            "height": 432,
+            "bytes": 92304,
+            "sha256": "ec4b84b669f8980d8c16dbf528f9a742f5d81b4837f5eb0d934731af8a6f834b"
+          },
+          {
+            "path": "variants/preview/assembled-regular.w1536.webp",
+            "width": 1536,
+            "height": 864,
+            "bytes": 272404,
+            "sha256": "3f89f35d5d7f3012f3091f2f35ae48c2a8f6b6465276b44735253477fd884595"
+          },
+          {
+            "path": "variants/preview/assembled-regular.w2560.webp",
+            "width": 2560,
+            "height": 1440,
+            "bytes": 523188,
+            "sha256": "55e535fe664f8229115e4c3f0647a682e509d9544ecf90584d4028695c3a3f2c"
+          }
+        ]
+      },
+      "dropShoulder": {
+        "variants": [
+          {
+            "path": "variants/preview/assembled-dropShoulder.w768.webp",
+            "width": 768,
+            "height": 432,
+            "bytes": 92320,
+            "sha256": "5beb5380136a093ada31018ba481ca21b5f196bc01304527778366273e44a234"
+          },
+          {
+            "path": "variants/preview/assembled-dropShoulder.w1536.webp",
+            "width": 1536,
+            "height": 864,
+            "bytes": 274060,
+            "sha256": "9bca6c98781f3b74a2f8a35cd651a85723f9fe8e4966d29f1e66f6c602af4af6"
+          },
+          {
+            "path": "variants/preview/assembled-dropShoulder.w2560.webp",
+            "width": 2560,
+            "height": 1440,
+            "bytes": 528098,
+            "sha256": "b12ee19b305d6a5ccd036ae1442b36b6264c6739c23c73d20bb60cd5193cbf9a"
+          }
+        ]
+      },
+      "fullSleeve": {
+        "variants": [
+          {
+            "path": "variants/preview/assembled-fullSleeve.w768.webp",
+            "width": 768,
+            "height": 432,
+            "bytes": 91866,
+            "sha256": "1e43540b3db68bd77fbafd4fc948e94c5d263c76aceef40c7c138938bd7476fb"
+          },
+          {
+            "path": "variants/preview/assembled-fullSleeve.w1536.webp",
+            "width": 1536,
+            "height": 864,
+            "bytes": 271974,
+            "sha256": "c09a8b48883d2170f9ae830408bed54528d6a994ebf279ea5eb9f966474a7e67"
+          },
+          {
+            "path": "variants/preview/assembled-fullSleeve.w2560.webp",
+            "width": 2560,
+            "height": 1440,
+            "bytes": 524180,
+            "sha256": "570c95dfb9cef1cb7cc17288a8a1bdea9583824a76a5f186f2f40742dc3fa288"
+          }
+        ]
+      },
+      "hoodie": {
+        "variants": [
+          {
+            "path": "variants/preview/assembled-hoodie.w768.webp",
+            "width": 768,
+            "height": 432,
+            "bytes": 94126,
+            "sha256": "9ca2606369dc31291a76457f1eb2cb4459922c7c0274d7b569e2a9dfec0849a5"
+          },
+          {
+            "path": "variants/preview/assembled-hoodie.w1536.webp",
+            "width": 1536,
+            "height": 864,
+            "bytes": 276220,
+            "sha256": "65e873bfa71f5bd206440237065935139ec83f274437da05edbf5fa7b2ed2149"
+          },
+          {
+            "path": "variants/preview/assembled-hoodie.w2560.webp",
+            "width": 2560,
+            "height": 1440,
+            "bytes": 533418,
+            "sha256": "624929fd1a1db61b2e4cf8983d829f6a5bdbd9da08ea45b872247edd8b3c6831"
+          }
+        ]
+      }
+    }
+  }
+}

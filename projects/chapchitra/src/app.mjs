@@ -618,12 +618,9 @@ async function boot(){
       'Tshirts/walnut_table_background_exact_tone_4K-3.png',
       'Tshirts/walnut_table_background_exact_tone_4K-4.png'];
     artworkReady=required.every(path=>entries[path]?.original?.join('x')==='4000x2250');
-    if(artworkReady){
-     artworkReady=(await Promise.all(required.map(path=>fetch(
-      '/assets/worktable/'+path.split('/').map(encodeURIComponent).join('/'),
-      {method:'HEAD'}
-     ).then(result=>result.ok).catch(()=>false)))).every(Boolean);
-    }
+    // Manifests and checksums replace five serial cross-network HEAD checks.
+    // Image loading is handled progressively by the artwork controller.
+    if(artworkReady)artworkReady=required.every(path=>entries[path].delivery?.variants?.length===3)&&!!entries.__initialScene;
    }
   }catch(error){console.info('Artist’s Edit layered artwork not installed yet:',error)}
   if(artworkReady){
