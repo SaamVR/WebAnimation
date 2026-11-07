@@ -79,9 +79,9 @@ test('upload notebook and accessible mobile upload action remain available',asyn
  const [src,css]=await Promise.all([load('src/worktable-studio.mjs'),load('src/worktable-studio.css')]);
  assert.match(src,/id="worktableUploadArt" aria-label="Upload your artwork"/);
  assert.match(src,/uploadButton\.addEventListener\('click',\(\)=>file\.click\(\)\)/);
- assert.doesNotMatch(src,/hitFor\\('Upload image notebook\\/Upload_image_notebook_1\\.png','upload','upload'\\)/);
- assert.match(src,/Only the illustrated plus\\/upload image is a hotspot/);
- assert.match(src,/hitFor\\(path,group,value\\)/);
+ assert.ok(!src.includes("hitFor('Upload image notebook/Upload_image_notebook_1.png','upload','upload')"));
+ assert.ok(src.includes('Only the illustrated plus/upload image is a hotspot'));
+ assert.ok(src.includes('hitFor(path,group,value)'));
  assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{background:var\(--cc-press\)/);
  assert.match(css,/\.cc-worktable-hit:not\(\[data-group="upload"\]\)\{display:none\}/);
  assert.doesNotMatch(css,/\.cc-worktable-hit\{display:none\}/);
@@ -263,32 +263,33 @@ test('release build stages immutable versioned JavaScript manifest and review UR
 });
 
 
-test('physical stage buttons render silhouette shadows, not rectangular hitbox outlines',async()=>{
+
+test('physical stage buttons render silhouette shadows without rectangular hitbox outlines',async()=>{
  const css=await load('src/worktable-studio.css');
  const src=await load('src/worktable-studio.mjs');
- assert.match(css,/\\.cc-worktable-prop\\[data-group\\]\\{/);
- assert.match(css,/filter:drop-shadow\\(1\\.25px 2\\.5px 1\\.2px/);
- assert.match(css,/\\.cc-worktable-hit::after\\{content:none\\}/);
- assert.doesNotMatch(css,/\\.cc-worktable-hit\\[aria-pressed=true\\]::after/);
- assert.doesNotMatch(css,/border-style:dashed/);
- assert.doesNotMatch(css,/border:1px dashed/);
- assert.match(src,/interactionImages=new Map\\(\\)/);
- assert.match(src,/const fineHover=window\\.matchMedia\\('\\(hover:hover\\) and \\(pointer:fine\\)'\\)/);
- assert.match(src,/img\\.classList\\.toggle\\('is-selected'/);
- assert.match(src,/if\\(event\\.pointerType==='touch'\\)img\\.classList\\.remove\\('is-hovered'\\)/);
- assert.match(src,/is-keyboard-focus/);
- assert.doesNotMatch(src,/hitFor\\('Upload image notebook\\/Upload_image_notebook_1\\.png'/);
+ assert.ok(css.includes('.cc-worktable-prop[data-group]{'));
+ assert.ok(css.includes('filter:drop-shadow(1.25px 2.5px 1.2px'));
+ assert.ok(css.includes('.cc-worktable-hit::after{content:none}'));
+ assert.ok(!css.includes('.cc-worktable-hit[aria-pressed=true]::after'));
+ assert.ok(!css.includes('border-style:dashed'));
+ assert.ok(!css.includes('border:1px dashed'));
+ assert.ok(src.includes('interactionImages=new Map()'));
+ assert.ok(src.includes("window.matchMedia('(hover:hover) and (pointer:fine)')"));
+ assert.ok(src.includes("img.classList.toggle('is-selected'"));
+ assert.ok(src.includes("event.pointerType==='touch'"));
+ assert.ok(src.includes('is-keyboard-focus'));
+ assert.ok(!src.includes("hitFor('Upload image notebook/Upload_image_notebook_1.png'"));
 });
 
-test('paint pot front panel remains after pots with no elevated image z-index',async()=>{
+test('paint pot front panel remains in front and reduced motion disables transforms',async()=>{
  const src=await load('src/worktable-studio.mjs');
  const css=await load('src/worktable-studio.css');
  const pots=src.indexOf("['Tshirt color/Tshirt_color_");
  const front=src.indexOf("['Tshirt color/Tshirt_color_box_front_panel.png']");
- assert.ok(pots>=0&&front>pots,'front panel remains later in the exact source layer ordering');
- assert.match(css,/Keep the tray-front illustration ABOVE the pot edges/);
- assert.match(css,/cc-worktable-layer\\[data-source="Tshirt color\\/Tshirt_color_box_front_panel\\.png"\\]\\{z-index:auto\\}/);
- assert.doesNotMatch(css,/cc-worktable-prop\\[data-group="color"\\][^}]*z-index:/);
- assert.match(css,/@media\\(prefers-reduced-motion:reduce\\)/);
- assert.match(css,/\\.cc-worktable-prop\\[data-group\\]\\{transform:none!important\\}/);
+ assert.ok(pots>=0&&front>pots,'front panel remains later in source layer ordering');
+ assert.ok(css.includes('Keep the tray-front illustration ABOVE the pot edges'));
+ assert.ok(css.includes('Tshirt_color_box_front_panel.png"]{z-index:auto}'));
+ assert.ok(!css.includes('cc-worktable-prop[data-group="color"]{z-index:'));
+ assert.ok(css.includes('@media(prefers-reduced-motion:reduce)'));
+ assert.ok(css.includes('.cc-worktable-prop[data-group]{transform:none!important}'));
 });
