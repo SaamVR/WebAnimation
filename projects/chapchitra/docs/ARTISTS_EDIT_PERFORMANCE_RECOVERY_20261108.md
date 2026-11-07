@@ -20,9 +20,9 @@
 ## Reproducible cold-cache comparison (same conditions)
 - Browser: headless Linux Chromium, CDP network instrumentation, JavaScript and image resource collection, fresh incognito context, cache disabled, `latency=70ms` and throughput throttled at 10 or 4 Mbps.
 - Source builds: exact baseline at `0cd26b8` and new branch served separately from the same local host; no additional Render CDN assumptions. 1440 px desktop / 390 px mobile simulated viewport (not physical iPad).
-- **First complete worktable displayed, desktop 10Mbps:** 22.16 s original → **1.90 s optimized**.
-- **First complete worktable displayed, 390px mobile 4Mbps:** 51.75 s original → **2.33 s optimized**.
-- **All individual layers hydrated:** 22.19 s → 3.47 s desktop; 51.78 s → 4.02 s mobile.
+- **First complete worktable displayed, desktop 10Mbps:** 22.16 s original → **1.90 s optimized** in initial candidate; **3.16 s** in a later single-run final-four-preview sample. One run exceeds the 3.0s stretch target; do not claim guaranteed compliance.
+- **First complete worktable displayed, 390px mobile 4Mbps:** 51.75 s original → **2.33 s optimized** in initial candidate; **2.85 s** in a later single-run final-four-preview sample.
+- **All individual layers hydrated:** 22.19 s → 3.47 s desktop (4.94 s later sample); 51.78 s → 4.02 s mobile (5.03 s later sample).
 - **Image transfer measured by browser:** 24,805,008 bytes original → **830,232 bytes** optimized desktop; 24,805,008 → **309,249 bytes** optimized mobile.
 - **All-request transferred bytes including document/fonts/scripts:** 25,319,504 bytes original → **1,447,097 bytes** optimized desktop; 25,319,504 → **926,005 bytes** optimized mobile.
 - **Entire 129 image-variant artifact:** 2,248,956 bytes; three ready-scene WebPs 887,896 bytes collectively; optimized published worktable directory ~3.4 MiB. These are artifact sizes, not necessarily a single page download.
@@ -37,15 +37,27 @@ Separate unthrottled same-machine Chromium instrumentation wrapped `HTMLImageEle
 ## Visual fidelity / interaction
 - All four final garment browser screenshot crops compared at identical 1440×810 resolution to a reconstruction of the original untouched full-resolution PNG runtime layer stack with the matching garment.
 - Comparison screenshots and difference heatmaps are in `docs/performance-evidence/`, along with `visual-diff.json`.
-- Mean absolute RGB differences (0–255): Regular **2.865**, Drop Shoulder **2.859**, Full Sleeve **2.826**, Hoodie **2.972**. Differences include selected-state outlines in browser output that do not appear in the independently assembled original source layer stack, plus WebP resampling.
-- Browser QA: **35/35 assertions passed**, four garment screenshots, five sizes, six colors, A3/A4, upload, resize, reset, removal, keyboard focus, responsive 1194/834/390/320 widths with no horizontal overflow, 44px mobile upload, reduced-motion. **63/63 automated build tests passed.**
+- Mean absolute RGB differences (0–255) from final QA capture with unrelated sticky navbar and selected-state outlines suppressed **only for measurement**: Regular **2.640**, Drop Shoulder **2.634**, Full Sleeve **2.601**, Hoodie **2.747**. Residual difference includes image scaling and WebP resampling.
+- Browser QA: **35/35 assertions passed**, four garment screenshots, five sizes, six colors, A3/A4, upload, resize, reset, removal, keyboard focus, responsive 1194/834/390/320 widths with no horizontal overflow, 44px mobile upload, reduced-motion. **65/65 automated build tests passed.**
 - **Limits:** four separately supplied *full-composition reference PNG binaries* are not included in the checksummed runtime source archive. Prior PR #59 reports comparing original layer assembly to those references; this run additionally verifies source-layer-to-browser visual fidelity. Physical Safari/Chrome on the owner's iPad have not been exercised; touch/mobile Safari memory behavior and actual release-server speed remain an owner validation gate.
 
 ## Independent critic / release decision
 **REVIEW CANDIDATE CONDITIONAL PASS**, not production acceptance:
-- Proof: the same original image layers were trimmed/registered; no source artwork recolored/redrawn; tests and controlled cold-cache measurements meet numerical delivery/interaction targets.
+- Proof: the same original image layers were trimmed/registered; no source artwork recolored/redrawn; very large network and interaction improvements under controlled conditions. **A 3.16s desktop run exceeds the <=3s target**, and physical iPad performance remains unmeasured.
 - Residual risks: compression creates small measurable pixel differences, intentionally selected controls differ from static reference imagery, WebKit/iPad not verified, and a first-frame fetch failure forces slower layer-by-layer recovery. When a garment is selected during background hydration, its separate complete preview is decoded and atomically swapped; network failures retain the last complete scene until recoverable layers are ready.
 - Approval remains with owner following Render visual review and physical iPad. No unrelated features or merge are authorized.
 
 ## Rebuild / rollback
 Run `cd projects/chapchitra && npm ci && npm run optimize:artwork && npm run build`. The master originals are checked and used **only at build time**. To roll back this review deployment, restore `deploy/chapchitra-render-review` to known good `0cd26b8b7d89ce4de69ff61e6643101cb430d4b7` and let the same existing Render service redeploy. Do not merge PR #59 or this performance PR as an implicit release action.
+
+## Final critical-path refinement, executable QA and evidence
+- Artist's Edit HTML now preloads the initial registered WebP and module/CSS dependencies; route-level verified manifest is passed through to `mountWorktable` rather than fetched twice. This refinement passed source and full browser QA. A fresh reliable controlled benchmark after preloading is still needed; do **not** use measurements recorded before this change as proof that the desktop 3.0s stretch target now passes.
+- Deferred garment switching, color and local artwork remain usable while image decoding is artificially delayed; a deliberately failed worker-image request keeps the stage operational without a persistent `aria-busy` state.
+- Editable, reproducible browser tests are committed at `scripts/perf/{benchmark,qa,early-qa,visual-diff}.cjs`. Installation: `npm ci`; build: `npm run optimize:artwork && npm run build`; local server: `npm run preview`. Example command:
+```sh
+CHROMIUM_PATH=/snap/bin/chromium node scripts/perf/qa.cjs http://127.0.0.1:4173 final-qa
+CHROMIUM_PATH=/snap/bin/chromium node scripts/perf/early-qa.cjs http://127.0.0.1:4173
+node scripts/perf/visual-diff.cjs final-qa
+```
+- Four updated before/after comparisons and difference heatmaps are supplied as compressed WebP documents at `docs/performance-evidence/`. The reference base is a direct compositing of untouched runtime PNG layers; independently supplied four full-composition binary references are not part of this archive.
+- Browser source regression still passes 35/35 interaction assertions, 65/65 automated tests and an extra delayed-download plus network-failure scenario. Actual iPad Safari and browser GPU/OS memory remain open review gates.

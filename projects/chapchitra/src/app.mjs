@@ -608,8 +608,9 @@ async function boot(){
   // scene. Keep the existing configurator untouched until the complete asset
   // collection has actually been committed to this app.
   let artworkReady=false;
+  let artworkManifest=null;
   try{
-   const manifest=await fetch('/assets/worktable/manifest.json',{cache:'no-store'});
+   const manifest=await fetch('/assets/worktable/manifest.json',{cache:'force-cache'});
    if(manifest.ok){
     const entries=await manifest.json();
     const required=['Artist-edit-backdrop-1.png',
@@ -621,6 +622,7 @@ async function boot(){
     // Manifests and checksums replace five serial cross-network HEAD checks.
     // Image loading is handled progressively by the artwork controller.
     if(artworkReady)artworkReady=required.every(path=>entries[path].delivery?.variants?.length===3)&&!!entries.__initialScene;
+    if(artworkReady)artworkManifest=entries;
    }
   }catch(error){console.info('Artist’s Edit layered artwork not installed yet:',error)}
   if(artworkReady){
@@ -635,7 +637,7 @@ async function boot(){
     originalLayout.replaceWith(pending);
     // Mount a visible loading shell before decoding the full 4K original
     // artwork. The old form can be restored without leaving a broken scene.
-    await mountWorktable(pending,{manifestURL:'/assets/worktable/manifest.json',embedded:true});
+    await mountWorktable(pending,{manifestData:artworkManifest,embedded:true});
     const description=$('.route-head > p:last-child');
     if(description)description.textContent='Explore garment styles, sizes and colors, or preview your own artwork locally on the illustrated studio desk.';
    }catch(error){

@@ -59,11 +59,14 @@ const sourceSet = variants => variants.map(v=>variantURL(v)+' '+v.width+'w').joi
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const percent=(v,size)=>`${v/size*100}%`;
 
-export async function mountWorktable(root,{manifestURL='/assets/worktable/manifest.json',embedded=false}={}){
+export async function mountWorktable(root,{manifestURL='/assets/worktable/manifest.json',manifestData=null,embedded=false}={}){
  if(!root)throw new Error('Worktable mount element is required');
- const response=await fetch(manifestURL,{cache:'force-cache'});
- if(!response.ok)throw new Error('The approved full-canvas artwork manifest has not been installed');
- const manifest=await response.json();
+ let manifest=manifestData;
+ if(!manifest){
+  const response=await fetch(manifestURL,{cache:'force-cache'});
+  if(!response.ok)throw new Error('The approved full-canvas artwork manifest has not been installed');
+  manifest=await response.json();
+ }
  const missing=[...supportedAssets].filter(x=>!manifest[x] || manifest[x].original.join('x')!=='4000x2250' || manifest[x].delivery?.variants?.length!==3);
  if(!manifest.__initialScene?.variants?.length)throw new Error('The assembled preview is unavailable');
  if(missing.length)throw new Error('Missing approved 4000×2250 layers: '+missing.join(', '));

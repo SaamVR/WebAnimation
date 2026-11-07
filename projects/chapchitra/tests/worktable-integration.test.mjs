@@ -205,3 +205,32 @@ test('new renderer keeps UI live while images hydrate and reuses cropped garment
  assert.match(source,/const swapPreview=async/);
  assert.match(source,/if\(!hydrated\)return swapPreview/);
 });
+
+
+test('four complete previews offer all responsive widths and safe deferred switching',async()=>{
+ const assets=JSON.parse(await load('browser-assets/worktable/manifest.json'));
+ const src=await load('src/worktable-studio.mjs');
+ assert.deepEqual(Object.keys(assets.__initialScene.garments),['regular','dropShoulder','fullSleeve','hoodie']);
+ for(const [garment,info] of Object.entries(assets.__initialScene.garments)){
+  assert.equal(info.variants.length,3);
+  assert.deepEqual(info.variants.map(v=>v.width),[768,1536,2560]);
+  for(const v of info.variants){
+   const bytes=await readFile(resolve(root,'browser-assets/worktable',v.path));
+   assert.equal(bytes.length,v.bytes);
+  }
+ }
+ assert.match(src,/const swapPreview=async\(wanted,token\)=>/);
+ assert.match(src,/if\(!hydrated\)return swapPreview\(wanted,token\)/);
+ assert.match(src,/preview\.replaceWith\(next\);preview=next/);
+ const css=await load('src/worktable-studio.css');
+ assert.match(css,/\.cc-worktable\.is-hydrating \.cc-worktable-print\{z-index:6\}/);
+ assert.match(css,/\.cc-worktable\.is-hydrating \.cc-worktable-tint\{z-index:5\}/);
+});
+test('worktable critical image is preloaded and manifest is reused once',async()=>{
+ const [html,app,studio]=await Promise.all([load('src/artists-edit/index.html'),load('src/app.mjs'),load('src/worktable-studio.mjs')]);
+ assert.match(html,/rel="preload" as="image".*assembled-regular/);
+ assert.match(html,/rel="modulepreload" href="\.\.\/worktable-studio.mjs"/);
+ assert.match(app,/artworkManifest=entries/);
+ assert.match(app,/manifestData:artworkManifest/);
+ assert.match(studio,/if\(!manifest\)/);
+});
