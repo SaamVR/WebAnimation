@@ -627,16 +627,23 @@ async function boot(){
    }
   }catch(error){console.info('Artist’s Edit layered artwork not installed yet:',error)}
   if(artworkReady){
+   let originalLayout=null,pending=null,sheet=null;
    try{
     const {mountWorktable}=await import('./worktable-studio.mjs');
-    const pending=document.createElement('section');
+    originalLayout=$('.customize-layout');
+    pending=document.createElement('section');
     pending.className='cc-worktable-mount';
+    sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/worktable-studio.css';sheet.dataset.ccWorktable='ready';
+    document.head.append(sheet);
+    originalLayout.replaceWith(pending);
+    // Mount a visible loading shell before decoding the full 4K original
+    // artwork. The old form can be restored without leaving a broken scene.
     await mountWorktable(pending,{manifestURL:'/assets/worktable/manifest.json',embedded:true});
-    const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/worktable-studio.css';sheet.dataset.ccWorktable='ready';document.head.append(sheet);
-    $('.customize-layout').replaceWith(pending);
     const description=$('.route-head > p:last-child');
     if(description)description.textContent='Explore garment styles, sizes and colors, or preview your own artwork locally on the illustrated studio desk.';
    }catch(error){
+    if(originalLayout&&pending?.isConnected)pending.replaceWith(originalLayout);
+    sheet?.remove();
     console.error('Artist’s Edit layered worktable failed safely; existing preview retained.',error);
     artworkReady=false;
    }
