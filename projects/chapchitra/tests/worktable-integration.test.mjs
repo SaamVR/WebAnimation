@@ -7,7 +7,7 @@ import {dirname,resolve} from 'node:path';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const load=path=>readFile(resolve(root,path),'utf8');
 
-test('actual owner asset ZIP maps to exactly four untrimmed 4000×2250 garments',async()=>{
+test('original owner artwork remains immutable while trimmed browser variants are independently traceable',async()=>{
  const meta=JSON.parse(await load('docs/ARTISTS_EDIT_ASSET_ALPHA_MANIFEST.json'));
  const source=await load('src/worktable-studio.mjs');
  const garments=[
@@ -23,7 +23,7 @@ test('actual owner asset ZIP maps to exactly four untrimmed 4000×2250 garments'
   assert.ok(source.includes(path));
  }
  assert.ok(source.includes('Artist-edit-backdrop-1.png'));
- assert.match(source,/All artwork is used at full original 4000×2250 canvas coordinates, untrimmed/);
+ assert.match(source,/Immutable 4000×2250 artwork is registered on the same 2048×1152 stage/);
  assert.match(source,/img\.className='cc-worktable-layer '/);
  assert.match(source,/img\.dataset\.source=path/);
 });
@@ -48,11 +48,13 @@ test('every required interactive control uses original full-canvas overlay and e
  assert.match(source,/addEventListener\('pointerenter'/);
 });
 
-test('precisely layered artwork never intercepts click targets or crops individual sources',async()=>{
+test('alpha-trimmed layers use shared stage coordinates and never intercept click targets',async()=>{
  const css=await load('src/worktable-studio.css');
  const source=await load('src/worktable-studio.mjs');
  assert.match(css,/\.cc-worktable-stage\{[^}]*aspect-ratio:16\/9/);
- assert.match(css,/\.cc-worktable-layer\{[^}]*inset:0[^}]*width:100%[^}]*height:100%[^}]*object-fit:fill[^}]*pointer-events:none/);
+ assert.match(css,/\.cc-worktable-layer\{[^}]*object-fit:fill[^}]*pointer-events:none/);
+ assert.match(source,/img\.style\.left=percent\(box\[0\],2048\)/);
+ assert.match(source,/img\.style\.top=percent\(box\[1\],1152\)/);
  assert.match(css,/\.cc-worktable-hit\{[^}]*left:var\(--x\)[^}]*top:var\(--y\)[^}]*width:var\(--w\)/);
  assert.doesNotMatch(source,/\b(?:crop|resizeBitmap|createImageBitmap)\(/);
  assert.match(source,/for\(const path of ALL\.workers\)addImage\(path,'cc-worktable-worker'\)/);
@@ -93,7 +95,7 @@ test('print size preview is conservatively limited until production masks/specs 
  assert.match(src,/fabric-color accuracy require manufacturer calibration/);
 });
 
-test('real PNGs are gated so existing Artist Edit route remains intact before binary transfer',async()=>{
+test('manifest is validated without stale-cache reuse and never silently falls back to old configurator',async()=>{
  const app=await load('src/app.mjs');
  const assetManifestInRuntime=await import('../src/worktable-stage.mjs');
  assert.ok(assetManifestInRuntime.WORKTABLE_VIEWBOX.width===2048);
@@ -101,27 +103,159 @@ test('real PNGs are gated so existing Artist Edit route remains intact before bi
  assert.match(app,/let artworkReady=false/);
  assert.match(app,/if\(artworkReady\)\{/);
  assert.match(app,/mountWorktable\(pending/);
- assert.match(app,/if\(!artworkReady\)\{/);
+ assert.doesNotMatch(app,/if\(!artworkReady\)\{/);
+ assert.match(app,/cache:'no-store'/);
+ assert.match(app,/MANIFEST_VALIDATION_FAILED/);
+ assert.match(app,/WORKTABLE_RENDER_FAILED/);
+ assert.match(app,/previous\.style\.display='none'/);
  assert.match(app,/id="customForm"/);
- assert.match(app,/Artist’s Edit layered worktable failed safely/);
+ assert.match(app,/Illustrated worktable unavailable/);
  await assert.rejects(load('src/assets/worktable/manifest.json'),/ENOENT/,'asset manifest is intentionally not yet deployed');
 });
 
 
-test('worktable delays visual reveal until original full-size PNGs are decoded',async()=>{
+test('complete compiled first frame reveals before independent bounded decoded layers',async()=>{
  const app=await load('src/app.mjs');
  const stage=await load('src/worktable-studio.mjs');
  const css=await load('src/worktable-studio.css');
- assert.match(stage,/body\.className='cc-worktable is-loading'/);
+ assert.match(stage,/body\.className='cc-worktable is-loading is-hydrating'/);
  assert.match(stage,/aria-busy="true"/);
  assert.match(stage,/visualImages\.push\(img\)/);
- assert.match(stage,/await Promise\.all\(visualImages\.map\(async image=>/);
- assert.match(stage,/await image\.decode\(\)/);
+ assert.doesNotMatch(stage,/await Promise\.all\(visualImages\.map/);
+ assert.match(stage,/await preview\.decode\(\)/);
+ assert.match(stage,/await Promise\.all\(\[worker\(\),worker\(\)\]\)/);
+ assert.match(stage,/void hydrate\(\)/);
+ assert.match(stage,/body\.classList\.remove\('is-hydrating'\)/);
  assert.match(stage,/body\.classList\.remove\('is-loading'\)/);
  assert.match(stage,/stage\.removeAttribute\('aria-busy'\)/);
- assert.match(css,/\.cc-worktable\.is-loading \.cc-worktable-layer:not\(\.cc-worktable-desk\)/);
+ assert.match(css,/\.cc-worktable\.is-hydrating \.cc-worktable-layer:not\(\.cc-worktable-preview\)/);
  assert.match(css,/\.cc-worktable-loading\{/);
- assert.match(app,/originalLayout\.replaceWith\(pending\)/);
- assert.match(app,/pending\.replaceWith\(originalLayout\)/);
- assert.match(app,/sheet\?\.remove\(\)/);
+ assert.match(app,/previous\.replaceWith\(pending\)/);
+ assert.doesNotMatch(app,/pending\.replaceWith\(originalLayout\)/);
+ assert.match(app,/diagnostic\('WORKTABLE_RENDER_FAILED',error\)/);
+ assert.doesNotMatch(app,/method:'HEAD'/);
+});
+
+
+test('all 43 optimized runtime assets preserve source SHA, original position and three transparent WebP sizes',async()=>{
+ const {stat,readFile}=await import('node:fs/promises');
+ const {createHash}=await import('node:crypto');
+ const src=JSON.parse(await load('docs/ARTISTS_EDIT_ASSET_ALPHA_MANIFEST.json'));
+ const delivery=JSON.parse(await load('browser-assets/worktable/manifest.json'));
+ const names=Object.keys(delivery).filter(x=>x!=='__initialScene');
+ assert.equal(names.length,43);
+ const s=2048/4000;
+ let aggregateBytes=0;
+ for(const name of names){
+  const original=src[name], next=delivery[name];
+  assert.equal(original.sha256,next.sha256);
+  assert.deepEqual(original.bbox,next.bbox);
+  assert.deepEqual(original.original,[4000,2250]);
+  const [x,y,w,h]=next.delivery.crop;
+  assert.ok(x>=0&&y>=0&&w>0&&h>0&&x+w<=4000&&y+h<=2250);
+  const b=next.delivery.stageBox;
+  assert.ok(Math.abs(b[0]-x*s)<1e-4);
+  assert.ok(Math.abs(b[1]-y*s)<1e-4);
+  assert.ok(Math.abs(b[2]-w*s)<1e-4);
+  assert.ok(Math.abs(b[3]-h*s)<1e-4);
+  assert.equal(next.delivery.variants.length,3);
+  for(const v of next.delivery.variants){
+   const buffer=await readFile(resolve(root,'browser-assets/worktable',v.path));
+   assert.equal(buffer.toString('ascii',0,4),'RIFF');
+   assert.equal(buffer.toString('ascii',8,12),'WEBP');
+   assert.equal(buffer.length,v.bytes);
+   assert.equal(createHash('sha256').update(buffer).digest('hex'),v.sha256);
+   aggregateBytes+=buffer.length;
+  }
+ }
+ assert.ok(aggregateBytes<3*1024*1024,'all 129 variants should be under 3MiB total');
+ assert.ok(!names.some(x=>x.startsWith('Full composition/')),'QA composites must never ship to runtime');
+});
+
+test('assembled initial scene is made only from source runtime layers, not reference compositions',async()=>{
+ const delivery=JSON.parse(await load('browser-assets/worktable/manifest.json'));
+ const {WORKTABLE_SOURCE_STACK}=await import('../src/worktable-studio.mjs');
+ assert.deepEqual(delivery.__initialScene.generatedFromLayers,WORKTABLE_SOURCE_STACK);
+ assert.equal(WORKTABLE_SOURCE_STACK.length,39);
+ assert.equal(delivery.__initialScene.variants.length,3);
+ const bytes=delivery.__initialScene.variants.reduce((s,v)=>s+v.bytes,0);
+ assert.ok(bytes<1200000,'all three assembled previews should total below 1.2 MB');
+ for(const garment of ['regular','dropShoulder','fullSleeve','hoodie']){
+  const scene=delivery.__initialScene.garments[garment];
+  assert.equal(scene.variants.length,3,'the '+garment+' complete scene must have all responsive variants');
+  assert.ok(scene.variants.every(v=>v.path.includes('assembled-'+garment)),'each variant belongs to the correct garment');
+ }
+
+});
+
+test('master archive is verified but never shipped as original 4K PNGs',async()=>{
+ const builder=await load('scripts/worktable-assets.mjs');
+ assert.match(builder,/createHash\('sha256'\)\.update\(buf\)/);
+ assert.match(builder,/optimizedRoot/);
+ assert.match(builder,/originalPNGsPublished:0/);
+ assert.match(builder,/if\(originalsOnly\)\{/);
+ assert.match(builder,/await cp\(optimizedRoot,resolve\(output,'assets\/worktable'\)/);
+});
+
+test('new renderer keeps UI live while images hydrate and reuses cropped garment mask',async()=>{
+ const source=await load('src/worktable-studio.mjs');
+ assert.match(source,/const loadOne=async img=>/);
+ assert.match(source,/const errors=\[\]/);
+ assert.match(source,/trial\.decode\(\)/);
+ assert.match(source,/updateTintMask\(\)/);
+ assert.match(source,/sourceSet\(info\.variants\)/);
+ assert.match(source,/img\.sizes=sizesFor/);
+ assert.match(source,/announce\('This garment image is temporarily unavailable/);
+ assert.match(source,/const swapPreview=async/);
+ assert.match(source,/if\(!hydrated\)return swapPreview/);
+});
+
+
+test('four complete previews offer all responsive widths and safe deferred switching',async()=>{
+ const assets=JSON.parse(await load('browser-assets/worktable/manifest.json'));
+ const src=await load('src/worktable-studio.mjs');
+ assert.deepEqual(Object.keys(assets.__initialScene.garments),['regular','dropShoulder','fullSleeve','hoodie']);
+ for(const [garment,info] of Object.entries(assets.__initialScene.garments)){
+  assert.equal(info.variants.length,3);
+  assert.deepEqual(info.variants.map(v=>v.width),[768,1536,2560]);
+  for(const v of info.variants){
+   const bytes=await readFile(resolve(root,'browser-assets/worktable',v.path));
+   assert.equal(bytes.length,v.bytes);
+  }
+ }
+ assert.match(src,/const swapPreview=async\(wanted,token\)=>/);
+ assert.match(src,/if\(!hydrated\)return swapPreview\(wanted,token\)/);
+ assert.match(src,/preview\.replaceWith\(next\);preview=next/);
+ const css=await load('src/worktable-studio.css');
+ assert.match(css,/\.cc-worktable\.is-hydrating \.cc-worktable-print\{z-index:6\}/);
+ assert.match(css,/\.cc-worktable\.is-hydrating \.cc-worktable-tint\{z-index:5\}/);
+});
+test('worktable critical image is preloaded and manifest is reused once',async()=>{
+ const [html,app,studio]=await Promise.all([load('src/artists-edit/index.html'),load('src/app.mjs'),load('src/worktable-studio.mjs')]);
+ assert.match(html,/rel="preload" as="image".*assembled-regular/);
+ assert.match(html,/rel="modulepreload" href="\.\.\/worktable-studio.mjs"/);
+ assert.match(app,/artworkManifest=entries/);
+ assert.match(app,/manifestData:artworkManifest/);
+ assert.match(studio,/if\(!manifest\)/);
+});
+
+
+test('release build stages immutable versioned JavaScript manifest and review URL',async()=>{
+ const src=await load('scripts/build.mjs');
+ for(const requirement of [
+  /execFileSync\('git',\['rev-parse','HEAD'\]/,
+  /const releaseDir=resolve\(output,'releases',release\)/,
+  /sourceManifest\.__deliveryBuild=release/,
+  /data-review-manifest/,
+  /artists-edit\/review/,
+  /manifestSHA256/,
+ ])assert.match(src,requirement);
+ const app=await load('src/app.mjs');
+ assert.match(app,/entries\.__deliveryBuild!==build/);
+ assert.match(app,/const response=await fetch\(manifestURL,\{cache:'no-store'\}\)/);
+ assert.doesNotMatch(app,/cache:'force-cache'/);
+ assert.match(app,/previous\.hidden=true/);
+ assert.match(app,/data.*review/i);
+ const html=await load('src/artists-edit/index.html');
+ assert.match(html,/body\[data-page="artists-edit"\] \.customize-layout\[hidden\]/);
 });

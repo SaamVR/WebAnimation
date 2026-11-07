@@ -27,7 +27,7 @@ function originalPayload(zip,index){
  return zip.subarray(begin,begin+size);
 }
 
-export async function installWorktableAssets(root,output){
+export async function installWorktableAssets(root,output,{originalsOnly=false}={}){
  const partRoot=resolve(root,'artpack-parts');
  const segments=[];
  for(let i=0;i<PARTS;i++){
@@ -61,9 +61,38 @@ export async function installWorktableAssets(root,output){
    const actual=createHash('sha256').update(buf).digest('hex');
    if(actual!==entry.sha256)throw new Error('Original PNG checksum mismatch: '+entry.path);
   }
-  await cp(src,resolve(output,'assets/worktable'),{recursive:true,force:true});
-  await stat(resolve(output,'assets/worktable/Artist-edit-backdrop-1.png'));
-  return {originals:entries.length,archiveBytes:archive.length,sha256:hash};
+  if(originalsOnly){
+   await cp(src,resolve(output,'assets/worktable'),{recursive:true,force:true});
+   return {originals:entries.length,sha256:hash,originalsOnly:true};
+  }
+  // The original 4000×2250 PNGs remain preserved in the pinned source archive.
+  // They are verification masters, not browser-delivery files.
+  const optimizedRoot=resolve(root,'browser-assets/worktable');
+  const browser=JSON.parse(await readFile(resolve(optimizedRoot,'manifest.json'),'utf8'));
+  const originalKeys=Object.keys(manifest).filter(name=>!name.startsWith('Full composition/'));
+  if(originalKeys.length!==43||Object.keys(browser).length!==44||!browser.__initialScene) {
+   throw new Error('Incomplete optimized runtime asset set');
+  }
+  for(const key of originalKeys){
+   const master=manifest[key], item=browser[key];
+   if(!item || item.sha256!==master.sha256 ||
+      JSON.stringify(item.bbox)!==JSON.stringify(master.bbox) ||
+      item.delivery?.variants?.length!==3)throw new Error('Master/optimized registration mismatch: '+key);
+  }
+  for(const item of Object.values(browser)){
+   const versions=item===browser.__initialScene ? Object.values(item.garments||{}).flatMap(garment=>garment.variants) : item.delivery?.variants||[];
+   for(const variant of versions){
+    if(!variant.path.startsWith('variants/')||variant.path.includes('..'))throw new Error('Unsafe optimized asset path');
+    const file=await readFile(resolve(optimizedRoot,variant.path));
+    if(file.length!==variant.bytes || createHash('sha256').update(file).digest('hex')!==variant.sha256)
+     throw new Error('Optimized delivery checksum mismatch: '+variant.path);
+   }
+  }
+  await cp(optimizedRoot,resolve(output,'assets/worktable'),{recursive:true,force:true});
+  await stat(resolve(output,'assets/worktable/variants/preview/assembled-regular.w1536.webp'));
+  return {originals:entries.length,deliveryLayers:originalKeys.length,
+   archiveBytes:archive.length,sha256:hash,
+   originalPNGsPublished:0};
  }finally{
   await rm(temp,{recursive:true,force:true});
  }

@@ -1,7 +1,7 @@
 import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableReducer } from './worktable-stage.mjs';
 
-// All artwork is used at full original 4000×2250 canvas coordinates, untrimmed.
-// Every visual layer shares the same 2048×1152 viewport. Alpha is not interactive.
+// Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
+// Cropped WebP browser variants retain original alpha coordinates and source SHA256.
 const ASSET_ROOT = '/assets/worktable/';
 const ALL = {
   backdrop: 'Artist-edit-backdrop-1.png',
@@ -13,6 +13,7 @@ const ALL = {
   },
   workers: ['Worker/Mini_worker_1.png','Worker/Mini_worker_1.pn2.png','Worker/Mini_worker_1.pn3.png'],
 };
+export const WORKTABLE_GARMENT_ASSETS=Object.freeze({...ALL.garment});
 const layers = [
   ['Garment style/Garment_style_backboard_5.png'],
   ['Garment style/Garment_style_title_1.png'],
@@ -40,6 +41,7 @@ const layers = [
   ['Print size/Print_size_A3_1.png','printSize','A3'],
   ['Print size/Print_size_A4_2.png','printSize','A4'],
 ];
+export const WORKTABLE_SOURCE_STACK=Object.freeze([ALL.backdrop,...layers.map(layer=>layer[0]),ALL.garment.regular,...ALL.workers]);
 const labels = {
   regular:'Regular Tee', dropShoulder:'Drop Shoulder',fullSleeve:'Full Sleeve',hoodie:'Hoodie',
   black:'Black',white:'White',red:'Red',yellow:'Yellow',blue:'Blue',green:'Green',
@@ -50,15 +52,23 @@ const dyeRGB = {
 };
 const supportedAssets=new Set([ALL.backdrop,...Object.values(ALL.garment),...ALL.workers,...layers.map(x=>x[0])]);
 const fmt = path=>ASSET_ROOT+path.split('/').map(encodeURIComponent).join('/');
+const sizesFor = widthFraction => `(max-width: 1540px) ${(widthFraction*100).toFixed(5)}vw, ${(widthFraction*1540).toFixed(2)}px`;
+const variantURL = variant => fmt(variant.path);
+const sourceSet = variants => variants.map(v=>variantURL(v)+' '+v.width+'w').join(', ');
+
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const percent=(v,size)=>`${v/size*100}%`;
 
-export async function mountWorktable(root,{manifestURL='/assets/worktable/manifest.json',embedded=false}={}){
+export async function mountWorktable(root,{manifestURL='/assets/worktable/manifest.json',manifestData=null,embedded=false}={}){
  if(!root)throw new Error('Worktable mount element is required');
- const response=await fetch(manifestURL,{cache:'force-cache'});
- if(!response.ok)throw new Error('The approved full-canvas artwork manifest has not been installed');
- const manifest=await response.json();
- const missing=[...supportedAssets].filter(x=>!manifest[x] || manifest[x].original.join('x')!=='4000x2250');
+ let manifest=manifestData;
+ if(!manifest){
+  const response=await fetch(manifestURL,{cache:'force-cache'});
+  if(!response.ok)throw new Error('The approved full-canvas artwork manifest has not been installed');
+  manifest=await response.json();
+ }
+ const missing=[...supportedAssets].filter(x=>!manifest[x] || manifest[x].original.join('x')!=='4000x2250' || manifest[x].delivery?.variants?.length!==3);
+ if(!manifest.__initialScene?.variants?.length)throw new Error('The assembled preview is unavailable');
  if(missing.length)throw new Error('Missing approved 4000×2250 layers: '+missing.join(', '));
  const state=createWorktableState();
  let current=state;
@@ -67,7 +77,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const editor={x:0,y:0,scale:1};
  let dragging=null;
  const body=document.createElement('div');
- body.className='cc-worktable is-loading';
+ body.className='cc-worktable is-loading is-hydrating';
  body.innerHTML=`<div class="cc-worktable-header"><p class="cc-eyebrow">FROM THE STUDIO · CHAPCHITRA</p><h1>Artist’s Edit</h1><p>Bring a print idea to the worktable. Your design remains on this device.</p></div>
   <div class="cc-worktable-frame"><div class="cc-worktable-stage" id="artistWorktable" role="group" aria-busy="true" aria-label="Interactive print studio: select garment, size, color, artwork and paper size"><p class="cc-worktable-loading" role="status">Preparing your original studio artwork…</p></div></div>
   <section class="cc-worktable-palette" aria-label="Accessible design controls"><h2>Customize your print</h2><div class="cc-worktable-rail"></div>
@@ -88,15 +98,35 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const reset=root.querySelector('#worktableResetArt');
  let layerCounter=0;
  const visualImages=[];
+ const sourceInfo=path=>{
+  const meta=manifest[path]?.delivery;
+  if(!meta)throw new Error('Missing optimized geometry for '+path);
+  return meta;
+ };
+ const positionLayer=(img,path)=>{
+  const info=sourceInfo(path),box=info.stageBox;
+  img.style.left=percent(box[0],2048);img.style.top=percent(box[1],1152);
+  img.style.width=percent(box[2],2048);img.style.height=percent(box[3],1152);
+  img.dataset.source=path;
+  return info;
+ };
+ const attachAsset=(img,path)=>{
+  const info=positionLayer(img,path);
+  img.sizes=sizesFor(info.crop[2]/4000);
+  img.srcset=sourceSet(info.variants);
+  img.src=variantURL(info.variants[1]);
+ };
  const addImage=(path,extra='',data={})=>{
   const img=document.createElement('img');img.className='cc-worktable-layer '+extra;
-  img.src=fmt(path);img.alt='';img.setAttribute('aria-hidden','true');
+  img.alt='';img.setAttribute('aria-hidden','true');
   img.draggable=false;img.loading='eager';img.decoding='async';
-  img.dataset.source=path;img.dataset.visualOrder=String(layerCounter++);
+  positionLayer(img,path);
+  img.dataset.visualOrder=String(layerCounter++);
   if(data.group)img.dataset.group=data.group;
   if(data.value)img.dataset.value=data.value;
-  stage.append(img);
-  visualImages.push(img);
+  stage.append(img);visualImages.push(img);
+  // No eager network request here. A complete preview arrives first;
+  // independent trimmed layers hydrate with bounded decode concurrency.
   return img;
  };
  addImage(ALL.backdrop,'cc-worktable-desk');
@@ -171,12 +201,65 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   print.style.left=percent(x,2048);print.style.top=percent(y,1152);
   print.style.width=percent(width,2048);print.style.height=percent(height,1152);
  };
+ let hydrated=false;
+ let switchToken=0;
+ let preview=null;
+ const swapPreview=async(wanted,token)=>{
+  const info=manifest.__initialScene.garments?.[wanted];
+  if(!preview || !info?.variants)throw new Error('Missing complete worktable scene');
+  if(preview.dataset.garment===wanted)return;
+  const next=new Image();
+  next.className='cc-worktable-layer cc-worktable-preview';
+  next.alt='';next.setAttribute('aria-hidden','true');next.draggable=false;
+  next.decoding='async';next.loading='eager';next.fetchPriority='high';
+  next.sizes='(max-width: 1540px) 100vw, 1540px';
+  next.srcset=sourceSet(info.variants);
+  next.src=variantURL(info.variants[1]);
+  next.dataset.garment=wanted;
+  try{
+   await next.decode();
+   if(token!==switchToken||hydrated||wanted!==current.garment||!preview.isConnected)return;
+   preview.replaceWith(next);preview=next;
+  }catch{announce('This garment preview could not load. The worktable is still usable.')}
+ };
+ const updateTintMask=()=>{
+  const info=sourceInfo(ALL.garment[current.garment]);
+  const b=info.stageBox;
+  tint.style.left=percent(b[0],2048);tint.style.top=percent(b[1],1152);
+  tint.style.width=percent(b[2],2048);tint.style.height=percent(b[3],1152);
+  const url=hydrated&&garmentImg.dataset.source===ALL.garment[current.garment] ? (garmentImg.currentSrc||variantURL(info.variants[1])) : variantURL(info.variants[1]);
+  tint.style.webkitMaskImage=`url("${url}")`;
+  tint.style.maskImage=`url("${url}")`;
+ };
+ const switchGarment=async (wanted)=>{
+  const token=++switchToken;
+  if(!hydrated)return swapPreview(wanted,token);
+  const path=ALL.garment[wanted];
+  if(garmentImg.dataset.source===path)return;
+  const trial=new Image();
+  trial.className=garmentImg.className;
+  trial.alt='';trial.setAttribute('aria-hidden','true');
+  trial.draggable=false;trial.loading='eager';trial.decoding='async';
+  trial.dataset.visualOrder=garmentImg.dataset.visualOrder;
+  attachAsset(trial,path);
+  try{
+   await trial.decode();
+   if(token!==switchToken||wanted!==current.garment)return;
+   // Swap the already decoded element, not just its URL: no blank/flickering
+   // intermediate garment frame and no forced decode on the old image node.
+   const old=garmentImg;
+   old.replaceWith(trial);garmentImg=trial;
+   const position=visualImages.indexOf(old);
+   if(position>=0)visualImages[position]=trial;
+   updateTintMask();
+  }catch{
+   announce('This garment image is temporarily unavailable. Try again.');
+  }
+ };
  const paintSelection=()=>{
-  garmentImg.src=fmt(ALL.garment[current.garment]);
   const color=dyeRGB[current.color];
   tint.style.backgroundColor=color;
-  const url=fmt(ALL.garment[current.garment]);
-  tint.style.webkitMaskImage=`url("${url}")`;tint.style.maskImage=`url("${url}")`;
+  updateTintMask();
   tint.classList.toggle('is-colored',current.color!=='white');
   print.classList.toggle('has-art',!!artURL);
   for(const b of buttons){
@@ -191,6 +274,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   current=worktableReducer(current,{type:'select',group,value});
   if(group==='garment'||group==='printSize')editor.x=editor.y=0;
   paintSelection();announce(`${labels[value]} selected`);
+  if(group==='garment')void switchGarment(value);
  };
  for(const b of buttons){
   b.addEventListener('click',()=>update(b.dataset.group,b.dataset.value));
@@ -257,20 +341,75 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  });
  const unload=()=>clearArtURL();window.addEventListener('pagehide',unload,{once:true});
  paintSelection();
- announce('Preparing your original full-canvas artwork…');
- // Wait for every real PNG to decode before revealing the stage. A network-
- // complete image is not necessarily ready to paint, particularly on mobile.
- // Never expose partially assembled artwork as a finished composition.
- await Promise.all(visualImages.map(async image=>{
-  try{await image.decode()}
-  catch(error){
-   if(!image.complete||!image.naturalWidth)throw new Error('Original worktable image could not decode: '+image.dataset.source,{cause:error});
+ announce('Preparing the illustrated worktable…');
+ // A single real composition, assembled ONLY from the original layered files,
+ // lets the complete worktable appear without waiting for 39 image decodes.
+ preview=document.createElement('img');
+ preview.className='cc-worktable-layer cc-worktable-preview';
+ preview.alt='';preview.setAttribute('aria-hidden','true');
+ preview.decoding='async';preview.loading='eager';preview.fetchPriority='high';
+ preview.sizes='(max-width: 1540px) 100vw, 1540px';
+ preview.srcset=sourceSet(manifest.__initialScene.variants);
+ preview.src=variantURL(manifest.__initialScene.variants[1]);
+ preview.dataset.garment='regular';
+ stage.append(preview);
+ let previewSucceeded=false;
+ const loadOne=async img=>{
+  const path=img===garmentImg?ALL.garment[current.garment]:img.dataset.source;
+  attachAsset(img,path);
+  await img.decode();
+ };
+ const hydrate=async()=>{
+  const errors=[];
+  let index=0;
+  const worker=async()=>{
+   while(index<visualImages.length){
+    const item=visualImages[index++];
+    try{await loadOne(item)}
+    catch(error){errors.push(item.dataset.source)}
+   }
+  };
+  await Promise.all([worker(),worker()]);
+  if(errors.length){
+   console.warn('Worktable deferred images failed:',errors);
+   if(!previewSucceeded){
+    // No preview exists: retain the successfully decoded individual assets.
+    body.classList.remove('is-hydrating');
+    stage.querySelector('.cc-worktable-loading')?.remove();
+    announce('Part of the artwork could not load. Available layers and controls remain usable.');
+   }else{
+    announce('Some fine artwork layers could not load. The complete preview remains visible; the controls are still usable.');
+   }
+   return;
   }
- }));
- await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
- body.classList.remove('is-loading');
- stage.removeAttribute('aria-busy');
- stage.querySelector('.cc-worktable-loading')?.remove();
- announce('Worktable ready. All artwork comes from the supplied full-canvas PNGs.');
+  // The owner can select another garment while the background layers decode.
+  if(garmentImg.dataset.source!==ALL.garment[current.garment]){
+   try{await loadOne(garmentImg)}catch{
+    announce('The requested garment is temporarily unavailable. The complete preview remains visible.');
+    return;
+   }
+  }
+  updateTintMask();
+  // One atomic handoff: never expose a half-decoded stack or a blank frame.
+  hydrated=true;
+  body.classList.remove('is-hydrating');
+  preview.remove();
+  stage.querySelector('.cc-worktable-loading')?.remove();
+  announce('Worktable ready. Every detail is registered to the original artwork.');
+ };
+ try{
+  await preview.decode();
+  previewSucceeded=true;
+  await new Promise(resolve=>requestAnimationFrame(resolve));
+  body.classList.remove('is-loading');
+  stage.removeAttribute('aria-busy');
+  stage.querySelector('.cc-worktable-loading')?.remove();
+  announce('Worktable ready. Optional individual layers are being prepared.');
+ }catch(error){
+  console.error('Worktable first-frame image failed',error);
+  preview.remove();
+  throw new Error('The complete stage preview could not decode on this browser: '+String(error?.message||error));
+ }
+ void hydrate();
  return {getState:()=>({...current}),getPlacement:()=>({...editor}),destroy:()=>{clearArtURL();window.removeEventListener('pagehide',unload);root.replaceChildren()}};
 }

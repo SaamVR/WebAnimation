@@ -604,54 +604,104 @@ async function boot(){
   renderFavoriteGrid();
  }
  if(route==='artists-edit'){
-  // The owner's transparent 4000x2250 PNG binaries are required for a faithful
-  // scene. Keep the existing configurator untouched until the complete asset
-  // collection has actually been committed to this app.
+  // The image pipeline is mandatory on this deployed page: never silently
+  // resurrect the pre-artwork "Compose your idea" configurator.
+  const previous=$('.customize-layout');
+  if(!previous)throw Error('ARTIST_STAGE_MOUNT_POINT_MISSING');
+  previous.hidden=true;
+  previous.style.display='none';
+  const panel=document.createElement('section');
+  panel.className='wrap cc-worktable-diagnostic';
+  panel.id='cc-worktable-diagnostic';
+  panel.setAttribute('role','status');
+  panel.setAttribute('aria-live','polite');
+  panel.dataset.state='loading';
+  const heading=document.createElement('h2');
+  heading.textContent='Preparing the illustrated worktable';
+  const detail=document.createElement('p');
+  detail.textContent='Verifying the current studio artwork and renderer.';
+  const build=document.body.dataset.reviewBuild||'unversioned';
+  const releaseURL=document.body.dataset.reviewUrl||'/artists-edit/';
+  const version=document.createElement('small');
+  version.textContent='Review build: '+build.slice(0,12);
+  panel.append(heading,detail,version);
+  previous.before(panel);
+  const diagnostic=(code,error)=>{
+   const info=String(error?.message||error||'Unknown problem').slice(0,240);
+   panel.dataset.state='error';
+   panel.setAttribute('role','alert');
+   heading.textContent='Illustrated worktable unavailable';
+   detail.textContent='Error '+code+': '+info;
+   const recovery=document.createElement('p');
+   recovery.className='cc-worktable-recovery';
+   const link=document.createElement('a');
+   link.href=releaseURL;
+   link.textContent='Open current review build';
+   const retry=document.createElement('button');
+   retry.type='button';
+   retry.textContent='Retry loading';
+   retry.addEventListener('click',()=>location.reload());
+   recovery.append(link,retry);
+   panel.querySelector('.cc-worktable-recovery')?.remove();
+   panel.append(recovery);
+   console.error('CHAPCHITRA ARTIST EDIT '+code+' (build '+build+'):',error);
+   window.__chapchitraArtistDiagnostic={status:'error',code,build,manifest:document.body.dataset.reviewManifest||null};
+  };
+  const manifestURL=document.body.dataset.reviewManifest||'/assets/worktable/manifest.json';
   let artworkReady=false;
+  let artworkManifest=null;
   try{
-   const manifest=await fetch('/assets/worktable/manifest.json',{cache:'no-store'});
-   if(manifest.ok){
-    const entries=await manifest.json();
-    const required=['Artist-edit-backdrop-1.png',
-      'Tshirts/walnut_table_background_exact_tone_4K_1.png',
-      'Tshirts/walnut_table_background_exact_tone_4K_2.png',
-      'Tshirts/walnut_table_background_exact_tone_4K-3.png',
-      'Tshirts/walnut_table_background_exact_tone_4K-4.png'];
-    artworkReady=required.every(path=>entries[path]?.original?.join('x')==='4000x2250');
-    if(artworkReady){
-     artworkReady=(await Promise.all(required.map(path=>fetch(
-      '/assets/worktable/'+path.split('/').map(encodeURIComponent).join('/'),
-      {method:'HEAD'}
-     ).then(result=>result.ok).catch(()=>false)))).every(Boolean);
-    }
+   // Safari and iOS Chrome share WebKit cache storage. Avoid force-cache:
+   // a stale original PNG manifest must not suppress the new worktable.
+   const response=await fetch(manifestURL,{cache:'no-store'});
+   if(!response.ok)throw Error('HTTP '+response.status+' at worktable manifest');
+   const entries=await response.json();
+   if(!entries||typeof entries!=='object')throw Error('Manifest is not a JSON object');
+   if(build!=='unversioned'&&entries.__deliveryBuild!==build){
+    throw Error('Received artifact build '+String(entries.__deliveryBuild||'legacy')+'; expected '+build);
    }
-  }catch(error){console.info('Artist’s Edit layered artwork not installed yet:',error)}
+   const required=['Artist-edit-backdrop-1.png',
+    'Tshirts/walnut_table_background_exact_tone_4K_1.png',
+    'Tshirts/walnut_table_background_exact_tone_4K_2.png',
+    'Tshirts/walnut_table_background_exact_tone_4K-3.png',
+    'Tshirts/walnut_table_background_exact_tone_4K-4.png'];
+   const missing=required.filter(path=>entries[path]?.original?.join('x')!=='4000x2250'||
+    entries[path]?.delivery?.variants?.length!==3);
+   if(missing.length||!entries.__initialScene?.garments?.regular?.variants?.length){
+    throw Error('Missing registered WebP layers: '+(missing.join(', ')||'assembled preview'));
+   }
+   artworkManifest=entries;
+   artworkReady=true;
+  }catch(error){
+   diagnostic('MANIFEST_VALIDATION_FAILED',error);
+  }
   if(artworkReady){
-   let originalLayout=null,pending=null,sheet=null;
    try{
     const {mountWorktable}=await import('./worktable-studio.mjs');
-    originalLayout=$('.customize-layout');
-    pending=document.createElement('section');
+    const pending=document.createElement('section');
     pending.className='cc-worktable-mount';
-    sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/worktable-studio.css';sheet.dataset.ccWorktable='ready';
+    const sheet=document.createElement('link');
+    sheet.rel='stylesheet';
+    sheet.href=document.body.dataset.reviewStudioCss||'/worktable-studio.css';
+    sheet.dataset.ccWorktable='ready';
     document.head.append(sheet);
-    originalLayout.replaceWith(pending);
-    // Mount a visible loading shell before decoding the full 4K original
-    // artwork. The old form can be restored without leaving a broken scene.
-    await mountWorktable(pending,{manifestURL:'/assets/worktable/manifest.json',embedded:true});
+    previous.replaceWith(pending);
+    await mountWorktable(pending,{manifestData:artworkManifest,embedded:true});
+    panel.remove();
+    window.__chapchitraArtistDiagnostic={status:'ready',build,manifest:manifestURL};
+    document.body.dataset.worktableStatus='ready';
     const description=$('.route-head > p:last-child');
-    if(description)description.textContent='Explore garment styles, sizes and colors, or preview your own artwork locally on the illustrated studio desk.';
+    if(description){
+     description.textContent='Explore garment styles, sizes and colors, or preview your own artwork locally on the illustrated studio desk.';
+     const visibleBuild=document.createElement('small');
+     visibleBuild.className='cc-worktable-version';
+     visibleBuild.textContent='Illustrated worktable · review build '+build.slice(0,12);
+     visibleBuild.title='Full source revision '+build;
+     description.after(visibleBuild);
+    }
    }catch(error){
-    if(originalLayout&&pending?.isConnected)pending.replaceWith(originalLayout);
-    sheet?.remove();
-    console.error('Artist’s Edit layered worktable failed safely; existing preview retained.',error);
-    artworkReady=false;
+    diagnostic('WORKTABLE_RENDER_FAILED',error);
    }
-  }
-  if(!artworkReady){
-   const form=$('#customForm'),summary=$('#customSummary');
-   const update=()=>{const garment=$('#garmentSelect').value,method=$('#printSelect').value,quantity=Math.max(1,Number($('#quantityInput').value)||1),notes=$('#customNotes').value.trim();summary.textContent='Garment: '+garment+' · Method: '+method+' · Quantity: '+quantity+(notes?' · Brief: '+notes:'')+'. This plan has not been submitted.'};
-   form.addEventListener('input',update);form.addEventListener('change',update);update();
   }
  }
  if(route==='journal'){
@@ -670,4 +720,22 @@ async function boot(){
   document.addEventListener('visibilitychange',schedule);mediaReduced.addEventListener('change',schedule);renderJournalFeature();schedule();
  }
 }
-boot().catch(error=>{console.error('CHAPCHITRA V3 initialization failure:',error); const root=document.getElementById('app');if(root)root.textContent='The preview could not load. Please refresh.';});
+boot().catch(error=>{
+ console.error('CHAPCHITRA V3 initialization failure:',error);
+ const root=document.getElementById('app');
+ if(root){
+  const code=document.body.dataset.page==='artists-edit'?'BOOT_FAILED':'SITE_BOOT_FAILED';
+  root.replaceChildren();
+  const section=document.createElement('section');
+  section.className='wrap cc-worktable-diagnostic';
+  section.setAttribute('role','alert');
+  section.dataset.state='error';
+  const title=document.createElement('h1');title.textContent='Studio initialization failed';
+  const detail=document.createElement('p');
+  detail.textContent=code+': '+String(error?.message||error).slice(0,240);
+  const link=document.createElement('a');
+  link.href=document.body.dataset.reviewUrl||'/artists-edit/';
+  link.textContent='Retry current review build';
+  section.append(title,detail,link);root.append(section);
+ }
+});

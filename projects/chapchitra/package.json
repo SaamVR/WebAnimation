@@ -7,6 +7,13 @@
   "scripts": {
     "build": "npm run check && node scripts/build.mjs",
     "check": "node --check src/app.mjs && node --check src/catalog.mjs && node --check src/components.mjs && node --test tests/*.test.mjs",
-    "preview": "node scripts/preview.mjs"
+    "preview": "node scripts/preview.mjs",
+    "optimize:artwork": "node scripts/optimize-worktable.mjs",
+    "benchmark:worktable": "node scripts/perf/benchmark.cjs",
+    "qa:worktable": "node scripts/perf/qa.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.1",
+    "sharp": "^0.34.5"
   }
 }

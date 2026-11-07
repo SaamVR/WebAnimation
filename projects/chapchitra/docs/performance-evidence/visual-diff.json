@@ -1,0 +1,30 @@
+[
+  {
+    "garment": "regular",
+    "meanAbsoluteRGB": 2.64,
+    "over8Pct": 5.9,
+    "over20Pct": 2.3,
+    "maxChannelDelta": 161
+  },
+  {
+    "garment": "dropShoulder",
+    "meanAbsoluteRGB": 2.634,
+    "over8Pct": 5.86,
+    "over20Pct": 2.28,
+    "maxChannelDelta": 161
+  },
+  {
+    "garment": "fullSleeve",
+    "meanAbsoluteRGB": 2.601,
+    "over8Pct": 5.77,
+    "over20Pct": 2.2,
+    "maxChannelDelta": 161
+  },
+  {
+    "garment": "hoodie",
+    "meanAbsoluteRGB": 2.747,
+    "over8Pct": 6.3,
+    "over20Pct": 2.4,
+    "maxChannelDelta": 161
+  }
+]
