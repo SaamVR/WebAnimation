@@ -132,6 +132,9 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  addImage(ALL.backdrop,'cc-worktable-desk');
  const clickTargets=[];
  const interactiveImgs=[];
+ const interactionImages=new Map();
+ const fineHover=window.matchMedia('(hover:hover) and (pointer:fine)');
+ const keyFor=(group,value)=>group+':'+value;
  const hitFor=(path,group,value)=>{
   const b=manifest[path].bbox;
   // Actual source-alpha bounds, not independent visual positioning.
@@ -150,7 +153,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const interactiveFiles=[];
  for(const [path,group,value] of layers){
   const im=addImage(path,'cc-worktable-prop', {group,value});
-  if(group){interactiveImgs.push(im);interactiveFiles.push({path,group,value});}
+  if(group){interactiveImgs.push(im);interactionImages.set(keyFor(group,value),im);interactiveFiles.push({path,group,value});}
  }
  let garmentImg=addImage(ALL.garment.regular,'cc-worktable-garment');
  const tint=document.createElement('div'); tint.className='cc-worktable-tint'; stage.append(tint);
@@ -159,8 +162,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  print.append(artImg);stage.append(print);
  for(const path of ALL.workers)addImage(path,'cc-worktable-worker');
  for(const {path,group,value} of interactiveFiles)hitFor(path,group,value);
- // The notebook itself is one touchable hotspot, alongside the upload icon.
- hitFor('Upload image notebook/Upload_image_notebook_1.png','upload','upload');
+ // Only the illustrated plus/upload image is a hotspot. The notebook paper
+ // remains decorative and never opens the file chooser.
  const sideControl=(group,value)=>{
   const b=document.createElement('button');b.type='button';b.dataset.group=group;b.dataset.value=value;
   b.className='cc-worktable-choice';b.textContent=labels[value]||value;
@@ -266,6 +269,12 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    const checked=b.dataset.group!=='upload'&&current[b.dataset.group]===b.dataset.value;
    if(b.hasAttribute('aria-pressed'))b.setAttribute('aria-pressed',String(checked));
   }
+  // Keep persistent physical selection on the alpha-trimmed artwork layers,
+  // whether the action originated on the stage or the accessible control rail.
+  for(const img of interactiveImgs){
+   img.classList.toggle('is-selected',img.dataset.group!=='upload'&&
+    current[img.dataset.group]===img.dataset.value);
+  }
   printPosition();
  };
  const clearArtURL=()=>{if(artURL)URL.revokeObjectURL(artURL);artURL=null;artBitmap=null};
@@ -279,10 +288,22 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  for(const b of buttons){
   b.addEventListener('click',()=>update(b.dataset.group,b.dataset.value));
   if(b.classList.contains('cc-worktable-hit')){
-   b.addEventListener('pointerenter',()=>stage.querySelectorAll('.cc-worktable-prop').forEach(im=>im.classList.toggle('is-hovered',im.dataset.group===b.dataset.group&&im.dataset.value===b.dataset.value)));
-   b.addEventListener('pointerleave',()=>interactiveImgs.forEach(im=>im.classList.remove('is-hovered')));
-   b.addEventListener('focus',()=>stage.querySelectorAll('.cc-worktable-prop').forEach(im=>im.classList.toggle('is-hovered',im.dataset.group===b.dataset.group&&im.dataset.value===b.dataset.value)));
-   b.addEventListener('blur',()=>interactiveImgs.forEach(im=>im.classList.remove('is-hovered')));
+   const img=interactionImages.get(keyFor(b.dataset.group,b.dataset.value));
+   if(!img)throw new Error('Missing illustrated control image: '+b.dataset.group+':'+b.dataset.value);
+   b.addEventListener('pointerenter',event=>{
+    if(fineHover.matches&&(event.pointerType==='mouse'||event.pointerType==='pen'))
+     img.classList.add('is-hovered');
+   });
+   b.addEventListener('pointerleave',()=>img.classList.remove('is-hovered'));
+   b.addEventListener('pointercancel',()=>img.classList.remove('is-hovered'));
+   b.addEventListener('pointerdown',event=>{
+    if(event.pointerType==='touch')img.classList.remove('is-hovered');
+   });
+   b.addEventListener('focus',()=>img.classList.toggle('is-keyboard-focus',b.matches(':focus-visible')));
+   b.addEventListener('keydown',event=>{
+    if(event.key==='Tab'||event.key==='Enter'||event.key===' ')img.classList.add('is-keyboard-focus');
+   });
+   b.addEventListener('blur',()=>img.classList.remove('is-keyboard-focus'));
   }
  }
  // Keep upload available as an accessible 44px touch target even when
