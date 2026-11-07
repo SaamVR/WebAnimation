@@ -67,9 +67,9 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const editor={x:0,y:0,scale:1};
  let dragging=null;
  const body=document.createElement('div');
- body.className='cc-worktable';
+ body.className='cc-worktable is-loading';
  body.innerHTML=`<div class="cc-worktable-header"><p class="cc-eyebrow">FROM THE STUDIO · CHAPCHITRA</p><h1>Artist’s Edit</h1><p>Bring a print idea to the worktable. Your design remains on this device.</p></div>
-  <div class="cc-worktable-frame"><div class="cc-worktable-stage" id="artistWorktable" role="group" aria-label="Interactive print studio: select garment, size, color, artwork and paper size"></div></div>
+  <div class="cc-worktable-frame"><div class="cc-worktable-stage" id="artistWorktable" role="group" aria-busy="true" aria-label="Interactive print studio: select garment, size, color, artwork and paper size"><p class="cc-worktable-loading" role="status">Preparing your original studio artwork…</p></div></div>
   <section class="cc-worktable-palette" aria-label="Accessible design controls"><h2>Customize your print</h2><div class="cc-worktable-rail"></div>
   <div class="cc-worktable-upload-row"><label class="cc-worktable-scale">Artwork size <input type="range" id="worktableArtScale" min="50" max="100" step="5" value="100" disabled aria-label="Resize uploaded design"><output id="worktableScaleOutput">100%</output></label><button type="button" id="worktableResetArt" disabled>Reset placement</button><button type="button" id="worktableRemoveArt" disabled>Remove artwork</button></div>
   <p class="cc-worktable-hint">Drag your uploaded design on the fabric to position it. A3/A4 represent relative preview sizes; production print dimensions and fabric-color accuracy require manufacturer calibration.</p>
@@ -86,6 +86,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const remove=root.querySelector('#worktableRemoveArt');
  const reset=root.querySelector('#worktableResetArt');
  let layerCounter=0;
+ const visualImages=[];
  const addImage=(path,extra='',data={})=>{
   const img=document.createElement('img');img.className='cc-worktable-layer '+extra;
   img.src=fmt(path);img.alt='';img.setAttribute('aria-hidden','true');
@@ -94,6 +95,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   if(data.group)img.dataset.group=data.group;
   if(data.value)img.dataset.value=data.value;
   stage.append(img);
+  visualImages.push(img);
   return img;
  };
  addImage(ALL.backdrop,'cc-worktable-desk');
@@ -251,6 +253,20 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  });
  const unload=()=>clearArtURL();window.addEventListener('pagehide',unload,{once:true});
  paintSelection();
+ announce('Preparing your original full-canvas artwork…');
+ // Wait for every real PNG to decode before revealing the stage. A network-
+ // complete image is not necessarily ready to paint, particularly on mobile.
+ // Never expose partially assembled artwork as a finished composition.
+ await Promise.all(visualImages.map(async image=>{
+  try{await image.decode()}
+  catch(error){
+   if(!image.complete||!image.naturalWidth)throw new Error('Original worktable image could not decode: '+image.dataset.source,{cause:error});
+  }
+ }));
+ await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+ body.classList.remove('is-loading');
+ stage.removeAttribute('aria-busy');
+ stage.querySelector('.cc-worktable-loading')?.remove();
  announce('Worktable ready. All artwork comes from the supplied full-canvas PNGs.');
  return {getState:()=>({...current}),getPlacement:()=>({...editor}),destroy:()=>{clearArtURL();window.removeEventListener('pagehide',unload);root.replaceChildren()}};
 }
