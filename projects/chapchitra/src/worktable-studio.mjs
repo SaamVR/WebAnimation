@@ -29,7 +29,7 @@ const layers = [
   ...[1,2,3,4,5,6].map((n)=>[`Tshirt color/Tshirt_color_${n}.png`,'color',['black','white','red','yellow','blue','green'][n-1]]),
   ['Tshirt color/Tshirt_color_box_front_panel.png'],
   ['Size/Tshirt_size_title_1.png'],
-  ...[['S',2],['M',3],['L',4],['XL',5],['XXL',6]].map(([size,n])=>[`Size/Tshirt_size_${size}_${n}.png`,'size',size]),
+  ...[['XXL',6,'S'],['XL',5,'M'],['L',4,'L'],['M',3,'XL'],['S',2,'XXL']].map(([sourceLabel,n,visibleLabel])=>[`Size/Tshirt_size_${sourceLabel}_${n}.png`,'size',visibleLabel]),
   ['Upload image notebook/Upload_image_notebook_1.png'],
   ['Upload image notebook/Upload_image_notebook_title_2.png'],
   ['Upload image notebook/Upload_image_notebook_title_3.png'],
