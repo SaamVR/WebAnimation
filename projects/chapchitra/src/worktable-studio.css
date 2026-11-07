@@ -9,6 +9,14 @@
 .cc-worktable-frame{width:min(100%,1540px);margin-inline:auto;overflow:hidden;background:#6e523f}
 .cc-worktable-stage{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;isolation:isolate;background:#826b54;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .cc-worktable-layer{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-select:none;will-change:auto}
+/* Prevent partially decoded 4000x2250 layers from flashing onto the desk.
+   Keep all original PNGs unmodified, with a single synchronous reveal. */
+.cc-worktable.is-loading .cc-worktable-layer:not(.cc-worktable-desk),
+.cc-worktable.is-loading .cc-worktable-tint,
+.cc-worktable.is-loading .cc-worktable-print{opacity:0!important}
+.cc-worktable.is-loading .cc-worktable-hit{visibility:hidden;pointer-events:none}
+.cc-worktable-loading{position:absolute;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;padding:20px;color:var(--cc-page);background:color-mix(in srgb,var(--cc-deep) 62%,transparent);font:600 clamp(11px,1.6vw,16px)/1.4 system-ui,sans-serif;text-align:center;letter-spacing:.02em;pointer-events:none}
+
 .cc-worktable-prop{transition:transform .21s cubic-bezier(.22,.75,.26,1),filter .21s ease}
 .cc-worktable-prop.is-hovered{transform:translateY(-.42%);filter:drop-shadow(0 3px 2px #17241920)}
 .cc-worktable-tint{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:multiply;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;opacity:0;transition:opacity .19s ease}
