@@ -45,7 +45,7 @@ test('every required interactive control uses original full-canvas overlay and e
  assert.match(source,/aria-pressed/);
  assert.match(source,/aria-label/);
  assert.match(source,/data-group/);
- assert.match(source,/on.*pointer/);
+ assert.match(source,/addEventListener\('pointerenter'/);
 });
 
 test('precisely layered artwork never intercepts click targets or crops individual sources',async()=>{
@@ -94,5 +94,5 @@ test('real PNGs are gated so existing Artist Edit route remains intact before bi
  assert.match(app,/if\(!artworkReady\)\{/);
  assert.match(app,/id="customForm"/);
  assert.match(app,/Artist’s Edit layered worktable failed safely/);
- assert.ok(!('assets/worktable/manifest.json' in import.meta.url),'asset manifest is intentionally not yet deployed');
+ await assert.rejects(load('src/assets/worktable/manifest.json'),/ENOENT/,'asset manifest is intentionally not yet deployed');
 });
