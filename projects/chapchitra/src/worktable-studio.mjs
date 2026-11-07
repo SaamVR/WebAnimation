@@ -71,7 +71,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  body.innerHTML=`<div class="cc-worktable-header"><p class="cc-eyebrow">FROM THE STUDIO · CHAPCHITRA</p><h1>Artist’s Edit</h1><p>Bring a print idea to the worktable. Your design remains on this device.</p></div>
   <div class="cc-worktable-frame"><div class="cc-worktable-stage" id="artistWorktable" role="group" aria-busy="true" aria-label="Interactive print studio: select garment, size, color, artwork and paper size"><p class="cc-worktable-loading" role="status">Preparing your original studio artwork…</p></div></div>
   <section class="cc-worktable-palette" aria-label="Accessible design controls"><h2>Customize your print</h2><div class="cc-worktable-rail"></div>
-  <div class="cc-worktable-upload-row"><label class="cc-worktable-scale">Artwork size <input type="range" id="worktableArtScale" min="50" max="100" step="5" value="100" disabled aria-label="Resize uploaded design"><output id="worktableScaleOutput">100%</output></label><button type="button" id="worktableResetArt" disabled>Reset placement</button><button type="button" id="worktableRemoveArt" disabled>Remove artwork</button></div>
+  <div class="cc-worktable-upload-row"><button type="button" id="worktableUploadArt" aria-label="Upload your artwork">Upload artwork</button><label class="cc-worktable-scale">Artwork size <input type="range" id="worktableArtScale" min="50" max="100" step="5" value="100" disabled aria-label="Resize uploaded design"><output id="worktableScaleOutput">100%</output></label><button type="button" id="worktableResetArt" disabled>Reset placement</button><button type="button" id="worktableRemoveArt" disabled>Remove artwork</button></div>
   <p class="cc-worktable-hint">Drag your uploaded design on the fabric to position it. A3/A4 represent relative preview sizes; production print dimensions and fabric-color accuracy require manufacturer calibration.</p>
   <p class="cc-worktable-live" role="status" id="worktableMessage" aria-live="polite"></p></section>
   <input id="worktableFile" type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Choose local design image">`;
@@ -80,6 +80,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const stage=root.querySelector('.cc-worktable-stage');
  const rail=root.querySelector('.cc-worktable-rail');
  const file=root.querySelector('#worktableFile');
+ const uploadButton=root.querySelector('#worktableUploadArt');
  const msg=root.querySelector('#worktableMessage');
  const scale=root.querySelector('#worktableArtScale');
  const scaleOut=root.querySelector('#worktableScaleOutput');
@@ -200,6 +201,9 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    b.addEventListener('blur',()=>interactiveImgs.forEach(im=>im.classList.remove('is-hovered')));
   }
  }
+ // Keep upload available as an accessible 44px touch target even when
+ // the illustrated stage hotspots are too small on narrow screens.
+ uploadButton.addEventListener('click',()=>file.click());
  file.addEventListener('change',async()=>{
   const fileObj=file.files?.[0];if(!fileObj)return;
   if(!['image/png','image/jpeg','image/webp'].includes(fileObj.type)){
