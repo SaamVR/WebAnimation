@@ -176,6 +176,12 @@ test('assembled initial scene is made only from source runtime layers, not refer
  assert.equal(delivery.__initialScene.variants.length,3);
  const bytes=delivery.__initialScene.variants.reduce((s,v)=>s+v.bytes,0);
  assert.ok(bytes<1200000,'all three assembled previews should total below 1.2 MB');
+ for(const garment of ['regular','dropShoulder','fullSleeve','hoodie']){
+  const scene=delivery.__initialScene.garments[garment];
+  assert.equal(scene.variants.length,3,'the '+garment+' complete scene must have all responsive variants');
+  assert.ok(scene.variants.every(v=>v.path.includes('assembled-'+garment)),'each variant belongs to the correct garment');
+ }
+
 });
 
 test('master archive is verified but never shipped as original 4K PNGs',async()=>{
@@ -196,4 +202,6 @@ test('new renderer keeps UI live while images hydrate and reuses cropped garment
  assert.match(source,/sourceSet\(info\.variants\)/);
  assert.match(source,/img\.sizes=sizesFor/);
  assert.match(source,/announce\('This garment image is temporarily unavailable/);
+ assert.match(source,/const swapPreview=async/);
+ assert.match(source,/if\(!hydrated\)return swapPreview/);
 });

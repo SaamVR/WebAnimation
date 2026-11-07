@@ -13,7 +13,7 @@
 ## Implementation
 - **Immutable masters:** the six checked source archive segments are preserved. Before publication, every original 4000×2250 PNG is reconstructed and verified against its per-file SHA-256 and archive SHA-256 `b86cd5425bb28c58de39bc7db75c7724005c4530da00fc19c81567293e7769bb`.
 - **Generated delivery:** `npm run optimize:artwork` derives 768/1536/2560 stage-width transparent WebP variants with a precisely registered source alpha bbox plus 3 source-pixel safety padding, backed by a per-file source checksum and separate generated-asset checksums. `npm run build` validates all variants and publishes only browser delivery assets; **zero original 4K PNGs or full-composition references are served**. The build is repeatable from the source archive and does not need the owner's ZIP.
-- **Initial composition:** an authored-asset-only, preassembled regular-tee first frame has three responsive sizes (768/1536/2560). This is a performance cache built from the **same 39 independent layers**, not a redesigned replacement, unapproved illustration, or source-only reference.
+- **Initial composition:** authored-asset-only, preassembled scenes for **all four garments** each have three responsive sizes (768/1536/2560). The regular tee is requested first; inactive scenes are deferred until a selection requires them. This is a performance cache built from the **same 39 independent layers**, not a redesigned replacement, unapproved illustration, or source-only reference.
 - **Progressive runtime:** manifest validation, fetch-priority initial scene, atomic worktable reveal on first scene decode, 2 bounded concurrent async image decoders for independent layers, responsive `srcset/sizes`, reusable resource URLs, atomic swap of predecoded garment variants, cropped garment tint mask, fallback to safe preview on deferred layer failures. The five route-level HEAD checks and mandatory all-image decode barrier are removed.
 - **Unmodified interactions:** four garment choices, five sizes, six fabric colors, A3/A4, local-only upload/move/resize/reset/remove, focus/keyboard, hover/selected states, responsive rail, and reduced-motion semantics.
 
@@ -44,7 +44,7 @@ Separate unthrottled same-machine Chromium instrumentation wrapped `HTMLImageEle
 ## Independent critic / release decision
 **REVIEW CANDIDATE CONDITIONAL PASS**, not production acceptance:
 - Proof: the same original image layers were trimmed/registered; no source artwork recolored/redrawn; tests and controlled cold-cache measurements meet numerical delivery/interaction targets.
-- Residual risks: compression creates small measurable pixel differences, intentionally selected controls differ from static reference imagery, WebKit/iPad not verified, and a first-frame fetch failure forces slower layer-by-layer recovery. Initial preview depicts the default garment while a selection made during its brief background hydration is queued; it resolves once the matching decoded layer is ready.
+- Residual risks: compression creates small measurable pixel differences, intentionally selected controls differ from static reference imagery, WebKit/iPad not verified, and a first-frame fetch failure forces slower layer-by-layer recovery. When a garment is selected during background hydration, its separate complete preview is decoded and atomically swapped; network failures retain the last complete scene until recoverable layers are ready.
 - Approval remains with owner following Render visual review and physical iPad. No unrelated features or merge are authorized.
 
 ## Rebuild / rollback
