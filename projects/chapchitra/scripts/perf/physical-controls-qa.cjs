@@ -77,7 +77,15 @@ async function desktop(engine,name){
   const element=page.locator(image(group,value)),button=page.locator(hit(group,value));
   const old=await read(page,image(group,value));
   await button.hover({timeout:10000});
-  await pause(250);
+  // WebKit may defer a filter/transform repaint by a frame under CPU pressure.
+  // Require actual computed movement, not merely the presence of a hover class.
+  try{
+   await page.waitForFunction(([selector,previous])=>{
+    const node=document.querySelector(selector);
+    return node&&getComputedStyle(node).transform!==previous;
+   },[image(group,value),old.transform],{timeout:2200});
+  }catch{}
+  await pause(225);
   const hov=await read(page,image(group,value));
   check(name+' '+group+' hover activates only pictured object',await element.evaluate(el=>el.classList.contains('is-hovered')));
   check(name+' '+group+' hover moves object',hov.transform!==old.transform,{before:old.transform,after:hov.transform});
