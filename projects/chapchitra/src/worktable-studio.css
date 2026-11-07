@@ -32,7 +32,7 @@
 .cc-worktable-prop[data-group="size"]{--cc-prop-lift:-1.5px}
 .cc-worktable-prop[data-group="upload"]{--cc-prop-lift:-1px}
 .cc-worktable-prop[data-group].is-hovered{
- transform:translate3d(0,var(--cc-prop-lift),0);
+ transform:translate3d(0,-2px,0);
  filter:brightness(1.045) saturate(1.025) drop-shadow(1.8px 4px 1.6px rgb(31 24 17 / .41)) drop-shadow(0 0 1.5px rgb(252 240 211 / .32));
 }
 .cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected{
@@ -43,6 +43,8 @@
  transform:translate3d(0,-3px,0);
  filter:brightness(1.065) saturate(1.03) drop-shadow(2px 4.3px 1.6px rgb(30 23 15 / .48)) drop-shadow(0 0 2.2px rgb(248 235 204 / .48));
 }
+.cc-worktable-prop[data-group="size"].is-hovered{transform:translate3d(0,-1.5px,0)}
+.cc-worktable-prop[data-group="upload"].is-hovered{transform:translate3d(0,-1px,0)}
 /* Keyboard focus illuminates the alpha silhouette, not a rectangular frame. */
 .cc-worktable-prop[data-group].is-keyboard-focus,
 .cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected.is-keyboard-focus{
