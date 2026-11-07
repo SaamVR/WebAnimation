@@ -73,6 +73,16 @@ test('local upload stays local, restricts MIME and size, revokes object URLs, su
  assert.doesNotMatch(src,/\bfetch\('https?:\/\/|\.send\(|navigator\.sendBeacon|localStorage\.setItem/);
 });
 
+test('upload notebook and accessible mobile upload action remain available',async()=>{
+ const [src,css]=await Promise.all([load('src/worktable-studio.mjs'),load('src/worktable-studio.css')]);
+ assert.match(src,/id="worktableUploadArt" aria-label="Upload your artwork"/);
+ assert.match(src,/uploadButton\.addEventListener\('click',\(\)=>file\.click\(\)\)/);
+ assert.match(src,/hitFor\('Upload image notebook\/Upload_image_notebook_1\.png','upload','upload'\)/);
+ assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{background:var\(--cc-press\)/);
+ assert.match(css,/\.cc-worktable-hit:not\(\[data-group="upload"\]\)\{display:none\}/);
+ assert.doesNotMatch(css,/\.cc-worktable-hit\{display:none\}/);
+});
+
 test('print size preview is conservatively limited until production masks/specs arrive',async()=>{
  const src=await load('src/worktable-studio.mjs');
  assert.match(src,/Math\.SQRT1_2/);
