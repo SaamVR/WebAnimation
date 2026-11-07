@@ -1,0 +1,77 @@
+name: CHAPCHITRA Artist's Edit physical controls QA
+on:
+  pull_request:
+    branches:
+      - perf/chapchitra-artists-edit-delivery-20261108
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-physical-controls-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  physical-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          path: previous
+          ref: c766396178d6eeea57070779bc6af3e88c4b55a3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: candidate/projects/chapchitra/package-lock.json
+      - name: Install and verify optimized candidate
+        run: |
+          cd candidate/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Install and build untouched before reference
+        run: |
+          cd previous/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Install browser engines and Linux dependencies
+        run: |
+          cd candidate/projects/chapchitra
+          npx playwright install --with-deps chromium webkit
+      - name: Start isolated comparison servers
+        run: |
+          (cd candidate/projects/chapchitra && PORT=4173 npm run preview > /tmp/cc-physical-candidate.log 2>&1) &
+          (cd previous/projects/chapchitra && PORT=4174 npm run preview > /tmp/cc-physical-previous.log 2>&1) &
+          for i in {1..40}; do
+            if curl -fsS http://127.0.0.1:4173/artists-edit/ >/dev/null && curl -fsS http://127.0.0.1:4174/artists-edit/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          echo 'Preview servers did not become healthy'
+          cat /tmp/cc-physical-*.log
+          exit 1
+      - name: Physical controls — Chromium, WebKit, touch, focus and before/after images
+        env:
+          CC_QA_URL: http://127.0.0.1:4173/artists-edit/
+          CC_BEFORE_URL: http://127.0.0.1:4174/artists-edit/
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/physical-controls-qa.cjs
+      - name: Original interaction, upload, responsive and reduced-motion regression
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/qa.cjs http://127.0.0.1:4173 physical-controls-regression
+          node scripts/perf/early-qa.cjs http://127.0.0.1:4173
+      - name: Upload owner-review before and after screenshots and QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapchitra-physical-controls-visual-qa
+          path: candidate/projects/chapchitra/perf-results/
+          if-no-files-found: warn
+          retention-days: 30

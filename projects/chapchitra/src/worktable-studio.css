@@ -20,22 +20,53 @@
 .cc-worktable.is-loading .cc-worktable-hit{visibility:hidden;pointer-events:none}
 .cc-worktable-loading{position:absolute;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;padding:20px;color:var(--cc-page);background:color-mix(in srgb,var(--cc-deep) 62%,transparent);font:600 clamp(11px,1.6vw,16px)/1.4 system-ui,sans-serif;text-align:center;letter-spacing:.02em;pointer-events:none}
 
-.cc-worktable-prop{transition:transform .21s cubic-bezier(.22,.75,.26,1),filter .21s ease}
-.cc-worktable-prop.is-hovered{transform:translateY(-.42%);filter:drop-shadow(0 3px 2px #17241920)}
+/* Visual depth belongs to the real alpha-trimmed image, never its hit box.
+   The stage and original wood/paper/paint pixels stay untouched. */
+.cc-worktable-prop[data-group]{
+ --cc-prop-lift:-2px;
+ transform:translate3d(0,0,0);
+ transform-origin:50% 68%;
+ filter:drop-shadow(1.25px 2.5px 1.2px rgb(33 25 17 / .31));
+ transition:transform .19s cubic-bezier(.23,.7,.3,1),filter .19s ease;
+}
+.cc-worktable-prop[data-group="size"]{--cc-prop-lift:-1.5px}
+.cc-worktable-prop[data-group="upload"]{--cc-prop-lift:-1px}
+.cc-worktable-prop[data-group].is-hovered{
+ transform:translate3d(0,-2px,0);
+ filter:brightness(1.045) saturate(1.025) drop-shadow(1.8px 4px 1.6px rgb(31 24 17 / .41)) drop-shadow(0 0 1.5px rgb(252 240 211 / .32));
+}
+.cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected{
+ transform:translate3d(0,-2px,0);
+ filter:brightness(1.035) saturate(1.018) drop-shadow(1.7px 3.8px 1.4px rgb(31 23 14 / .45)) drop-shadow(0 0 2px rgb(246 232 202 / .4));
+}
+.cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected.is-hovered{
+ transform:translate3d(0,-3px,0);
+ filter:brightness(1.065) saturate(1.03) drop-shadow(2px 4.3px 1.6px rgb(30 23 15 / .48)) drop-shadow(0 0 2.2px rgb(248 235 204 / .48));
+}
+.cc-worktable-prop[data-group="size"].is-hovered{transform:translate3d(0,-1.5px,0)}
+.cc-worktable-prop[data-group="upload"].is-hovered{transform:translate3d(0,-1px,0)}
+/* Keyboard focus illuminates the alpha silhouette, not a rectangular frame. */
+.cc-worktable-prop[data-group].is-keyboard-focus,
+.cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected.is-keyboard-focus{
+ transform:translate3d(0,-2px,0);
+ filter:brightness(1.09) drop-shadow(0 0 1px #fff9e8) drop-shadow(0 0 4px rgb(255 239 204 / .8)) drop-shadow(2px 4px 1.7px rgb(31 23 14 / .52));
+}
+/* Keep the tray-front illustration ABOVE the pot edges. No pot z-index overrides. */
+.cc-worktable-layer[data-source="Tshirt color/Tshirt_color_box_front_panel.png"]{z-index:auto}
 .cc-worktable-tint{position:absolute;pointer-events:none;mix-blend-mode:multiply;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;opacity:0;transition:opacity .19s ease}
 .cc-worktable-tint.is-colored{opacity:.74}
 .cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:multiply}
 .cc-worktable-print.has-art{display:block}
 .cc-worktable-print>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
-.cc-worktable-drag{position:absolute;inset:0;width:100%;height:100%;border:1px dashed transparent;background:transparent;cursor:grab;pointer-events:auto;touch-action:none;padding:0;opacity:0;transition:opacity .12s ease}
-.cc-worktable-drag:hover,.cc-worktable-drag:focus-visible,.cc-worktable-drag.is-dragging{opacity:1;border:1px dashed var(--cc-press);outline:1px solid var(--cc-paper);outline-offset:2px}
+.cc-worktable-drag{position:absolute;inset:0;width:100%;height:100%;border:0;outline:0;background:transparent;cursor:grab;pointer-events:auto;touch-action:none;padding:0;opacity:0}
+.cc-worktable-drag:hover,.cc-worktable-drag:focus-visible,.cc-worktable-drag.is-dragging{opacity:1;border:0;outline:0}
+.cc-worktable-print:focus-within>img{filter:drop-shadow(0 0 3px rgb(255 246 220 / .86))}
 .cc-worktable-drag.is-dragging{cursor:grabbing}
 .cc-worktable-hit{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);border:0;outline:0;border-radius:6px;z-index:5;background:transparent;padding:0;cursor:pointer;touch-action:manipulation;appearance:none;-webkit-appearance:none}
-.cc-worktable-hit::after{content:'';position:absolute;inset:0;pointer-events:none;border:2px solid transparent;border-radius:inherit;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
-.cc-worktable-hit:hover::after,.cc-worktable-hit:focus-visible::after{border-color:var(--cc-press);box-shadow:0 0 0 2px var(--cc-page);transform:scale(1.015)}
-.cc-worktable-hit:active::after{transform:scale(.96)}
-.cc-worktable-hit[aria-pressed=true]::after{border-color:var(--cc-press);box-shadow:0 0 0 1px var(--cc-page);border-style:dashed}
-.cc-worktable-hit:focus-visible{outline:2px solid var(--cc-page);outline-offset:2px}
+/* Invisible native button remains keyboard/touch accessible; its linked artwork
+   receives the focus visual. No rectangular border, pseudo-outline or dash. */
+.cc-worktable-hit::after{content:none}
+.cc-worktable-hit:focus-visible{outline:0}
 .cc-worktable-palette{width:min(100% - 40px,1260px);margin:24px auto 0}
 .cc-worktable-palette h2{font:500 clamp(22px,3vw,27px)/1.2 Georgia,serif;margin:0 0 20px}
 .cc-worktable-rail{display:grid;grid-template-columns:1.5fr 1fr 1.35fr .7fr;gap:16px;align-items:start}
@@ -60,4 +91,7 @@
 .cc-worktable-live{min-height:20px;font:12px/1.4 system-ui,sans-serif;color:var(--cc-press);margin:8px 0}
 @media(max-width:980px){.cc-worktable-rail{grid-template-columns:1fr 1fr}.cc-worktable-header,.cc-worktable-palette{width:calc(100% - 32px)}}
 @media(max-width:600px){.cc-worktable-rail{grid-template-columns:1fr}.cc-worktable-header{padding:18px 0 12px}.cc-worktable-header h1{font-size:29px}.cc-worktable-frame{width:100%}.cc-worktable-hit:not([data-group="upload"]){display:none}.cc-worktable-palette{margin-top:18px}.cc-worktable-field{padding:10px}.cc-worktable-choice{min-height:44px}.cc-worktable-stage{touch-action:pan-y}}
-@media(prefers-reduced-motion:reduce){.cc-worktable-prop,.cc-worktable-tint,.cc-worktable-hit::after,.cc-worktable-choice{transition:none!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){
+ .cc-worktable-prop,.cc-worktable-tint,.cc-worktable-choice{transition:none!important}
+ .cc-worktable-prop[data-group]{transform:none!important}
+}
