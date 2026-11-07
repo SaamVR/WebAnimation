@@ -46,6 +46,8 @@
 .cc-worktable-choice:focus-visible{outline:3px solid var(--cc-accent);outline-offset:2px}
 .cc-worktable-upload-row{margin:18px 0 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .cc-worktable-upload-row button{border:1px solid var(--cc-press);background:var(--cc-page);color:var(--cc-press);padding:10px 15px;cursor:pointer;border-radius:5px;min-height:44px}
+.cc-worktable-upload-row #worktableUploadArt{background:var(--cc-press);color:var(--cc-page);font-weight:700}
+.cc-worktable-upload-row #worktableUploadArt:hover{box-shadow:0 3px 0 var(--cc-line)}
 .cc-worktable-upload-row button:disabled{opacity:.42;cursor:default}
 .cc-worktable-upload-row button:not(:disabled):focus-visible{outline:3px solid var(--cc-accent);outline-offset:2px}
 .cc-worktable-scale{display:flex;align-items:center;gap:8px;font:600 12px/1.3 system-ui,sans-serif}
@@ -54,5 +56,5 @@
 .cc-worktable-hint{font:12px/1.55 system-ui,sans-serif;color:#656762;margin:12px 0 0}
 .cc-worktable-live{min-height:20px;font:12px/1.4 system-ui,sans-serif;color:var(--cc-press);margin:8px 0}
 @media(max-width:980px){.cc-worktable-rail{grid-template-columns:1fr 1fr}.cc-worktable-header,.cc-worktable-palette{width:calc(100% - 32px)}}
-@media(max-width:600px){.cc-worktable-rail{grid-template-columns:1fr}.cc-worktable-header{padding:18px 0 12px}.cc-worktable-header h1{font-size:29px}.cc-worktable-frame{width:100%}.cc-worktable-hit{display:none}.cc-worktable-palette{margin-top:18px}.cc-worktable-field{padding:10px}.cc-worktable-choice{min-height:44px}.cc-worktable-stage{touch-action:pan-y}}
+@media(max-width:600px){.cc-worktable-rail{grid-template-columns:1fr}.cc-worktable-header{padding:18px 0 12px}.cc-worktable-header h1{font-size:29px}.cc-worktable-frame{width:100%}.cc-worktable-hit:not([data-group="upload"]){display:none}.cc-worktable-palette{margin-top:18px}.cc-worktable-field{padding:10px}.cc-worktable-choice{min-height:44px}.cc-worktable-stage{touch-action:pan-y}}
 @media(prefers-reduced-motion:reduce){.cc-worktable-prop,.cc-worktable-tint,.cc-worktable-hit::after,.cc-worktable-choice{transition:none!important;transform:none!important}}
