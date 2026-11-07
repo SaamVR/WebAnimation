@@ -406,13 +406,9 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   stage.querySelector('.cc-worktable-loading')?.remove();
   announce('Worktable ready. Optional individual layers are being prepared.');
  }catch(error){
-  console.warn('Worktable first-frame image failed; recovering individual layers',error);
+  console.error('Worktable first-frame image failed',error);
   preview.remove();
-  const status=stage.querySelector('.cc-worktable-loading');
-  if(status)status.textContent='Recovering original artwork layers…';
-  // Retain the real loading message while fallback layers decode, not a blank stage.
-  stage.removeAttribute('aria-busy');
-  body.classList.remove('is-loading');
+  throw new Error('The complete stage preview could not decode on this browser: '+String(error?.message||error));
  }
  void hydrate();
  return {getState:()=>({...current}),getPlacement:()=>({...editor}),destroy:()=>{clearArtURL();window.removeEventListener('pagehide',unload);root.replaceChildren()}};

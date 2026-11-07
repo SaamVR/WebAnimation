@@ -1,2 +1,29 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><meta name="robots" content="noindex, nofollow"><meta name="description" content="CHAPCHITRA creative apparel and printmaking demo. Editorial prototype; no purchases."><title>Artist's Edit · CHAPCHITRA</title><link rel="preload" as="image" type="image/webp" href="../assets/worktable/variants/preview/assembled-regular.w1536.webp" imagesrcset="../assets/worktable/variants/preview/assembled-regular.w768.webp 768w, ../assets/worktable/variants/preview/assembled-regular.w1536.webp 1536w, ../assets/worktable/variants/preview/assembled-regular.w2560.webp 2560w" imagesizes="(max-width: 1540px) 100vw, 1540px" fetchpriority="high"><link rel="modulepreload" href="../worktable-studio.mjs"><link rel="preload" as="style" href="../worktable-studio.css"><link rel="stylesheet" href="../styles.css"><script type="module" src="../app.mjs"></script></head><body data-page="artists-edit"><a class="skip-link" href="#main">Skip to main content</a><div id="app"></div></body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><meta name="robots" content="noindex, nofollow"><meta name="description" content="CHAPCHITRA creative apparel and printmaking demo. Editorial prototype; no purchases."><title>Artist's Edit · CHAPCHITRA</title><link rel="preload" as="image" type="image/webp" href="../assets/worktable/variants/preview/assembled-regular.w1536.webp" imagesrcset="../assets/worktable/variants/preview/assembled-regular.w768.webp 768w, ../assets/worktable/variants/preview/assembled-regular.w1536.webp 1536w, ../assets/worktable/variants/preview/assembled-regular.w2560.webp 2560w" imagesizes="(max-width: 1540px) 100vw, 1540px" fetchpriority="high"><link rel="modulepreload" href="../worktable-studio.mjs"><link rel="preload" as="style" href="../worktable-studio.css"><link rel="stylesheet" href="../styles.css"><script>
+window.addEventListener('error',function(event){
+ var source=event.target;
+ if(!source||source.tagName!=='SCRIPT'||source.type!=='module')return;
+ var root=document.getElementById('app');
+ if(!root||document.body?.dataset.worktableStatus==='ready')return;
+ var section=document.createElement('section');
+ section.className='wrap cc-worktable-diagnostic';
+ section.dataset.state='error';
+ section.setAttribute('role','alert');
+ var heading=document.createElement('h2');heading.textContent='Studio application script could not load';
+ var info=document.createElement('p');info.textContent='MODULE_FETCH_FAILED: The current review JavaScript could not be retrieved. Open the current review URL to retry.';
+ var link=document.createElement('a');
+ link.href=document.body?.dataset.reviewUrl||'/artists-edit/';
+ link.textContent='Open current review build';
+ section.append(heading,info,link);
+ root.replaceChildren(section);
+},true);
+</script><script type="module" src="../app.mjs"></script><style>
+body[data-page="artists-edit"] .customize-layout[hidden]{display:none!important}
+.cc-worktable-diagnostic{margin:1.5rem auto 2rem;padding:1rem 1.2rem;max-width:900px;border:1px solid #cabfaf;background:#f6f7f5;color:#293d2d}
+.cc-worktable-diagnostic h2{font-size:1.25rem;margin:0 0 .5rem}
+.cc-worktable-diagnostic p{margin:.25rem 0 .75rem}
+.cc-worktable-diagnostic small,.cc-worktable-version{font:12px/1.5 system-ui,sans-serif;color:#50604f}
+.cc-worktable-diagnostic[data-state="error"]{border-color:#8a503b}
+.cc-worktable-recovery{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.cc-worktable-recovery a,.cc-worktable-recovery button{font:600 13px/1.3 system-ui,sans-serif;padding:10px 13px;min-height:44px;border:1px solid #293d2d;color:#293d2d;background:white;text-decoration:none;cursor:pointer}
+</style></head><body data-page="artists-edit"><a class="skip-link" href="#main">Skip to main content</a><div id="app"><section class="wrap cc-worktable-diagnostic" role="status"><h2>Opening the illustrated worktable</h2><p>Loading the current review renderer.</p></section></div></body></html>

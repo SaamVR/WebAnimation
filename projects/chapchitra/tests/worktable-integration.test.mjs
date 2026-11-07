@@ -95,7 +95,7 @@ test('print size preview is conservatively limited until production masks/specs 
  assert.match(src,/fabric-color accuracy require manufacturer calibration/);
 });
 
-test('real PNGs are gated so existing Artist Edit route remains intact before binary transfer',async()=>{
+test('manifest is validated without stale-cache reuse and never silently falls back to old configurator',async()=>{
  const app=await load('src/app.mjs');
  const assetManifestInRuntime=await import('../src/worktable-stage.mjs');
  assert.ok(assetManifestInRuntime.WORKTABLE_VIEWBOX.width===2048);
@@ -103,9 +103,13 @@ test('real PNGs are gated so existing Artist Edit route remains intact before bi
  assert.match(app,/let artworkReady=false/);
  assert.match(app,/if\(artworkReady\)\{/);
  assert.match(app,/mountWorktable\(pending/);
- assert.match(app,/if\(!artworkReady\)\{/);
+ assert.doesNotMatch(app,/if\(!artworkReady\)\{/);
+ assert.match(app,/cache:'no-store'/);
+ assert.match(app,/MANIFEST_VALIDATION_FAILED/);
+ assert.match(app,/WORKTABLE_RENDER_FAILED/);
+ assert.match(app,/previous\.style\.display='none'/);
  assert.match(app,/id="customForm"/);
- assert.match(app,/Artist’s Edit layered worktable failed safely/);
+ assert.match(app,/Illustrated worktable unavailable/);
  await assert.rejects(load('src/assets/worktable/manifest.json'),/ENOENT/,'asset manifest is intentionally not yet deployed');
 });
 
@@ -126,9 +130,9 @@ test('complete compiled first frame reveals before independent bounded decoded l
  assert.match(stage,/stage\.removeAttribute\('aria-busy'\)/);
  assert.match(css,/\.cc-worktable\.is-hydrating \.cc-worktable-layer:not\(\.cc-worktable-preview\)/);
  assert.match(css,/\.cc-worktable-loading\{/);
- assert.match(app,/originalLayout\.replaceWith\(pending\)/);
- assert.match(app,/pending\.replaceWith\(originalLayout\)/);
- assert.match(app,/sheet\?\.remove\(\)/);
+ assert.match(app,/previous\.replaceWith\(pending\)/);
+ assert.doesNotMatch(app,/pending\.replaceWith\(originalLayout\)/);
+ assert.match(app,/diagnostic\('WORKTABLE_RENDER_FAILED',error\)/);
  assert.doesNotMatch(app,/method:'HEAD'/);
 });
 
@@ -233,4 +237,25 @@ test('worktable critical image is preloaded and manifest is reused once',async()
  assert.match(app,/artworkManifest=entries/);
  assert.match(app,/manifestData:artworkManifest/);
  assert.match(studio,/if\(!manifest\)/);
+});
+
+
+test('release build stages immutable versioned JavaScript manifest and review URL',async()=>{
+ const src=await load('scripts/build.mjs');
+ for(const requirement of [
+  /execFileSync\('git',\['rev-parse','HEAD'\]/,
+  /const releaseDir=resolve\(output,'releases',release\)/,
+  /sourceManifest\.__deliveryBuild=release/,
+  /data-review-manifest/,
+  /artists-edit\/review/,
+  /manifestSHA256/,
+ ])assert.match(src,requirement);
+ const app=await load('src/app.mjs');
+ assert.match(app,/entries\.__deliveryBuild!==build/);
+ assert.match(app,/const response=await fetch\(manifestURL,\{cache:'no-store'\}\)/);
+ assert.doesNotMatch(app,/cache:'force-cache'/);
+ assert.match(app,/previous\.hidden=true/);
+ assert.match(app,/data.*review/i);
+ const html=await load('src/artists-edit/index.html');
+ assert.match(html,/body\[data-page="artists-edit"\] \.customize-layout\[hidden\]/);
 });
