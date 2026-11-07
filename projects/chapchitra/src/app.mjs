@@ -604,9 +604,48 @@ async function boot(){
   renderFavoriteGrid();
  }
  if(route==='artists-edit'){
-  const form=$('#customForm'),summary=$('#customSummary');
-  const update=()=>{const garment=$('#garmentSelect').value,method=$('#printSelect').value,quantity=Math.max(1,Number($('#quantityInput').value)||1),notes=$('#customNotes').value.trim();summary.textContent='Garment: '+garment+' · Method: '+method+' · Quantity: '+quantity+(notes?' · Brief: '+notes:'')+'. This plan has not been submitted.'};
-  form.addEventListener('input',update);form.addEventListener('change',update);update();
+  // The owner's transparent 4000x2250 PNG binaries are required for a faithful
+  // scene. Keep the existing configurator untouched until the complete asset
+  // collection has actually been committed to this app.
+  let artworkReady=false;
+  try{
+   const manifest=await fetch('/assets/worktable/manifest.json',{cache:'no-store'});
+   if(manifest.ok){
+    const entries=await manifest.json();
+    const required=['Artist-edit-backdrop-1.png',
+      'Tshirts/walnut_table_background_exact_tone_4K_1.png',
+      'Tshirts/walnut_table_background_exact_tone_4K_2.png',
+      'Tshirts/walnut_table_background_exact_tone_4K-3.png',
+      'Tshirts/walnut_table_background_exact_tone_4K-4.png'];
+    artworkReady=required.every(path=>entries[path]?.original?.join('x')==='4000x2250');
+    if(artworkReady){
+     artworkReady=(await Promise.all(required.map(path=>fetch(
+      '/assets/worktable/'+path.split('/').map(encodeURIComponent).join('/'),
+      {method:'HEAD'}
+     ).then(result=>result.ok).catch(()=>false)))).every(Boolean);
+    }
+   }
+  }catch(error){console.info('Artist’s Edit layered artwork not installed yet:',error)}
+  if(artworkReady){
+   try{
+    const {mountWorktable}=await import('./worktable-studio.mjs');
+    const pending=document.createElement('section');
+    pending.className='cc-worktable-mount';
+    await mountWorktable(pending,{manifestURL:'/assets/worktable/manifest.json',embedded:true});
+    const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/worktable-studio.css';sheet.dataset.ccWorktable='ready';document.head.append(sheet);
+    $('.customize-layout').replaceWith(pending);
+    const description=$('.route-head > p:last-child');
+    if(description)description.textContent='Explore garment styles, sizes and colors, or preview your own artwork locally on the illustrated studio desk.';
+   }catch(error){
+    console.error('Artist’s Edit layered worktable failed safely; existing preview retained.',error);
+    artworkReady=false;
+   }
+  }
+  if(!artworkReady){
+   const form=$('#customForm'),summary=$('#customSummary');
+   const update=()=>{const garment=$('#garmentSelect').value,method=$('#printSelect').value,quantity=Math.max(1,Number($('#quantityInput').value)||1),notes=$('#customNotes').value.trim();summary.textContent='Garment: '+garment+' · Method: '+method+' · Quantity: '+quantity+(notes?' · Brief: '+notes:'')+'. This plan has not been submitted.'};
+   form.addEventListener('input',update);form.addEventListener('change',update);update();
+  }
  }
  if(route==='journal'){
   let index=0,interval=null,hover=false,focus=false;
