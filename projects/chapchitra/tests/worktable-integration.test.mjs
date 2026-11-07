@@ -96,3 +96,22 @@ test('real PNGs are gated so existing Artist Edit route remains intact before bi
  assert.match(app,/Artist’s Edit layered worktable failed safely/);
  await assert.rejects(load('src/assets/worktable/manifest.json'),/ENOENT/,'asset manifest is intentionally not yet deployed');
 });
+
+
+test('worktable delays visual reveal until original full-size PNGs are decoded',async()=>{
+ const app=await load('src/app.mjs');
+ const stage=await load('src/worktable-studio.mjs');
+ const css=await load('src/worktable-studio.css');
+ assert.match(stage,/body\.className='cc-worktable is-loading'/);
+ assert.match(stage,/aria-busy="true"/);
+ assert.match(stage,/visualImages\.push\(img\)/);
+ assert.match(stage,/await Promise\.all\(visualImages\.map\(async image=>/);
+ assert.match(stage,/await image\.decode\(\)/);
+ assert.match(stage,/body\.classList\.remove\('is-loading'\)/);
+ assert.match(stage,/stage\.removeAttribute\('aria-busy'\)/);
+ assert.match(css,/\.cc-worktable\.is-loading \.cc-worktable-layer:not\(\.cc-worktable-desk\)/);
+ assert.match(css,/\.cc-worktable-loading\{/);
+ assert.match(app,/originalLayout\.replaceWith\(pending\)/);
+ assert.match(app,/pending\.replaceWith\(originalLayout\)/);
+ assert.match(app,/sheet\?\.remove\(\)/);
+});
