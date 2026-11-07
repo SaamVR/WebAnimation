@@ -1,0 +1,707 @@
+{
+  "Artist-edit-backdrop-1.png": {
+    "path": "assets/worktable/Artist-edit-backdrop-1.png",
+    "bbox": [
+      0,
+      0,
+      2048,
+      1152
+    ],
+    "sha256": "92285314a0f9c8b54344ec0e39f7ef7d21bdf91fc091d87374d537c3b6be923f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 10826772
+  },
+  "Tshirts/walnut_table_background_exact_tone_4K-4.png": {
+    "path": "assets/worktable/Tshirts/walnut_table_background_exact_tone_4K-4.png",
+    "bbox": [
+      524.288,
+      182.784,
+      1501.184,
+      1080.32
+    ],
+    "sha256": "479c6dbb0ab0e16670cc1ed27c7cdc9708bc0e763324140dbcf052c8c32f644a",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 2156912
+  },
+  "Tshirts/walnut_table_background_exact_tone_4K-3.png": {
+    "path": "assets/worktable/Tshirts/walnut_table_background_exact_tone_4K-3.png",
+    "bbox": [
+      614.4,
+      190.464,
+      1440.256,
+      1060.352
+    ],
+    "sha256": "1a7857307bd3c3f35f037e53be0ea3ec8316d047d239045953ad3d971e40417a",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 2170630
+  },
+  "Tshirts/walnut_table_background_exact_tone_4K_2.png": {
+    "path": "assets/worktable/Tshirts/walnut_table_background_exact_tone_4K_2.png",
+    "bbox": [
+      559.616,
+      167.424,
+      1485.312,
+      1070.592
+    ],
+    "sha256": "379a63cf481072ec8a3f00e34fd58f2fb003cfb9577fd07f971cb435d2127a29",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 2359216
+  },
+  "Tshirts/walnut_table_background_exact_tone_4K_1.png": {
+    "path": "assets/worktable/Tshirts/walnut_table_background_exact_tone_4K_1.png",
+    "bbox": [
+      561.152,
+      184.32,
+      1484.8,
+      1061.888
+    ],
+    "sha256": "3392b71d3994fdae2cc94340f63fdc19f739b52755912126df11b5b0375c457c",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 2052671
+  },
+  "Worker/Mini_worker_1.png": {
+    "path": "assets/worktable/Worker/Mini_worker_1.png",
+    "bbox": [
+      569.344,
+      485.888,
+      712.192,
+      686.08
+    ],
+    "sha256": "10aa6d345c30e1aa73efb7dc54c4be43d0f4cd5cbdd6e09567a96b62c2986872",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 328445
+  },
+  "Worker/Mini_worker_1.pn2.png": {
+    "path": "assets/worktable/Worker/Mini_worker_1.pn2.png",
+    "bbox": [
+      1216.512,
+      317.952,
+      1415.168,
+      541.184
+    ],
+    "sha256": "df9657c3a87733feb3433ae3f99fb69660723b1b55aa8673a80e802e3178efd4",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 324932
+  },
+  "Worker/Mini_worker_1.pn3.png": {
+    "path": "assets/worktable/Worker/Mini_worker_1.pn3.png",
+    "bbox": [
+      709.12,
+      917.504,
+      833.536,
+      1075.712
+    ],
+    "sha256": "6f69697c8b12a4c70f2f32ddaf8b59e2c7b264498937008ac5698dcb05db6430",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 256806
+  },
+  "Upload image notebook/Upload_image_notebook_title_2.png": {
+    "path": "assets/worktable/Upload image notebook/Upload_image_notebook_title_2.png",
+    "bbox": [
+      1657.856,
+      212.48,
+      1883.648,
+      309.76
+    ],
+    "sha256": "664a65ec76255d5b2a43d1304742a408d6974269f70fa5275b8edc2f70f1c9be",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 269543
+  },
+  "Upload image notebook/Upload_image_notebook_title_3.png": {
+    "path": "assets/worktable/Upload image notebook/Upload_image_notebook_title_3.png",
+    "bbox": [
+      1672.704,
+      314.88,
+      1889.792,
+      342.016
+    ],
+    "sha256": "ce7e0d422f3f769fb5dc9efeea1545b539f4ea06932c66f4474b571409f280f7",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 178119
+  },
+  "Upload image notebook/Upload_image_notebook_1.png": {
+    "path": "assets/worktable/Upload image notebook/Upload_image_notebook_1.png",
+    "bbox": [
+      1560.064,
+      168.448,
+      1969.664,
+      669.184
+    ],
+    "sha256": "fe2ea9139268f256f0eab45c76dd4322f72c78ddd0952221ecd234fc1a716ea8",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 673235
+  },
+  "Upload image notebook/Upload_image_notebook_upload_button_4.png": {
+    "path": "assets/worktable/Upload image notebook/Upload_image_notebook_upload_button_4.png",
+    "bbox": [
+      1627.648,
+      384.512,
+      1899.52,
+      586.24
+    ],
+    "sha256": "18d2ca8f82b62399b47f9065c353d68b14f9c3b495a985b308c1a226b22b901e",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 268052
+  },
+  "Full composition/Composition-1-regular-tshirt.png": {
+    "path": "assets/worktable/Full composition/Composition-1-regular-tshirt.png",
+    "bbox": [
+      0,
+      0,
+      2048,
+      1152
+    ],
+    "sha256": "2e816f49c5fba252b1337d581075ed61cfb264272042af94fa005a3bb2f05b5d",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 10873354
+  },
+  "Full composition/Composition-3-full-sleeve.png": {
+    "path": "assets/worktable/Full composition/Composition-3-full-sleeve.png",
+    "bbox": [
+      0,
+      0,
+      2048,
+      1152
+    ],
+    "sha256": "0489a88f1a5e34bca6101fc44d9c4660bdc185d6d0893ed0b93ac23c15e7b346",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 10986019
+  },
+  "Full composition/Composition-2-drop-shoulder.png": {
+    "path": "assets/worktable/Full composition/Composition-2-drop-shoulder.png",
+    "bbox": [
+      0,
+      0,
+      2048,
+      1152
+    ],
+    "sha256": "e2787b0614a8648993a7256b582173ac20fa99f3661d0cf04d43e3f78f4c6743",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 11223966
+  },
+  "Full composition/Composition-4-hoodie.png": {
+    "path": "assets/worktable/Full composition/Composition-4-hoodie.png",
+    "bbox": [
+      0,
+      0,
+      2048,
+      1152
+    ],
+    "sha256": "9846bf9a0f3ad8d08b4140d6f668073107ea178145e5db5d50a4879a0f407bea",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 11191838
+  },
+  "Print size/Print_size_A3_1.png": {
+    "path": "assets/worktable/Print size/Print_size_A3_1.png",
+    "bbox": [
+      1700.864,
+      879.104,
+      1839.616,
+      1042.432
+    ],
+    "sha256": "104215eff9a484090992c8b4544896cbfa53d81339dffafedf956020caf2067d",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 269787
+  },
+  "Print size/Print_size_A4_2.png": {
+    "path": "assets/worktable/Print size/Print_size_A4_2.png",
+    "bbox": [
+      1845.76,
+      899.584,
+      1953.792,
+      1041.92
+    ],
+    "sha256": "0f999148b6e8dbdf9f54fe2573a44f4739a56bd8c10e9af7bcade164f24889b0",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 239815
+  },
+  "Print size/Print_size_backboard_3.png": {
+    "path": "assets/worktable/Print size/Print_size_backboard_3.png",
+    "bbox": [
+      1679.872,
+      857.6,
+      1975.296,
+      1063.424
+    ],
+    "sha256": "269389431461dcffefc58cb41d3e07e6cf48ec75bd1734d15036a1e9f3bbcab7",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 211783
+  },
+  "Print size/Print_size_title_1.png": {
+    "path": "assets/worktable/Print size/Print_size_title_1.png",
+    "bbox": [
+      1652.224,
+      760.32,
+      1992.704,
+      872.96
+    ],
+    "sha256": "593b8547f007466cb00bc14dff0492215205c8854217a9c11a29a852c5a128d7",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 315430
+  },
+  "Print size/Print_size_title_2.png": {
+    "path": "assets/worktable/Print size/Print_size_title_2.png",
+    "bbox": [
+      1737.216,
+      842.24,
+      1892.864,
+      854.528
+    ],
+    "sha256": "342f200c919ef29a9c94fd6b51cd8dcd060d7bba2c19db105414ad63dd4ddb0f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 168641
+  },
+  "Garment style/Garment_style_title_2.png": {
+    "path": "assets/worktable/Garment style/Garment_style_title_2.png",
+    "bbox": [
+      185.856,
+      403.968,
+      438.784,
+      442.88
+    ],
+    "sha256": "6a57eea2175482cb212b35dcd16c97138f2582844a332144241dc16f3717ef0a",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 200844
+  },
+  "Garment style/Garment_style_title_3.png": {
+    "path": "assets/worktable/Garment style/Garment_style_title_3.png",
+    "bbox": [
+      221.184,
+      440.32,
+      397.824,
+      454.144
+    ],
+    "sha256": "764b0d3325f0c94ca65868d3c7bfea32edd474c7c8a3d8921783c45c9d1aa048",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 169695
+  },
+  "Garment style/Garment_style_title_1.png": {
+    "path": "assets/worktable/Garment style/Garment_style_title_1.png",
+    "bbox": [
+      171.008,
+      325.12,
+      452.608,
+      471.04
+    ],
+    "sha256": "28f9ad33cf2ff9bcfc02f0798d2e4fbd41f91568ca8998b203950c35c05186e1",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 304093
+  },
+  "Garment style/Garment_style_4_hoodie.png": {
+    "path": "assets/worktable/Garment style/Garment_style_4_hoodie.png",
+    "bbox": [
+      418.816,
+      494.08,
+      509.44,
+      621.056
+    ],
+    "sha256": "fd73b48abd601b98f00ac29d11add37177f54f7e3e464d982ba78829658a19e6",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 227030
+  },
+  "Garment style/Garment_style_3_full_sleeve.png": {
+    "path": "assets/worktable/Garment style/Garment_style_3_full_sleeve.png",
+    "bbox": [
+      312.832,
+      494.08,
+      403.456,
+      621.056
+    ],
+    "sha256": "4168f808091689f247ef022bfaabdfdc52e7e77f8cc891e1eda11709d45b1d2c",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 225913
+  },
+  "Garment style/Garment_style_backboard_5.png": {
+    "path": "assets/worktable/Garment style/Garment_style_backboard_5.png",
+    "bbox": [
+      73.728,
+      447.488,
+      539.648,
+      645.632
+    ],
+    "sha256": "6e2cacbcb3fac76e9230b7bf7f6bb50fdcb94992f309c35b78d08ac81382d6fe",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 495009
+  },
+  "Garment style/Garment_style_2_drop_shoulder.png": {
+    "path": "assets/worktable/Garment style/Garment_style_2_drop_shoulder.png",
+    "bbox": [
+      205.824,
+      494.08,
+      296.448,
+      621.056
+    ],
+    "sha256": "eef7967cb44ee0c535f42dcec6413827c8bc99faf592f5ea4dbe8e9eeee933ab",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 224750
+  },
+  "Garment style/Garment_style_1_regular.png": {
+    "path": "assets/worktable/Garment style/Garment_style_1_regular.png",
+    "bbox": [
+      99.84,
+      494.08,
+      190.976,
+      621.056
+    ],
+    "sha256": "1a8c7bf03ab3bf75bf43156279431660d826f9019d46efd9ba62e2cde27c84fd",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 224527
+  },
+  "Tshirt color/Tshirt_color_4.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_4.png",
+    "bbox": [
+      103.424,
+      921.088,
+      212.48,
+      1034.24
+    ],
+    "sha256": "6277ca41a77282a5afdbe78a496e3111ae1943a9ea4c8dbacbcff99b9b8ff7ac",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 226836
+  },
+  "Tshirt color/Tshirt_color_box_front_panel.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_box_front_panel.png",
+    "bbox": [
+      89.088,
+      1019.904,
+      428.032,
+      1067.008
+    ],
+    "sha256": "67ccad2ef3796c6e76a7a8303a0437afab05de0284a965a7537c8be1bfa7fd3f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 254237
+  },
+  "Tshirt color/Tshirt_color_5.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_5.png",
+    "bbox": [
+      207.872,
+      924.672,
+      305.664,
+      1034.752
+    ],
+    "sha256": "77ef548351a4ab3e59b1bafadbe39c6bc62ad6abc571dc873c9bae27fab0c0cc",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 227690
+  },
+  "Tshirt color/Tshirt_color_box_back_without_front_panel.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_box_back_without_front_panel.png",
+    "bbox": [
+      87.04,
+      803.328,
+      432.64,
+      1070.08
+    ],
+    "sha256": "e95aeac8bba7c8ca3c1d99e16e4201bfbc72665bd1e34761e8cbc92a37fc370f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 589431
+  },
+  "Tshirt color/Tshirt_color_6.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_6.png",
+    "bbox": [
+      288.768,
+      925.696,
+      413.184,
+      1035.264
+    ],
+    "sha256": "7afeb39fed91ca19a867d7e10b77b97efe150528a839e1c241da75bc233c612f",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 227479
+  },
+  "Tshirt color/Tshirt_color_2.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_2.png",
+    "bbox": [
+      209.92,
+      834.048,
+      309.248,
+      942.08
+    ],
+    "sha256": "573ff1dfc51867c8ea161539e1978ba4132faeefb43eca849922f1f5ab503ac1",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 220791
+  },
+  "Tshirt color/Tshirt_color_3.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_3.png",
+    "bbox": [
+      293.888,
+      834.048,
+      401.408,
+      940.544
+    ],
+    "sha256": "7312b455aa3d0e6f2af8b70064561b46c6504ba3b402a6a81b84caf60cd8e2c4",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 227814
+  },
+  "Tshirt color/Tshirt_color_1.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_1.png",
+    "bbox": [
+      117.248,
+      828.928,
+      208.384,
+      943.616
+    ],
+    "sha256": "90cb467457c98bf8379a20e3e4f9705adfc6e6bf1c123a14758399ea82c28a8b",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 224978
+  },
+  "Tshirt color/Tshirt_color_box_full.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_box_full.png",
+    "bbox": [
+      87.04,
+      803.328,
+      432.64,
+      1070.08
+    ],
+    "sha256": "92fbdce2cb64918b75203c8ad035095e5c007ac895ee87882a63ff151fae8d41",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 683827
+  },
+  "Tshirt color/Tshirt_color_title_3.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_title_3.png",
+    "bbox": [
+      89.088,
+      774.656,
+      295.936,
+      811.008
+    ],
+    "sha256": "217b631404acab70ef710805e8d1ea616dd555128e243d04667c91ab4dbbd89b",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 176780
+  },
+  "Tshirt color/Tshirt_color_title_2.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_title_2.png",
+    "bbox": [
+      44.032,
+      730.112,
+      305.664,
+      795.136
+    ],
+    "sha256": "a46f41ad54ed48d8f4adf35f543e7a772127002b4f04fb35f1c07c683521c710",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 221423
+  },
+  "Tshirt color/Tshirt_color_title_1.png": {
+    "path": "assets/worktable/Tshirt color/Tshirt_color_title_1.png",
+    "bbox": [
+      23.552,
+      690.688,
+      336.384,
+      835.584
+    ],
+    "sha256": "f62063fb3e8f0e5bd2ba057931e982afb14e4bbc39d3af9125ba4aa675f72cc5",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 284578
+  },
+  "Size/Tshirt_size_title_1.png": {
+    "path": "assets/worktable/Size/Tshirt_size_title_1.png",
+    "bbox": [
+      670.208,
+      0,
+      1375.232,
+      189.44
+    ],
+    "sha256": "4bbe4a1b7534e29ce9131585a71a9340c828542f434bc01844c961e12d59c769",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 447891
+  },
+  "Size/Tshirt_size_L_4.png": {
+    "path": "assets/worktable/Size/Tshirt_size_L_4.png",
+    "bbox": [
+      1057.792,
+      83.968,
+      1120.256,
+      170.496
+    ],
+    "sha256": "48796e8e5656bc29591f8fb2d04d282681a7beb7f0a53d32c9599c3eafbe42d8",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 186814
+  },
+  "Size/Tshirt_size_S_2.png": {
+    "path": "assets/worktable/Size/Tshirt_size_S_2.png",
+    "bbox": [
+      1198.08,
+      70.656,
+      1268.224,
+      174.08
+    ],
+    "sha256": "d48ed0335855ad4491ab2f2b98a374fa35d57ca5917c4b657cdbe336191bd0b1",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 199417
+  },
+  "Size/Tshirt_size_XXL_6.png": {
+    "path": "assets/worktable/Size/Tshirt_size_XXL_6.png",
+    "bbox": [
+      913.92,
+      78.848,
+      979.968,
+      173.056
+    ],
+    "sha256": "a88c790a52974ed47b0888c7b03d49bf30382870bac7ea0ba9e5bb3c7fb34494",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 189983
+  },
+  "Size/Tshirt_size_M_3.png": {
+    "path": "assets/worktable/Size/Tshirt_size_M_3.png",
+    "bbox": [
+      1129.472,
+      81.408,
+      1193.472,
+      177.152
+    ],
+    "sha256": "b2d7bf05230b9d0facd093d48322d32241673e4e57dff9dfdf65b3292e1e1e60",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 192375
+  },
+  "Size/Tshirt_size_XL_5.png": {
+    "path": "assets/worktable/Size/Tshirt_size_XL_5.png",
+    "bbox": [
+      985.6,
+      80.896,
+      1048.576,
+      175.104
+    ],
+    "sha256": "6c24d4dc3323cd11024b84d7fdb1c127fcc4a710e1f1acb3970b740287eda399",
+    "original": [
+      4000,
+      2250
+    ],
+    "bytes": 190525
+  }
+}
