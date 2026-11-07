@@ -43,7 +43,7 @@ const project=path.resolve(__dirname,'../..');
  };
  check(await stage.count()===1,'stage rendered');
  check(await page.locator('.cc-worktable-layer').count()>=39,'illustrated layers present');
- check(await page.locator('.cc-worktable-hit').count()===19,'stage hotspot count 19');
+ check(await page.locator('.cc-worktable-hit').count()===18,'stage hotspot count 18 (plus image only)');
  const garmentPaths=['regular','dropShoulder','fullSleeve','hoodie'];
  const click=async(g,v)=>page.locator('.cc-worktable-choice[data-group="'+g+'"][data-value="'+v+'"]').click({timeout:30000});
  for(const g of garmentPaths){
