@@ -85,3 +85,7 @@ These are **not statistical performance improvements**, not a public Render CDN 
 ## Release boundary
 
 **C08 is a separate draft PR.** Publish only to the existing isolated Render review branch, preserving concurrent Artist's Edit and approved C01. Verify the live SHA and browser playback; stop for owner visual approval. **No merge, no production publishing, no changes to THREADS, EcomCMS or other projects.**
+
+## Post-deployment review correction — versioned Artist's Edit navbar
+
+A real public Chromium review detected `HTTP 404` for `/releases/<build>/motion/c08/logo-player.mjs` on the Artist's Edit route because that route deliberately loads a version-pinned copy of `app.mjs`. The worktable itself was ready and unaffected. C08 now imports its *unchanged* module from the canonical `/motion/c08/logo-player.mjs` root path on both the homepage and non-home routes. The C08 module idempotently loads its own scoped `/motion/c08/logo-player.css` only if the versioned page did not already include it. This preserves the frozen Artist's Edit app, C01, the original Lottie assets, and the navbar Home link. New source regression test covers both route styles; retest the public versioned artist editor after the deployment.

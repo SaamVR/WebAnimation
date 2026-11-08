@@ -404,7 +404,7 @@ async function boot(){
   // reuse the same self-hosted lottie-web script if benefits are in viewport.
   // No C01 artwork, controller, styles, or activation times are changed.
   c01Initialized.then(()=>new Promise(done=>requestAnimationFrame(done)))
-   .then(()=>import('./motion/c08/logo-player.mjs')).then(({mountC08})=>
+   .then(()=>import('/motion/c08/logo-player.mjs')).then(({mountC08})=>
     mountC08({
       navbar:$('.logo-word--image'),
       heroImage:$('.hero-brand-lockup'),
@@ -736,7 +736,7 @@ async function boot(){
   }
  }
  // Navbar C08 is hover-only on all routes. It never loads a player automatically.
- if(route!=='home')import('./motion/c08/logo-player.mjs')
+ if(route!=='home')import('/motion/c08/logo-player.mjs')
   .then(({mountC08})=>mountC08({navbar:$('.logo-word--image')}))
   .catch(error=>console.warn('C08 original navbar image retained:',error));
  if(route==='journal'){
