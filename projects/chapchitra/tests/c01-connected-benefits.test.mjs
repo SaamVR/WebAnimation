@@ -26,26 +26,33 @@ test('full-fidelity delivery V2 has original embedded PNG asset, never optimized
  assert.ok(a.assets[0].p.startsWith('data:image/png;base64,'));
  assert.ok(a.assets[0].p.length>1000000);
 });
-test('exact locked service copy and order are present in homepage benefits only',async()=>{
+test('owner-approved four single-line feature labels supersede old two-line copy',async()=>{
  const app=await load('src/app.mjs');
- const pairs=[
-  ['Custom Print Care','Thoughtful printing with room for customization.'],
-  ['Easy Payment','Easy checkout with multiple payment methods.'],
-  ['Delivery','Shipping updates with parcel delivery.'],
-  ['Order Support','Support for print, artwork, sizing, and ordering.']
+ const labels=[
+  'Original Art & Customization',
+  'Secure & Flexible Payment',
+  'Fast Delivery',
+  '24/7 Support'
  ];
  let last=-1;
- for(const [title,subtitle] of pairs){
-  const position=app.indexOf("['"+title+"','"+subtitle+"'");
-  assert.ok(position>last,'Missing or out of order: '+title);last=position;
+ for(const label of labels){
+  const pos=app.indexOf("['"+label+"','icon-");
+  assert.ok(pos>last,'Missing or wrong order: '+label);
+  last=pos;
  }
- assert.ok(!app.includes('Delivery terms to be confirmed'));
- assert.ok(!app.includes('Policy details coming soon'));
+ assert.ok(app.includes('<div class="c01-copy"><h3>'));
+ assert.ok(!app.includes("<p>'+esc(subtitle)+'</p>"));
+ for(const obsolete of ['Custom Print Care','Easy Payment','Thoughtful printing with room for customization.','Easy checkout with multiple payment methods.','Shipping updates with parcel delivery.','Support for print, artwork, sizing, and ordering.']){
+  assert.ok(!app.includes(obsolete),'Old two-line C01 wording survives: '+obsolete);
+ }
  assert.ok(app.includes("import('./motion/c01/connected-benefits.mjs')"));
- const home=await load('src/index.html');
- assert.ok(home.includes('./motion/c01/connected-benefits.css'));
- const artist=await load('src/artists-edit/index.html');
- assert.ok(!artist.includes('connected-benefits'));
+ assert.ok((await load('src/index.html')).includes('./motion/c01/connected-benefits.css'));
+ assert.ok(!(await load('src/artists-edit/index.html')).includes('connected-benefits'));
+ const css=await load('src/motion/c01/connected-benefits.css');
+ assert.match(css,/padding-block:15px 30px/);
+ assert.match(css,/padding-block:12px 24px/);
+ assert.match(css,/white-space:nowrap/);
+ assert.ok(!css.includes('.c01-copy p'));
 });
 test('V3 synchronized single clock and connector starts/ends are preserved',async()=>{
  const code=await load('src/motion/c01/connected-benefits.mjs');
