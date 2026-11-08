@@ -1,0 +1,611 @@
+{
+  "url": "http://127.0.0.1:4333/artists-edit/",
+  "baseline": "http://127.0.0.1:4321/artists-edit/",
+  "total": 95,
+  "passed": 95,
+  "failures": [],
+  "checks": [
+    {
+      "name": "chromium SVG present once",
+      "ok": true
+    },
+    {
+      "name": "chromium four inspected source groups",
+      "ok": true,
+      "detail": [
+        "MOUNTAINS_SUN",
+        "FRAME_LINES",
+        "CIRCLE_FOR_PLUS",
+        "PLUS"
+      ]
+    },
+    {
+      "name": "chromium original rest circle green",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "chromium original rest plus gallery offwhite",
+      "ok": true,
+      "detail": "rgb(246, 246, 244)"
+    },
+    {
+      "name": "chromium resting frame is original green",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "chromium shape-following physical drop shadow retained",
+      "ok": true,
+      "detail": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium raster upload icon absent from DOM",
+      "ok": true
+    },
+    {
+      "name": "chromium only one upload hotspot",
+      "ok": true
+    },
+    {
+      "name": "chromium notebook is still separate and unmodified",
+      "ok": true
+    },
+    {
+      "name": "chromium no old upload raster network",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "chromium parent position from original stage crop",
+      "ok": true,
+      "detail": {
+        "x": 1143,
+        "y": 679.265625,
+        "w": 193.671875,
+        "h": 144,
+        "hit": [
+          1139.515625,
+          675.4375,
+          201,
+          151.671875
+        ],
+        "classes": "cc-worktable-layer cc-worktable-prop cc-worktable-upload-svg-layer",
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "physicalLift": 0,
+        "floatAnimation": "cc-upload-float",
+        "floatState": "running",
+        "floatTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "svgTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "circle": "rgb(40, 61, 45)",
+        "plus": "rgb(246, 246, 244)",
+        "ring": "rgb(246, 246, 244)",
+        "frame": "rgb(40, 61, 45)",
+        "viewBox": "32 104 440 327",
+        "groups": [
+          "MOUNTAINS_SUN",
+          "FRAME_LINES",
+          "CIRCLE_FOR_PLUS",
+          "PLUS"
+        ],
+        "clip": "visible"
+      }
+    },
+    {
+      "name": "chromium idle floating animation exists",
+      "ok": true,
+      "detail": "cc-upload-float"
+    },
+    {
+      "name": "chromium original opacity and visible",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "chromium circle white on hover",
+      "ok": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "chromium plus Press Green on hover",
+      "ok": true,
+      "detail": "rgb(41, 61, 45)"
+    },
+    {
+      "name": "chromium frame NOT recolored",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "chromium original white ring NOT recolored",
+      "ok": true,
+      "detail": "rgb(246, 246, 244)"
+    },
+    {
+      "name": "chromium approved 3px physical lift",
+      "ok": true,
+      "detail": [
+        0,
+        -3
+      ]
+    },
+    {
+      "name": "chromium hover float paused",
+      "ok": true,
+      "detail": "paused"
+    },
+    {
+      "name": "chromium hover shadow retained",
+      "ok": true
+    },
+    {
+      "name": "chromium circle returns to original after exit",
+      "ok": true,
+      "detail": {
+        "x": 1143,
+        "y": 359.265625,
+        "w": 193.671875,
+        "h": 144,
+        "hit": [
+          1139.515625,
+          355.4375,
+          201,
+          151.671875
+        ],
+        "classes": "cc-worktable-layer cc-worktable-prop cc-worktable-upload-svg-layer",
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "physicalLift": 0,
+        "floatAnimation": "cc-upload-float",
+        "floatState": "running",
+        "floatTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "svgTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "circle": "rgb(40, 61, 45)",
+        "plus": "rgb(246, 246, 244)",
+        "ring": "rgb(246, 246, 244)",
+        "frame": "rgb(40, 61, 45)",
+        "viewBox": "32 104 440 327",
+        "groups": [
+          "MOUNTAINS_SUN",
+          "FRAME_LINES",
+          "CIRCLE_FOR_PLUS",
+          "PLUS"
+        ],
+        "clip": "visible"
+      }
+    },
+    {
+      "name": "chromium hover class clears",
+      "ok": true
+    },
+    {
+      "name": "chromium micro acknowledgement class immediately",
+      "ok": true
+    },
+    {
+      "name": "chromium acknowledgement automatically returns",
+      "ok": true
+    },
+    {
+      "name": "chromium native chooser opens on click",
+      "ok": true
+    },
+    {
+      "name": "chromium cancellation leaves no selected state",
+      "ok": true
+    },
+    {
+      "name": "chromium no JS exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "webkit SVG present once",
+      "ok": true
+    },
+    {
+      "name": "webkit four inspected source groups",
+      "ok": true,
+      "detail": [
+        "MOUNTAINS_SUN",
+        "FRAME_LINES",
+        "CIRCLE_FOR_PLUS",
+        "PLUS"
+      ]
+    },
+    {
+      "name": "webkit original rest circle green",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "webkit original rest plus gallery offwhite",
+      "ok": true,
+      "detail": "rgb(246, 246, 244)"
+    },
+    {
+      "name": "webkit resting frame is original green",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "webkit shape-following physical drop shadow retained",
+      "ok": true,
+      "detail": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit raster upload icon absent from DOM",
+      "ok": true
+    },
+    {
+      "name": "webkit only one upload hotspot",
+      "ok": true
+    },
+    {
+      "name": "webkit notebook is still separate and unmodified",
+      "ok": true
+    },
+    {
+      "name": "webkit no old upload raster network",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "webkit parent position from original stage crop",
+      "ok": true,
+      "detail": {
+        "x": 1143,
+        "y": 679.265625,
+        "w": 193.671875,
+        "h": 144,
+        "hit": [
+          1139.515625,
+          675.4375,
+          201,
+          151.671875
+        ],
+        "classes": "cc-worktable-layer cc-worktable-prop cc-worktable-upload-svg-layer",
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "physicalLift": 0,
+        "floatAnimation": "cc-upload-float",
+        "floatState": "running",
+        "floatTransform": "matrix(1, 0, 0, 1, 0, -0.015249)",
+        "svgTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "circle": "rgb(40, 61, 45)",
+        "plus": "rgb(246, 246, 244)",
+        "ring": "rgb(246, 246, 244)",
+        "frame": "rgb(40, 61, 45)",
+        "viewBox": "32 104 440 327",
+        "groups": [
+          "MOUNTAINS_SUN",
+          "FRAME_LINES",
+          "CIRCLE_FOR_PLUS",
+          "PLUS"
+        ],
+        "clip": "visible"
+      }
+    },
+    {
+      "name": "webkit idle floating animation exists",
+      "ok": true,
+      "detail": "cc-upload-float"
+    },
+    {
+      "name": "webkit original opacity and visible",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "webkit circle white on hover",
+      "ok": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "webkit plus Press Green on hover",
+      "ok": true,
+      "detail": "rgb(41, 61, 45)"
+    },
+    {
+      "name": "webkit frame NOT recolored",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "webkit original white ring NOT recolored",
+      "ok": true,
+      "detail": "rgb(246, 246, 244)"
+    },
+    {
+      "name": "webkit approved 3px physical lift",
+      "ok": true,
+      "detail": [
+        0,
+        -3
+      ]
+    },
+    {
+      "name": "webkit hover float paused",
+      "ok": true,
+      "detail": "paused"
+    },
+    {
+      "name": "webkit hover shadow retained",
+      "ok": true
+    },
+    {
+      "name": "webkit circle returns to original after exit",
+      "ok": true,
+      "detail": {
+        "x": 1143,
+        "y": 679.265625,
+        "w": 193.671875,
+        "h": 144,
+        "hit": [
+          1139.515625,
+          675.4375,
+          201,
+          151.671875
+        ],
+        "classes": "cc-worktable-layer cc-worktable-prop cc-worktable-upload-svg-layer",
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "physicalLift": 0,
+        "floatAnimation": "cc-upload-float",
+        "floatState": "running",
+        "floatTransform": "matrix(1, 0, 0, 1, 0, -1.153232)",
+        "svgTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "circle": "rgb(40, 61, 45)",
+        "plus": "rgb(246, 246, 244)",
+        "ring": "rgb(246, 246, 244)",
+        "frame": "rgb(40, 61, 45)",
+        "viewBox": "32 104 440 327",
+        "groups": [
+          "MOUNTAINS_SUN",
+          "FRAME_LINES",
+          "CIRCLE_FOR_PLUS",
+          "PLUS"
+        ],
+        "clip": "visible"
+      }
+    },
+    {
+      "name": "webkit hover class clears",
+      "ok": true
+    },
+    {
+      "name": "webkit micro acknowledgement class immediately",
+      "ok": true
+    },
+    {
+      "name": "webkit acknowledgement automatically returns",
+      "ok": true
+    },
+    {
+      "name": "webkit native chooser opens on click",
+      "ok": true
+    },
+    {
+      "name": "webkit cancellation leaves no selected state",
+      "ok": true
+    },
+    {
+      "name": "webkit no JS exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "image file uses existing local-only upload preview",
+      "ok": true
+    },
+    {
+      "name": "resize slider enabled after valid upload",
+      "ok": true
+    },
+    {
+      "name": "size slider changes without replacing SVG",
+      "ok": true
+    },
+    {
+      "name": "reset placement still works",
+      "ok": true
+    },
+    {
+      "name": "remove artwork clears preview",
+      "ok": true
+    },
+    {
+      "name": "offscreen idle animation paused",
+      "ok": true
+    },
+    {
+      "name": "onscreen idle resumes",
+      "ok": true
+    },
+    {
+      "name": "background page idle paused",
+      "ok": true
+    },
+    {
+      "name": "page-visible idle resumes",
+      "ok": true
+    },
+    {
+      "name": "touch 834 single SVG",
+      "ok": true
+    },
+    {
+      "name": "touch 834 same clickable region",
+      "ok": true
+    },
+    {
+      "name": "touch 834 native file chooser",
+      "ok": true
+    },
+    {
+      "name": "touch 834 no sticky hover",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop cc-worktable-upload-svg-layer is-upload-acknowledged"
+    },
+    {
+      "name": "touch 834 original rest palette",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "touch 834 no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "touch 834 no page exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "touch 390 single SVG",
+      "ok": true
+    },
+    {
+      "name": "touch 390 same clickable region",
+      "ok": true
+    },
+    {
+      "name": "touch 390 native file chooser",
+      "ok": true
+    },
+    {
+      "name": "touch 390 no sticky hover",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop cc-worktable-upload-svg-layer is-upload-acknowledged"
+    },
+    {
+      "name": "touch 390 original rest palette",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "touch 390 no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "touch 390 no page exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "touch 320 single SVG",
+      "ok": true
+    },
+    {
+      "name": "touch 320 same clickable region",
+      "ok": true
+    },
+    {
+      "name": "touch 320 native file chooser",
+      "ok": true
+    },
+    {
+      "name": "touch 320 no sticky hover",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop cc-worktable-upload-svg-layer is-upload-acknowledged"
+    },
+    {
+      "name": "touch 320 original rest palette",
+      "ok": true,
+      "detail": "rgb(40, 61, 45)"
+    },
+    {
+      "name": "touch 320 no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "touch 320 no page exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "reduced motion idle disabled",
+      "ok": true,
+      "detail": "none"
+    },
+    {
+      "name": "reduced motion SVG transitions removed",
+      "ok": true,
+      "detail": "0s"
+    },
+    {
+      "name": "keyboard Enter opens native file picker and focus has silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.09) drop-shadow(rgb(255, 249, 232) 0px 0px 1px) drop-shadow(rgba(255, 239, 204, 0.8) 0px 0px 4px) drop-shadow(rgba(31, 23, 14, 0.52) 2px 4px 1.7px)"
+    },
+    {
+      "name": "approved selected shadow/glow unchanged: garment",
+      "ok": true,
+      "detail": {
+        "approved": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "updated": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+      }
+    },
+    {
+      "name": "approved selected elevation unchanged: garment",
+      "ok": true,
+      "detail": {
+        "approved": "matrix(1, 0, 0, 1, 0, -4.5)",
+        "updated": "matrix(1, 0, 0, 1, 0, -4.5)"
+      }
+    },
+    {
+      "name": "approved selected shadow/glow unchanged: size",
+      "ok": true,
+      "detail": {
+        "approved": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "updated": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+      }
+    },
+    {
+      "name": "approved selected elevation unchanged: size",
+      "ok": true,
+      "detail": {
+        "approved": "matrix(1, 0, 0, 1, 0, -3.5)",
+        "updated": "matrix(1, 0, 0, 1, 0, -3.5)"
+      }
+    },
+    {
+      "name": "approved selected shadow/glow unchanged: color",
+      "ok": true,
+      "detail": {
+        "approved": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "updated": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+      }
+    },
+    {
+      "name": "approved selected elevation unchanged: color",
+      "ok": true,
+      "detail": {
+        "approved": "matrix(1, 0, 0, 1, 0, -5.5)",
+        "updated": "matrix(1, 0, 0, 1, 0, -5.5)"
+      }
+    },
+    {
+      "name": "approved selected shadow/glow unchanged: printSize",
+      "ok": true,
+      "detail": {
+        "approved": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "updated": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+      }
+    },
+    {
+      "name": "approved selected elevation unchanged: printSize",
+      "ok": true,
+      "detail": {
+        "approved": "matrix(1, 0, 0, 1, 0, -4)",
+        "updated": "matrix(1, 0, 0, 1, 0, -4)"
+      }
+    }
+  ]
+}

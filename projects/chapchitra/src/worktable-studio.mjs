@@ -1,4 +1,5 @@
 import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableReducer } from './worktable-stage.mjs';
+import { UPLOAD_ARTWORK_SVG } from './worktable-upload-icon.mjs';
 
 // Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
 // Cropped WebP browser variants retain original alpha coordinates and source SHA256.
@@ -41,7 +42,12 @@ const layers = [
   ['Print size/Print_size_A3_1.png','printSize','A3'],
   ['Print size/Print_size_A4_2.png','printSize','A4'],
 ];
+// Keep the immutable 39-file original source stack for provenance/QA.
 export const WORKTABLE_SOURCE_STACK=Object.freeze([ALL.backdrop,...layers.map(layer=>layer[0]),ALL.garment.regular,...ALL.workers]);
+// The interactive upload icon is now the owner's vector. Omit ONLY that old
+// raster layer when creating the 12 assembled previews: no double drawing.
+export const WORKTABLE_UPLOAD_RASTER='Upload image notebook/Upload_image_notebook_upload_button_4.png';
+export const WORKTABLE_PREVIEW_STACK=Object.freeze(WORKTABLE_SOURCE_STACK.filter(path=>path!==WORKTABLE_UPLOAD_RASTER));
 const labels = {
   regular:'Regular Tee', dropShoulder:'Drop Shoulder',fullSleeve:'Full Sleeve',hoodie:'Hoodie',
   black:'Black',white:'White',red:'Red',yellow:'Yellow',blue:'Blue',green:'Green',
@@ -151,10 +157,41 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   return el;
  };
  const interactiveFiles=[];
+ let uploadVisual=null;
  for(const [path,group,value] of layers){
-  const im=addImage(path,'cc-worktable-prop', {group,value});
+  let im;
+  if(path===WORKTABLE_UPLOAD_RASTER){
+   // Single inline SVG in exactly the original alpha-crop stageBox.
+   // Its source paths and original colors remain untouched; the rendering
+   // viewBox trims Illustrator's empty export margins, not the artwork.
+   im=document.createElement('div');
+   im.className='cc-worktable-layer cc-worktable-prop cc-worktable-upload-svg-layer';
+   positionLayer(im,path);
+   im.dataset.visualOrder=String(layerCounter++);
+   im.dataset.group='upload';im.dataset.value='upload';
+   const float=document.createElement('div');
+   float.className='cc-worktable-upload-float';
+   const template=document.createElement('template');
+   template.innerHTML=UPLOAD_ARTWORK_SVG.slice(UPLOAD_ARTWORK_SVG.indexOf('<svg'));
+   const vector=template.content.querySelector('svg');
+   if(!vector || !vector.querySelector('#CIRCLE_FOR_PLUS ellipse') || !vector.querySelector('#PLUS path') ||
+      !vector.querySelector('#FRAME_LINES'))throw new Error('Supplied upload SVG geometry is unavailable');
+   vector.classList.add('cc-worktable-upload-svg');
+   vector.setAttribute('viewBox','32 104 440 327');
+   vector.setAttribute('preserveAspectRatio','xMidYMid meet');
+   vector.setAttribute('aria-hidden','true');
+   vector.setAttribute('focusable','false');
+   // Scope original class rules to this SVG. No vector shape is recolored or changed.
+   const artStyle=vector.querySelector('style');
+   if(artStyle)artStyle.textContent=artStyle.textContent.replace(/\.st([0-3])\s*\{/g,'.cc-worktable-upload-svg .st$1{');
+   float.append(vector);im.append(float);stage.append(im);
+   uploadVisual=im;
+  }else{
+   im=addImage(path,'cc-worktable-prop',{group,value});
+  }
   if(group){interactiveImgs.push(im);interactionImages.set(keyFor(group,value),im);interactiveFiles.push({path,group,value});}
  }
+ if(!uploadVisual)throw new Error('Illustrated upload SVG was not mounted');
  let garmentImg=addImage(ALL.garment.regular,'cc-worktable-garment');
  const tint=document.createElement('div'); tint.className='cc-worktable-tint'; stage.append(tint);
  const print=document.createElement('div');print.className='cc-worktable-print';
@@ -182,6 +219,17 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   for(const val of values){const b=sideControl(group,val);if(group==='color')b.style.setProperty('--swatch',dyeRGB[val]);buttons.append(b)}
   field.append(buttons);rail.append(field);
  }
+ // The SVG floats only while the actual notebook target is on screen.
+ // Observer + page visibility prevent offscreen/background infinite movement.
+ let uploadVisible=true;
+ const syncUploadMotion=()=>uploadVisual.classList.toggle('is-idle-paused',document.hidden||!uploadVisible);
+ const uploadObserver=typeof IntersectionObserver!=='undefined' ? new IntersectionObserver(items=>{
+  uploadVisible=items.some(item=>item.isIntersecting);
+  syncUploadMotion();
+ },{threshold:.08}):null;
+ uploadObserver?.observe(uploadVisual);
+ document.addEventListener('visibilitychange',syncUploadMotion);
+ syncUploadMotion();
  const buttons=[...root.querySelectorAll('[data-group][data-value]')];
  const announce=t=>{msg.textContent=t};
  const maxArtBox=(variant=current.garment,kind=current.printSize)=>{
@@ -285,8 +333,17 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   paintSelection();announce(`${labels[value]} selected`);
   if(group==='garment')void switchGarment(value);
  };
+ let uploadAckTimer=null;
+ const acknowledgeUpload=()=>{
+  uploadVisual.classList.add('is-upload-acknowledged');
+  if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
+  uploadAckTimer=setTimeout(()=>{uploadVisual.classList.remove('is-upload-acknowledged');uploadAckTimer=null},180);
+ };
  for(const b of buttons){
-  b.addEventListener('click',()=>update(b.dataset.group,b.dataset.value));
+  b.addEventListener('click',()=>{
+   if(b.classList.contains('cc-worktable-hit')&&b.dataset.group==='upload')acknowledgeUpload();
+   update(b.dataset.group,b.dataset.value);
+  });
   if(b.classList.contains('cc-worktable-hit')){
    const img=interactionImages.get(keyFor(b.dataset.group,b.dataset.value));
    if(!img)throw new Error('Missing illustrated control image: '+b.dataset.group+':'+b.dataset.value);
@@ -298,6 +355,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    b.addEventListener('pointercancel',()=>img.classList.remove('is-hovered'));
    b.addEventListener('pointerdown',event=>{
     if(event.pointerType==='touch')img.classList.remove('is-hovered');
+    if(b.dataset.group==='upload')acknowledgeUpload();
    });
    b.addEventListener('focus',()=>img.classList.toggle('is-keyboard-focus',b.matches(':focus-visible')));
    b.addEventListener('keydown',event=>{
@@ -432,5 +490,9 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   throw new Error('The complete stage preview could not decode on this browser: '+String(error?.message||error));
  }
  void hydrate();
- return {getState:()=>({...current}),getPlacement:()=>({...editor}),destroy:()=>{clearArtURL();window.removeEventListener('pagehide',unload);root.replaceChildren()}};
+ return {getState:()=>({...current}),getPlacement:()=>({...editor}),destroy:()=>{
+  clearArtURL();if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
+  uploadObserver?.disconnect();document.removeEventListener('visibilitychange',syncUploadMotion);
+  window.removeEventListener('pagehide',unload);root.replaceChildren();
+ }};
 }

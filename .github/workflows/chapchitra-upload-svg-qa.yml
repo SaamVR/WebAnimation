@@ -1,0 +1,97 @@
+name: CHAPCHITRA Artist's Edit animated upload SVG QA
+on:
+  pull_request:
+    branches:
+      - feature/chapchitra-selected-glow-20261108
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-upload-svg-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  upload-svg-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          path: baseline
+          ref: 1463011d1c83010c950f9308b5582f921ee6d415
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: candidate/projects/chapchitra/package-lock.json
+      - name: Install, verify checksum-preserved artwork and build candidate
+        run: |
+          cd candidate/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Build untouched SVG-free approved baseline
+        run: |
+          cd baseline/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Install browser engines and native browser dependencies
+        run: |
+          cd candidate/projects/chapchitra
+          npx playwright install --with-deps chromium webkit
+      - name: Start isolated worktable comparison previews
+        run: |
+          (cd candidate/projects/chapchitra && PORT=4333 npm run preview >/tmp/cc-upload-new.log 2>&1) &
+          (cd baseline/projects/chapchitra && PORT=4321 npm run preview >/tmp/cc-upload-old.log 2>&1) &
+          for i in {1..45}; do
+            if curl -fsS http://127.0.0.1:4333/artists-edit/ >/dev/null &&
+               curl -fsS http://127.0.0.1:4321/artists-edit/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/cc-upload-*.log
+          exit 1
+      - name: Exact owner SVG, first frame, invert hover, chooser, keyboard and touch
+        env:
+          CC_QA_URL: http://127.0.0.1:4333/artists-edit/
+          CC_BEFORE_URL: http://127.0.0.1:4321/artists-edit/
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/upload-svg-qa.cjs
+      - name: Existing stage, garment, upload and responsive browser regression
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/qa.cjs http://127.0.0.1:4333 upload-svg-general-regression
+      - name: Deferred hydration, upload failure and original preview checks
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/early-qa.cjs http://127.0.0.1:4333
+      - name: Existing physical-button hover, focus, paint tray and touch regression
+        env:
+          CC_QA_URL: http://127.0.0.1:4333/artists-edit/
+          CC_BEFORE_URL: http://127.0.0.1:4321/artists-edit/
+          CC_QA_OUT: perf-results/upload-svg-physical-regression
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/physical-controls-qa.cjs
+      - name: Existing selected states, manual switching and deferred-selection regression
+        env:
+          CC_QA_URL: http://127.0.0.1:4333/artists-edit/
+          CC_BEFORE_URL: http://127.0.0.1:4321/artists-edit/
+          CC_QA_OUT: perf-results/upload-svg-selected-regression
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/selected-refinement-qa.cjs
+      # The old selected-glow *creation* QA expects before and after glows to
+      # differ. Both sources here already include approved glow; dedicated
+      # upload-svg QA asserts their selected filters are IDENTICAL instead.
+      - name: Archive owner-review before/after screenshots and machine QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapchitra-animated-upload-svg-visual-qa
+          path: candidate/projects/chapchitra/perf-results/
+          retention-days: 30
+          if-no-files-found: warn

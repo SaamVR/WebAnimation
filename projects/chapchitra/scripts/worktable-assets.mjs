@@ -89,7 +89,7 @@ export async function installWorktableAssets(root,output,{originalsOnly=false}={
    }
   }
   await cp(optimizedRoot,resolve(output,'assets/worktable'),{recursive:true,force:true});
-  await stat(resolve(output,'assets/worktable/variants/preview/assembled-regular.w1536.webp'));
+  await stat(resolve(output,'assets/worktable/variants/preview/assembled-regular-svg3ea32afb.w1536.webp'));
   return {originals:entries.length,deliveryLayers:originalKeys.length,
    archiveBytes:archive.length,sha256:hash,
    originalPNGsPublished:0};

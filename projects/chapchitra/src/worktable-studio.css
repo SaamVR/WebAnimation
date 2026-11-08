@@ -12,7 +12,7 @@
 /* The checksum-verified composed preview stays over the source layers until
    their bounded, off-critical-path decodes finish. Hotspots remain interactive. */
 .cc-worktable-preview{inset:0!important;width:100%!important;height:100%!important;z-index:4}
-.cc-worktable.is-hydrating .cc-worktable-layer:not(.cc-worktable-preview){opacity:0!important}
+.cc-worktable.is-hydrating .cc-worktable-layer:not(.cc-worktable-preview):not(.cc-worktable-upload-svg-layer){opacity:0!important}
 /* Art uploads and color previews stay visible and manipulable while the
    individually cropped files hydrate under the assembled preview. */
 .cc-worktable.is-hydrating .cc-worktable-tint{z-index:5}
@@ -68,6 +68,38 @@
   drop-shadow(2px 4.5px 1.7px rgb(31 24 17 / .43))
   drop-shadow(0 0 1.7px rgb(252 240 211 / .36));
 }
+/* Owner-supplied SVG: vector lives at exactly the original cropped upload
+   layer coordinates, but remains visible over the icon-free assembled preview.
+   No duplicate old PNG, no notebook/frame movement and no new hitbox. */
+.cc-worktable-upload-svg-layer{z-index:5;pointer-events:none}
+.cc-worktable-upload-float{position:absolute;inset:0;animation:cc-upload-float 4.2s ease-in-out infinite}
+.cc-worktable-upload-svg{display:block;width:100%;height:100%;overflow:visible;pointer-events:none;
+ transform:translate3d(0,0,0);transition:transform .19s cubic-bezier(.23,.7,.3,1)}
+@keyframes cc-upload-float{
+ 0%,16%,83%,100%{transform:translate3d(0,0,0)}
+ 48%{transform:translate3d(0,-1.6px,0)}
+}
+.cc-worktable-upload-svg-layer.is-idle-paused .cc-worktable-upload-float,
+.cc-worktable-upload-svg-layer.is-hovered .cc-worktable-upload-float,
+.cc-worktable-upload-svg-layer.is-keyboard-focus .cc-worktable-upload-float,
+.cc-worktable-upload-svg-layer.is-upload-acknowledged .cc-worktable-upload-float{
+ animation-play-state:paused;
+}
+/* Resting fills retain the artist's exact original SVG values.
+   Only the existing circle and + path invert during hover/keyboard focus. */
+.cc-worktable-upload-svg #CIRCLE_FOR_PLUS ellipse,
+.cc-worktable-upload-svg #PLUS path{
+ transition:fill .2s cubic-bezier(.23,.7,.3,1);
+}
+.cc-worktable-upload-svg-layer:is(.is-hovered,.is-keyboard-focus) .cc-worktable-upload-svg #CIRCLE_FOR_PLUS ellipse{
+ fill:#F6F7F5;
+}
+.cc-worktable-upload-svg-layer:is(.is-hovered,.is-keyboard-focus) .cc-worktable-upload-svg #PLUS path{
+ fill:#293D2D;
+}
+.cc-worktable-upload-svg-layer.is-upload-acknowledged .cc-worktable-upload-svg{
+ transform:translate3d(0,-1.5px,0);
+}
 /* Keyboard focus illuminates the alpha silhouette, not a rectangular frame. */
 .cc-worktable-prop[data-group].is-keyboard-focus,
 .cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected.is-keyboard-focus{
@@ -122,4 +154,7 @@
 @media(prefers-reduced-motion:reduce){
  .cc-worktable-prop,.cc-worktable-tint,.cc-worktable-choice{transition:none!important}
  .cc-worktable-prop[data-group]{transform:none!important}
+ .cc-worktable-upload-float{animation:none!important}
+ .cc-worktable-upload-svg{transform:none!important;transition:none!important}
+ .cc-worktable-upload-svg #CIRCLE_FOR_PLUS ellipse,.cc-worktable-upload-svg #PLUS path{transition:none!important}
 }
