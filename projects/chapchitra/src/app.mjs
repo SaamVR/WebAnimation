@@ -50,7 +50,7 @@ async function boot(){
    '<nav class="nav-center" aria-label="Main navigation"><a href="/shop/">Shop</a>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
    '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+ 
-   '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"></a>'+
+   '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+svg('search')+'</button>'+
    '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites">'+svg('heart')+'</a>'+
@@ -72,7 +72,7 @@ async function boot(){
    {title:'From the Journal',eyebrow:'05 / TODAY’S STORY',copy:'Read the studio notebook. Original articles and photography will be supplied later.',cta:'Open featured story',href:'/journal/story/?slug=prints-and-people'}
   ];
   return '<section id="hero" class="hero-carousel" aria-label="Five-slide editorial hero"><div class="hero-track">'+slides.map((s,i)=>{
-   if(i===0)return '<article class="hero-slide hero-cover '+(i===0?'is-active':'')+'" data-slide="'+i+'" '+(i===0?'':'hidden')+'><img class="hero-background" src="/assets/hero-paper.svg" alt="Abstract green ink and paper placeholder background"><div class="hero-shade"></div><div class="wrap hero-cover-inner"><p class="eyebrow on-dark">'+s.eyebrow+'</p><img class="hero-brand-lockup" src="/assets/chapchitra-full-on-dark.webp" width="1250" height="1052" alt="CHAPCHITRA textile symbol and custom wordmark" decoding="async" fetchpriority="high"><h1>'+s.title+'</h1><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'beige',href:s.href})+'</div></article>';
+   if(i===0)return '<article class="hero-slide hero-cover '+(i===0?'is-active':'')+'" data-slide="'+i+'" '+(i===0?'':'hidden')+'><img class="hero-background" src="/assets/hero-paper.svg" alt="Abstract green ink and paper placeholder background"><div class="hero-shade"></div><div class="wrap hero-cover-inner"><p class="eyebrow on-dark">'+s.eyebrow+'</p><img class="hero-brand-lockup" src="/assets/chapchitra-full-on-dark.webp" width="1250" height="1052" alt="CHAPCHITRA textile symbol and custom wordmark" decoding="async" fetchpriority="high"><div id="c08HeroStage" class="c08-hero-stage"></div><h1>'+s.title+'</h1><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'beige',href:s.href})+'</div></article>';
    return '<article class="hero-slide hero-split" data-slide="'+i+'" hidden><div class="wrap hero-split-inner"><div class="hero-slide-copy"><p class="eyebrow">'+s.eyebrow+'</p><h2>'+s.title+'</h2><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'forest',href:s.href})+'</div><div class="hero-visual hero-visual-'+i+'">'+(i===2?printSilhouette(i):i===4?'<div class="paper-editorial"><span>JOURNAL / STORY 01</span><strong>Notes from<br>the studio.</strong><span>Draft illustration</span></div>':shirtSilhouette(i))+'<span class="hero-placeholder">IMAGE / ART PENDING</span></div></div></article>'
   }).join('')+'</div><div class="hero-controls wrap"><div class="hero-dots" role="group" aria-label="Choose hero slide">'+slides.map((s,i)=>'<button class="hero-dot'+(i===0?' active':'')+'" type="button" data-slide-to="'+i+'" aria-label="Show slide '+(i+1)+': '+esc(s.title)+'" aria-pressed="'+(i===0?'true':'false')+'"></button>').join('')+'</div><span class="hero-count" id="heroCount">01 / 05</span></div></section>';
  }
@@ -376,13 +376,18 @@ async function boot(){
  // Hero rotation, exactly one timer. Keyboard focus and pointer hover pause.
  if(route==='home'){
   const c01Stage=$('#benefits .c01-stage');
-  if(c01Stage)import('./motion/c01/connected-benefits.mjs')
-   .then(({mountConnectedBenefits})=>mountConnectedBenefits(c01Stage))
-   .catch(err=>console.warn('C01 static benefits retained:',err));
+  const c01Initialized=c01Stage
+   ? import('./motion/c01/connected-benefits.mjs')
+      .then(({mountConnectedBenefits})=>mountConnectedBenefits(c01Stage))
+      .catch(err=>console.warn('C01 static benefits retained:',err))
+   : Promise.resolve();
   const heroRoot=$('#hero'),slides=$$('.hero-slide',heroRoot),dots=$$('.hero-dot',heroRoot);
   let active=0,timer=null,hovered=false,focused=false,touchX=null;
+  // Keep Slide 1 visible through the complete initial C08 4-second wordmark
+  // sequence. Start the unchanged 4-second carousel interval only afterward.
+  let heroLogoHolding=!mediaReduced.matches;
   function pauseHero(){if(timer!==null){clearInterval(timer);timer=null}}
-  function canPlay(){return !mediaReduced.matches&&!hovered&&!focused&&!document.hidden}
+  function canPlay(){return !heroLogoHolding&&!mediaReduced.matches&&!hovered&&!focused&&!document.hidden}
   function scheduleHero(){pauseHero();if(canPlay())timer=setInterval(()=>changeHero((active+1)%slides.length,false),4000)}
   function changeHero(index,manual){active=(index+slides.length)%slides.length;slides.forEach((s,i)=>{s.hidden=i!==active;s.classList.toggle('is-active',i===active)});dots.forEach((d,i)=>{d.classList.toggle('active',i===active);d.setAttribute('aria-pressed',String(i===active))});$('#heroCount').textContent=String(active+1).padStart(2,'0')+' / 05';if(manual)scheduleHero()}
   dots.forEach(dot=>dot.addEventListener('click',()=>changeHero(Number(dot.dataset.slideTo),true)));
@@ -395,6 +400,21 @@ async function boot(){
   document.addEventListener('visibilitychange',scheduleHero);
   mediaReduced.addEventListener('change',scheduleHero);
   scheduleHero();
+  // Let C01 register its existing IntersectionObserver first, so C08 can
+  // reuse the same self-hosted lottie-web script if benefits are in viewport.
+  // No C01 artwork, controller, styles, or activation times are changed.
+  c01Initialized.then(()=>new Promise(done=>requestAnimationFrame(done)))
+   .then(()=>import('./motion/c08/logo-player.mjs')).then(({mountC08})=>
+    mountC08({
+      navbar:$('.logo-word--image'),
+      heroImage:$('.hero-brand-lockup'),
+      heroStage:$('#c08HeroStage'),
+      onHeroHolding:hold=>{heroLogoHolding=hold;if(hold)pauseHero();else scheduleHero()}
+    })
+  ).catch(error=>{
+    heroLogoHolding=false;scheduleHero();
+    console.warn('C08 retained the existing static logo:',error);
+  });
   let homePage=1;
   renderHomeCollection=function(){
    const pages=Math.ceil(catalog.length/PAGE_SIZE_HOME);
@@ -715,6 +735,10 @@ async function boot(){
    }
   }
  }
+ // Navbar C08 is hover-only on all routes. It never loads a player automatically.
+ if(route!=='home')import('./motion/c08/logo-player.mjs')
+  .then(({mountC08})=>mountC08({navbar:$('.logo-word--image')}))
+  .catch(error=>console.warn('C08 original navbar image retained:',error));
  if(route==='journal'){
   let index=0,interval=null,hover=false,focus=false;
   const spotlight=$('#journalSpotlight');

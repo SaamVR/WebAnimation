@@ -1,0 +1,339 @@
+{
+  "url": "http://127.0.0.1:19289/",
+  "runAt": "2026-11-08T14:56:06.180Z",
+  "checks": [
+    {
+      "label": "homepage HTTP success",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "hero autoplay starts exactly once",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "playing": true,
+        "completed": 0,
+        "autoplay": 1,
+        "failed": false,
+        "frame": 3
+      }
+    },
+    {
+      "label": "navbar remains static during hero autoplay",
+      "passed": true,
+      "detail": {
+        "ready": false,
+        "playing": false,
+        "completed": 0,
+        "hovered": false,
+        "loaded": false,
+        "frame": null
+      }
+    },
+    {
+      "label": "hero overlay preserves exact centered original logo dimensions",
+      "passed": true,
+      "detail": {
+        "image": {
+          "x": 561.5,
+          "y": 182.046875,
+          "w": 285,
+          "h": 239.84375
+        },
+        "overlay": {
+          "x": 561.5,
+          "y": 182.046875,
+          "w": 285,
+          "h": 239.84375
+        },
+        "navCenter": 704,
+        "viewportCenter": 704,
+        "footerImage": "/assets/chapchitra-wordmark-light.webp",
+        "footerLottie": 0,
+        "runtimeScripts": 1
+      }
+    },
+    {
+      "label": "navbar remains centered to viewport",
+      "passed": true,
+      "detail": {
+        "image": {
+          "x": 561.5,
+          "y": 182.046875,
+          "w": 285,
+          "h": 239.84375
+        },
+        "overlay": {
+          "x": 561.5,
+          "y": 182.046875,
+          "w": 285,
+          "h": 239.84375
+        },
+        "navCenter": 704,
+        "viewportCenter": 704,
+        "footerImage": "/assets/chapchitra-wordmark-light.webp",
+        "footerLottie": 0,
+        "runtimeScripts": 1
+      }
+    },
+    {
+      "label": "C01/C08 reuse one shared self-hosted Lottie script",
+      "passed": true,
+      "detail": {
+        "image": {
+          "x": 561.5,
+          "y": 182.046875,
+          "w": 285,
+          "h": 239.84375
+        },
+        "overlay": {
+          "x": 561.5,
+          "y": 182.046875,
+          "w": 285,
+          "h": 239.84375
+        },
+        "navCenter": 704,
+        "viewportCenter": 704,
+        "footerImage": "/assets/chapchitra-wordmark-light.webp",
+        "footerLottie": 0,
+        "runtimeScripts": 1
+      }
+    },
+    {
+      "label": "footer retains approved static light logo only",
+      "passed": true,
+      "detail": {
+        "image": {
+          "x": 561.5,
+          "y": 182.046875,
+          "w": 285,
+          "h": 239.84375
+        },
+        "overlay": {
+          "x": 561.5,
+          "y": 182.046875,
+          "w": 285,
+          "h": 239.84375
+        },
+        "navCenter": 704,
+        "viewportCenter": 704,
+        "footerImage": "/assets/chapchitra-wordmark-light.webp",
+        "footerLottie": 0,
+        "runtimeScripts": 1
+      }
+    },
+    {
+      "label": "hero final frame held after one autoplay",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "playing": false,
+        "completed": 1,
+        "autoplay": 1,
+        "failed": false,
+        "frame": 239
+      }
+    },
+    {
+      "label": "navbar never initializes while hero autoplays",
+      "passed": true,
+      "detail": {
+        "ready": false,
+        "playing": false,
+        "completed": 0,
+        "hovered": false,
+        "loaded": false,
+        "frame": null
+      }
+    },
+    {
+      "label": "carousel does not interrupt initial logo playback",
+      "passed": true,
+      "detail": {
+        "slide": "0"
+      }
+    },
+    {
+      "label": "navbar does not restart while pointer remains inside",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "label": "navbar replays once after pointer leaves and returns",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "label": "hero hover replays once without looping",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "label": "hero replays again after pointer exit/reentry",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "label": "homepage HTTP success",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "responsive hero and navbar preserve original proportions at 834px",
+      "passed": true,
+      "detail": {
+        "img": [
+          308.578125,
+          246.5,
+          216.828125,
+          182.46875
+        ],
+        "stage": [
+          308.578125,
+          246.5,
+          216.828125,
+          182.46875
+        ],
+        "navCenter": 416.9921875,
+        "screenCenter": 417,
+        "overflow": false
+      }
+    },
+    {
+      "label": "homepage HTTP success",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "responsive hero and navbar preserve original proportions at 430px",
+      "passed": true,
+      "detail": {
+        "img": [
+          95,
+          201.625,
+          240,
+          201.96875
+        ],
+        "stage": [
+          95,
+          201.625,
+          240,
+          201.96875
+        ],
+        "navCenter": 215,
+        "screenCenter": 215,
+        "overflow": false
+      }
+    },
+    {
+      "label": "homepage HTTP success",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "responsive hero and navbar preserve original proportions at 320px",
+      "passed": true,
+      "detail": {
+        "img": [
+          60,
+          229.640625,
+          200,
+          168.3125
+        ],
+        "stage": [
+          60,
+          229.640625,
+          200,
+          168.3125
+        ],
+        "navCenter": 160,
+        "screenCenter": 160,
+        "overflow": false
+      }
+    },
+    {
+      "label": "homepage HTTP success",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "mobile/touch does not advertise mouse hover",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "label": "hero tap replays once on touch",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "label": "navbar stays static on touch when hero is tapped",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "label": "navbar touch tap still navigates Home, without starting animation",
+      "passed": true,
+      "detail": {
+        "path": "/",
+        "navbar": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        }
+      }
+    },
+    {
+      "label": "reduced-motion retains complete static identity without loading C08 Lottie",
+      "passed": true,
+      "detail": {
+        "logoImage": true,
+        "hero": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "autoplay": 0,
+          "failed": false,
+          "frame": null
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "overlay": false,
+        "buttonVisible": false
+      }
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "c08-hero-final-desktop.png",
+    "c08-navbar-hover-desktop.png",
+    "c08-hero-final-834.png",
+    "c08-hero-final-430.png",
+    "c08-hero-final-320.png",
+    "c08-reduced-mobile.png"
+  ],
+  "videos": [
+    "c08-hero-autoplay-navbar-static.webm",
+    "c08-navbar-hover-reprint.webm"
+  ]
+}

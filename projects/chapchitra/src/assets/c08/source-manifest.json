@@ -1,0 +1,50 @@
+{
+  "project": "CHAPCHITRA",
+  "animation": "C08",
+  "status": "CREATIVE_APPROVED_FINAL",
+  "approved_variant": "Version B / Wordmark Reprint / -90 degree rotation",
+  "composition": {
+    "width": 2400,
+    "height": 550,
+    "framerate": 60,
+    "in_frame": 0,
+    "out_frame": 240,
+    "duration_seconds": 4.0
+  },
+  "original_source_sha256": "093b1d63ce8e572caa9f605cf1c786f174a2b3505d228b7279d51982c63cd4a3",
+  "files": {
+    "CHAPCHITRA_C08_APPROVED_MASTER_SOURCE.svg": {
+      "bytes": 8839,
+      "sha256": "093b1d63ce8e572caa9f605cf1c786f174a2b3505d228b7279d51982c63cd4a3"
+    },
+    "CHAPCHITRA_C08_WORDMARK_REPRINT_NEG90_FINAL.json": {
+      "bytes": 71342,
+      "sha256": "e3887a7187f845099a4948c3a8a3ff2b85dc650b381635cc6db5e3aa68d33876"
+    },
+    "CHAPCHITRA_C08_WORDMARK_REPRINT_NEG90_FINAL.lottie": {
+      "bytes": 11124,
+      "sha256": "ed802b1986075d88862020206d23175a8a707454b4ad11c165ed5698eb4a5898"
+    },
+    "CHAPCHITRA_C08_WORDMARK_REPRINT_NEG90_INTERACTIVE_PREVIEW.html": {
+      "bytes": 126601,
+      "sha256": "860ec70c28f964349c5611f2ba8a14d67966144e6f702012b7a88f251b3ed6b1"
+    },
+    "CHAPCHITRA_C08_WORDMARK_REPRINT_NEG90_PREVIEW.gif": {
+      "bytes": 974818,
+      "sha256": "897f4564e8e4738f16195e7e38a543ba7b00a346ff9df34d0b6d47b9d94b5140"
+    },
+    "CHAPCHITRA_C08_WORDMARK_REPRINT_NEG90_PREVIEW.mp4": {
+      "bytes": 93103,
+      "sha256": "04aadc4fb10e969023b945a39fe700a5b991db6edf0b55d78d434f5f2c362969"
+    },
+    "CHAPCHITRA_C08_WORDMARK_REPRINT_NEG90_STORYBOARD.png": {
+      "bytes": 116375,
+      "sha256": "8f7778b8e3b39a4f7f112f30da51750861de6c7e1467cafc26b681c8c15bb60d"
+    },
+    "README_DEVELOPER_HANDOFF.md": {
+      "bytes": 3249,
+      "sha256": "456827cd008feafc6f7e9e750a605b38eb1914c9b693e8cd763272ee99f881a8"
+    }
+  },
+  "runtime_certification": "pending independent lottie-web test"
+}
