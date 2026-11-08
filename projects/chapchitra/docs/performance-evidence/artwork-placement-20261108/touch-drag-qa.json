@@ -1,0 +1,110 @@
+{
+  "passed": 12,
+  "failed": 0,
+  "total": 12,
+  "failures": [],
+  "checks": [
+    {
+      "name": "834 touch pointer starts capture and temporary outline",
+      "passed": true,
+      "detail": {
+        "x": 944.652278177458,
+        "y": 399.9616306954436,
+        "active": true,
+        "drag": true
+      }
+    },
+    {
+      "name": "834 touch moves artwork in both axes",
+      "passed": true,
+      "detail": {
+        "before": {
+          "x": 944.652278177458,
+          "y": 399.9616306954436,
+          "active": true,
+          "drag": false
+        },
+        "after": {
+          "x": 1043.3381294964029,
+          "y": 550.7913669064748,
+          "active": true,
+          "drag": false
+        }
+      }
+    },
+    {
+      "name": "834 pointer capture releases after touch",
+      "passed": true,
+      "detail": {
+        "x": 1043.3381294964029,
+        "y": 550.7913669064748,
+        "active": true,
+        "drag": false
+      }
+    },
+    {
+      "name": "834 temporary outline disappears after touch",
+      "passed": true
+    },
+    {
+      "name": "834 original image stays on garment",
+      "passed": true
+    },
+    {
+      "name": "834 no errors or overflow",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "390 touch pointer starts capture and temporary outline",
+      "passed": true,
+      "detail": {
+        "x": 944.6564102564103,
+        "y": 399.9179487179487,
+        "active": true,
+        "drag": true
+      }
+    },
+    {
+      "name": "390 touch moves artwork in both axes",
+      "passed": true,
+      "detail": {
+        "before": {
+          "x": 944.6564102564103,
+          "y": 399.9179487179487,
+          "active": true,
+          "drag": false
+        },
+        "after": {
+          "x": 1043.2820512820513,
+          "y": 550.7282051282051,
+          "active": true,
+          "drag": false
+        }
+      }
+    },
+    {
+      "name": "390 pointer capture releases after touch",
+      "passed": true,
+      "detail": {
+        "x": 1043.2820512820513,
+        "y": 550.7282051282051,
+        "active": true,
+        "drag": false
+      }
+    },
+    {
+      "name": "390 temporary outline disappears after touch",
+      "passed": true
+    },
+    {
+      "name": "390 original image stays on garment",
+      "passed": true
+    },
+    {
+      "name": "390 no errors or overflow",
+      "passed": true,
+      "detail": []
+    }
+  ]
+}

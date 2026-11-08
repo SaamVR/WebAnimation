@@ -1,0 +1,47 @@
+{
+  "source_unit": {
+    "passed": 107,
+    "failed": 0,
+    "source": "npm run check on Windows with LF-normalized source tests"
+  },
+  "artwork_browser": {
+    "passed": 120,
+    "failed": 0
+  },
+  "mobile_touch": {
+    "passed": 12,
+    "failed": 0
+  },
+  "atomic_switching": {
+    "passed": 302,
+    "failed": 0
+  },
+  "fabric_pigmentation": {
+    "passed": 735,
+    "failed": 0
+  },
+  "selected_elevation_glow": {
+    "passed": 168,
+    "failed": 0
+  },
+  "physical_controls": {
+    "passed": 102,
+    "failed": 0
+  },
+  "upload_svg": {
+    "passed": 95,
+    "failed": 0
+  },
+  "editorial_panel": {
+    "passed": 768,
+    "failed": 0
+  },
+  "general": {
+    "passed": 35,
+    "failed": 0
+  },
+  "early_image_failure": {
+    "passed": 1,
+    "failed": 0
+  }
+}
