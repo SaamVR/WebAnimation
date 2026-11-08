@@ -215,7 +215,9 @@ export function mountConnectedBenefits(stage) {
   reduced.addEventListener('change', reflectMode);
   mobile.addEventListener('change', requestLayout);
   if (typeof ResizeObserver === 'function') new ResizeObserver(requestLayout).observe(stage);
-  else window.addEventListener('resize', requestLayout, {passive: true});
+  // At wide viewports, .wrap stays at 1160px while the responsive C01 offsets
+  // still change with viewport width; observe resize regardless of stage size.
+  window.addEventListener('resize', requestLayout, {passive: true});
   document.fonts?.ready.then(requestLayout);
   layout();
   if (reduced.matches) reflectMode();
