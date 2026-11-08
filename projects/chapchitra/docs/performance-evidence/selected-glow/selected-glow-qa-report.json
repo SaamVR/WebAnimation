@@ -1,0 +1,1394 @@
+{
+  "candidate": "http://127.0.0.1:4321/artists-edit/",
+  "baseline": "http://127.0.0.1:4317/artists-edit/",
+  "total": 159,
+  "passed": 159,
+  "errors": [],
+  "results": [
+    {
+      "name": "chromium-desktop garment resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-desktop garment approved nonselected hover intact",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.83951)",
+        "y": -1.83951,
+        "opacity": "1",
+        "selected": false,
+        "hovered": true
+      }
+    },
+    {
+      "name": "chromium-desktop garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.03201) saturate(1.01401) drop-shadow(rgba(31, 23, 14, 0.498) 1.99988px 4.59964px 1.69994px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.89977px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.59685px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.49972)",
+        "y": -4.49972,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop garment selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.03201) saturate(1.01401) drop-shadow(rgba(31, 23, 14, 0.498) 1.99988px 4.59964px 1.69994px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.89977px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.59685px)"
+    },
+    {
+      "name": "chromium-desktop garment only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-desktop garment deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.111783)",
+        "y": -0.111783,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop garment replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.44979)",
+        "y": -4.44979,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop size resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-desktop size approved nonselected hover intact",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.37998)",
+        "y": -1.37998,
+        "opacity": "1",
+        "selected": false,
+        "hovered": true
+      }
+    },
+    {
+      "name": "chromium-desktop size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.03201) saturate(1.01401) drop-shadow(rgba(31, 23, 14, 0.498) 1.99986px 4.59959px 1.69993px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.89973px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.59687px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.49964)",
+        "y": -3.49964,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop size selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.03201) saturate(1.01401) drop-shadow(rgba(31, 23, 14, 0.498) 1.99986px 4.59959px 1.69993px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.89973px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.59687px)"
+    },
+    {
+      "name": "chromium-desktop size only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-desktop size deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.163426)",
+        "y": -0.163426,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop size replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.41303)",
+        "y": -3.41303,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop color resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-desktop color approved nonselected hover intact",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.83977)",
+        "y": -1.83977,
+        "opacity": "1",
+        "selected": false,
+        "hovered": true
+      }
+    },
+    {
+      "name": "chromium-desktop color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.5)",
+        "y": -5.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop color selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-desktop color only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-desktop paint tray front still in front",
+      "ok": true,
+      "info": {
+        "pot": 15,
+        "front": 19,
+        "z": "auto"
+      }
+    },
+    {
+      "name": "chromium-desktop color deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.136395)",
+        "y": -0.136395,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop color replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.43877)",
+        "y": -5.43877,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop printSize resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-desktop printSize approved nonselected hover intact",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.83968)",
+        "y": -1.83968,
+        "opacity": "1",
+        "selected": false,
+        "hovered": true
+      }
+    },
+    {
+      "name": "chromium-desktop printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.03201) saturate(1.01401) drop-shadow(rgba(31, 23, 14, 0.498) 1.99986px 4.59958px 1.69993px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.89972px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.59682px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.99963)",
+        "y": -3.99963,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop printSize selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.03201) saturate(1.01401) drop-shadow(rgba(31, 23, 14, 0.498) 1.99986px 4.59958px 1.69993px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.89972px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.59682px)"
+    },
+    {
+      "name": "chromium-desktop printSize only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-desktop printSize deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.0995037)",
+        "y": -0.0995037,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop printSize replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.95529)",
+        "y": -3.95529,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-desktop no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "chromium-desktop no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "chromium-desktop image manifest first stage intact",
+      "ok": true,
+      "info": "none"
+    },
+    {
+      "name": "webkit-desktop garment resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit-desktop garment approved nonselected hover intact",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.913829)",
+        "y": -1.913829,
+        "opacity": "1",
+        "selected": false,
+        "hovered": true
+      }
+    },
+    {
+      "name": "webkit-desktop garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.5)",
+        "y": -4.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop garment selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "webkit-desktop garment only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit-desktop garment deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.000232)",
+        "y": -0.000232,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop garment replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.427541)",
+        "y": -4.427541,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop size resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit-desktop size approved nonselected hover intact",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.462153)",
+        "y": -1.462153,
+        "opacity": "1",
+        "selected": false,
+        "hovered": true
+      }
+    },
+    {
+      "name": "webkit-desktop size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.5)",
+        "y": -3.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop size selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "webkit-desktop size only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit-desktop size deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.03491)",
+        "y": -0.03491,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop size replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.48824)",
+        "y": -3.48824,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop color resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit-desktop color approved nonselected hover intact",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.925407)",
+        "y": -1.925407,
+        "opacity": "1",
+        "selected": false,
+        "hovered": true
+      }
+    },
+    {
+      "name": "webkit-desktop color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.5)",
+        "y": -5.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop color selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "webkit-desktop color only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit-desktop paint tray front still in front",
+      "ok": true,
+      "info": {
+        "pot": 15,
+        "front": 19,
+        "z": "auto"
+      }
+    },
+    {
+      "name": "webkit-desktop color deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.007537)",
+        "y": -0.007537,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop color replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.441878)",
+        "y": -5.441878,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop printSize resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit-desktop printSize approved nonselected hover intact",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.949537)",
+        "y": -1.949537,
+        "opacity": "1",
+        "selected": false,
+        "hovered": true
+      }
+    },
+    {
+      "name": "webkit-desktop printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4)",
+        "y": -4,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop printSize selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "webkit-desktop printSize only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit-desktop printSize deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.049901)",
+        "y": -0.049901,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop printSize replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.972663)",
+        "y": -3.972663,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-desktop no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "webkit-desktop no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "webkit-desktop image manifest first stage intact",
+      "ok": true,
+      "info": "none"
+    },
+    {
+      "name": "webkit-tablet garment resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit-tablet garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.449681)",
+        "y": -4.449681,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet garment selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "webkit-tablet garment only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit-tablet garment deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.004584)",
+        "y": -0.004584,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet garment replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.499897)",
+        "y": -4.499897,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet size resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit-tablet size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.5)",
+        "y": -3.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet size selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "webkit-tablet size only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit-tablet size deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "y": 0,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet size replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.5)",
+        "y": -3.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet color resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit-tablet color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.484757)",
+        "y": -5.484757,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet color selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "webkit-tablet color only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit-tablet paint tray front still in front",
+      "ok": true,
+      "info": {
+        "pot": 15,
+        "front": 19,
+        "z": "auto"
+      }
+    },
+    {
+      "name": "webkit-tablet color deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.042917)",
+        "y": -0.042917,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet color replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.49138)",
+        "y": -5.49138,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet printSize resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "webkit-tablet printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.999421)",
+        "y": -3.999421,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet printSize selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "webkit-tablet printSize only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit-tablet printSize deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "y": 0,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet printSize replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4)",
+        "y": -4,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "webkit-tablet no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "webkit-tablet no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "webkit-tablet image manifest first stage intact",
+      "ok": true,
+      "info": "none"
+    },
+    {
+      "name": "chromium-mobile garment resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-mobile garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.3881)",
+        "y": -4.3881,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile garment selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-mobile garment only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile garment deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.112171)",
+        "y": -0.112171,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile garment replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.44966)",
+        "y": -4.44966,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile size resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-mobile size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.33639)",
+        "y": -3.33639,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile size selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-mobile size only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile size deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.0870643)",
+        "y": -0.0870643,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile size replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.4127)",
+        "y": -3.4127,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile color resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-mobile color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.36306)",
+        "y": -5.36306,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile color selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-mobile color only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile paint tray front still in front",
+      "ok": true,
+      "info": {
+        "pot": 15,
+        "front": 19,
+        "z": "auto"
+      }
+    },
+    {
+      "name": "chromium-mobile color deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.136698)",
+        "y": -0.136698,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile color replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.43871)",
+        "y": -5.43871,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile printSize resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-mobile printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.90048)",
+        "y": -3.90048,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile printSize selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-mobile printSize only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile printSize deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.0997578)",
+        "y": -0.0997578,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile printSize replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.95547)",
+        "y": -3.95547,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-mobile no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "chromium-mobile no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile image manifest first stage intact",
+      "ok": true,
+      "info": "none"
+    },
+    {
+      "name": "chromium-small-mobile garment resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-small-mobile garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.38837)",
+        "y": -4.38837,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile garment selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-small-mobile garment only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-small-mobile garment deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.111904)",
+        "y": -0.111904,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile garment replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.44953)",
+        "y": -4.44953,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile size resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-small-mobile size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.33671)",
+        "y": -3.33671,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile size selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-small-mobile size only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-small-mobile size deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.0870624)",
+        "y": -0.0870624,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile size replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.41291)",
+        "y": -3.41291,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile color resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-small-mobile color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.3628)",
+        "y": -5.3628,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile color selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-small-mobile color only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-small-mobile paint tray front still in front",
+      "ok": true,
+      "info": {
+        "pot": 15,
+        "front": 19,
+        "z": "auto"
+      }
+    },
+    {
+      "name": "chromium-small-mobile color deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.136955)",
+        "y": -0.136955,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile color replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.43855)",
+        "y": -5.43855,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile printSize resting no selected glow",
+      "ok": true,
+      "info": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)"
+    },
+    {
+      "name": "chromium-small-mobile printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.9003)",
+        "y": -3.9003,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile printSize selected uses only cream alpha glow",
+      "ok": true,
+      "info": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+    },
+    {
+      "name": "chromium-small-mobile printSize only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium-small-mobile printSize deselected returns to rest",
+      "ok": true,
+      "info": {
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.0995287)",
+        "y": -0.0995287,
+        "opacity": "1",
+        "selected": false,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile printSize replacement retains glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.95511)",
+        "y": -3.95511,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "chromium-small-mobile no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "chromium-small-mobile no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "chromium-small-mobile image manifest first stage intact",
+      "ok": true,
+      "info": "none"
+    },
+    {
+      "name": "before vs after red pot lift preserved",
+      "ok": true,
+      "info": {
+        "old": -5.43828,
+        "new": -5.49857
+      }
+    },
+    {
+      "name": "old selected filter differs only in cream glow",
+      "ok": true,
+      "info": {
+        "old": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "new": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)"
+      }
+    },
+    {
+      "name": "approved hover identical baseline/changed: garment",
+      "ok": true,
+      "info": {
+        "old": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -2)",
+          "y": -2,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        },
+        "new": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -2)",
+          "y": -2,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        }
+      }
+    },
+    {
+      "name": "approved hover identical baseline/changed: size",
+      "ok": true,
+      "info": {
+        "old": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -1.5)",
+          "y": -1.5,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        },
+        "new": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -1.5)",
+          "y": -1.5,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        }
+      }
+    },
+    {
+      "name": "approved hover identical baseline/changed: color",
+      "ok": true,
+      "info": {
+        "old": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -2)",
+          "y": -2,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        },
+        "new": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -2)",
+          "y": -2,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        }
+      }
+    },
+    {
+      "name": "approved hover identical baseline/changed: printSize",
+      "ok": true,
+      "info": {
+        "old": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -2)",
+          "y": -2,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        },
+        "new": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -2)",
+          "y": -2,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        }
+      }
+    },
+    {
+      "name": "approved hover identical baseline/changed: upload",
+      "ok": true,
+      "info": {
+        "old": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.43) 2px 4.5px 1.7px) drop-shadow(rgba(252, 240, 211, 0.36) 0px 0px 1.7px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -3)",
+          "y": -3,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        },
+        "new": {
+          "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.43) 2px 4.5px 1.7px) drop-shadow(rgba(252, 240, 211, 0.36) 0px 0px 1.7px)",
+          "transform": "matrix(1, 0, 0, 1, 0, -3)",
+          "y": -3,
+          "opacity": "1",
+          "selected": false,
+          "hovered": true
+        }
+      }
+    },
+    {
+      "name": "owner all-selected preview garment keeps lifted glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4.5)",
+        "y": -4.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "owner all-selected preview size keeps lifted glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -3.5)",
+        "y": -3.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "owner all-selected preview color keeps lifted glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -5.5)",
+        "y": -5.5,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    },
+    {
+      "name": "owner all-selected preview printSize keeps lifted glow",
+      "ok": true,
+      "info": {
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(255, 249, 232, 0.66) 0px 0px 1.9px) drop-shadow(rgba(248, 237, 214, 0.32) 0px 0px 4.6px)",
+        "transform": "matrix(1, 0, 0, 1, 0, -4)",
+        "y": -4,
+        "opacity": "1",
+        "selected": true,
+        "hovered": false
+      }
+    }
+  ]
+}
