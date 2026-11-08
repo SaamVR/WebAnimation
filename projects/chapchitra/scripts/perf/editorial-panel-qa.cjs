@@ -130,10 +130,10 @@ async function runEngine(engine,name,{width=1440,height=900,touch=false}={}){
  await page.locator('.cc-worktable-print.has-art img[src^="blob"]').waitFor({timeout:15000});
  check(prefix+' upload enables existing controls',
   await page.locator('#worktableArtScale').isEnabled()&&await page.locator('#worktableResetArt').isEnabled()&&await page.locator('#worktableRemoveArt').isEnabled());
- await page.locator('#worktableArtScale').fill('65');
- check(prefix+' artwork scale remains synchronized',(await page.locator('#worktableScaleOutput').textContent()).trim()==='65%');
+ await page.locator('#worktableArtScale').fill('-25');
+ check(prefix+' artwork scale remains synchronized',(await page.locator('#worktableScaleOutput').textContent()).trim()==='−25%');
  await page.locator('#worktableResetArt').click();
- check(prefix+' reset placement stays functional',(await page.locator('#worktableScaleOutput').textContent()).trim()==='100%');
+ check(prefix+' reset placement stays functional',(await page.locator('#worktableScaleOutput').textContent()).trim()==='0%');
  await page.locator('#worktableRemoveArt').click();
  check(prefix+' artwork removal restores disabled state',await page.locator('.cc-worktable-print.has-art').count()===0&&await page.locator('#worktableResetArt').isDisabled());
  check(prefix+' no duplicate SVG illustration',await page.locator('.cc-worktable-upload-svg-layer svg').count()===1);

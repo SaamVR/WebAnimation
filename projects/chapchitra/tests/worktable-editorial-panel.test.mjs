@@ -66,10 +66,10 @@ test('native artwork-management handlers and production disclaimer remain intact
   "scale.addEventListener('input',()=>{",
   "reset.addEventListener('click',()=>{",
   "remove.addEventListener('click',()=>{",
-  "announce('Artwork loaded locally.",
+  "announce('Artwork loaded locally at 0%",
   "production print dimensions and fabric-color accuracy require manufacturer calibration."
  ])assert.ok(source.includes(code),code);
- assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{\s*background:var\(--color-press-green\)/);
+ assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{\s*width:100%;background:var\(--color-press-green\)/);
  assert.match(css,/\.cc-worktable-upload-row button:disabled\{opacity:\.42;cursor:not-allowed\}/);
 });
 test('four/two/one responsive columns, >=44px controls and visible focus styles are defined',()=>{
