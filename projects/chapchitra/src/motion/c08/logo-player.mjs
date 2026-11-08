@@ -4,6 +4,8 @@
 const PLAYER = '/motion/c01/vendor/lottie.min.js';
 const SOURCE = '/assets/c08/wordmark-reprint-original.json';
 const HERO = '/assets/c08/wordmark-reprint-hero-light.json';
+const CSS = '/motion/c08/logo-player.css';
+
 const DURATION_FRAMES = 240;
 const HOVER = matchMedia('(hover:hover) and (pointer:fine)');
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)');
@@ -64,7 +66,22 @@ async function loadAnimation(holder,src) {
   });
 }
 
+// The Artist's Edit app runs from /releases/<sha>/app.mjs and does not
+// include the homepage stylesheet. Load the *scoped* C08 CSS from the
+// canonical root only when missing. Do not touch the worktable runtime.
+function ensureC08Stylesheet() {
+  const found = [...document.querySelectorAll('link[rel="stylesheet"]')]
+    .some(link => new URL(link.href,location.href).pathname===CSS);
+  if(found)return;
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href=CSS;
+  link.dataset.c08Styles='true';
+  document.head.appendChild(link);
+}
+
 export function mountC08({navbar,heroImage=null,heroStage=null,onHeroHolding=()=>{}}={}) {
+  if(navbar||heroImage)ensureC08Stylesheet();
   const nav={ready:false,playing:false,loadRequested:false,completed:0,loaded:false,hovered:false,armed:true,instance:null};
   const hero={ready:false,playing:false,completed:0,autoplay:0,instance:null,failed:false,stage:null,trigger:null};
 

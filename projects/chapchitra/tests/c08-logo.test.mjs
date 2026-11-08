@@ -89,3 +89,18 @@ test('C08 uses scoped placement, reduced motion and leaves footer static',async(
  assert.match(script,/dataCache = new Map\(\)/);
  assert.ok((await stat(resolve(root,'src/assets/c08/wordmark-reprint-original.json'))).size<100000);
 });
+
+test('global C08 navbar resolves from versioned Artist Edit release without changing the editor',async()=>{
+ const app=await text('src/app.mjs');
+ const player=await text('src/motion/c08/logo-player.mjs');
+ assert.equal((app.match(/import\('\/motion\/c08\/logo-player\.mjs'\)/g)||[]).length,2);
+ assert.ok(!app.includes("import('./motion/c08/logo-player.mjs')"));
+ assert.match(player,/const CSS = '\/motion\/c08\/logo-player\.css'/);
+ assert.match(player,/function ensureC08Stylesheet\(\)/);
+ assert.match(player,/\.some\(link => new URL\(link\.href,location\.href\)\.pathname===CSS\)/);
+ assert.match(player,/link\.dataset\.c08Styles='true'/);
+ assert.match(player,/if\(navbar\|\|heroImage\)ensureC08Stylesheet\(\)/);
+ // Scope remains separate from the Artist Edit worktable and C01 originals.
+ assert.ok(!(await text('src/worktable-studio.mjs')).includes('c08'));
+ assert.ok(!(await text('src/motion/c01/connected-benefits.mjs')).includes('c08'));
+});
