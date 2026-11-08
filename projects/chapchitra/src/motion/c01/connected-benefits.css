@@ -5,8 +5,11 @@
 #benefits .c01-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 #benefits .c01-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;min-width:0;isolation:isolate}
 #benefits .c01-icon-shell{position:relative;display:grid;place-items:center;width:82px;height:82px;flex:none}
-#benefits .c01-icon-shell:before{content:"";position:absolute;width:76px;height:76px;left:4px;top:4px;transform:translate(2px,1px);border:1px solid color-mix(in srgb,var(--olive) 48%,transparent);border-radius:50%;pointer-events:none}
-#benefits .c01-icon{width:72px;height:72px;position:relative;z-index:2;border-radius:50%;overflow:hidden;background:var(--bg);flex:none}
+#benefits .c01-icon-shell:before{content:"";position:absolute;width:76px;height:76px;left:4px;top:4px;transform:translate(2px,1px);border:1px solid color-mix(in srgb,var(--olive) 48%,transparent);border-radius:50%;pointer-events:none;opacity:var(--c01-art-opacity,1)}
+/* Pending icon placeholders match the existing inactive connector guide exactly.
+   The guide stays registered to the approved circle; artwork replaces it on its authored cue. */
+#benefits .c01-icon-shell:after{content:"";position:absolute;inset:5px;border:1.7px solid var(--beige);border-radius:50%;opacity:var(--c01-guide-opacity,0);pointer-events:none;z-index:1}
+#benefits .c01-icon{width:72px;height:72px;position:relative;z-index:2;border-radius:50%;overflow:hidden;background:var(--bg);flex:none;opacity:var(--c01-art-opacity,1)}
 #benefits .c01-poster,#benefits .c01-lottie{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--bg);pointer-events:none}
 #benefits .c01-lottie{visibility:hidden}
 #benefits .c01-lottie svg{width:100%;height:100%;display:block}
@@ -42,6 +45,7 @@
  #benefits .c01-step{display:flex;flex-direction:row;text-align:left;min-height:72px;gap:16px}
  #benefits .c01-icon-shell{width:76px;height:76px}
  #benefits .c01-icon-shell:before{width:72px;height:72px;left:3px;top:3px}
+ #benefits .c01-icon-shell:after{inset:4px}
  #benefits .c01-icon{width:68px;height:68px}
  #benefits .c01-copy{max-width:none;padding:0;align-self:center;min-width:0}
  #benefits .c01-copy h3{margin:0;font-size:13px}

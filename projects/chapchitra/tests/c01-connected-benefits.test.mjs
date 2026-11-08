@@ -91,3 +91,19 @@ test('C01 wide layout uses the site gutters and preserves mobile/resize registra
  assert.match(clock,/window\.addEventListener\('resize', requestLayout, \{passive: true\}\)/);
  assert.match(clock,/getBoundingClientRect\(\)/);
 });
+
+test('future icon guide circles match inactive connector strokes without changing V3 activation',async()=>{
+ const css=await load('src/motion/c01/connected-benefits.css');
+ const clock=await load('src/motion/c01/connected-benefits.mjs');
+ assert.match(css,/\.c01-connection-guide\{[^}]*stroke:var\(--beige\);stroke-width:1\.7;[^}]*opacity:\.57/);
+ assert.match(css,/\.c01-icon-shell:after\{[^}]*inset:5px;[^}]*border:1\.7px solid var\(--beige\);[^}]*opacity:var\(--c01-guide-opacity,0\)/);
+ assert.match(css,/\.c01-icon-shell:before\{[^}]*opacity:var\(--c01-art-opacity,1\)/);
+ assert.match(css,/\.c01-icon\{[^}]*opacity:var\(--c01-art-opacity,1\)/);
+ assert.match(css,/\.c01-icon-shell:after\{inset:4px\}/);
+ assert.match(clock,/--c01-guide-opacity/);
+ assert.match(clock,/--c01-art-opacity/);
+ assert.match(clock,/\.57 \* \(1 - opacity\)/);
+ assert.ok(!clock.includes('slot.parentElement.style.opacity'));
+ assert.match(clock,/const STARTS = \[0, 2\.64, 5\.28, 7\.67\]/);
+ assert.match(clock,/\(seconds - STARTS\[i\] \+ \.02\) \/ \.14/);
+});
