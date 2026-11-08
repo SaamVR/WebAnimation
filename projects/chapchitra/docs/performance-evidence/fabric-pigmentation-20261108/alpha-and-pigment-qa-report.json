@@ -1,0 +1,6560 @@
+{
+  "url": "http://127.0.0.1:4355/artists-edit/",
+  "total": 735,
+  "passed": 735,
+  "failed": 0,
+  "failures": [],
+  "metrics": [
+    {
+      "engine": "chromium-desktop",
+      "width": 1440,
+      "dpr": 1,
+      "heapBefore": 2568984,
+      "heapAfter": 2810912,
+      "completedPairs": 24,
+      "pigmentRenderMs": [
+        10.5,
+        0.8,
+        12.5,
+        22.2,
+        9.9,
+        10.3,
+        10.6,
+        0.9,
+        9.8,
+        12.6,
+        12.2,
+        18.3,
+        10.7,
+        0.7,
+        13.3,
+        10.9,
+        11.4,
+        17.1,
+        8,
+        3.1,
+        8.2,
+        8.8,
+        8.7,
+        8
+      ],
+      "canvases": [
+        1834800,
+        1834800,
+        1834800,
+        1834800,
+        1834800,
+        1834800,
+        1895840,
+        1895840,
+        1895840,
+        1895840,
+        1895840,
+        1895840,
+        1629640,
+        1629640,
+        1629640,
+        1629640,
+        1629640,
+        1629640,
+        1984500,
+        1984500,
+        1984500,
+        1984500,
+        1984500,
+        1984500
+      ],
+      "perColorMean": [
+        {
+          "color": "black",
+          "mean": [
+            32.81,
+            36.81,
+            39.81
+          ]
+        },
+        {
+          "color": "white",
+          "mean": [
+            239.26,
+            237.58,
+            236.19
+          ]
+        },
+        {
+          "color": "red",
+          "mean": [
+            217.14,
+            30.33,
+            46.94
+          ]
+        },
+        {
+          "color": "yellow",
+          "mean": [
+            238,
+            196.85,
+            21.53
+          ]
+        },
+        {
+          "color": "blue",
+          "mean": [
+            19.56,
+            92.95,
+            201.53
+          ]
+        },
+        {
+          "color": "green",
+          "mean": [
+            7.82,
+            120.4,
+            69.5
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "webkit-desktop",
+      "width": 1440,
+      "dpr": 1,
+      "completedPairs": 24,
+      "pigmentRenderMs": [
+        21,
+        0,
+        6,
+        10,
+        5,
+        5,
+        9,
+        0,
+        8,
+        9,
+        7,
+        5,
+        9,
+        0,
+        7,
+        5,
+        4,
+        4,
+        6,
+        1,
+        5,
+        5,
+        5,
+        9
+      ],
+      "canvases": [
+        1834800,
+        1834800,
+        1834800,
+        1834800,
+        1834800,
+        1834800,
+        1895840,
+        1895840,
+        1895840,
+        1895840,
+        1895840,
+        1895840,
+        1629640,
+        1629640,
+        1629640,
+        1629640,
+        1629640,
+        1629640,
+        1984500,
+        1984500,
+        1984500,
+        1984500,
+        1984500,
+        1984500
+      ],
+      "perColorMean": [
+        {
+          "color": "black",
+          "mean": [
+            32.81,
+            36.81,
+            39.81
+          ]
+        },
+        {
+          "color": "white",
+          "mean": [
+            239.26,
+            237.58,
+            236.19
+          ]
+        },
+        {
+          "color": "red",
+          "mean": [
+            217.14,
+            30.33,
+            46.94
+          ]
+        },
+        {
+          "color": "yellow",
+          "mean": [
+            238,
+            196.85,
+            21.53
+          ]
+        },
+        {
+          "color": "blue",
+          "mean": [
+            19.56,
+            92.95,
+            201.53
+          ]
+        },
+        {
+          "color": "green",
+          "mean": [
+            7.82,
+            120.4,
+            69.5
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "webkit-tablet",
+      "width": 834,
+      "dpr": 2,
+      "completedPairs": 24,
+      "pigmentRenderMs": [
+        44,
+        0,
+        43,
+        16,
+        27,
+        30,
+        29,
+        0,
+        44,
+        44,
+        45,
+        26,
+        24,
+        0,
+        14,
+        36,
+        27,
+        14,
+        29,
+        0,
+        24,
+        30,
+        22,
+        16
+      ],
+      "canvases": [
+        5095200,
+        5095200,
+        5095200,
+        5095200,
+        5095200,
+        5095200,
+        5261652,
+        5261652,
+        5261652,
+        5261652,
+        5261652,
+        5261652,
+        4521104,
+        4521104,
+        4521104,
+        4521104,
+        4521104,
+        4521104,
+        5517400,
+        5517400,
+        5517400,
+        5517400,
+        5517400,
+        5517400
+      ],
+      "perColorMean": [
+        {
+          "color": "black",
+          "mean": [
+            32.83,
+            36.83,
+            39.83
+          ]
+        },
+        {
+          "color": "white",
+          "mean": [
+            239.32,
+            237.65,
+            236.28
+          ]
+        },
+        {
+          "color": "red",
+          "mean": [
+            217.23,
+            30.34,
+            46.96
+          ]
+        },
+        {
+          "color": "yellow",
+          "mean": [
+            238.09,
+            196.92,
+            21.54
+          ]
+        },
+        {
+          "color": "blue",
+          "mean": [
+            19.57,
+            92.99,
+            201.62
+          ]
+        },
+        {
+          "color": "green",
+          "mean": [
+            7.82,
+            120.45,
+            69.52
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "chromium-mobile",
+      "width": 390,
+      "dpr": 1,
+      "heapBefore": 2601732,
+      "heapAfter": 2847808,
+      "completedPairs": 24,
+      "pigmentRenderMs": [
+        6.4,
+        0.3,
+        2.3,
+        7.2,
+        3.6,
+        2.1,
+        2,
+        0.2,
+        3.5,
+        2.2,
+        2.1,
+        2.5,
+        2,
+        0.3,
+        2,
+        2.2,
+        2,
+        2,
+        3.1,
+        0.3,
+        2.2,
+        2.7,
+        2.4,
+        2.1
+      ],
+      "canvases": [
+        460752,
+        460752,
+        460752,
+        460752,
+        460752,
+        460752,
+        473280,
+        473280,
+        473280,
+        473280,
+        473280,
+        473280,
+        408032,
+        408032,
+        408032,
+        408032,
+        408032,
+        408032,
+        494716,
+        494716,
+        494716,
+        494716,
+        494716,
+        494716
+      ],
+      "perColorMean": [
+        {
+          "color": "black",
+          "mean": [
+            32.89,
+            36.89,
+            39.89
+          ]
+        },
+        {
+          "color": "white",
+          "mean": [
+            239.55,
+            237.86,
+            236.46
+          ]
+        },
+        {
+          "color": "red",
+          "mean": [
+            217.46,
+            30.37,
+            47.01
+          ]
+        },
+        {
+          "color": "yellow",
+          "mean": [
+            238.31,
+            197.11,
+            21.56
+          ]
+        },
+        {
+          "color": "blue",
+          "mean": [
+            19.59,
+            93.09,
+            201.83
+          ]
+        },
+        {
+          "color": "green",
+          "mean": [
+            7.83,
+            120.58,
+            69.6
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "webkit-mobile",
+      "width": 390,
+      "dpr": 1,
+      "completedPairs": 24,
+      "pigmentRenderMs": [
+        6,
+        0,
+        3,
+        2,
+        3,
+        3,
+        2,
+        0,
+        2,
+        1,
+        2,
+        2,
+        2,
+        0,
+        2,
+        2,
+        1,
+        2,
+        2,
+        0,
+        2,
+        1,
+        2,
+        2
+      ],
+      "canvases": [
+        460752,
+        460752,
+        460752,
+        460752,
+        460752,
+        460752,
+        473280,
+        473280,
+        473280,
+        473280,
+        473280,
+        473280,
+        408032,
+        408032,
+        408032,
+        408032,
+        408032,
+        408032,
+        494716,
+        494716,
+        494716,
+        494716,
+        494716,
+        494716
+      ],
+      "perColorMean": [
+        {
+          "color": "black",
+          "mean": [
+            32.89,
+            36.89,
+            39.89
+          ]
+        },
+        {
+          "color": "white",
+          "mean": [
+            239.55,
+            237.86,
+            236.46
+          ]
+        },
+        {
+          "color": "red",
+          "mean": [
+            217.46,
+            30.37,
+            47.01
+          ]
+        },
+        {
+          "color": "yellow",
+          "mean": [
+            238.31,
+            197.11,
+            21.56
+          ]
+        },
+        {
+          "color": "blue",
+          "mean": [
+            19.59,
+            93.09,
+            201.83
+          ]
+        },
+        {
+          "color": "green",
+          "mean": [
+            7.83,
+            120.58,
+            69.6
+          ]
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "chromium-desktop 1440 DPR1 regular black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.81,
+        36.81,
+        39.81
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular black tonal fold structure retained",
+      "pass": true,
+      "details": 8
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular black original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 10.5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        239.26,
+        237.58,
+        236.19
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular white tonal fold structure retained",
+      "pass": true,
+      "details": 29.65
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular white original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0.8,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        217.14,
+        30.33,
+        46.94
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular red tonal fold structure retained",
+      "pass": true,
+      "details": 11.31
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular red original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 12.5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        238,
+        196.85,
+        21.53
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular yellow tonal fold structure retained",
+      "pass": true,
+      "details": 28.47
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular yellow original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 22.2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.56,
+        92.95,
+        201.53
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular blue tonal fold structure retained",
+      "pass": true,
+      "details": 13.89
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular blue original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 9.9,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.82,
+        120.4,
+        69.5
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular green tonal fold structure retained",
+      "pass": true,
+      "details": 13.88
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular green original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 regular green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 10.3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        33,
+        37,
+        39.99
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder black tonal fold structure retained",
+      "pass": true,
+      "details": 7
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder black original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 10.6,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        234.96,
+        233.1,
+        233.59
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder white tonal fold structure retained",
+      "pass": true,
+      "details": 24.21
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder white original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0.9,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        217.76,
+        30.42,
+        47.1
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder red tonal fold structure retained",
+      "pass": true,
+      "details": 9.53
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder red original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 9.8,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        238.66,
+        197.43,
+        21.54
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder yellow tonal fold structure retained",
+      "pass": true,
+      "details": 23.69
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder yellow original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 12.6,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.56,
+        93.23,
+        202.09
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder blue tonal fold structure retained",
+      "pass": true,
+      "details": 10.88
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder blue original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 12.2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.86,
+        120.77,
+        69.73
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder green tonal fold structure retained",
+      "pass": true,
+      "details": 12.38
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder green original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 dropShoulder green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 18.3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.42,
+        36.42,
+        39.42
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve black tonal fold structure retained",
+      "pass": true,
+      "details": 9
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve black original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 10.7,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        231.81,
+        230.03,
+        230.64
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve white tonal fold structure retained",
+      "pass": true,
+      "details": 29.57
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve white original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0.7,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        215.41,
+        30.07,
+        46.56
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve red tonal fold structure retained",
+      "pass": true,
+      "details": 10.67
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve red original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 13.3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        236.25,
+        195.45,
+        21.36
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve yellow tonal fold structure retained",
+      "pass": true,
+      "details": 28.4
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve yellow original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 10.9,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.39,
+        92.28,
+        200
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve blue tonal fold structure retained",
+      "pass": true,
+      "details": 12.89
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve blue original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 11.4,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.79,
+        119.53,
+        68.95
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve green tonal fold structure retained",
+      "pass": true,
+      "details": 13.88
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve green original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 fullSleeve green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 17.1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.09,
+        36.09,
+        39.09
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie black tonal fold structure retained",
+      "pass": true,
+      "details": 12
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie black original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 8,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        233.23,
+        231.11,
+        231.26
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie white tonal fold structure retained",
+      "pass": true,
+      "details": 41.43
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie white original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 3.1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        214.43,
+        29.93,
+        46.3
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie red tonal fold structure retained",
+      "pass": true,
+      "details": 15.72
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie red original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 8.2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        235.25,
+        194.61,
+        21.26
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie yellow tonal fold structure retained",
+      "pass": true,
+      "details": 39.1
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie yellow original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 8.8,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.3,
+        91.95,
+        199.09
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie blue tonal fold structure retained",
+      "pass": true,
+      "details": 18.26
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie blue original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 8.7,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.72,
+        119.06,
+        68.6
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie green tonal fold structure retained",
+      "pass": true,
+      "details": 19.32
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie green original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 DPR1 hoodie green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 8,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated controls unchanged",
+      "pass": true,
+      "details": {
+        "before": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        },
+        "after": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 no page exceptions",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "chromium-desktop 1440 responsive without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.81,
+        36.81,
+        39.81
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular black tonal fold structure retained",
+      "pass": true,
+      "details": 8
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular black original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 21,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        239.26,
+        237.58,
+        236.19
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular white tonal fold structure retained",
+      "pass": true,
+      "details": 29.65
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular white original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        217.14,
+        30.33,
+        46.94
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular red tonal fold structure retained",
+      "pass": true,
+      "details": 11.31
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular red original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 6,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        238,
+        196.85,
+        21.53
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular yellow tonal fold structure retained",
+      "pass": true,
+      "details": 28.47
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular yellow original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 10,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.56,
+        92.95,
+        201.53
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular blue tonal fold structure retained",
+      "pass": true,
+      "details": 13.89
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular blue original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 13219,
+        "transparent": 135496,
+        "opaque": 309985,
+        "sourceW": 695,
+        "sourceH": 660
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.82,
+        120.4,
+        69.5
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular green tonal fold structure retained",
+      "pass": true,
+      "details": 13.88
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular green original native canvas size",
+      "pass": true,
+      "details": [
+        695,
+        660,
+        695,
+        660
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 regular green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        33,
+        37,
+        39.99
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder black tonal fold structure retained",
+      "pass": true,
+      "details": 7
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder black original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 9,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        234.96,
+        233.1,
+        233.59
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder white tonal fold structure retained",
+      "pass": true,
+      "details": 24.21
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder white original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        217.76,
+        30.42,
+        47.1
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder red tonal fold structure retained",
+      "pass": true,
+      "details": 9.53
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder red original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 8,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        238.66,
+        197.43,
+        21.54
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder yellow tonal fold structure retained",
+      "pass": true,
+      "details": 23.69
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder yellow original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 9,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.56,
+        93.23,
+        202.09
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder blue tonal fold structure retained",
+      "pass": true,
+      "details": 10.88
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder blue original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 7,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 259263,
+        "transparent": 160962,
+        "opaque": 53735,
+        "sourceW": 697,
+        "sourceH": 680
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.86,
+        120.77,
+        69.73
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder green tonal fold structure retained",
+      "pass": true,
+      "details": 12.38
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder green original native canvas size",
+      "pass": true,
+      "details": [
+        697,
+        680,
+        697,
+        680
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 dropShoulder green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.42,
+        36.42,
+        39.42
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve black tonal fold structure retained",
+      "pass": true,
+      "details": 9
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve black original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 9,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        231.81,
+        230.03,
+        230.64
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve white tonal fold structure retained",
+      "pass": true,
+      "details": 29.57
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve white original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        215.41,
+        30.07,
+        46.56
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve red tonal fold structure retained",
+      "pass": true,
+      "details": 10.67
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve red original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 7,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        236.25,
+        195.45,
+        21.36
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve yellow tonal fold structure retained",
+      "pass": true,
+      "details": 28.4
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve yellow original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.39,
+        92.28,
+        200
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve blue tonal fold structure retained",
+      "pass": true,
+      "details": 12.89
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve blue original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 4,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 269200,
+        "transparent": 86952,
+        "opaque": 51258,
+        "sourceW": 622,
+        "sourceH": 655
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.79,
+        119.53,
+        68.95
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve green tonal fold structure retained",
+      "pass": true,
+      "details": 13.88
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve green original native canvas size",
+      "pass": true,
+      "details": [
+        622,
+        655,
+        622,
+        655
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 fullSleeve green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 4,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.09,
+        36.09,
+        39.09
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie black tonal fold structure retained",
+      "pass": true,
+      "details": 12
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie black original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 6,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        233.23,
+        231.11,
+        231.26
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie white tonal fold structure retained",
+      "pass": true,
+      "details": 41.43
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie white original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        214.43,
+        29.93,
+        46.3
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie red tonal fold structure retained",
+      "pass": true,
+      "details": 15.72
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie red original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        235.25,
+        194.61,
+        21.26
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie yellow tonal fold structure retained",
+      "pass": true,
+      "details": 39.1
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie yellow original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.3,
+        91.95,
+        199.09
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie blue tonal fold structure retained",
+      "pass": true,
+      "details": 18.26
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie blue original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 265521,
+        "transparent": 196662,
+        "opaque": 33942,
+        "sourceW": 735,
+        "sourceH": 675
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.72,
+        119.06,
+        68.6
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie green tonal fold structure retained",
+      "pass": true,
+      "details": 19.32
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie green original native canvas size",
+      "pass": true,
+      "details": [
+        735,
+        675,
+        735,
+        675
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 DPR1 hoodie green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 9,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated controls unchanged",
+      "pass": true,
+      "details": {
+        "before": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        },
+        "after": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        }
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 no page exceptions",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "webkit-desktop 1440 responsive without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 33982,
+        "transparent": 377294,
+        "opaque": 862524,
+        "sourceW": 1158,
+        "sourceH": 1100
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.83,
+        36.83,
+        39.83
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular black tonal fold structure retained",
+      "pass": true,
+      "details": 8
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular black original native canvas size",
+      "pass": true,
+      "details": [
+        1158,
+        1100,
+        1158,
+        1100
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 44,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 33982,
+        "transparent": 377294,
+        "opaque": 862524,
+        "sourceW": 1158,
+        "sourceH": 1100
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        239.32,
+        237.65,
+        236.28
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular white tonal fold structure retained",
+      "pass": true,
+      "details": 29.65
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular white original native canvas size",
+      "pass": true,
+      "details": [
+        1158,
+        1100,
+        1158,
+        1100
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 33982,
+        "transparent": 377294,
+        "opaque": 862524,
+        "sourceW": 1158,
+        "sourceH": 1100
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        217.23,
+        30.34,
+        46.96
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular red tonal fold structure retained",
+      "pass": true,
+      "details": 11.31
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular red original native canvas size",
+      "pass": true,
+      "details": [
+        1158,
+        1100,
+        1158,
+        1100
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 43,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 33982,
+        "transparent": 377294,
+        "opaque": 862524,
+        "sourceW": 1158,
+        "sourceH": 1100
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        238.09,
+        196.92,
+        21.54
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular yellow tonal fold structure retained",
+      "pass": true,
+      "details": 28.47
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular yellow original native canvas size",
+      "pass": true,
+      "details": [
+        1158,
+        1100,
+        1158,
+        1100
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 16,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 33982,
+        "transparent": 377294,
+        "opaque": 862524,
+        "sourceW": 1158,
+        "sourceH": 1100
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.57,
+        92.99,
+        201.62
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular blue tonal fold structure retained",
+      "pass": true,
+      "details": 13.89
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular blue original native canvas size",
+      "pass": true,
+      "details": [
+        1158,
+        1100,
+        1158,
+        1100
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 27,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 33982,
+        "transparent": 377294,
+        "opaque": 862524,
+        "sourceW": 1158,
+        "sourceH": 1100
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.82,
+        120.45,
+        69.52
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular green tonal fold structure retained",
+      "pass": true,
+      "details": 13.88
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular green original native canvas size",
+      "pass": true,
+      "details": [
+        1158,
+        1100,
+        1158,
+        1100
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 regular green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 30,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 721799,
+        "transparent": 446193,
+        "opaque": 147421,
+        "sourceW": 1161,
+        "sourceH": 1133
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        33,
+        37,
+        40
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder black tonal fold structure retained",
+      "pass": true,
+      "details": 7
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder black original native canvas size",
+      "pass": true,
+      "details": [
+        1161,
+        1133,
+        1161,
+        1133
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 29,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 721799,
+        "transparent": 446193,
+        "opaque": 147421,
+        "sourceW": 1161,
+        "sourceH": 1133
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        234.98,
+        233.13,
+        233.61
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder white tonal fold structure retained",
+      "pass": true,
+      "details": 24.5
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder white original native canvas size",
+      "pass": true,
+      "details": [
+        1161,
+        1133,
+        1161,
+        1133
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 721799,
+        "transparent": 446193,
+        "opaque": 147421,
+        "sourceW": 1161,
+        "sourceH": 1133
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        217.8,
+        30.43,
+        47.11
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder red tonal fold structure retained",
+      "pass": true,
+      "details": 9.46
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder red original native canvas size",
+      "pass": true,
+      "details": [
+        1161,
+        1133,
+        1161,
+        1133
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 44,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 721799,
+        "transparent": 446193,
+        "opaque": 147421,
+        "sourceW": 1161,
+        "sourceH": 1133
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        238.7,
+        197.46,
+        21.54
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder yellow tonal fold structure retained",
+      "pass": true,
+      "details": 23.69
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder yellow original native canvas size",
+      "pass": true,
+      "details": [
+        1161,
+        1133,
+        1161,
+        1133
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 44,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 721799,
+        "transparent": 446193,
+        "opaque": 147421,
+        "sourceW": 1161,
+        "sourceH": 1133
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.56,
+        93.25,
+        202.13
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder blue tonal fold structure retained",
+      "pass": true,
+      "details": 10.88
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder blue original native canvas size",
+      "pass": true,
+      "details": [
+        1161,
+        1133,
+        1161,
+        1133
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 45,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 721799,
+        "transparent": 446193,
+        "opaque": 147421,
+        "sourceW": 1161,
+        "sourceH": 1133
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.86,
+        120.8,
+        69.74
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder green tonal fold structure retained",
+      "pass": true,
+      "details": 12.31
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder green original native canvas size",
+      "pass": true,
+      "details": [
+        1161,
+        1133,
+        1161,
+        1133
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 dropShoulder green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 26,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 746770,
+        "transparent": 241293,
+        "opaque": 142213,
+        "sourceW": 1036,
+        "sourceH": 1091
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.44,
+        36.44,
+        39.44
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve black tonal fold structure retained",
+      "pass": true,
+      "details": 9
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve black original native canvas size",
+      "pass": true,
+      "details": [
+        1036,
+        1091,
+        1036,
+        1091
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 24,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 746770,
+        "transparent": 241293,
+        "opaque": 142213,
+        "sourceW": 1036,
+        "sourceH": 1091
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        231.86,
+        230.08,
+        230.74
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve white tonal fold structure retained",
+      "pass": true,
+      "details": 31.79
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve white original native canvas size",
+      "pass": true,
+      "details": [
+        1036,
+        1091,
+        1036,
+        1091
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 746770,
+        "transparent": 241293,
+        "opaque": 142213,
+        "sourceW": 1036,
+        "sourceH": 1091
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        215.48,
+        30.08,
+        46.57
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve red tonal fold structure retained",
+      "pass": true,
+      "details": 11.59
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve red original native canvas size",
+      "pass": true,
+      "details": [
+        1036,
+        1091,
+        1036,
+        1091
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 14,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 746770,
+        "transparent": 241293,
+        "opaque": 142213,
+        "sourceW": 1036,
+        "sourceH": 1091
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        236.32,
+        195.51,
+        21.36
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve yellow tonal fold structure retained",
+      "pass": true,
+      "details": 29.33
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve yellow original native canvas size",
+      "pass": true,
+      "details": [
+        1036,
+        1091,
+        1036,
+        1091
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 36,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 746770,
+        "transparent": 241293,
+        "opaque": 142213,
+        "sourceW": 1036,
+        "sourceH": 1091
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.39,
+        92.32,
+        200.06
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve blue tonal fold structure retained",
+      "pass": true,
+      "details": 13.68
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve blue original native canvas size",
+      "pass": true,
+      "details": [
+        1036,
+        1091,
+        1036,
+        1091
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 27,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 746770,
+        "transparent": 241293,
+        "opaque": 142213,
+        "sourceW": 1036,
+        "sourceH": 1091
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.79,
+        119.57,
+        68.97
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve green tonal fold structure retained",
+      "pass": true,
+      "details": 14.6
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve green original native canvas size",
+      "pass": true,
+      "details": [
+        1036,
+        1091,
+        1036,
+        1091
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 fullSleeve green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 14,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 737658,
+        "transparent": 546755,
+        "opaque": 94937,
+        "sourceW": 1225,
+        "sourceH": 1126
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.12,
+        36.12,
+        39.12
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie black tonal fold structure retained",
+      "pass": true,
+      "details": 12
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie black original native canvas size",
+      "pass": true,
+      "details": [
+        1225,
+        1126,
+        1225,
+        1126
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 29,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 737658,
+        "transparent": 546755,
+        "opaque": 94937,
+        "sourceW": 1225,
+        "sourceH": 1126
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        233.31,
+        231.18,
+        231.3
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie white tonal fold structure retained",
+      "pass": true,
+      "details": 42
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie white original native canvas size",
+      "pass": true,
+      "details": [
+        1225,
+        1126,
+        1225,
+        1126
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 737658,
+        "transparent": 546755,
+        "opaque": 94937,
+        "sourceW": 1225,
+        "sourceH": 1126
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        214.54,
+        29.95,
+        46.32
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie red tonal fold structure retained",
+      "pass": true,
+      "details": 15.72
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie red original native canvas size",
+      "pass": true,
+      "details": [
+        1225,
+        1126,
+        1225,
+        1126
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 24,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 737658,
+        "transparent": 546755,
+        "opaque": 94937,
+        "sourceW": 1225,
+        "sourceH": 1126
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        235.35,
+        194.7,
+        21.26
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie yellow tonal fold structure retained",
+      "pass": true,
+      "details": 39.1
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie yellow original native canvas size",
+      "pass": true,
+      "details": [
+        1225,
+        1126,
+        1225,
+        1126
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 30,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 737658,
+        "transparent": 546755,
+        "opaque": 94937,
+        "sourceW": 1225,
+        "sourceH": 1126
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.3,
+        92,
+        199.18
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie blue tonal fold structure retained",
+      "pass": true,
+      "details": 18.26
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie blue original native canvas size",
+      "pass": true,
+      "details": [
+        1225,
+        1126,
+        1225,
+        1126
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 22,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 737658,
+        "transparent": 546755,
+        "opaque": 94937,
+        "sourceW": 1225,
+        "sourceH": 1126
+      }
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.72,
+        119.11,
+        68.63
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie green tonal fold structure retained",
+      "pass": true,
+      "details": 19.32
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie green original native canvas size",
+      "pass": true,
+      "details": [
+        1225,
+        1126,
+        1225,
+        1126
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 DPR2 hoodie green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 16,
+        "safetyLimit": 225
+      }
+    },
+    {
+      "name": "webkit-tablet 834 illustrated controls unchanged",
+      "pass": true,
+      "details": {
+        "before": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        },
+        "after": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet 834 no page exceptions",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "webkit-tablet 834 responsive without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.89,
+        36.89,
+        39.89
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular black tonal fold structure retained",
+      "pass": true,
+      "details": 6
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular black original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 6.4,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        239.55,
+        237.86,
+        236.46
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular white tonal fold structure retained",
+      "pass": true,
+      "details": 24.72
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular white original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0.3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        217.46,
+        30.37,
+        47.01
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular red tonal fold structure retained",
+      "pass": true,
+      "details": 9.46
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular red original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        238.31,
+        197.11,
+        21.56
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular yellow tonal fold structure retained",
+      "pass": true,
+      "details": 23.76
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular yellow original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 7.2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.59,
+        93.09,
+        201.83
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular blue tonal fold structure retained",
+      "pass": true,
+      "details": 11.88
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular blue original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 3.6,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.83,
+        120.58,
+        69.6
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular green tonal fold structure retained",
+      "pass": true,
+      "details": 11.66
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular green original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 regular green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        33.1,
+        37.1,
+        40.1
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder black tonal fold structure retained",
+      "pass": true,
+      "details": 9
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder black original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        235.41,
+        233.52,
+        234.03
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder white tonal fold structure retained",
+      "pass": true,
+      "details": 33.28
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder white original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0.2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        218.24,
+        30.48,
+        47.2
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder red tonal fold structure retained",
+      "pass": true,
+      "details": 13.16
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder red original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 3.5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        239.14,
+        197.84,
+        21.59
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder yellow tonal fold structure retained",
+      "pass": true,
+      "details": 32.39
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder yellow original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.61,
+        93.45,
+        202.55
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder blue tonal fold structure retained",
+      "pass": true,
+      "details": 15.61
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder blue original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.87,
+        121.05,
+        69.88
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder green tonal fold structure retained",
+      "pass": true,
+      "details": 16.1
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder green original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 dropShoulder green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.5,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.49,
+        36.49,
+        39.49
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve black tonal fold structure retained",
+      "pass": true,
+      "details": 8
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve black original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        232.13,
+        230.31,
+        230.97
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve white tonal fold structure retained",
+      "pass": true,
+      "details": 27.93
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve white original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0.3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        215.72,
+        30.12,
+        46.62
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve red tonal fold structure retained",
+      "pass": true,
+      "details": 10.17
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve red original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        236.56,
+        195.71,
+        21.38
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve yellow tonal fold structure retained",
+      "pass": true,
+      "details": 26.33
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve yellow original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.41,
+        92.43,
+        200.28
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve blue tonal fold structure retained",
+      "pass": true,
+      "details": 12.74
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve blue original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.8,
+        119.71,
+        69.03
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve green tonal fold structure retained",
+      "pass": true,
+      "details": 13.09
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve green original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 fullSleeve green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.2,
+        36.2,
+        39.2
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie black tonal fold structure retained",
+      "pass": true,
+      "details": 10
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie black original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 3.1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        233.58,
+        231.42,
+        231.62
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie white tonal fold structure retained",
+      "pass": true,
+      "details": 36.15
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie white original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0.3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        214.84,
+        30.01,
+        46.39
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie red tonal fold structure retained",
+      "pass": true,
+      "details": 13.66
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie red original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        235.66,
+        194.94,
+        21.29
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie yellow tonal fold structure retained",
+      "pass": true,
+      "details": 33.46
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie yellow original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.7,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.33,
+        92.11,
+        199.44
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie blue tonal fold structure retained",
+      "pass": true,
+      "details": 16.18
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie blue original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.4,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.74,
+        119.26,
+        68.73
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie green tonal fold structure retained",
+      "pass": true,
+      "details": 16.81
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie green original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 DPR1 hoodie green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2.1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "chromium-mobile 390 illustrated controls unchanged",
+      "pass": true,
+      "details": {
+        "before": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        },
+        "after": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile 390 no page exceptions",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "chromium-mobile 390 responsive without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.89,
+        36.89,
+        39.89
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular black tonal fold structure retained",
+      "pass": true,
+      "details": 6
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular black original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 6,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        239.55,
+        237.86,
+        236.46
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular white tonal fold structure retained",
+      "pass": true,
+      "details": 24.72
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular white original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        217.46,
+        30.37,
+        47.01
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular red tonal fold structure retained",
+      "pass": true,
+      "details": 9.46
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular red original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        238.31,
+        197.11,
+        21.56
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular yellow tonal fold structure retained",
+      "pass": true,
+      "details": 23.76
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular yellow original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.59,
+        93.09,
+        201.83
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular blue tonal fold structure retained",
+      "pass": true,
+      "details": 11.88
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular blue original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 4604,
+        "transparent": 33556,
+        "opaque": 77028,
+        "sourceW": 348,
+        "sourceH": 331
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.83,
+        120.58,
+        69.6
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular green tonal fold structure retained",
+      "pass": true,
+      "details": 11.66
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular green original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        331,
+        348,
+        331
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 regular green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 3,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        33.1,
+        37.1,
+        40.1
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder black tonal fold structure retained",
+      "pass": true,
+      "details": 9
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder black original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        235.41,
+        233.52,
+        234.03
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder white tonal fold structure retained",
+      "pass": true,
+      "details": 33.28
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder white original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        218.24,
+        30.48,
+        47.2
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder red tonal fold structure retained",
+      "pass": true,
+      "details": 13.16
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder red original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        239.14,
+        197.84,
+        21.59
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder yellow tonal fold structure retained",
+      "pass": true,
+      "details": 32.39
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder yellow original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.61,
+        93.45,
+        202.55
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder blue tonal fold structure retained",
+      "pass": true,
+      "details": 15.61
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder blue original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 64329,
+        "transparent": 39651,
+        "opaque": 14340,
+        "sourceW": 348,
+        "sourceH": 340
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.87,
+        121.05,
+        69.88
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder green tonal fold structure retained",
+      "pass": true,
+      "details": 16.1
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder green original native canvas size",
+      "pass": true,
+      "details": [
+        348,
+        340,
+        348,
+        340
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 dropShoulder green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.49,
+        36.49,
+        39.49
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve black tonal fold structure retained",
+      "pass": true,
+      "details": 8
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve black original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        232.13,
+        230.31,
+        230.97
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve white tonal fold structure retained",
+      "pass": true,
+      "details": 27.93
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve white original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        215.72,
+        30.12,
+        46.62
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve red tonal fold structure retained",
+      "pass": true,
+      "details": 10.17
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve red original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        236.56,
+        195.71,
+        21.38
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve yellow tonal fold structure retained",
+      "pass": true,
+      "details": 26.33
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve yellow original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.41,
+        92.43,
+        200.28
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve blue tonal fold structure retained",
+      "pass": true,
+      "details": 12.74
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve blue original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 66976,
+        "transparent": 21275,
+        "opaque": 13757,
+        "sourceW": 311,
+        "sourceH": 328
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.8,
+        119.71,
+        69.03
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve green tonal fold structure retained",
+      "pass": true,
+      "details": 13.09
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve green original native canvas size",
+      "pass": true,
+      "details": [
+        311,
+        328,
+        311,
+        328
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 fullSleeve green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie black exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie black fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        32.2,
+        36.2,
+        39.2
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie black tonal fold structure retained",
+      "pass": true,
+      "details": 10
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie black original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie black no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie black bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie white exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie white fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        233.58,
+        231.42,
+        231.62
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie white tonal fold structure retained",
+      "pass": true,
+      "details": 36.15
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie white original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie white no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie white bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 0,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie red exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie red fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        214.84,
+        30.01,
+        46.39
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie red tonal fold structure retained",
+      "pass": true,
+      "details": 13.66
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie red original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie red no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie red bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie yellow exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie yellow fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        235.66,
+        194.94,
+        21.29
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie yellow tonal fold structure retained",
+      "pass": true,
+      "details": 33.46
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie yellow original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie yellow no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie yellow bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 1,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie blue exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie blue fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        19.33,
+        92.11,
+        199.44
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie blue tonal fold structure retained",
+      "pass": true,
+      "details": 16.18
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie blue original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie blue no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie blue bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie green exact source alpha silhouette",
+      "pass": true,
+      "details": {
+        "alphaChanged": 0,
+        "outsideChanged": 0,
+        "edges": 65486,
+        "transparent": 48966,
+        "opaque": 9227,
+        "sourceW": 367,
+        "sourceH": 337
+      }
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie green fabric pigments visually separated from near-white source",
+      "pass": true,
+      "details": [
+        7.74,
+        119.26,
+        68.73
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie green tonal fold structure retained",
+      "pass": true,
+      "details": 16.81
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie green original native canvas size",
+      "pass": true,
+      "details": [
+        367,
+        337,
+        367,
+        337
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie green no unwanted intermediate white canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 DPR1 hoodie green bounded per-garment pigment time",
+      "pass": true,
+      "details": {
+        "ms": 2,
+        "safetyLimit": 150
+      }
+    },
+    {
+      "name": "webkit-mobile 390 illustrated controls unchanged",
+      "pass": true,
+      "details": {
+        "before": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        },
+        "after": {
+          "upload": 5879,
+          "deskSrc": "Artist-edit-backdrop-1.png",
+          "potCount": 6
+        }
+      }
+    },
+    {
+      "name": "webkit-mobile 390 no page exceptions",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "webkit-mobile 390 responsive without horizontal overflow",
+      "pass": true
+    }
+  ]
+}

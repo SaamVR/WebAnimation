@@ -1,0 +1,1507 @@
+{
+  "pairs": [
+    {
+      "label": "before",
+      "engine": "webkit-retina-tablet",
+      "width": 834,
+      "dpr": 2,
+      "first": 1434,
+      "allReady": 1656,
+      "heapBefore": null,
+      "heapAfter": null,
+      "paints": [
+        {
+          "g": "regular",
+          "c": "black",
+          "paintMs": 72,
+          "wholeInteractionMs": 919,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "white",
+          "paintMs": 0,
+          "wholeInteractionMs": 558,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "red",
+          "paintMs": 43,
+          "wholeInteractionMs": 870,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "yellow",
+          "paintMs": 45,
+          "wholeInteractionMs": 865,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "blue",
+          "paintMs": 51,
+          "wholeInteractionMs": 861,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "green",
+          "paintMs": 44,
+          "wholeInteractionMs": 810,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "dropShoulder",
+          "c": "black",
+          "paintMs": 49,
+          "wholeInteractionMs": 903,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "white",
+          "paintMs": 0,
+          "wholeInteractionMs": 803,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "red",
+          "paintMs": 67,
+          "wholeInteractionMs": 955,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "yellow",
+          "paintMs": 62,
+          "wholeInteractionMs": 759,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "blue",
+          "paintMs": 26,
+          "wholeInteractionMs": 755,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "green",
+          "paintMs": 30,
+          "wholeInteractionMs": 951,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "fullSleeve",
+          "c": "black",
+          "paintMs": 32,
+          "wholeInteractionMs": 715,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "white",
+          "paintMs": 0,
+          "wholeInteractionMs": 854,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "red",
+          "paintMs": 19,
+          "wholeInteractionMs": 842,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "yellow",
+          "paintMs": 20,
+          "wholeInteractionMs": 781,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "blue",
+          "paintMs": 25,
+          "wholeInteractionMs": 840,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "green",
+          "paintMs": 24,
+          "wholeInteractionMs": 867,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "hoodie",
+          "c": "black",
+          "paintMs": 43,
+          "wholeInteractionMs": 877,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "white",
+          "paintMs": 0,
+          "wholeInteractionMs": 653,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "red",
+          "paintMs": 55,
+          "wholeInteractionMs": 951,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "yellow",
+          "paintMs": 112,
+          "wholeInteractionMs": 953,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "blue",
+          "paintMs": 21,
+          "wholeInteractionMs": 866,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "green",
+          "paintMs": 30,
+          "wholeInteractionMs": 765,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        }
+      ],
+      "summary": {
+        "paintMean": 36.25,
+        "paintMedian": 30,
+        "paintP90": 62,
+        "paintP95": 67,
+        "paintMax": 112,
+        "interactionMedian": 854,
+        "interactionP95": 951
+      },
+      "errors": []
+    },
+    {
+      "label": "after",
+      "engine": "webkit-retina-tablet",
+      "width": 834,
+      "dpr": 2,
+      "first": 1072,
+      "allReady": 1550,
+      "heapBefore": null,
+      "heapAfter": null,
+      "paints": [
+        {
+          "g": "regular",
+          "c": "black",
+          "paintMs": 68,
+          "wholeInteractionMs": 1221,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "white",
+          "paintMs": 0,
+          "wholeInteractionMs": 642,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "red",
+          "paintMs": 49,
+          "wholeInteractionMs": 1341,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "yellow",
+          "paintMs": 67,
+          "wholeInteractionMs": 1360,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "blue",
+          "paintMs": 15,
+          "wholeInteractionMs": 849,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "regular",
+          "c": "green",
+          "paintMs": 43,
+          "wholeInteractionMs": 912,
+          "w": 1158,
+          "h": 1100,
+          "bytes": 5095200
+        },
+        {
+          "g": "dropShoulder",
+          "c": "black",
+          "paintMs": 18,
+          "wholeInteractionMs": 746,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "white",
+          "paintMs": 0,
+          "wholeInteractionMs": 831,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "red",
+          "paintMs": 25,
+          "wholeInteractionMs": 820,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "yellow",
+          "paintMs": 82,
+          "wholeInteractionMs": 1232,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "blue",
+          "paintMs": 34,
+          "wholeInteractionMs": 1042,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "dropShoulder",
+          "c": "green",
+          "paintMs": 49,
+          "wholeInteractionMs": 861,
+          "w": 1161,
+          "h": 1133,
+          "bytes": 5261652
+        },
+        {
+          "g": "fullSleeve",
+          "c": "black",
+          "paintMs": 32,
+          "wholeInteractionMs": 942,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "white",
+          "paintMs": 0,
+          "wholeInteractionMs": 933,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "red",
+          "paintMs": 39,
+          "wholeInteractionMs": 768,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "yellow",
+          "paintMs": 22,
+          "wholeInteractionMs": 815,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "blue",
+          "paintMs": 14,
+          "wholeInteractionMs": 760,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "fullSleeve",
+          "c": "green",
+          "paintMs": 21,
+          "wholeInteractionMs": 823,
+          "w": 1036,
+          "h": 1091,
+          "bytes": 4521104
+        },
+        {
+          "g": "hoodie",
+          "c": "black",
+          "paintMs": 34,
+          "wholeInteractionMs": 850,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "white",
+          "paintMs": 0,
+          "wholeInteractionMs": 843,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "red",
+          "paintMs": 37,
+          "wholeInteractionMs": 954,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "yellow",
+          "paintMs": 18,
+          "wholeInteractionMs": 641,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "blue",
+          "paintMs": 19,
+          "wholeInteractionMs": 974,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        },
+        {
+          "g": "hoodie",
+          "c": "green",
+          "paintMs": 23,
+          "wholeInteractionMs": 894,
+          "w": 1225,
+          "h": 1126,
+          "bytes": 5517400
+        }
+      ],
+      "summary": {
+        "paintMean": 29.54,
+        "paintMedian": 23,
+        "paintP90": 49,
+        "paintP95": 67,
+        "paintMax": 82,
+        "interactionMedian": 850,
+        "interactionP95": 1232
+      },
+      "errors": []
+    },
+    {
+      "label": "before",
+      "engine": "chromium-desktop",
+      "width": 1440,
+      "dpr": 1,
+      "first": 838,
+      "allReady": 1077,
+      "heapBefore": 2583480,
+      "heapAfter": 2758516,
+      "paints": [
+        {
+          "g": "regular",
+          "c": "black",
+          "paintMs": 10.9,
+          "wholeInteractionMs": 78.10000000149012,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "white",
+          "paintMs": 0.9,
+          "wholeInteractionMs": 63.30000000447035,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "red",
+          "paintMs": 9.4,
+          "wholeInteractionMs": 74.89999999850988,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "yellow",
+          "paintMs": 11.4,
+          "wholeInteractionMs": 92.20000000298023,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "blue",
+          "paintMs": 9.1,
+          "wholeInteractionMs": 66.10000000149012,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "green",
+          "paintMs": 8.7,
+          "wholeInteractionMs": 67,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "dropShoulder",
+          "c": "black",
+          "paintMs": 9,
+          "wholeInteractionMs": 104.20000000298023,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "white",
+          "paintMs": 1.1,
+          "wholeInteractionMs": 70.30000000447035,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "red",
+          "paintMs": 9,
+          "wholeInteractionMs": 74.29999999701977,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "yellow",
+          "paintMs": 9.3,
+          "wholeInteractionMs": 67.5,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "blue",
+          "paintMs": 16.6,
+          "wholeInteractionMs": 138.29999999701977,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "green",
+          "paintMs": 16,
+          "wholeInteractionMs": 86.60000000149012,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "fullSleeve",
+          "c": "black",
+          "paintMs": 12.2,
+          "wholeInteractionMs": 98.69999999552965,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "white",
+          "paintMs": 2.9,
+          "wholeInteractionMs": 52.30000000447035,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "red",
+          "paintMs": 10.2,
+          "wholeInteractionMs": 83,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "yellow",
+          "paintMs": 10.8,
+          "wholeInteractionMs": 79.39999999850988,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "blue",
+          "paintMs": 8.8,
+          "wholeInteractionMs": 75.39999999850988,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "green",
+          "paintMs": 8.6,
+          "wholeInteractionMs": 70.79999999701977,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "hoodie",
+          "c": "black",
+          "paintMs": 11.7,
+          "wholeInteractionMs": 94.10000000149012,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "white",
+          "paintMs": 0.9,
+          "wholeInteractionMs": 58.100000001490116,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "red",
+          "paintMs": 9.2,
+          "wholeInteractionMs": 78.09999999403954,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "yellow",
+          "paintMs": 9.5,
+          "wholeInteractionMs": 60.80000000447035,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "blue",
+          "paintMs": 10.6,
+          "wholeInteractionMs": 70.10000000149012,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "green",
+          "paintMs": 9,
+          "wholeInteractionMs": 66.20000000298023,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        }
+      ],
+      "summary": {
+        "paintMean": 8.99,
+        "paintMedian": 9.2,
+        "paintP90": 11.7,
+        "paintP95": 12.2,
+        "paintMax": 16.6,
+        "interactionMedian": 74.29999999701977,
+        "interactionP95": 98.69999999552965
+      },
+      "errors": []
+    },
+    {
+      "label": "after",
+      "engine": "chromium-desktop",
+      "width": 1440,
+      "dpr": 1,
+      "first": 638,
+      "allReady": 947,
+      "heapBefore": 2575560,
+      "heapAfter": 2778568,
+      "paints": [
+        {
+          "g": "regular",
+          "c": "black",
+          "paintMs": 13.4,
+          "wholeInteractionMs": 88,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "white",
+          "paintMs": 0.8,
+          "wholeInteractionMs": 65.39999999850988,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "red",
+          "paintMs": 10.9,
+          "wholeInteractionMs": 90.40000000596046,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "yellow",
+          "paintMs": 9,
+          "wholeInteractionMs": 67.59999999403954,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "blue",
+          "paintMs": 11.5,
+          "wholeInteractionMs": 66,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "regular",
+          "c": "green",
+          "paintMs": 10.3,
+          "wholeInteractionMs": 54.70000000298023,
+          "w": 695,
+          "h": 660,
+          "bytes": 1834800
+        },
+        {
+          "g": "dropShoulder",
+          "c": "black",
+          "paintMs": 9.2,
+          "wholeInteractionMs": 87.30000000447035,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "white",
+          "paintMs": 1,
+          "wholeInteractionMs": 56.5,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "red",
+          "paintMs": 9.9,
+          "wholeInteractionMs": 83,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "yellow",
+          "paintMs": 15.5,
+          "wholeInteractionMs": 99,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "blue",
+          "paintMs": 11.8,
+          "wholeInteractionMs": 83.89999999850988,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "dropShoulder",
+          "c": "green",
+          "paintMs": 18.1,
+          "wholeInteractionMs": 81.10000000149012,
+          "w": 697,
+          "h": 680,
+          "bytes": 1895840
+        },
+        {
+          "g": "fullSleeve",
+          "c": "black",
+          "paintMs": 8.2,
+          "wholeInteractionMs": 73.09999999403954,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "white",
+          "paintMs": 0.8,
+          "wholeInteractionMs": 58.19999999552965,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "red",
+          "paintMs": 13,
+          "wholeInteractionMs": 84.80000000447035,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "yellow",
+          "paintMs": 8.3,
+          "wholeInteractionMs": 66.89999999850988,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "blue",
+          "paintMs": 7.5,
+          "wholeInteractionMs": 67.39999999850988,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "fullSleeve",
+          "c": "green",
+          "paintMs": 8.3,
+          "wholeInteractionMs": 61.5,
+          "w": 622,
+          "h": 655,
+          "bytes": 1629640
+        },
+        {
+          "g": "hoodie",
+          "c": "black",
+          "paintMs": 13.1,
+          "wholeInteractionMs": 84.69999999552965,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "white",
+          "paintMs": 0.9,
+          "wholeInteractionMs": 65.29999999701977,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "red",
+          "paintMs": 10.3,
+          "wholeInteractionMs": 79.90000000596046,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "yellow",
+          "paintMs": 10.8,
+          "wholeInteractionMs": 78.89999999850988,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "blue",
+          "paintMs": 10.7,
+          "wholeInteractionMs": 78.30000000447035,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        },
+        {
+          "g": "hoodie",
+          "c": "green",
+          "paintMs": 17.6,
+          "wholeInteractionMs": 80.60000000149012,
+          "w": 735,
+          "h": 675,
+          "bytes": 1984500
+        }
+      ],
+      "summary": {
+        "paintMean": 9.62,
+        "paintMedian": 10.3,
+        "paintP90": 13.4,
+        "paintP95": 15.5,
+        "paintMax": 18.1,
+        "interactionMedian": 78.30000000447035,
+        "interactionP95": 88
+      },
+      "errors": []
+    },
+    {
+      "label": "before",
+      "engine": "chromium-mobile",
+      "width": 390,
+      "dpr": 1,
+      "first": 713,
+      "allReady": 874,
+      "heapBefore": 2598420,
+      "heapAfter": 2792232,
+      "paints": [
+        {
+          "g": "regular",
+          "c": "black",
+          "paintMs": 4.3,
+          "wholeInteractionMs": 94.5,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "white",
+          "paintMs": 0.3,
+          "wholeInteractionMs": 66.09999999403954,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "red",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 61.5,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "yellow",
+          "paintMs": 2.4,
+          "wholeInteractionMs": 65.5,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "blue",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 66.39999999850988,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "green",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 63.70000000298023,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "dropShoulder",
+          "c": "black",
+          "paintMs": 2,
+          "wholeInteractionMs": 77.89999999850988,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "white",
+          "paintMs": 0.4,
+          "wholeInteractionMs": 62.30000000447035,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "red",
+          "paintMs": 2.8,
+          "wholeInteractionMs": 83.60000000149012,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "yellow",
+          "paintMs": 3.3,
+          "wholeInteractionMs": 122.39999999850988,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "blue",
+          "paintMs": 3.8,
+          "wholeInteractionMs": 121.89999999850988,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "green",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 97.79999999701977,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "fullSleeve",
+          "c": "black",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 143,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "white",
+          "paintMs": 0.3,
+          "wholeInteractionMs": 123.19999999552965,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "red",
+          "paintMs": 3.2,
+          "wholeInteractionMs": 121.5,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "yellow",
+          "paintMs": 2.1,
+          "wholeInteractionMs": 95.39999999850988,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "blue",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 82.5,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "green",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 84.69999999552965,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "hoodie",
+          "c": "black",
+          "paintMs": 2.1,
+          "wholeInteractionMs": 109.20000000298023,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "white",
+          "paintMs": 0.3,
+          "wholeInteractionMs": 72.5,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "red",
+          "paintMs": 4.5,
+          "wholeInteractionMs": 91.09999999403954,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "yellow",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 93.19999999552965,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "blue",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 79.20000000298023,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "green",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 82.60000000149012,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        }
+      ],
+      "summary": {
+        "paintMean": 2.27,
+        "paintMedian": 2.3,
+        "paintP90": 3.3,
+        "paintP95": 3.8,
+        "paintMax": 4.5,
+        "interactionMedian": 83.60000000149012,
+        "interactionP95": 122.39999999850988
+      },
+      "errors": []
+    },
+    {
+      "label": "after",
+      "engine": "chromium-mobile",
+      "width": 390,
+      "dpr": 1,
+      "first": 603,
+      "allReady": 798,
+      "heapBefore": 2603536,
+      "heapAfter": 2804824,
+      "paints": [
+        {
+          "g": "regular",
+          "c": "black",
+          "paintMs": 4.4,
+          "wholeInteractionMs": 79,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "white",
+          "paintMs": 0.3,
+          "wholeInteractionMs": 97.89999999850988,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "red",
+          "paintMs": 2.5,
+          "wholeInteractionMs": 73.09999999403954,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "yellow",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 66.79999999701977,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "blue",
+          "paintMs": 2.5,
+          "wholeInteractionMs": 66.89999999850988,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "regular",
+          "c": "green",
+          "paintMs": 2.5,
+          "wholeInteractionMs": 60.100000001490116,
+          "w": 348,
+          "h": 331,
+          "bytes": 460752
+        },
+        {
+          "g": "dropShoulder",
+          "c": "black",
+          "paintMs": 2.1,
+          "wholeInteractionMs": 73.10000000149012,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "white",
+          "paintMs": 0.4,
+          "wholeInteractionMs": 59,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "red",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 65.69999999552965,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "yellow",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 71.19999999552965,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "blue",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 75.10000000149012,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "dropShoulder",
+          "c": "green",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 64.29999999701977,
+          "w": 348,
+          "h": 340,
+          "bytes": 473280
+        },
+        {
+          "g": "fullSleeve",
+          "c": "black",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 74.80000000447035,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "white",
+          "paintMs": 0.3,
+          "wholeInteractionMs": 77.89999999850988,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "red",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 73.90000000596046,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "yellow",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 81.60000000149012,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "blue",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 70.39999999850988,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "fullSleeve",
+          "c": "green",
+          "paintMs": 2.4,
+          "wholeInteractionMs": 65.20000000298023,
+          "w": 311,
+          "h": 328,
+          "bytes": 408032
+        },
+        {
+          "g": "hoodie",
+          "c": "black",
+          "paintMs": 2.2,
+          "wholeInteractionMs": 68.20000000298023,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "white",
+          "paintMs": 0.4,
+          "wholeInteractionMs": 61.900000005960464,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "red",
+          "paintMs": 2.3,
+          "wholeInteractionMs": 66.70000000298023,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "yellow",
+          "paintMs": 2.4,
+          "wholeInteractionMs": 67.90000000596046,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "blue",
+          "paintMs": 2.4,
+          "wholeInteractionMs": 61.600000001490116,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        },
+        {
+          "g": "hoodie",
+          "c": "green",
+          "paintMs": 2.5,
+          "wholeInteractionMs": 70,
+          "w": 367,
+          "h": 337,
+          "bytes": 494716
+        }
+      ],
+      "summary": {
+        "paintMean": 2.08,
+        "paintMedian": 2.3,
+        "paintP90": 2.5,
+        "paintP95": 2.5,
+        "paintMax": 4.4,
+        "interactionMedian": 68.20000000298023,
+        "interactionP95": 79
+      },
+      "errors": []
+    }
+  ],
+  "gates": [
+    {
+      "engine": "webkit-retina-tablet",
+      "check": "p95 pigment pass within +40%/+5ms",
+      "pass": true,
+      "values": [
+        67,
+        67
+      ]
+    },
+    {
+      "engine": "webkit-retina-tablet",
+      "check": "first display within +350ms",
+      "pass": true,
+      "values": [
+        1434,
+        1072
+      ]
+    },
+    {
+      "engine": "chromium-desktop",
+      "check": "p95 pigment pass within +40%/+5ms",
+      "pass": true,
+      "values": [
+        12.2,
+        15.5
+      ]
+    },
+    {
+      "engine": "chromium-desktop",
+      "check": "first display within +350ms",
+      "pass": true,
+      "values": [
+        838,
+        638
+      ]
+    },
+    {
+      "engine": "chromium-desktop",
+      "check": "retained JS heap +256KiB limit",
+      "pass": true,
+      "values": [
+        175036,
+        203008
+      ]
+    },
+    {
+      "engine": "chromium-mobile",
+      "check": "p95 pigment pass within +40%/+5ms",
+      "pass": true,
+      "values": [
+        3.8,
+        2.5
+      ]
+    },
+    {
+      "engine": "chromium-mobile",
+      "check": "first display within +350ms",
+      "pass": true,
+      "values": [
+        713,
+        603
+      ]
+    },
+    {
+      "engine": "chromium-mobile",
+      "check": "retained JS heap +256KiB limit",
+      "pass": true,
+      "values": [
+        193812,
+        201288
+      ]
+    }
+  ],
+  "pass": true
+}
