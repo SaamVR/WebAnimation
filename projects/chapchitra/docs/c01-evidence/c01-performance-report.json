@@ -1,0 +1,93 @@
+{
+  "method": "local Python static HTTP, Chromium headless 4x CPU throttle, 4Mbps, 70ms latency, 390x844, single run each; no gzip in local server; non-physical mobile; descriptive only",
+  "baseline": {
+    "domMs": 1233,
+    "initial": {
+      "lcp": 0,
+      "mainThreadLongTasksMs": 1502,
+      "navigation": 1195.9000000059605,
+      "resourceBytes": 585962,
+      "c01Requests": 0
+    },
+    "sectionReadyMs": 505,
+    "ending": {
+      "transferBytes": 585962,
+      "c01Resources": [],
+      "lcp": 3164,
+      "mainThreadLongTasksMs": 1502
+    }
+  },
+  "candidate": {
+    "domMs": 1146,
+    "initial": {
+      "lcp": 0,
+      "mainThreadLongTasksMs": 903,
+      "navigation": 1135.5,
+      "resourceBytes": 707110,
+      "c01Requests": 6
+    },
+    "sectionReadyMs": 9441,
+    "ending": {
+      "transferBytes": 4051420,
+      "c01Resources": [
+        {
+          "url": "connected-benefits.css",
+          "bytes": 3218,
+          "duration": 134.29999999701977
+        },
+        {
+          "url": "connected-benefits.mjs",
+          "bytes": 10247,
+          "duration": 126.59999999403954
+        },
+        {
+          "url": "icon-01-print-care-v4.webp",
+          "bytes": 25884,
+          "duration": 243.70000000298023
+        },
+        {
+          "url": "icon-02-easy-payment-v2.webp",
+          "bytes": 30220,
+          "duration": 312.20000000298023
+        },
+        {
+          "url": "icon-03-delivery-v2.webp",
+          "bytes": 28222,
+          "duration": 293.70000000298023
+        },
+        {
+          "url": "icon-04-order-support-v2.webp",
+          "bytes": 22522,
+          "duration": 264.80000001192093
+        },
+        {
+          "url": "lottie.min.js",
+          "bytes": 306004,
+          "duration": 2207.1000000089407
+        },
+        {
+          "url": "icon-01-print-care-v4.json",
+          "bytes": 673353,
+          "duration": 3678.0999999940395
+        },
+        {
+          "url": "icon-02-easy-payment-v2.json",
+          "bytes": 22720,
+          "duration": 363.5
+        },
+        {
+          "url": "icon-03-delivery-v2.json",
+          "bytes": 2270185,
+          "duration": 7100.20000000298
+        },
+        {
+          "url": "icon-04-order-support-v2.json",
+          "bytes": 72048,
+          "duration": 798.7999999970198
+        }
+      ],
+      "lcp": 2608,
+      "mainThreadLongTasksMs": 3499
+    }
+  }
+}

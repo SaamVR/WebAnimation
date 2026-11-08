@@ -1,0 +1,1113 @@
+{
+  "checked": "2026-11-08T14:00:53.051Z",
+  "checks": [
+    {
+      "name": "1408px t=0s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.57,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          0,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=2.445s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.57,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          0.5,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=2.64s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0.143,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.489,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=2.78s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=5.085s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0.5,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=5.28s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0.143,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.489,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=5.42s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=7.475s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0.5
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=7.67s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0.143
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.489
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=7.81s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px t=10.27s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "1408px no Javascript errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "834px t=0s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.57,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          0,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=2.445s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.57,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          0.5,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=2.64s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0.143,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.489,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=2.78s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=5.085s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0.5,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=5.28s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0.143,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.489,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=5.42s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=7.475s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0.5
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=7.67s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0.143
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.489
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=7.81s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px t=10.27s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "834px no Javascript errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "430px t=0s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.57,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          0,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=2.445s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.57,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          0.5,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=2.64s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0.143,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.489,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=2.78s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=5.085s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0.5,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=5.28s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0.143,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.489,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=5.42s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=7.475s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0.5
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=7.67s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0.143
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.489
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=7.81s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px t=10.27s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "430px no Javascript errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "320px t=0s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.57,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          0,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=2.445s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.57,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          0.5,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=2.64s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          0.143,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0.489,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=2.78s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=5.085s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.57,
+          0.57
+        ],
+        "connections": [
+          1,
+          0.5,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=5.28s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          0.143,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0.489,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=5.42s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=7.475s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.57
+        ],
+        "connections": [
+          1,
+          1,
+          0.5
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=7.67s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          0.143
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0.489
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=7.81s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px t=10.27s source and guide positions",
+      "ok": true,
+      "detail": {
+        "art": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "guide": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "connections": [
+          1,
+          1,
+          1
+        ],
+        "color": "rgb(216, 206, 194)"
+      }
+    },
+    {
+      "name": "320px no Javascript errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "reduced-motion all icons complete, no guides",
+      "ok": true,
+      "detail": {
+        "playing": false,
+        "reduced": true,
+        "posters": true,
+        "guides": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "original Lottie recording captures full synchronized cycle",
+      "ok": true,
+      "detail": {
+        "bytes": 851131
+      }
+    }
+  ],
+  "snapshots": [
+    "c01-guide-1408-t0.png",
+    "c01-guide-1408-t2_445.png",
+    "c01-guide-1408-t2_78.png",
+    "c01-guide-1408-t5_085.png",
+    "c01-guide-1408-t10_27.png",
+    "c01-guide-430-t0.png",
+    "c01-guide-430-t5_085.png",
+    "c01-guide-430-t10_27.png"
+  ]
+}

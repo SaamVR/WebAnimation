@@ -1,0 +1,175 @@
+{
+  "endpoint": "http://127.0.0.1:19118/",
+  "checkedAt": "2026-11-08T10:35:22.694Z",
+  "checks": [
+    {
+      "name": "exact owner-locked copy",
+      "passed": true
+    },
+    {
+      "name": "real lottie renderer 4 SVG",
+      "passed": true
+    },
+    {
+      "name": "V3 connectors count and 10.27-second cycle",
+      "passed": true
+    },
+    {
+      "name": "desktop icon dimensions match V3",
+      "passed": true
+    },
+    {
+      "name": "V3 future icons hidden at cycle start",
+      "passed": true
+    },
+    {
+      "name": "V3 01 > 02 > 03 > 04 sequential reveal",
+      "passed": true,
+      "detail": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0.571429,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0.571429,
+          0
+        ],
+        [
+          1,
+          1,
+          1,
+          0.571429
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "all three connector ramps preserve 390ms V3 timing",
+      "passed": true,
+      "detail": [
+        [
+          -0.000003037135362315979,
+          -0.0000029367803437985174,
+          -0.000003037135362315979
+        ],
+        [
+          0.4999997968017552,
+          -0.0000029367803437985174,
+          -0.000003037135362315979
+        ],
+        [
+          1,
+          -0.0000029367803437985174,
+          -0.000003037135362315979
+        ],
+        [
+          1,
+          0.49999984697913247,
+          -0.000003037135362315979
+        ],
+        [
+          1,
+          1,
+          0.4999997968017552
+        ]
+      ]
+    },
+    {
+      "name": "responsive no horizontal overflow 834",
+      "passed": true
+    },
+    {
+      "name": "responsive correct icon count 834",
+      "passed": true
+    },
+    {
+      "name": "horizontal composition 834",
+      "passed": true
+    },
+    {
+      "name": "responsive no horizontal overflow 430",
+      "passed": true
+    },
+    {
+      "name": "responsive correct icon count 430",
+      "passed": true
+    },
+    {
+      "name": "vertical composition 430",
+      "passed": true
+    },
+    {
+      "name": "responsive no horizontal overflow 320",
+      "passed": true
+    },
+    {
+      "name": "responsive correct icon count 320",
+      "passed": true
+    },
+    {
+      "name": "vertical composition 320",
+      "passed": true
+    },
+    {
+      "name": "single playback active in viewport",
+      "passed": true
+    },
+    {
+      "name": "offscreen paused",
+      "passed": true
+    },
+    {
+      "name": "resume when re-entering viewport",
+      "passed": true
+    },
+    {
+      "name": "reduced-motion static pose + full connectors",
+      "passed": true,
+      "detail": {
+        "reduced": true,
+        "playing": false,
+        "second": 10.27,
+        "visible": true,
+        "connectors": 3
+      }
+    },
+    {
+      "name": "recorded original Lottie sequence",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "posters": [
+    {
+      "name": "icon-01-print-care-v4.webp",
+      "bytes": 25584
+    },
+    {
+      "name": "icon-02-easy-payment-v2.webp",
+      "bytes": 29920
+    },
+    {
+      "name": "icon-03-delivery-v2.webp",
+      "bytes": 27922
+    },
+    {
+      "name": "icon-04-order-support-v2.webp",
+      "bytes": 22222
+    }
+  ]
+}

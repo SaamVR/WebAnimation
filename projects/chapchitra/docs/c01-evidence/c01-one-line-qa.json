@@ -1,0 +1,476 @@
+{
+  "results": [
+    {
+      "width": 1408,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 106.296875,
+          "right": 290.1875,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 450.9638671875,
+          "right": 619.8544921875,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 831.2705078125,
+          "right": 913.8955078125,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 1170.234375,
+          "right": 1249.265625,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 15,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 1194,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 33.446876525878906,
+          "right": 217.3375015258789,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 355.34686279296875,
+          "right": 524.2374877929688,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 712.8875122070312,
+          "right": 795.5125122070312,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 1029.0843505859375,
+          "right": 1108.1156005859375,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 15,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 1024,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 37.696876525878906,
+          "right": 221.5875015258789,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 300.09686279296875,
+          "right": 468.98748779296875,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 598.1375122070312,
+          "right": 680.7625122070312,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 854.8343505859375,
+          "right": 933.8656005859375,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 15,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 834,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 20.546875,
+          "right": 204.4375,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 231.046875,
+          "right": 399.9375,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 477.1875,
+          "right": 559.8125,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 681.984375,
+          "right": 761.015625,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 15,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 768,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 24.375,
+          "right": 184.109375,
+          "actualHeight": 19,
+          "clientHeight": 15,
+          "fontSize": "11.52px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 217.359375,
+          "right": 364.140625,
+          "actualHeight": 19,
+          "clientHeight": 15,
+          "fontSize": "11.52px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 441.390625,
+          "right": 513.109375,
+          "actualHeight": 19,
+          "clientHeight": 15,
+          "fontSize": "11.52px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 629.421875,
+          "right": 698.078125,
+          "actualHeight": 19,
+          "clientHeight": 15,
+          "fontSize": "11.52px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 15,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 740,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 23.796875,
+          "right": 177.703125,
+          "actualHeight": 18,
+          "clientHeight": 14,
+          "fontSize": "11.1px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 209.53125,
+          "right": 350.96875,
+          "actualHeight": 18,
+          "clientHeight": 14,
+          "fontSize": "11.1px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 425.1875,
+          "right": 494.296875,
+          "actualHeight": 18,
+          "clientHeight": 14,
+          "fontSize": "11.1px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 606.171875,
+          "right": 672.328125,
+          "actualHeight": 18,
+          "clientHeight": 14,
+          "fontSize": "11.1px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 15,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 681,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 22.59375,
+          "right": 164.15625,
+          "actualHeight": 16,
+          "clientHeight": 13,
+          "fontSize": "10.215px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 193.078125,
+          "right": 323.171875,
+          "actualHeight": 16,
+          "clientHeight": 13,
+          "fontSize": "10.215px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 391.09375,
+          "right": 454.65625,
+          "actualHeight": 16,
+          "clientHeight": 13,
+          "fontSize": "10.215px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 557.203125,
+          "right": 618.046875,
+          "actualHeight": 16,
+          "clientHeight": 13,
+          "fontSize": "10.215px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 15,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 680,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 212,
+          "right": 395.890625,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 212,
+          "right": 380.890625,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 212,
+          "right": 294.625,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 212,
+          "right": 291.03125,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 12,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 430,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 108,
+          "right": 291.890625,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 108,
+          "right": 276.890625,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 108,
+          "right": 190.625,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 108,
+          "right": 187.03125,
+          "actualHeight": 21,
+          "clientHeight": 17,
+          "fontSize": "13px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 12,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    },
+    {
+      "width": 320,
+      "labels": [
+        {
+          "text": "Original Art & Customization",
+          "left": 105,
+          "right": 274.75,
+          "actualHeight": 19,
+          "clientHeight": 16,
+          "fontSize": "12px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Secure & Flexible Payment",
+          "left": 105,
+          "right": 260.90625,
+          "actualHeight": 19,
+          "clientHeight": 16,
+          "fontSize": "12px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "Fast Delivery",
+          "left": 105,
+          "right": 181.265625,
+          "actualHeight": 19,
+          "clientHeight": 16,
+          "fontSize": "12px",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "text": "24/7 Support",
+          "left": 105,
+          "right": 177.953125,
+          "actualHeight": 19,
+          "clientHeight": 16,
+          "fontSize": "12px",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "gap": 12,
+      "overflow": false,
+      "svg": 4,
+      "connectors": 3,
+      "subtitles": 0,
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "errors": []
+}

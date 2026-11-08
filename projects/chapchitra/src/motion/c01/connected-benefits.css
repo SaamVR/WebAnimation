@@ -1,0 +1,60 @@
+/* CHAPCHITRA C01: approved connected-panel V3 geometry; four authored icons remain untouched. */
+#benefits.benefit-section{background:var(--bg);border-top:1px solid var(--grey);border-bottom:0}
+#benefits .c01-stage{position:relative;max-width:none;padding-block:15px 30px;isolation:isolate}
+#benefits .c01-connectors{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
+#benefits .c01-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+#benefits .c01-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;min-width:0;isolation:isolate}
+#benefits .c01-icon-shell{position:relative;display:grid;place-items:center;width:82px;height:82px;flex:none}
+#benefits .c01-icon-shell:before{content:"";position:absolute;width:76px;height:76px;left:4px;top:4px;transform:translate(2px,1px);border:1px solid color-mix(in srgb,var(--olive) 48%,transparent);border-radius:50%;pointer-events:none;opacity:var(--c01-art-opacity,1)}
+/* Pending icon placeholders match the existing inactive connector guide exactly.
+   The guide stays registered to the approved circle; artwork replaces it on its authored cue. */
+#benefits .c01-icon-shell:after{content:"";position:absolute;inset:5px;border:1.7px solid var(--beige);border-radius:50%;opacity:var(--c01-guide-opacity,0);pointer-events:none;z-index:1}
+#benefits .c01-icon{width:72px;height:72px;position:relative;z-index:2;border-radius:50%;overflow:hidden;background:var(--bg);flex:none;opacity:var(--c01-art-opacity,1)}
+#benefits .c01-poster,#benefits .c01-lottie{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--bg);pointer-events:none}
+#benefits .c01-lottie{visibility:hidden}
+#benefits .c01-lottie svg{width:100%;height:100%;display:block}
+#benefits .c01-copy{padding-top:11px;max-width:190px}
+#benefits .c01-copy h3{font-size:13px;line-height:1.3;font-weight:720;letter-spacing:-.01em;color:var(--press);margin:0;white-space:nowrap}
+#benefits .c01-connection-guide{fill:none;stroke:var(--beige);stroke-width:1.7;stroke-linecap:round;opacity:.57}
+#benefits .c01-connection-active{fill:none;stroke:var(--press);stroke-width:2.1;stroke-linecap:round}
+#benefits .c01-connection-pulse{fill:none;stroke:var(--color-terracotta);stroke-width:2.9;stroke-linecap:round}
+/* Full-width editorial distribution: preserve the existing site .wrap gutters.
+   The original 910px cap left ~356px to each first/last icon on a 1408px screen.
+   Small, symmetrical offsets distribute all four circles nearly evenly across
+   the 1160px content width, with readable copy inside standard outer gutters. */
+@media(min-width:681px){
+ #benefits .c01-stage{
+  --c01-spread-edge:clamp(0px,calc((100vw - 980px) * .15),64px);
+  --c01-spread-inner:clamp(0px,calc((100vw - 980px) * .05),21.333px);
+ }
+ #benefits .c01-step:nth-child(1) > .c01-icon-shell,
+ #benefits .c01-step:nth-child(1) > .c01-copy{transform:translateX(calc(-1 * var(--c01-spread-edge)))}
+ #benefits .c01-step:nth-child(2) > .c01-icon-shell,
+ #benefits .c01-step:nth-child(2) > .c01-copy{transform:translateX(calc(-1 * var(--c01-spread-inner)))}
+ #benefits .c01-step:nth-child(3) > .c01-icon-shell,
+ #benefits .c01-step:nth-child(3) > .c01-copy{transform:translateX(var(--c01-spread-inner))}
+ #benefits .c01-step:nth-child(4) > .c01-icon-shell,
+ #benefits .c01-step:nth-child(4) > .c01-copy{transform:translateX(var(--c01-spread-edge))}
+}
+@media(min-width:681px) and (max-width:800px){
+ #benefits .c01-copy h3{font-size:clamp(10px,1.5vw,12px);letter-spacing:-.02em}
+}
+@media(max-width:680px){
+ #benefits .c01-stage{max-width:440px;padding-block:12px 24px}
+ #benefits .c01-steps{grid-template-columns:1fr;gap:29px}
+ #benefits .c01-step{display:flex;flex-direction:row;text-align:left;min-height:72px;gap:16px}
+ #benefits .c01-icon-shell{width:76px;height:76px}
+ #benefits .c01-icon-shell:before{width:72px;height:72px;left:3px;top:3px}
+ #benefits .c01-icon-shell:after{inset:4px}
+ #benefits .c01-icon{width:68px;height:68px}
+ #benefits .c01-copy{max-width:none;padding:0;align-self:center;min-width:0}
+ #benefits .c01-copy h3{margin:0;font-size:13px}
+}
+@media(max-width:350px){
+ #benefits .c01-step{gap:13px}
+ #benefits .c01-copy h3{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ #benefits .c01-lottie{animation:none!important;transition:none!important}
+ #benefits .c01-connection-pulse{display:none}
+}
