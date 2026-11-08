@@ -69,3 +69,18 @@ test('self-hosted Lottie JS is licensed and posters support static reduced motio
   assert.ok((await stat(resolve(root,'src/assets/c01/posters',poster))).size>1000,poster);
  }
 });
+
+test('C01 wide layout uses the site gutters and preserves mobile/resize registration',async()=>{
+ const css=await load('src/motion/c01/connected-benefits.css');
+ const clock=await load('src/motion/c01/connected-benefits.mjs');
+ assert.match(css,/#benefits \.c01-stage\{position:relative;max-width:none/);
+ assert.match(css,/@media\(min-width:681px\)/);
+ for(let n=1;n<=4;n++){
+  assert.ok(css.includes('#benefits .c01-step:nth-child('+n+') > .c01-icon-shell'),'Missing scoped icon position '+n);
+  assert.ok(css.includes('#benefits .c01-step:nth-child('+n+') > .c01-copy'),'Missing scoped label position '+n);
+  assert.ok(!css.includes('#benefits .c01-step:nth-child('+n+'){transform:'),'Grid cell '+n+' should not shift into the viewport gutter');
+ }
+ assert.match(css,/@media\(max-width:680px\)/);
+ assert.match(clock,/window\.addEventListener\('resize', requestLayout, \{passive: true\}\)/);
+ assert.match(clock,/getBoundingClientRect\(\)/);
+});

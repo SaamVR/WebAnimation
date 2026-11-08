@@ -1,6 +1,6 @@
 /* CHAPCHITRA C01: approved connected-panel V3 geometry; four authored icons remain untouched. */
 #benefits.benefit-section{background:var(--bg);border-top:1px solid var(--grey);border-bottom:0}
-#benefits .c01-stage{position:relative;max-width:910px;padding-block:29px 30px;isolation:isolate}
+#benefits .c01-stage{position:relative;max-width:none;padding-block:29px 30px;isolation:isolate}
 #benefits .c01-connectors{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
 #benefits .c01-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 #benefits .c01-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;min-width:0;isolation:isolate}
@@ -16,6 +16,24 @@
 #benefits .c01-connection-guide{fill:none;stroke:var(--beige);stroke-width:1.7;stroke-linecap:round;opacity:.57}
 #benefits .c01-connection-active{fill:none;stroke:var(--press);stroke-width:2.1;stroke-linecap:round}
 #benefits .c01-connection-pulse{fill:none;stroke:var(--color-terracotta);stroke-width:2.9;stroke-linecap:round}
+/* Full-width editorial distribution: preserve the existing site .wrap gutters.
+   The original 910px cap left ~356px to each first/last icon on a 1408px screen.
+   Small, symmetrical offsets distribute all four circles nearly evenly across
+   the 1160px content width, with readable copy inside standard outer gutters. */
+@media(min-width:681px){
+ #benefits .c01-stage{
+  --c01-spread-edge:clamp(0px,calc((100vw - 980px) * .15),64px);
+  --c01-spread-inner:clamp(0px,calc((100vw - 980px) * .05),21.333px);
+ }
+ #benefits .c01-step:nth-child(1) > .c01-icon-shell,
+ #benefits .c01-step:nth-child(1) > .c01-copy{transform:translateX(calc(-1 * var(--c01-spread-edge)))}
+ #benefits .c01-step:nth-child(2) > .c01-icon-shell,
+ #benefits .c01-step:nth-child(2) > .c01-copy{transform:translateX(calc(-1 * var(--c01-spread-inner)))}
+ #benefits .c01-step:nth-child(3) > .c01-icon-shell,
+ #benefits .c01-step:nth-child(3) > .c01-copy{transform:translateX(var(--c01-spread-inner))}
+ #benefits .c01-step:nth-child(4) > .c01-icon-shell,
+ #benefits .c01-step:nth-child(4) > .c01-copy{transform:translateX(var(--c01-spread-edge))}
+}
 @media(max-width:680px){
  #benefits .c01-stage{max-width:440px;padding-block:23px 24px}
  #benefits .c01-steps{grid-template-columns:1fr;gap:29px}
