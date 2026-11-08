@@ -1,0 +1,51 @@
+{
+  "source": {
+    "passed": 112,
+    "failed": 0
+  },
+  "guide": {
+    "passed": 137,
+    "failed": 0
+  },
+  "touch": {
+    "passed": 14,
+    "failed": 0
+  },
+  "settledWebkit": {
+    "passed": 6,
+    "failed": 0
+  },
+  "atomic": {
+    "passed": 302,
+    "failed": 0
+  },
+  "pigment": {
+    "passed": 735,
+    "failed": 0
+  },
+  "physical": {
+    "passed": 102,
+    "failed": 0
+  },
+  "upload": {
+    "passed": 95,
+    "failed": 0
+  },
+  "editorial": {
+    "passed": 768,
+    "failed": 0
+  },
+  "general": {
+    "passed": 35,
+    "failed": 0
+  },
+  "early": {
+    "passed": 1,
+    "failed": 0
+  },
+  "legacySelectedLongRun": {
+    "passed": 167,
+    "failed": 1,
+    "note": "One WebKit paint-pot transition sampled at -5.156851px before completing its 190ms animation while multiple unrelated browser jobs were concurrently running. Focused all-six-pot settled-state WebKit test passes 6/6 at approximately -5.5px. No original paint-pot CSS is changed."
+  }
+}

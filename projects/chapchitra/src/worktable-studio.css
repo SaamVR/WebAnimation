@@ -118,8 +118,41 @@
 .cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:normal}
 .cc-worktable-print.has-art{display:block}
 .cc-worktable-print>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;mix-blend-mode:normal;filter:none}
-.cc-worktable-print::after{content:"";position:absolute;inset:0;border:1px solid rgb(255 247 222 / .8);outline:1px solid rgb(41 61 45 / .55);outline-offset:1px;pointer-events:none;opacity:0;transition:opacity .18s ease}
-.cc-worktable-print.is-manipulating::after,.cc-worktable-print:has(.cc-worktable-drag:focus-visible)::after{opacity:1}
+.cc-worktable-print::after{content:none}
+/* Print-size reference: independent of the uploaded image or its rotation. */
+.cc-worktable-paper-guide{position:absolute;z-index:7;pointer-events:none;opacity:0;
+ background:transparent;border:1px solid rgb(195 199 198 / .52);
+ transition:opacity .22s ease}
+.cc-worktable-paper-guide.is-visible{opacity:1}
+/* The placement bounds appear ONLY in Resize mode, not as a permanent
+   border around an image or the nominal paper guide. */
+.cc-worktable-art-bounds{position:absolute;z-index:8;pointer-events:none;opacity:0;
+ border:1px solid rgb(246 247 245 / .82);outline:1px solid rgb(41 61 45 / .45);
+ outline-offset:1px}
+.cc-worktable-art-bounds.is-visible{opacity:1}
+.cc-worktable-corner-handle{position:absolute;z-index:10;width:44px;height:44px;
+ padding:0;transform:translate(-50%,-50%);border:0;border-radius:50%;
+ background:transparent;touch-action:none;cursor:nwse-resize;appearance:none;
+ display:grid;place-items:center}
+.cc-worktable-corner-ne,.cc-worktable-corner-sw{cursor:nesw-resize}
+.cc-worktable-corner-handle::after{content:"";display:block;width:11px;height:11px;
+ background:var(--color-gallery-white,#f6f7f5);border:1.5px solid var(--color-press-green,#293d2d);
+ border-radius:50%;box-shadow:0 1px 3px rgb(18 20 18 / .35)}
+.cc-worktable-corner-handle:focus-visible{outline:2px solid var(--color-gallery-white,#f6f7f5);outline-offset:2px}
+.cc-worktable-art-tools{position:absolute;z-index:11;display:flex;align-items:center;gap:5px;
+ padding:0;min-width:148px;height:44px}
+.cc-worktable-art-tools[hidden],.cc-worktable-corner-handle[hidden]{display:none!important}
+.cc-worktable-tool{width:44px;height:44px;flex:none;display:grid;place-items:center;
+ color:var(--color-press-green,#293d2d);background:var(--color-gallery-white,#f6f7f5);
+ border:1px solid rgb(41 61 45 / .25);border-radius:50%;padding:0;
+ box-shadow:1px 2px 4px rgb(16 22 17 / .25);font:600 22px/1 var(--sans);
+ cursor:pointer;touch-action:manipulation;transition:background .18s ease,transform .18s ease}
+.cc-worktable-tool.is-active{color:var(--color-gallery-white,#f6f7f5);
+ background:var(--color-press-green,#293d2d);border-color:var(--color-press-green,#293d2d)}
+.cc-worktable-tool:focus-visible{outline:2px solid var(--color-gallery-white,#f6f7f5);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){
+ .cc-worktable-tool:hover{transform:translateY(-1px)}
+}
 .cc-worktable-drag{position:absolute;inset:0;width:100%;height:100%;border:0;outline:0;background:transparent;cursor:grab;pointer-events:auto;touch-action:none;padding:0;opacity:0}
 .cc-worktable-drag:hover,.cc-worktable-drag:focus-visible,.cc-worktable-drag.is-dragging{opacity:1;border:0;outline:0}
 .cc-worktable-drag:focus-visible{outline:2px solid rgb(255 249 236 / .9);outline-offset:2px}
@@ -415,7 +448,7 @@
  .cc-worktable-secondary-actions button{font-size:10.5px;padding-inline:5px}
 }
 @media(prefers-reduced-motion:reduce){
- .cc-worktable-prop,.cc-worktable-tint,.cc-worktable-choice,.cc-worktable-upload-row button,.cc-worktable-print::after{transition:none!important}
+ .cc-worktable-prop,.cc-worktable-tint,.cc-worktable-choice,.cc-worktable-upload-row button,.cc-worktable-paper-guide,.cc-worktable-tool{transition:none!important}
  .cc-worktable-prop[data-group]{transform:none!important}
  .cc-worktable-upload-float{animation:none!important}
  .cc-worktable-upload-svg{transform:none!important;transition:none!important}

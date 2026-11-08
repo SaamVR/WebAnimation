@@ -1,0 +1,39 @@
+{
+  "target": "http://127.0.0.1:4427/artists-edit/",
+  "total": 6,
+  "passed": 6,
+  "failed": 0,
+  "values": [
+    {
+      "color": "black",
+      "transform": -5.5,
+      "pass": true
+    },
+    {
+      "color": "white",
+      "transform": -5.5,
+      "pass": true
+    },
+    {
+      "color": "red",
+      "transform": -5.5,
+      "pass": true
+    },
+    {
+      "color": "yellow",
+      "transform": -5.5,
+      "pass": true
+    },
+    {
+      "color": "blue",
+      "transform": -5.5,
+      "pass": true
+    },
+    {
+      "color": "green",
+      "transform": -5.5,
+      "pass": true
+    }
+  ],
+  "errors": []
+}
