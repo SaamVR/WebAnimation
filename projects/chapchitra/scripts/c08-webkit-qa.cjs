@@ -38,7 +38,7 @@ function verify(ok,label,detail){checks.push({label,passed:!!ok,detail});console
    verify((await p.evaluate(()=>window.__chapchitraC08.navbar.completed))===1,'WebKit navbar pointer hold does not repeat');
    await p.locator('#footer').scrollIntoViewIfNeeded();
    const f=await p.evaluate(()=>({src:document.querySelector('#footer .logo-word--footer img')?.getAttribute('src'),instances:document.querySelectorAll('#footer .c08-navbar-animation,#footer .c08-hero-wordmark').length}));
-   verify(f.src==='/assets/chapchitra-wordmark-light.webp'&&f.instances===0,'WebKit footer remains static',f);
+   verify(f.src==='/assets/chapchitra-wordmark-cream-terra.webp'&&f.instances===0,'WebKit footer remains static',f);
   }
   verify(errors.length===0,'WebKit no JavaScript errors '+width,errors);
   if([1408,430].includes(width)){

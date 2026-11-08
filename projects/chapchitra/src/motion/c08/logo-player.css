@@ -29,11 +29,12 @@
 #hero .c08-hero-wordmark svg{
   width:100%;height:100%;display:block;overflow:visible;
 }
-/* Original textile illustration ends above 72.6% of the full lockup.
-   Mask only the original raster's lower 27% wordmark during C08 playback,
-   preserving the unchanged textile-symbol area above it. */
+/* The original green textile symbol ends at raster row 773; row 774 is
+   transparent, and the independent roller/wordmark begins at row 775.
+   Preserve the ORIGINAL patch completely during Lottie playback; mask only
+   the lower 26.35% to replace the static wordmark with the approved animation. */
 #hero .hero-cover-inner.c08-hero-shown>img.hero-brand-lockup{
-  clip-path:inset(0 0 27% 0);
+  clip-path:inset(0 0 26.35% 0);
 }
 #hero .hero-cover-inner.c08-hero-shown .c08-hero-wordmark{
   visibility:visible;

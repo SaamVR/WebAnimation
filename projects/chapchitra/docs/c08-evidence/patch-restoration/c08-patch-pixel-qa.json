@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "sourceHashes": [
+    {
+      "name": "scripts/c08-fallback-originals/chapchitra-full-on-dark-before.webp",
+      "sha256": "d4298171361cf355eeea2d92a4d93b713397afbba11db49323115ea94de4d0d9"
+    },
+    {
+      "name": "scripts/c08-fallback-originals/chapchitra-full-terracotta-before-patch-restoration.webp",
+      "sha256": "3acec051748757e05501e759f497c938e69097b6c0f88f19c5a6c3bb6f288f00"
+    },
+    {
+      "name": "src/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp",
+      "sha256": "1f5fc3845bc0d6ccfb840cb174bba65eea180203fe33fcab965758db0e00cd9d"
+    }
+  ],
+  "width": 1250,
+  "height": 1052,
+  "patchVisibleSourcePixels": 529891,
+  "approvedWordmarkVisibleSourcePixels": 83759,
+  "screenshotPatchCrop": {
+    "left": 615,
+    "top": 90,
+    "width": 180,
+    "height": 157
+  },
+  "frameComparisonDiffChannelSamples": [
+    0,
+    0
+  ],
+  "footerUnchanged": true
+}

@@ -3,7 +3,7 @@
 // triggers and playback. The installed C01 lottie-web 5.13.0 player is reused.
 const PLAYER = '/motion/c01/vendor/lottie.min.js';
 const SOURCE = '/assets/c08/wordmark-reprint-original.json';
-const HERO = '/assets/c08/wordmark-reprint-hero-light.json';
+const HERO = '/assets/c08/wordmark-reprint-dark-inverted-v2.json';
 const CSS = '/motion/c08/logo-player.css';
 
 const DURATION_FRAMES = 240;
