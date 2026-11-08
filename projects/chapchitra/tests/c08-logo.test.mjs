@@ -65,7 +65,7 @@ test('dark-surface derived SVG has the same original vector path geometry and ex
 });
 test('original full hero lockup and navbar raster remain the immediate static fallbacks',async()=>{
  const app=await text('src/app.mjs');
- assert.match(app,/src="\/assets\/chapchitra-full-on-dark-cream-terra\.webp"/);
+ assert.match(app,/src="\/assets\/chapchitra-full-on-dark-original-patch-cream-terra-wordmark\.webp"/);
  assert.match(app,/class="hero-brand-lockup"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);
@@ -94,7 +94,7 @@ test('C08 uses scoped placement, reduced motion and leaves footer static',async(
  const script=await text('src/motion/c08/logo-player.mjs');
  assert.match(css,/#app > \.site-header/);
  assert.match(css,/#hero \.hero-cover-inner\.c08-hero-shown/);
- assert.match(css,/clip-path:inset\(0 0 27% 0\)/);
+ assert.match(css,/clip-path:inset\(0 0 26\.35% 0\)/);
  assert.match(css,/prefers-reduced-motion:reduce/);
  assert.ok(!css.includes('filter:'),'No blanket CSS color filters allowed');
  assert.ok(!css.includes('footer'),'Footer styling is not in C08 scope');

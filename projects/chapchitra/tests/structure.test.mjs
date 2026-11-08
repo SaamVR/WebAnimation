@@ -739,13 +739,13 @@ test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',a
  const guard=await read('src/nav-sticky-guard.mjs');
  assert.match(app,/class="logo-word logo-word--image"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
- assert.match(app,/src="\/assets\/chapchitra-full-on-dark-cream-terra\.webp"/);
+ assert.match(app,/src="\/assets\/chapchitra-full-on-dark-original-patch-cream-terra-wordmark\.webp"/);
  assert.match(app,/class="hero-brand-lockup"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);
  assert.match(app,/class="logo-word logo-word--footer"/);
  assert.match(html,/rel="icon"[^>]*href="\/assets\/favicon\.png"/);
  assert.match(html,/rel="apple-touch-icon"[^>]*href="\/assets\/apple-touch-icon\.png"/);
- assert.match(html,/rel="preload" as="image" href="\/assets\/chapchitra-full-on-dark-cream-terra\.webp"/);
+ assert.match(html,/rel="preload" as="image" href="\/assets\/chapchitra-full-on-dark-original-patch-cream-terra-wordmark\.webp"/);
  assert.doesNotMatch(app,/<div class="hero-display-word">CHAPCHITRA<\/div>/);
  assert.doesNotMatch(app,/Temporary wordmark|final logo pending|Identity, pricing and images remain provisional/);
  assert.doesNotMatch(app,/<span>CHAPCHITRA<\/span>/);
@@ -760,7 +760,7 @@ test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',a
 test('all final logo binaries are real optimized image files with expected magic bytes',async()=>{
  const webps=['chapchitra-wordmark.webp','chapchitra-wordmark-light.webp',
   'chapchitra-symbol.webp','chapchitra-full.webp','chapchitra-full-on-dark.webp',
-  'chapchitra-full-on-dark-cream-terra.webp','chapchitra-wordmark-cream-terra.webp'];
+  'chapchitra-full-on-dark-cream-terra.webp','chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp','chapchitra-wordmark-cream-terra.webp'];
  for(const file of webps){
   const data=await readFile(new URL('../src/assets/'+file,import.meta.url));
   assert.ok(data.length>2000,'real artwork content '+file);
