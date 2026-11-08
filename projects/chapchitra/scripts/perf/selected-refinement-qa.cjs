@@ -95,6 +95,9 @@ async function desktop(engine,name){
   // Manual rail change must release the previous object to rest without stale hover.
   let alternate={garment:'hoodie',size:'S',color:'blue',printSize:'A4'}[group];
   await page.locator(rail(group,alternate)).click();await page.mouse.move(0,0);await Promise.all([settle(page,group,value,0),settle(page,group,alternate,-target)]);
+  // A WebKit compositor can approach both endpoints while CSS transitions
+  // are still finishing. Check the settled frame, not a near-end interpolation.
+  await sleep(235);
   const old=await data(page,group,value),replacement=await data(page,group,alternate);
   assert(name+' '+group+' old option returns to resting position',Math.abs(old.offset)<.2,old);
   assert(name+' '+group+' new manual selection persists',Math.abs(replacement.offset+target)<.2&&replacement.cls.includes('is-selected'),replacement);

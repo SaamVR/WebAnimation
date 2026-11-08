@@ -1,5 +1,6 @@
 import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableReducer } from './worktable-stage.mjs';
 import { UPLOAD_ARTWORK_SVG } from './worktable-upload-icon.mjs';
+import { FABRIC_PIGMENTS, applyFabricPigmentToRGBA } from './worktable-fabric-pigments.mjs';
 
 // Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
 // Cropped WebP browser variants retain original alpha coordinates and source SHA256.
@@ -290,22 +291,20 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   canvas.dataset.garment=garment;canvas.dataset.color=color;
   const context=canvas.getContext('2d',{alpha:true,willReadFrequently:color!=='white'});
   if(!context)throw new Error('Garment canvas could not initialize');
+  const pigmentStarted=performance.now();
   context.drawImage(source,0,0);
   if(color!=='white'){
-   // Match the approved 74% multiply-color wash while preserving the original
-   // source pixels, tonal detail and alpha edge. Color is applied OFFSCREEN,
-   // so neither the white garment nor a delayed CSS mask can ever be exposed.
-   const pixels=context.getImageData(0,0,canvas.width,canvas.height);
-   const rgb=dyeRGB[color].slice(1).match(/../g).map(x=>parseInt(x,16));
-   const scale=rgb.map(value=>.26+.74*value/255);
-   for(let offset=0;offset<pixels.data.length;offset+=4){
-    if(!pixels.data[offset+3])continue;
-    pixels.data[offset]=Math.round(pixels.data[offset]*scale[0]);
-    pixels.data[offset+1]=Math.round(pixels.data[offset+1]*scale[1]);
-    pixels.data[offset+2]=Math.round(pixels.data[offset+2]*scale[2]);
-   }
-   context.putImageData(pixels,0,0);
+   // Pigment profiles are calibrated independently from illustrated paint-pot
+   // dyeRGB swatches. One CIE L* tone lookup preserves the original folds and
+   // alpha while assigning vivid fabric pigment. No white/intermediate frame.
+   if(!FABRIC_PIGMENTS[color])throw new Error('Unknown fabric pigment');
+   const imageData=context.getImageData(0,0,canvas.width,canvas.height);
+   applyFabricPigmentToRGBA(imageData.data,garment,color);
+   context.putImageData(imageData,0,0);
   }
+  // Diagnostic per garment paint: used for rendering regression measurements.
+  // No extra source image, WebP decode, network request or animation dependency.
+  canvas.dataset.pigmentRenderMs=(performance.now()-pigmentStarted).toFixed(2);
   return canvas;
  };
  const composeAtomicPreview=async(colored,index)=>{

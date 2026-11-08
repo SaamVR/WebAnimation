@@ -1,0 +1,38 @@
+{
+  "rich-before-mobile": {
+    "firstMs": 2249,
+    "hydratedMs": 3910,
+    "imageBytes": 283792,
+    "totalRequestCount": 64,
+    "imageRequestCount": 40,
+    "nonImageBytes": 588792,
+    "errors": []
+  },
+  "rich-after-mobile": {
+    "firstMs": 2263,
+    "hydratedMs": 3932,
+    "imageBytes": 283792,
+    "totalRequestCount": 65,
+    "imageRequestCount": 40,
+    "nonImageBytes": 593231,
+    "errors": []
+  },
+  "rich-before-desktop": {
+    "firstMs": 1640,
+    "hydratedMs": 3196,
+    "imageBytes": 771756,
+    "totalRequestCount": 63,
+    "imageRequestCount": 39,
+    "nonImageBytes": 588792,
+    "errors": []
+  },
+  "rich-after-desktop": {
+    "firstMs": 1589,
+    "hydratedMs": 3180,
+    "imageBytes": 771756,
+    "totalRequestCount": 64,
+    "imageRequestCount": 39,
+    "nonImageBytes": 593228,
+    "errors": []
+  }
+}

@@ -20,7 +20,8 @@ test('all six colors use one in-memory canvas surface for any garment without 24
  assert.match(studio,/const finishHydration=async\(\)=>/);
  assert.match(studio,/if\(token!==switchToken\)return false/);
  assert.match(studio,/context\.getImageData\(0,0,canvas\.width,canvas\.height\)/);
- assert.match(studio,/\.26\+\.74\*value\/255/);
+ assert.match(studio,/applyFabricPigmentToRGBA\(imageData\.data,garment,color\)/);
+ assert.doesNotMatch(studio,/\.26\+\.74\*value\/255/);
  assert.match(studio,/garmentSurface\.replaceWith\(colored\)/);
  assert.match(studio,/preview\.replaceWith\(scene\);preview=scene/);
  assert.ok(!studio.includes('data:image/png;base64'));
