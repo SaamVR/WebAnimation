@@ -1,0 +1,27 @@
+{
+  "method": "Same Linux Chromium runner, cold cache, 70ms RTT, 390px at 4Mbps and 1440px at 10Mbps, 1 paired run per profile; not physical iPad.",
+  "profiles": {
+    "mobile": {
+      "beforeFirstMs": 2653,
+      "afterFirstMs": 2768,
+      "deltaMs": 115,
+      "beforeHydratedMs": 4220,
+      "afterHydratedMs": 4369,
+      "imageRequests": 40,
+      "imageBytes": 283792,
+      "imageBytesUnchanged": true,
+      "sourceErrors": []
+    },
+    "desktop": {
+      "beforeFirstMs": 1889,
+      "afterFirstMs": 1811,
+      "deltaMs": -78,
+      "beforeHydratedMs": 3548,
+      "afterHydratedMs": 3719,
+      "imageRequests": 39,
+      "imageBytes": 771756,
+      "imageBytesUnchanged": true,
+      "sourceErrors": []
+    }
+  }
+}

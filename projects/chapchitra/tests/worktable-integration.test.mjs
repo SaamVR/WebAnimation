@@ -70,7 +70,7 @@ test('local upload stays local, restricts MIME and size, revokes object URLs, su
  assert.match(src,/img\.naturalWidth>8192\|\|img\.naturalHeight>8192/);
  assert.match(src,/dragLayer\.addEventListener\('pointermove'/);
  assert.match(src,/dragLayer\.addEventListener\('keydown'/);
- assert.match(src,/aria-label','Drag uploaded artwork to reposition'/);
+ assert.match(src,/aria-label','Select and move uploaded artwork'/);
  assert.match(src,/scale\.addEventListener\('input'/);
  assert.doesNotMatch(src,/\bfetch\('https?:\/\/|\.send\(|navigator\.sendBeacon|localStorage\.setItem/);
 });

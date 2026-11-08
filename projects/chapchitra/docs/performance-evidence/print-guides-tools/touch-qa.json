@@ -1,0 +1,162 @@
+{
+  "passed": 14,
+  "failed": 0,
+  "total": 14,
+  "errors": [],
+  "results": [
+    {
+      "name": "834 touch selects art",
+      "pass": true
+    },
+    {
+      "name": "834 touch Move changes position",
+      "pass": true,
+      "detail": {
+        "before": {
+          "guide": [
+            51.203125,
+            72.375
+          ],
+          "art": [
+            384.671875,
+            541.734375,
+            51.203125,
+            70.40625
+          ],
+          "left": "46.1244%",
+          "top": "34.9303%",
+          "toolbar": [
+            442.875,
+            590.875
+          ],
+          "rotation": "0",
+          "scale": "0",
+          "selected": true
+        },
+        "after": {
+          "guide": [
+            51.203125,
+            72.375
+          ],
+          "art": [
+            396.671875,
+            557.734375,
+            51.203125,
+            70.40625
+          ],
+          "left": "47.5632%",
+          "top": "38.3409%",
+          "toolbar": [
+            454.875,
+            602.875
+          ],
+          "rotation": "0",
+          "scale": "0",
+          "selected": true
+        }
+      }
+    },
+    {
+      "name": "834 four touch handles",
+      "pass": true
+    },
+    {
+      "name": "834 touch corner resize changes size",
+      "pass": true,
+      "detail": {
+        "sizeBefore": 0,
+        "sizeAfter": 63
+      }
+    },
+    {
+      "name": "834 touch rotation 90",
+      "pass": true
+    },
+    {
+      "name": "834 360° returns 0",
+      "pass": true
+    },
+    {
+      "name": "834 no JS errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "390 touch selects art",
+      "pass": true
+    },
+    {
+      "name": "390 touch Move changes position",
+      "pass": true,
+      "detail": {
+        "before": {
+          "guide": [
+            23.9375,
+            33.84375
+          ],
+          "art": [
+            179.875,
+            448.0625,
+            23.9375,
+            32.921875
+          ],
+          "left": "46.1244%",
+          "top": "34.9303%",
+          "toolbar": [
+            210.828125,
+            358.828125
+          ],
+          "rotation": "0",
+          "scale": "0",
+          "selected": true
+        },
+        "after": {
+          "guide": [
+            23.9375,
+            33.84375
+          ],
+          "art": [
+            191.875,
+            464.0625,
+            23.9375,
+            32.921875
+          ],
+          "left": "49.2013%",
+          "top": "42.2237%",
+          "toolbar": [
+            222.828125,
+            370.828125
+          ],
+          "rotation": "0",
+          "scale": "0",
+          "selected": true
+        }
+      }
+    },
+    {
+      "name": "390 four touch handles",
+      "pass": true
+    },
+    {
+      "name": "390 touch corner resize changes size",
+      "pass": true,
+      "detail": {
+        "sizeBefore": 0,
+        "sizeAfter": 100
+      }
+    },
+    {
+      "name": "390 touch rotation 90",
+      "pass": true
+    },
+    {
+      "name": "390 360° returns 0",
+      "pass": true
+    },
+    {
+      "name": "390 no JS errors",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

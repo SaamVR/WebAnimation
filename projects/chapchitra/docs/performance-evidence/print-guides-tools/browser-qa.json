@@ -1,0 +1,1404 @@
+{
+  "target": "http://127.0.0.1:4427/artists-edit/",
+  "checks": [
+    {
+      "name": "chromium-desktop guide DOM independent of image",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop guide shown before upload A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop guide shown before upload A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop A3 guide twice the A4 area",
+      "pass": true,
+      "details": {
+        "ratio": 1.998116487411001,
+        "a4": {
+          "x": 664.1875,
+          "y": -320.78125,
+          "width": 88.40625,
+          "height": 124.96875,
+          "right": 752.59375,
+          "bottom": -195.8125
+        },
+        "a3": {
+          "x": 645.9375,
+          "y": -320.78125,
+          "width": 124.90625,
+          "height": 176.734375,
+          "right": 770.84375,
+          "bottom": -144.046875
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop portrait source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 666.0625,
+          "y": -320.78125,
+          "width": 84.65625,
+          "height": 124.96875,
+          "right": 750.71875,
+          "bottom": -195.8125
+        },
+        "paper": {
+          "x": 664.1875,
+          "y": -320.78125,
+          "width": 88.40625,
+          "height": 124.96875,
+          "right": 752.59375,
+          "bottom": -195.8125
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop portrait preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 0.6774193548387096,
+        "expected": 0.6774193548387096,
+        "source": [
+          420,
+          620
+        ],
+        "print": {
+          "x": 666.0625,
+          "y": -320.78125,
+          "width": 84.65625,
+          "height": 124.96875,
+          "right": 750.71875,
+          "bottom": -195.8125
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop portrait reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop portrait upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop landscape source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 664.1875,
+          "y": 403.765625,
+          "width": 88.40625,
+          "height": 59.890625,
+          "right": 752.59375,
+          "bottom": 463.65625
+        },
+        "paper": {
+          "x": 664.1875,
+          "y": 371.21875,
+          "width": 88.40625,
+          "height": 124.96875,
+          "right": 752.59375,
+          "bottom": 496.1875
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop landscape preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 1.476128358987738,
+        "expected": 1.4761904761904763,
+        "source": [
+          620,
+          420
+        ],
+        "print": {
+          "x": 664.1875,
+          "y": 403.765625,
+          "width": 88.40625,
+          "height": 59.890625,
+          "right": 752.59375,
+          "bottom": 463.65625
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop landscape reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop landscape upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop square source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 664.1875,
+          "y": 389.5,
+          "width": 88.40625,
+          "height": 88.40625,
+          "right": 752.59375,
+          "bottom": 477.90625
+        },
+        "paper": {
+          "x": 664.1875,
+          "y": 371.21875,
+          "width": 88.40625,
+          "height": 124.96875,
+          "right": 752.59375,
+          "bottom": 496.1875
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop square preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 1,
+        "expected": 1,
+        "source": [
+          460,
+          460
+        ],
+        "print": {
+          "x": 664.1875,
+          "y": 389.5,
+          "width": 88.40625,
+          "height": 88.40625,
+          "right": 752.59375,
+          "bottom": 477.90625
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop square reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop square upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop tall source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 693.921875,
+          "y": 371.21875,
+          "width": 28.9375,
+          "height": 124.96875,
+          "right": 722.859375,
+          "bottom": 496.1875
+        },
+        "paper": {
+          "x": 664.1875,
+          "y": 371.21875,
+          "width": 88.40625,
+          "height": 124.96875,
+          "right": 752.59375,
+          "bottom": 496.1875
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop tall preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 0.2315578894723681,
+        "expected": 0.23157894736842105,
+        "source": [
+          220,
+          950
+        ],
+        "print": {
+          "x": 693.921875,
+          "y": 371.21875,
+          "width": 28.9375,
+          "height": 124.96875,
+          "right": 722.859375,
+          "bottom": 496.1875
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop tall reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop tall upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop selected image reveals toolbar",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop toolbar remains within stage viewport",
+      "pass": true,
+      "details": {
+        "tool": {
+          "x": 759.25,
+          "y": 411.71875,
+          "width": 148,
+          "height": 44,
+          "right": 907.25,
+          "bottom": 455.71875
+        },
+        "stage": {
+          "x": 0,
+          "y": 90,
+          "width": 1440,
+          "height": 810,
+          "right": 1440,
+          "bottom": 900
+        }
+      }
+    },
+    {
+      "name": "chromium-desktop Resize mode has four handles",
+      "pass": true,
+      "details": {
+        "guide": {
+          "x": 664.1875,
+          "y": 371.21875,
+          "width": 88.40625,
+          "height": 124.96875,
+          "right": 752.59375,
+          "bottom": 496.1875
+        },
+        "print": {
+          "x": 664.53125,
+          "y": 371.21875,
+          "width": 87.703125,
+          "height": 124.96875,
+          "right": 752.234375,
+          "bottom": 496.1875
+        },
+        "bounds": {
+          "x": 664.53125,
+          "y": 371.21875,
+          "width": 87.703125,
+          "height": 124.96875,
+          "right": 752.234375,
+          "bottom": 496.1875
+        },
+        "stage": {
+          "x": 0,
+          "y": 90,
+          "width": 1440,
+          "height": 810,
+          "right": 1440,
+          "bottom": 900
+        },
+        "tools": {
+          "x": 759.25,
+          "y": 411.71875,
+          "width": 148,
+          "height": 44,
+          "right": 907.25,
+          "bottom": 455.71875
+        },
+        "guideVisible": true,
+        "boundsVisible": true,
+        "mode": "resize",
+        "handles": [
+          "nw",
+          "ne",
+          "sw",
+          "se"
+        ],
+        "toolsVisible": true,
+        "rotation": "0",
+        "styleX": "46.1491%",
+        "styleY": "34.7199%",
+        "scale": "0",
+        "scaleLabel": "0%",
+        "sourceImg": "blob:http://127.0.0.1:4427/081b8eda-8b65-45d6-9b52-17ac3fd2abe4",
+        "blend": "normal",
+        "color": "white",
+        "garment": "regular"
+      }
+    },
+    {
+      "name": "chromium-desktop nw corner drag scales from center",
+      "pass": true,
+      "details": {
+        "before": "0",
+        "after": "30"
+      }
+    },
+    {
+      "name": "chromium-desktop nw corner preserves aspect",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop ne corner drag scales from center",
+      "pass": true,
+      "details": {
+        "before": "0",
+        "after": "30"
+      }
+    },
+    {
+      "name": "chromium-desktop ne corner preserves aspect",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop sw corner drag scales from center",
+      "pass": true,
+      "details": {
+        "before": "0",
+        "after": "30"
+      }
+    },
+    {
+      "name": "chromium-desktop sw corner preserves aspect",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop se corner drag scales from center",
+      "pass": true,
+      "details": {
+        "before": "0",
+        "after": "30"
+      }
+    },
+    {
+      "name": "chromium-desktop se corner preserves aspect",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 90° rotation step 1",
+      "pass": true,
+      "details": "90"
+    },
+    {
+      "name": "chromium-desktop rotation guide dimensions unchanged 1",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop rotated image remains inside stage 1",
+      "pass": true,
+      "details": {
+        "x": 664.53125,
+        "y": 432.21875,
+        "width": 87.703125,
+        "height": 124.96875,
+        "right": 752.234375,
+        "bottom": 557.1875
+      }
+    },
+    {
+      "name": "chromium-desktop 90° rotation step 2",
+      "pass": true,
+      "details": "180"
+    },
+    {
+      "name": "chromium-desktop rotation guide dimensions unchanged 2",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop rotated image remains inside stage 2",
+      "pass": true,
+      "details": {
+        "x": 645.8984375,
+        "y": 389.8515625,
+        "width": 124.96875,
+        "height": 87.703125,
+        "right": 770.8671875,
+        "bottom": 477.5546875
+      }
+    },
+    {
+      "name": "chromium-desktop 90° rotation step 3",
+      "pass": true,
+      "details": "270"
+    },
+    {
+      "name": "chromium-desktop rotation guide dimensions unchanged 3",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop rotated image remains inside stage 3",
+      "pass": true,
+      "details": {
+        "x": 664.53125,
+        "y": 371.21875,
+        "width": 87.703125,
+        "height": 124.96875,
+        "right": 752.234375,
+        "bottom": 496.1875
+      }
+    },
+    {
+      "name": "chromium-desktop 90° rotation step 4",
+      "pass": true,
+      "details": "0"
+    },
+    {
+      "name": "chromium-desktop rotation guide dimensions unchanged 4",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop rotated image remains inside stage 4",
+      "pass": true,
+      "details": {
+        "x": 645.8984375,
+        "y": 389.8515625,
+        "width": 124.96875,
+        "height": 87.703125,
+        "right": 770.8671875,
+        "bottom": 477.5546875
+      }
+    },
+    {
+      "name": "chromium-desktop slider 25% signed label",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop keyboard reposition is still available",
+      "pass": true,
+      "details": {
+        "before": "45.3878%",
+        "after": "45.5831%",
+        "mode": "move",
+        "rotation": "0"
+      }
+    },
+    {
+      "name": "chromium-desktop garment and A3 change retains artwork safely",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop reset 0 scale and 0° rotation",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop click outside editor closes tools but not art",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop image uses normal blend",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop no browser errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "webkit-tablet guide DOM independent of image",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet guide shown before upload A4",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet guide shown before upload A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet A3 guide twice the A4 area",
+      "pass": true,
+      "details": {
+        "ratio": 1.9982213659551076,
+        "a4": {
+          "x": 384.671875,
+          "y": -196.25,
+          "width": 51.203125,
+          "height": 72.375,
+          "right": 435.875,
+          "bottom": -123.875
+        },
+        "a3": {
+          "x": 374.09375,
+          "y": -196.25,
+          "width": 72.34375,
+          "height": 102.359375,
+          "right": 446.4375,
+          "bottom": -93.890625
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet portrait source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 385.75,
+          "y": -196.25,
+          "width": 49.03125,
+          "height": 72.375,
+          "right": 434.78125,
+          "bottom": -123.875
+        },
+        "paper": {
+          "x": 384.671875,
+          "y": -196.25,
+          "width": 51.203125,
+          "height": 72.375,
+          "right": 435.875,
+          "bottom": -123.875
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet portrait preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 0.677461139896373,
+        "expected": 0.6774193548387096,
+        "source": [
+          420,
+          620
+        ],
+        "print": {
+          "x": 385.75,
+          "y": -196.25,
+          "width": 49.03125,
+          "height": 72.375,
+          "right": 434.78125,
+          "bottom": -123.875
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet portrait reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet portrait upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet landscape source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 384.671875,
+          "y": -177.40625,
+          "width": 51.203125,
+          "height": 34.6875,
+          "right": 435.875,
+          "bottom": -142.71875
+        },
+        "paper": {
+          "x": 384.671875,
+          "y": -196.25,
+          "width": 51.203125,
+          "height": 72.375,
+          "right": 435.875,
+          "bottom": -123.875
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet landscape preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 1.476126126126126,
+        "expected": 1.4761904761904763,
+        "source": [
+          620,
+          420
+        ],
+        "print": {
+          "x": 384.671875,
+          "y": -177.40625,
+          "width": 51.203125,
+          "height": 34.6875,
+          "right": 435.875,
+          "bottom": -142.71875
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet landscape reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet landscape upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet square source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 384.671875,
+          "y": -185.671875,
+          "width": 51.203125,
+          "height": 51.203125,
+          "right": 435.875,
+          "bottom": -134.46875
+        },
+        "paper": {
+          "x": 384.671875,
+          "y": -196.25,
+          "width": 51.203125,
+          "height": 72.375,
+          "right": 435.875,
+          "bottom": -123.875
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet square preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 1,
+        "expected": 1,
+        "source": [
+          460,
+          460
+        ],
+        "print": {
+          "x": 384.671875,
+          "y": -185.671875,
+          "width": 51.203125,
+          "height": 51.203125,
+          "right": 435.875,
+          "bottom": -134.46875
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet square reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet square upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet tall source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 401.890625,
+          "y": -196.25,
+          "width": 16.75,
+          "height": 72.375,
+          "right": 418.640625,
+          "bottom": -123.875
+        },
+        "paper": {
+          "x": 384.671875,
+          "y": -196.25,
+          "width": 51.203125,
+          "height": 72.375,
+          "right": 435.875,
+          "bottom": -123.875
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet tall preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 0.231433506044905,
+        "expected": 0.23157894736842105,
+        "source": [
+          220,
+          950
+        ],
+        "print": {
+          "x": 401.890625,
+          "y": -196.25,
+          "width": 16.75,
+          "height": 72.375,
+          "right": 418.640625,
+          "bottom": -123.875
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet tall reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet tall upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet selected image reveals toolbar",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet toolbar remains within stage viewport",
+      "pass": true,
+      "details": {
+        "tool": {
+          "x": 442.671875,
+          "y": 554.9375,
+          "width": 148,
+          "height": 44,
+          "right": 590.671875,
+          "bottom": 598.9375
+        },
+        "stage": {
+          "x": 0,
+          "y": 377.875,
+          "width": 834,
+          "height": 469.125,
+          "right": 834,
+          "bottom": 847
+        }
+      }
+    },
+    {
+      "name": "webkit-tablet Resize mode has four handles",
+      "pass": true,
+      "details": {
+        "guide": {
+          "x": 384.671875,
+          "y": 540.75,
+          "width": 51.203125,
+          "height": 72.375,
+          "right": 435.875,
+          "bottom": 613.125
+        },
+        "print": {
+          "x": 384.875,
+          "y": 540.75,
+          "width": 50.78125,
+          "height": 72.375,
+          "right": 435.65625,
+          "bottom": 613.125
+        },
+        "bounds": {
+          "x": 384.875,
+          "y": 540.75,
+          "width": 50.78125,
+          "height": 72.375,
+          "right": 435.65625,
+          "bottom": 613.125
+        },
+        "stage": {
+          "x": 0,
+          "y": 377.875,
+          "width": 834,
+          "height": 469.125,
+          "right": 834,
+          "bottom": 847
+        },
+        "tools": {
+          "x": 442.671875,
+          "y": 554.9375,
+          "width": 148,
+          "height": 44,
+          "right": 590.671875,
+          "bottom": 598.9375
+        },
+        "guideVisible": true,
+        "boundsVisible": true,
+        "mode": "resize",
+        "handles": [
+          "nw",
+          "ne",
+          "sw",
+          "se"
+        ],
+        "toolsVisible": true,
+        "rotation": "0",
+        "styleX": "46.149081%",
+        "styleY": "34.719922%",
+        "scale": "0",
+        "scaleLabel": "0%",
+        "sourceImg": "blob:http://127.0.0.1:4427/f83d3df4-9dfd-4668-b8db-31521c081af5",
+        "blend": "normal",
+        "color": "white",
+        "garment": "regular"
+      }
+    },
+    {
+      "name": "webkit-tablet 90° rotation step 1",
+      "pass": true,
+      "details": "90"
+    },
+    {
+      "name": "webkit-tablet rotation guide dimensions unchanged 1",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet rotated image remains inside stage 1",
+      "pass": true,
+      "details": {
+        "x": 384.875,
+        "y": 540.75,
+        "width": 50.78125,
+        "height": 72.375,
+        "right": 435.65625,
+        "bottom": 613.125
+      }
+    },
+    {
+      "name": "webkit-tablet 90° rotation step 2",
+      "pass": true,
+      "details": "180"
+    },
+    {
+      "name": "webkit-tablet rotation guide dimensions unchanged 2",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet rotated image remains inside stage 2",
+      "pass": true,
+      "details": {
+        "x": 385.09375,
+        "y": 540.375,
+        "width": 50.78125,
+        "height": 72.375,
+        "right": 435.875,
+        "bottom": 612.75
+      }
+    },
+    {
+      "name": "webkit-tablet 90° rotation step 3",
+      "pass": true,
+      "details": "270"
+    },
+    {
+      "name": "webkit-tablet rotation guide dimensions unchanged 3",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet rotated image remains inside stage 3",
+      "pass": true,
+      "details": {
+        "x": 374.375,
+        "y": 551.46875,
+        "width": 72.375,
+        "height": 50.78125,
+        "right": 446.75,
+        "bottom": 602.25
+      }
+    },
+    {
+      "name": "webkit-tablet 90° rotation step 4",
+      "pass": true,
+      "details": "0"
+    },
+    {
+      "name": "webkit-tablet rotation guide dimensions unchanged 4",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet rotated image remains inside stage 4",
+      "pass": true,
+      "details": {
+        "x": 384.875,
+        "y": 540.75,
+        "width": 50.78125,
+        "height": 72.375,
+        "right": 435.65625,
+        "bottom": 613.125
+      }
+    },
+    {
+      "name": "webkit-tablet slider 25% signed label",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet keyboard reposition is still available",
+      "pass": true,
+      "details": {
+        "before": "45.387767%",
+        "after": "45.58308%",
+        "mode": "move",
+        "rotation": "0"
+      }
+    },
+    {
+      "name": "webkit-tablet garment and A3 change retains artwork safely",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet reset 0 scale and 0° rotation",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet click outside editor closes tools but not art",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet image uses normal blend",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet no browser errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "chromium-mobile guide DOM independent of image",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile guide shown before upload A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile guide shown before upload A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile A3 guide twice the A4 area",
+      "pass": true,
+      "details": {
+        "ratio": 1.9984241988095153,
+        "a4": {
+          "x": 179.875,
+          "y": -586.40625,
+          "width": 23.9375,
+          "height": 33.84375,
+          "right": 203.8125,
+          "bottom": -552.5625
+        },
+        "a3": {
+          "x": 174.9375,
+          "y": -586.40625,
+          "width": 33.828125,
+          "height": 47.859375,
+          "right": 208.765625,
+          "bottom": -538.546875
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile portrait source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 180.390625,
+          "y": -586.40625,
+          "width": 22.921875,
+          "height": 33.84375,
+          "right": 203.3125,
+          "bottom": -552.5625
+        },
+        "paper": {
+          "x": 179.875,
+          "y": -586.40625,
+          "width": 23.9375,
+          "height": 33.84375,
+          "right": 203.8125,
+          "bottom": -552.5625
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile portrait preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 0.6772853185595568,
+        "expected": 0.6774193548387096,
+        "source": [
+          420,
+          620
+        ],
+        "print": {
+          "x": 180.390625,
+          "y": -586.40625,
+          "width": 22.921875,
+          "height": 33.84375,
+          "right": 203.3125,
+          "bottom": -552.5625
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile portrait reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile portrait upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile landscape source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 179.875,
+          "y": -577.59375,
+          "width": 23.9375,
+          "height": 16.21875,
+          "right": 203.8125,
+          "bottom": -561.375
+        },
+        "paper": {
+          "x": 179.875,
+          "y": -586.40625,
+          "width": 23.9375,
+          "height": 33.84375,
+          "right": 203.8125,
+          "bottom": -552.5625
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile landscape preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 1.4759152215799614,
+        "expected": 1.4761904761904763,
+        "source": [
+          620,
+          420
+        ],
+        "print": {
+          "x": 179.875,
+          "y": -577.59375,
+          "width": 23.9375,
+          "height": 16.21875,
+          "right": 203.8125,
+          "bottom": -561.375
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile landscape reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile landscape upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile square source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 179.875,
+          "y": -581.453125,
+          "width": 23.9375,
+          "height": 23.9375,
+          "right": 203.8125,
+          "bottom": -557.515625
+        },
+        "paper": {
+          "x": 179.875,
+          "y": -586.40625,
+          "width": 23.9375,
+          "height": 33.84375,
+          "right": 203.8125,
+          "bottom": -552.5625
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile square preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 1,
+        "expected": 1,
+        "source": [
+          460,
+          460
+        ],
+        "print": {
+          "x": 179.875,
+          "y": -581.453125,
+          "width": 23.9375,
+          "height": 23.9375,
+          "right": 203.8125,
+          "bottom": -557.515625
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile square reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile square upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile tall source fits entirely inside frame",
+      "pass": true,
+      "details": {
+        "art": {
+          "x": 187.9375,
+          "y": -586.40625,
+          "width": 7.828125,
+          "height": 33.84375,
+          "right": 195.765625,
+          "bottom": -552.5625
+        },
+        "paper": {
+          "x": 179.875,
+          "y": -586.40625,
+          "width": 23.9375,
+          "height": 33.84375,
+          "right": 203.8125,
+          "bottom": -552.5625
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile tall preserves ratio",
+      "pass": true,
+      "details": {
+        "ratio": 0.23130193905817176,
+        "expected": 0.23157894736842105,
+        "source": [
+          220,
+          950
+        ],
+        "print": {
+          "x": 187.9375,
+          "y": -586.40625,
+          "width": 7.828125,
+          "height": 33.84375,
+          "right": 195.765625,
+          "bottom": -552.5625
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile tall reference frame remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile tall upload starts at 0%",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile selected image reveals toolbar",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile toolbar remains within stage viewport",
+      "pass": true,
+      "details": {
+        "tool": {
+          "x": 210.734375,
+          "y": 442.515625,
+          "width": 148,
+          "height": 44,
+          "right": 358.734375,
+          "bottom": 486.515625
+        },
+        "stage": {
+          "x": 0,
+          "y": 371.4375,
+          "width": 390,
+          "height": 219.375,
+          "right": 390,
+          "bottom": 590.8125
+        }
+      }
+    },
+    {
+      "name": "chromium-mobile Resize mode has four handles",
+      "pass": true,
+      "details": {
+        "guide": {
+          "x": 179.875,
+          "y": 447.59375,
+          "width": 23.9375,
+          "height": 33.84375,
+          "right": 203.8125,
+          "bottom": 481.4375
+        },
+        "print": {
+          "x": 179.96875,
+          "y": 447.59375,
+          "width": 23.75,
+          "height": 33.84375,
+          "right": 203.71875,
+          "bottom": 481.4375
+        },
+        "bounds": {
+          "x": 179.96875,
+          "y": 447.59375,
+          "width": 23.75,
+          "height": 33.84375,
+          "right": 203.71875,
+          "bottom": 481.4375
+        },
+        "stage": {
+          "x": 0,
+          "y": 371.4375,
+          "width": 390,
+          "height": 219.375,
+          "right": 390,
+          "bottom": 590.8125
+        },
+        "tools": {
+          "x": 210.734375,
+          "y": 442.515625,
+          "width": 148,
+          "height": 44,
+          "right": 358.734375,
+          "bottom": 486.515625
+        },
+        "guideVisible": true,
+        "boundsVisible": true,
+        "mode": "resize",
+        "handles": [
+          "nw",
+          "ne",
+          "sw",
+          "se"
+        ],
+        "toolsVisible": true,
+        "rotation": "0",
+        "styleX": "46.1491%",
+        "styleY": "34.7199%",
+        "scale": "0",
+        "scaleLabel": "0%",
+        "sourceImg": "blob:http://127.0.0.1:4427/e48c8da9-60d0-46fa-b8c1-f658a3521c75",
+        "blend": "normal",
+        "color": "white",
+        "garment": "regular"
+      }
+    },
+    {
+      "name": "chromium-mobile 90° rotation step 1",
+      "pass": true,
+      "details": "90"
+    },
+    {
+      "name": "chromium-mobile rotation guide dimensions unchanged 1",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile rotated image remains inside stage 1",
+      "pass": true,
+      "details": {
+        "x": 179.96875,
+        "y": 447.59375,
+        "width": 23.75,
+        "height": 33.84375,
+        "right": 203.71875,
+        "bottom": 481.4375
+      }
+    },
+    {
+      "name": "chromium-mobile 90° rotation step 2",
+      "pass": true,
+      "details": "180"
+    },
+    {
+      "name": "chromium-mobile rotation guide dimensions unchanged 2",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile rotated image remains inside stage 2",
+      "pass": true,
+      "details": {
+        "x": 174.921875,
+        "y": 452.640625,
+        "width": 33.84375,
+        "height": 23.75,
+        "right": 208.765625,
+        "bottom": 476.390625
+      }
+    },
+    {
+      "name": "chromium-mobile 90° rotation step 3",
+      "pass": true,
+      "details": "270"
+    },
+    {
+      "name": "chromium-mobile rotation guide dimensions unchanged 3",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile rotated image remains inside stage 3",
+      "pass": true,
+      "details": {
+        "x": 174.921875,
+        "y": 452.640625,
+        "width": 33.84375,
+        "height": 23.75,
+        "right": 208.765625,
+        "bottom": 476.390625
+      }
+    },
+    {
+      "name": "chromium-mobile 90° rotation step 4",
+      "pass": true,
+      "details": "0"
+    },
+    {
+      "name": "chromium-mobile rotation guide dimensions unchanged 4",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile rotated image remains inside stage 4",
+      "pass": true,
+      "details": {
+        "x": 174.921875,
+        "y": 452.640625,
+        "width": 33.84375,
+        "height": 23.75,
+        "right": 208.765625,
+        "bottom": 476.390625
+      }
+    },
+    {
+      "name": "chromium-mobile slider 25% signed label",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile keyboard reposition is still available",
+      "pass": true,
+      "details": {
+        "before": "45.3878%",
+        "after": "45.5831%",
+        "mode": "move",
+        "rotation": "0"
+      }
+    },
+    {
+      "name": "chromium-mobile garment and A3 change retains artwork safely",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile reset 0 scale and 0° rotation",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile click outside editor closes tools but not art",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile image uses normal blend",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile no browser errors",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "failures": [],
+  "total": 137,
+  "passed": 137,
+  "failed": 0
+}
