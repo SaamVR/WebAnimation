@@ -92,10 +92,30 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  body.className='cc-worktable is-loading is-hydrating';
  body.innerHTML=`<div class="cc-worktable-header"><p class="cc-eyebrow">FROM THE STUDIO · CHAPCHITRA</p><h1>Artist’s Edit</h1><p>Bring a print idea to the worktable. Your design remains on this device.</p></div>
   <div class="cc-worktable-frame"><div class="cc-worktable-stage" id="artistWorktable" role="group" aria-busy="true" aria-label="Interactive print studio: select garment, size, color, artwork and paper size"><p class="cc-worktable-loading" role="status">Preparing your original studio artwork…</p></div></div>
-  <section class="cc-worktable-palette" aria-label="Accessible design controls"><h2>Customize your print</h2><div class="cc-worktable-rail"></div>
-  <div class="cc-worktable-upload-row"><button type="button" id="worktableUploadArt" aria-label="Upload your artwork">Upload artwork</button><label class="cc-worktable-scale">Artwork size <input type="range" id="worktableArtScale" min="50" max="100" step="5" value="100" disabled aria-label="Resize uploaded design"><output id="worktableScaleOutput">100%</output></label><button type="button" id="worktableResetArt" disabled>Reset placement</button><button type="button" id="worktableRemoveArt" disabled>Remove artwork</button></div>
-  <p class="cc-worktable-hint">Drag your uploaded design on the fabric to position it. A3/A4 represent relative preview sizes; production print dimensions and fabric-color accuracy require manufacturer calibration.</p>
-  <p class="cc-worktable-live" role="status" id="worktableMessage" aria-live="polite"></p></section>
+  <section class="cc-worktable-palette" aria-labelledby="worktableCustomizeHeading">
+    <header class="cc-worktable-panel-intro">
+      <p class="cc-worktable-panel-kicker">THE PRINT STUDIO <span aria-hidden="true">/</span> MAKE IT YOURS</p>
+      <div class="cc-worktable-panel-intro-row">
+        <h2 id="worktableCustomizeHeading">Customize your print</h2>
+        <p class="cc-worktable-panel-subtitle">Thoughtful details, made your way. Each selection is reflected on the worktable above.</p>
+      </div>
+    </header>
+    <div class="cc-worktable-rail" aria-label="Garment, size, fabric color and print size"></div>
+    <section class="cc-worktable-artwork-zone" aria-labelledby="worktableArtworkHeading">
+      <div class="cc-worktable-artwork-intro">
+        <p class="cc-worktable-artwork-kicker">YOUR OWN MARK <span aria-hidden="true">/</span> FINISHING TOUCHES</p>
+        <h3 id="worktableArtworkHeading">Artwork tools</h3>
+        <p>Add a design from your device, then adjust its size and placement directly on the garment.</p>
+      </div>
+      <div class="cc-worktable-upload-row">
+        <button type="button" id="worktableUploadArt" aria-label="Upload your artwork">Upload artwork</button>
+        <label class="cc-worktable-scale"><span class="cc-worktable-scale-label">Artwork size</span><span class="cc-worktable-scale-control"><input type="range" id="worktableArtScale" min="50" max="100" step="5" value="100" disabled aria-label="Resize uploaded design"><output id="worktableScaleOutput">100%</output></span></label>
+        <div class="cc-worktable-secondary-actions"><button type="button" id="worktableResetArt" disabled>Reset placement</button><button type="button" id="worktableRemoveArt" disabled>Remove artwork</button></div>
+      </div>
+    </section>
+    <p class="cc-worktable-hint">Drag your uploaded design on the fabric to position it. A3/A4 represent relative preview sizes; production print dimensions and fabric-color accuracy require manufacturer calibration.</p>
+    <p class="cc-worktable-live" role="status" id="worktableMessage" aria-live="polite"></p>
+  </section>
   <input id="worktableFile" type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Choose local design image">`;
  if(embedded)body.querySelector('.cc-worktable-header')?.remove();
  root.replaceChildren(body);
@@ -207,23 +227,42 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  for(const {path,group,value} of interactiveFiles)hitFor(path,group,value);
  // Only the illustrated plus/upload image is a hotspot. The notebook paper
  // remains decorative and never opens the file chooser.
+ // The panel reuses the exact same pressed-state buttons and reducer as the
+ // illustration. Its editorial hierarchy is presentation only: no second
+ // selected-state store and no modifications to the worktable hit targets.
  const sideControl=(group,value)=>{
   const b=document.createElement('button');b.type='button';b.dataset.group=group;b.dataset.value=value;
-  b.className='cc-worktable-choice';b.textContent=labels[value]||value;
+  b.className='cc-worktable-choice';
   b.setAttribute('aria-pressed','false');
+  if(group==='color'){
+   // Swatches represent the calibrated FABRIC, not the unchanged illustrated
+   // paint-pot pigment. The button's visible name is retained for every color.
+   b.style.setProperty('--cc-fabric-swatch',FABRIC_PIGMENTS[value].midtone);
+   const dot=document.createElement('span');dot.className='cc-worktable-swatch';dot.setAttribute('aria-hidden','true');
+   const name=document.createElement('span');name.className='cc-worktable-choice-label';name.textContent=labels[value];
+   b.append(dot,name);
+  }else{
+   b.textContent=labels[value]||value;
+  }
   return b;
  };
- for(const [title,group,values] of [
-  ['Garment style','garment',Object.keys(ALL.garment)],
-  ['Size','size',['S','M','L','XL','XXL']],
-  ['Fabric color','color',['black','white','red','yellow','blue','green']],
-  ['Print size','printSize',['A3','A4']],
+ for(const [index,title,description,group,values] of [
+  ['01','Garment style','Choose your silhouette','garment',Object.keys(ALL.garment)],
+  ['02','Size','Find your fit','size',['S','M','L','XL','XXL']],
+  ['03','Fabric color','Pick your pigment','color',['black','white','red','yellow','blue','green']],
+  ['04','Print size','Relative print area','printSize',['A3','A4']],
  ]){
-  const field=document.createElement('fieldset'); field.className='cc-worktable-field';
-  const legend=document.createElement('legend');legend.textContent=title;field.append(legend);
-  const buttons=document.createElement('div');buttons.className='cc-worktable-choice-row';
-  for(const val of values){const b=sideControl(group,val);if(group==='color')b.style.setProperty('--swatch',dyeRGB[val]);buttons.append(b)}
-  field.append(buttons);rail.append(field);
+  const field=document.createElement('fieldset');field.className='cc-worktable-field';
+  const legend=document.createElement('legend');legend.className='cc-worktable-field-heading';
+  const ordinal=document.createElement('span');ordinal.className='cc-worktable-field-index';ordinal.textContent=index+' ';
+  const heading=document.createElement('span');heading.className='cc-worktable-field-title';heading.textContent=title;
+  legend.append(ordinal,heading);
+  const descriptionNode=document.createElement('p');descriptionNode.className='cc-worktable-field-note';
+  descriptionNode.textContent=description;
+  const buttons=document.createElement('div');buttons.className='cc-worktable-choice-row';buttons.dataset.controlGroup=group;
+  for(const value of values)buttons.append(sideControl(group,value));
+  field.append(legend,descriptionNode,buttons);
+  rail.append(field);
  }
  // The SVG floats only while the actual notebook target is on screen.
  // Observer + page visibility prevent offscreen/background infinite movement.
