@@ -1,0 +1,2 @@
+# Preserve the owner's byte-exact CRLF Illustrator export without Git normalization.
+UPLOAD.svg -text -diff

@@ -4,7 +4,7 @@
  * Run: npm run optimize:artwork
  */
 import sharp from 'sharp';
-import {WORKTABLE_SOURCE_STACK,WORKTABLE_GARMENT_ASSETS} from '../src/worktable-studio.mjs';
+import {WORKTABLE_PREVIEW_STACK,WORKTABLE_GARMENT_ASSETS} from '../src/worktable-studio.mjs';
 import {readFile, writeFile, mkdir, mkdtemp, rm} from 'node:fs/promises';
 import {resolve, dirname, join} from 'node:path';
 import {tmpdir} from 'node:os';
@@ -67,7 +67,7 @@ for(const [garment,garmentPath] of Object.entries(WORKTABLE_GARMENT_ASSETS)){
  for(const viewWidth of widths){
   const height=Math.round(viewWidth*9/16);
   const composite=[];
-  for(const originalPath of WORKTABLE_SOURCE_STACK){
+  for(const originalPath of WORKTABLE_PREVIEW_STACK){
    const key=originalPath===WORKTABLE_GARMENT_ASSETS.regular?garmentPath:originalPath;
    const info=delivery[key].delivery;
    const v=info.variants.find(v=>v.path.endsWith('.w'+viewWidth+'.webp'));
@@ -75,7 +75,7 @@ for(const [garment,garmentPath] of Object.entries(WORKTABLE_GARMENT_ASSETS)){
    const top=Math.min(height-v.height,Math.round(info.crop[1]*viewWidth/4000));
    composite.push({input:await readFile(resolve(target,v.path)),left:Math.max(0,left),top:Math.max(0,top),blend:'over'});
   }
-  const outPath='variants/preview/assembled-'+garment+'.w'+viewWidth+'.webp';
+  const outPath='variants/preview/assembled-'+garment+'-svg3ea32afb.w'+viewWidth+'.webp';
   const image=await sharp({create:{width:viewWidth,height,channels:4,background:{r:0,g:0,b:0,alpha:0}}})
     .composite(composite).webp({quality:94,alphaQuality:100,effort:5,smartSubsample:true}).toBuffer();
   await mkdir(dirname(resolve(target,outPath)),{recursive:true});
@@ -86,7 +86,14 @@ for(const [garment,garmentPath] of Object.entries(WORKTABLE_GARMENT_ASSETS)){
  allScenes[garment]={variants:sceneVariants};
  console.log('assembled garment scene',garment,sceneVariants.map(x=>x.bytes));
 }
-delivery.__initialScene={generatedFromLayers:WORKTABLE_SOURCE_STACK,
+// Old composition URLs contained the baked raster upload icon. Remove those
+// exact old preview variants so every published scene is icon-free.
+for(const garment of Object.keys(WORKTABLE_GARMENT_ASSETS)){
+ for(const viewWidth of widths){
+  await rm(resolve(target,'variants/preview/assembled-'+garment+'.w'+viewWidth+'.webp'),{force:true});
+ }
+}
+delivery.__initialScene={generatedFromLayers:WORKTABLE_PREVIEW_STACK,
  variants:allScenes.regular.variants,garments:allScenes};
 
 await writeFile(resolve(target,'manifest.json'),JSON.stringify(delivery,null,2)+'\n');

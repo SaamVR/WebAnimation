@@ -176,9 +176,12 @@ test('all 43 optimized runtime assets preserve source SHA, original position and
 
 test('assembled initial scene is made only from source runtime layers, not reference compositions',async()=>{
  const delivery=JSON.parse(await load('browser-assets/worktable/manifest.json'));
- const {WORKTABLE_SOURCE_STACK}=await import('../src/worktable-studio.mjs');
- assert.deepEqual(delivery.__initialScene.generatedFromLayers,WORKTABLE_SOURCE_STACK);
- assert.equal(WORKTABLE_SOURCE_STACK.length,39);
+ const {WORKTABLE_SOURCE_STACK,WORKTABLE_PREVIEW_STACK,WORKTABLE_UPLOAD_RASTER}=await import('../src/worktable-studio.mjs');
+ assert.deepEqual(delivery.__initialScene.generatedFromLayers,WORKTABLE_PREVIEW_STACK);
+ assert.equal(WORKTABLE_SOURCE_STACK.length,39,'owner master SHA archive unchanged');
+ assert.equal(WORKTABLE_PREVIEW_STACK.length,38,'only raster upload icon removed from assembled scene');
+ assert.equal(WORKTABLE_SOURCE_STACK.includes(WORKTABLE_UPLOAD_RASTER),true);
+ assert.equal(WORKTABLE_PREVIEW_STACK.includes(WORKTABLE_UPLOAD_RASTER),false);
  assert.equal(delivery.__initialScene.variants.length,3);
  const bytes=delivery.__initialScene.variants.reduce((s,v)=>s+v.bytes,0);
  assert.ok(bytes<1200000,'all three assembled previews should total below 1.2 MB');
