@@ -115,15 +115,68 @@
 .cc-worktable-tint{display:none!important;position:absolute;pointer-events:none;mix-blend-mode:multiply;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;opacity:0;transition:opacity .19s ease}
 .cc-worktable-tint.is-colored{opacity:.74}
 .cc-worktable-garment-surface{position:absolute;display:block;pointer-events:none;object-fit:fill}
-.cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:normal}
+
+/* Physical A3/A4 reference frame: never attached to the image's dimensions. */
+.cc-worktable-print-guide{
+ position:absolute;z-index:6;pointer-events:none;
+ box-sizing:border-box;border:1px solid rgb(119 124 123 / .52);
+ background:transparent;opacity:0;transition:opacity .19s ease;
+}
+.cc-worktable-print-guide.is-shown{opacity:1}
+.cc-worktable-print{position:absolute;display:none;z-index:7;pointer-events:none;mix-blend-mode:normal;transform-origin:center center}
 .cc-worktable-print.has-art{display:block}
 .cc-worktable-print>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;mix-blend-mode:normal;filter:none}
-.cc-worktable-print::after{content:"";position:absolute;inset:0;border:1px solid rgb(255 247 222 / .8);outline:1px solid rgb(41 61 45 / .55);outline-offset:1px;pointer-events:none;opacity:0;transition:opacity .18s ease}
-.cc-worktable-print.is-manipulating::after,.cc-worktable-print:has(.cc-worktable-drag:focus-visible)::after{opacity:1}
-.cc-worktable-drag{position:absolute;inset:0;width:100%;height:100%;border:0;outline:0;background:transparent;cursor:grab;pointer-events:auto;touch-action:none;padding:0;opacity:0}
+.cc-worktable-print::after{content:"";position:absolute;inset:0;border:1px solid rgb(238 233 218 / .79);outline:1px solid rgb(41 61 45 / .42);outline-offset:1px;pointer-events:none;opacity:0;transition:opacity .18s ease}
+.cc-worktable-print.is-resize-mode::after,.cc-worktable-print:has(.cc-worktable-drag:focus-visible)::after{opacity:1}
+.cc-worktable-drag{position:absolute;inset:0;width:100%;height:100%;border:0;outline:0;background:transparent;cursor:pointer;pointer-events:auto;touch-action:none;padding:0;opacity:0}
 .cc-worktable-drag:hover,.cc-worktable-drag:focus-visible,.cc-worktable-drag.is-dragging{opacity:1;border:0;outline:0}
-.cc-worktable-drag:focus-visible{outline:2px solid rgb(255 249 236 / .9);outline-offset:2px}
+.cc-worktable-print:not(.is-resize-mode) .cc-worktable-drag{cursor:grab}
+.cc-worktable-drag:focus-visible{outline:2px solid rgb(255 249 236 / .92);outline-offset:2px}
 .cc-worktable-drag.is-dragging{cursor:grabbing}
+.cc-worktable-editor-toolbar{
+ position:absolute;z-index:10;display:flex;align-items:center;gap:5px;
+ padding:4px;border:1px solid rgb(232 225 209 / .8);border-radius:26px;
+ background:rgb(246 247 245 / .98);
+ box-shadow:2px 4px 10px rgb(25 22 15 / .26);
+ pointer-events:auto;
+}
+.cc-worktable-editor-toolbar[hidden]{display:none!important}
+.cc-worktable-editor-toolbar.is-vertical{flex-direction:column}
+.cc-worktable-tool{
+ display:grid;place-items:center;flex:none;width:44px;height:44px;
+ border:1px solid transparent;border-radius:50%;
+ color:#293d2d;background:transparent;cursor:pointer;
+ transition:background-color .17s ease,color .17s ease;
+}
+.cc-worktable-tool svg{width:19px;height:19px}
+.cc-worktable-tool:hover,.cc-worktable-tool.is-active,.cc-worktable-tool[aria-pressed="true"]{
+ background:#293d2d;color:#f6f7f5
+}
+.cc-worktable-tool:focus-visible{
+ outline:2px solid #8a503b;outline-offset:2px
+}
+/* Handles are only visible and interactive in intentional Resize mode.
+   Their circles remain above the image but don't recolor its original pixels. */
+.cc-worktable-corner-handle{
+ position:absolute;z-index:3;display:none;place-items:center;
+ width:40px;height:40px;padding:0;
+ border:0;border-radius:50%;background:transparent;
+ pointer-events:auto;cursor:nwse-resize;touch-action:none;
+ transform:translate(-50%,-50%);
+}
+.cc-worktable-corner-handle::after{
+ content:"";display:block;width:10px;height:10px;
+ border-radius:50%;border:1.5px solid #293d2d;
+ background:#f6f7f5;
+ box-shadow:0 1px 3px rgb(31 23 14 / .4);
+}
+.cc-worktable-print.is-resize-mode .cc-worktable-corner-handle{display:grid}
+.cc-worktable-corner-handle[data-corner="nw"]{left:0;top:0}
+.cc-worktable-corner-handle[data-corner="ne"]{left:100%;top:0;cursor:nesw-resize}
+.cc-worktable-corner-handle[data-corner="se"]{left:100%;top:100%}
+.cc-worktable-corner-handle[data-corner="sw"]{left:0;top:100%;cursor:nesw-resize}
+.cc-worktable-corner-handle:focus-visible{outline:2px solid #8a503b;outline-offset:1px}
+
 .cc-worktable-hit{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);border:0;outline:0;border-radius:6px;z-index:5;background:transparent;padding:0;cursor:pointer;touch-action:manipulation;appearance:none;-webkit-appearance:none}
 /* Invisible native button remains keyboard/touch accessible; its linked artwork
    receives the focus visual. No rectangular border, pseudo-outline or dash. */
@@ -420,4 +473,7 @@
  .cc-worktable-upload-float{animation:none!important}
  .cc-worktable-upload-svg{transform:none!important;transition:none!important}
  .cc-worktable-upload-svg #CIRCLE_FOR_PLUS ellipse,.cc-worktable-upload-svg #PLUS path{transition:none!important}
+}
+@media (prefers-reduced-motion:reduce){
+ .cc-worktable-print-guide,.cc-worktable-print::after,.cc-worktable-tool{transition:none!important}
 }

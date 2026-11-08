@@ -1,7 +1,7 @@
 import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableReducer } from './worktable-stage.mjs';
 import { UPLOAD_ARTWORK_SVG } from './worktable-upload-icon.mjs';
 import { FABRIC_PIGMENTS, applyFabricPigmentToRGBA } from './worktable-fabric-pigments.mjs';
-import { placementGeometry, printScaleLabel, resolutionGuidance } from './worktable-print-placement.mjs';
+import { placementGeometry, printGuideGeometry, printScaleLabel, resolutionGuidance } from './worktable-print-placement.mjs';
 
 // Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
 // Cropped WebP browser variants retain original alpha coordinates and source SHA256.
@@ -87,7 +87,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  let current=state;
  let artURL=null;
  let artBitmap=null;
- const editor={x:0,y:0,adjustment:0};
+ const editor={x:0,y:0,adjustment:0,rotation:0,selected:false,mode:'move'};
  let dragging=null;
  const body=document.createElement('div');
  body.className='cc-worktable is-loading is-hydrating';
@@ -232,9 +232,40 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  if(!uploadVisual)throw new Error('Illustrated upload SVG was not mounted');
  let garmentImg=addImage(ALL.garment.regular,'cc-worktable-garment');
  const tint=document.createElement('div'); tint.className='cc-worktable-tint'; stage.append(tint);
+ // Separate print guide: never inherited from the uploaded image bounds.
+ const printGuide=document.createElement('div');
+ printGuide.className='cc-worktable-print-guide';
+ printGuide.setAttribute('aria-hidden','true');stage.append(printGuide);
  const print=document.createElement('div');print.className='cc-worktable-print';
  const artImg=document.createElement('img');artImg.alt='Your uploaded artwork preview';artImg.draggable=false;
  print.append(artImg);stage.append(print);
+ // Compact native buttons, with vector symbols and no additional runtime.
+ const editorToolbar=document.createElement('div');
+ editorToolbar.className='cc-worktable-editor-toolbar';editorToolbar.hidden=true;
+ editorToolbar.setAttribute('role','toolbar');editorToolbar.setAttribute('aria-label','Artwork editing tools');
+ const toolIcons={
+  move:'<path d="M12 2v20M2 12h20M9 5l3-3 3 3M9 19l3 3 3-3M5 9l-3 3 3 3M19 9l3 3-3 3"/>',
+  resize:'<path d="M4 10V4h6M14 20h6v-6M4 4l7 7M20 20l-7-7"/>',
+  rotate:'<path d="M4 10a8 8 0 1 1 1 6M4 4v6h6"/>'
+ };
+ for(const tool of ['move','resize','rotate']){
+  const button=document.createElement('button');button.type='button';
+  button.className='cc-worktable-tool';button.dataset.tool=tool;
+  button.setAttribute('aria-label',tool==='rotate'?'Rotate artwork 90 degrees clockwise':tool==='resize'?'Resize artwork using corner handles':'Move artwork');
+  if(tool!=='rotate')button.setAttribute('aria-pressed','false');
+  button.title=tool==='rotate'?'Rotate +90°':tool[0].toUpperCase()+tool.slice(1);
+  button.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+toolIcons[tool]+'</svg>';
+  editorToolbar.append(button);
+ }
+ stage.append(editorToolbar);
+ const cornerHandles=new Map();
+ for(const corner of ['nw','ne','se','sw']){
+  const h=document.createElement('button');h.type='button';
+  h.className='cc-worktable-corner-handle';h.dataset.corner=corner;
+  h.setAttribute('aria-label','Resize artwork from '+({nw:'top-left',ne:'top-right',se:'bottom-right',sw:'bottom-left'}[corner])+' corner');
+  h.title='Proportional resize';
+  print.append(h);cornerHandles.set(corner,h);
+ }
  for(const path of ALL.workers)addImage(path,'cc-worktable-worker');
  for(const {path,group,value} of interactiveFiles)hitFor(path,group,value);
  // Only the illustrated plus/upload image is a hotspot. The notebook paper
@@ -289,56 +320,125 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  syncUploadMotion();
  const buttons=[...root.querySelectorAll('[data-group][data-value]')];
  const announce=t=>{msg.textContent=t};
- // Shared provisional garment guide for dragged, resized and keyboard art.
- let placementFeedbackTimer=null;
- let boundaryAnnounced=false;
+ // The guide remains independent of the uploaded file and is shown even
+ // before any upload when a user changes the print preset.
+ let placementFeedbackTimer=null,guideTimer=null,boundaryAnnounced=false;
+ let resizing=null,lastInfo=null;
+ const applyGuide=()=>{
+  const f=printGuideGeometry({garment:current.garment,preset:current.printSize});
+  printGuide.style.left=percent(f.x,2048);printGuide.style.top=percent(f.y,1152);
+  printGuide.style.width=percent(f.width,2048);printGuide.style.height=percent(f.height,1152);
+  printGuide.dataset.preset=current.printSize;
+  return f;
+ };
+ const showGuide=(linger=1300)=>{
+  applyGuide();printGuide.classList.add('is-shown');
+  if(guideTimer!==null)clearTimeout(guideTimer);
+  guideTimer=null;
+  if(!editor.selected)guideTimer=setTimeout(()=>{
+   if(!editor.selected)printGuide.classList.remove('is-shown');
+   guideTimer=null;
+  },linger);
+ };
+ const hideEditor=()=>{
+  editor.selected=false;editorToolbar.hidden=true;
+  print.classList.remove('is-edit-selected','is-resize-mode','is-manipulating');
+  if(guideTimer!==null)clearTimeout(guideTimer);
+  guideTimer=setTimeout(()=>{printGuide.classList.remove('is-shown');guideTimer=null},450);
+ };
+ const positionToolbar=()=>{
+  if(!editor.selected||!artURL){editorToolbar.hidden=true;return;}
+  editorToolbar.hidden=false;
+  const sr=stage.getBoundingClientRect();
+  if(!sr.width)return;
+  const factor=sr.width/2048;
+  const imageL=lastInfo.rotatedX*factor,imageR=(lastInfo.rotatedX+lastInfo.rotatedWidth)*factor;
+  const imageT=lastInfo.rotatedY*factor,imageB=(lastInfo.rotatedY+lastInfo.rotatedHeight)*factor;
+  const vertical=sr.width>=620;
+  editorToolbar.classList.toggle('is-vertical',vertical);
+  const width=editorToolbar.offsetWidth,height=editorToolbar.offsetHeight;
+  let x,y;
+  if(vertical){
+   x=imageR+9+width<sr.width?imageR+9:imageL-width-9;
+   y=(imageT+imageB-height)/2;
+  }else{
+   x=(imageL+imageR-width)/2;
+   y=imageT-height-9>=4?imageT-height-9:imageB+8;
+  }
+  const left=Math.max(4,6-sr.left);
+  const right=Math.min(sr.width-width-4,window.innerWidth-sr.left-width-6);
+  x=Math.max(left,Math.min(Math.max(left,right),x));
+  const upper=Math.max(4,6-sr.top);
+  const lower=Math.min(sr.height-height-4,window.innerHeight-sr.top-height-6);
+  y=Math.max(upper,Math.min(Math.max(upper,lower),y));
+  editorToolbar.style.left=x+'px';editorToolbar.style.top=y+'px';
+ };
+ const selectEditor=(mode=editor.mode)=>{
+  if(!artURL)return;
+  editor.selected=true;editor.mode=mode;
+  if(guideTimer!==null)clearTimeout(guideTimer);
+  showGuide();print.classList.add('is-edit-selected');
+  print.classList.toggle('is-resize-mode',mode==='resize');
+  for(const b of editorToolbar.querySelectorAll('[data-tool]')){
+   b.classList.toggle('is-active',b.dataset.tool===mode);
+   if(b.hasAttribute('aria-pressed'))b.setAttribute('aria-pressed',String(b.dataset.tool===mode));
+  }
+  positionToolbar();
+ };
  const indicatePlacement=(duringDrag=false)=>{
-  print.classList.add('is-manipulating');
+  if(editor.mode==='resize'&&editor.selected)print.classList.add('is-manipulating');
+  showGuide();
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
   placementFeedbackTimer=null;
   if(!duringDrag)placementFeedbackTimer=setTimeout(()=>{
    print.classList.remove('is-manipulating');placementFeedbackTimer=null;
   },750);
  };
- const printPosition=({feedback=false}={})=>{
+ const printPosition=({feedback=false,constrainToGuide=false}={})=>{
+  applyGuide();
   if(!artBitmap){
    scaleOut.textContent='0%';sizeGuidance.textContent='';quality.textContent='';
-   return;
+   lastInfo=null;positionToolbar();return;
   }
   const requested=editor.adjustment;
   const info=placementGeometry({
    garment:current.garment,preset:current.printSize,
    imageWidth:artBitmap.naturalWidth,imageHeight:artBitmap.naturalHeight,
-   adjustment:requested,dx:editor.x,dy:editor.y,
+   adjustment:requested,rotation:editor.rotation,
+   dx:editor.x,dy:editor.y,constrainToGuide,
   });
-  editor.adjustment=info.adjustment;
-  editor.x=info.dx;editor.y=info.dy;
-  scale.max=String(info.maxAdjustment);
-  scale.value=String(info.adjustment);
+  lastInfo=info;
+  editor.adjustment=info.adjustment;editor.x=info.dx;editor.y=info.dy;
+  scale.max=String(info.maxAdjustment);scale.value=String(info.adjustment);
   scaleOut.textContent=printScaleLabel(info.adjustment);
   print.style.left=percent(info.x,2048);print.style.top=percent(info.y,1152);
   print.style.width=percent(info.width,2048);print.style.height=percent(info.height,1152);
+  print.style.transform='rotate('+editor.rotation+'deg)';
+  print.dataset.rotation=String(editor.rotation);
+  editorToolbar.querySelector('[data-tool=rotate]')?.setAttribute('aria-label',
+   'Rotate artwork 90 degrees clockwise; current '+editor.rotation+' degrees');
   print.classList.toggle('is-beyond-reference',info.exceedsReference);
   const nominalNote=info.exceedsReference
    ? 'Above the nominal '+current.printSize+' visual reference. Confirm physical print dimensions with production.'
    : '';
-  const safeLimitNote=info.maxAdjustment<100&&info.adjustment===info.maxAdjustment
-   ? ' Safe garment enlargement limit reached (+'+info.maxAdjustment+'%).' : '';
-  const sizeNote=nominalNote+safeLimitNote;
+  const limitNote=info.maxAdjustment<100&&info.adjustment===info.maxAdjustment
+   ? ' Safe garment enlargement limit reached ('+printScaleLabel(info.maxAdjustment)+').' : '';
+  const sizeNote=nominalNote+limitNote;
   if(sizeGuidance.textContent!==sizeNote)sizeGuidance.textContent=sizeNote;
-  const assessment=resolutionGuidance({preset:current.printSize,
-   imageWidth:artBitmap.naturalWidth,imageHeight:artBitmap.naturalHeight,
-   adjustment:info.adjustment});
+  const assessment=resolutionGuidance({
+   preset:current.printSize,imageWidth:artBitmap.naturalWidth,
+   imageHeight:artBitmap.naturalHeight,adjustment:info.adjustment,
+  });
   if(quality.textContent!==assessment.text)quality.textContent=assessment.text;
   quality.classList.toggle('is-low-resolution',assessment.low);
-  if(dragging&&info.constrained&&!boundaryAnnounced){
-   announce('Artwork reached the edge of the garment preview safe area.');
+  if((dragging||resizing)&&info.constrained&&!boundaryAnnounced){
+   announce('Artwork reached the safe editing boundary.');
    boundaryAnnounced=true;
   }else if(!info.constrained)boundaryAnnounced=false;
   if(feedback&&requested>info.maxAdjustment){
-   announce('Maximum safe enlargement for this '+current.garment+' '+current.printSize+
-    ' preview is +'+info.maxAdjustment+'%. The artwork is kept inside the garment.');
+   announce('Maximum safe enlargement for this garment and orientation is '+printScaleLabel(info.maxAdjustment)+'.');
   }
+  positionToolbar();
  };
  let hydrated=false;
  let layersReady=false;
@@ -492,7 +592,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   if(group==='upload'){file.click();return}
   current=worktableReducer(current,{type:'select',group,value});
   // Retain relative placement and recompute safe bounds for garment/preset changes.
-  if(group==='printSize'&&artURL)indicatePlacement();
+  if(group==='printSize')showGuide(1550); // guide appears even without art
   paintSelection(group==='garment');announce(`${labels[value]} selected`);
   if(group==='garment'||group==='color')void queueGarmentVisual();
  };
@@ -542,9 +642,11 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    if(img.naturalWidth<1||img.naturalHeight<1||img.naturalWidth>8192||img.naturalHeight>8192)throw Error('Unsupported image dimensions');
    clearArtURL();artURL=next;artBitmap=img;
    artImg.src=artURL;artImg.style.objectFit='contain';
-   editor.x=editor.y=0;editor.adjustment=0;
+   editor.x=editor.y=0;editor.adjustment=0;editor.rotation=0;
+   editor.selected=false;editor.mode='move';editorToolbar.hidden=true;
+   print.classList.remove('is-edit-selected','is-resize-mode');
    scale.value='0';scaleOut.textContent='0%';scale.disabled=false;remove.disabled=false;reset.disabled=false;
-   paintSelection();indicatePlacement();
+   paintSelection();showGuide(1600);
    announce('Artwork loaded locally at 0% adjustment to the '+current.printSize+
     ' visual reference. Drag to position or use the signed resize slider.');
   }catch{URL.revokeObjectURL(next);announce('The selected image could not be decoded.');}
@@ -555,48 +657,139 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   printPosition({feedback:true});indicatePlacement();
  });
  reset.addEventListener('click',()=>{
-  editor.x=editor.y=0;editor.adjustment=0;scale.value='0';
-  printPosition();indicatePlacement();announce('Artwork placement reset to 0% and the starting collar reference.');
+  editor.x=editor.y=0;editor.adjustment=0;editor.rotation=0;scale.value='0';
+  printPosition();indicatePlacement();
+  announce('Artwork reset: centered within '+current.printSize+', size 0%, rotation 0 degrees.');
  });
  remove.addEventListener('click',()=>{
-  clearArtURL();artImg.removeAttribute('src');scale.disabled=true;remove.disabled=true;reset.disabled=true;
+  hideEditor();clearArtURL();artImg.removeAttribute('src');
+  scale.disabled=true;remove.disabled=true;reset.disabled=true;
+  editor.x=editor.y=0;editor.adjustment=0;editor.rotation=0;
   print.classList.remove('is-manipulating','is-beyond-reference');
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
   placementFeedbackTimer=null;
   scale.value='0';scaleOut.textContent='0%';paintSelection();announce('Artwork removed.');
  });
- const dragLayer=document.createElement('button');dragLayer.type='button';dragLayer.className='cc-worktable-drag';
- dragLayer.setAttribute('aria-label','Drag uploaded artwork to reposition');
- dragLayer.title='Move uploaded artwork';print.append(dragLayer);
+ // Clicking artwork selects it; in Move mode the same gesture can drag.
+ const dragLayer=document.createElement('button');dragLayer.type='button';
+ dragLayer.className='cc-worktable-drag';
+ dragLayer.setAttribute('aria-label','Select uploaded artwork, then move or resize with the floating editor');
+ dragLayer.title='Select and edit artwork';print.append(dragLayer);
  const dragStart=e=>{
-  if(!artURL)return;
-  const stageRect=stage.getBoundingClientRect();const factor=2048/stageRect.width;
+  if(!artURL||e.button>0)return;
+  if(!editor.selected)selectEditor('move');
+  else selectEditor(editor.mode);
+  if(editor.mode!=='move')return;
+  const rect=stage.getBoundingClientRect(),factor=2048/rect.width;
   dragging={id:e.pointerId,x:e.clientX,y:e.clientY,startX:editor.x,startY:editor.y,factor};
-  dragLayer.setPointerCapture(e.pointerId);dragLayer.classList.add('is-dragging');indicatePlacement(true);
+  dragLayer.setPointerCapture(e.pointerId);
+  dragLayer.classList.add('is-dragging');indicatePlacement(true);
  };
  dragLayer.addEventListener('pointerdown',dragStart);
+ // Native Enter/Space activation must open the editor without a mouse.
+ dragLayer.addEventListener('click',e=>{
+  if(e.detail===0&&artURL)selectEditor(editor.mode);
+ });
  dragLayer.addEventListener('pointermove',e=>{
   if(!dragging||dragging.id!==e.pointerId)return;
   editor.x=dragging.startX+(e.clientX-dragging.x)*dragging.factor;
   editor.y=dragging.startY+(e.clientY-dragging.y)*dragging.factor;
-  printPosition();
+  printPosition({constrainToGuide:true});
  });
  const dragEnd=e=>{
-  if(e?.pointerId!==undefined&&dragLayer.hasPointerCapture(e.pointerId))dragLayer.releasePointerCapture(e.pointerId);
-  dragging=null;dragLayer.classList.remove('is-dragging');indicatePlacement();
+  if(e?.pointerId!==undefined&&dragLayer.hasPointerCapture(e.pointerId))
+   dragLayer.releasePointerCapture(e.pointerId);
+  if(dragging){dragging=null;dragLayer.classList.remove('is-dragging');indicatePlacement();}
  };
  dragLayer.addEventListener('pointerup',dragEnd);
  dragLayer.addEventListener('pointercancel',dragEnd);
  dragLayer.addEventListener('keydown',e=>{
   if(!artURL)return;
+  if(e.key==='Escape'){e.preventDefault();hideEditor();return;}
   const delta=e.shiftKey?14:4;
   const dx={ArrowLeft:-delta,ArrowRight:delta}[e.key];
   const dy={ArrowUp:-delta,ArrowDown:delta}[e.key];
   if(dx===undefined&&dy===undefined)return;
-  e.preventDefault();editor.x+=dx||0;editor.y+=dy||0;printPosition();indicatePlacement();
+  e.preventDefault();selectEditor('move');
+  editor.x+=dx||0;editor.y+=dy||0;
+  printPosition({constrainToGuide:true});indicatePlacement();
  });
+ // Resize any rotated corner proportionally, with pointer capture.
+ for(const [corner,handle] of cornerHandles){
+  handle.addEventListener('pointerdown',e=>{
+   if(!artURL||e.button>0)return;
+   e.preventDefault();e.stopPropagation();selectEditor('resize');
+   const sr=stage.getBoundingClientRect(),f=sr.width/2048;
+   const sideX=corner.endsWith('w')?-1:1;
+   const sideY=corner.startsWith('n')?-1:1;
+   const theta=editor.rotation*Math.PI/180;
+   const bx=sideX*lastInfo.width/2,by=sideY*lastInfo.height/2;
+   const rx=bx*Math.cos(theta)-by*Math.sin(theta);
+   const ry=bx*Math.sin(theta)+by*Math.cos(theta);
+   const radius=Math.max(1,Math.hypot(rx,ry)*f);
+   resizing={id:e.pointerId,x:e.clientX,y:e.clientY,
+    dirX:rx*f/radius,dirY:ry*f/radius,radius,
+    startScale:1+editor.adjustment/100};
+   handle.setPointerCapture(e.pointerId);
+   print.classList.add('is-manipulating');showGuide();
+  });
+  handle.addEventListener('pointermove',e=>{
+   if(!resizing||resizing.id!==e.pointerId)return;
+   e.preventDefault();
+   const delta=(e.clientX-resizing.x)*resizing.dirX+
+    (e.clientY-resizing.y)*resizing.dirY;
+   editor.adjustment=Math.round((resizing.startScale*(1+delta/resizing.radius)-1)*100);
+   printPosition();showGuide();
+  });
+  const end=e=>{
+   if(e?.pointerId!==undefined&&handle.hasPointerCapture(e.pointerId))
+    handle.releasePointerCapture(e.pointerId);
+   if(resizing){resizing=null;indicatePlacement();}
+  };
+  handle.addEventListener('pointerup',end);
+  handle.addEventListener('pointercancel',end);
+  handle.addEventListener('keydown',e=>{
+   if(e.key==='Escape'){hideEditor();return;}
+   if(!['ArrowUp','ArrowDown','ArrowRight','ArrowLeft'].includes(e.key))return;
+   e.preventDefault();selectEditor('resize');
+   editor.adjustment+=(e.key==='ArrowUp'||e.key==='ArrowRight'?5:-5);
+   printPosition({feedback:true});indicatePlacement();
+  });
+ }
+ for(const button of editorToolbar.querySelectorAll('[data-tool]')){
+  button.addEventListener('click',()=>{
+   if(!artURL)return;
+   if(button.dataset.tool==='rotate'){
+    editor.rotation=(editor.rotation+90)%360;
+    printPosition({feedback:true});selectEditor(editor.mode);
+    button.setAttribute('aria-label','Rotate artwork 90 degrees clockwise; current '+editor.rotation+' degrees');
+    announce('Artwork rotated to '+editor.rotation+' degrees clockwise.');
+   }else{
+    selectEditor(button.dataset.tool);
+    announce(button.dataset.tool==='resize'
+     ? 'Resize mode. Drag a corner to resize proportionally, or use the size slider.'
+     : 'Move mode. Drag the artwork or use the keyboard arrow keys.');
+   }
+  });
+  button.addEventListener('keydown',e=>{if(e.key==='Escape'){hideEditor();dragLayer.focus();}});
+ }
+ const outsideEditor=e=>{
+  if(!editor.selected)return;
+  if(!print.contains(e.target)&&!editorToolbar.contains(e.target))hideEditor();
+ };
+ const editorEscape=e=>{
+  if(e.key==='Escape'&&editor.selected){
+   hideEditor();if(editorToolbar.contains(document.activeElement))dragLayer.focus();
+  }
+ };
+ const repositionEditor=()=>{if(editor.selected)positionToolbar();};
+ document.addEventListener('pointerdown',outsideEditor,true);
+ document.addEventListener('keydown',editorEscape);
+ window.addEventListener('resize',repositionEditor,{passive:true});
+ window.addEventListener('scroll',repositionEditor,{passive:true});
  const unload=()=>{
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
+  if(guideTimer!==null)clearTimeout(guideTimer);
   clearArtURL();
  };
  window.addEventListener('pagehide',unload,{once:true});
@@ -662,6 +855,10 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  return {getState:()=>({...current}),getPlacement:()=>({...editor,scale:1+editor.adjustment/100}),destroy:()=>{
   clearArtURL();if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
   uploadObserver?.disconnect();document.removeEventListener('visibilitychange',syncUploadMotion);
-  window.removeEventListener('pagehide',unload);root.replaceChildren();
+  document.removeEventListener('pointerdown',outsideEditor,true);
+  document.removeEventListener('keydown',editorEscape);
+  window.removeEventListener('resize',repositionEditor);
+  window.removeEventListener('scroll',repositionEditor);
+  window.removeEventListener('pagehide',unload);unload();root.replaceChildren();
  }};
 }
