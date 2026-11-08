@@ -43,13 +43,20 @@ export function mountConnectedBenefits(stage) {
   let seconds = 0, visible = false, started = false, failed = false;
   let active = false, raf = 0, previous = null, layoutRAF = 0;
   let actors = [], segments = [], lastFrame = [-1, -1, -1, -1];
+  const lastReveal = [NaN, NaN, NaN, NaN];
   function applyIcons() {
-    // Exact V3 activation: later icon frames stay hidden until their authored cue,
-    // then appear over the preview's original 140ms reveal interval.
+    // One authored V3 clock: future slots retain a beige outline matching the
+    // inactive connecting line. At their existing 140ms reveal, the outline
+    // yields to the original icon + offset frame without changing keyframes.
     slots.forEach((slot, i) => {
       const opacity = reduced.matches || !started || i === 0 ? 1 :
         clamp((seconds - STARTS[i] + .02) / .14, 0, 1);
-      slot.parentElement.style.opacity = String(opacity);
+      if (opacity !== lastReveal[i]) {
+        const shell = slot.parentElement;
+        shell.style.setProperty('--c01-art-opacity', String(opacity));
+        shell.style.setProperty('--c01-guide-opacity', String(.57 * (1 - opacity)));
+        lastReveal[i] = opacity;
+      }
     });
     if (!actors.length) return;
     actors.forEach((animation, i) => {
