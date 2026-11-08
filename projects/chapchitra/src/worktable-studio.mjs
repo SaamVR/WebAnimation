@@ -48,6 +48,11 @@ export const WORKTABLE_SOURCE_STACK=Object.freeze([ALL.backdrop,...layers.map(la
 // raster layer when creating the 12 assembled previews: no double drawing.
 export const WORKTABLE_UPLOAD_RASTER='Upload image notebook/Upload_image_notebook_upload_button_4.png';
 export const WORKTABLE_PREVIEW_STACK=Object.freeze(WORKTABLE_SOURCE_STACK.filter(path=>path!==WORKTABLE_UPLOAD_RASTER));
+// The on-demand atomic preview uses the same checksum-pinned original layers,
+// but has no baked garment: no previous white shirt can show through a new one.
+export const WORKTABLE_ATOMIC_BACKPLATE_STACK=Object.freeze(
+ WORKTABLE_PREVIEW_STACK.filter(path=>!Object.values(ALL.garment).includes(path)&&!ALL.workers.includes(path))
+);
 const labels = {
   regular:'Regular Tee', dropShoulder:'Drop Shoulder',fullSleeve:'Full Sleeve',hoodie:'Hoodie',
   black:'Black',white:'White',red:'Red',yellow:'Yellow',blue:'Blue',green:'Green',
@@ -253,64 +258,140 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   print.style.width=percent(width,2048);print.style.height=percent(height,1152);
  };
  let hydrated=false;
+ let layersReady=false;
  let switchToken=0;
+ let latestRender=null;
+ let garmentSurface=null;
+ let visualGarment='regular', visualColor='white';
  let preview=null;
- const swapPreview=async(wanted,token)=>{
-  const info=manifest.__initialScene.garments?.[wanted];
-  if(!preview || !info?.variants)throw new Error('Missing complete worktable scene');
-  if(preview.dataset.garment===wanted)return;
-  const next=new Image();
-  next.className='cc-worktable-layer cc-worktable-preview';
-  next.alt='';next.setAttribute('aria-hidden','true');next.draggable=false;
-  next.decoding='async';next.loading='eager';next.fetchPriority='high';
-  next.sizes='(max-width: 1540px) 100vw, 1540px';
-  next.srcset=sourceSet(info.variants);
-  next.src=variantURL(info.variants[1]);
-  next.dataset.garment=wanted;
-  try{
-   await next.decode();
-   if(token!==switchToken||hydrated||wanted!==current.garment||!preview.isConnected)return;
-   preview.replaceWith(next);preview=next;
-  }catch{announce('This garment preview could not load. The worktable is still usable.')}
- };
- const updateTintMask=()=>{
-  const info=sourceInfo(ALL.garment[current.garment]);
-  const b=info.stageBox;
-  tint.style.left=percent(b[0],2048);tint.style.top=percent(b[1],1152);
-  tint.style.width=percent(b[2],2048);tint.style.height=percent(b[3],1152);
-  const url=hydrated&&garmentImg.dataset.source===ALL.garment[current.garment] ? (garmentImg.currentSrc||variantURL(info.variants[1])) : variantURL(info.variants[1]);
-  tint.style.webkitMaskImage=`url("${url}")`;
-  tint.style.maskImage=`url("${url}")`;
- };
- const switchGarment=async (wanted)=>{
-  const token=++switchToken;
-  if(!hydrated)return swapPreview(wanted,token);
-  const path=ALL.garment[wanted];
-  if(garmentImg.dataset.source===path)return;
-  const trial=new Image();
-  trial.className=garmentImg.className;
-  trial.alt='';trial.setAttribute('aria-hidden','true');
-  trial.draggable=false;trial.loading='eager';trial.decoding='async';
-  trial.dataset.visualOrder=garmentImg.dataset.visualOrder;
-  attachAsset(trial,path);
-  try{
-   await trial.decode();
-   if(token!==switchToken||wanted!==current.garment)return;
-   // Swap the already decoded element, not just its URL: no blank/flickering
-   // intermediate garment frame and no forced decode on the old image node.
-   const old=garmentImg;
-   old.replaceWith(trial);garmentImg=trial;
-   const position=visualImages.indexOf(old);
-   if(position>=0)visualImages[position]=trial;
-   updateTintMask();
-  }catch{
-   announce('This garment image is temporarily unavailable. Try again.');
+ // At most four decoded transparent garment layers, and one base plate,
+ // are retained. Color combinations are drawn only when requested.
+ const decoded=new Map();
+ const stageWidth=()=>stage.getBoundingClientRect().width*Math.max(1,window.devicePixelRatio||1);
+ const variantIndex=()=>stageWidth()>1536?2:stageWidth()>768?1:0;
+ const loadVariant=(entry,index)=>{
+  const variant=entry.variants[index],key=variant.path;
+  if(!decoded.has(key)){
+   const promise=(async()=>{
+    const image=new Image();image.decoding='async';image.src=variantURL(variant);
+    await image.decode();return image;
+   })().catch(error=>{decoded.delete(key);throw error});
+   decoded.set(key,promise);
   }
+  return decoded.get(key);
  };
- const paintSelection=()=>{
+ const colorized=async(garment,color,index)=>{
+  const path=ALL.garment[garment],info=sourceInfo(path);
+  const source=await loadVariant(info,index);
+  const canvas=document.createElement('canvas');
+  canvas.className='cc-worktable-layer cc-worktable-garment-surface';
+  canvas.width=source.naturalWidth;canvas.height=source.naturalHeight;
+  positionLayer(canvas,path);
+  canvas.dataset.garment=garment;canvas.dataset.color=color;
+  const context=canvas.getContext('2d',{alpha:true,willReadFrequently:color!=='white'});
+  if(!context)throw new Error('Garment canvas could not initialize');
+  context.drawImage(source,0,0);
+  if(color!=='white'){
+   // Match the approved 74% multiply-color wash while preserving the original
+   // source pixels, tonal detail and alpha edge. Color is applied OFFSCREEN,
+   // so neither the white garment nor a delayed CSS mask can ever be exposed.
+   const pixels=context.getImageData(0,0,canvas.width,canvas.height);
+   const rgb=dyeRGB[color].slice(1).match(/../g).map(x=>parseInt(x,16));
+   const scale=rgb.map(value=>.26+.74*value/255);
+   for(let offset=0;offset<pixels.data.length;offset+=4){
+    if(!pixels.data[offset+3])continue;
+    pixels.data[offset]=Math.round(pixels.data[offset]*scale[0]);
+    pixels.data[offset+1]=Math.round(pixels.data[offset+1]*scale[1]);
+    pixels.data[offset+2]=Math.round(pixels.data[offset+2]*scale[2]);
+   }
+   context.putImageData(pixels,0,0);
+  }
+  return canvas;
+ };
+ const composeAtomicPreview=async(colored,index)=>{
+  const info=manifest.__initialScene;
+  if(!info.backplateVariants?.[index])throw new Error('Atomic worktable background unavailable');
+  const [backplate,...workerImgs]=await Promise.all([
+   loadVariant({variants:info.backplateVariants},index),
+   ...ALL.workers.map(path=>loadVariant(sourceInfo(path),index)),
+  ]);
+  const canvas=document.createElement('canvas');
+  canvas.width=backplate.naturalWidth;canvas.height=backplate.naturalHeight;
+  canvas.className='cc-worktable-layer cc-worktable-preview';
+  canvas.dataset.garment=colored.dataset.garment;
+  canvas.dataset.color=colored.dataset.color;
+  const ctx=canvas.getContext('2d',{alpha:true});
+  if(!ctx)throw new Error('Atomic preview canvas could not initialize');
+  ctx.drawImage(backplate,0,0);
+  const place=(img,path)=>{
+   const crop=sourceInfo(path).crop;
+   const left=Math.round(crop[0]*canvas.width/4000);
+   const top=Math.round(crop[1]*canvas.width/4000);
+   ctx.drawImage(img,left,top);
+  };
+  place(colored,ALL.garment[colored.dataset.garment]);
+  ALL.workers.forEach((path,i)=>place(workerImgs[i],path));
+  return canvas;
+ };
+ const queueGarmentVisual=()=>{
+  const token=++switchToken;
+  const wantedGarment=current.garment,wantedColor=current.color;
+  if(garmentSurface&&visualGarment===wantedGarment&&visualColor===wantedColor)return Promise.resolve(true);
+  const job=(async()=>{
+   const index=variantIndex();
+   const colored=await colorized(wantedGarment,wantedColor,index);
+   if(token!==switchToken)return false;
+   // When fine layers are already decoded, skip the full-stage background.
+   // Before hydration, compose a COMPLETE scene without any baked white shirt.
+   const scene=layersReady?null:await composeAtomicPreview(colored,index);
+   if(token!==switchToken)return false;
+   // All preparation is complete. These DOM changes are synchronous within
+   // one frame: keep previous garment until the colored image exists.
+   if(garmentSurface)garmentSurface.replaceWith(colored);
+   else garmentImg.after(colored);
+   garmentSurface=colored;
+   garmentImg.style.visibility='hidden';
+   if(scene&&preview?.isConnected){
+    preview.replaceWith(scene);preview=scene;
+   }
+   visualGarment=wantedGarment;visualColor=wantedColor;
+   printPosition(); // Upload placement changes together with the new garment.
+   return true;
+  })().catch(error=>{
+   if(token===switchToken){
+    console.error('Garment atomic visual preparation failed:',error);
+    announce('The selected garment could not be prepared. The previous complete garment remains visible.');
+   }
+   return false;
+  });
+  latestRender=job;return job;
+ };
+ const finishHydration=async()=>{
+  // Requests may change during hydration: accept only the latest complete
+  // garment/color pair and never reveal the stale/white intermediate layer.
+  for(let attempts=0;attempts<50;attempts++){
+   const token=switchToken;
+   if(!garmentSurface||current.garment!==visualGarment||current.color!==visualColor){
+    await (latestRender||queueGarmentVisual());
+    if(token!==switchToken)continue;
+   }
+   if(!garmentSurface||current.garment!==visualGarment||current.color!==visualColor){
+    announce('The previous complete scene remains visible until the requested garment can be prepared.');
+    return;
+   }
+   if(token!==switchToken)continue;
+   hydrated=true;
+   body.classList.remove('is-hydrating');
+   preview?.remove();preview=null;
+   stage.querySelector('.cc-worktable-loading')?.remove();
+   announce('Worktable ready. Every detail is registered to the original artwork.');
+   return;
+  }
+  console.warn('Hydration deferred while garment selection is changing rapidly');
+ };
+ const paintSelection=(deferPosition=false)=>{
   const color=dyeRGB[current.color];
   tint.style.backgroundColor=color;
-  updateTintMask();
   tint.classList.toggle('is-colored',current.color!=='white');
   print.classList.toggle('has-art',!!artURL);
   for(const b of buttons){
@@ -323,15 +404,15 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    img.classList.toggle('is-selected',img.dataset.group!=='upload'&&
     current[img.dataset.group]===img.dataset.value);
   }
-  printPosition();
+  if(!deferPosition)printPosition();
  };
  const clearArtURL=()=>{if(artURL)URL.revokeObjectURL(artURL);artURL=null;artBitmap=null};
  const update=(group,value)=>{
   if(group==='upload'){file.click();return}
   current=worktableReducer(current,{type:'select',group,value});
   if(group==='garment'||group==='printSize')editor.x=editor.y=0;
-  paintSelection();announce(`${labels[value]} selected`);
-  if(group==='garment')void switchGarment(value);
+  paintSelection(group==='garment');announce(`${labels[value]} selected`);
+  if(group==='garment'||group==='color')void queueGarmentVisual();
  };
  let uploadAckTimer=null;
  const acknowledgeUpload=()=>{
@@ -434,7 +515,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  stage.append(preview);
  let previewSucceeded=false;
  const loadOne=async img=>{
-  const path=img===garmentImg?ALL.garment[current.garment]:img.dataset.source;
+  const path=img===garmentImg?ALL.garment.regular:img.dataset.source;
   attachAsset(img,path);
   await img.decode();
  };
@@ -461,20 +542,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    }
    return;
   }
-  // The owner can select another garment while the background layers decode.
-  if(garmentImg.dataset.source!==ALL.garment[current.garment]){
-   try{await loadOne(garmentImg)}catch{
-    announce('The requested garment is temporarily unavailable. The complete preview remains visible.');
-    return;
-   }
-  }
-  updateTintMask();
-  // One atomic handoff: never expose a half-decoded stack or a blank frame.
-  hydrated=true;
-  body.classList.remove('is-hydrating');
-  preview.remove();
-  stage.querySelector('.cc-worktable-loading')?.remove();
-  announce('Worktable ready. Every detail is registered to the original artwork.');
+  layersReady=true;
+  await finishHydration();
  };
  try{
   await preview.decode();

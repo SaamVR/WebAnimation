@@ -2236,6 +2236,65 @@
     }
   },
   "__initialScene": {
+    "backplateVariants": [
+      {
+        "path": "variants/preview/garment-free-atomic-v1.w768.webp",
+        "width": 768,
+        "height": 432,
+        "bytes": 90170,
+        "sha256": "ac1b915bdc50d1a8841f275f079508883ceaf1aa31428eee50c9dd3210465792"
+      },
+      {
+        "path": "variants/preview/garment-free-atomic-v1.w1536.webp",
+        "width": 1536,
+        "height": 864,
+        "bytes": 268182,
+        "sha256": "1aaacc23850c6d88b217e575ab876fe0717592d48a88476218d49b469d09c1e5"
+      },
+      {
+        "path": "variants/preview/garment-free-atomic-v1.w2560.webp",
+        "width": 2560,
+        "height": 1440,
+        "bytes": 553826,
+        "sha256": "367cd17809539f8c6b27e1135776c4cd98282d2964918db3c6edc3e1843e2422"
+      }
+    ],
+    "atomicBackplateFromLayers": [
+      "Artist-edit-backdrop-1.png",
+      "Garment style/Garment_style_backboard_5.png",
+      "Garment style/Garment_style_title_1.png",
+      "Garment style/Garment_style_title_2.png",
+      "Garment style/Garment_style_title_3.png",
+      "Garment style/Garment_style_1_regular.png",
+      "Garment style/Garment_style_2_drop_shoulder.png",
+      "Garment style/Garment_style_3_full_sleeve.png",
+      "Garment style/Garment_style_4_hoodie.png",
+      "Tshirt color/Tshirt_color_box_back_without_front_panel.png",
+      "Tshirt color/Tshirt_color_title_1.png",
+      "Tshirt color/Tshirt_color_title_2.png",
+      "Tshirt color/Tshirt_color_title_3.png",
+      "Tshirt color/Tshirt_color_1.png",
+      "Tshirt color/Tshirt_color_2.png",
+      "Tshirt color/Tshirt_color_3.png",
+      "Tshirt color/Tshirt_color_4.png",
+      "Tshirt color/Tshirt_color_5.png",
+      "Tshirt color/Tshirt_color_6.png",
+      "Tshirt color/Tshirt_color_box_front_panel.png",
+      "Size/Tshirt_size_title_1.png",
+      "Size/Tshirt_size_XXL_6.png",
+      "Size/Tshirt_size_XL_5.png",
+      "Size/Tshirt_size_L_4.png",
+      "Size/Tshirt_size_M_3.png",
+      "Size/Tshirt_size_S_2.png",
+      "Upload image notebook/Upload_image_notebook_1.png",
+      "Upload image notebook/Upload_image_notebook_title_2.png",
+      "Upload image notebook/Upload_image_notebook_title_3.png",
+      "Print size/Print_size_backboard_3.png",
+      "Print size/Print_size_title_1.png",
+      "Print size/Print_size_title_2.png",
+      "Print size/Print_size_A3_1.png",
+      "Print size/Print_size_A4_2.png"
+    ],
     "generatedFromLayers": [
       "Artist-edit-backdrop-1.png",
       "Garment style/Garment_style_backboard_5.png",

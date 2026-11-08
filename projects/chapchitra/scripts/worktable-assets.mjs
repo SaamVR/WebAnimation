@@ -80,7 +80,9 @@ export async function installWorktableAssets(root,output,{originalsOnly=false}={
       item.delivery?.variants?.length!==3)throw new Error('Master/optimized registration mismatch: '+key);
   }
   for(const item of Object.values(browser)){
-   const versions=item===browser.__initialScene ? Object.values(item.garments||{}).flatMap(garment=>garment.variants) : item.delivery?.variants||[];
+   const versions=item===browser.__initialScene ?
+    [...Object.values(item.garments||{}).flatMap(garment=>garment.variants),...(item.backplateVariants||[])] :
+    item.delivery?.variants||[];
    for(const variant of versions){
     if(!variant.path.startsWith('variants/')||variant.path.includes('..'))throw new Error('Unsafe optimized asset path');
     const file=await readFile(resolve(optimizedRoot,variant.path));

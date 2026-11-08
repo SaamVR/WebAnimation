@@ -44,12 +44,11 @@
 .cc-worktable-prop[data-group="printSize"]{--cc-selected-lift:-4px;--cc-selected-hover-lift:-4.4px}
 .cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected{
  transform:translate3d(0,var(--cc-selected-lift),0);
- filter:brightness(1.032) saturate(1.014)
-  drop-shadow(2px 4.6px 1.7px rgb(31 23 14 / .5))
-  /* Gallery White/Cream: a small edge catch plus diffuse restrained halo.
-     Alpha-shaped on selected art only; never on the semantic hitbox. */
-  drop-shadow(0 0 1.9px rgb(255 249 232 / .66))
-  drop-shadow(0 0 4.6px rgb(248 237 214 / .32));
+ /* Persist exactly the previously approved hover highlight after pointer exit.
+    Existing .is-selected.is-hovered CSS below is intentionally untouched. */
+ filter:brightness(1.065) saturate(1.03)
+  drop-shadow(2.1px 5px 1.8px rgb(30 23 15 / .53))
+  drop-shadow(0 0 2.4px rgb(248 235 204 / .52));
 }
 /* Do not change approved hover for nonselected artwork. Keep selected elevation
    when a pointer returns, rather than allowing hover to push the object down. */
@@ -113,8 +112,9 @@
 }
 /* Keep the tray-front illustration ABOVE the pot edges. No pot z-index overrides. */
 .cc-worktable-layer[data-source="Tshirt color/Tshirt_color_box_front_panel.png"]{z-index:auto}
-.cc-worktable-tint{position:absolute;pointer-events:none;mix-blend-mode:multiply;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;opacity:0;transition:opacity .19s ease}
+.cc-worktable-tint{display:none!important;position:absolute;pointer-events:none;mix-blend-mode:multiply;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;opacity:0;transition:opacity .19s ease}
 .cc-worktable-tint.is-colored{opacity:.74}
+.cc-worktable-garment-surface{position:absolute;display:block;pointer-events:none;object-fit:fill}
 .cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:multiply}
 .cc-worktable-print.has-art{display:block}
 .cc-worktable-print>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}

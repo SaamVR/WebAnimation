@@ -93,7 +93,8 @@ test('print size preview is conservatively limited until production masks/specs 
  assert.match(src,/chestGuide/);
  assert.match(src,/editor\.scale=clamp\(editor\.scale,\.5,1\)/);
  assert.match(src,/maxArtBox/);
- assert.match(src,/maskImage=/);
+ assert.match(src,/const colorized=async\(/);
+ assert.match(src,/context\.getImageData\(/);
  assert.match(src,/fabric-color accuracy require manufacturer calibration/);
 });
 
@@ -202,17 +203,21 @@ test('master archive is verified but never shipped as original 4K PNGs',async()=
  assert.match(builder,/await cp\(optimizedRoot,resolve\(output,'assets\/worktable'\)/);
 });
 
-test('new renderer keeps UI live while images hydrate and reuses cropped garment mask',async()=>{
+test('atomic renderer keeps previous complete garment visible during candidate decoding',async()=>{
  const source=await load('src/worktable-studio.mjs');
  assert.match(source,/const loadOne=async img=>/);
  assert.match(source,/const errors=\[\]/);
- assert.match(source,/trial\.decode\(\)/);
- assert.match(source,/updateTintMask\(\)/);
- assert.match(source,/sourceSet\(info\.variants\)/);
+ assert.match(source,/const colorized=async\(/);
+ assert.match(source,/const composeAtomicPreview=async\(/);
+ assert.match(source,/const queueGarmentVisual=\(\)=>/);
+ assert.match(source,/if\(token!==switchToken\)return false/);
+ assert.match(source,/garmentSurface\.replaceWith\(colored\)/);
+ assert.match(source,/body\.classList\.remove\('is-hydrating'\)/);
+ assert.match(source,/sourceSet\(manifest\.__initialScene\.variants\)/);
  assert.match(source,/img\.sizes=sizesFor/);
- assert.match(source,/announce\('This garment image is temporarily unavailable/);
- assert.match(source,/const swapPreview=async/);
- assert.match(source,/if\(!hydrated\)return swapPreview/);
+ assert.match(source,/const finishHydration=async/);
+ assert.doesNotMatch(source,/await trial\.decode\(\)/);
+ assert.doesNotMatch(source,/updateTintMask\(\)/);
 });
 
 
@@ -228,9 +233,10 @@ test('four complete previews offer all responsive widths and safe deferred switc
    assert.equal(bytes.length,v.bytes);
   }
  }
- assert.match(src,/const swapPreview=async\(wanted,token\)=>/);
- assert.match(src,/if\(!hydrated\)return swapPreview\(wanted,token\)/);
- assert.match(src,/preview\.replaceWith\(next\);preview=next/);
+ assert.equal(assets.__initialScene.backplateVariants.length,3);
+ assert.deepEqual(assets.__initialScene.backplateVariants.map(x=>x.width),[768,1536,2560]);
+ assert.match(src,/const queueGarmentVisual=\(\)=>/);
+ assert.match(src,/preview\.replaceWith\(scene\);preview=scene/);
  const css=await load('src/worktable-studio.css');
  assert.match(css,/\.cc-worktable\.is-hydrating \.cc-worktable-print\{z-index:6\}/);
  assert.match(css,/\.cc-worktable\.is-hydrating \.cc-worktable-tint\{z-index:5\}/);
