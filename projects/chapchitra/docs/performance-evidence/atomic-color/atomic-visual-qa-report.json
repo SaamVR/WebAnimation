@@ -1,0 +1,2921 @@
+{
+  "candidate": "http://127.0.0.1:4344/artists-edit/",
+  "baseline": "http://127.0.0.1:4333/artists-edit/",
+  "total": 302,
+  "passed": 302,
+  "failed": 0,
+  "failures": [],
+  "cases": [
+    {
+      "name": "chromium initial usable scene <= 8s",
+      "ok": true,
+      "info": {
+        "first": 713,
+        "full": 1023
+      }
+    },
+    {
+      "name": "chromium regular black surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "black",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          92,
+          93,
+          91,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium regular black garment pixels not transparent",
+      "ok": true,
+      "info": [
+        92,
+        93,
+        91,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular black first shown frame is not white",
+      "ok": true,
+      "info": [
+        92,
+        93,
+        91,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular black selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium regular white surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "white",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          243,
+          241,
+          239,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium regular white garment pixels not transparent",
+      "ok": true,
+      "info": [
+        243,
+        241,
+        239,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular white selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium regular red surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "red",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          198,
+          102,
+          111,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium regular red garment pixels not transparent",
+      "ok": true,
+      "info": [
+        198,
+        102,
+        111,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular red first shown frame is not white",
+      "ok": true,
+      "info": [
+        198,
+        102,
+        111,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular red selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium regular yellow surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "yellow",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          222,
+          194,
+          98,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium regular yellow garment pixels not transparent",
+      "ok": true,
+      "info": [
+        222,
+        194,
+        98,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular yellow first shown frame is not white",
+      "ok": true,
+      "info": [
+        222,
+        194,
+        98,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular yellow selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium regular blue surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "blue",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          93,
+          140,
+          179,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium regular blue garment pixels not transparent",
+      "ok": true,
+      "info": [
+        93,
+        140,
+        179,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular blue first shown frame is not white",
+      "ok": true,
+      "info": [
+        93,
+        140,
+        179,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular blue selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium regular green surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "green",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          98,
+          144,
+          119,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium regular green garment pixels not transparent",
+      "ok": true,
+      "info": [
+        98,
+        144,
+        119,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular green first shown frame is not white",
+      "ok": true,
+      "info": [
+        98,
+        144,
+        119,
+        255
+      ]
+    },
+    {
+      "name": "chromium regular green selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium dropShoulder black surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "black",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          91,
+          92,
+          91,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium dropShoulder black garment pixels not transparent",
+      "ok": true,
+      "info": [
+        91,
+        92,
+        91,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder black first shown frame is not white",
+      "ok": true,
+      "info": [
+        91,
+        92,
+        91,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder black selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium dropShoulder white surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "white",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          240,
+          238,
+          239,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium dropShoulder white garment pixels not transparent",
+      "ok": true,
+      "info": [
+        240,
+        238,
+        239,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder white selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium dropShoulder red surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "red",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          195,
+          101,
+          111,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium dropShoulder red garment pixels not transparent",
+      "ok": true,
+      "info": [
+        195,
+        101,
+        111,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder red first shown frame is not white",
+      "ok": true,
+      "info": [
+        195,
+        101,
+        111,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder red selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium dropShoulder yellow surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "yellow",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          219,
+          192,
+          98,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium dropShoulder yellow garment pixels not transparent",
+      "ok": true,
+      "info": [
+        219,
+        192,
+        98,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder yellow first shown frame is not white",
+      "ok": true,
+      "info": [
+        219,
+        192,
+        98,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder yellow selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium dropShoulder blue surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "blue",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          92,
+          138,
+          179,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium dropShoulder blue garment pixels not transparent",
+      "ok": true,
+      "info": [
+        92,
+        138,
+        179,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder blue first shown frame is not white",
+      "ok": true,
+      "info": [
+        92,
+        138,
+        179,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder blue selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium dropShoulder green surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "green",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          97,
+          142,
+          119,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium dropShoulder green garment pixels not transparent",
+      "ok": true,
+      "info": [
+        97,
+        142,
+        119,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder green first shown frame is not white",
+      "ok": true,
+      "info": [
+        97,
+        142,
+        119,
+        253
+      ]
+    },
+    {
+      "name": "chromium dropShoulder green selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium fullSleeve black surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "black",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          89,
+          91,
+          90,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium fullSleeve black garment pixels not transparent",
+      "ok": true,
+      "info": [
+        89,
+        91,
+        90,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve black first shown frame is not white",
+      "ok": true,
+      "info": [
+        89,
+        91,
+        90,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve black selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium fullSleeve white surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "white",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          236,
+          236,
+          236,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium fullSleeve white garment pixels not transparent",
+      "ok": true,
+      "info": [
+        236,
+        236,
+        236,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve white selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium fullSleeve red surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "red",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          192,
+          100,
+          109,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium fullSleeve red garment pixels not transparent",
+      "ok": true,
+      "info": [
+        192,
+        100,
+        109,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve red first shown frame is not white",
+      "ok": true,
+      "info": [
+        192,
+        100,
+        109,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve red selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium fullSleeve yellow surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "yellow",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          215,
+          190,
+          96,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium fullSleeve yellow garment pixels not transparent",
+      "ok": true,
+      "info": [
+        215,
+        190,
+        96,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve yellow first shown frame is not white",
+      "ok": true,
+      "info": [
+        215,
+        190,
+        96,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve yellow selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium fullSleeve blue surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "blue",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          90,
+          137,
+          177,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium fullSleeve blue garment pixels not transparent",
+      "ok": true,
+      "info": [
+        90,
+        137,
+        177,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve blue first shown frame is not white",
+      "ok": true,
+      "info": [
+        90,
+        137,
+        177,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve blue selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium fullSleeve green surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "green",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          95,
+          141,
+          118,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium fullSleeve green garment pixels not transparent",
+      "ok": true,
+      "info": [
+        95,
+        141,
+        118,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve green first shown frame is not white",
+      "ok": true,
+      "info": [
+        95,
+        141,
+        118,
+        253
+      ]
+    },
+    {
+      "name": "chromium fullSleeve green selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium hoodie black surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "black",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          91,
+          92,
+          91,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium hoodie black garment pixels not transparent",
+      "ok": true,
+      "info": [
+        91,
+        92,
+        91,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie black first shown frame is not white",
+      "ok": true,
+      "info": [
+        91,
+        92,
+        91,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie black selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium hoodie white surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "white",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          240,
+          238,
+          239,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium hoodie white garment pixels not transparent",
+      "ok": true,
+      "info": [
+        240,
+        238,
+        239,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie white selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium hoodie red surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "red",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          195,
+          101,
+          111,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium hoodie red garment pixels not transparent",
+      "ok": true,
+      "info": [
+        195,
+        101,
+        111,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie red first shown frame is not white",
+      "ok": true,
+      "info": [
+        195,
+        101,
+        111,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie red selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium hoodie yellow surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "yellow",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          219,
+          192,
+          98,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium hoodie yellow garment pixels not transparent",
+      "ok": true,
+      "info": [
+        219,
+        192,
+        98,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie yellow first shown frame is not white",
+      "ok": true,
+      "info": [
+        219,
+        192,
+        98,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie yellow selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium hoodie blue surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "blue",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          92,
+          138,
+          179,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium hoodie blue garment pixels not transparent",
+      "ok": true,
+      "info": [
+        92,
+        138,
+        179,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie blue first shown frame is not white",
+      "ok": true,
+      "info": [
+        92,
+        138,
+        179,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie blue selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium hoodie green surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "green",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          97,
+          142,
+          119,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium hoodie green garment pixels not transparent",
+      "ok": true,
+      "info": [
+        97,
+        142,
+        119,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie green first shown frame is not white",
+      "ok": true,
+      "info": [
+        97,
+        142,
+        119,
+        253
+      ]
+    },
+    {
+      "name": "chromium hoodie green selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "chromium exactly 24 garment/color combinations",
+      "ok": true,
+      "info": 24
+    },
+    {
+      "name": "chromium canonical green Hoodie has no white intermediate",
+      "ok": true,
+      "info": [
+        {
+          "visible": "hoodie:green",
+          "requested": "hoodie:green",
+          "preview": null
+        }
+      ]
+    },
+    {
+      "name": "chromium rapid choices last writer wins",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "green",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          97,
+          142,
+          119,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "chromium rapid choices still one garment canvas",
+      "ok": true
+    },
+    {
+      "name": "chromium rapid choices avoid ghost/shadow tint duplication",
+      "ok": true
+    },
+    {
+      "name": "chromium page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "webkit initial usable scene <= 8s",
+      "ok": true,
+      "info": {
+        "first": 629,
+        "full": 793
+      }
+    },
+    {
+      "name": "webkit regular black surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "black",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          92,
+          93,
+          91,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit regular black garment pixels not transparent",
+      "ok": true,
+      "info": [
+        92,
+        93,
+        91,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular black first shown frame is not white",
+      "ok": true,
+      "info": [
+        92,
+        93,
+        91,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular black selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit regular white surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "white",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          243,
+          241,
+          239,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit regular white garment pixels not transparent",
+      "ok": true,
+      "info": [
+        243,
+        241,
+        239,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular white selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit regular red surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "red",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          198,
+          102,
+          111,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit regular red garment pixels not transparent",
+      "ok": true,
+      "info": [
+        198,
+        102,
+        111,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular red first shown frame is not white",
+      "ok": true,
+      "info": [
+        198,
+        102,
+        111,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular red selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit regular yellow surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "yellow",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          222,
+          194,
+          98,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit regular yellow garment pixels not transparent",
+      "ok": true,
+      "info": [
+        222,
+        194,
+        98,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular yellow first shown frame is not white",
+      "ok": true,
+      "info": [
+        222,
+        194,
+        98,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular yellow selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit regular blue surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "blue",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          93,
+          140,
+          179,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit regular blue garment pixels not transparent",
+      "ok": true,
+      "info": [
+        93,
+        140,
+        179,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular blue first shown frame is not white",
+      "ok": true,
+      "info": [
+        93,
+        140,
+        179,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular blue selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit regular green surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "regular",
+        "color": "green",
+        "w": 695,
+        "h": 660,
+        "rgba": [
+          98,
+          144,
+          119,
+          255
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit regular green garment pixels not transparent",
+      "ok": true,
+      "info": [
+        98,
+        144,
+        119,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular green first shown frame is not white",
+      "ok": true,
+      "info": [
+        98,
+        144,
+        119,
+        255
+      ]
+    },
+    {
+      "name": "webkit regular green selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit dropShoulder black surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "black",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          91,
+          92,
+          91,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit dropShoulder black garment pixels not transparent",
+      "ok": true,
+      "info": [
+        91,
+        92,
+        91,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder black first shown frame is not white",
+      "ok": true,
+      "info": [
+        91,
+        92,
+        91,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder black selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit dropShoulder white surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "white",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          240,
+          238,
+          239,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit dropShoulder white garment pixels not transparent",
+      "ok": true,
+      "info": [
+        240,
+        238,
+        239,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder white selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit dropShoulder red surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "red",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          195,
+          101,
+          111,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit dropShoulder red garment pixels not transparent",
+      "ok": true,
+      "info": [
+        195,
+        101,
+        111,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder red first shown frame is not white",
+      "ok": true,
+      "info": [
+        195,
+        101,
+        111,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder red selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit dropShoulder yellow surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "yellow",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          219,
+          192,
+          98,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit dropShoulder yellow garment pixels not transparent",
+      "ok": true,
+      "info": [
+        219,
+        192,
+        98,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder yellow first shown frame is not white",
+      "ok": true,
+      "info": [
+        219,
+        192,
+        98,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder yellow selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit dropShoulder blue surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "blue",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          92,
+          138,
+          179,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit dropShoulder blue garment pixels not transparent",
+      "ok": true,
+      "info": [
+        92,
+        138,
+        179,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder blue first shown frame is not white",
+      "ok": true,
+      "info": [
+        92,
+        138,
+        179,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder blue selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit dropShoulder green surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "dropShoulder",
+        "color": "green",
+        "w": 697,
+        "h": 680,
+        "rgba": [
+          97,
+          142,
+          119,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit dropShoulder green garment pixels not transparent",
+      "ok": true,
+      "info": [
+        97,
+        142,
+        119,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder green first shown frame is not white",
+      "ok": true,
+      "info": [
+        97,
+        142,
+        119,
+        253
+      ]
+    },
+    {
+      "name": "webkit dropShoulder green selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit fullSleeve black surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "black",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          89,
+          91,
+          90,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit fullSleeve black garment pixels not transparent",
+      "ok": true,
+      "info": [
+        89,
+        91,
+        90,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve black first shown frame is not white",
+      "ok": true,
+      "info": [
+        89,
+        91,
+        90,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve black selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit fullSleeve white surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "white",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          236,
+          236,
+          236,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit fullSleeve white garment pixels not transparent",
+      "ok": true,
+      "info": [
+        236,
+        236,
+        236,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve white selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit fullSleeve red surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "red",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          192,
+          100,
+          109,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit fullSleeve red garment pixels not transparent",
+      "ok": true,
+      "info": [
+        192,
+        100,
+        109,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve red first shown frame is not white",
+      "ok": true,
+      "info": [
+        192,
+        100,
+        109,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve red selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit fullSleeve yellow surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "yellow",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          215,
+          190,
+          96,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit fullSleeve yellow garment pixels not transparent",
+      "ok": true,
+      "info": [
+        215,
+        190,
+        96,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve yellow first shown frame is not white",
+      "ok": true,
+      "info": [
+        215,
+        190,
+        96,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve yellow selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit fullSleeve blue surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "blue",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          90,
+          137,
+          177,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit fullSleeve blue garment pixels not transparent",
+      "ok": true,
+      "info": [
+        90,
+        137,
+        177,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve blue first shown frame is not white",
+      "ok": true,
+      "info": [
+        90,
+        137,
+        177,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve blue selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit fullSleeve green surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "green",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          95,
+          141,
+          118,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit fullSleeve green garment pixels not transparent",
+      "ok": true,
+      "info": [
+        95,
+        141,
+        118,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve green first shown frame is not white",
+      "ok": true,
+      "info": [
+        95,
+        141,
+        118,
+        253
+      ]
+    },
+    {
+      "name": "webkit fullSleeve green selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit hoodie black surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "black",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          91,
+          92,
+          91,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit hoodie black garment pixels not transparent",
+      "ok": true,
+      "info": [
+        91,
+        92,
+        91,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie black first shown frame is not white",
+      "ok": true,
+      "info": [
+        91,
+        92,
+        91,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie black selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit hoodie white surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "white",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          240,
+          238,
+          239,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit hoodie white garment pixels not transparent",
+      "ok": true,
+      "info": [
+        240,
+        238,
+        239,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie white selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit hoodie red surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "red",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          195,
+          101,
+          111,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit hoodie red garment pixels not transparent",
+      "ok": true,
+      "info": [
+        195,
+        101,
+        111,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie red first shown frame is not white",
+      "ok": true,
+      "info": [
+        195,
+        101,
+        111,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie red selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit hoodie yellow surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "yellow",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          219,
+          192,
+          98,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit hoodie yellow garment pixels not transparent",
+      "ok": true,
+      "info": [
+        219,
+        192,
+        98,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie yellow first shown frame is not white",
+      "ok": true,
+      "info": [
+        219,
+        192,
+        98,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie yellow selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit hoodie blue surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "blue",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          92,
+          138,
+          179,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit hoodie blue garment pixels not transparent",
+      "ok": true,
+      "info": [
+        92,
+        138,
+        179,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie blue first shown frame is not white",
+      "ok": true,
+      "info": [
+        92,
+        138,
+        179,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie blue selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit hoodie green surface is fully tinted and single",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "green",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          97,
+          142,
+          119,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit hoodie green garment pixels not transparent",
+      "ok": true,
+      "info": [
+        97,
+        142,
+        119,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie green first shown frame is not white",
+      "ok": true,
+      "info": [
+        97,
+        142,
+        119,
+        253
+      ]
+    },
+    {
+      "name": "webkit hoodie green selected rails consistent",
+      "ok": true
+    },
+    {
+      "name": "webkit exactly 24 garment/color combinations",
+      "ok": true,
+      "info": 24
+    },
+    {
+      "name": "webkit canonical green Hoodie has no white intermediate",
+      "ok": true,
+      "info": [
+        {
+          "visible": "hoodie:green",
+          "requested": "hoodie:green",
+          "preview": null
+        }
+      ]
+    },
+    {
+      "name": "webkit rapid choices last writer wins",
+      "ok": true,
+      "info": {
+        "garment": "hoodie",
+        "color": "green",
+        "w": 735,
+        "h": 675,
+        "rgba": [
+          97,
+          142,
+          119,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "webkit rapid choices still one garment canvas",
+      "ok": true
+    },
+    {
+      "name": "webkit rapid choices avoid ghost/shadow tint duplication",
+      "ok": true
+    },
+    {
+      "name": "webkit page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "chromium 1440 garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium 1440 garment selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium 1440 garment selected glow EXACT after exit/hover",
+      "ok": true,
+      "info": {
+        "rest": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hover": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+      }
+    },
+    {
+      "name": "chromium 1440 garment previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.112092,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium 1440 size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium 1440 size selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium 1440 size selected glow EXACT after exit/hover",
+      "ok": true,
+      "info": {
+        "rest": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hover": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+      }
+    },
+    {
+      "name": "chromium 1440 size previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.163471,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium 1440 color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium 1440 color selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium 1440 color selected glow EXACT after exit/hover",
+      "ok": true,
+      "info": {
+        "rest": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hover": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+      }
+    },
+    {
+      "name": "chromium 1440 tray foreground remains over selected pot",
+      "ok": true,
+      "info": [
+        15,
+        19
+      ]
+    },
+    {
+      "name": "chromium 1440 color previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.137081,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium 1440 printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium 1440 printSize selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium 1440 printSize selected glow EXACT after exit/hover",
+      "ok": true,
+      "info": {
+        "rest": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hover": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+      }
+    },
+    {
+      "name": "chromium 1440 printSize previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.044863,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium 1440 user uploaded art remains visible across garment swap",
+      "ok": true
+    },
+    {
+      "name": "chromium 1440 size/reset/remove controls still enabled",
+      "ok": true
+    },
+    {
+      "name": "chromium 1440 one unchanged inline SVG upload",
+      "ok": true
+    },
+    {
+      "name": "chromium 1440 no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "chromium 1440 no overflow",
+      "ok": true
+    },
+    {
+      "name": "webkit 1440 garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit 1440 garment selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "webkit 1440 garment selected glow EXACT after exit/hover",
+      "ok": true,
+      "info": {
+        "rest": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hover": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+      }
+    },
+    {
+      "name": "webkit 1440 garment previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.050319,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit 1440 size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.326758,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit 1440 size selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "webkit 1440 size selected glow EXACT after exit/hover",
+      "ok": true,
+      "info": {
+        "rest": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hover": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+      }
+    },
+    {
+      "name": "webkit 1440 size previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit 1440 color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit 1440 color selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "webkit 1440 color selected glow EXACT after exit/hover",
+      "ok": true,
+      "info": {
+        "rest": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hover": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+      }
+    },
+    {
+      "name": "webkit 1440 tray foreground remains over selected pot",
+      "ok": true,
+      "info": [
+        15,
+        19
+      ]
+    },
+    {
+      "name": "webkit 1440 color previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.030358,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit 1440 printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit 1440 printSize selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "webkit 1440 printSize selected glow EXACT after exit/hover",
+      "ok": true,
+      "info": {
+        "rest": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hover": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+      }
+    },
+    {
+      "name": "webkit 1440 printSize previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.025511,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit 1440 user uploaded art remains visible across garment swap",
+      "ok": true
+    },
+    {
+      "name": "webkit 1440 size/reset/remove controls still enabled",
+      "ok": true
+    },
+    {
+      "name": "webkit 1440 one unchanged inline SVG upload",
+      "ok": true
+    },
+    {
+      "name": "webkit 1440 no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "webkit 1440 no overflow",
+      "ok": true
+    },
+    {
+      "name": "chromium-tablet 834 garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 garment selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium-tablet 834 garment previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.11227,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 size selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium-tablet 834 size previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.163245,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 color selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium-tablet 834 tray foreground remains over selected pot",
+      "ok": true,
+      "info": [
+        15,
+        19
+      ]
+    },
+    {
+      "name": "chromium-tablet 834 color previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.136898,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 printSize selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium-tablet 834 printSize previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.0994455,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 user uploaded art remains visible across garment swap",
+      "ok": true
+    },
+    {
+      "name": "chromium-tablet 834 size/reset/remove controls still enabled",
+      "ok": true
+    },
+    {
+      "name": "chromium-tablet 834 one unchanged inline SVG upload",
+      "ok": true
+    },
+    {
+      "name": "chromium-tablet 834 no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "chromium-tablet 834 no overflow",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile 390 garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 garment selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium-mobile 390 garment previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.112429,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 size selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium-mobile 390 size previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.163256,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 color selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium-mobile 390 tray foreground remains over selected pot",
+      "ok": true,
+      "info": [
+        15,
+        19
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 color previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.137092,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 printSize selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "chromium-mobile 390 printSize previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.099587,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 user uploaded art remains visible across garment swap",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile 390 size/reset/remove controls still enabled",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile 390 one unchanged inline SVG upload",
+      "ok": true
+    },
+    {
+      "name": "chromium-mobile 390 no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "chromium-mobile 390 no overflow",
+      "ok": true
+    },
+    {
+      "name": "webkit-mobile 390 garment selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 garment selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "webkit-mobile 390 garment previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.004584,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 size selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 size selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "webkit-mobile 390 size previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.068028,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 color selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.5,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 color selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "webkit-mobile 390 tray foreground remains over selected pot",
+      "ok": true,
+      "info": [
+        15,
+        19
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 color previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.013753,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 printSize selected persists after pointer exit",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 printSize selected retains approved hover glow",
+      "ok": true,
+      "info": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)"
+    },
+    {
+      "name": "webkit-mobile 390 printSize previous selection returns to rest",
+      "ok": true,
+      "info": {
+        "className": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.096783,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 user uploaded art remains visible across garment swap",
+      "ok": true
+    },
+    {
+      "name": "webkit-mobile 390 size/reset/remove controls still enabled",
+      "ok": true
+    },
+    {
+      "name": "webkit-mobile 390 one unchanged inline SVG upload",
+      "ok": true
+    },
+    {
+      "name": "webkit-mobile 390 no page errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "webkit-mobile 390 no overflow",
+      "ok": true
+    },
+    {
+      "name": "early scene available before all cropped layers",
+      "ok": true,
+      "info": {
+        "first": 704,
+        "full": 704
+      }
+    },
+    {
+      "name": "early stage swapped only complete green Hoodie preview",
+      "ok": true,
+      "info": {
+        "hyd": true,
+        "preview": {
+          "garment": "hoodie",
+          "color": "green"
+        },
+        "garment": "hoodie",
+        "color": "green"
+      }
+    },
+    {
+      "name": "hydration handoff preserves latest red Full Sleeve, not stale white",
+      "ok": true,
+      "info": {
+        "garment": "fullSleeve",
+        "color": "red",
+        "w": 622,
+        "h": 655,
+        "rgba": [
+          192,
+          100,
+          109,
+          253
+        ],
+        "shown": "1",
+        "originalHidden": "hidden",
+        "tintDisplay": "none",
+        "previews": 0
+      }
+    },
+    {
+      "name": "hydration no JS errors",
+      "ok": true,
+      "info": []
+    },
+    {
+      "name": "recording before-old-css-tint captured",
+      "ok": true,
+      "info": 697648
+    },
+    {
+      "name": "recording after-atomic-composite captured",
+      "ok": true,
+      "info": 647572
+    }
+  ]
+}

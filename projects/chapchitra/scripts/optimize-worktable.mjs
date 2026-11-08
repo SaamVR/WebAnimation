@@ -4,7 +4,7 @@
  * Run: npm run optimize:artwork
  */
 import sharp from 'sharp';
-import {WORKTABLE_PREVIEW_STACK,WORKTABLE_GARMENT_ASSETS} from '../src/worktable-studio.mjs';
+import {WORKTABLE_PREVIEW_STACK,WORKTABLE_ATOMIC_BACKPLATE_STACK,WORKTABLE_GARMENT_ASSETS} from '../src/worktable-studio.mjs';
 import {readFile, writeFile, mkdir, mkdtemp, rm} from 'node:fs/promises';
 import {resolve, dirname, join} from 'node:path';
 import {tmpdir} from 'node:os';
@@ -93,7 +93,29 @@ for(const garment of Object.keys(WORKTABLE_GARMENT_ASSETS)){
   await rm(resolve(target,'variants/preview/assembled-'+garment+'.w'+viewWidth+'.webp'),{force:true});
  }
 }
-delivery.__initialScene={generatedFromLayers:WORKTABLE_PREVIEW_STACK,
+// Compact shared source plate for atomic first-frame garment+color changes.
+// All 34 checksum-pinned layers are composed ONCE per responsive width.
+// Garment and the three foreground workers are drawn onto a single in-memory
+// canvas only when requested: no 24 garment-color product files are generated.
+const backplateVariants=[];
+for(const viewWidth of widths){
+ const height=Math.round(viewWidth*9/16);
+ const components=[];
+ for(const path of WORKTABLE_ATOMIC_BACKPLATE_STACK){
+  const d=delivery[path].delivery;
+  const v=d.variants.find(v=>v.path.endsWith('.w'+viewWidth+'.webp'));
+  const left=Math.min(viewWidth-v.width,Math.round(d.crop[0]*viewWidth/4000));
+  const top=Math.min(height-v.height,Math.round(d.crop[1]*viewWidth/4000));
+  components.push({input:await readFile(resolve(target,v.path)),left:Math.max(0,left),top:Math.max(0,top),blend:'over'});
+ }
+ const path='variants/preview/garment-free-atomic-v1.w'+viewWidth+'.webp';
+ const bytes=await sharp({create:{width:viewWidth,height,channels:4,background:{r:0,g:0,b:0,alpha:0}}})
+   .composite(components).webp({quality:94,alphaQuality:100,effort:5,smartSubsample:true}).toBuffer();
+ await writeFile(resolve(target,path),bytes);
+ backplateVariants.push({path,width:viewWidth,height,bytes:bytes.length,
+  sha256:createHash('sha256').update(bytes).digest('hex')});
+}
+delivery.__initialScene={backplateVariants,atomicBackplateFromLayers:WORKTABLE_ATOMIC_BACKPLATE_STACK,generatedFromLayers:WORKTABLE_PREVIEW_STACK,
  variants:allScenes.regular.variants,garments:allScenes};
 
 await writeFile(resolve(target,'manifest.json'),JSON.stringify(delivery,null,2)+'\n');

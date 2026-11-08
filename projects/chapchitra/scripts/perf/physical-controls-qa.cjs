@@ -89,7 +89,10 @@ async function desktop(engine,name){
   const hov=await read(page,image(group,value));
   check(name+' '+group+' hover activates only pictured object',await element.evaluate(el=>el.classList.contains('is-hovered')));
   check(name+' '+group+' hover moves object',hov.transform!==old.transform,{before:old.transform,after:hov.transform});
-  check(name+' '+group+' hover deepens alpha shadow',hov.filter!==old.filter,{before:old.filter,after:hov.filter});
+  const wasSelected=await element.evaluate(el=>el.classList.contains('is-selected'));
+  check(name+' '+group+' hover glow follows selection contract',
+   wasSelected ? hov.filter===old.filter : hov.filter!==old.filter,
+   {alreadySelected:wasSelected,before:old.filter,after:hov.filter});
   if(name==='chromium')await capture(page,'after-'+group+'-hover');
   await button.click({timeout:15000});
   await page.mouse.move(0,0);

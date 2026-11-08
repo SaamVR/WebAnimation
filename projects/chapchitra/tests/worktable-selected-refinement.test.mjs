@@ -20,8 +20,8 @@ test('persistent selection has per-group elevation; selected hover never falls t
  }
  assert.ok(css.includes('translate3d(0,var(--cc-selected-lift),0)'));
  assert.ok(css.includes('translate3d(0,var(--cc-selected-hover-lift),0)'));
- assert.ok(css.includes('drop-shadow(0 0 1.9px rgb(255 249 232 / .66))'));
- assert.ok(css.includes('drop-shadow(0 0 4.6px rgb(248 237 214 / .32))'));
+ assert.ok(css.includes('drop-shadow(2.1px 5px 1.8px rgb(30 23 15 / .53))'));
+ assert.ok(css.includes('drop-shadow(0 0 2.4px rgb(248 235 204 / .52))'));
  assert.ok(css.includes('.is-selected.is-keyboard-focus'));
 });
 test('upload target alone has 3px hover and no persistent selected state',()=>{

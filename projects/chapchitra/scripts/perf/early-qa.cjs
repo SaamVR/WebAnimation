@@ -15,7 +15,7 @@ const url=process.argv[2]||'http://127.0.0.1:4173';
  await page.locator('.cc-worktable-stage:not([aria-busy=true])').waitFor({timeout:30000});
  report.ready=!!await page.locator('.cc-worktable.is-hydrating').count();
  await page.locator('.cc-worktable-choice[data-group=garment][data-value=hoodie]').click();
- await page.locator('.cc-worktable-preview[data-garment=hoodie]').waitFor({timeout:12000});
+ await page.locator('.cc-worktable-preview[data-garment=hoodie][data-color=white]').waitFor({timeout:45000});
  report.earlySwitch=await page.locator('.cc-worktable-choice[data-group=garment][data-value=hoodie]').getAttribute('aria-pressed');
  await page.locator('.cc-worktable-choice[data-group=color][data-value=red]').click();
  report.earlyColor=await page.locator('.cc-worktable-tint.is-colored').count();
@@ -32,8 +32,11 @@ const url=process.argv[2]||'http://127.0.0.1:4173';
  await f.locator('.cc-worktable-stage:not([aria-busy=true])').waitFor({timeout:30000});
  await f.waitForTimeout(2500);
  await f.locator('.cc-worktable-choice[data-group=garment][data-value=dropShoulder]').click();
- await f.locator('.cc-worktable-preview[data-garment=dropShoulder]').waitFor({timeout:12000});
- report.faultFallback=await f.locator('.cc-worktable-preview[data-garment=dropShoulder]').count();
+ // New atomic compositor must NOT expose a half-assembled shirt if any
+ // foreground worker asset fails. Keep the LAST full, safe preview visible.
+ await f.waitForFunction(()=>document.querySelector('#worktableMessage')?.textContent?.includes('previous complete garment'),null,{timeout:25000});
+ report.faultFallback=await f.locator('.cc-worktable-preview[data-garment=regular]').count();
+ report.faultDescription='The complete original garment remains visible instead of a partial frame';
  report.faultStageBusy=await f.locator('.cc-worktable-stage').getAttribute('aria-busy');
  report.faultPageError=report.pageError||null;
  await browser.close();

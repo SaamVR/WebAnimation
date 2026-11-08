@@ -8,14 +8,16 @@ function block(start){
  const opening=css.indexOf('{',pos);
  return css.slice(opening+1,css.indexOf('}',opening));
 }
-test('selected silhouette alone has two restrained warm Gallery White/Cream shadows',()=>{
- const b=block('.cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected{');
- assert.match(b,/drop-shadow\(0 0 1\.9px rgb\(255 249 232 \/ \.66\)\)/);
- assert.match(b,/drop-shadow\(0 0 4\.6px rgb\(248 237 214 \/ \.32\)\)/);
- assert.match(b,/drop-shadow\(2px 4\.6px 1\.7px rgb\(31 23 14 \/ \.5\)\)/);
- assert.match(b,/transform:translate3d\(0,var\(--cc-selected-lift\),0\)/);
- assert.doesNotMatch(b,/border:|outline:|box-shadow:/);
+test('persistent selected highlight matches existing selected+hover visual filter',()=>{
+ const selected=block('.cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected{');
+ const hover=block('.cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected.is-hovered{');
+ const visual=b=>b.match(/filter:[\s\S]*?;/)?.[0].replace(/\s+/g,' ').trim();
+ assert.equal(visual(selected),visual(hover),'selected after pointer exit must have same approved hover glow');
+ assert.match(selected,/transform:translate3d\(0,var\(--cc-selected-lift\),0\)/);
+ assert.match(selected,/drop-shadow\(0 0 2\.4px rgb\(248 235 204 \/ \.52\)\)/);
+ assert.doesNotMatch(selected,/border:|outline:|box-shadow:/);
 });
+
 test('resting artwork and ALL approved hover/selected-hover remain unchanged',()=>{
  const rest=block('.cc-worktable-prop[data-group]{');
  assert.ok(rest.includes('filter:drop-shadow(1.25px 2.5px 1.2px rgb(33 25 17 / .31))'));

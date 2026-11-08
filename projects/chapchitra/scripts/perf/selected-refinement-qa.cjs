@@ -82,6 +82,10 @@ async function desktop(engine,name){
   const hover=await data(page,group,value);
   assert(name+' '+group+' original hover lift unchanged',Math.abs(hover.offset- (group==='size'?-1.5:-2))<.22,hover);
   await page.locator(btn(group,value)).click();await page.mouse.move(0,0);await settle(page,group,value,-target);
+  // A transform can momentarily pass through the target when WebKit retargets
+  // its 190ms transition after pointer exit. Wait until the compositor settles
+  // before asserting the final persistent elevation and glow.
+  await sleep(230);
   const selected=await data(page,group,value);
   assert(name+' '+group+' selected class persists after exit',selected.cls.includes('is-selected')&&!selected.cls.includes('is-hovered'),selected.cls);
   assert(name+' '+group+' exact elevated selected lift',Math.abs(selected.offset+target)<.18,selected);

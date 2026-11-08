@@ -48,7 +48,7 @@ const project=path.resolve(__dirname,'../..');
  const click=async(g,v)=>page.locator('.cc-worktable-choice[data-group="'+g+'"][data-value="'+v+'"]').click({timeout:30000});
  for(const g of garmentPaths){
   await click('garment',g);
-  if(hydrating)await page.waitForFunction(v=>document.querySelector('.cc-worktable-garment')?.dataset.source?.includes(({regular:'_1.png',dropShoulder:'_2.png',fullSleeve:'-3.png',hoodie:'-4.png'})[v]),g,{timeout:30000});
+  await page.waitForFunction(v=>document.querySelector('.cc-worktable-garment-surface')?.dataset.garment===v,g,{timeout:30000});
   check(await page.locator('.cc-worktable-choice[data-group=garment][data-value="'+g+'"]').getAttribute('aria-pressed')==='true','garment '+g);
   await page.waitForTimeout(200);
   await capture(g);
