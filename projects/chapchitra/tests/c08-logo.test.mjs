@@ -28,33 +28,47 @@ test('approved C08 source has 240 frames at 60fps, exact 6 vector layers and zer
  ]);
  assert.equal(l.assets?.length??0,0);
 });
-test('hero light variant changes only the two approved static vector fill colors',async()=>{
- const original=JSON.parse(await text(source+'wordmark-reprint-original.json'));
- const light=JSON.parse(await text(source+'wordmark-reprint-hero-light.json'));
- let graphite=0,green=0;
- function normalize(node){
-  if(Array.isArray(node))return node.map(normalize);
+test('dark-surface C08 animation uses only Cream and Terracotta while preserving complete source choreography',async()=>{
+ const source=JSON.parse(await text('src/assets/c08/wordmark-reprint-original.json'));
+ const variant=JSON.parse(await text('src/assets/c08/wordmark-reprint-dark-inverted-v2.json'));
+ const legacyActive=JSON.parse(await text('src/assets/c08/wordmark-reprint-hero-light.json'));
+ assert.deepEqual(variant,legacyActive,'Legacy dark-surface alias must have corrected palette, too');
+ const graphite=[.1373,.1373,.1373],green=[.1608,.2392,.1765],white=[.9647,.9686,.9608];
+ const cream=[228/255,227/255,222/255],terra=[138/255,80/255,59/255];
+ const keyed=new Map([[JSON.stringify(graphite),cream],[JSON.stringify(green),terra],[JSON.stringify(white),cream]]);
+ const hit={graphite:0,green:0,white:0};
+ function rewrite(node){
+  if(Array.isArray(node))return node.map(rewrite);
   if(!node||typeof node!=='object')return node;
-  const copy=Object.fromEntries(Object.entries(node).map(([k,v])=>[k,normalize(v)]));
-  if(copy.ty==='fl'&&copy.c?.a===0){
-   const fills=copy.c.k;
-   if(JSON.stringify(fills)===JSON.stringify([228/255,227/255,222/255])){
-    graphite++;copy.c.k=[.1373,.1373,.1373];
-   }else if(JSON.stringify(fills)===JSON.stringify([157/255,195/255,159/255])){
-    green++;copy.c.k=[.1608,.2392,.1765];
-   }
+  const copy=Object.fromEntries(Object.entries(node).map(([k,v])=>[k,rewrite(v)]));
+  if(copy.ty==='fl'||copy.ty==='st'){
+   const key=JSON.stringify(copy.c?.k);
+   assert.ok(keyed.has(key),'Unsupported vector fill/stroke in original C08: '+key);
+   const target=keyed.get(key);
+   if(key===JSON.stringify(graphite))hit.graphite++;
+   if(key===JSON.stringify(green))hit.green++;
+   if(key===JSON.stringify(white))hit.white++;
+   copy.c.k=target;
   }
   return copy;
  }
- assert.deepEqual(normalize(light),original,'Hero variant must not alter any keyframe, vector path or timing');
- assert.equal(graphite,21);
- assert.equal(green,6);
+ assert.deepEqual(variant,rewrite(source),'Only static fill RGB may change, never paths, keyframes, easing, transforms, layers, fps or frames');
+ assert.deepEqual(hit,{graphite:21,green:6,white:1});
+});
+test('dark-surface derived SVG has the same original vector path geometry and exactly two ink swatches',async()=>{
+ const master=await text('src/assets/c08/approved-master-source.svg');
+ const inverse=await text('src/assets/c08/wordmark-reprint-dark-inverted-v2.svg');
+ const expected=master.replaceAll('#232323','#E4E3DE').replaceAll('#293D2D','#8A503B').replaceAll('#F6F7F5','#E4E3DE');
+ assert.equal(inverse,expected.replaceAll('\r\n','\n'),'Only SVG paint tokens may change');
+ assert.ok(!/#232323|#293D2D|#F6F7F5|#9DC39F/.test(inverse));
+ assert.ok(inverse.includes('#E4E3DE')&&inverse.includes('#8A503B'));
 });
 test('original full hero lockup and navbar raster remain the immediate static fallbacks',async()=>{
  const app=await text('src/app.mjs');
- assert.match(app,/src="\/assets\/chapchitra-full-on-dark\.webp"/);
+ assert.match(app,/src="\/assets\/chapchitra-full-on-dark-cream-terra\.webp"/);
  assert.match(app,/class="hero-brand-lockup"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
+ assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);
  assert.match(app,/class="logo-word logo-word--image"/);
  assert.match(app,/class="c08-navbar-animation" aria-hidden="true"/);
  assert.match(app,/class="c08-hero-stage"/);

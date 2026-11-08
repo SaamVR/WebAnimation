@@ -54,7 +54,7 @@ function near(a,b,epsilon=1){return Math.abs(a-b)<=epsilon}
     'hero overlay preserves exact centered original logo dimensions',startGeometry);
   assert(near(startGeometry.navCenter,startGeometry.viewportCenter,1),'navbar remains centered to viewport',startGeometry);
   assert(startGeometry.runtimeScripts===1,'C01/C08 reuse one shared self-hosted Lottie script',startGeometry);
-  assert(startGeometry.footerImage==='/assets/chapchitra-wordmark-light.webp'&&startGeometry.footerLottie===0,
+  assert(startGeometry.footerImage==='/assets/chapchitra-wordmark-cream-terra.webp'&&startGeometry.footerLottie===0,
     'footer retains approved static light logo only',startGeometry);
   await p.waitForFunction(()=>window.__chapchitraC08.hero.completed===1,null,{timeout:12000});
   const completed=await state(p);

@@ -1,0 +1,520 @@
+{
+  "base": "http://127.0.0.1:19189/",
+  "checks": [
+    {
+      "name": "Chromium 1408 responsive static and active logo URLs",
+      "ok": true,
+      "details": {
+        "aligned": true,
+        "overflow": false,
+        "hero": "/assets/chapchitra-full-on-dark-cream-terra.webp",
+        "footer": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "nav": "/assets/chapchitra-wordmark.webp",
+        "frames": 6.006000000000001
+      }
+    },
+    {
+      "name": "Chromium 1408 frame 0 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 0,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 1408 frame 70 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 70,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 1408 frame 120 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 120,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 1408 frame 180 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 180,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 1408 frame 239 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 239,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 1408 no application JavaScript exceptions",
+      "ok": true,
+      "details": {
+        "appErrors": [],
+        "browserNotices": []
+      }
+    },
+    {
+      "name": "Chromium footer static and decoded",
+      "ok": true,
+      "details": {
+        "static": true,
+        "img": true
+      }
+    },
+    {
+      "name": "Chromium 834 responsive static and active logo URLs",
+      "ok": true,
+      "details": {
+        "aligned": true,
+        "overflow": false,
+        "hero": "/assets/chapchitra-full-on-dark-cream-terra.webp",
+        "footer": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "nav": "/assets/chapchitra-wordmark.webp",
+        "frames": 37.998000000000005
+      }
+    },
+    {
+      "name": "Chromium 834 frame 0 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 0,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 834 frame 70 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 70,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 834 frame 120 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 120,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 834 frame 180 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 180,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 834 frame 239 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 239,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 834 no application JavaScript exceptions",
+      "ok": true,
+      "details": {
+        "appErrors": [],
+        "browserNotices": []
+      }
+    },
+    {
+      "name": "Chromium 430 responsive static and active logo URLs",
+      "ok": true,
+      "details": {
+        "aligned": true,
+        "overflow": false,
+        "hero": "/assets/chapchitra-full-on-dark-cream-terra.webp",
+        "footer": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "nav": "/assets/chapchitra-wordmark.webp",
+        "frames": 35.994
+      }
+    },
+    {
+      "name": "Chromium 430 frame 0 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 0,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 430 frame 70 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 70,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 430 frame 120 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 120,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 430 frame 180 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 180,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 430 frame 239 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 239,
+        "painted": 28
+      }
+    },
+    {
+      "name": "Chromium 430 no application JavaScript exceptions",
+      "ok": true,
+      "details": {
+        "appErrors": [],
+        "browserNotices": []
+      }
+    },
+    {
+      "name": "Chromium reduced-motion keeps corrected two-color static fallbacks",
+      "ok": true,
+      "details": {
+        "source": "/assets/chapchitra-full-on-dark-cream-terra.webp",
+        "ready": false,
+        "playing": false,
+        "nav": false
+      }
+    },
+    {
+      "name": "WebKit 1408 responsive static and active logo URLs",
+      "ok": true,
+      "details": {
+        "aligned": true,
+        "overflow": false,
+        "hero": "/assets/chapchitra-full-on-dark-cream-terra.webp",
+        "footer": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "nav": "/assets/chapchitra-wordmark.webp",
+        "frames": 0
+      }
+    },
+    {
+      "name": "WebKit 1408 frame 0 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 0,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 1408 frame 70 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 70,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 1408 frame 120 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 120,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 1408 frame 180 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 180,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 1408 frame 239 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 239,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 1408 no application JavaScript exceptions",
+      "ok": true,
+      "details": {
+        "appErrors": [],
+        "browserNotices": []
+      }
+    },
+    {
+      "name": "WebKit footer static and decoded",
+      "ok": true,
+      "details": {
+        "static": true,
+        "img": true
+      }
+    },
+    {
+      "name": "WebKit 834 responsive static and active logo URLs",
+      "ok": true,
+      "details": {
+        "aligned": true,
+        "overflow": false,
+        "hero": "/assets/chapchitra-full-on-dark-cream-terra.webp",
+        "footer": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "nav": "/assets/chapchitra-wordmark.webp",
+        "frames": 0
+      }
+    },
+    {
+      "name": "WebKit 834 frame 0 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 0,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 834 frame 70 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 70,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 834 frame 120 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 120,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 834 frame 180 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 180,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 834 frame 239 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 239,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 834 no application JavaScript exceptions",
+      "ok": true,
+      "details": {
+        "appErrors": [],
+        "browserNotices": []
+      }
+    },
+    {
+      "name": "WebKit 430 responsive static and active logo URLs",
+      "ok": true,
+      "details": {
+        "aligned": true,
+        "overflow": false,
+        "hero": "/assets/chapchitra-full-on-dark-cream-terra.webp",
+        "footer": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "nav": "/assets/chapchitra-wordmark.webp",
+        "frames": 0
+      }
+    },
+    {
+      "name": "WebKit 430 frame 0 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 0,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 430 frame 70 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 70,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 430 frame 120 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 120,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 430 frame 180 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 180,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 430 frame 239 uses only Cream/Terracotta logo inks",
+      "ok": true,
+      "details": {
+        "colors": [
+          "rgb(228, 227, 222)",
+          "rgb(138, 80, 59)"
+        ],
+        "frame": 239,
+        "painted": 28
+      }
+    },
+    {
+      "name": "WebKit 430 no application JavaScript exceptions",
+      "ok": true,
+      "details": {
+        "appErrors": [],
+        "browserNotices": []
+      }
+    },
+    {
+      "name": "WebKit reduced-motion keeps corrected two-color static fallbacks",
+      "ok": true,
+      "details": {
+        "source": "/assets/chapchitra-full-on-dark-cream-terra.webp"
+      }
+    }
+  ],
+  "passed": 46,
+  "total": 46
+}
