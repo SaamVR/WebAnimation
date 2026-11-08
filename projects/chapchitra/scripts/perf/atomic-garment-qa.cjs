@@ -143,7 +143,7 @@ async function glowAndUpload(browser,engine,{touch=false,width=1440}={}){
  if(touch)await page.locator('#worktableUploadArt').tap();
  else await page.locator('#worktableUploadArt').click();
  await (await chooser).setFiles({name:'design.png',mimeType:'image/png',buffer:art});
- await page.getByText('Artwork loaded locally.',{exact:false}).waitFor({timeout:10000});
+ await page.getByText('Artwork loaded locally',{exact:false}).waitFor({timeout:10000});
  await page.locator(rail('garment','hoodie')).click();
  await page.locator(rail('color','green')).click();
  await waitSurface(page,'hoodie','green');

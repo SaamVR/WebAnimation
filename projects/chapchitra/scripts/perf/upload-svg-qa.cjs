@@ -103,13 +103,13 @@ async function nativeArtworkAndTouch(){
  const chooser=page.waitForEvent('filechooser',{timeout:5000});
  await page.locator(HIT).click();
  await (await chooser).setFiles({name:'approved-design.png',mimeType:'image/png',buffer:image});
- await page.getByText('Artwork loaded locally.',{exact:false}).waitFor({timeout:10000});
+ await page.getByText('Artwork loaded locally',{exact:false}).waitFor({timeout:10000});
  check('image file uses existing local-only upload preview',await page.locator('.cc-worktable-print.has-art img[src^=blob]').count()===1);
  check('resize slider enabled after valid upload',await page.locator('#worktableArtScale').isEnabled());
- await page.locator('#worktableArtScale').fill('75');
- check('size slider changes without replacing SVG',await page.locator('#worktableScaleOutput').textContent()==='75%'&&await page.locator(SEL+' svg').count()===1);
+ await page.locator('#worktableArtScale').fill('-25');
+ check('size slider changes without replacing SVG',await page.locator('#worktableScaleOutput').textContent()==='−25%'&&await page.locator(SEL+' svg').count()===1);
  await page.getByRole('button',{name:'Reset placement'}).click();
- check('reset placement still works',await page.locator('#worktableScaleOutput').textContent()==='100%');
+ check('reset placement still works',await page.locator('#worktableScaleOutput').textContent()==='0%');
  await page.getByRole('button',{name:'Remove artwork'}).click();
  check('remove artwork clears preview',await page.locator('.cc-worktable-print.has-art').count()===0&&await page.locator('#worktableArtScale').isDisabled());
  // Offscreen and hidden-tab animation pause.

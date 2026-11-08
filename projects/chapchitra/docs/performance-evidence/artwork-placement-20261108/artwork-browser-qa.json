@@ -1,0 +1,2131 @@
+{
+  "url": "http://127.0.0.1:4399/artists-edit/",
+  "checks": [
+    {
+      "name": "desktop editorial header preserved",
+      "passed": true
+    },
+    {
+      "name": "desktop explicit 300 PPI guidance",
+      "passed": true
+    },
+    {
+      "name": "desktop initial adjustment zero",
+      "passed": true
+    },
+    {
+      "name": "desktop source artwork disabled until upload",
+      "passed": true
+    },
+    {
+      "name": "desktop compositor is normal source-over",
+      "passed": true,
+      "details": {
+        "x": 944.6222222222223,
+        "y": 399.9555555555556,
+        "width": 125.73333333333333,
+        "height": 157.17777777777778,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "desktop image is portrait at actual aspect",
+      "passed": true,
+      "details": {
+        "x": 944.6222222222223,
+        "y": 399.9555555555556,
+        "width": 125.73333333333333,
+        "height": 157.17777777777778,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "desktop opaque JPG white/yellow/blue/red pixels preserved",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            15,
+            255
+          ],
+          [
+            10,
+            74,
+            244,
+            255
+          ],
+          [
+            232,
+            19,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 89,
+        "height": 111
+      }
+    },
+    {
+      "name": "desktop A3 is about 2x the A4 visual reference area",
+      "passed": true,
+      "details": {
+        "a3": {
+          "x": 918.6666666666667,
+          "y": 399.9555555555556,
+          "width": 177.64444444444445,
+          "height": 222.06666666666666,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "a4": {
+          "x": 944.6222222222223,
+          "y": 399.9555555555556,
+          "width": 125.73333333333333,
+          "height": 157.17777777777778,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        }
+      }
+    },
+    {
+      "name": "desktop negative slider label",
+      "passed": true
+    },
+    {
+      "name": "desktop +35% enlarges reference",
+      "passed": true,
+      "details": {
+        "a4": {
+          "x": 944.6222222222223,
+          "y": 399.9555555555556,
+          "width": 125.73333333333333,
+          "height": 157.17777777777778,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "plus": {
+          "x": 922.6222222222223,
+          "y": 372.4666666666667,
+          "width": 169.73333333333335,
+          "height": 212.17777777777778,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        }
+      }
+    },
+    {
+      "name": "desktop +35% advisory",
+      "passed": true
+    },
+    {
+      "name": "desktop manipulation outline visible while resizing",
+      "passed": true
+    },
+    {
+      "name": "desktop temporary boundary removed when idle",
+      "passed": true
+    },
+    {
+      "name": "desktop reset is signed zero",
+      "passed": true
+    },
+    {
+      "name": "desktop PNG opaque quadrants preserve original values",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          8,
+          123,
+          71,
+          255
+        ],
+        "width": 89,
+        "height": 111
+      }
+    },
+    {
+      "name": "desktop transparent corner reveals garment (not white)",
+      "passed": true,
+      "details": [
+        8,
+        123,
+        71,
+        255
+      ]
+    },
+    {
+      "name": "24 looks regular/white keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 89,
+        "height": 111
+      }
+    },
+    {
+      "name": "24 looks regular/white keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 944.6222222222223,
+        "y": 399.9555555555556,
+        "width": 125.73333333333333,
+        "height": 157.17777777777778,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks regular/black keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 89,
+        "height": 111
+      }
+    },
+    {
+      "name": "24 looks regular/black keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 944.6222222222223,
+        "y": 399.9555555555556,
+        "width": 125.73333333333333,
+        "height": 157.17777777777778,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks regular/red keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 89,
+        "height": 111
+      }
+    },
+    {
+      "name": "24 looks regular/red keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 944.6222222222223,
+        "y": 399.9555555555556,
+        "width": 125.73333333333333,
+        "height": 157.17777777777778,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks regular/yellow keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 89,
+        "height": 111
+      }
+    },
+    {
+      "name": "24 looks regular/yellow keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 944.6222222222223,
+        "y": 399.9555555555556,
+        "width": 125.73333333333333,
+        "height": 157.17777777777778,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks regular/blue keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 89,
+        "height": 111
+      }
+    },
+    {
+      "name": "24 looks regular/blue keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 944.6222222222223,
+        "y": 399.9555555555556,
+        "width": 125.73333333333333,
+        "height": 157.17777777777778,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks regular/green keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 89,
+        "height": 111
+      }
+    },
+    {
+      "name": "24 looks regular/green keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 944.6222222222223,
+        "y": 399.9555555555556,
+        "width": 125.73333333333333,
+        "height": 157.17777777777778,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/white keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 93,
+        "height": 115
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/white keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 930.1111111111112,
+        "y": 401.22222222222223,
+        "width": 129.73333333333335,
+        "height": 162.15555555555557,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/black keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 93,
+        "height": 115
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/black keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 930.1111111111112,
+        "y": 401.22222222222223,
+        "width": 129.73333333333335,
+        "height": 162.15555555555557,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/red keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 93,
+        "height": 115
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/red keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 930.1111111111112,
+        "y": 401.22222222222223,
+        "width": 129.73333333333335,
+        "height": 162.15555555555557,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/yellow keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 93,
+        "height": 115
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/yellow keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 930.1111111111112,
+        "y": 401.22222222222223,
+        "width": 129.73333333333335,
+        "height": 162.15555555555557,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/blue keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 93,
+        "height": 115
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/blue keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 930.1111111111112,
+        "y": 401.22222222222223,
+        "width": 129.73333333333335,
+        "height": 162.15555555555557,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/green keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 93,
+        "height": 115
+      }
+    },
+    {
+      "name": "24 looks dropShoulder/green keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 930.1111111111112,
+        "y": 401.22222222222223,
+        "width": 129.73333333333335,
+        "height": 162.15555555555557,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/white keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 90,
+        "height": 113
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/white keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 936.4444444444445,
+        "y": 385.3777777777778,
+        "width": 127.06666666666668,
+        "height": 158.82222222222222,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/black keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 90,
+        "height": 113
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/black keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 936.4444444444445,
+        "y": 385.3777777777778,
+        "width": 127.06666666666668,
+        "height": 158.82222222222222,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/red keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 90,
+        "height": 113
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/red keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 936.4444444444445,
+        "y": 385.3777777777778,
+        "width": 127.06666666666668,
+        "height": 158.82222222222222,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/yellow keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 90,
+        "height": 113
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/yellow keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 936.4444444444445,
+        "y": 385.3777777777778,
+        "width": 127.06666666666668,
+        "height": 158.82222222222222,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/blue keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 90,
+        "height": 113
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/blue keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 936.4444444444445,
+        "y": 385.3777777777778,
+        "width": 127.06666666666668,
+        "height": 158.82222222222222,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/green keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 90,
+        "height": 113
+      }
+    },
+    {
+      "name": "24 looks fullSleeve/green keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 936.4444444444445,
+        "y": 385.3777777777778,
+        "width": 127.06666666666668,
+        "height": 158.82222222222222,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks hoodie/white keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 76,
+        "height": 94
+      }
+    },
+    {
+      "name": "24 looks hoodie/white keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 949.2666666666667,
+        "y": 443.82222222222225,
+        "width": 106.44444444444444,
+        "height": 133.04444444444445,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks hoodie/black keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 76,
+        "height": 94
+      }
+    },
+    {
+      "name": "24 looks hoodie/black keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 949.2666666666667,
+        "y": 443.82222222222225,
+        "width": 106.44444444444444,
+        "height": 133.04444444444445,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks hoodie/red keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 76,
+        "height": 94
+      }
+    },
+    {
+      "name": "24 looks hoodie/red keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 949.2666666666667,
+        "y": 443.82222222222225,
+        "width": 106.44444444444444,
+        "height": 133.04444444444445,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks hoodie/yellow keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 76,
+        "height": 94
+      }
+    },
+    {
+      "name": "24 looks hoodie/yellow keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 949.2666666666667,
+        "y": 443.82222222222225,
+        "width": 106.44444444444444,
+        "height": 133.04444444444445,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks hoodie/blue keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 76,
+        "height": 94
+      }
+    },
+    {
+      "name": "24 looks hoodie/blue keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 949.2666666666667,
+        "y": 443.82222222222225,
+        "width": 106.44444444444444,
+        "height": 133.04444444444445,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "24 looks hoodie/green keeps image RGB",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "width": 76,
+        "height": 94
+      }
+    },
+    {
+      "name": "24 looks hoodie/green keeps image within stage",
+      "passed": true,
+      "details": {
+        "x": 949.2666666666667,
+        "y": 443.82222222222225,
+        "width": 106.44444444444444,
+        "height": 133.04444444444445,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "desktop pointerdown shows temporary boundary",
+      "passed": true
+    },
+    {
+      "name": "desktop mouse drag moves artwork x/y",
+      "passed": true,
+      "details": {
+        "before": {
+          "x": 944.6222222222223,
+          "y": 399.9555555555556,
+          "width": 125.73333333333333,
+          "height": 157.17777777777778,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "moved": {
+          "x": 1043.2666666666667,
+          "y": 492.40000000000003,
+          "width": 125.73333333333333,
+          "height": 157.17777777777778,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        }
+      }
+    },
+    {
+      "name": "desktop keyboard reposition works",
+      "passed": true
+    },
+    {
+      "name": "desktop landscape keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 944.6222222222223,
+          "y": 399.9555555555556,
+          "width": 125.73333333333333,
+          "height": 55.86666666666667,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 540,
+        "h": 240
+      }
+    },
+    {
+      "name": "desktop square keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 944.6222222222223,
+          "y": 399.9555555555556,
+          "width": 125.73333333333333,
+          "height": 125.73333333333333,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 320,
+        "h": 320
+      }
+    },
+    {
+      "name": "desktop portrait keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 948.2444444444445,
+          "y": 399.9555555555556,
+          "width": 118.4888888888889,
+          "height": 177.73333333333335,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 280,
+        "h": 420
+      }
+    },
+    {
+      "name": "desktop reset returns to original collar position",
+      "passed": true
+    },
+    {
+      "name": "desktop remove disables tools",
+      "passed": true
+    },
+    {
+      "name": "desktop no JS exceptions",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "desktop no horizontal scroll",
+      "passed": true
+    },
+    {
+      "name": "tablet editorial header preserved",
+      "passed": true
+    },
+    {
+      "name": "tablet explicit 300 PPI guidance",
+      "passed": true
+    },
+    {
+      "name": "tablet initial adjustment zero",
+      "passed": true
+    },
+    {
+      "name": "tablet source artwork disabled until upload",
+      "passed": true
+    },
+    {
+      "name": "tablet compositor is normal source-over",
+      "passed": true,
+      "details": {
+        "x": 944.6139088729016,
+        "y": 399.9616306954436,
+        "width": 125.73621103117505,
+        "height": 157.16067146282973,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "tablet image is portrait at actual aspect",
+      "passed": true,
+      "details": {
+        "x": 944.6139088729016,
+        "y": 399.9616306954436,
+        "width": 125.73621103117505,
+        "height": 157.16067146282973,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "tablet opaque JPG white/yellow/blue/red pixels preserved",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            15,
+            255
+          ],
+          [
+            10,
+            74,
+            244,
+            255
+          ],
+          [
+            232,
+            19,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          255,
+          249,
+          229,
+          255
+        ],
+        "width": 52,
+        "height": 65
+      }
+    },
+    {
+      "name": "tablet A3 is about 2x the A4 visual reference area",
+      "passed": true,
+      "details": {
+        "a3": {
+          "x": 918.6378896882493,
+          "y": 399.9616306954436,
+          "width": 177.64988009592324,
+          "height": 222.0431654676259,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "a4": {
+          "x": 944.6139088729016,
+          "y": 399.9616306954436,
+          "width": 125.73621103117505,
+          "height": 157.16067146282973,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        }
+      }
+    },
+    {
+      "name": "tablet negative slider label",
+      "passed": true
+    },
+    {
+      "name": "tablet +35% enlarges reference",
+      "passed": true,
+      "details": {
+        "a4": {
+          "x": 944.6139088729016,
+          "y": 399.9616306954436,
+          "width": 125.73621103117505,
+          "height": 157.16067146282973,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "plus": {
+          "x": 922.589928057554,
+          "y": 372.45083932853714,
+          "width": 169.74580335731414,
+          "height": 212.18225419664267,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        }
+      }
+    },
+    {
+      "name": "tablet +35% advisory",
+      "passed": true
+    },
+    {
+      "name": "tablet manipulation outline visible while resizing",
+      "passed": true
+    },
+    {
+      "name": "tablet temporary boundary removed when idle",
+      "passed": true
+    },
+    {
+      "name": "tablet reset is signed zero",
+      "passed": true
+    },
+    {
+      "name": "tablet PNG opaque quadrants preserve original values",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          206,
+          223,
+          192,
+          255
+        ],
+        "width": 52,
+        "height": 65
+      }
+    },
+    {
+      "name": "tablet transparent corner reveals garment (not white)",
+      "passed": true,
+      "details": [
+        206,
+        223,
+        192,
+        255
+      ]
+    },
+    {
+      "name": "tablet landscape keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 944.6139088729016,
+          "y": 399.9616306954436,
+          "width": 125.73621103117505,
+          "height": 55.86570743405275,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 540,
+        "h": 240
+      }
+    },
+    {
+      "name": "tablet square keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 944.6139088729016,
+          "y": 399.9616306954436,
+          "width": 125.73621103117505,
+          "height": 125.73621103117505,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 320,
+        "h": 320
+      }
+    },
+    {
+      "name": "tablet portrait keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 948.2206235011989,
+          "y": 399.9616306954436,
+          "width": 118.48441247002397,
+          "height": 177.72661870503595,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 280,
+        "h": 420
+      }
+    },
+    {
+      "name": "tablet reset returns to original collar position",
+      "passed": true
+    },
+    {
+      "name": "tablet remove disables tools",
+      "passed": true
+    },
+    {
+      "name": "tablet no JS exceptions",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "tablet no horizontal scroll",
+      "passed": true
+    },
+    {
+      "name": "mobile editorial header preserved",
+      "passed": true
+    },
+    {
+      "name": "mobile explicit 300 PPI guidance",
+      "passed": true
+    },
+    {
+      "name": "mobile initial adjustment zero",
+      "passed": true
+    },
+    {
+      "name": "mobile source artwork disabled until upload",
+      "passed": true
+    },
+    {
+      "name": "mobile compositor is normal source-over",
+      "passed": true,
+      "details": {
+        "x": 944.574358974359,
+        "y": 399.9179487179487,
+        "width": 125.7025641025641,
+        "height": 157.12820512820514,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "mobile image is portrait at actual aspect",
+      "passed": true,
+      "details": {
+        "x": 944.574358974359,
+        "y": 399.9179487179487,
+        "width": 125.7025641025641,
+        "height": 157.12820512820514,
+        "imageBlend": "normal",
+        "imageFilter": "none",
+        "parentBlend": "normal"
+      }
+    },
+    {
+      "name": "mobile opaque JPG white/yellow/blue/red pixels preserved",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            15,
+            255
+          ],
+          [
+            10,
+            74,
+            244,
+            255
+          ],
+          [
+            232,
+            19,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          34,
+          38,
+          41,
+          255
+        ],
+        "width": 25,
+        "height": 31
+      }
+    },
+    {
+      "name": "mobile A3 is about 2x the A4 visual reference area",
+      "passed": true,
+      "details": {
+        "a3": {
+          "x": 918.6461538461539,
+          "y": 399.9179487179487,
+          "width": 177.64102564102564,
+          "height": 222.03076923076924,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "a4": {
+          "x": 944.574358974359,
+          "y": 399.9179487179487,
+          "width": 125.7025641025641,
+          "height": 157.12820512820514,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        }
+      }
+    },
+    {
+      "name": "mobile negative slider label",
+      "passed": true
+    },
+    {
+      "name": "mobile +35% enlarges reference",
+      "passed": true,
+      "details": {
+        "a4": {
+          "x": 944.574358974359,
+          "y": 399.9179487179487,
+          "width": 125.7025641025641,
+          "height": 157.12820512820514,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "plus": {
+          "x": 922.5846153846154,
+          "y": 372.4307692307692,
+          "width": 169.68205128205128,
+          "height": 212.1846153846154,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        }
+      }
+    },
+    {
+      "name": "mobile +35% advisory",
+      "passed": true
+    },
+    {
+      "name": "mobile manipulation outline visible while resizing",
+      "passed": true
+    },
+    {
+      "name": "mobile temporary boundary removed when idle",
+      "passed": true
+    },
+    {
+      "name": "mobile reset is signed zero",
+      "passed": true
+    },
+    {
+      "name": "mobile PNG opaque quadrants preserve original values",
+      "passed": true,
+      "details": {
+        "patches": [
+          [
+            255,
+            255,
+            255,
+            255
+          ],
+          [
+            249,
+            225,
+            16,
+            255
+          ],
+          [
+            10,
+            74,
+            245,
+            255
+          ],
+          [
+            232,
+            20,
+            37,
+            255
+          ]
+        ],
+        "corner": [
+          8,
+          124,
+          71,
+          255
+        ],
+        "width": 25,
+        "height": 31
+      }
+    },
+    {
+      "name": "mobile transparent corner reveals garment (not white)",
+      "passed": true,
+      "details": [
+        8,
+        124,
+        71,
+        255
+      ]
+    },
+    {
+      "name": "mobile landscape keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 944.574358974359,
+          "y": 399.9179487179487,
+          "width": 125.7025641025641,
+          "height": 55.87692307692308,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 540,
+        "h": 240
+      }
+    },
+    {
+      "name": "mobile square keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 944.574358974359,
+          "y": 399.9179487179487,
+          "width": 125.7025641025641,
+          "height": 125.7025641025641,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 320,
+        "h": 320
+      }
+    },
+    {
+      "name": "mobile portrait keeps aspect",
+      "passed": true,
+      "details": {
+        "r": {
+          "x": 948.1846153846154,
+          "y": 399.9179487179487,
+          "width": 118.48205128205129,
+          "height": 177.72307692307692,
+          "imageBlend": "normal",
+          "imageFilter": "none",
+          "parentBlend": "normal"
+        },
+        "w": 280,
+        "h": 420
+      }
+    },
+    {
+      "name": "mobile reset returns to original collar position",
+      "passed": true
+    },
+    {
+      "name": "mobile remove disables tools",
+      "passed": true
+    },
+    {
+      "name": "mobile no JS exceptions",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "mobile no horizontal scroll",
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "desktop-opaque-jpg-on-black.png",
+    "desktop-plus35-temporary-boundary.png",
+    "desktop-transparent-png-on-green.png",
+    "tablet-opaque-jpg-on-black.png",
+    "tablet-plus35-temporary-boundary.png",
+    "tablet-transparent-png-on-green.png",
+    "mobile-opaque-jpg-on-black.png",
+    "mobile-plus35-temporary-boundary.png",
+    "mobile-transparent-png-on-green.png"
+  ],
+  "videos": [
+    "desktop-artwork-interactions.webm"
+  ],
+  "total": 120,
+  "passed": 120,
+  "failed": 0
+}

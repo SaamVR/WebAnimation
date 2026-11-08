@@ -115,12 +115,14 @@
 .cc-worktable-tint{display:none!important;position:absolute;pointer-events:none;mix-blend-mode:multiply;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;opacity:0;transition:opacity .19s ease}
 .cc-worktable-tint.is-colored{opacity:.74}
 .cc-worktable-garment-surface{position:absolute;display:block;pointer-events:none;object-fit:fill}
-.cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:multiply}
+.cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:normal}
 .cc-worktable-print.has-art{display:block}
-.cc-worktable-print>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.cc-worktable-print>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;mix-blend-mode:normal;filter:none}
+.cc-worktable-print::after{content:"";position:absolute;inset:0;border:1px solid rgb(255 247 222 / .8);outline:1px solid rgb(41 61 45 / .55);outline-offset:1px;pointer-events:none;opacity:0;transition:opacity .18s ease}
+.cc-worktable-print.is-manipulating::after,.cc-worktable-print:has(.cc-worktable-drag:focus-visible)::after{opacity:1}
 .cc-worktable-drag{position:absolute;inset:0;width:100%;height:100%;border:0;outline:0;background:transparent;cursor:grab;pointer-events:auto;touch-action:none;padding:0;opacity:0}
 .cc-worktable-drag:hover,.cc-worktable-drag:focus-visible,.cc-worktable-drag.is-dragging{opacity:1;border:0;outline:0}
-.cc-worktable-print:focus-within>img{filter:drop-shadow(0 0 3px rgb(255 246 220 / .86))}
+.cc-worktable-drag:focus-visible{outline:2px solid rgb(255 249 236 / .9);outline-offset:2px}
 .cc-worktable-drag.is-dragging{cursor:grabbing}
 .cc-worktable-hit{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);border:0;outline:0;border-radius:6px;z-index:5;background:transparent;padding:0;cursor:pointer;touch-action:manipulation;appearance:none;-webkit-appearance:none}
 /* Invisible native button remains keyboard/touch accessible; its linked artwork
@@ -290,12 +292,21 @@
 }
 .cc-worktable-upload-row{
  display:grid;
- grid-template-columns:minmax(146px,.9fr) minmax(166px,1fr) minmax(200px,1.35fr);
- align-items:end;
+ grid-template-columns:minmax(205px,1.26fr) minmax(152px,.9fr) minmax(175px,1.02fr);
+ align-items:start;
  gap:16px;
  margin:0;
  min-width:0;
 }
+.cc-worktable-upload-group{min-width:0;display:flex;flex-direction:column;gap:12px}
+.cc-worktable-resolution-note{color:var(--text-secondary);font:400 10px/1.55 var(--sans)}
+.cc-worktable-resolution-note p{margin:0 0 4px}
+.cc-worktable-resolution-note strong{color:var(--color-press-green)}
+.cc-worktable-resolution-heading{font-weight:700!important;color:var(--color-press-green)}
+.cc-worktable-resolution-explainer{margin-top:9px!important;max-width:330px}
+.cc-worktable-quality{margin-top:7px!important;font-weight:600;color:var(--color-press-green)}
+.cc-worktable-quality.is-low-resolution{color:var(--color-terracotta)}
+.cc-worktable-size-guidance{display:block;min-height:17px;color:var(--color-terracotta);font:500 10px/1.5 var(--sans)}
 .cc-worktable-upload-row button{
  min-height:46px;
  background:transparent;
@@ -308,7 +319,7 @@
  transition:background-color .18s ease,color .18s ease,border-color .18s ease;
 }
 .cc-worktable-upload-row #worktableUploadArt{
- background:var(--color-press-green);
+ width:100%;background:var(--color-press-green);
  color:var(--color-gallery-white);
  font-weight:700;
 }
@@ -369,7 +380,7 @@
  .cc-worktable-field:nth-child(2n+1){border-left:0;padding-left:0}
  .cc-worktable-field:nth-child(2n){padding-right:0}
  .cc-worktable-artwork-zone{grid-template-columns:1fr;gap:17px}
- .cc-worktable-upload-row{grid-template-columns:minmax(150px,.8fr) minmax(170px,1.1fr) minmax(220px,1.4fr)}
+ .cc-worktable-upload-row{grid-template-columns:minmax(215px,1.3fr) minmax(160px,.95fr) minmax(195px,1.1fr)}
 }
 @media(max-width:600px){
  .cc-worktable-header{padding:18px 0 12px}
@@ -393,6 +404,7 @@
  .cc-worktable-artwork-zone{padding:21px 17px;gap:21px}
  .cc-worktable-upload-row{grid-template-columns:minmax(0,1fr);gap:14px}
  .cc-worktable-upload-row #worktableUploadArt{width:100%}
+ .cc-worktable-resolution-explainer{max-width:100%}
  .cc-worktable-scale-control{min-height:41px}
  .cc-worktable-secondary-actions{gap:8px}
  .cc-worktable-artwork-intro>p:last-child{max-width:100%}
@@ -403,7 +415,7 @@
  .cc-worktable-secondary-actions button{font-size:10.5px;padding-inline:5px}
 }
 @media(prefers-reduced-motion:reduce){
- .cc-worktable-prop,.cc-worktable-tint,.cc-worktable-choice,.cc-worktable-upload-row button{transition:none!important}
+ .cc-worktable-prop,.cc-worktable-tint,.cc-worktable-choice,.cc-worktable-upload-row button,.cc-worktable-print::after{transition:none!important}
  .cc-worktable-prop[data-group]{transform:none!important}
  .cc-worktable-upload-float{animation:none!important}
  .cc-worktable-upload-svg{transform:none!important;transition:none!important}

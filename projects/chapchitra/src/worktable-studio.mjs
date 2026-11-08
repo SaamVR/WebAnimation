@@ -1,6 +1,7 @@
 import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableReducer } from './worktable-stage.mjs';
 import { UPLOAD_ARTWORK_SVG } from './worktable-upload-icon.mjs';
 import { FABRIC_PIGMENTS, applyFabricPigmentToRGBA } from './worktable-fabric-pigments.mjs';
+import { placementGeometry, printScaleLabel, resolutionGuidance } from './worktable-print-placement.mjs';
 
 // Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
 // Cropped WebP browser variants retain original alpha coordinates and source SHA256.
@@ -86,7 +87,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  let current=state;
  let artURL=null;
  let artBitmap=null;
- const editor={x:0,y:0,scale:1};
+ const editor={x:0,y:0,adjustment:0};
  let dragging=null;
  const body=document.createElement('div');
  body.className='cc-worktable is-loading is-hydrating';
@@ -108,8 +109,17 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
         <p>Add a design from your device, then adjust its size and placement directly on the garment.</p>
       </div>
       <div class="cc-worktable-upload-row">
-        <button type="button" id="worktableUploadArt" aria-label="Upload your artwork">Upload artwork</button>
-        <label class="cc-worktable-scale"><span class="cc-worktable-scale-label">Artwork size</span><span class="cc-worktable-scale-control"><input type="range" id="worktableArtScale" min="50" max="100" step="5" value="100" disabled aria-label="Resize uploaded design"><output id="worktableScaleOutput">100%</output></span></label>
+        <div class="cc-worktable-upload-group">
+          <button type="button" id="worktableUploadArt" aria-label="Upload your artwork">Upload artwork</button>
+          <aside class="cc-worktable-resolution-note" aria-label="Artwork resolution recommendations">
+            <p class="cc-worktable-resolution-heading">Recommended artwork resolution (300 PPI)</p>
+            <p><strong>A4</strong> <span>2480 × 3508 px (8.27 × 11.69 in)</span></p>
+            <p><strong>A3</strong> <span>3508 × 4961 px (11.69 × 16.54 in)</span></p>
+            <p class="cc-worktable-resolution-explainer">These are recommended dimensions for high-quality printing. Other image sizes are accepted for preview. Final print quality depends on actual print dimensions and production requirements.</p>
+            <p id="worktableArtworkQuality" class="cc-worktable-quality" role="status" aria-live="polite"></p>
+          </aside>
+        </div>
+        <label class="cc-worktable-scale"><span class="cc-worktable-scale-label">Artwork size — adjustment from A3/A4</span><span class="cc-worktable-scale-control"><input type="range" id="worktableArtScale" min="-50" max="100" step="1" value="0" disabled aria-label="Artwork size adjustment from selected print reference"><output id="worktableScaleOutput">0%</output></span><span id="worktableSizeGuidance" class="cc-worktable-size-guidance" aria-live="polite"></span></label>
         <div class="cc-worktable-secondary-actions"><button type="button" id="worktableResetArt" disabled>Reset placement</button><button type="button" id="worktableRemoveArt" disabled>Remove artwork</button></div>
       </div>
     </section>
@@ -126,6 +136,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const msg=root.querySelector('#worktableMessage');
  const scale=root.querySelector('#worktableArtScale');
  const scaleOut=root.querySelector('#worktableScaleOutput');
+ const sizeGuidance=root.querySelector('#worktableSizeGuidance');
+ const quality=root.querySelector('#worktableArtworkQuality');
  const remove=root.querySelector('#worktableRemoveArt');
  const reset=root.querySelector('#worktableResetArt');
  let layerCounter=0;
@@ -277,25 +289,56 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  syncUploadMotion();
  const buttons=[...root.querySelectorAll('[data-group][data-value]')];
  const announce=t=>{msg.textContent=t};
- const maxArtBox=(variant=current.garment,kind=current.printSize)=>{
-  const guide=GARMENT_VARIANTS[variant].chestGuide;
-  // A-series relative scale only; actual print production measurements are not supplied.
-  const multiplier=kind==='A4'?Math.SQRT1_2:1;
-  const width=guide.width*.88*multiplier;
-  const height=guide.height*.91*multiplier;
-  return {x:guide.x+(guide.width-width)/2,y:guide.y+(guide.height-height)/2,width,height};
+ // Shared provisional garment guide for dragged, resized and keyboard art.
+ let placementFeedbackTimer=null;
+ let boundaryAnnounced=false;
+ const indicatePlacement=(duringDrag=false)=>{
+  print.classList.add('is-manipulating');
+  if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
+  placementFeedbackTimer=null;
+  if(!duringDrag)placementFeedbackTimer=setTimeout(()=>{
+   print.classList.remove('is-manipulating');placementFeedbackTimer=null;
+  },750);
  };
- const printPosition=()=>{
-  const box=maxArtBox();
-  editor.scale=clamp(editor.scale,.5,1);
-  const width=box.width*editor.scale;
-  const height=box.height*editor.scale;
-  const lim=GARMENT_VARIANTS[current.garment].chestGuide;
-  editor.x=clamp(editor.x,lim.x-box.x,lim.x+lim.width-box.x-width);
-  editor.y=clamp(editor.y,lim.y-box.y,lim.y+lim.height-box.y-height);
-  const x=box.x+editor.x,y=box.y+editor.y;
-  print.style.left=percent(x,2048);print.style.top=percent(y,1152);
-  print.style.width=percent(width,2048);print.style.height=percent(height,1152);
+ const printPosition=({feedback=false}={})=>{
+  if(!artBitmap){
+   scaleOut.textContent='0%';sizeGuidance.textContent='';quality.textContent='';
+   return;
+  }
+  const requested=editor.adjustment;
+  const info=placementGeometry({
+   garment:current.garment,preset:current.printSize,
+   imageWidth:artBitmap.naturalWidth,imageHeight:artBitmap.naturalHeight,
+   adjustment:requested,dx:editor.x,dy:editor.y,
+  });
+  editor.adjustment=info.adjustment;
+  editor.x=info.dx;editor.y=info.dy;
+  scale.max=String(info.maxAdjustment);
+  scale.value=String(info.adjustment);
+  scaleOut.textContent=printScaleLabel(info.adjustment);
+  print.style.left=percent(info.x,2048);print.style.top=percent(info.y,1152);
+  print.style.width=percent(info.width,2048);print.style.height=percent(info.height,1152);
+  print.classList.toggle('is-beyond-reference',info.exceedsReference);
+  const nominalNote=info.exceedsReference
+   ? 'Above the nominal '+current.printSize+' visual reference. Confirm physical print dimensions with production.'
+   : '';
+  const safeLimitNote=info.maxAdjustment<100&&info.adjustment===info.maxAdjustment
+   ? ' Safe garment enlargement limit reached (+'+info.maxAdjustment+'%).' : '';
+  const sizeNote=nominalNote+safeLimitNote;
+  if(sizeGuidance.textContent!==sizeNote)sizeGuidance.textContent=sizeNote;
+  const assessment=resolutionGuidance({preset:current.printSize,
+   imageWidth:artBitmap.naturalWidth,imageHeight:artBitmap.naturalHeight,
+   adjustment:info.adjustment});
+  if(quality.textContent!==assessment.text)quality.textContent=assessment.text;
+  quality.classList.toggle('is-low-resolution',assessment.low);
+  if(dragging&&info.constrained&&!boundaryAnnounced){
+   announce('Artwork reached the edge of the garment preview safe area.');
+   boundaryAnnounced=true;
+  }else if(!info.constrained)boundaryAnnounced=false;
+  if(feedback&&requested>info.maxAdjustment){
+   announce('Maximum safe enlargement for this '+current.garment+' '+current.printSize+
+    ' preview is +'+info.maxAdjustment+'%. The artwork is kept inside the garment.');
+  }
  };
  let hydrated=false;
  let layersReady=false;
@@ -448,7 +491,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const update=(group,value)=>{
   if(group==='upload'){file.click();return}
   current=worktableReducer(current,{type:'select',group,value});
-  if(group==='garment'||group==='printSize')editor.x=editor.y=0;
+  // Retain relative placement and recompute safe bounds for garment/preset changes.
+  if(group==='printSize'&&artURL)indicatePlacement();
   paintSelection(group==='garment');announce(`${labels[value]} selected`);
   if(group==='garment'||group==='color')void queueGarmentVisual();
  };
@@ -498,18 +542,29 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    if(img.naturalWidth<1||img.naturalHeight<1||img.naturalWidth>8192||img.naturalHeight>8192)throw Error('Unsupported image dimensions');
    clearArtURL();artURL=next;artBitmap=img;
    artImg.src=artURL;artImg.style.objectFit='contain';
-   editor.x=editor.y=0;editor.scale=1;
-   scale.value='100';scaleOut.textContent='100%';scale.disabled=false;remove.disabled=false;reset.disabled=false;
-   paintSelection();announce('Artwork loaded locally. Drag its preview on the garment or use the resize slider.');
+   editor.x=editor.y=0;editor.adjustment=0;
+   scale.value='0';scaleOut.textContent='0%';scale.disabled=false;remove.disabled=false;reset.disabled=false;
+   paintSelection();indicatePlacement();
+   announce('Artwork loaded locally at 0% adjustment to the '+current.printSize+
+    ' visual reference. Drag to position or use the signed resize slider.');
   }catch{URL.revokeObjectURL(next);announce('The selected image could not be decoded.');}
   file.value='';
  });
  scale.addEventListener('input',()=>{
-  editor.scale=Number(scale.value)/100;scaleOut.textContent=scale.value+'%';
-  printPosition();
+  editor.adjustment=Number(scale.value);
+  printPosition({feedback:true});indicatePlacement();
  });
- reset.addEventListener('click',()=>{editor.x=editor.y=0;editor.scale=1;scale.value='100';scaleOut.textContent='100%';printPosition();announce('Artwork placement reset.')});
- remove.addEventListener('click',()=>{clearArtURL();artImg.removeAttribute('src');scale.disabled=true;remove.disabled=true;reset.disabled=true;paintSelection();announce('Artwork removed.')});
+ reset.addEventListener('click',()=>{
+  editor.x=editor.y=0;editor.adjustment=0;scale.value='0';
+  printPosition();indicatePlacement();announce('Artwork placement reset to 0% and the starting collar reference.');
+ });
+ remove.addEventListener('click',()=>{
+  clearArtURL();artImg.removeAttribute('src');scale.disabled=true;remove.disabled=true;reset.disabled=true;
+  print.classList.remove('is-manipulating','is-beyond-reference');
+  if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
+  placementFeedbackTimer=null;
+  scale.value='0';scaleOut.textContent='0%';paintSelection();announce('Artwork removed.');
+ });
  const dragLayer=document.createElement('button');dragLayer.type='button';dragLayer.className='cc-worktable-drag';
  dragLayer.setAttribute('aria-label','Drag uploaded artwork to reposition');
  dragLayer.title='Move uploaded artwork';print.append(dragLayer);
@@ -517,7 +572,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   if(!artURL)return;
   const stageRect=stage.getBoundingClientRect();const factor=2048/stageRect.width;
   dragging={id:e.pointerId,x:e.clientX,y:e.clientY,startX:editor.x,startY:editor.y,factor};
-  dragLayer.setPointerCapture(e.pointerId);dragLayer.classList.add('is-dragging');
+  dragLayer.setPointerCapture(e.pointerId);dragLayer.classList.add('is-dragging');indicatePlacement(true);
  };
  dragLayer.addEventListener('pointerdown',dragStart);
  dragLayer.addEventListener('pointermove',e=>{
@@ -526,7 +581,10 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   editor.y=dragging.startY+(e.clientY-dragging.y)*dragging.factor;
   printPosition();
  });
- const dragEnd=()=>{dragging=null;dragLayer.classList.remove('is-dragging')};
+ const dragEnd=e=>{
+  if(e?.pointerId!==undefined&&dragLayer.hasPointerCapture(e.pointerId))dragLayer.releasePointerCapture(e.pointerId);
+  dragging=null;dragLayer.classList.remove('is-dragging');indicatePlacement();
+ };
  dragLayer.addEventListener('pointerup',dragEnd);
  dragLayer.addEventListener('pointercancel',dragEnd);
  dragLayer.addEventListener('keydown',e=>{
@@ -535,9 +593,13 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   const dx={ArrowLeft:-delta,ArrowRight:delta}[e.key];
   const dy={ArrowUp:-delta,ArrowDown:delta}[e.key];
   if(dx===undefined&&dy===undefined)return;
-  e.preventDefault();editor.x+=dx||0;editor.y+=dy||0;printPosition();
+  e.preventDefault();editor.x+=dx||0;editor.y+=dy||0;printPosition();indicatePlacement();
  });
- const unload=()=>clearArtURL();window.addEventListener('pagehide',unload,{once:true});
+ const unload=()=>{
+  if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
+  clearArtURL();
+ };
+ window.addEventListener('pagehide',unload,{once:true});
  paintSelection();
  announce('Preparing the illustrated worktable…');
  // A single real composition, assembled ONLY from the original layered files,
@@ -597,7 +659,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   throw new Error('The complete stage preview could not decode on this browser: '+String(error?.message||error));
  }
  void hydrate();
- return {getState:()=>({...current}),getPlacement:()=>({...editor}),destroy:()=>{
+ return {getState:()=>({...current}),getPlacement:()=>({...editor,scale:1+editor.adjustment/100}),destroy:()=>{
   clearArtURL();if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
   uploadObserver?.disconnect();document.removeEventListener('visibilitychange',syncUploadMotion);
   window.removeEventListener('pagehide',unload);root.replaceChildren();

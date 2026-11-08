@@ -1,0 +1,44 @@
+{
+  "pp-before-mobile": {
+    "firstMs": 2447,
+    "allHydratedMs": 4287,
+    "imageRequests": 40,
+    "imageBytes": 283792,
+    "totalEncodedBytes": 891216,
+    "allRequests": 65,
+    "errors": []
+  },
+  "pp-after-mobile": {
+    "firstMs": 2546,
+    "allHydratedMs": 4303,
+    "imageRequests": 40,
+    "imageBytes": 283792,
+    "totalEncodedBytes": 899620,
+    "allRequests": 66,
+    "errors": []
+  },
+  "pp-before-desktop": {
+    "firstMs": 1661,
+    "allHydratedMs": 3542,
+    "imageRequests": 39,
+    "imageBytes": 771756,
+    "totalEncodedBytes": 1379197,
+    "allRequests": 64,
+    "errors": []
+  },
+  "pp-after-desktop": {
+    "firstMs": 1630,
+    "allHydratedMs": 3519,
+    "imageRequests": 39,
+    "imageBytes": 771756,
+    "totalEncodedBytes": 1387600,
+    "allRequests": 65,
+    "errors": []
+  },
+  "summary": {
+    "mobileDeltaMs": 99,
+    "desktopDeltaMs": -31,
+    "unchangedImageRequestsAndBytes": true,
+    "method": "Single cold-cache Chromium runs, 70ms RTT, 390px 4Mbps and 1440px 10Mbps, same Windows device; not physical iPad or GPU memory."
+  }
+}

@@ -82,17 +82,18 @@ test('upload notebook and accessible mobile upload action remain available',asyn
  assert.ok(!src.includes("hitFor('Upload image notebook/Upload_image_notebook_1.png','upload','upload')"));
  assert.ok(src.includes('Only the illustrated plus/upload image is a hotspot'));
  assert.ok(src.includes('hitFor(path,group,value)'));
- assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{\s*background:var\(--color-press-green\)/);
+ assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{\s*width:100%;background:var\(--color-press-green\)/);
  assert.match(css,/\.cc-worktable-hit:not\(\[data-group="upload"\]\)\{display:none\}/);
  assert.doesNotMatch(css,/\.cc-worktable-hit\{display:none\}/);
 });
 
 test('print size preview is conservatively limited until production masks/specs arrive',async()=>{
  const src=await load('src/worktable-studio.mjs');
- assert.match(src,/Math\.SQRT1_2/);
- assert.match(src,/chestGuide/);
- assert.match(src,/editor\.scale=clamp\(editor\.scale,\.5,1\)/);
- assert.match(src,/maxArtBox/);
+ const geometry=await load('src/worktable-print-placement.mjs');
+ assert.match(geometry,/Math\.SQRT2/);
+ assert.match(geometry,/chestGuide/);
+ assert.match(src,/editor\.adjustment=info\.adjustment/);
+ assert.match(src,/const printPosition=/);
  assert.match(src,/const colorized=async\(/);
  assert.match(src,/context\.getImageData\(/);
  assert.match(src,/fabric-color accuracy require manufacturer calibration/);
