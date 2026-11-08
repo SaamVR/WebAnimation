@@ -46,7 +46,10 @@
  transform:translate3d(0,var(--cc-selected-lift),0);
  filter:brightness(1.032) saturate(1.014)
   drop-shadow(2px 4.6px 1.7px rgb(31 23 14 / .5))
-  drop-shadow(0 0 2.3px rgb(250 237 211 / .5));
+  /* Gallery White/Cream: a small edge catch plus diffuse restrained halo.
+     Alpha-shaped on selected art only; never on the semantic hitbox. */
+  drop-shadow(0 0 1.9px rgb(255 249 232 / .66))
+  drop-shadow(0 0 4.6px rgb(248 237 214 / .32));
 }
 /* Do not change approved hover for nonselected artwork. Keep selected elevation
    when a pointer returns, rather than allowing hover to push the object down. */

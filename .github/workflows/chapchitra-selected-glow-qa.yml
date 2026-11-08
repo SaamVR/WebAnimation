@@ -1,0 +1,82 @@
+name: CHAPCHITRA selected silhouette glow QA
+on:
+  pull_request:
+    branches:
+      - feature/chapchitra-selected-state-refinement-20261108
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-selected-glow-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  silhouette-glow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          path: baseline
+          ref: 04e581e9c5daf8bf6c00b06db3f3d5e4bad3607d
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: candidate/projects/chapchitra/package-lock.json
+      - name: Build selected-glow candidate and run source assertions
+        run: |
+          cd candidate/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Build unchanged owner-approved hover and selected-lift baseline
+        run: |
+          cd baseline/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Install Chromium and WebKit
+        run: |
+          cd candidate/projects/chapchitra
+          npx playwright install --with-deps chromium webkit
+      - name: Start candidate and untouched baseline previews
+        run: |
+          (cd candidate/projects/chapchitra && PORT=4321 npm run preview >/tmp/cc-selected-glow.log 2>&1) &
+          (cd baseline/projects/chapchitra && PORT=4317 npm run preview >/tmp/cc-selected-baseline.log 2>&1) &
+          for i in {1..45}; do
+            if curl -fsS http://127.0.0.1:4321/artists-edit/ >/dev/null && curl -fsS http://127.0.0.1:4317/artists-edit/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/cc-selected-*.log
+          exit 1
+      - name: Selected glow, hover parity, desktop, WebKit and touch checks
+        env:
+          CC_QA_URL: http://127.0.0.1:4321/artists-edit/
+          CC_BEFORE_URL: http://127.0.0.1:4317/artists-edit/
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/selected-glow-qa.cjs
+      - name: Preserve existing elevation, manual-switch and hydration behaviours
+        env:
+          CC_QA_URL: http://127.0.0.1:4321/artists-edit/
+          CC_BEFORE_URL: http://127.0.0.1:4317/artists-edit/
+          CC_QA_OUT: perf-results/selected-refinement-regression
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/selected-refinement-qa.cjs
+      - name: Preserve original controls, responsive layout and early hydration
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/qa.cjs http://127.0.0.1:4321 selected-glow-original-regression
+          node scripts/perf/early-qa.cjs http://127.0.0.1:4321
+      - name: Attach screenshots and test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapchitra-selected-glow-review-qa
+          path: candidate/projects/chapchitra/perf-results/
+          retention-days: 30
+          if-no-files-found: warn
