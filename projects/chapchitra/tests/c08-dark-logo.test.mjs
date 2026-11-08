@@ -5,14 +5,13 @@ import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 const root=resolve(import.meta.dirname,'..');
 const SHA=contents=>createHash('sha256').update(contents).digest('hex');
-const CREAM=[228,227,222],TERRACOTTA=[138,80,59];
 const files=[
  {
   before:'scripts/c08-fallback-originals/chapchitra-full-on-dark-before.webp',
   originalSHA:'d4298171361cf355eeea2d92a4d93b713397afbba11db49323115ea94de4d0d9',
-  active:'src/assets/chapchitra-full-on-dark-cream-terra.webp',
+  active:'src/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp',
   legacy:'src/assets/chapchitra-full-on-dark.webp',
-  outputSHA:'3acec051748757e05501e759f497c938e69097b6c0f88f19c5a6c3bb6f288f00',
+  outputSHA:'1f5fc3845bc0d6ccfb840cb174bba65eea180203fe33fcab965758db0e00cd9d',
   dims:[1250,1052]
  },
  {
@@ -24,17 +23,20 @@ const files=[
   dims:[1400,316]
  }
 ];
-test('dark-surface fallback assets match the audited lossless two-ink hashes without requiring native build-time packages',async()=>{
+test('C08 original green patch plus two-color wordmark fallback retain audited bytes and dimensions without native CI codecs',async()=>{
  for(const f of files){
   const original=await readFile(resolve(root,f.before));
   assert.equal(SHA(original),f.originalSHA,'Original source fallback backup changed: '+f.before);
   const output=await readFile(resolve(root,f.active));
   const alias=await readFile(resolve(root,f.legacy));
-  assert.deepEqual(output,alias,'Old dark-surface URL must not retain an outdated green fallback');
-  // These *exact* output SHA-256 values are independently pixel-audited with
-  // sharp by scripts/c08-recolor-static.mjs in the local QA lane. Keeping a
-  // dependency-free CI check avoids requiring native image codecs on Render.
-  assert.equal(SHA(output),f.outputSHA,'Audited Cream/Terracotta WebP changed: '+f.active);
+  assert.deepEqual(output,alias,'Legacy fallback URL must match the approved composite');
+  if(f.dims[1]===1052){
+    assert.deepEqual(output,await readFile(resolve(root,'src/assets/chapchitra-full-on-dark-cream-terra.webp')),'Prior hero URL must also use restored green patch');
+  }
+  // Exact SHA pin is a reproducible product of the original source-pixel
+  // composite. The *local* image QA checks every visible patch RGBA and every
+  // approved lower-wordmark RGBA. CI uses only Node built-ins (Render-safe).
+  assert.equal(SHA(output),f.outputSHA,'Audited original-patch/static-wordmark WebP changed: '+f.active);
   assert.equal(output.toString('ascii',0,4),'RIFF');
   assert.equal(output.toString('ascii',8,12),'WEBP');
   assert.equal(output.toString('ascii',12,16),'VP8L');
@@ -48,12 +50,26 @@ test('C08 dark-surface brand uses versioned asset URLs while light-background na
  const app=await readFile(resolve(root,'src/app.mjs'),'utf8');
  const html=await readFile(resolve(root,'src/index.html'),'utf8');
  const player=await readFile(resolve(root,'src/motion/c08/logo-player.mjs'),'utf8');
- assert.match(app,/src="\/assets\/chapchitra-full-on-dark-cream-terra\.webp"/);
+ assert.match(app,/src="\/assets\/chapchitra-full-on-dark-original-patch-cream-terra-wordmark\.webp"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);
- assert.match(html,/href="\/assets\/chapchitra-full-on-dark-cream-terra\.webp"/);
+ assert.match(html,/href="\/assets\/chapchitra-full-on-dark-original-patch-cream-terra-wordmark\.webp"/);
  assert.match(player,/const HERO = '\/assets\/c08\/wordmark-reprint-dark-inverted-v2\.json'/);
  assert.match(player,/const SOURCE = '\/assets\/c08\/wordmark-reprint-original\.json'/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
  assert.doesNotMatch(app,/src="\/assets\/chapchitra-wordmark-light\.webp"/);
  assert.doesNotMatch(player,/const HERO = '\/assets\/c08\/wordmark-reprint-hero-light\.json'/);
+});
+
+
+test('C08 build code cannot recolor the original patch or silently retime Lottie',async()=>{
+ const script=await readFile(resolve(root,'scripts/c08-recolor-static.mjs'),'utf8');
+ const approvedLower=await readFile(resolve(root,'scripts/c08-fallback-originals/chapchitra-full-terracotta-before-patch-restoration.webp'));
+ assert.equal(SHA(approvedLower),'3acec051748757e05501e759f497c938e69097b6c0f88f19c5a6c3bb6f288f00');
+ assert.match(script,/PATCH_END_Y=775/);
+ assert.match(script,/patch\.data\.copy\(pixels,0,0,split\)/,'Original green source pixels must be copied verbatim');
+ assert.match(script,/Buffer\.from\(wordmark\.data\)/,'The approved lower wordmark must be used verbatim');
+ assert.match(script,/PATCH_FRINGE_LIMIT_X=840/,'Tiny approved textile antialias pixels must also be protected');
+ assert.doesNotMatch(script,/greenExcess|isSymbol|isCream|luminance|\.tint\(|\.modulate\(/,'Future build must never remap patch colors');
+ const css=await readFile(resolve(root,'src/motion/c08/logo-player.css'),'utf8');
+ assert.match(css,/clip-path:inset\(0 0 26\.35% 0\)/,'The complete approved patch silhouette must remain visible');
 });
