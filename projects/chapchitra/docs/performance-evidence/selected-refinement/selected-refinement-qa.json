@@ -1,0 +1,1252 @@
+{
+  "candidate": "http://127.0.0.1:4317/artists-edit/",
+  "baseline": "http://127.0.0.1:4318/artists-edit/",
+  "passed": 168,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "chromium first-screen ready",
+      "ok": true,
+      "detail": {
+        "first": 835,
+        "full": 1128
+      }
+    },
+    {
+      "name": "chromium garment starts resting",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "chromium garment original hover lift unchanged",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -1.83957,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "chromium garment selected class persists after exit",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "chromium garment exact elevated selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.36254,
+        "filter": "brightness(1.03587) saturate(1.01703) drop-shadow(rgba(31, 23, 15, 0.48) 1.95293px 4.46082px 1.67749px) drop-shadow(rgba(250, 237, 211, 0.455) 0px 0px 2.10557px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "chromium garment selected stronger than hover",
+      "ok": true
+    },
+    {
+      "name": "chromium garment silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.03587) saturate(1.01703) drop-shadow(rgba(31, 23, 15, 0.48) 1.95293px 4.46082px 1.67749px) drop-shadow(rgba(250, 237, 211, 0.455) 0px 0px 2.10557px)"
+    },
+    {
+      "name": "chromium garment one selected image",
+      "ok": true
+    },
+    {
+      "name": "chromium garment old option returns to resting position",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.0500257,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "chromium garment new manual selection persists",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.44982,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_4_hoodie.png"
+      }
+    },
+    {
+      "name": "chromium garment manual exactly one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium size starts resting",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "chromium size original hover lift unchanged",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -1.37991,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "chromium size selected class persists after exit",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "chromium size exact elevated selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.38881,
+        "filter": "brightness(1.03424) saturate(1.0159) drop-shadow(rgba(31, 23, 14, 0.486) 1.9655px 4.4965px 1.68275px) drop-shadow(rgba(250, 237, 211, 0.47) 0px 0px 2.16201px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "chromium size selected stronger than hover",
+      "ok": true
+    },
+    {
+      "name": "chromium size silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.03424) saturate(1.0159) drop-shadow(rgba(31, 23, 14, 0.486) 1.9655px 4.4965px 1.68275px) drop-shadow(rgba(250, 237, 211, 0.47) 0px 0px 2.16201px)"
+    },
+    {
+      "name": "chromium size one selected image",
+      "ok": true
+    },
+    {
+      "name": "chromium size old option returns to resting position",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.0868252,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "chromium size new manual selection persists",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.41295,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_XXL_6.png"
+      }
+    },
+    {
+      "name": "chromium size manual exactly one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium color starts resting",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "chromium color original hover lift unchanged",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -1.83938,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "chromium color selected class persists after exit",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "chromium color exact elevated selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.38384,
+        "filter": "brightness(1.03337) saturate(1.01516) drop-shadow(rgba(31, 23, 14, 0.49) 1.97885px 4.53656px 1.68943px) drop-shadow(rgba(250, 237, 211, 0.482) 0px 0px 2.21542px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "chromium color selected stronger than hover",
+      "ok": true
+    },
+    {
+      "name": "chromium color silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.03337) saturate(1.01516) drop-shadow(rgba(31, 23, 14, 0.49) 1.97885px 4.53656px 1.68943px) drop-shadow(rgba(250, 237, 211, 0.482) 0px 0px 2.21542px)"
+    },
+    {
+      "name": "chromium color one selected image",
+      "ok": true
+    },
+    {
+      "name": "chromium color old option returns to resting position",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "chromium color new manual selection persists",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.5,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_5.png"
+      }
+    },
+    {
+      "name": "chromium color manual exactly one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium printSize starts resting",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "chromium printSize original hover lift unchanged",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -1.83955,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "chromium printSize selected class persists after exit",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "chromium printSize exact elevated selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.82006,
+        "filter": "brightness(1.03546) saturate(1.01693) drop-shadow(rgba(31, 23, 15, 0.475) 1.94675px 4.44026px 1.67338px) drop-shadow(rgba(250, 238, 211, 0.45) 0px 0px 2.08702px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "chromium printSize selected stronger than hover",
+      "ok": true
+    },
+    {
+      "name": "chromium printSize silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.03546) saturate(1.01693) drop-shadow(rgba(31, 23, 15, 0.475) 1.94675px 4.44026px 1.67338px) drop-shadow(rgba(250, 238, 211, 0.45) 0px 0px 2.08702px)"
+    },
+    {
+      "name": "chromium printSize one selected image",
+      "ok": true
+    },
+    {
+      "name": "chromium printSize old option returns to resting position",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.0988147,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "chromium printSize new manual selection persists",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.96513,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A4_2.png"
+      }
+    },
+    {
+      "name": "chromium printSize manual exactly one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium six paint pots black selected persistently",
+      "ok": true,
+      "detail": -5.36343
+    },
+    {
+      "name": "chromium six paint pots black only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium six paint pots white selected persistently",
+      "ok": true,
+      "detail": -5.36348
+    },
+    {
+      "name": "chromium six paint pots white only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium six paint pots red selected persistently",
+      "ok": true,
+      "detail": -5.36295
+    },
+    {
+      "name": "chromium six paint pots red only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium six paint pots yellow selected persistently",
+      "ok": true,
+      "detail": -5.363
+    },
+    {
+      "name": "chromium six paint pots yellow only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium six paint pots blue selected persistently",
+      "ok": true,
+      "detail": -5.36362
+    },
+    {
+      "name": "chromium six paint pots blue only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium six paint pots green selected persistently",
+      "ok": true,
+      "detail": -5.36309
+    },
+    {
+      "name": "chromium six paint pots green only one selected",
+      "ok": true
+    },
+    {
+      "name": "chromium selected focus retains elevation",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-keyboard-focus is-selected",
+        "offset": -3.46093,
+        "filter": "brightness(1.09) drop-shadow(rgb(255, 249, 232) 0px 0px 1px) drop-shadow(rgba(255, 239, 204, 0.8) 0px 0px 4px) drop-shadow(rgba(31, 23, 14, 0.52) 2px 4px 1.7px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_XL_5.png"
+      }
+    },
+    {
+      "name": "chromium selected focus keeps highlight",
+      "ok": true
+    },
+    {
+      "name": "chromium upload plus 3px hover",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -2.86002,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.43) 2px 4.5px 1.7px) drop-shadow(rgba(252, 240, 211, 0.36) 0px 0px 1.7px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Upload image notebook/Upload_image_notebook_upload_button_4.png"
+      }
+    },
+    {
+      "name": "chromium upload has no persistent selection",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-hovered"
+    },
+    {
+      "name": "chromium notebook remains stationary",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0
+      }
+    },
+    {
+      "name": "chromium upload returns to rest after hover exit",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.0731733,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Upload image notebook/Upload_image_notebook_upload_button_4.png"
+      }
+    },
+    {
+      "name": "chromium no page exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "webkit first-screen ready",
+      "ok": true,
+      "detail": {
+        "first": 569,
+        "full": 801
+      }
+    },
+    {
+      "name": "webkit garment starts resting",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "webkit garment original hover lift unchanged",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -1.991272,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "webkit garment selected class persists after exit",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "webkit garment exact elevated selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.499871,
+        "filter": "brightness(1.032002) saturate(1.014001) drop-shadow(rgba(31, 23, 14, 0.5) 1.999973px 4.599919px 1.699987px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.299893px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "webkit garment selected stronger than hover",
+      "ok": true
+    },
+    {
+      "name": "webkit garment silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.032002) saturate(1.014001) drop-shadow(rgba(31, 23, 14, 0.5) 1.999973px 4.599919px 1.699987px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.299893px)"
+    },
+    {
+      "name": "webkit garment one selected image",
+      "ok": true
+    },
+    {
+      "name": "webkit garment old option returns to resting position",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "webkit garment new manual selection persists",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.5,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_4_hoodie.png"
+      }
+    },
+    {
+      "name": "webkit garment manual exactly one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit size starts resting",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "webkit size original hover lift unchanged",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -1.495843,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "webkit size selected class persists after exit",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "webkit size exact elevated selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.49971,
+        "filter": "brightness(1.032005) saturate(1.014004) drop-shadow(rgba(31, 23, 14, 0.5) 1.999925px 4.599775px 1.699962px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.2997px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "webkit size selected stronger than hover",
+      "ok": true
+    },
+    {
+      "name": "webkit size silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.032005) saturate(1.014004) drop-shadow(rgba(31, 23, 14, 0.5) 1.999925px 4.599775px 1.699962px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.2997px)"
+    },
+    {
+      "name": "webkit size one selected image",
+      "ok": true
+    },
+    {
+      "name": "webkit size old option returns to resting position",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.008752,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "webkit size new manual selection persists",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.497922,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_XXL_6.png"
+      }
+    },
+    {
+      "name": "webkit size manual exactly one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit color starts resting",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "webkit color original hover lift unchanged",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -1.993884,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "webkit color selected class persists after exit",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "webkit color exact elevated selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.39199,
+        "filter": "brightness(1.032931) saturate(1.014788) drop-shadow(rgba(31, 23, 14, 0.494) 1.985676px 4.557028px 1.692838px) drop-shadow(rgba(250, 237, 211, 0.49) 0px 0px 2.242703px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "webkit color selected stronger than hover",
+      "ok": true
+    },
+    {
+      "name": "webkit color silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.032931) saturate(1.014788) drop-shadow(rgba(31, 23, 14, 0.494) 1.985676px 4.557028px 1.692838px) drop-shadow(rgba(250, 237, 211, 0.49) 0px 0px 2.242703px)"
+    },
+    {
+      "name": "webkit color one selected image",
+      "ok": true
+    },
+    {
+      "name": "webkit color old option returns to resting position",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.002632,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "webkit color new manual selection persists",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.497368,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_5.png"
+      }
+    },
+    {
+      "name": "webkit color manual exactly one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit printSize starts resting",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "webkit printSize original hover lift unchanged",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -2,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "webkit printSize selected class persists after exit",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "webkit printSize exact elevated selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.99971,
+        "filter": "brightness(1.032005) saturate(1.014004) drop-shadow(rgba(31, 23, 14, 0.5) 1.999925px 4.599775px 1.699962px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.2997px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "webkit printSize selected stronger than hover",
+      "ok": true
+    },
+    {
+      "name": "webkit printSize silhouette shadow",
+      "ok": true,
+      "detail": "brightness(1.032005) saturate(1.014004) drop-shadow(rgba(31, 23, 14, 0.5) 1.999925px 4.599775px 1.699962px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.2997px)"
+    },
+    {
+      "name": "webkit printSize one selected image",
+      "ok": true
+    },
+    {
+      "name": "webkit printSize old option returns to resting position",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.000023,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "webkit printSize new manual selection persists",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.991021,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A4_2.png"
+      }
+    },
+    {
+      "name": "webkit printSize manual exactly one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit six paint pots black selected persistently",
+      "ok": true,
+      "detail": -5.499204
+    },
+    {
+      "name": "webkit six paint pots black only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit six paint pots white selected persistently",
+      "ok": true,
+      "detail": -5.49525
+    },
+    {
+      "name": "webkit six paint pots white only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit six paint pots red selected persistently",
+      "ok": true,
+      "detail": -5.496029
+    },
+    {
+      "name": "webkit six paint pots red only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit six paint pots yellow selected persistently",
+      "ok": true,
+      "detail": -5.496029
+    },
+    {
+      "name": "webkit six paint pots yellow only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit six paint pots blue selected persistently",
+      "ok": true,
+      "detail": -5.5
+    },
+    {
+      "name": "webkit six paint pots blue only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit six paint pots green selected persistently",
+      "ok": true,
+      "detail": -5.496029
+    },
+    {
+      "name": "webkit six paint pots green only one selected",
+      "ok": true
+    },
+    {
+      "name": "webkit selected focus retains elevation",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-keyboard-focus is-selected",
+        "offset": -3.5,
+        "filter": "brightness(1.09) drop-shadow(rgb(255, 249, 232) 0px 0px 1px) drop-shadow(rgba(255, 239, 204, 0.8) 0px 0px 4px) drop-shadow(rgba(31, 23, 14, 0.52) 2px 4px 1.7px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_XL_5.png"
+      }
+    },
+    {
+      "name": "webkit selected focus keeps highlight",
+      "ok": true
+    },
+    {
+      "name": "webkit upload plus 3px hover",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-hovered",
+        "offset": -3,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.43) 2px 4.5px 1.7px) drop-shadow(rgba(252, 240, 211, 0.36) 0px 0px 1.7px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Upload image notebook/Upload_image_notebook_upload_button_4.png"
+      }
+    },
+    {
+      "name": "webkit upload has no persistent selection",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-hovered"
+    },
+    {
+      "name": "webkit notebook remains stationary",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": 0
+      }
+    },
+    {
+      "name": "webkit upload returns to rest after hover exit",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop",
+        "offset": -0.001436,
+        "filter": "drop-shadow(rgba(33, 25, 17, 0.31) 1.25px 2.5px 1.2px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Upload image notebook/Upload_image_notebook_upload_button_4.png"
+      }
+    },
+    {
+      "name": "webkit no page exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "touch 834 garment selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.38825,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "touch 834 garment hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 834 garment one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 834 size selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.3367,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "touch 834 size hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 834 size one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 834 color selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.43838,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "touch 834 color hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 834 color one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 834 printSize selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.90036,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "touch 834 printSize hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 834 printSize one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 834 no horizontal scroll",
+      "ok": true
+    },
+    {
+      "name": "touch 834 no JS exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "touch 390 garment selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.38795,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "touch 390 garment hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 390 garment one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 390 size selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.33634,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "touch 390 size hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 390 size one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 390 color selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.36276,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "touch 390 color hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 390 color one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 390 printSize selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.95529,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "touch 390 printSize hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 390 printSize one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 390 no horizontal scroll",
+      "ok": true
+    },
+    {
+      "name": "touch 390 no JS exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "touch 320 garment selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -4.38787,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Garment style/Garment_style_2_drop_shoulder.png"
+      }
+    },
+    {
+      "name": "touch 320 garment hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 320 garment one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 320 size selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.33624,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Size/Tshirt_size_M_3.png"
+      }
+    },
+    {
+      "name": "touch 320 size hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 320 size one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 320 color selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.36266,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "touch 320 color hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 320 color one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 320 printSize selected lift",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -3.95525,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Print size/Print_size_A3_1.png"
+      }
+    },
+    {
+      "name": "touch 320 printSize hover not sticky",
+      "ok": true,
+      "detail": "cc-worktable-layer cc-worktable-prop is-selected"
+    },
+    {
+      "name": "touch 320 printSize one choice selected",
+      "ok": true
+    },
+    {
+      "name": "touch 320 no horizontal scroll",
+      "ok": true
+    },
+    {
+      "name": "touch 320 no JS exceptions",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "delayed hydration really active",
+      "ok": true,
+      "detail": true
+    },
+    {
+      "name": "selection position and state recorded DURING hydration",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.36296,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "0",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "compiled preview hides duplicate cropped layers",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "selected pot VISIBLE after progressive hydration handoff",
+      "ok": true,
+      "detail": {
+        "cls": "cc-worktable-layer cc-worktable-prop is-selected",
+        "offset": -5.5,
+        "filter": "brightness(1.032) saturate(1.014) drop-shadow(rgba(31, 23, 14, 0.5) 2px 4.6px 1.7px) drop-shadow(rgba(250, 237, 211, 0.5) 0px 0px 2.3px)",
+        "opacity": "1",
+        "transition": "0.19s, 0.19s",
+        "source": "Tshirt color/Tshirt_color_3.png"
+      }
+    },
+    {
+      "name": "selected state not dropped through hydration",
+      "ok": true
+    },
+    {
+      "name": "hydration no JS errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "after-resting.png",
+    "after-hover.png",
+    "after-selected-after-pointer-exit.png",
+    "after-selected-pot-closeup.png",
+    "after-touch-selected-390.png",
+    "before-resting.png",
+    "before-hover.png",
+    "before-selected-after-pointer-exit.png",
+    "before-selected-pot-closeup.png"
+  ],
+  "composites": [
+    {
+      "name": "before-resting",
+      "bytes": 242196
+    },
+    {
+      "name": "before-hover",
+      "bytes": 242156
+    },
+    {
+      "name": "before-selected-after-pointer-exit",
+      "bytes": 236942
+    }
+  ]
+}

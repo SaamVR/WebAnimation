@@ -35,21 +35,46 @@
  transform:translate3d(0,-2px,0);
  filter:brightness(1.045) saturate(1.025) drop-shadow(1.8px 4px 1.6px rgb(31 24 17 / .41)) drop-shadow(0 0 1.5px rgb(252 240 211 / .32));
 }
+/* Selected artwork is intentionally more elevated than the approved 2px hover.
+   Use only the transparent image silhouette; hitboxes and baked preview are not filtered.
+   Group-specific lift is persistent after pointer exit and after manual-rail selection. */
+.cc-worktable-prop[data-group="garment"]{--cc-selected-lift:-4.5px;--cc-selected-hover-lift:-4.9px}
+.cc-worktable-prop[data-group="size"]{--cc-selected-lift:-3.5px;--cc-selected-hover-lift:-3.9px}
+.cc-worktable-prop[data-group="color"]{--cc-selected-lift:-5.5px;--cc-selected-hover-lift:-5.9px}
+.cc-worktable-prop[data-group="printSize"]{--cc-selected-lift:-4px;--cc-selected-hover-lift:-4.4px}
 .cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected{
- transform:translate3d(0,-2px,0);
- filter:brightness(1.035) saturate(1.018) drop-shadow(1.7px 3.8px 1.4px rgb(31 23 14 / .45)) drop-shadow(0 0 2px rgb(246 232 202 / .4));
+ transform:translate3d(0,var(--cc-selected-lift),0);
+ filter:brightness(1.032) saturate(1.014)
+  drop-shadow(2px 4.6px 1.7px rgb(31 23 14 / .5))
+  drop-shadow(0 0 2.3px rgb(250 237 211 / .5));
 }
+/* Do not change approved hover for nonselected artwork. Keep selected elevation
+   when a pointer returns, rather than allowing hover to push the object down. */
 .cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected.is-hovered{
- transform:translate3d(0,-3px,0);
- filter:brightness(1.065) saturate(1.03) drop-shadow(2px 4.3px 1.6px rgb(30 23 15 / .48)) drop-shadow(0 0 2.2px rgb(248 235 204 / .48));
+ transform:translate3d(0,var(--cc-selected-hover-lift),0);
+ filter:brightness(1.065) saturate(1.03)
+  drop-shadow(2.1px 5px 1.8px rgb(30 23 15 / .53))
+  drop-shadow(0 0 2.4px rgb(248 235 204 / .52));
 }
 .cc-worktable-prop[data-group="size"].is-hovered{transform:translate3d(0,-1.5px,0)}
-.cc-worktable-prop[data-group="upload"].is-hovered{transform:translate3d(0,-1px,0)}
+/* Upload is not selectable: only the illustrated plus/frame gains a 3px lift.
+   The notebook background and the approved hover of all other groups are intact. */
+.cc-worktable-prop[data-group="upload"].is-hovered{
+ transform:translate3d(0,-3px,0);
+ filter:brightness(1.045) saturate(1.025)
+  drop-shadow(2px 4.5px 1.7px rgb(31 24 17 / .43))
+  drop-shadow(0 0 1.7px rgb(252 240 211 / .36));
+}
 /* Keyboard focus illuminates the alpha silhouette, not a rectangular frame. */
 .cc-worktable-prop[data-group].is-keyboard-focus,
 .cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected.is-keyboard-focus{
  transform:translate3d(0,-2px,0);
  filter:brightness(1.09) drop-shadow(0 0 1px #fff9e8) drop-shadow(0 0 4px rgb(255 239 204 / .8)) drop-shadow(2px 4px 1.7px rgb(31 23 14 / .52));
+}
+/* The focus highlight remains accessible, but cannot collapse a selected
+   garment, tag, pot or paper card back to the old 2px offset. */
+.cc-worktable-prop[data-group]:not([data-group="upload"]).is-selected.is-keyboard-focus{
+ transform:translate3d(0,var(--cc-selected-lift),0);
 }
 /* Keep the tray-front illustration ABOVE the pot edges. No pot z-index overrides. */
 .cc-worktable-layer[data-source="Tshirt color/Tshirt_color_box_front_panel.png"]{z-index:auto}

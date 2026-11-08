@@ -1,0 +1,75 @@
+name: CHAPCHITRA selected-state refinement QA
+on:
+  pull_request:
+    branches:
+      - feature/chapchitra-artists-edit-physical-controls-20261108
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-selected-refinement-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  selected-elevation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          path: previous
+          ref: e9f8dc076113ab1f3d63f8cb54321fe35900b1b4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: candidate/projects/chapchitra/package-lock.json
+      - name: Verify source and checksum-locked build
+        run: |
+          cd candidate/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Build approved hover/old selected baseline
+        run: |
+          cd previous/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Install browser engines
+        run: |
+          cd candidate/projects/chapchitra
+          npx playwright install --with-deps chromium webkit
+      - name: Start separate same-source compare previews
+        run: |
+          (cd candidate/projects/chapchitra && PORT=4317 npm run preview >/tmp/cc-selected-new.log 2>&1) &
+          (cd previous/projects/chapchitra && PORT=4318 npm run preview >/tmp/cc-selected-old.log 2>&1) &
+          for i in {1..45}; do
+            if curl -fsS http://127.0.0.1:4317/artists-edit/ >/dev/null &&
+               curl -fsS http://127.0.0.1:4318/artists-edit/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/cc-selected-*.log
+          exit 1
+      - name: Selected-state positions and before-after captures in Chromium/WebKit/mobile
+        env:
+          CC_QA_URL: http://127.0.0.1:4317/artists-edit/
+          CC_BEFORE_URL: http://127.0.0.1:4318/artists-edit/
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/selected-refinement-qa.cjs
+      - name: Preserve prior physical-button accessibility and mobile behaviour
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/perf/qa.cjs http://127.0.0.1:4317 selected-refinement-original
+          node scripts/perf/early-qa.cjs http://127.0.0.1:4317
+      - name: Attach before-after and paint-pot closeups
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapchitra-selected-refinement-visual-qa
+          path: candidate/projects/chapchitra/perf-results/
+          if-no-files-found: warn
+          retention-days: 30
