@@ -22,7 +22,7 @@ function check(name,ok,extra){
    await page.waitForTimeout(170);
    const details=await page.evaluate(()=>({
     svg:document.querySelectorAll('.c01-lottie svg').length,
-    text:[...document.querySelectorAll('.c01-copy p')].map(n=>n.textContent),
+    text:[...document.querySelectorAll('.c01-copy h3')].map(n=>n.textContent),
     overflow:document.documentElement.scrollWidth>window.innerWidth+1,
     connectors:document.querySelectorAll('.c01-connection-active').length,
     full:[...document.querySelectorAll('.c01-icon-shell')].every(n=>Number(n.style.opacity)===1),

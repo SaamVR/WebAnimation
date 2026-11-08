@@ -1,6 +1,6 @@
 /* CHAPCHITRA C01: approved connected-panel V3 geometry; four authored icons remain untouched. */
 #benefits.benefit-section{background:var(--bg);border-top:1px solid var(--grey);border-bottom:0}
-#benefits .c01-stage{position:relative;max-width:none;padding-block:29px 30px;isolation:isolate}
+#benefits .c01-stage{position:relative;max-width:none;padding-block:15px 30px;isolation:isolate}
 #benefits .c01-connectors{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
 #benefits .c01-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 #benefits .c01-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;min-width:0;isolation:isolate}
@@ -11,8 +11,7 @@
 #benefits .c01-lottie{visibility:hidden}
 #benefits .c01-lottie svg{width:100%;height:100%;display:block}
 #benefits .c01-copy{padding-top:11px;max-width:190px}
-#benefits .c01-copy h3{font-size:13px;line-height:1.3;font-weight:720;letter-spacing:-.01em;color:var(--press);margin:0 0 5px}
-#benefits .c01-copy p{font-size:11px;line-height:1.5;color:var(--walnut);margin:0;text-wrap:pretty}
+#benefits .c01-copy h3{font-size:13px;line-height:1.3;font-weight:720;letter-spacing:-.01em;color:var(--press);margin:0;white-space:nowrap}
 #benefits .c01-connection-guide{fill:none;stroke:var(--beige);stroke-width:1.7;stroke-linecap:round;opacity:.57}
 #benefits .c01-connection-active{fill:none;stroke:var(--press);stroke-width:2.1;stroke-linecap:round}
 #benefits .c01-connection-pulse{fill:none;stroke:var(--color-terracotta);stroke-width:2.9;stroke-linecap:round}
@@ -34,20 +33,22 @@
  #benefits .c01-step:nth-child(4) > .c01-icon-shell,
  #benefits .c01-step:nth-child(4) > .c01-copy{transform:translateX(var(--c01-spread-edge))}
 }
+@media(min-width:681px) and (max-width:800px){
+ #benefits .c01-copy h3{font-size:clamp(10px,1.5vw,12px);letter-spacing:-.02em}
+}
 @media(max-width:680px){
- #benefits .c01-stage{max-width:440px;padding-block:23px 24px}
+ #benefits .c01-stage{max-width:440px;padding-block:12px 24px}
  #benefits .c01-steps{grid-template-columns:1fr;gap:29px}
  #benefits .c01-step{display:flex;flex-direction:row;text-align:left;min-height:72px;gap:16px}
  #benefits .c01-icon-shell{width:76px;height:76px}
  #benefits .c01-icon-shell:before{width:72px;height:72px;left:3px;top:3px}
  #benefits .c01-icon{width:68px;height:68px}
  #benefits .c01-copy{max-width:none;padding:0;align-self:center;min-width:0}
- #benefits .c01-copy h3{margin:0 0 4px;font-size:13px}
- #benefits .c01-copy p{font-size:11px;line-height:1.45;max-width:300px}
+ #benefits .c01-copy h3{margin:0;font-size:13px}
 }
 @media(max-width:350px){
  #benefits .c01-step{gap:13px}
- #benefits .c01-copy p{font-size:10.5px}
+ #benefits .c01-copy h3{font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){
  #benefits .c01-lottie{animation:none!important;transition:none!important}

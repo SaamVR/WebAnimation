@@ -77,15 +77,15 @@ async function boot(){
   }).join('')+'</div><div class="hero-controls wrap"><div class="hero-dots" role="group" aria-label="Choose hero slide">'+slides.map((s,i)=>'<button class="hero-dot'+(i===0?' active':'')+'" type="button" data-slide-to="'+i+'" aria-label="Show slide '+(i+1)+': '+esc(s.title)+'" aria-pressed="'+(i===0?'true':'false')+'"></button>').join('')+'</div><span class="hero-count" id="heroCount">01 / 05</span></div></section>';
  }
  function benefits(){
-  // Owner-locked C01 copy: the icon assets and V3 choreography are self-hosted.
+  // Owner-approved one-line feature labels. Approved icon artwork/timing remain unchanged.
   const items=[
-   ['Custom Print Care','Thoughtful printing with room for customization.','icon-01-print-care-v4.webp'],
-   ['Easy Payment','Easy checkout with multiple payment methods.','icon-02-easy-payment-v2.webp'],
-   ['Delivery','Shipping updates with parcel delivery.','icon-03-delivery-v2.webp'],
-   ['Order Support','Support for print, artwork, sizing, and ordering.','icon-04-order-support-v2.webp']
+   ['Original Art & Customization','icon-01-print-care-v4.webp'],
+   ['Secure & Flexible Payment','icon-02-easy-payment-v2.webp'],
+   ['Fast Delivery','icon-03-delivery-v2.webp'],
+   ['24/7 Support','icon-04-order-support-v2.webp']
   ];
-  return '<section id="benefits" class="benefit-section" aria-labelledby="benefitsTitle"><h2 class="sr-only" id="benefitsTitle">Service benefits</h2><div class="wrap c01-stage" data-c01><svg class="c01-connectors" aria-hidden="true" focusable="false"></svg><div class="c01-steps">'+items.map(([label,subtitle,poster],i)=>
-   '<article class="c01-step"><div class="c01-icon-shell" aria-hidden="true"><div class="c01-icon"><img class="c01-poster" src="/assets/c01/posters/'+poster+'" width="512" height="512" alt="" decoding="async"><div class="c01-lottie" aria-hidden="true"></div></div></div><div class="c01-copy"><h3>'+esc(label)+'</h3><p>'+esc(subtitle)+'</p></div></article>').join('')+'</div></div></section>';
+  return '<section id="benefits" class="benefit-section" aria-labelledby="benefitsTitle"><h2 class="sr-only" id="benefitsTitle">Service benefits</h2><div class="wrap c01-stage" data-c01><svg class="c01-connectors" aria-hidden="true" focusable="false"></svg><div class="c01-steps">'+items.map(([label,poster])=>
+   '<article class="c01-step"><div class="c01-icon-shell" aria-hidden="true"><div class="c01-icon"><img class="c01-poster" src="/assets/c01/posters/'+poster+'" width="512" height="512" alt="" decoding="async"><div class="c01-lottie" aria-hidden="true"></div></div></div><div class="c01-copy"><h3>'+esc(label)+'</h3></div></article>').join('')+'</div></div></section>';
  }
  function titleBlock(label,title,desc){return '<div class="section-title"><div><p class="eyebrow">'+label+'</p><h2>'+title+'</h2></div><p>'+desc+'</p></div>'}
  function categoriesSection(){

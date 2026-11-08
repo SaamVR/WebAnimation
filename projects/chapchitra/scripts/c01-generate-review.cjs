@@ -9,10 +9,10 @@ const posters = path.join(root,'src','assets','c01','posters');
 const endpoint = process.env.C01_URL || 'http://127.0.0.1:19118/';
 const executablePath = process.env.C01_CHROMIUM;
 const labels = [
- ['Custom Print Care','Thoughtful printing with room for customization.'],
- ['Easy Payment','Easy checkout with multiple payment methods.'],
- ['Delivery','Shipping updates with parcel delivery.'],
- ['Order Support','Support for print, artwork, sizing, and ordering.']
+ 'Original Art & Customization',
+ 'Secure & Flexible Payment',
+ 'Fast Delivery',
+ '24/7 Support'
 ];
 const names=['icon-01-print-care-v4.webp','icon-02-easy-payment-v2.webp','icon-03-delivery-v2.webp','icon-04-order-support-v2.webp'];
 const report={endpoint,checkedAt:new Date().toISOString(),checks:[],errors:[],posters:[]};
@@ -36,7 +36,7 @@ async function ready(page) {
   page.on('console',m=>{if(m.type()==='error')report.errors.push('console: '+m.text().slice(0,300));});
   await ready(page);
   const initial=await page.evaluate(()=>({
-    copy:[...document.querySelectorAll('.c01-copy')].map(n=>[n.querySelector('h3').textContent,n.querySelector('p').textContent]),
+    copy:[...document.querySelectorAll('.c01-copy h3')].map(n=>n.textContent),
     count:document.querySelectorAll('.c01-lottie svg').length,
     source:[...document.querySelectorAll('.c01-icon')].map(n=>n.getBoundingClientRect().width),
     duration:window.__chapchitraC01.duration, connectors:window.__chapchitraC01.connectors,
