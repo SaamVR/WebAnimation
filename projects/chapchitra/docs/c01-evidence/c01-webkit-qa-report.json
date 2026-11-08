@@ -1,0 +1,49 @@
+{
+  "engine": "WebKit Linux",
+  "url": "http://127.0.0.1:19118/",
+  "checks": [
+    {
+      "name": "WebKit 1280 real Lottie SVG and all connectors",
+      "passed": true
+    },
+    {
+      "name": "WebKit 1280 responsive & finished composition",
+      "passed": true
+    },
+    {
+      "name": "WebKit 834 real Lottie SVG and all connectors",
+      "passed": true
+    },
+    {
+      "name": "WebKit 834 responsive & finished composition",
+      "passed": true
+    },
+    {
+      "name": "WebKit 430 real Lottie SVG and all connectors",
+      "passed": true
+    },
+    {
+      "name": "WebKit 430 responsive & finished composition",
+      "passed": true
+    },
+    {
+      "name": "WebKit 320 real Lottie SVG and all connectors",
+      "passed": true
+    },
+    {
+      "name": "WebKit 320 responsive & finished composition",
+      "passed": true
+    },
+    {
+      "name": "WebKit reduced-motion full static set",
+      "passed": true,
+      "detail": {
+        "reduced": true,
+        "stopped": true,
+        "final": true,
+        "icons": true
+      }
+    }
+  ],
+  "errors": []
+}
