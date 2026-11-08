@@ -1,0 +1,94 @@
+{
+  "resting": {
+    "before": {
+      "stageRect": [
+        1440,
+        810
+      ],
+      "stageChildren": 40,
+      "garment": [
+        "regular",
+        "white"
+      ],
+      "preview": 0,
+      "selected": [
+        "color:white",
+        "garment:regular",
+        "printSize:A4",
+        "size:M"
+      ]
+    },
+    "after": {
+      "stageRect": [
+        1440,
+        810
+      ],
+      "stageChildren": 40,
+      "garment": [
+        "regular",
+        "white"
+      ],
+      "preview": 0,
+      "selected": [
+        "color:white",
+        "garment:regular",
+        "printSize:A4",
+        "size:M"
+      ]
+    },
+    "diff": {
+      "width": 1440,
+      "height": 810,
+      "meanAbsRGB": 0,
+      "pixelsChangedOver2": 0,
+      "percentChangedOver2": 0
+    },
+    "errors": []
+  },
+  "red-hoodie": {
+    "before": {
+      "stageRect": [
+        1440,
+        810
+      ],
+      "stageChildren": 40,
+      "garment": [
+        "hoodie",
+        "red"
+      ],
+      "preview": 0,
+      "selected": [
+        "color:red",
+        "garment:hoodie",
+        "printSize:A4",
+        "size:M"
+      ]
+    },
+    "after": {
+      "stageRect": [
+        1440,
+        810
+      ],
+      "stageChildren": 40,
+      "garment": [
+        "hoodie",
+        "red"
+      ],
+      "preview": 0,
+      "selected": [
+        "color:red",
+        "garment:hoodie",
+        "printSize:A4",
+        "size:M"
+      ]
+    },
+    "diff": {
+      "width": 1440,
+      "height": 810,
+      "meanAbsRGB": 0.000033721993598536805,
+      "pixelsChangedOver2": 1,
+      "percentChangedOver2": 0.00008573388203017832
+    },
+    "errors": []
+  }
+}

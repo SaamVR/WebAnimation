@@ -1,0 +1,70 @@
+{
+  "method": "Headless Chromium same Linux runner, 70ms simulated RTT, mobile 390px/4Mbps, desktop 1440px/10Mbps. Paired two cold-cache runs each; not a physical iPad.",
+  "profiles": {
+    "desktop": {
+      "beforeFirst": 1630.5,
+      "afterFirst": 1695.5,
+      "deltaMs": 65,
+      "beforeHydrate": 3201,
+      "afterHydrate": 3224,
+      "imageBytes": 771756,
+      "unchangedImages": true,
+      "imagesCount": 39,
+      "errors": [],
+      "pass": true,
+      "firstTrials": {
+        "before": [
+          1610,
+          1651
+        ],
+        "after": [
+          1812,
+          1579
+        ]
+      },
+      "hydratedTrials": {
+        "before": [
+          3190,
+          3212
+        ],
+        "after": [
+          3292,
+          3156
+        ]
+      }
+    },
+    "mobile": {
+      "beforeFirst": 2385.5,
+      "afterFirst": 2276.5,
+      "deltaMs": -109,
+      "beforeHydrate": 4047.5,
+      "afterHydrate": 3956,
+      "imageBytes": 283792,
+      "unchangedImages": true,
+      "imagesCount": 40,
+      "errors": [],
+      "pass": true,
+      "firstTrials": {
+        "before": [
+          2468,
+          2303
+        ],
+        "after": [
+          2245,
+          2308
+        ]
+      },
+      "hydratedTrials": {
+        "before": [
+          4101,
+          3994
+        ],
+        "after": [
+          3917,
+          3995
+        ]
+      }
+    }
+  },
+  "pass": true
+}

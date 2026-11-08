@@ -1,0 +1,4238 @@
+{
+  "target": "http://127.0.0.1:4366/artists-edit/",
+  "base": "http://127.0.0.1:4355/artists-edit/",
+  "passed": 768,
+  "failed": 0,
+  "total": 768,
+  "failures": [],
+  "timings": [
+    {
+      "name": "chromium-desktop",
+      "width": 1440,
+      "first": {
+        "ready": 1709,
+        "full": 2480
+      }
+    },
+    {
+      "name": "webkit-desktop",
+      "width": 1440,
+      "first": {
+        "ready": 1925,
+        "full": 2749
+      }
+    },
+    {
+      "name": "chromium-tablet",
+      "width": 834,
+      "first": {
+        "ready": 1330,
+        "full": 1769
+      }
+    },
+    {
+      "name": "webkit-tablet",
+      "width": 834,
+      "first": {
+        "ready": 988,
+        "full": 2031
+      }
+    },
+    {
+      "name": "chromium-mobile",
+      "width": 390,
+      "first": {
+        "ready": 1525,
+        "full": 1899
+      }
+    },
+    {
+      "name": "webkit-mobile",
+      "width": 390,
+      "first": {
+        "ready": 574,
+        "full": 851
+      }
+    },
+    {
+      "name": "chromium-small",
+      "width": 320,
+      "first": {
+        "ready": 877,
+        "full": 1053
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "chromium-desktop 1440 correct four accessible fieldset groups",
+      "pass": true,
+      "detail": [
+        "01 Garment style",
+        "02 Size",
+        "03 Fabric color",
+        "04 Print size"
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 editorial Noto Serif Bengali heading",
+      "pass": true,
+      "detail": "\"Noto Serif Bengali\", Georgia, \"Times New Roman\", serif"
+    },
+    {
+      "name": "chromium-desktop 1440 Hind Siliguri control font",
+      "pass": true,
+      "detail": "\"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+    },
+    {
+      "name": "chromium-desktop 1440 Gallery White surface",
+      "pass": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "chromium-desktop 1440 exact responsive column count",
+      "pass": true,
+      "detail": {
+        "actual": 4,
+        "expected": 4
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 no page horizontal overflow",
+      "pass": true,
+      "detail": [
+        1440,
+        1440
+      ]
+    },
+    {
+      "name": "chromium-desktop 1440 all 17 manual choices present",
+      "pass": true,
+      "detail": 17
+    },
+    {
+      "name": "chromium-desktop 1440 persistent accessible polite status announcement region",
+      "pass": true,
+      "detail": {
+        "role": "status",
+        "ariaLive": "polite"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 only one chosen garment initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button garment:regular",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 only one chosen size initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button size:S",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button size:M",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button size:XL",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button size:XXL",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 only one chosen color initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button color:black",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button color:white",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button color:yellow",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button color:blue",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button color:green",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 only one chosen printSize initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 named semantic button printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 calibrated black fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          34,
+          38,
+          41
+        ],
+        "hex": "#222629"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 calibrated white fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          255,
+          255,
+          255
+        ],
+        "hex": "#ffffff"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 calibrated red fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          222,
+          31,
+          48
+        ],
+        "hex": "#DE1F30"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 calibrated yellow fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          243,
+          201,
+          22
+        ],
+        "hex": "#F3C916"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 calibrated blue fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          20,
+          95,
+          206
+        ],
+        "hex": "#145FCE"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 calibrated green fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          8,
+          123,
+          71
+        ],
+        "hex": "#087B47"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync garment:regular",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity garment:regular",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity garment:dropShoulder",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity garment:fullSleeve",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity garment:hoodie",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync size:S",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated persistent highlight size:S",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity size:S",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync size:M",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated persistent highlight size:M",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity size:M",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated persistent highlight size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity size:L",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync size:XL",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated persistent highlight size:XL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity size:XL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync size:XXL",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated persistent highlight size:XXL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity size:XXL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync color:black",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity color:black",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync color:white",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity color:white",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity color:red",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync color:yellow",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity color:yellow",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync color:blue",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity color:blue",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync color:green",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity color:green",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated persistent highlight printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity printSize:A3",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 rail sync printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated persistent highlight printSize:A4",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 exclusivity printSize:A4",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-desktop 1440 selection announced to screen readers",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 final panel state matches colored Hoodie canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated stage to panel garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 stage and panel both pressed garment:dropShoulder",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated stage to panel size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 stage and panel both pressed size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated stage to panel color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 stage and panel both pressed color:red",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.05712) saturate(1.02803) drop-shadow(rgba(30, 23, 16, 0.482) 1.9818px 4.606px 1.7212px) drop-shadow(rgba(249, 236, 206, 0.443) 0px 0px 2.0454px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 illustrated stage to panel printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 stage and panel both pressed printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 primary upload 44px touch size",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 upload enables existing controls",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 artwork scale remains synchronized",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 reset placement stays functional",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 artwork removal restores disabled state",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 no duplicate SVG illustration",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 original production calibration disclaimer",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px garment:regular",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px garment:dropShoulder",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px garment:fullSleeve",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px garment:hoodie",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px size:S",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px size:M",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px size:L",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px size:XL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px size:XXL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px color:black",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px color:white",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px color:red",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px color:yellow",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px color:blue",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px color:green",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px printSize:A3",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 touch target >=44px printSize:A4",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-desktop 1440 keyboard focus available",
+      "pass": true,
+      "detail": {
+        "focused": true,
+        "style": "none",
+        "width": "3px"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 keyboard Enter updates same color reducer",
+      "pass": true
+    },
+    {
+      "name": "chromium-desktop 1440 keyboard focus advances",
+      "pass": true,
+      "detail": {
+        "tag": "BUTTON",
+        "group": "color",
+        "value": "white",
+        "outline": "solid",
+        "width": "2px"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 keyboard-only focus is visibly distinguished",
+      "pass": true,
+      "detail": {
+        "tag": "BUTTON",
+        "group": "color",
+        "value": "white",
+        "outline": "solid",
+        "width": "2px"
+      }
+    },
+    {
+      "name": "chromium-desktop 1440 no script errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "chromium-desktop 1440 final no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 correct four accessible fieldset groups",
+      "pass": true,
+      "detail": [
+        "01 Garment style",
+        "02 Size",
+        "03 Fabric color",
+        "04 Print size"
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 editorial Noto Serif Bengali heading",
+      "pass": true,
+      "detail": "Noto Serif Bengali, Georgia, Times New Roman, serif"
+    },
+    {
+      "name": "webkit-desktop 1440 Hind Siliguri control font",
+      "pass": true,
+      "detail": "Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    },
+    {
+      "name": "webkit-desktop 1440 Gallery White surface",
+      "pass": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "webkit-desktop 1440 exact responsive column count",
+      "pass": true,
+      "detail": {
+        "actual": 4,
+        "expected": 4
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 no page horizontal overflow",
+      "pass": true,
+      "detail": [
+        1440,
+        1440
+      ]
+    },
+    {
+      "name": "webkit-desktop 1440 all 17 manual choices present",
+      "pass": true,
+      "detail": 17
+    },
+    {
+      "name": "webkit-desktop 1440 persistent accessible polite status announcement region",
+      "pass": true,
+      "detail": {
+        "role": "status",
+        "ariaLive": "polite"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 only one chosen garment initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button garment:regular",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 only one chosen size initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button size:S",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button size:M",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button size:L",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button size:XL",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button size:XXL",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 only one chosen color initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button color:black",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button color:white",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button color:red",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button color:yellow",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button color:blue",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button color:green",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 only one chosen printSize initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 named semantic button printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 calibrated black fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          34,
+          38,
+          41
+        ],
+        "hex": "#222629"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 calibrated white fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          255,
+          255,
+          255
+        ],
+        "hex": "#ffffff"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 calibrated red fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          222,
+          31,
+          48
+        ],
+        "hex": "#DE1F30"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 calibrated yellow fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          243,
+          201,
+          22
+        ],
+        "hex": "#F3C916"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 calibrated blue fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          20,
+          95,
+          206
+        ],
+        "hex": "#145FCE"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 calibrated green fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          8,
+          123,
+          71
+        ],
+        "hex": "#087B47"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync garment:regular",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity garment:regular",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity garment:dropShoulder",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity garment:fullSleeve",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity garment:hoodie",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync size:S",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated persistent highlight size:S",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity size:S",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync size:M",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated persistent highlight size:M",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity size:M",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync size:L",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated persistent highlight size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity size:L",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync size:XL",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated persistent highlight size:XL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity size:XL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync size:XXL",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated persistent highlight size:XXL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity size:XXL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync color:black",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity color:black",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync color:white",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity color:white",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync color:red",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity color:red",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync color:yellow",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity color:yellow",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync color:blue",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity color:blue",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync color:green",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity color:green",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated persistent highlight printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity printSize:A3",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 rail sync printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated persistent highlight printSize:A4",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 exclusivity printSize:A4",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-desktop 1440 selection announced to screen readers",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 final panel state matches colored Hoodie canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated stage to panel garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 stage and panel both pressed garment:dropShoulder",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated stage to panel size:L",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 stage and panel both pressed size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated stage to panel color:red",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 stage and panel both pressed color:red",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 illustrated stage to panel printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 stage and panel both pressed printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.045) saturate(1.025) drop-shadow(rgba(31, 24, 17, 0.41) 1.8px 4px 1.6px) drop-shadow(rgba(252, 240, 211, 0.32) 0px 0px 1.5px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 primary upload 44px touch size",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 upload enables existing controls",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 artwork scale remains synchronized",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 reset placement stays functional",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 artwork removal restores disabled state",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 no duplicate SVG illustration",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 original production calibration disclaimer",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px garment:regular",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px garment:dropShoulder",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px garment:fullSleeve",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px garment:hoodie",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px size:S",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px size:M",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px size:L",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px size:XL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px size:XXL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px color:black",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px color:white",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px color:red",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px color:yellow",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px color:blue",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px color:green",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px printSize:A3",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 touch target >=44px printSize:A4",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-desktop 1440 keyboard focus available",
+      "pass": true,
+      "detail": {
+        "focused": true,
+        "style": "none",
+        "width": "3px"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 keyboard Enter updates same color reducer",
+      "pass": true
+    },
+    {
+      "name": "webkit-desktop 1440 keyboard focus advances",
+      "pass": true,
+      "detail": {
+        "tag": "BUTTON",
+        "group": "color",
+        "value": "white",
+        "outline": "solid",
+        "width": "2px"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 keyboard-only focus is visibly distinguished",
+      "pass": true,
+      "detail": {
+        "tag": "BUTTON",
+        "group": "color",
+        "value": "white",
+        "outline": "solid",
+        "width": "2px"
+      }
+    },
+    {
+      "name": "webkit-desktop 1440 no script errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "webkit-desktop 1440 final no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 correct four accessible fieldset groups",
+      "pass": true,
+      "detail": [
+        "01 Garment style",
+        "02 Size",
+        "03 Fabric color",
+        "04 Print size"
+      ]
+    },
+    {
+      "name": "chromium-tablet 834 editorial Noto Serif Bengali heading",
+      "pass": true,
+      "detail": "\"Noto Serif Bengali\", Georgia, \"Times New Roman\", serif"
+    },
+    {
+      "name": "chromium-tablet 834 Hind Siliguri control font",
+      "pass": true,
+      "detail": "\"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+    },
+    {
+      "name": "chromium-tablet 834 Gallery White surface",
+      "pass": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "chromium-tablet 834 exact responsive column count",
+      "pass": true,
+      "detail": {
+        "actual": 2,
+        "expected": 2
+      }
+    },
+    {
+      "name": "chromium-tablet 834 no page horizontal overflow",
+      "pass": true,
+      "detail": [
+        834,
+        834
+      ]
+    },
+    {
+      "name": "chromium-tablet 834 all 17 manual choices present",
+      "pass": true,
+      "detail": 17
+    },
+    {
+      "name": "chromium-tablet 834 persistent accessible polite status announcement region",
+      "pass": true,
+      "detail": {
+        "role": "status",
+        "ariaLive": "polite"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 only one chosen garment initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button garment:regular",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 only one chosen size initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button size:S",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button size:M",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button size:XL",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button size:XXL",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 only one chosen color initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button color:black",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button color:white",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button color:yellow",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button color:blue",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button color:green",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 only one chosen printSize initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 named semantic button printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 calibrated black fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          34,
+          38,
+          41
+        ],
+        "hex": "#222629"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 calibrated white fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          255,
+          255,
+          255
+        ],
+        "hex": "#ffffff"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 calibrated red fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          222,
+          31,
+          48
+        ],
+        "hex": "#DE1F30"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 calibrated yellow fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          243,
+          201,
+          22
+        ],
+        "hex": "#F3C916"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 calibrated blue fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          20,
+          95,
+          206
+        ],
+        "hex": "#145FCE"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 calibrated green fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          8,
+          123,
+          71
+        ],
+        "hex": "#087B47"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 rail sync garment:regular",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity garment:regular",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity garment:dropShoulder",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity garment:fullSleeve",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity garment:hoodie",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync size:S",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 illustrated persistent highlight size:S",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity size:S",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync size:M",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 illustrated persistent highlight size:M",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity size:M",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 illustrated persistent highlight size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity size:L",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync size:XL",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 illustrated persistent highlight size:XL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity size:XL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync size:XXL",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 illustrated persistent highlight size:XXL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity size:XXL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync color:black",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity color:black",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync color:white",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity color:white",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity color:red",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync color:yellow",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity color:yellow",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync color:blue",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity color:blue",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync color:green",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity color:green",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 illustrated persistent highlight printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity printSize:A3",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 rail sync printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 illustrated persistent highlight printSize:A4",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 exclusivity printSize:A4",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-tablet 834 selection announced to screen readers",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 final panel state matches colored Hoodie canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 illustrated stage to panel garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 stage and panel both pressed garment:dropShoulder",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 illustrated stage to panel size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 stage and panel both pressed size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 illustrated stage to panel color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 stage and panel both pressed color:red",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 illustrated stage to panel printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 stage and panel both pressed printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-tablet 834 primary upload 44px touch size",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 upload enables existing controls",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 artwork scale remains synchronized",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 reset placement stays functional",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 artwork removal restores disabled state",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 no duplicate SVG illustration",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 original production calibration disclaimer",
+      "pass": true
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px garment:regular",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px garment:dropShoulder",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px garment:fullSleeve",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px garment:hoodie",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px size:S",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px size:M",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px size:L",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px size:XL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px size:XXL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px color:black",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px color:white",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px color:red",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px color:yellow",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px color:blue",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px color:green",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px printSize:A3",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 touch target >=44px printSize:A4",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-tablet 834 no script errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "chromium-tablet 834 final no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 correct four accessible fieldset groups",
+      "pass": true,
+      "detail": [
+        "01 Garment style",
+        "02 Size",
+        "03 Fabric color",
+        "04 Print size"
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 editorial Noto Serif Bengali heading",
+      "pass": true,
+      "detail": "Noto Serif Bengali, Georgia, Times New Roman, serif"
+    },
+    {
+      "name": "webkit-tablet 834 Hind Siliguri control font",
+      "pass": true,
+      "detail": "Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    },
+    {
+      "name": "webkit-tablet 834 Gallery White surface",
+      "pass": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "webkit-tablet 834 exact responsive column count",
+      "pass": true,
+      "detail": {
+        "actual": 2,
+        "expected": 2
+      }
+    },
+    {
+      "name": "webkit-tablet 834 no page horizontal overflow",
+      "pass": true,
+      "detail": [
+        834,
+        834
+      ]
+    },
+    {
+      "name": "webkit-tablet 834 all 17 manual choices present",
+      "pass": true,
+      "detail": 17
+    },
+    {
+      "name": "webkit-tablet 834 persistent accessible polite status announcement region",
+      "pass": true,
+      "detail": {
+        "role": "status",
+        "ariaLive": "polite"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 only one chosen garment initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button garment:regular",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 only one chosen size initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button size:S",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button size:M",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button size:L",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button size:XL",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button size:XXL",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 only one chosen color initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button color:black",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button color:white",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button color:red",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button color:yellow",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button color:blue",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button color:green",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 only one chosen printSize initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 named semantic button printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 calibrated black fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          34,
+          38,
+          41
+        ],
+        "hex": "#222629"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 calibrated white fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          255,
+          255,
+          255
+        ],
+        "hex": "#ffffff"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 calibrated red fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          222,
+          31,
+          48
+        ],
+        "hex": "#DE1F30"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 calibrated yellow fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          243,
+          201,
+          22
+        ],
+        "hex": "#F3C916"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 calibrated blue fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          20,
+          95,
+          206
+        ],
+        "hex": "#145FCE"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 calibrated green fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          8,
+          123,
+          71
+        ],
+        "hex": "#087B47"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 rail sync garment:regular",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity garment:regular",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity garment:dropShoulder",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity garment:fullSleeve",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity garment:hoodie",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync size:S",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 illustrated persistent highlight size:S",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity size:S",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync size:M",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 illustrated persistent highlight size:M",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity size:M",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync size:L",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 illustrated persistent highlight size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity size:L",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync size:XL",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 illustrated persistent highlight size:XL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity size:XL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync size:XXL",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 illustrated persistent highlight size:XXL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity size:XXL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync color:black",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity color:black",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync color:white",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity color:white",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync color:red",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity color:red",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync color:yellow",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity color:yellow",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync color:blue",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity color:blue",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync color:green",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity color:green",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 illustrated persistent highlight printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity printSize:A3",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 rail sync printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 illustrated persistent highlight printSize:A4",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 exclusivity printSize:A4",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-tablet 834 selection announced to screen readers",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 final panel state matches colored Hoodie canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 illustrated stage to panel garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 stage and panel both pressed garment:dropShoulder",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 illustrated stage to panel size:L",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 stage and panel both pressed size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 illustrated stage to panel color:red",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 stage and panel both pressed color:red",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 illustrated stage to panel printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 stage and panel both pressed printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-tablet 834 primary upload 44px touch size",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 upload enables existing controls",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 artwork scale remains synchronized",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 reset placement stays functional",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 artwork removal restores disabled state",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 no duplicate SVG illustration",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 original production calibration disclaimer",
+      "pass": true
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px garment:regular",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px garment:dropShoulder",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px garment:fullSleeve",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px garment:hoodie",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px size:S",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px size:M",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px size:L",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px size:XL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px size:XXL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px color:black",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px color:white",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px color:red",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px color:yellow",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px color:blue",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px color:green",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px printSize:A3",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 touch target >=44px printSize:A4",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-tablet 834 no script errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "webkit-tablet 834 final no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 correct four accessible fieldset groups",
+      "pass": true,
+      "detail": [
+        "01 Garment style",
+        "02 Size",
+        "03 Fabric color",
+        "04 Print size"
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 editorial Noto Serif Bengali heading",
+      "pass": true,
+      "detail": "\"Noto Serif Bengali\", Georgia, \"Times New Roman\", serif"
+    },
+    {
+      "name": "chromium-mobile 390 Hind Siliguri control font",
+      "pass": true,
+      "detail": "\"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+    },
+    {
+      "name": "chromium-mobile 390 Gallery White surface",
+      "pass": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "chromium-mobile 390 exact responsive column count",
+      "pass": true,
+      "detail": {
+        "actual": 1,
+        "expected": 1
+      }
+    },
+    {
+      "name": "chromium-mobile 390 no page horizontal overflow",
+      "pass": true,
+      "detail": [
+        390,
+        390
+      ]
+    },
+    {
+      "name": "chromium-mobile 390 all 17 manual choices present",
+      "pass": true,
+      "detail": 17
+    },
+    {
+      "name": "chromium-mobile 390 persistent accessible polite status announcement region",
+      "pass": true,
+      "detail": {
+        "role": "status",
+        "ariaLive": "polite"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 only one chosen garment initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button garment:regular",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 only one chosen size initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button size:S",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button size:M",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button size:XL",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button size:XXL",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 only one chosen color initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button color:black",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button color:white",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button color:yellow",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button color:blue",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button color:green",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 only one chosen printSize initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 named semantic button printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 calibrated black fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          34,
+          38,
+          41
+        ],
+        "hex": "#222629"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 calibrated white fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          255,
+          255,
+          255
+        ],
+        "hex": "#ffffff"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 calibrated red fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          222,
+          31,
+          48
+        ],
+        "hex": "#DE1F30"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 calibrated yellow fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          243,
+          201,
+          22
+        ],
+        "hex": "#F3C916"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 calibrated blue fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          20,
+          95,
+          206
+        ],
+        "hex": "#145FCE"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 calibrated green fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          8,
+          123,
+          71
+        ],
+        "hex": "#087B47"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 rail sync garment:regular",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity garment:regular",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity garment:dropShoulder",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity garment:fullSleeve",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity garment:hoodie",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync size:S",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 illustrated persistent highlight size:S",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity size:S",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync size:M",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 illustrated persistent highlight size:M",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity size:M",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 illustrated persistent highlight size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity size:L",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync size:XL",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 illustrated persistent highlight size:XL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity size:XL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync size:XXL",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 illustrated persistent highlight size:XXL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity size:XXL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync color:black",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity color:black",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync color:white",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity color:white",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity color:red",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync color:yellow",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity color:yellow",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync color:blue",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity color:blue",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync color:green",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity color:green",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 illustrated persistent highlight printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity printSize:A3",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 rail sync printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 illustrated persistent highlight printSize:A4",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-mobile 390 exclusivity printSize:A4",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-mobile 390 selection announced to screen readers",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 final panel state matches colored Hoodie canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 primary upload 44px touch size",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 upload enables existing controls",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 artwork scale remains synchronized",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 reset placement stays functional",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 artwork removal restores disabled state",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 no duplicate SVG illustration",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 original production calibration disclaimer",
+      "pass": true
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px garment:regular",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px garment:dropShoulder",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px garment:fullSleeve",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px garment:hoodie",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px size:S",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px size:M",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px size:L",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px size:XL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px size:XXL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px color:black",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px color:white",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px color:red",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px color:yellow",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px color:blue",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px color:green",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px printSize:A3",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 touch target >=44px printSize:A4",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-mobile 390 no script errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "chromium-mobile 390 final no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 correct four accessible fieldset groups",
+      "pass": true,
+      "detail": [
+        "01 Garment style",
+        "02 Size",
+        "03 Fabric color",
+        "04 Print size"
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 editorial Noto Serif Bengali heading",
+      "pass": true,
+      "detail": "Noto Serif Bengali, Georgia, Times New Roman, serif"
+    },
+    {
+      "name": "webkit-mobile 390 Hind Siliguri control font",
+      "pass": true,
+      "detail": "Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    },
+    {
+      "name": "webkit-mobile 390 Gallery White surface",
+      "pass": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "webkit-mobile 390 exact responsive column count",
+      "pass": true,
+      "detail": {
+        "actual": 1,
+        "expected": 1
+      }
+    },
+    {
+      "name": "webkit-mobile 390 no page horizontal overflow",
+      "pass": true,
+      "detail": [
+        390,
+        390
+      ]
+    },
+    {
+      "name": "webkit-mobile 390 all 17 manual choices present",
+      "pass": true,
+      "detail": 17
+    },
+    {
+      "name": "webkit-mobile 390 persistent accessible polite status announcement region",
+      "pass": true,
+      "detail": {
+        "role": "status",
+        "ariaLive": "polite"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 only one chosen garment initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button garment:regular",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 only one chosen size initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button size:S",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button size:M",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button size:L",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button size:XL",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button size:XXL",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 only one chosen color initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button color:black",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button color:white",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button color:red",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button color:yellow",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button color:blue",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button color:green",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 only one chosen printSize initially",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 named semantic button printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 calibrated black fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          34,
+          38,
+          41
+        ],
+        "hex": "#222629"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 calibrated white fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          255,
+          255,
+          255
+        ],
+        "hex": "#ffffff"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 calibrated red fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          222,
+          31,
+          48
+        ],
+        "hex": "#DE1F30"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 calibrated yellow fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          243,
+          201,
+          22
+        ],
+        "hex": "#F3C916"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 calibrated blue fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          20,
+          95,
+          206
+        ],
+        "hex": "#145FCE"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 calibrated green fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          8,
+          123,
+          71
+        ],
+        "hex": "#087B47"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 rail sync garment:regular",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity garment:regular",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity garment:dropShoulder",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity garment:fullSleeve",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity garment:hoodie",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync size:S",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 illustrated persistent highlight size:S",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity size:S",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync size:M",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 illustrated persistent highlight size:M",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity size:M",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync size:L",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 illustrated persistent highlight size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity size:L",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync size:XL",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 illustrated persistent highlight size:XL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity size:XL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync size:XXL",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 illustrated persistent highlight size:XXL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity size:XXL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync color:black",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity color:black",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync color:white",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity color:white",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync color:red",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity color:red",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync color:yellow",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity color:yellow",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync color:blue",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity color:blue",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync color:green",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity color:green",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 illustrated persistent highlight printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity printSize:A3",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 rail sync printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 illustrated persistent highlight printSize:A4",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "webkit-mobile 390 exclusivity printSize:A4",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "webkit-mobile 390 selection announced to screen readers",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 final panel state matches colored Hoodie canvas",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 primary upload 44px touch size",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 upload enables existing controls",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 artwork scale remains synchronized",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 reset placement stays functional",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 artwork removal restores disabled state",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 no duplicate SVG illustration",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 original production calibration disclaimer",
+      "pass": true
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px garment:regular",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px garment:dropShoulder",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px garment:fullSleeve",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px garment:hoodie",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px size:S",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px size:M",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px size:L",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px size:XL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px size:XXL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px color:black",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px color:white",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px color:red",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px color:yellow",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px color:blue",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px color:green",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px printSize:A3",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 touch target >=44px printSize:A4",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "webkit-mobile 390 no script errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "webkit-mobile 390 final no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 correct four accessible fieldset groups",
+      "pass": true,
+      "detail": [
+        "01 Garment style",
+        "02 Size",
+        "03 Fabric color",
+        "04 Print size"
+      ]
+    },
+    {
+      "name": "chromium-small 320 editorial Noto Serif Bengali heading",
+      "pass": true,
+      "detail": "\"Noto Serif Bengali\", Georgia, \"Times New Roman\", serif"
+    },
+    {
+      "name": "chromium-small 320 Hind Siliguri control font",
+      "pass": true,
+      "detail": "\"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+    },
+    {
+      "name": "chromium-small 320 Gallery White surface",
+      "pass": true,
+      "detail": "rgb(246, 247, 245)"
+    },
+    {
+      "name": "chromium-small 320 exact responsive column count",
+      "pass": true,
+      "detail": {
+        "actual": 1,
+        "expected": 1
+      }
+    },
+    {
+      "name": "chromium-small 320 no page horizontal overflow",
+      "pass": true,
+      "detail": [
+        320,
+        320
+      ]
+    },
+    {
+      "name": "chromium-small 320 all 17 manual choices present",
+      "pass": true,
+      "detail": 17
+    },
+    {
+      "name": "chromium-small 320 persistent accessible polite status announcement region",
+      "pass": true,
+      "detail": {
+        "role": "status",
+        "ariaLive": "polite"
+      }
+    },
+    {
+      "name": "chromium-small 320 only one chosen garment initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button garment:regular",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 only one chosen size initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button size:S",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button size:M",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button size:XL",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button size:XXL",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 only one chosen color initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button color:black",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button color:white",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button color:yellow",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button color:blue",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button color:green",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 only one chosen printSize initially",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 named semantic button printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 calibrated black fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          34,
+          38,
+          41
+        ],
+        "hex": "#222629"
+      }
+    },
+    {
+      "name": "chromium-small 320 calibrated white fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          255,
+          255,
+          255
+        ],
+        "hex": "#ffffff"
+      }
+    },
+    {
+      "name": "chromium-small 320 calibrated red fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          222,
+          31,
+          48
+        ],
+        "hex": "#DE1F30"
+      }
+    },
+    {
+      "name": "chromium-small 320 calibrated yellow fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          243,
+          201,
+          22
+        ],
+        "hex": "#F3C916"
+      }
+    },
+    {
+      "name": "chromium-small 320 calibrated blue fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          20,
+          95,
+          206
+        ],
+        "hex": "#145FCE"
+      }
+    },
+    {
+      "name": "chromium-small 320 calibrated green fabric swatch and decorative dot",
+      "pass": true,
+      "detail": {
+        "actual": [
+          8,
+          123,
+          71
+        ],
+        "hex": "#087B47"
+      }
+    },
+    {
+      "name": "chromium-small 320 rail sync garment:regular",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity garment:regular",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync garment:dropShoulder",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity garment:dropShoulder",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync garment:fullSleeve",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity garment:fullSleeve",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync garment:hoodie",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity garment:hoodie",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync size:S",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 illustrated persistent highlight size:S",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-small 320 exclusivity size:S",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync size:M",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 illustrated persistent highlight size:M",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-small 320 exclusivity size:M",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync size:L",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 illustrated persistent highlight size:L",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-small 320 exclusivity size:L",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync size:XL",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 illustrated persistent highlight size:XL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-small 320 exclusivity size:XL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync size:XXL",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 illustrated persistent highlight size:XXL",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-small 320 exclusivity size:XXL",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync color:black",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity color:black",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync color:white",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity color:white",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync color:red",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity color:red",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync color:yellow",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity color:yellow",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync color:blue",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity color:blue",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync color:green",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 exclusivity color:green",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync printSize:A3",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 illustrated persistent highlight printSize:A3",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-small 320 exclusivity printSize:A3",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 rail sync printSize:A4",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 illustrated persistent highlight printSize:A4",
+      "pass": true,
+      "detail": {
+        "selected": true,
+        "filter": "brightness(1.065) saturate(1.03) drop-shadow(rgba(30, 23, 15, 0.53) 2.1px 5px 1.8px) drop-shadow(rgba(248, 235, 204, 0.52) 0px 0px 2.4px)",
+        "hitChecked": "true"
+      }
+    },
+    {
+      "name": "chromium-small 320 exclusivity printSize:A4",
+      "pass": true,
+      "detail": 1
+    },
+    {
+      "name": "chromium-small 320 selection announced to screen readers",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 final panel state matches colored Hoodie canvas",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 primary upload 44px touch size",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 upload enables existing controls",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 artwork scale remains synchronized",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 reset placement stays functional",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 artwork removal restores disabled state",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 no duplicate SVG illustration",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 original production calibration disclaimer",
+      "pass": true
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px garment:regular",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px garment:dropShoulder",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px garment:fullSleeve",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px garment:hoodie",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px size:S",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px size:M",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px size:L",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px size:XL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px size:XXL",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px color:black",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px color:white",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px color:red",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px color:yellow",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px color:blue",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px color:green",
+      "pass": true,
+      "detail": 64.859375
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px printSize:A3",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 touch target >=44px printSize:A4",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "chromium-small 320 no script errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "chromium-small 320 final no horizontal overflow",
+      "pass": true
+    }
+  ]
+}

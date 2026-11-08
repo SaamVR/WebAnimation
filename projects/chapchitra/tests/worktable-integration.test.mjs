@@ -82,7 +82,7 @@ test('upload notebook and accessible mobile upload action remain available',asyn
  assert.ok(!src.includes("hitFor('Upload image notebook/Upload_image_notebook_1.png','upload','upload')"));
  assert.ok(src.includes('Only the illustrated plus/upload image is a hotspot'));
  assert.ok(src.includes('hitFor(path,group,value)'));
- assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{background:var\(--cc-press\)/);
+ assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{\s*background:var\(--color-press-green\)/);
  assert.match(css,/\.cc-worktable-hit:not\(\[data-group="upload"\]\)\{display:none\}/);
  assert.doesNotMatch(css,/\.cc-worktable-hit\{display:none\}/);
 });
