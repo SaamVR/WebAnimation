@@ -1,0 +1,360 @@
+{
+  "url": "http://127.0.0.1:19289/",
+  "checks": [
+    {
+      "label": "WebKit initial hero-only autoplay 1408",
+      "passed": true,
+      "detail": {
+        "hero": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "frame": 0
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "scripts": 1,
+        "navCenter": 704,
+        "heroRect": [
+          561.5,
+          182.046875,
+          285,
+          239.84375
+        ],
+        "overlayRect": [
+          561.5,
+          182.046875,
+          285,
+          239.84375
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "label": "WebKit shared player and original geometry 1408",
+      "passed": true,
+      "detail": {
+        "hero": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "frame": 0
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "scripts": 1,
+        "navCenter": 704,
+        "heroRect": [
+          561.5,
+          182.046875,
+          285,
+          239.84375
+        ],
+        "overlayRect": [
+          561.5,
+          182.046875,
+          285,
+          239.84375
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "label": "WebKit final held without looping 1408",
+      "passed": true
+    },
+    {
+      "label": "WebKit navbar hover plays once",
+      "passed": true
+    },
+    {
+      "label": "WebKit navbar pointer hold does not repeat",
+      "passed": true
+    },
+    {
+      "label": "WebKit footer remains static",
+      "passed": true,
+      "detail": {
+        "src": "/assets/chapchitra-wordmark-light.webp",
+        "instances": 0
+      }
+    },
+    {
+      "label": "WebKit no JavaScript errors 1408",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "label": "WebKit initial hero-only autoplay 834",
+      "passed": true,
+      "detail": {
+        "hero": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "frame": 0
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "scripts": 1,
+        "navCenter": 416.9921875,
+        "heroRect": [
+          308.578125,
+          246.5,
+          216.828125,
+          182.46875
+        ],
+        "overlayRect": [
+          308.578125,
+          246.5,
+          216.828125,
+          182.46875
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "label": "WebKit shared player and original geometry 834",
+      "passed": true,
+      "detail": {
+        "hero": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "frame": 0
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "scripts": 1,
+        "navCenter": 416.9921875,
+        "heroRect": [
+          308.578125,
+          246.5,
+          216.828125,
+          182.46875
+        ],
+        "overlayRect": [
+          308.578125,
+          246.5,
+          216.828125,
+          182.46875
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "label": "WebKit final held without looping 834",
+      "passed": true
+    },
+    {
+      "label": "WebKit no JavaScript errors 834",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "label": "WebKit initial hero-only autoplay 430",
+      "passed": true,
+      "detail": {
+        "hero": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "frame": 0
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "scripts": 1,
+        "navCenter": 215,
+        "heroRect": [
+          95,
+          201.625,
+          240,
+          201.96875
+        ],
+        "overlayRect": [
+          95,
+          201.625,
+          240,
+          201.96875
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "label": "WebKit shared player and original geometry 430",
+      "passed": true,
+      "detail": {
+        "hero": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "frame": 0
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "scripts": 1,
+        "navCenter": 215,
+        "heroRect": [
+          95,
+          201.625,
+          240,
+          201.96875
+        ],
+        "overlayRect": [
+          95,
+          201.625,
+          240,
+          201.96875
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "label": "WebKit final held without looping 430",
+      "passed": true
+    },
+    {
+      "label": "WebKit no JavaScript errors 430",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "label": "WebKit initial hero-only autoplay 320",
+      "passed": true,
+      "detail": {
+        "hero": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "frame": 0
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "scripts": 1,
+        "navCenter": 160,
+        "heroRect": [
+          60,
+          229.640625,
+          200,
+          168.3125
+        ],
+        "overlayRect": [
+          60,
+          229.640625,
+          200,
+          168.3125
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "label": "WebKit shared player and original geometry 320",
+      "passed": true,
+      "detail": {
+        "hero": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "frame": 0
+        },
+        "nav": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "hovered": false,
+          "loaded": false,
+          "frame": null
+        },
+        "scripts": 1,
+        "navCenter": 160,
+        "heroRect": [
+          60,
+          229.640625,
+          200,
+          168.3125
+        ],
+        "overlayRect": [
+          60,
+          229.640625,
+          200,
+          168.3125
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "label": "WebKit final held without looping 320",
+      "passed": true
+    },
+    {
+      "label": "WebKit no JavaScript errors 320",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "label": "WebKit reduced-motion static logo",
+      "passed": true,
+      "detail": {
+        "visible": true
+      }
+    }
+  ]
+}

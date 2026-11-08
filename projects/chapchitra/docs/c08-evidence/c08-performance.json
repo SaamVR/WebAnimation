@@ -1,0 +1,76 @@
+{
+  "method": "Single local Chromium run each, 430×900, simulated 4Mbps/70ms RTT/4× CPU, uncompressed Python HTTP server. Exploratory, not statistical, not a physical iPad or Render CDN benchmark.",
+  "measurements": {
+    "baseline": {
+      "domWallMs": 1232,
+      "early": {
+        "fcpMs": 2412,
+        "heroStaticVisible": true,
+        "navbarStaticVisible": true,
+        "resourceEntries": 22,
+        "transferBytes": 723106,
+        "c08Assets": [],
+        "runtimeScriptCount": 1
+      },
+      "logoReadyMs": null,
+      "after": {
+        "fcpMs": 2412,
+        "heroStaticVisible": true,
+        "navbarStaticVisible": true,
+        "resourceEntries": 22,
+        "transferBytes": 723106,
+        "c08Assets": [],
+        "runtimeScriptCount": 1
+      }
+    },
+    "c08": {
+      "domWallMs": 1182,
+      "early": {
+        "fcpMs": 2316,
+        "heroStaticVisible": true,
+        "navbarStaticVisible": true,
+        "resourceEntries": 24,
+        "transferBytes": 738611,
+        "c08Assets": [
+          {
+            "file": "logo-player.css",
+            "bytes": 2872,
+            "durationMs": 114
+          },
+          {
+            "file": "logo-player.mjs",
+            "bytes": 11212,
+            "durationMs": 285
+          }
+        ],
+        "runtimeScriptCount": 1
+      },
+      "logoReadyMs": 4960,
+      "after": {
+        "fcpMs": 2316,
+        "heroStaticVisible": true,
+        "navbarStaticVisible": true,
+        "resourceEntries": 28,
+        "transferBytes": 1211994,
+        "c08Assets": [
+          {
+            "file": "logo-player.css",
+            "bytes": 2872,
+            "durationMs": 114
+          },
+          {
+            "file": "logo-player.mjs",
+            "bytes": 11212,
+            "durationMs": 285
+          },
+          {
+            "file": "wordmark-reprint-hero-light.json",
+            "bytes": 72610,
+            "durationMs": 915
+          }
+        ],
+        "runtimeScriptCount": 1
+      }
+    }
+  }
+}

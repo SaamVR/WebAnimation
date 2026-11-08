@@ -1,0 +1,56 @@
+/* CHAPCHITRA C08: final Wordmark Reprint. No filters, keyframe edits, or new layout flow. */
+
+/* The original dark wordmark image remains the immediate navbar fallback. */
+#app > .site-header .logo-word.logo-word--image{position:relative;isolation:isolate}
+#app > .site-header .logo-word--image .c08-navbar-animation{
+  position:absolute;left:-6.25%;width:112.5%;top:50%;
+  aspect-ratio:2400 / 550;transform:translateY(-50%);
+  display:block;visibility:hidden;overflow:visible;pointer-events:none;
+}
+#app > .site-header .logo-word--image .c08-navbar-animation svg{
+  display:block;width:100%;height:100%;overflow:visible;
+}
+#app > .site-header .logo-word--image.c08-navbar-playing>img{
+  visibility:hidden;
+}
+#app > .site-header .logo-word--image.c08-navbar-playing .c08-navbar-animation{
+  visibility:visible;
+}
+/* The hero's original 1250×1052 full lockup stays in the flex layout. A
+   measured absolute overlay occupies that exact box without affecting its
+   centered size or the other content positions. */
+#hero .hero-cover-inner .c08-hero-stage{
+  position:absolute;z-index:2;pointer-events:none;display:block;overflow:visible;
+}
+#hero .c08-hero-wordmark{
+  position:absolute;left:-6.25%;width:112.5%;bottom:-1%;
+  aspect-ratio:2400 / 550;visibility:hidden;pointer-events:none;
+}
+#hero .c08-hero-wordmark svg{
+  width:100%;height:100%;display:block;overflow:visible;
+}
+/* Original textile illustration ends above 72.6% of the full lockup.
+   Mask only the original raster's lower 27% wordmark during C08 playback,
+   preserving the unchanged textile-symbol area above it. */
+#hero .hero-cover-inner.c08-hero-shown>img.hero-brand-lockup{
+  clip-path:inset(0 0 27% 0);
+}
+#hero .hero-cover-inner.c08-hero-shown .c08-hero-wordmark{
+  visibility:visible;
+}
+#hero .c08-hero-trigger{
+  position:absolute;inset:0;display:block;width:100%;height:100%;
+  box-sizing:border-box;border:0;margin:0;padding:0;background:transparent;
+  pointer-events:auto;cursor:pointer;color:transparent;
+  -webkit-tap-highlight-color:transparent;
+}
+#hero .c08-hero-trigger:focus-visible{
+  outline:2px solid var(--cream);outline-offset:5px;border-radius:8px;
+}
+#hero .c08-hero-trigger[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){
+ #hero .c08-hero-wordmark,#app > .site-header .c08-navbar-animation{display:none!important}
+ #hero .hero-cover-inner>img.hero-brand-lockup{clip-path:none!important}
+ #hero .c08-hero-trigger{display:none!important}
+ #app > .site-header .logo-word--image>img{visibility:visible!important}
+}
