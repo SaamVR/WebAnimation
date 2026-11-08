@@ -1,0 +1,29 @@
+{
+  "source": "a8cb82ff6fc1e8b9997854a55ad6bb0cd06525f6",
+  "url": "https://chapchitra-webanimation.onrender.com/",
+  "hero": {
+    "image": true,
+    "stage": true,
+    "navbarMounted": "true",
+    "homeLogo": "/assets/chapchitra-full-on-dark-cream-terra.webp",
+    "footerStatic": true
+  },
+  "navbar": {
+    "navbarAnimation": true,
+    "playing": true
+  },
+  "c01": {
+    "steps": 4,
+    "icons": 4,
+    "rendered": 4,
+    "labels": [
+      "Original Art & Customization",
+      "Secure & Flexible Payment",
+      "Fast Delivery",
+      "24/7 Support"
+    ]
+  },
+  "pageErrors": [],
+  "failedResponses": [],
+  "passed": true
+}
