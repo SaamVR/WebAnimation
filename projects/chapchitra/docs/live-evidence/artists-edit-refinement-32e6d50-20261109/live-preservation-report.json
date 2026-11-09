@@ -1,0 +1,117 @@
+{
+  "source": "32e6d50aff357a739023ba6de1f3f5f4ce1d583c",
+  "url": "https://chapchitra-webanimation.onrender.com",
+  "checks": [
+    {
+      "label": "C08 hero logo original static fallback + animated SVG",
+      "pass": true,
+      "detail": {
+        "logo": "/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp",
+        "navbarMounted": "true",
+        "svg": true,
+        "footerStatic": true
+      }
+    },
+    {
+      "label": "C08 navbar mounted",
+      "pass": true,
+      "detail": {
+        "logo": "/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp",
+        "navbarMounted": "true",
+        "svg": true,
+        "footerStatic": true
+      }
+    },
+    {
+      "label": "original footer static logo",
+      "pass": true,
+      "detail": {
+        "logo": "/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp",
+        "navbarMounted": "true",
+        "svg": true,
+        "footerStatic": true
+      }
+    },
+    {
+      "label": "C08 pointer-hover navbar animation",
+      "pass": true,
+      "detail": {
+        "svg": true,
+        "playing": true
+      }
+    },
+    {
+      "label": "C01 four original service icons mount",
+      "pass": true,
+      "detail": {
+        "count": 4,
+        "animated": 4
+      }
+    },
+    {
+      "label": "C05 all three approved compact variants remain",
+      "pass": true,
+      "detail": {
+        "tones": [
+          "forest",
+          "terracotta",
+          "beige"
+        ],
+        "long": true,
+        "interactiveSvg": true
+      }
+    },
+    {
+      "label": "C05 original long comparison retained",
+      "pass": true,
+      "detail": {
+        "tones": [
+          "forest",
+          "terracotta",
+          "beige"
+        ],
+        "long": true,
+        "interactiveSvg": true
+      }
+    },
+    {
+      "label": "C05 interactive art loaded",
+      "pass": true,
+      "detail": {
+        "tones": [
+          "forest",
+          "terracotta",
+          "beige"
+        ],
+        "long": true,
+        "interactiveSvg": true
+      }
+    },
+    {
+      "label": "C05 face press activates",
+      "pass": true,
+      "detail": {
+        "pressed": true
+      }
+    },
+    {
+      "label": "C05 face press releases",
+      "pass": true,
+      "detail": {
+        "released": true
+      }
+    },
+    {
+      "label": "protected pages have no JavaScript exceptions",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "label": "protected pages have no 4xx/5xx same-origin responses",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

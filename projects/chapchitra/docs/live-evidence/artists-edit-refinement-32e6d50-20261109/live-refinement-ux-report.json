@@ -1,0 +1,275 @@
+{
+  "before": "https://chapchitra-webanimation.onrender.com/artists-edit/review/e78a77ca177c790baea973516e0194d81feb80b2/",
+  "after": "https://chapchitra-webanimation.onrender.com/artists-edit/review/32e6d50aff357a739023ba6de1f3f5f4ce1d583c/",
+  "checks": [
+    {
+      "label": "compact 50-80px desktop header",
+      "pass": true,
+      "data": {
+        "guide": {
+          "x": 910.9194805194805,
+          "y": 361.87012987012986,
+          "w": 223.1064935064935,
+          "h": 315.387012987013
+        },
+        "headingCount": 1,
+        "headingText": "Artist’s Edit",
+        "headerHeight": 72,
+        "stageTop": 171,
+        "navBottom": 99,
+        "horizontalOverflow": false,
+        "tipsOpen": false,
+        "quality": "",
+        "lowWarningVisible": false,
+        "studioWidth": 1540,
+        "toolbar": true
+      }
+    },
+    {
+      "label": "single accessible page heading",
+      "pass": true,
+      "data": {
+        "guide": {
+          "x": 910.9194805194805,
+          "y": 361.87012987012986,
+          "w": 223.1064935064935,
+          "h": 315.387012987013
+        },
+        "headingCount": 1,
+        "headingText": "Artist’s Edit",
+        "headerHeight": 72,
+        "stageTop": 171,
+        "navBottom": 99,
+        "horizontalOverflow": false,
+        "tipsOpen": false,
+        "quality": "",
+        "lowWarningVisible": false,
+        "studioWidth": 1540,
+        "toolbar": true
+      }
+    },
+    {
+      "label": "worktable starts immediately after heading",
+      "pass": true,
+      "data": {
+        "guide": {
+          "x": 910.9194805194805,
+          "y": 361.87012987012986,
+          "w": 223.1064935064935,
+          "h": 315.387012987013
+        },
+        "headingCount": 1,
+        "headingText": "Artist’s Edit",
+        "headerHeight": 72,
+        "stageTop": 171,
+        "navBottom": 99,
+        "horizontalOverflow": false,
+        "tipsOpen": false,
+        "quality": "",
+        "lowWarningVisible": false,
+        "studioWidth": 1540,
+        "toolbar": true
+      }
+    },
+    {
+      "label": "no oversized intro or build metadata",
+      "pass": true
+    },
+    {
+      "label": "no desktop overflow",
+      "pass": true,
+      "data": {
+        "guide": {
+          "x": 910.9194805194805,
+          "y": 361.87012987012986,
+          "w": 223.1064935064935,
+          "h": 315.387012987013
+        },
+        "headingCount": 1,
+        "headingText": "Artist’s Edit",
+        "headerHeight": 72,
+        "stageTop": 171,
+        "navBottom": 99,
+        "horizontalOverflow": false,
+        "tipsOpen": false,
+        "quality": "",
+        "lowWarningVisible": false,
+        "studioWidth": 1540,
+        "toolbar": true
+      }
+    },
+    {
+      "label": "same A3/A4 upper anchor",
+      "pass": true,
+      "data": {
+        "a4": {
+          "x": 910.9194805194805,
+          "y": 361.87012987012986,
+          "w": 223.1064935064935,
+          "h": 315.387012987013
+        },
+        "a3": {
+          "x": 864.8727272727273,
+          "y": 361.87012987012986,
+          "w": 315.2415584415584,
+          "h": 446.02597402597405
+        }
+      }
+    },
+    {
+      "label": "twice reference area",
+      "pass": true,
+      "data": {
+        "ratio": 1.9982397759495947,
+        "a4": {
+          "x": 910.9194805194805,
+          "y": 361.87012987012986,
+          "w": 223.1064935064935,
+          "h": 315.387012987013
+        },
+        "a3": {
+          "x": 864.8727272727273,
+          "y": 361.87012987012986,
+          "w": 315.2415584415584,
+          "h": 446.02597402597405
+        }
+      }
+    },
+    {
+      "label": "relative target shirt center",
+      "pass": true,
+      "data": {
+        "x": 910.9194805194805,
+        "y": 361.87012987012986,
+        "w": 223.1064935064935,
+        "h": 315.387012987013
+      }
+    },
+    {
+      "label": "shared top below collar",
+      "pass": true,
+      "data": {
+        "x": 910.9194805194805,
+        "y": 361.87012987012986,
+        "w": 223.1064935064935,
+        "h": 315.387012987013
+      }
+    },
+    {
+      "label": "print tips initially collapsed",
+      "pass": true
+    },
+    {
+      "label": "short image-quality warning",
+      "pass": true
+    },
+    {
+      "label": "print tips expand with correct print recommendations",
+      "pass": true
+    },
+    {
+      "label": "resize control remains functional",
+      "pass": true
+    },
+    {
+      "label": "no runtime errors",
+      "pass": true,
+      "data": []
+    },
+    {
+      "label": "tablet heading and stage",
+      "pass": true,
+      "data": {
+        "guide": {
+          "x": 910.925659472422,
+          "y": 361.8609112709832,
+          "w": 223.11750599520383,
+          "h": 315.39568345323744
+        },
+        "headingCount": 1,
+        "headingText": "Artist’s Edit",
+        "headerHeight": 72,
+        "stageTop": 171,
+        "navBottom": 99,
+        "horizontalOverflow": false,
+        "tipsOpen": false,
+        "quality": "",
+        "lowWarningVisible": false,
+        "studioWidth": 834,
+        "toolbar": true
+      }
+    },
+    {
+      "label": "tablet no horizontal overflow",
+      "pass": true,
+      "data": {
+        "guide": {
+          "x": 910.925659472422,
+          "y": 361.8609112709832,
+          "w": 223.11750599520383,
+          "h": 315.39568345323744
+        },
+        "headingCount": 1,
+        "headingText": "Artist’s Edit",
+        "headerHeight": 72,
+        "stageTop": 171,
+        "navBottom": 99,
+        "horizontalOverflow": false,
+        "tipsOpen": false,
+        "quality": "",
+        "lowWarningVisible": false,
+        "studioWidth": 834,
+        "toolbar": true
+      }
+    },
+    {
+      "label": "mobile heading and stage",
+      "pass": true,
+      "data": {
+        "guide": {
+          "x": 910.9333333333333,
+          "y": 361.8461538461538,
+          "w": 223.0974358974359,
+          "h": 315.32307692307694
+        },
+        "headingCount": 1,
+        "headingText": "Artist’s Edit",
+        "headerHeight": 56,
+        "stageTop": 167.1875,
+        "navBottom": 111.1875,
+        "horizontalOverflow": false,
+        "tipsOpen": false,
+        "quality": "",
+        "lowWarningVisible": false,
+        "studioWidth": 390,
+        "toolbar": true
+      }
+    },
+    {
+      "label": "mobile no horizontal overflow",
+      "pass": true,
+      "data": {
+        "guide": {
+          "x": 910.9333333333333,
+          "y": 361.8461538461538,
+          "w": 223.0974358974359,
+          "h": 315.32307692307694
+        },
+        "headingCount": 1,
+        "headingText": "Artist’s Edit",
+        "headerHeight": 56,
+        "stageTop": 167.1875,
+        "navBottom": 111.1875,
+        "horizontalOverflow": false,
+        "tipsOpen": false,
+        "quality": "",
+        "lowWarningVisible": false,
+        "studioWidth": 390,
+        "toolbar": true
+      }
+    }
+  ],
+  "errors": [],
+  "passed": 18,
+  "failed": 0
+}
