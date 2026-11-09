@@ -197,8 +197,9 @@ async function boot(){
    '</div></div></section>';
  }
  function artistsEdit(){
-  return pageTop('CUSTOM PRINTING',"Artist’s Edit",'Plan a custom print concept using the local-only preview configurator. No file upload, payment or inquiry submission is connected.')+
-  '<section class="wrap route-content customize-layout"><div class="custom-illustration">'+shirtSilhouette(1)+'<small>Custom-print canvas placeholder</small></div><div class="custom-settings"><h2>Compose your idea</h2><p>Select an example garment and printing method. Your selections stay in this browser session only.</p><form id="customForm"><label for="garmentSelect">Garment<select id="garmentSelect"><option>Regular Tee</option><option>Drop Shoulder</option><option>Tie-Dye</option></select></label><label for="printSelect">Print approach<select id="printSelect"><option>Single-color block print</option><option>Multi-layer print</option><option>Digital illustration transfer</option></select></label><label for="quantityInput">Estimated quantity<input id="quantityInput" type="number" min="1" max="1000" value="1"></label><label for="customNotes">Brief notes<textarea id="customNotes" rows="3" maxlength="280" placeholder="Describe your visual concept…"></textarea></label></form><h3>Local brief preview</h3><p id="customSummary" class="summary-panel" aria-live="polite"></p><p class="route-disclaimer">This is a planning mock-up. No inquiry or design is transmitted. Real submissions will be added after contact details are authorized.</p></div></section>';
+  // This page is the illustrated studio, not a full-height informational hero.
+  return '<section class="route-head route-head--artist-edit wrap" aria-labelledby="artistEditTitle"><h1 id="artistEditTitle">Artist’s Edit</h1></section>'+
+   '<section class="customize-layout" hidden aria-hidden="true"></section>';
  }
  function journal(){
   return pageTop('STORIES / PROCESS','The Journal','A structural editorial collection. Feature rotation and individual pages work; final story copy is pending.')+
@@ -653,12 +654,12 @@ async function boot(){
   detail.textContent='Verifying the current studio artwork and renderer.';
   const build=document.body.dataset.reviewBuild||'unversioned';
   const releaseURL=document.body.dataset.reviewUrl||'/artists-edit/';
-  const version=document.createElement('small');
-  version.textContent='Review build: '+build.slice(0,12);
-  panel.append(heading,detail,version);
+  // Diagnostics stay accessible on actual errors without showing a build banner.
+  panel.append(heading,detail);panel.hidden=true;
   previous.before(panel);
   const diagnostic=(code,error)=>{
    const info=String(error?.message||error||'Unknown problem').slice(0,240);
+   panel.hidden=false;
    panel.dataset.state='error';
    panel.setAttribute('role','alert');
    heading.textContent='Illustrated worktable unavailable';
@@ -721,15 +722,6 @@ async function boot(){
     panel.remove();
     window.__chapchitraArtistDiagnostic={status:'ready',build,manifest:manifestURL};
     document.body.dataset.worktableStatus='ready';
-    const description=$('.route-head > p:last-child');
-    if(description){
-     description.textContent='Explore garment styles, sizes and colors, or preview your own artwork locally on the illustrated studio desk.';
-     const visibleBuild=document.createElement('small');
-     visibleBuild.className='cc-worktable-version';
-     visibleBuild.textContent='Illustrated worktable · review build '+build.slice(0,12);
-     visibleBuild.title='Full source revision '+build;
-     description.after(visibleBuild);
-    }
    }catch(error){
     diagnostic('WORKTABLE_RENDER_FAILED',error);
    }

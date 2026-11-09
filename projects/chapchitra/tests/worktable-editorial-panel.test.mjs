@@ -21,7 +21,7 @@ test('uses authoritative CHAPCHITRA tokens and both approved typography families
  assert.ok(css.includes('font:600 11.5px/1.32 var(--sans)'));
 });
 test('manual panel is editorial hierarchy, retains accessible native fieldsets and all 17 choices',()=>{
- for(const title of ['Customize your print','Artwork tools','Garment style','Fabric color','Print size','Size']){
+ for(const title of ['Customize your print','Your artwork','Garment style','Fabric color','Print size','Size']){
   assert.ok(source.includes(title),title);
  }
  for(const id of ['worktableCustomizeHeading','worktableArtworkHeading','worktableUploadArt','worktableArtScale',
@@ -67,7 +67,7 @@ test('native artwork-management handlers and production disclaimer remain intact
   "reset.addEventListener('click',()=>{",
   "remove.addEventListener('click',()=>{",
   "announce('Artwork loaded locally at 0%",
-  "production print dimensions and fabric-color accuracy require manufacturer calibration."
+  "Confirm production dimensions and image quality before printing."
  ])assert.ok(source.includes(code),code);
  assert.match(css,/\.cc-worktable-upload-row #worktableUploadArt\{\s*width:100%;background:var\(--color-press-green\)/);
  assert.match(css,/\.cc-worktable-upload-row button:disabled\{opacity:\.42;cursor:not-allowed\}/);

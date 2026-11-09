@@ -13,18 +13,26 @@ const positive=n=>Number.isFinite(n)&&n>0;
 export function printableRegion(garment){
  const chest=GARMENT_VARIANTS[garment]?.chestGuide;
  if(!chest)throw new RangeError('Unknown garment');
- const xInset=chest.width*.045,yInset=chest.height*.025;
- return {x:chest.x+xInset,y:chest.y+yInset,
-  width:chest.width-2*xInset,height:chest.height-2*yInset};
+ // Visual preview safety envelope: permit the reference-marked larger A3 guide.
+ // These remain registered garment coordinates, not manufacturer measurements.
+ const side=chest.width*.09,above=chest.height*.045,below=chest.height*.205;
+ return {x:chest.x-side,y:chest.y-above,
+  width:chest.width+2*side,height:chest.height+above+below};
 }
 /** Stable reference; independent of upload image ratio, scale or rotation. */
 export function paperGuide(garment='regular',preset='A4'){
+ const variant=GARMENT_VARIANTS[garment];
  const region=printableRegion(garment);
  const paper=PAPER_REFERENCES[preset];
  if(!paper)throw new RangeError('Unknown print reference');
- const height=region.height*.70/(preset==='A4'?Math.SQRT2:1);
+ const chest=variant.chestGuide;
+ // User's two 1600px-wide annotated screenshots have common print center
+ // ~800px and upper anchor ~283px after desk scrolling. Match their visual
+ // AREAS, retain the actual portrait A-series ratios instead of distorting them.
+ const height=chest.height*1.18/(preset==='A4'?Math.SQRT2:1);
  const width=height*(paper.widthIn/paper.heightIn);
- return {x:region.x+(region.width-width)/2,y:region.y+region.height*.085,
+ const centerX=variant.box.x+variant.box.width/2;
+ return {x:centerX-width/2,y:chest.y+chest.height*.005,
   width,height,region,preset};
 }
 export function placementGeometry({garment='regular',preset='A4',imageWidth,imageHeight,

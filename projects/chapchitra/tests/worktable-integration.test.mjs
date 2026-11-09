@@ -77,7 +77,7 @@ test('local upload stays local, restricts MIME and size, revokes object URLs, su
 
 test('upload notebook and accessible mobile upload action remain available',async()=>{
  const [src,css]=await Promise.all([load('src/worktable-studio.mjs'),load('src/worktable-studio.css')]);
- assert.match(src,/id="worktableUploadArt" aria-label="Upload your artwork"/);
+ assert.match(src,/id="worktableUploadArt" aria-label="Upload artwork from this device"/);
  assert.match(src,/uploadButton\.addEventListener\('click',\(\)=>file\.click\(\)\)/);
  assert.ok(!src.includes("hitFor('Upload image notebook/Upload_image_notebook_1.png','upload','upload')"));
  assert.ok(src.includes('Only the illustrated plus/upload image is a hotspot'));
@@ -96,7 +96,7 @@ test('print size preview is conservatively limited until production masks/specs 
  assert.match(src,/const printPosition=/);
  assert.match(src,/const colorized=async\(/);
  assert.match(src,/context\.getImageData\(/);
- assert.match(src,/fabric-color accuracy require manufacturer calibration/);
+ assert.match(src,/Confirm production dimensions and image quality before printing/);
 });
 
 test('manifest is validated without stale-cache reuse and never silently falls back to old configurator',async()=>{
@@ -112,7 +112,7 @@ test('manifest is validated without stale-cache reuse and never silently falls b
  assert.match(app,/MANIFEST_VALIDATION_FAILED/);
  assert.match(app,/WORKTABLE_RENDER_FAILED/);
  assert.match(app,/previous\.style\.display='none'/);
- assert.match(app,/id="customForm"/);
+ assert.match(app,/id="artistEditTitle"/);
  assert.match(app,/Illustrated worktable unavailable/);
  await assert.rejects(load('src/assets/worktable/manifest.json'),/ENOENT/,'asset manifest is intentionally not yet deployed');
 });

@@ -104,26 +104,28 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
     <div class="cc-worktable-rail" aria-label="Garment, size, fabric color and print size"></div>
     <section class="cc-worktable-artwork-zone" aria-labelledby="worktableArtworkHeading">
       <div class="cc-worktable-artwork-intro">
-        <p class="cc-worktable-artwork-kicker">YOUR OWN MARK <span aria-hidden="true">/</span> FINISHING TOUCHES</p>
-        <h3 id="worktableArtworkHeading">Artwork tools</h3>
-        <p>Add a design from your device, then adjust its size and placement directly on the garment.</p>
+        <p class="cc-worktable-artwork-kicker">YOUR OWN MARK</p>
+        <h3 id="worktableArtworkHeading">Your artwork</h3>
       </div>
       <div class="cc-worktable-upload-row">
         <div class="cc-worktable-upload-group">
-          <button type="button" id="worktableUploadArt" aria-label="Upload your artwork">Upload artwork</button>
-          <aside class="cc-worktable-resolution-note" aria-label="Artwork resolution recommendations">
-            <p class="cc-worktable-resolution-heading">Recommended artwork resolution (300 PPI)</p>
-            <p><strong>A4</strong> <span>2480 × 3508 px (8.27 × 11.69 in)</span></p>
-            <p><strong>A3</strong> <span>3508 × 4961 px (11.69 × 16.54 in)</span></p>
-            <p class="cc-worktable-resolution-explainer">These are recommended dimensions for high-quality printing. Other image sizes are accepted for preview. Final print quality depends on actual print dimensions and production requirements.</p>
-            <p id="worktableArtworkQuality" class="cc-worktable-quality" role="status" aria-live="polite"></p>
-          </aside>
+          <button type="button" id="worktableUploadArt" aria-label="Upload artwork from this device">Upload artwork</button>
+          <p id="worktableArtworkQuality" class="cc-worktable-quality" role="status" aria-live="polite" hidden></p>
+          <details class="cc-worktable-print-tips">
+            <summary>Print tips</summary>
+            <div class="cc-worktable-print-tips-content">
+              <p>For crisp printing at 300 PPI, aim for:</p>
+              <p><strong>A4</strong> 2480 × 3508 px</p>
+              <p><strong>A3</strong> 3508 × 4961 px</p>
+              <p>Other image sizes work for preview. A3/A4 guides show relative print areas, not certified garment measurements. Confirm production dimensions and image quality before printing.</p>
+            </div>
+          </details>
         </div>
-        <label class="cc-worktable-scale"><span class="cc-worktable-scale-label">Artwork size — adjustment from A3/A4</span><span class="cc-worktable-scale-control"><input type="range" id="worktableArtScale" min="-50" max="100" step="1" value="0" disabled aria-label="Artwork size adjustment from selected print reference"><output id="worktableScaleOutput">0%</output></span><span id="worktableSizeGuidance" class="cc-worktable-size-guidance" aria-live="polite"></span></label>
-        <div class="cc-worktable-secondary-actions"><button type="button" id="worktableResetArt" disabled>Reset placement</button><button type="button" id="worktableRemoveArt" disabled>Remove artwork</button></div>
+        <label class="cc-worktable-scale"><span class="cc-worktable-scale-label">Artwork size</span><span class="cc-worktable-scale-control"><input type="range" id="worktableArtScale" min="-50" max="100" step="1" value="0" disabled aria-label="Artwork size adjustment relative to selected A3 or A4 print area"><output id="worktableScaleOutput">0%</output></span><span id="worktableSizeGuidance" class="cc-worktable-size-guidance" aria-live="polite" hidden></span></label>
+        <div class="cc-worktable-secondary-actions"><button type="button" id="worktableResetArt" aria-label="Reset artwork position, size and rotation" disabled>Reset</button><button type="button" id="worktableRemoveArt" aria-label="Remove uploaded artwork" disabled>Remove</button></div>
       </div>
     </section>
-    <p class="cc-worktable-hint">Drag your uploaded design on the fabric to position it. A3/A4 represent relative preview sizes; production print dimensions and fabric-color accuracy require manufacturer calibration.</p>
+    <p class="cc-worktable-hint">Move, resize or rotate directly on the shirt.</p>
     <p class="cc-worktable-live" role="status" id="worktableMessage" aria-live="polite"></p>
   </section>
   <input id="worktableFile" type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Choose local design image">`;
@@ -386,7 +388,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const printPosition=({feedback=false}={})=>{
   syncPaperGuide();
   if(!artBitmap){
-   scaleOut.textContent='0%';sizeGuidance.textContent='';quality.textContent='';
+   scaleOut.textContent='0%';sizeGuidance.textContent='';sizeGuidance.hidden=true;quality.textContent='';quality.hidden=true;
    syncTransformTools(null);
    return;
   }
@@ -405,17 +407,16 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   print.style.transform='rotate('+info.rotation+'deg)';
   print.dataset.rotation=String(info.rotation);
   print.classList.toggle('is-beyond-reference',info.exceedsReference);
-  const nominalNote=info.exceedsReference
-   ? 'Above the nominal '+current.printSize+' visual reference. Confirm physical print dimensions with production.'
-   : '';
-  const safeLimitNote=info.maxAdjustment<100&&info.adjustment===info.maxAdjustment
-   ? ' Safe garment enlargement limit reached (+'+info.maxAdjustment+'%).' : '';
-  const note=nominalNote+safeLimitNote;
-  if(sizeGuidance.textContent!==note)sizeGuidance.textContent=note;
+  // Keep the daily editing UI concise; retain detailed print data in Print tips.
+  const atSafeLimit=info.maxAdjustment<100&&info.adjustment===info.maxAdjustment;
+  const note=atSafeLimit?'Maximum safe size reached.':'';
+  sizeGuidance.textContent=note;
+  sizeGuidance.hidden=!note;
   const assessment=resolutionGuidance({preset:current.printSize,
    imageWidth:artBitmap.naturalWidth,imageHeight:artBitmap.naturalHeight,
    adjustment:info.adjustment});
-  if(quality.textContent!==assessment.text)quality.textContent=assessment.text;
+  quality.textContent=assessment.low?'Image quality may be low at this print size.':'';
+  quality.hidden=!assessment.low;
   quality.classList.toggle('is-low-resolution',assessment.low);
   syncTransformTools(info);
   if(dragging&&info.constrained&&!boundaryAnnounced){

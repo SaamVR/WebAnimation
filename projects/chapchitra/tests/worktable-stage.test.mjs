@@ -104,14 +104,15 @@ test('local-only reducer validates four selection groups and forbids fake upload
  assert.throws(()=>worktableReducer(state,{type:'upload-binary'}),RangeError);
 });
 
-test('existing Artist Edit route is unmodified and no unapproved worktable renderer is imported',async()=>{
+test('Artist route opens directly on the approved worktable without stale planner controls',async()=>{
  const [app,css,doc]=await Promise.all([
   readFile(resolve(root,'src/app.mjs'),'utf8'),
   readFile(resolve(root,'src/styles.css'),'utf8'),
   readFile(resolve(root,'docs/ARTISTS_EDIT_WORKTABLE_ASSET_HANDOFF.md'),'utf8')
  ]);
  assert.match(app,/function artistsEdit\(\)/);
- assert.match(app,/id="customForm"/);
+ assert.match(app,/id="artistEditTitle"/);
+ assert.doesNotMatch(app,/id="customForm"/);
  assert.doesNotMatch(app,/worktable-stage\.mjs/);
  assert.doesNotMatch(css,/\.worktable-stage/);
  assert.match(doc,/PRE-ASSET ARCHITECTURE ONLY/);

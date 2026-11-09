@@ -66,3 +66,18 @@ test('signed resizing respects safe region even when rotated and positioned at e
   }
  }
 });
+
+test('marked Regular Tee A4/A3 screenshots calibrate relative visual areas and shared upper anchor',()=>{
+ const a4=paperGuide('regular','A4'),a3=paperGuide('regular','A3'),scale=2048/1600;
+ const refs={A4:{centerX:799,top:283,area:194*234},A3:{centerX:799.5,top:283,area:269*324}};
+ for(const [size,g] of [['A4',a4],['A3',a3]]){
+  const ref=refs[size];
+  assert.ok(Math.abs((g.x+g.width/2)/scale-ref.centerX)<8,size+' center');
+  assert.ok(Math.abs(g.y/scale-ref.top)<6,size+' upper anchor');
+  assert.ok(Math.abs((g.width*g.height)/(ref.area*scale*scale)-1)<.10,size+' area');
+  const paper=size==='A4'?8.27/11.69:11.69/16.54;
+  assert.ok(Math.abs(g.width/g.height-paper)<.0001,size+' A-series aspect');
+ }
+ assert.ok(Math.abs(a4.y-a3.y)<.001);
+ assert.ok(Math.abs(a3.width*a3.height/(a4.width*a4.height)-2)<.01);
+});
