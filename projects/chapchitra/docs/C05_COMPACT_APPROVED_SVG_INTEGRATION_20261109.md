@@ -1,3 +1,5 @@
+**UPDATED FINAL C05 PALETTE (November 9, 2026):** Final owner annotated A/B/C reference supersedes the earlier colors below; see [C05 final colors, hover and focus report](C05_FINAL_COLORS_HOVER_FOCUS_20261109.md) for exact paint values, corrected ink paint order and browser Back behavior.
+
 # CHAPCHITRA — C05 Compact Approved SVG Integration
 
 **Status:** Isolated review only. **Do not merge or publish production without owner visual approval.**

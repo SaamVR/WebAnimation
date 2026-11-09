@@ -7,9 +7,9 @@
  */
 const SVG_NS='http://www.w3.org/2000/svg';
 const urls=Object.freeze({
- forest:'/assets/compact/compact-button-forest.svg',
- terracotta:'/assets/compact/compact-button-terracotta.svg',
- beige:'/assets/compact/compact-button-neutral.svg'
+ forest:'/assets/compact/compact-button-forest.svg?c05=final-colors-ink-2',
+ terracotta:'/assets/compact/compact-button-terracotta.svg?c05=final-colors-ink-2',
+ beige:'/assets/compact/compact-button-neutral.svg?c05=final-colors-ink-2'
 });
 const cache=new Map();
 const pending=new WeakSet();
@@ -55,13 +55,21 @@ function addInkClip(svg){
  clip.append(boundary);
  defs.append(clip);
  svg.insertBefore(defs,svg.firstChild);
+ const shell=document.createElementNS(SVG_NS,'g');
+ shell.setAttribute('class','cc-compact-ink-shell');
+ // The clip is STATIC in BUTTON_FACE coordinates; only the ink inside it
+ // animates. Clipping a transformed rect would let ink escape at its edges.
+ shell.setAttribute('clip-path','url(#'+clipId+')');
  const ink=document.createElementNS(SVG_NS,'rect');
  ink.setAttribute('x','0');ink.setAttribute('y','0');
  ink.setAttribute('width','164');ink.setAttribute('height','64');
  ink.setAttribute('class','cc-compact-ink');
- ink.setAttribute('clip-path','url(#'+clipId+')');
- // Under unchanged micro-texture, inner border and irregular external outline.
- base.after(ink);
+ shell.append(ink);
+ // Original z-order: velvet path st7, 69 fully painted .st8 body shapes,
+ // then the approved border st9 and handmade outline st10.
+ // The old base.after(ink) was hidden BY those 69 opaque body shapes.
+ // Put the ink ON TOP of the actual face but UNDER the unchanged borders.
+ inside.append(shell);
  return {face,ink,clipId};
 }
 const pressables=new Set();
@@ -69,8 +77,22 @@ function release(button){button.classList.remove('cc-compact-pressed');pressable
 function wirePress(button){
  button.addEventListener('pointerdown',event=>{
    if(event.button!==0||button.disabled||button.getAttribute('aria-disabled')==='true')return;
+   if(button.matches('a[href]'))button.dataset.c05PointerNavigation='1';
    pressables.add(button);button.classList.add('cc-compact-pressed');
  });
+ // In Safari a pointer-focused anchor can be retained by the Back/Forward
+ // Cache, causing :focus-visible to paint a rectangle after navigation.
+ // Blur only after a POINTER click on a real link; keyboard Enter/Space
+ // activates with detail=0 and keeps native keyboard-focus behavior.
+ if(button.matches('a[href]')){
+  button.addEventListener('click',event=>{
+   if(event.detail>0 && button.dataset.c05PointerNavigation==='1'){
+    button.blur();
+    delete button.dataset.c05PointerNavigation;
+   }
+  });
+  button.addEventListener('keydown',()=>{delete button.dataset.c05PointerNavigation});
+ }
  for(const name of ['pointerup','pointercancel','pointerleave','lostpointercapture','blur'])
    button.addEventListener(name,()=>release(button));
  button.addEventListener('keydown',event=>{
@@ -86,6 +108,17 @@ for(const name of ['pointerup','pointercancel'])document.addEventListener(name,(
  for(const button of pressables)release(button);
 },true);
 window.addEventListener('blur',()=>{for(const button of pressables)release(button)});
+// BFCache restoration retains DOM, focus, pressed and hover states. Never
+// suppress actual keyboard focus; clear only links last activated by pointer.
+window.addEventListener('pageshow',event=>{
+ if(!event.persisted)return;
+ for(const button of document.querySelectorAll('.cc-compact-artwork[data-c05-pointer-navigation]')){
+  if(document.activeElement===button)button.blur();
+  delete button.dataset.c05PointerNavigation;
+  release(button);
+ }
+ for(const button of [...pressables])release(button);
+});
 async function hydrate(button){
  if(pending.has(button)||button.dataset.c05==='ready')return;
  const art=button.querySelector(':scope > .cc-compact-art');

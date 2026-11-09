@@ -1,0 +1,243 @@
+{
+  "origin": "http://127.0.0.1:19301/",
+  "pass": 20,
+  "total": 20,
+  "checks": [
+    {
+      "ok": true,
+      "label": "Chrome hero face 4.5px and stationary shadow",
+      "detail": {
+        "down": 4.5,
+        "shadow": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome pointer-click navigates correctly",
+      "detail": {
+        "url": "http://127.0.0.1:19301/about/"
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome pointer Back return shows clean focus-free resting hero",
+      "detail": {
+        "active": false,
+        "focus": false,
+        "focusVisible": false,
+        "outline": "none",
+        "focusedOutlineWidth": "3px",
+        "pointerMark": false,
+        "pressed": false,
+        "href": "/about/",
+        "preview": null
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome hero focus browser error-free",
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome keyboard focus indicator remains visible (Safari Tab policy acknowledged)",
+      "detail": {
+        "tabSteps": 11,
+        "active": true,
+        "focus": true,
+        "focusVisible": true,
+        "outline": "solid",
+        "focusedOutlineWidth": "3px",
+        "pointerMark": false,
+        "pressed": false,
+        "href": "/about/",
+        "preview": null
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome keyboard Enter navigation works",
+      "detail": {}
+    },
+    {
+      "ok": true,
+      "label": "Chrome forest graphite face-fill visible within organic clip; no shadow leakage",
+      "detail": {
+        "changedPixels": 5590,
+        "corner": 0,
+        "shadowDiff": 0,
+        "fill": "rgb(35, 35, 35)",
+        "scale": "matrix(1, 0, 0, 1, 0, 0)",
+        "opacity": "0.94",
+        "clip": "url(#c05-ink-clip-4)",
+        "order": true,
+        "shadow": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome terracotta graphite face-fill visible within organic clip; no shadow leakage",
+      "detail": {
+        "changedPixels": 5608,
+        "corner": 0,
+        "shadowDiff": 0,
+        "fill": "rgb(35, 35, 35)",
+        "scale": "matrix(1, 0, 0, 1, 0, 0)",
+        "opacity": "0.94",
+        "clip": "url(#c05-ink-clip-9)",
+        "order": true,
+        "shadow": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome beige graphite face-fill visible within organic clip; no shadow leakage",
+      "detail": {
+        "changedPixels": 5627,
+        "corner": 0,
+        "shadowDiff": 0,
+        "fill": "rgb(35, 35, 35)",
+        "scale": "matrix(1, 0, 0, 1, 0, 0)",
+        "opacity": "0.94",
+        "clip": "url(#c05-ink-clip-13)",
+        "order": true,
+        "shadow": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome touch Back return clean; no stale focus or press",
+      "detail": {
+        "active": false,
+        "focus": false,
+        "focusVisible": false,
+        "outline": "none",
+        "focusedOutlineWidth": "3px",
+        "pointerMark": false,
+        "pressed": false,
+        "href": "/about/",
+        "preview": null
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit hero face 4.5px and stationary shadow",
+      "detail": {
+        "down": 4.5,
+        "shadow": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit pointer-click navigates correctly",
+      "detail": {
+        "url": "http://127.0.0.1:19301/about/"
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit pointer Back return shows clean focus-free resting hero",
+      "detail": {
+        "active": false,
+        "focus": false,
+        "focusVisible": false,
+        "outline": "none",
+        "focusedOutlineWidth": "3px",
+        "pointerMark": false,
+        "pressed": false,
+        "href": "/about/",
+        "preview": null
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit hero focus browser error-free",
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit keyboard focus indicator remains visible (Safari Tab policy acknowledged)",
+      "detail": {
+        "tabSteps": 24,
+        "active": true,
+        "focus": true,
+        "focusVisible": true,
+        "outline": "solid",
+        "focusedOutlineWidth": "3px",
+        "pointerMark": false,
+        "pressed": false,
+        "href": "/about/",
+        "preview": null
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit keyboard Enter navigation works",
+      "detail": {}
+    },
+    {
+      "ok": true,
+      "label": "WebKit forest graphite face-fill visible within organic clip; no shadow leakage",
+      "detail": {
+        "changedPixels": 5556,
+        "corner": 0,
+        "shadowDiff": 0,
+        "fill": "rgb(35, 35, 35)",
+        "scale": "matrix(1, 0, 0, 1, 0, 0)",
+        "opacity": "0.94",
+        "clip": "url(#c05-ink-clip-4)",
+        "order": true,
+        "shadow": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit terracotta graphite face-fill visible within organic clip; no shadow leakage",
+      "detail": {
+        "changedPixels": 5599,
+        "corner": 0,
+        "shadowDiff": 0,
+        "fill": "rgb(35, 35, 35)",
+        "scale": "matrix(1, 0, 0, 1, 0, 0)",
+        "opacity": "0.94",
+        "clip": "url(#c05-ink-clip-13)",
+        "order": true,
+        "shadow": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit beige graphite face-fill visible within organic clip; no shadow leakage",
+      "detail": {
+        "changedPixels": 5624,
+        "corner": 0,
+        "shadowDiff": 0,
+        "fill": "rgb(35, 35, 35)",
+        "scale": "matrix(1, 0, 0, 1, 0, 0)",
+        "opacity": "0.94",
+        "clip": "url(#c05-ink-clip-13)",
+        "order": true,
+        "shadow": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit touch Back return clean; no stale focus or press",
+      "detail": {
+        "active": false,
+        "focus": false,
+        "focusVisible": false,
+        "outline": "none",
+        "focusedOutlineWidth": "3px",
+        "pointerMark": false,
+        "pressed": false,
+        "href": "/about/",
+        "preview": null
+      }
+    }
+  ]
+}

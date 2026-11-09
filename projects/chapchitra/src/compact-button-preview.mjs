@@ -1,8 +1,8 @@
 import {sketchButton} from '/handdrawn-buttons.mjs';
 const specs=[
- {tone:'forest',title:'A — Press Green',caption:'Original lighter-green velvet texture · Press Green shadow',label:'Shop Now'},
- {tone:'terracotta',title:'B — Terracotta',caption:'Walnut velvet texture · Green inner border · Dark Olive shadow',label:'Explore'},
- {tone:'beige',title:'C — Mushroom Gray',caption:'Cream inner border · Graphite outline · Walnut shadow',label:'Discover'}
+ {tone:'forest',title:'A — Press Green',caption:'Original lighter-green velvet texture · Warm Beige border · Graphite outline · Deep Forest shadow',label:'Shop Now'},
+ {tone:'terracotta',title:'B — Terracotta',caption:'Walnut velvet texture · Warm Beige border · Graphite outline · Dark Olive shadow',label:'Explore'},
+ {tone:'beige',title:'C — Mushroom Gray',caption:'Cream inner border · Graphite outline · Terracotta shadow',label:'Discover'}
 ];
 const states=['rest','hover','pressed','interactive'];
 const wrap=document.getElementById('c05Specimens');

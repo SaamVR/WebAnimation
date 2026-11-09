@@ -11,9 +11,9 @@ svg=master.decode('utf-8')
 assert 'viewBox="0 0 164 64"' in svg and 'id="BUTTON_FACE"' in svg and 'id="BUTTON_SHADOW"' in svg
 old={'st5':'#172419','st6':'#1F2216','st7':'#637565','st8':'#293D2D','st9':'#D8CEC2','st10':'#232323'}
 colors={
- 'forest':{'st5':'#293D2D','st6':'#1F2216','st7':'#637565','st8':'#293D2D','st9':'#637565','st10':'#232323'},
- 'terracotta':{'st5':'#1F2216','st6':'#1F2216','st7':'#6E523F','st8':'#8A503B','st9':'#637565','st10':'#293D2D'},
- 'neutral':{'st5':'#6E523F','st6':'#1F2216','st7':'#637565','st8':'#A6A29B','st9':'#E4E3DE','st10':'#232323'}
+ 'forest':{'st5':'#172419','st6':'#1F2216','st7':'#637565','st8':'#293D2D','st9':'#D8CEC2','st10':'#232323'},
+ 'terracotta':{'st5':'#1F2216','st6':'#1F2216','st7':'#6E523F','st8':'#8A503B','st9':'#D8CEC2','st10':'#232323'},
+ 'neutral':{'st5':'#8A503B','st6':'#1F2216','st7':'#637565','st8':'#A6A29B','st9':'#E4E3DE','st10':'#232323'}
 }
 for name,m in colors.items():
  result=svg

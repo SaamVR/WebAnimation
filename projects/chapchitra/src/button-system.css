@@ -286,7 +286,10 @@
   transform:none!important;
 }
 .cc-sketch--compact.cc-compact-artwork .cc-compact-ink{
-  fill:var(--cc-ink);
+  fill:#232323;
+  /* Preserve the approved low-level handmade grain beneath the graphite
+     ink. The ink's color stays Graphite; original art stays unmodified. */
+  opacity:.94;
   transform:scaleX(0);transform-origin:left center;
   transform-box:view-box;
   transition:transform 300ms cubic-bezier(.45,0,.55,1);

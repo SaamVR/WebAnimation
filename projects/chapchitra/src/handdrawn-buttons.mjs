@@ -21,7 +21,7 @@ export function sketchArt(variant='compact',tone='forest',organic=variant==='com
   if(variant==='compact'&&organic){
     const color=tone==='beige'?'neutral':tone;
     if(!['forest','terracotta','neutral'].includes(color))throw new TypeError('Unsupported compact SVG tone');
-    return '<span class="cc-compact-art" aria-hidden="true"><img class="cc-compact-fallback" src="/assets/compact/compact-button-'+color+'.svg" width="164" height="64" alt="" loading="eager" decoding="async"></span>';
+    return '<span class="cc-compact-art" aria-hidden="true"><img class="cc-compact-fallback" src="/assets/compact/compact-button-'+color+'.svg?c05=final-colors-ink-2" width="164" height="64" alt="" loading="eager" decoding="async"></span>';
   }
   if(!sketchVariants.includes(variant))throw new TypeError('Unsupported CHAPCHITRA pill variant');
   // Equal-sized shadow and face, offset by the same fixed x/y distance. CSS

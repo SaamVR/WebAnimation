@@ -9,9 +9,9 @@ const read=name=>readFile(resolve(root,name),'utf8');
 const sha=x=>createHash('sha256').update(x).digest('hex');
 const originalSHA='d3a84e9f49ff2355261914d91c7607f402e0d958305102ad9b7512d5d4d8384f';
 const approved={
- forest:{st5:'#293D2D',st6:'#1F2216',st7:'#637565',st8:'#293D2D',st9:'#637565',st10:'#232323'},
- terracotta:{st5:'#1F2216',st6:'#1F2216',st7:'#6E523F',st8:'#8A503B',st9:'#637565',st10:'#293D2D'},
- neutral:{st5:'#6E523F',st6:'#1F2216',st7:'#637565',st8:'#A6A29B',st9:'#E4E3DE',st10:'#232323'}
+ forest:{st5:'#172419',st6:'#1F2216',st7:'#637565',st8:'#293D2D',st9:'#D8CEC2',st10:'#232323'},
+ terracotta:{st5:'#1F2216',st6:'#1F2216',st7:'#6E523F',st8:'#8A503B',st9:'#D8CEC2',st10:'#232323'},
+ neutral:{st5:'#8A503B',st6:'#1F2216',st7:'#637565',st8:'#A6A29B',st9:'#E4E3DE',st10:'#232323'}
 };
 const sourcePaint={st5:'#172419',st6:'#1F2216',st7:'#637565',st8:'#293D2D',st9:'#D8CEC2',st10:'#232323'};
 test('C05 approved Illustrator SVG is byte exact and has independent face/shadow',async()=>{
@@ -71,7 +71,11 @@ test('C05 CSS and runtime keep stationary shadow, exact organic ink clip, indepe
  assert.match(css,/prefers-reduced-motion:reduce/);
  assert.match(js,/base\.getAttribute\('d'\)/);
  assert.match(js,/clipPathUnits/);
- assert.match(js,/base\.after\(ink\)/);
+ assert.match(js,/inside\.append\(shell\)/,'Ink must render above the 69 opaque body paths');
+ assert.match(js,/shell\.setAttribute\('clip-path'/,'Ink must use a stationary silhouette clip');
+ assert.match(js,/button\.blur\(\)/,'Pointer navigation clears restored focus');
+ assert.match(js,/event\.persisted/,'BFCache restoration clears pointer-held state');
+ assert.match(js,/event\.detail>0/,'Keyboard-triggered navigation must preserve keyboard focus');
  assert.match(js,/pointercancel/);
  assert.match(js,/lostpointercapture/);
  assert.match(js,/keydown/);

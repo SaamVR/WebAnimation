@@ -4,12 +4,12 @@ const {chromium,webkit}=require('playwright');
 const fs=require('node:fs/promises');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
-const out=path.resolve(root,'docs/c05-evidence');
+const out=path.resolve(root,'docs/c05-final-evidence');
 const origin=process.env.C05_URL||'http://127.0.0.1:19301/';
 const tones={
- forest:{st5:'rgb(41, 61, 45)',st7:'rgb(99, 117, 101)',st8:'rgb(41, 61, 45)',st9:'rgb(99, 117, 101)',st10:'rgb(35, 35, 35)'},
- terracotta:{st5:'rgb(31, 34, 22)',st7:'rgb(110, 82, 63)',st8:'rgb(138, 80, 59)',st9:'rgb(99, 117, 101)',st10:'rgb(41, 61, 45)'},
- beige:{st5:'rgb(110, 82, 63)',st7:'rgb(99, 117, 101)',st8:'rgb(166, 162, 155)',st9:'rgb(228, 227, 222)',st10:'rgb(35, 35, 35)'}
+ forest:{st5:'rgb(23, 36, 25)',st7:'rgb(99, 117, 101)',st8:'rgb(41, 61, 45)',st9:'rgb(216, 206, 194)',st10:'rgb(35, 35, 35)'},
+ terracotta:{st5:'rgb(31, 34, 22)',st7:'rgb(110, 82, 63)',st8:'rgb(138, 80, 59)',st9:'rgb(216, 206, 194)',st10:'rgb(35, 35, 35)'},
+ beige:{st5:'rgb(138, 80, 59)',st7:'rgb(99, 117, 101)',st8:'rgb(166, 162, 155)',st9:'rgb(228, 227, 222)',st10:'rgb(35, 35, 35)'}
 };
 const checks=[],errors=[];
 const check=(ok,label,data={})=>{
@@ -22,7 +22,7 @@ const get=async(p,selector)=>p.locator(selector).first().evaluate(e=>({
  face:getComputedStyle(e.querySelector('[id="BUTTON_FACE"]')).transform,
  shadow:getComputedStyle(e.querySelector('[id="BUTTON_SHADOW"]')).transform,
  paths:e.querySelectorAll('svg path').length,polygons:e.querySelectorAll('svg polygon').length,
- clip:e.querySelector('.cc-compact-ink')?.getAttribute('clip-path'),
+ clip:e.querySelector('.cc-compact-ink-shell')?.getAttribute('clip-path'),
  rect:e.getBoundingClientRect().toJSON()
 }));
 const matrixY=transform=>transform==='none'?0:(parseFloat(transform.match(/matrix\([^)]*?,\s*([\d.-]+)\)/)?.[1])||0);
@@ -45,7 +45,7 @@ const matrixY=transform=>transform==='none'?0:(parseFloat(transform.match(/matri
      counts:window.__chapchitraC05.counts,
      overflow:document.documentElement.scrollWidth>innerWidth+1,
      activeFiles:[...new Set([...document.querySelectorAll('.cc-compact-artwork img')].map(x=>x.getAttribute('src')))],
-     clipCount:document.querySelectorAll('.cc-compact-artwork .cc-compact-ink[clip-path]').length,
+     clipCount:document.querySelectorAll('.cc-compact-artwork .cc-compact-ink-shell[clip-path]').length,
      long:document.querySelectorAll('.cc-sketch--long .cc-pill-face').length
     }));
     check(response.status()===200&&global.counts.ready===13&&!global.overflow&&global.clipCount===13&&global.long===1&&global.counts.fallback===0,
