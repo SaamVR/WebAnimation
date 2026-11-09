@@ -1,0 +1,59 @@
+{
+  "results": [
+    {
+      "width": 1408,
+      "tone": 0,
+      "differingChannelSamples": 0,
+      "dimensions": [
+        1280,
+        227
+      ]
+    },
+    {
+      "width": 1408,
+      "tone": 1,
+      "differingChannelSamples": 0,
+      "dimensions": [
+        1280,
+        227
+      ]
+    },
+    {
+      "width": 1408,
+      "tone": 2,
+      "differingChannelSamples": 0,
+      "dimensions": [
+        1280,
+        227
+      ]
+    },
+    {
+      "width": 430,
+      "tone": 0,
+      "differingChannelSamples": 0,
+      "dimensions": [
+        398,
+        325
+      ]
+    },
+    {
+      "width": 430,
+      "tone": 1,
+      "differingChannelSamples": 0,
+      "dimensions": [
+        398,
+        325
+      ]
+    },
+    {
+      "width": 430,
+      "tone": 2,
+      "differingChannelSamples": 0,
+      "dimensions": [
+        398,
+        325
+      ]
+    }
+  ],
+  "totalDifferences": 0
+}

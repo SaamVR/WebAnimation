@@ -1,0 +1,956 @@
+{
+  "origin": "http://127.0.0.1:19301/",
+  "checks": [
+    {
+      "ok": true,
+      "label": "Chrome 1408 isolated preview SVGs, clips, long controls, layout",
+      "data": {
+        "counts": {
+          "total": 13,
+          "ready": 13,
+          "fallback": 0
+        },
+        "overflow": false,
+        "activeFiles": [],
+        "clipCount": 13,
+        "long": 1
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 1408 forest exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--forest cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(41, 61, 45)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(41, 61, 45)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-1)",
+        "rect": {
+          "x": 177.25,
+          "y": 474.828125,
+          "width": 164,
+          "height": 64,
+          "top": 474.828125,
+          "right": 341.25,
+          "bottom": 538.828125,
+          "left": 177.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 1408 terracotta exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--terracotta cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(31, 34, 22)",
+          "st7": "rgb(110, 82, 63)",
+          "st8": "rgb(138, 80, 59)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(41, 61, 45)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-6)",
+        "rect": {
+          "x": 177.25,
+          "y": 724.828125,
+          "width": 164,
+          "height": 64,
+          "top": 724.828125,
+          "right": 341.25,
+          "bottom": 788.828125,
+          "left": 177.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 1408 beige exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--beige cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(110, 82, 63)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(166, 162, 155)",
+          "st9": "rgb(228, 227, 222)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-10)",
+        "rect": {
+          "x": 177.25,
+          "y": 974.828125,
+          "width": 164,
+          "height": 64,
+          "top": 974.828125,
+          "right": 341.25,
+          "bottom": 1038.828125,
+          "left": 177.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 1408 no application JS exceptions",
+      "data": []
+    },
+    {
+      "ok": true,
+      "label": "Chrome hover ink wipe completes left-to-right",
+      "data": {
+        "hovered": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome physical press only translates SVG face 4.5px; shadow remains fixed",
+      "data": {
+        "restY": 0,
+        "pressY": 4.5,
+        "shadowRest": "none",
+        "shadowDown": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome pointer leaving outside cancels press",
+      "data": {
+        "released": 0,
+        "restY": 0
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome keyboard Space press and release works without stuck state",
+      "data": {}
+    },
+    {
+      "ok": true,
+      "label": "Chrome 834 isolated preview SVGs, clips, long controls, layout",
+      "data": {
+        "counts": {
+          "total": 13,
+          "ready": 13,
+          "fallback": 0
+        },
+        "overflow": false,
+        "activeFiles": [],
+        "clipCount": 13,
+        "long": 1
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 834 forest exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--forest cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(41, 61, 45)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(41, 61, 45)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-1)",
+        "rect": {
+          "x": 47,
+          "y": 474.109375,
+          "width": 164,
+          "height": 64,
+          "top": 474.109375,
+          "right": 211,
+          "bottom": 538.109375,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 834 terracotta exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--terracotta cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(31, 34, 22)",
+          "st7": "rgb(110, 82, 63)",
+          "st8": "rgb(138, 80, 59)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(41, 61, 45)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-6)",
+        "rect": {
+          "x": 47,
+          "y": 724.109375,
+          "width": 164,
+          "height": 64,
+          "top": 724.109375,
+          "right": 211,
+          "bottom": 788.109375,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 834 beige exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--beige cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(110, 82, 63)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(166, 162, 155)",
+          "st9": "rgb(228, 227, 222)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-10)",
+        "rect": {
+          "x": 47,
+          "y": 974.109375,
+          "width": 164,
+          "height": 64,
+          "top": 974.109375,
+          "right": 211,
+          "bottom": 1038.109375,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 834 no application JS exceptions",
+      "data": []
+    },
+    {
+      "ok": true,
+      "label": "Chrome 430 isolated preview SVGs, clips, long controls, layout",
+      "data": {
+        "counts": {
+          "total": 13,
+          "ready": 13,
+          "fallback": 0
+        },
+        "overflow": false,
+        "activeFiles": [],
+        "clipCount": 13,
+        "long": 1
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 430 forest exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--forest cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(41, 61, 45)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(41, 61, 45)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-1)",
+        "rect": {
+          "x": 47,
+          "y": 601.875,
+          "width": 145,
+          "height": 58,
+          "top": 601.875,
+          "right": 192,
+          "bottom": 659.875,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 430 terracotta exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--terracotta cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(31, 34, 22)",
+          "st7": "rgb(110, 82, 63)",
+          "st8": "rgb(138, 80, 59)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(41, 61, 45)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-6)",
+        "rect": {
+          "x": 47,
+          "y": 946.875,
+          "width": 145,
+          "height": 58,
+          "top": 946.875,
+          "right": 192,
+          "bottom": 1004.875,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 430 beige exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--beige cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(110, 82, 63)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(166, 162, 155)",
+          "st9": "rgb(228, 227, 222)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-10)",
+        "rect": {
+          "x": 47,
+          "y": 1291.875,
+          "width": 145,
+          "height": 58,
+          "top": 1291.875,
+          "right": 192,
+          "bottom": 1349.875,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 430 no application JS exceptions",
+      "data": []
+    },
+    {
+      "ok": true,
+      "label": "Chrome 320 isolated preview SVGs, clips, long controls, layout",
+      "data": {
+        "counts": {
+          "total": 13,
+          "ready": 13,
+          "fallback": 0
+        },
+        "overflow": false,
+        "activeFiles": [],
+        "clipCount": 13,
+        "long": 1
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 320 forest exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--forest cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(41, 61, 45)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(41, 61, 45)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-1)",
+        "rect": {
+          "x": 20.25,
+          "y": 696.5625,
+          "width": 145,
+          "height": 58,
+          "top": 696.5625,
+          "right": 165.25,
+          "bottom": 754.5625,
+          "left": 20.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 320 terracotta exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--terracotta cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(31, 34, 22)",
+          "st7": "rgb(110, 82, 63)",
+          "st8": "rgb(138, 80, 59)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(41, 61, 45)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-6)",
+        "rect": {
+          "x": 20.25,
+          "y": 1035.5625,
+          "width": 145,
+          "height": 58,
+          "top": 1035.5625,
+          "right": 165.25,
+          "bottom": 1093.5625,
+          "left": 20.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 320 beige exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--beige cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(110, 82, 63)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(166, 162, 155)",
+          "st9": "rgb(228, 227, 222)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-10)",
+        "rect": {
+          "x": 20.25,
+          "y": 1374.5625,
+          "width": 145,
+          "height": 58,
+          "top": 1374.5625,
+          "right": 165.25,
+          "bottom": 1432.5625,
+          "left": 20.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "Chrome 320 no application JS exceptions",
+      "data": []
+    },
+    {
+      "ok": true,
+      "label": "Chrome reduced-motion no timed press or ink transitions",
+      "data": {
+        "faceTransition": "0s",
+        "inkTransition": "0s"
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 1408 isolated preview SVGs, clips, long controls, layout",
+      "data": {
+        "counts": {
+          "total": 13,
+          "ready": 13,
+          "fallback": 0
+        },
+        "overflow": false,
+        "activeFiles": [],
+        "clipCount": 13,
+        "long": 1
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 1408 forest exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--forest cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(41, 61, 45)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(41, 61, 45)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-1)",
+        "rect": {
+          "x": 177.25,
+          "y": 471.828125,
+          "width": 164,
+          "height": 64,
+          "top": 471.828125,
+          "right": 341.25,
+          "bottom": 535.828125,
+          "left": 177.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 1408 terracotta exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--terracotta cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(31, 34, 22)",
+          "st7": "rgb(110, 82, 63)",
+          "st8": "rgb(138, 80, 59)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(41, 61, 45)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-6)",
+        "rect": {
+          "x": 177.25,
+          "y": 718.828125,
+          "width": 164,
+          "height": 64,
+          "top": 718.828125,
+          "right": 341.25,
+          "bottom": 782.828125,
+          "left": 177.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 1408 beige exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--beige cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(110, 82, 63)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(166, 162, 155)",
+          "st9": "rgb(228, 227, 222)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-10)",
+        "rect": {
+          "x": 177.25,
+          "y": 965.828125,
+          "width": 164,
+          "height": 64,
+          "top": 965.828125,
+          "right": 341.25,
+          "bottom": 1029.828125,
+          "left": 177.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 1408 no application JS exceptions",
+      "data": []
+    },
+    {
+      "ok": true,
+      "label": "WebKit hover ink wipe completes left-to-right",
+      "data": {
+        "hovered": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit physical press only translates SVG face 4.5px; shadow remains fixed",
+      "data": {
+        "restY": 0,
+        "pressY": 4.5,
+        "shadowRest": "none",
+        "shadowDown": "none"
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit pointer leaving outside cancels press",
+      "data": {
+        "released": 0,
+        "restY": 0
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit keyboard Space press and release works without stuck state",
+      "data": {}
+    },
+    {
+      "ok": true,
+      "label": "WebKit 834 isolated preview SVGs, clips, long controls, layout",
+      "data": {
+        "counts": {
+          "total": 13,
+          "ready": 13,
+          "fallback": 0
+        },
+        "overflow": false,
+        "activeFiles": [],
+        "clipCount": 13,
+        "long": 1
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 834 forest exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--forest cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(41, 61, 45)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(41, 61, 45)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-1)",
+        "rect": {
+          "x": 47,
+          "y": 471.09375,
+          "width": 164,
+          "height": 64,
+          "top": 471.09375,
+          "right": 211,
+          "bottom": 535.09375,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 834 terracotta exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--terracotta cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(31, 34, 22)",
+          "st7": "rgb(110, 82, 63)",
+          "st8": "rgb(138, 80, 59)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(41, 61, 45)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-6)",
+        "rect": {
+          "x": 47,
+          "y": 718.09375,
+          "width": 164,
+          "height": 64,
+          "top": 718.09375,
+          "right": 211,
+          "bottom": 782.09375,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 834 beige exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--beige cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(110, 82, 63)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(166, 162, 155)",
+          "st9": "rgb(228, 227, 222)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-10)",
+        "rect": {
+          "x": 47,
+          "y": 965.09375,
+          "width": 164,
+          "height": 64,
+          "top": 965.09375,
+          "right": 211,
+          "bottom": 1029.09375,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 834 no application JS exceptions",
+      "data": []
+    },
+    {
+      "ok": true,
+      "label": "WebKit 430 isolated preview SVGs, clips, long controls, layout",
+      "data": {
+        "counts": {
+          "total": 13,
+          "ready": 13,
+          "fallback": 0
+        },
+        "overflow": false,
+        "activeFiles": [],
+        "clipCount": 13,
+        "long": 1
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 430 forest exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--forest cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(41, 61, 45)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(41, 61, 45)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-1)",
+        "rect": {
+          "x": 47,
+          "y": 598.875,
+          "width": 145,
+          "height": 58,
+          "top": 598.875,
+          "right": 192,
+          "bottom": 656.875,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 430 terracotta exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--terracotta cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(31, 34, 22)",
+          "st7": "rgb(110, 82, 63)",
+          "st8": "rgb(138, 80, 59)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(41, 61, 45)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-10)",
+        "rect": {
+          "x": 47,
+          "y": 940.875,
+          "width": 145,
+          "height": 58,
+          "top": 940.875,
+          "right": 192,
+          "bottom": 998.875,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 430 beige exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--beige cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(110, 82, 63)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(166, 162, 155)",
+          "st9": "rgb(228, 227, 222)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-6)",
+        "rect": {
+          "x": 47,
+          "y": 1282.875,
+          "width": 145,
+          "height": 58,
+          "top": 1282.875,
+          "right": 192,
+          "bottom": 1340.875,
+          "left": 47
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 430 no application JS exceptions",
+      "data": []
+    },
+    {
+      "ok": true,
+      "label": "WebKit 320 isolated preview SVGs, clips, long controls, layout",
+      "data": {
+        "counts": {
+          "total": 13,
+          "ready": 13,
+          "fallback": 0
+        },
+        "overflow": false,
+        "activeFiles": [],
+        "clipCount": 13,
+        "long": 1
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 320 forest exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--forest cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(41, 61, 45)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(41, 61, 45)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-1)",
+        "rect": {
+          "x": 20.25,
+          "y": 693.5625,
+          "width": 145,
+          "height": 58,
+          "top": 693.5625,
+          "right": 165.25,
+          "bottom": 751.5625,
+          "left": 20.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 320 terracotta exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--terracotta cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(31, 34, 22)",
+          "st7": "rgb(110, 82, 63)",
+          "st8": "rgb(138, 80, 59)",
+          "st9": "rgb(99, 117, 101)",
+          "st10": "rgb(41, 61, 45)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-6)",
+        "rect": {
+          "x": 20.25,
+          "y": 1029.5625,
+          "width": 145,
+          "height": 58,
+          "top": 1029.5625,
+          "right": 165.25,
+          "bottom": 1087.5625,
+          "left": 20.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 320 beige exact SVG paints, detailed original vectors",
+      "data": {
+        "cls": "cc-sketch cc-sketch--compact cc-sketch--beige cc-compact-artwork",
+        "fill": {
+          "st5": "rgb(110, 82, 63)",
+          "st7": "rgb(99, 117, 101)",
+          "st8": "rgb(166, 162, 155)",
+          "st9": "rgb(228, 227, 222)",
+          "st10": "rgb(35, 35, 35)"
+        },
+        "face": "matrix(1, 0, 0, 1, 0, 0)",
+        "shadow": "none",
+        "paths": 115,
+        "polygons": 10,
+        "clip": "url(#c05-ink-clip-10)",
+        "rect": {
+          "x": 20.25,
+          "y": 1365.5625,
+          "width": 145,
+          "height": 58,
+          "top": 1365.5625,
+          "right": 165.25,
+          "bottom": 1423.5625,
+          "left": 20.25
+        }
+      }
+    },
+    {
+      "ok": true,
+      "label": "WebKit 320 no application JS exceptions",
+      "data": []
+    },
+    {
+      "ok": true,
+      "label": "WebKit reduced-motion no timed press or ink transitions",
+      "data": {
+        "faceTransition": "0s",
+        "inkTransition": "0s"
+      }
+    },
+    {
+      "ok": true,
+      "label": "Touch press moves the face",
+      "data": {}
+    },
+    {
+      "ok": true,
+      "label": "Touch pointercancel releases immediately",
+      "data": {}
+    },
+    {
+      "ok": true,
+      "label": "Real mobile tap retains native click action",
+      "data": {
+        "status": "Activated terracotta interactive — native button action retained."
+      }
+    }
+  ],
+  "passed": 53,
+  "total": 53
+}
