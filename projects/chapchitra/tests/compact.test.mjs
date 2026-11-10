@@ -14,7 +14,7 @@ const approved={
  neutral:{st5:'#8A503B',st6:'#1F2216',st7:'#637565',st8:'#A6A29B',st9:'#E4E3DE',st10:'#232323'}
 };
 const sourcePaint={st5:'#172419',st6:'#1F2216',st7:'#637565',st8:'#293D2D',st9:'#D8CEC2',st10:'#232323'};
-test('C05 approved Illustrator SVG is byte exact and has independent face/shadow',async()=>{
+test('COMPACT approved Illustrator SVG is byte exact and has independent face/shadow',async()=>{
  const original=await read('src/assets/compact/compact-button-approved-original.svg');
  assert.equal(sha(original),originalSHA);
  assert.match(original,/viewBox="0 0 164 64"/);
@@ -24,7 +24,7 @@ test('C05 approved Illustrator SVG is byte exact and has independent face/shadow
  assert.equal((original.match(/<path\b/g)||[]).length,114);
  assert.equal((original.match(/<polygon\b/g)||[]).length,10);
 });
-test('C05 three approved variants change only original SVG paint declarations',async()=>{
+test('COMPACT three approved variants change only original SVG paint declarations',async()=>{
  const master=await read('src/assets/compact/compact-button-approved-original.svg');
  for(const [tone,colors] of Object.entries(approved)){
   const svg=await read('src/assets/compact/compact-button-'+tone+'.svg');
@@ -38,7 +38,7 @@ test('C05 three approved variants change only original SVG paint declarations',a
   assert.ok(svg.length>=master.length,'SVG art has not been flattened');
  }
 });
-test('C05 compact uses original SVG source and semantic HTML labels',()=>{
+test('Compact uses original SVG source and semantic HTML labels',()=>{
  for(const [tone,filename] of [['forest','forest'],['terracotta','terracotta'],['beige','neutral']]){
   const text=sketchButton({label:'Shop Now',variant:'compact',tone,href:'/shop/'});
   assert.match(text,/class="cc-sketch cc-sketch--compact/);
@@ -49,7 +49,7 @@ test('C05 compact uses original SVG source and semantic HTML labels',()=>{
   assert.ok(!text.includes('cc-pill-shadow'));
  }
 });
-test('C05 long CSS pill and all inline form buttons remain byte-identical markup',()=>{
+test('COMPACT long CSS pill and all inline form buttons remain byte-identical markup',()=>{
  assert.equal(sketchArt('long'),
   '<span class="cc-pill-art cc-pill-art--long" aria-hidden="true"><span class="cc-pill-shadow"></span><span class="cc-pill-face"><span class="cc-pill-wipe"></span></span></span>');
  const long=sketchButton({label:'ADD TO BAG',variant:'long',tone:'forest',className:'product-add-button',attrs:'data-add-to-bag="test"'});
@@ -61,7 +61,7 @@ test('C05 long CSS pill and all inline form buttons remain byte-identical markup
  assert.ok(inline.includes('cc-pill-face'));
  assert.ok(inline.includes('type="submit"'));
 });
-test('C05 CSS and runtime keep stationary shadow, exact organic ink clip, independent face and reduced motion',async()=>{
+test('COMPACT CSS and runtime keep stationary shadow, exact organic ink clip, independent face and reduced motion',async()=>{
  const css=await read('src/button-system.css');
  const js=await read('src/compact-button-runtime.mjs');
  assert.match(css,/[id="BUTTON_FACE"]/);
@@ -83,7 +83,7 @@ test('C05 CSS and runtime keep stationary shadow, exact organic ink clip, indepe
  assert.match(js,/document\.importNode\(source,true\)/);
  assert.ok(!js.includes('scaleY('),'Face must not squash');
 });
-test('C05 website and isolated preview load one lightweight compact controller',async()=>{
+test('COMPACT website and isolated preview load one lightweight compact controller',async()=>{
  const site=await read('src/index.html');
  const preview=await read('src/buttons/compact/index.html');
  const renderer=await read('src/handdrawn-buttons.mjs');

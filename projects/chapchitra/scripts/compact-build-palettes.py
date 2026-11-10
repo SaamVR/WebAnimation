@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate exact C05 SVG palette variants; only class paint values differ."""
+"""Generate exact COMPACT SVG palette variants; only class paint values differ."""
 from pathlib import Path
 import hashlib
 root=Path(__file__).resolve().parent.parent

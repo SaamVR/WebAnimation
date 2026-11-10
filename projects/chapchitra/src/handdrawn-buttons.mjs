@@ -5,14 +5,14 @@
  * The native button/anchor and label layers preserve existing storefront handlers.
  */
 const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-// Load the compact SVG controller only for routes that actually render C05
+// Load the compact SVG controller only for routes that actually render COMPACT
 // buttons. Absolute root path also works with version-pinned Artist's Edit.
 function ensureCompactRuntime(){
-  if(typeof window==='undefined'||window.__chapchitraC05LoaderRequested)return;
-  window.__chapchitraC05LoaderRequested=true;
+  if(typeof window==='undefined'||window.__chapchitraCompactButtonsLoaderRequested)return;
+  window.__chapchitraCompactButtonsLoaderRequested=true;
   void import('/compact-button-runtime.mjs').catch(error=>{
-    window.__chapchitraC05LoaderRequested=false;
-    console.warn('C05 keeps its approved static SVG fallback:',error);
+    window.__chapchitraCompactButtonsLoaderRequested=false;
+    console.warn('COMPACT keeps its approved static SVG fallback:',error);
   });
 }
 export const sketchTones = ['forest','terracotta','beige'];
@@ -21,7 +21,7 @@ export function sketchArt(variant='compact',tone='forest',organic=variant==='com
   if(variant==='compact'&&organic){
     const color=tone==='beige'?'neutral':tone;
     if(!['forest','terracotta','neutral'].includes(color))throw new TypeError('Unsupported compact SVG tone');
-    return '<span class="cc-compact-art" aria-hidden="true"><img class="cc-compact-fallback" src="/assets/compact/compact-button-'+color+'.svg?c05=final-colors-ink-2" width="164" height="64" alt="" loading="eager" decoding="async"></span>';
+    return '<span class="cc-compact-art" aria-hidden="true"><img class="cc-compact-fallback" src="/assets/compact/compact-button-'+color+'.svg?compact=final-colors-ink-2" width="164" height="64" alt="" loading="eager" decoding="async"></span>';
   }
   if(!sketchVariants.includes(variant))throw new TypeError('Unsupported CHAPCHITRA pill variant');
   // Equal-sized shadow and face, offset by the same fixed x/y distance. CSS

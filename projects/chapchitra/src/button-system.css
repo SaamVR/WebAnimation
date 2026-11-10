@@ -261,7 +261,7 @@
   --cc-shadow-color:var(--acc);
 }
 
-/* C05 APPROVED COMPACT SVG ONLY. Every long and inline style above stays intact.
+/* COMPACT APPROVED COMPACT SVG ONLY. Every long and inline style above stays intact.
    The vector face (not the complete button) moves; its shadow never moves. */
 .cc-sketch--compact.cc-compact-artwork{
   width:164px;min-width:164px;max-width:100%;height:64px;min-height:64px;
