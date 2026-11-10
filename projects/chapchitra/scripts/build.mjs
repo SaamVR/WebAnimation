@@ -5,6 +5,11 @@ import { resolve } from 'node:path';
 const root=resolve(import.meta.dirname,'..');
 const src=resolve(root,'src');
 const output=resolve(root,'dist');
+ // Fail closed if the owner-supplied back assets are missing or changed.
+ // Never ship a front/back control pointing at uninstalled imagery.
+const {validateBackViewAssets}=await import('./validate-worktable-back.mjs');
+const backAssets=await validateBackViewAssets(root);
+console.log('CHAPCHITRA four back garments verified:',backAssets);
 await rm(output,{recursive:true,force:true});
 await mkdir(output,{recursive:true});
 await cp(src,output,{recursive:true});

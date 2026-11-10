@@ -2,10 +2,12 @@ import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableRed
 import { UPLOAD_ARTWORK_SVG } from './worktable-upload-icon.mjs';
 import { FABRIC_PIGMENTS, applyFabricPigmentToRGBA } from './worktable-fabric-pigments.mjs';
 import { paperGuide, placementGeometry, printScaleLabel, resolutionGuidance } from './worktable-print-placement.mjs';
+import { createSideRecords, storeSide, loadSide, disposeSideRecords } from './worktable-two-sided-state.mjs';
 
 // Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
 // Cropped WebP browser variants retain original alpha coordinates and source SHA256.
 const ASSET_ROOT = '/assets/worktable/';
+const BACK_MANIFEST_URL = '/assets/worktable/back/manifest.json';
 const ALL = {
   backdrop: 'Artist-edit-backdrop-1.png',
   garment: {
@@ -85,6 +87,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  if(missing.length)throw new Error('Missing approved 4000×2250 layers: '+missing.join(', '));
  const state=createWorktableState();
  let current=state;
+ let view='front';
+ const sideRecords=createSideRecords(current.printSize);
  let artURL=null;
  let artBitmap=null;
  const editor={x:0,y:0,adjustment:0,rotation:0,selected:false,mode:'move'};
@@ -132,6 +136,16 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  if(embedded)body.querySelector('.cc-worktable-header')?.remove();
  root.replaceChildren(body);
  const stage=root.querySelector('.cc-worktable-stage');
+ // The accessible turn action sits BELOW the desk image so it never obscures
+ // a long garment hem, a worker, or one of the original illustrated controls.
+ const viewRow=document.createElement('div');
+ viewRow.className='cc-worktable-view-row';
+ const viewButton=document.createElement('button');
+ viewButton.type='button';viewButton.className='cc-worktable-view-button';
+ viewButton.setAttribute('aria-label','View back');
+ viewButton.innerHTML='<span aria-hidden="true" class="cc-worktable-view-glyph">↻</span><span class="cc-worktable-view-label">View back</span>';
+ viewRow.append(viewButton);
+ stage.after(viewRow);
  const rail=root.querySelector('.cc-worktable-rail');
  const file=root.querySelector('#worktableFile');
  const uploadButton=root.querySelector('#worktableUploadArt');
@@ -144,8 +158,37 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const reset=root.querySelector('#worktableResetArt');
  let layerCounter=0;
  const visualImages=[];
+ // Back delivery is intentionally LAZY: the first visit fetches no back PNG
+ // or WebP. A missing installation leaves the approved front fully usable.
+ let backManifest=null,backManifestPending=null;
+ const ensureBackManifest=()=>{
+  if(backManifest)return Promise.resolve(backManifest);
+  if(!backManifestPending)backManifestPending=(async()=>{
+   const response=await fetch(BACK_MANIFEST_URL,{cache:'force-cache'});
+   if(!response.ok)throw new Error('Back-view artwork package is not installed ('+response.status+')');
+   const next=await response.json();
+   if(next.schema!=='chapchitra-worktable-back/1'||
+      next.originalCanvas?.join('x')!=='4000x2250'||
+      next.designCanvas?.join('x')!=='2048x1152'){
+    throw new Error('Unexpected back-view artwork registration');
+   }
+   for(const key of Object.keys(ALL.garment)){
+    const item=next.assets?.[key],delivery=item?.delivery;
+    if(item?.original?.join('x')!=='4000x2250'||
+       !Array.isArray(delivery?.stageBox)||delivery.stageBox.length!==4||
+       delivery.variants?.length!==3||
+       delivery.variants.some(v=>!v.path.startsWith('back/variants/'))){
+      throw new Error('Missing back-view optimized artwork for '+key);
+    }
+   }
+   backManifest=next;return next;
+  })().catch(error=>{backManifestPending=null;throw error});
+  return backManifestPending;
+ };
  const sourceInfo=path=>{
-  const meta=manifest[path]?.delivery;
+  const meta=path.startsWith('back/')
+   ?backManifest?.assets?.[path.slice(5)]?.delivery
+   :manifest[path]?.delivery;
   if(!meta)throw new Error('Missing optimized geometry for '+path);
   return meta;
  };
@@ -431,7 +474,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  let switchToken=0;
  let latestRender=null;
  let garmentSurface=null;
- let visualGarment='regular', visualColor='white';
+ let visualGarment='regular', visualColor='white', visualSide='front';
  let preview=null;
  // At most four decoded transparent garment layers, and one base plate,
  // are retained. Color combinations are drawn only when requested.
@@ -449,14 +492,15 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   }
   return decoded.get(key);
  };
- const colorized=async(garment,color,index)=>{
-  const path=ALL.garment[garment],info=sourceInfo(path);
+ const colorized=async(garment,color,index,side='front')=>{
+  const path=side==='back'?'back/'+garment:ALL.garment[garment],info=sourceInfo(path);
   const source=await loadVariant(info,index);
   const canvas=document.createElement('canvas');
   canvas.className='cc-worktable-layer cc-worktable-garment-surface';
   canvas.width=source.naturalWidth;canvas.height=source.naturalHeight;
   positionLayer(canvas,path);
   canvas.dataset.garment=garment;canvas.dataset.color=color;
+  canvas.dataset.side=side;canvas.dataset.assetPath=path;
   const context=canvas.getContext('2d',{alpha:true,willReadFrequently:color!=='white'});
   if(!context)throw new Error('Garment canvas could not initialize');
   const pigmentStarted=performance.now();
@@ -491,22 +535,33 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   if(!ctx)throw new Error('Atomic preview canvas could not initialize');
   ctx.drawImage(backplate,0,0);
   const place=(img,path)=>{
+   if(path.startsWith('back/')){
+    // Only the new back art uses fitted stage registration. Front composition
+    // remains precisely the approved crop-placement implementation.
+    const [x,y,w,h]=sourceInfo(path).stageBox;
+    ctx.drawImage(img,Math.round(x*canvas.width/2048),
+     Math.round(y*canvas.height/1152),Math.round(w*canvas.width/2048),
+     Math.round(h*canvas.height/1152));
+    return;
+   }
    const crop=sourceInfo(path).crop;
    const left=Math.round(crop[0]*canvas.width/4000);
    const top=Math.round(crop[1]*canvas.width/4000);
    ctx.drawImage(img,left,top);
   };
-  place(colored,ALL.garment[colored.dataset.garment]);
+  place(colored,colored.dataset.assetPath||ALL.garment[colored.dataset.garment]);
   ALL.workers.forEach((path,i)=>place(workerImgs[i],path));
   return canvas;
  };
  const queueGarmentVisual=()=>{
   const token=++switchToken;
-  const wantedGarment=current.garment,wantedColor=current.color;
-  if(garmentSurface&&visualGarment===wantedGarment&&visualColor===wantedColor)return Promise.resolve(true);
+  const wantedGarment=current.garment,wantedColor=current.color,wantedSide=view;
+  if(garmentSurface&&visualGarment===wantedGarment&&visualColor===wantedColor&&visualSide===wantedSide)return Promise.resolve(true);
   const job=(async()=>{
+   if(wantedSide==='back')await ensureBackManifest();
+   if(token!==switchToken)return false;
    const index=variantIndex();
-   const colored=await colorized(wantedGarment,wantedColor,index);
+   const colored=await colorized(wantedGarment,wantedColor,index,wantedSide);
    if(token!==switchToken)return false;
    // When fine layers are already decoded, skip the full-stage background.
    // Before hydration, compose a COMPLETE scene without any baked white shirt.
@@ -514,14 +569,17 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    if(token!==switchToken)return false;
    // All preparation is complete. These DOM changes are synchronous within
    // one frame: keep previous garment until the colored image exists.
+   const changedSide=visualSide!==wantedSide;
+   if(changedSide)colored.classList.add('cc-worktable-turn-in');
    if(garmentSurface)garmentSurface.replaceWith(colored);
    else garmentImg.after(colored);
    garmentSurface=colored;
    garmentImg.style.visibility='hidden';
    if(scene&&preview?.isConnected){
+    if(changedSide)scene.classList.add('cc-worktable-turn-in');
     preview.replaceWith(scene);preview=scene;
    }
-   visualGarment=wantedGarment;visualColor=wantedColor;
+   visualGarment=wantedGarment;visualColor=wantedColor;visualSide=wantedSide;
    printPosition(); // Upload placement changes together with the new garment.
    return true;
   })().catch(error=>{
@@ -538,11 +596,11 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   // garment/color pair and never reveal the stale/white intermediate layer.
   for(let attempts=0;attempts<50;attempts++){
    const token=switchToken;
-   if(!garmentSurface||current.garment!==visualGarment||current.color!==visualColor){
+   if(!garmentSurface||current.garment!==visualGarment||current.color!==visualColor||view!==visualSide){
     await (latestRender||queueGarmentVisual());
     if(token!==switchToken)continue;
    }
-   if(!garmentSurface||current.garment!==visualGarment||current.color!==visualColor){
+   if(!garmentSurface||current.garment!==visualGarment||current.color!==visualColor||view!==visualSide){
     announce('The previous complete scene remains visible until the requested garment can be prepared.');
     return;
    }
@@ -573,7 +631,53 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   }
   if(!deferPosition)printPosition();
  };
- const clearArtURL=()=>{if(artURL)URL.revokeObjectURL(artURL);artURL=null;artBitmap=null};
+ // The two artwork records share GARMENT/SIZE/COLOR only. File URL, bitmap,
+ // editor geometry, selected tool and paper preset belong to each side.
+ const saveActiveSide=()=>{
+  storeSide(sideRecords,view,{url:artURL,bitmap:artBitmap,editor,preset:current.printSize});
+ };
+ const restoreActiveSide=()=>{
+  const r=loadSide(sideRecords,view);
+  artURL=r.url;artBitmap=r.bitmap;
+  Object.assign(editor,r.editor);
+  current=worktableReducer(current,{type:'select',group:'printSize',value:r.preset});
+  if(artURL){artImg.src=artURL;artImg.style.objectFit='contain'}
+  else artImg.removeAttribute('src');
+  scale.disabled=!artURL;reset.disabled=!artURL;remove.disabled=!artURL;
+  scale.value=String(editor.adjustment);
+  scaleOut.textContent=printScaleLabel(editor.adjustment);
+  paintSelection();revealGuide();printPosition();
+ };
+ viewButton.addEventListener('click',async()=>{
+  if(viewButton.disabled)return;
+  const from=view,target=view==='front'?'back':'front';
+  viewButton.disabled=true;
+  saveActiveSide(); // Preserve the current side even when lazy back loading fails.
+  try{
+   if(dragging)throw new Error('Finish moving the artwork before turning the garment');
+   if(target==='back')await ensureBackManifest();
+   view=target;restoreActiveSide();
+   print.style.visibility='hidden';
+   const switched=await queueGarmentVisual();
+   if(!switched)throw new Error('Could not prepare the requested garment view');
+   restoreActiveSide();
+   viewButton.querySelector('.cc-worktable-view-label').textContent=view==='front'?'View back':'View front';
+   viewButton.setAttribute('aria-label',view==='front'?'View back':'View front');
+   announce(view==='front'?'Front of garment shown.':'Back of garment shown.');
+  }catch(error){
+   view=from;restoreActiveSide();
+   await queueGarmentVisual();
+   announce('View change unavailable: '+String(error?.message||error).slice(0,130));
+  }finally{
+   print.style.visibility='';
+   viewButton.disabled=false;
+  }
+ });
+ const clearArtURL=()=>{
+  if(artURL)URL.revokeObjectURL(artURL);
+  artURL=null;artBitmap=null;
+  sideRecords[view].url=null;sideRecords[view].bitmap=null;
+ };
  const update=(group,value)=>{
   if(group==='upload'){file.click();return}
   current=worktableReducer(current,{type:'select',group,value});
@@ -757,7 +861,9 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
   if(guideTimer!==null)clearTimeout(guideTimer);
   document.removeEventListener('pointerdown',onOutsidePointer,true);
-  clearArtURL();
+  saveActiveSide();
+  disposeSideRecords(sideRecords,url=>URL.revokeObjectURL(url));
+  artURL=null;artBitmap=null;
  };
  window.addEventListener('pagehide',unload,{once:true});
  paintSelection();
@@ -819,8 +925,10 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   throw new Error('The complete stage preview could not decode on this browser: '+String(error?.message||error));
  }
  void hydrate();
- return {getState:()=>({...current}),getPlacement:()=>({...editor,scale:1+editor.adjustment/100}),destroy:()=>{
-  clearArtURL();if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
+ return {getState:()=>({...current,view}),getPlacement:()=>({...editor,scale:1+editor.adjustment/100}),destroy:()=>{
+  saveActiveSide();disposeSideRecords(sideRecords,url=>URL.revokeObjectURL(url));
+  artURL=null;artBitmap=null;
+  if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
   uploadObserver?.disconnect();document.removeEventListener('visibilitychange',syncUploadMotion);
   window.removeEventListener('pagehide',unload);root.replaceChildren();
  }};

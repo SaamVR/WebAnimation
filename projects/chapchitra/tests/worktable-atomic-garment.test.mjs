@@ -14,7 +14,7 @@ test('all six colors use one in-memory canvas surface for any garment without 24
  assert.equal(manifest.__initialScene.atomicBackplateFromLayers.length,34);
  assert.equal(manifest.__initialScene.backplateVariants.length,3);
  assert.ok(manifest.__initialScene.atomicBackplateFromLayers.every(x=>!x.includes('Tshirts/')&&!x.includes('Worker/')));
- assert.match(studio,/const colorized=async\(garment,color,index\)=>/);
+ assert.match(studio,/const colorized=async\(garment,color,index,side='front'\)=>/);
  assert.match(studio,/const composeAtomicPreview=async\(colored,index\)=>/);
  assert.match(studio,/const queueGarmentVisual=\(\)=>/);
  assert.match(studio,/const finishHydration=async\(\)=>/);
