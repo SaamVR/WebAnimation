@@ -24,7 +24,7 @@ jobs:
         run: |
           set -euo pipefail
           git fetch origin --prune
-          test "$(git rev-parse origin/feature/chapchitra-c05-compact-svg-20261109)" = 'e78a77ca177c790baea973516e0194d81feb80b2'
+          test "$(git rev-parse origin/feature/chapchitra-c05-compact-svg-20261109)" = 'c3dafdb6687e053dcf86e19a424b83c189504bea'
           test "$(git rev-parse HEAD)" = "$(git rev-parse origin/feature/chapchitra-c06-long-svg-20261111)"
           test "$(git rev-parse origin/deploy/chapchitra-render-review)" = 'b99fe7b1648aa870c782a6ecda3deef0f5a838c5'
           git worktree add --detach /tmp/chapchitra-compact origin/feature/chapchitra-c05-compact-svg-20261109
@@ -35,10 +35,9 @@ jobs:
           git -C /tmp/chapchitra-compact config user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Update names only; leave approved artwork unchanged
         run: |
-          python projects/chapchitra/scripts/rename_ui_identifiers.py --root /tmp/chapchitra-compact --mode compact
           python projects/chapchitra/scripts/rename_ui_identifiers.py --root . --mode all
           git diff --check && git diff --cached --check
-          git -C /tmp/chapchitra-compact diff --check && git -C /tmp/chapchitra-compact diff --cached --check
+          git -C /tmp/chapchitra-compact diff --check
       - name: Build and test candidate, compact-only and frozen original
         shell: bash
         run: |
@@ -59,13 +58,10 @@ jobs:
             sleep 1
           done
           LONG_URL=http://127.0.0.1:4173 LONG_BEFORE_URL=http://127.0.0.1:4174 node scripts/long-browser-qa.cjs
-      - name: Push tested non-force feature commits
+      - name: Push tested non-force Long feature commit
         shell: bash
         run: |
           set -euo pipefail
-          git -C /tmp/chapchitra-compact add -A
-          git -C /tmp/chapchitra-compact commit -m 'refactor(chapchitra): rename compact button UI without reserved animation IDs'
-          git -C /tmp/chapchitra-compact push origin HEAD:refs/heads/feature/chapchitra-c05-compact-svg-20261109
           git add -A
           git commit -m 'refactor(chapchitra): replace invented UI numbers across source, docs and tests'
           git push origin HEAD:refs/heads/feature/chapchitra-c06-long-svg-20261111

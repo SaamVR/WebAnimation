@@ -72,7 +72,7 @@ def main():
  if not (root/"projects/chapchitra/src/handdrawn-buttons.mjs").is_file():
   sys.exit("Wrong Git repository root")
  paths=[]
- for base in [root/"projects/chapchitra",root/".github/workflows"]:
+ for base in [root/"projects/chapchitra"]:
   if not base.is_dir():continue
   for path in base.rglob("*"):
    if not path.is_file():continue
@@ -113,9 +113,9 @@ def main():
      "old.waitForFunction(()=>document.querySelectorAll('.cc-compact-artwork svg').length===13)")
    s=s.replace(".compact-panel[data-tone=", "[data-tone=")
    qa.write_text(s)
-  for rel in TEMP:
-   if (root/rel).exists():
-    subprocess.run(["git","rm","--",rel],cwd=root,check=True)
+  rel="projects/chapchitra/scripts/rename_ui_identifiers.py"
+  if (root/rel).exists():
+   subprocess.run(["git","rm","--",rel],cwd=root,check=True)
  print("MIGRATION",arg.mode,"edited",len(edited),"renamed",len(moved),flush=True)
  for a,b in moved:print("MOVED",a,"=>",b)
  for a in edited:print("EDITED",a)
