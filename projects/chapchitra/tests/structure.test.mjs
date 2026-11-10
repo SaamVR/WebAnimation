@@ -281,11 +281,11 @@ test('clean pill variants and color combinations use two solid matching layers',
     assert.match(html,/assets\/compact\/compact-button-/);
     assert.doesNotMatch(html,/cc-pill-art--|cc-pill-shadow|cc-pill-face/);
   }else{
-    // Explicitly preserve the already-approved full-width CSS capsule.
-    assert.match(html,/cc-pill-art--long/);
-    assert.match(html,/cc-pill-shadow/);
-    assert.match(html,/cc-pill-face/);
-    assert.match(html,/cc-pill-wipe/);
+    // C06 long controls use the original Illustrator SVG, not a CSS capsule.
+    assert.match(html,/cc-long-artwork/);
+    assert.match(html,/cc-long-fallback/);
+    assert.match(html,/assets\/long\/long-button-/);
+    assert.doesNotMatch(html,/cc-pill-art--long|cc-pill-face|cc-pill-shadow/);
   }
   assert.match(html,/cc-sketch-label-ink/);
   assert.doesNotMatch(html,/<svg|<path|<rect|cc-sketch-outline|cc-sketch-highlight|\.png|product-add-arrow|↗|→|✓/);

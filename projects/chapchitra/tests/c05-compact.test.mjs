@@ -49,12 +49,12 @@ test('C05 compact uses original SVG source and semantic HTML labels',()=>{
   assert.ok(!text.includes('cc-pill-shadow'));
  }
 });
-test('C05 long CSS pill and all inline form buttons remain byte-identical markup',()=>{
- assert.equal(sketchArt('long'),
-  '<span class="cc-pill-art cc-pill-art--long" aria-hidden="true"><span class="cc-pill-shadow"></span><span class="cc-pill-face"><span class="cc-pill-wipe"></span></span></span>');
+test('C05 compact inline forms remain unchanged while C06 long buttons use source SVG',()=>{
  const long=sketchButton({label:'ADD TO BAG',variant:'long',tone:'forest',className:'product-add-button',attrs:'data-add-to-bag="test"'});
  assert.ok(!long.includes('cc-compact-artwork'));
- assert.ok(long.includes('cc-pill-face'));
+ assert.match(long,/cc-long-artwork/);
+ assert.match(long,/assets\/long\/long-button-forest\.svg/);
+ assert.ok(!long.includes('cc-pill-face'));
  assert.ok(long.includes('data-add-to-bag="test"'));
  const inline=sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'});
  assert.ok(!inline.includes('cc-compact-artwork'));
