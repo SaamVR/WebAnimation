@@ -1,19 +1,19 @@
-name: CHAPCHITRA C06 original long SVG browser acceptance
+name: CHAPCHITRA Long SVG Buttons browser acceptance
 on:
   push:
     branches:
-      - feature/chapchitra-c06-long-svg-20261111
+      - feature/chapchitra-long-svg-buttons
     paths:
       - 'projects/chapchitra/**'
-      - '.github/workflows/chapchitra-c06-long-svg-qa.yml'
+      - '.github/workflows/chapchitra-long-svg-qa.yml'
   pull_request:
     branches:
-      - review/chapchitra-c06-approval-base-20261111
+      - review/chapchitra-long-buttons-approval-base
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  c06-original-long-svg:
+  long-original-svg:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: candidate
-      - name: Checkout unmodified compact C05/C08/Artist's Edit reference
+      - name: Checkout unmodified compact Compact Buttons / C08 / Artist's Edit reference
         uses: actions/checkout@v4
         with:
           path: previous
@@ -51,28 +51,28 @@ jobs:
           npx playwright install --with-deps chromium webkit
       - name: Start two isolated static browser-review servers
         run: |
-          (cd candidate/projects/chapchitra && PORT=4173 npm run preview > /tmp/cc-c06-candidate.log 2>&1) &
-          (cd previous/projects/chapchitra && PORT=4174 npm run preview > /tmp/cc-c06-previous.log 2>&1) &
+          (cd candidate/projects/chapchitra && PORT=4173 npm run preview > /tmp/cc-long-candidate.log 2>&1) &
+          (cd previous/projects/chapchitra && PORT=4174 npm run preview > /tmp/cc-long-previous.log 2>&1) &
           for i in {1..40}; do
             if curl -fsS http://127.0.0.1:4173/buttons/long/ >/dev/null &&
                curl -fsS http://127.0.0.1:4174/buttons/compact/ >/dev/null; then exit 0; fi
             sleep 1
           done
           echo 'Isolated preview servers not healthy'
-          cat /tmp/cc-c06-*.log
+          cat /tmp/cc-long-*.log
           exit 1
-      - name: Verify palettes, hover, source silhouettes, physical press, Add to Bag, return ink and pixel-identical C05
+      - name: Verify palettes, hover, source silhouettes, physical press, Add to Bag, return ink and pixel-identical Compact
         env:
-          C06_URL: http://127.0.0.1:4173
-          C06_BEFORE_URL: http://127.0.0.1:4174
+          Long_URL: http://127.0.0.1:4173
+          Long_BEFORE_URL: http://127.0.0.1:4174
         run: |
           cd candidate/projects/chapchitra
-          node scripts/c06-browser-qa.cjs
+          node scripts/long-browser-qa.cjs
       - name: Archive all actual browser screenshots and video recordings
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: chapchitra-c06-final-long-svg-owner-review
-          path: candidate/projects/chapchitra/perf-results/c06-final/
+          name: chapchitra-long-final-long-svg-owner-review
+          path: candidate/projects/chapchitra/perf-results/long-final/
           if-no-files-found: warn
           retention-days: 30
