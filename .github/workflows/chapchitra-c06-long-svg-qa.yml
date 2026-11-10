@@ -1,0 +1,75 @@
+name: CHAPCHITRA C06 original long SVG browser acceptance
+on:
+  push:
+    branches:
+      - feature/chapchitra-c06-long-svg-20261111
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-c06-long-svg-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c06-original-long-svg:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout isolated candidate branch
+        uses: actions/checkout@v4
+        with:
+          path: candidate
+      - name: Checkout unmodified compact C05/C08/Artist's Edit reference
+        uses: actions/checkout@v4
+        with:
+          path: previous
+          ref: 32e6d50aff357a739023ba6de1f3f5f4ce1d583c
+      - name: Set up Node 22 and npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: candidate/projects/chapchitra/package-lock.json
+      - name: Build candidate and verify original Illustrator SVG variants
+        run: |
+          cd candidate/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+          test -f dist/assets/long/long-button-forest.svg
+          test -f dist/assets/long/long-button-terracotta.svg
+          test -f dist/assets/long/long-button-neutral.svg
+      - name: Build original untouched compact reference
+        run: |
+          cd previous/projects/chapchitra
+          npm ci --no-audit --no-fund
+          npm run build
+      - name: Install Chromium/WebKit with system browser libraries
+        run: |
+          cd candidate/projects/chapchitra
+          npx playwright install --with-deps chromium webkit
+      - name: Start two isolated static browser-review servers
+        run: |
+          (cd candidate/projects/chapchitra && PORT=4173 npm run preview > /tmp/cc-c06-candidate.log 2>&1) &
+          (cd previous/projects/chapchitra && PORT=4174 npm run preview > /tmp/cc-c06-previous.log 2>&1) &
+          for i in {1..40}; do
+            if curl -fsS http://127.0.0.1:4173/buttons/long/ >/dev/null &&
+               curl -fsS http://127.0.0.1:4174/buttons/compact/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          echo 'Isolated preview servers not healthy'
+          cat /tmp/cc-c06-*.log
+          exit 1
+      - name: Verify palettes, hover, source silhouettes, physical press, Add to Bag, return ink and pixel-identical C05
+        env:
+          C06_URL: http://127.0.0.1:4173
+          C06_BEFORE_URL: http://127.0.0.1:4174
+        run: |
+          cd candidate/projects/chapchitra
+          node scripts/c06-browser-qa.cjs
+      - name: Archive all actual browser screenshots and video recordings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapchitra-c06-final-long-svg-owner-review
+          path: candidate/projects/chapchitra/perf-results/c06-final/
+          if-no-files-found: warn
+          retention-days: 30
