@@ -538,8 +538,8 @@ test('Hero 1 Terracotta and both banner CTAs reuse approved pill without changin
  assert.match(buttons,/\.hero-cover \.cc-sketch\.cc-sketch--beige\{\s*--cc-shadow-color:var\(--acc\)/);
  assert.match(buttons,/--cc-shadow-graphite:var\(--ink\)/);
  assert.match(buttons,/--cc-shadow-on-dark:var\(--grey\)/);
- assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest',href:'\/shop\/\?category=tie-dye'/);
- assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest',href:'\/artists-edit\/'/);
+ assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'terracotta',href:'\/shop\/\?category=tie-dye'/);
+ assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'beige',href:'\/artists-edit\/'/);
  assert.doesNotMatch(app,/class="text-link">Explore hand-dye studies ↗|class="text-link">Visit Artist’s Edit ↗/);
  assert.match(css,/\.banner-editorial-copy \.cc-sketch\.editorial-cta\{/);
  assert.doesNotMatch(css,/\.banner-editorial-copy \.text-link\{/);
@@ -591,8 +591,8 @@ test('banner four-edge and Featured top/bottom alpha masks are on unmasked backg
  assert.match(section,/#featured \.cc-printed-surface--featured > \.cc-printed-center\{\s*inset:37px 0/);
  assert.match(section,/#featured\.featured-zone > \.cc-printed-surface\{\s*--cc-printed-surface:var\(--deep\)/);
  assert.doesNotMatch(section,/animation:|transition:|grid-template-columns:|min-height:|filter:blur/);
- assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest'/);
- assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest'/);
+ assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'terracotta'/);
+ assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'beige'/);
  assert.match(app,/id="featuredFrames"/);
  assert.match(app,/id="featuredPrev"/);
  assert.match(app,/id="featuredNext"/);
