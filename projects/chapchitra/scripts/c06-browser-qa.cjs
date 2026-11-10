@@ -133,11 +133,20 @@ const pixels=async(a,b)=>{
    await product.scrollIntoViewIfNeeded();
    const label=product.locator('.cc-sketch-label');
    const beforeCount=Number(await page.locator('.bag-count').first().textContent());
-   const rect=await product.boundingBox();
-   await page.mouse.move(rect.x+rect.width/2,rect.y+rect.height/2);
-   await page.mouse.down();await page.waitForTimeout(140);
-   requireCheck(Math.abs((await yTransform(product.locator('#BUTTON_FACE')))-4.5)<.15,
-     name+' cart button receives immediate press feedback');
+   // Wait for a stable product-card hit target. WebKit may scroll the
+   // dynamic homepage after the first layout pass, invalidating a stale
+   // bounding box even though the native pointer interaction is sound.
+   await product.hover();
+   await page.waitForTimeout(200);
+   await page.mouse.down();
+   await page.waitForTimeout(180);
+   const pressState=await product.evaluate(button=>({
+     pressed:button.classList.contains('cc-long-pressed'),
+     faceY:new DOMMatrix(getComputedStyle(button.querySelector('#BUTTON_FACE')).transform).m42,
+     shadow:getComputedStyle(button.querySelector('#BUTTON_SHADOW')).transform
+   }));
+   requireCheck(pressState.pressed&&Math.abs(pressState.faceY-4.5)<.20&&pressState.shadow==='none',
+     name+' cart button receives immediate press feedback',pressState);
    await page.mouse.up();
    await page.waitForFunction(()=>document.querySelector('[data-add-to-bag].added')!==null,null,{timeout:5000});
    requireCheck((await label.textContent())==='ADDED'&&
