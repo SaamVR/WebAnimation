@@ -17,6 +17,14 @@ IMMUTABLE_ASSETS={".svg",".zip",".rar",".png",".webp",".jpg",".jpeg",".gif",".mp
 TEMP={".github/workflows/chapchitra-button-id-migration.yml","projects/chapchitra/scripts/rename_ui_identifiers.py"}
 
 def fix(s,mode,filename=False):
+ # Never mutate immutable SHA-1/SHA-256 fingerprints when renaming an UI ID.
+ # Some true hashes contain the coincidental hexadecimal characters "c05".
+ preserved=[]
+ if not filename:
+  def shield(match):
+   preserved.append(match.group(0))
+   return "__PRESERVED_HASH_TOKEN_"+str(len(preserved)-1)+"__"
+  s=re.sub(r"(?<![0-9a-zA-Z])[0-9a-fA-F]{32,128}(?![0-9a-zA-Z])",shield,s)
  for old,new in BRANCHES.items():
   if mode=="compact" and "c06" in old:continue
   s=s.replace(old,new)
@@ -54,6 +62,8 @@ def fix(s,mode,filename=False):
    lambda m:m.group(1)+(BRANCHES["feature/chapchitra-c05-compact-svg-20261109"]
      if "compact" in m.group(2) else BRANCHES["feature/chapchitra-c06-long-svg-20261111"])+m.group(2),
    s)
+ for i,old_hash in enumerate(preserved):
+  s=s.replace("__PRESERVED_HASH_TOKEN_"+str(i)+"__",old_hash)
  return s
 
 def main():
