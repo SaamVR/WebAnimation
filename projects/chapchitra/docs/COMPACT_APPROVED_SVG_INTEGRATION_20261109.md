@@ -1,6 +1,6 @@
-**UPDATED FINAL C05 PALETTE (November 9, 2026):** Final owner annotated A/B/C reference supersedes the earlier colors below; see [C05 final colors, hover and focus report](C05_FINAL_COLORS_HOVER_FOCUS_20261109.md) for exact paint values, corrected ink paint order and browser Back behavior.
+**UPDATED FINAL COMPACT PALETTE (November 9, 2026):** Final owner annotated A/B/C reference supersedes the earlier colors below; see [COMPACT final colors, hover and focus report](COMPACT_FINAL_COLORS_HOVER_FOCUS_20261109.md) for exact paint values, corrected ink paint order and browser Back behavior.
 
-# CHAPCHITRA — C05 Compact Approved SVG Integration
+# CHAPCHITRA — Compact Approved SVG Integration
 
 **Status:** Isolated review only. **Do not merge or publish production without owner visual approval.**
 **Source repository:** `SaamVR/WebAnimation`, `projects/chapchitra/`.
@@ -10,7 +10,7 @@
 
 ## Exact artwork audit and color mapping
 
-The supplied Adobe Illustrator SVG has a 164 × 64 viewBox, two authoritative root groups `BUTTON_FACE` and `BUTTON_SHADOW`, 114 path elements, and 10 polygon elements. No source geometry, IDs, irregular edges, texture vector, border, shadow or proportions have been rewritten. `scripts/c05-build-palettes.py` creates three derived color versions solely by substituting six original vector paint token definitions; it proves every other source byte remains identical except Windows line endings.
+The supplied Adobe Illustrator SVG has a 164 × 64 viewBox, two authoritative root groups `BUTTON_FACE` and `BUTTON_SHADOW`, 114 path elements, and 10 polygon elements. No source geometry, IDs, irregular edges, texture vector, border, shadow or proportions have been rewritten. `scripts/compact-build-palettes.py` creates three derived color versions solely by substituting six original vector paint token definitions; it proves every other source byte remains identical except Windows line endings.
 
 | Layer role | Press Green | Terracotta | Mushroom Gray |
 |---|---|---|---|
@@ -35,27 +35,27 @@ A source line `.st6` represents a zero-length invisible shadow helper path; reta
 
 ## Strict boundaries
 
-- All long/full-width buttons keep original CSS markup, colors, hover wipe, width and Add to Bag `ADDED` behavior. No long CSS selectors were changed. `button-system.css` has appended C05-scoped rules only.
-- Existing inline forms (Search, newsletter, filters, etc.) keep the old responsive CSS pill appearance and do not mount C05.
+- All long/full-width buttons keep original CSS markup, colors, hover wipe, width and Add to Bag `ADDED` behavior. No long CSS selectors were changed. `button-system.css` has appended COMPACT-scoped rules only.
+- Existing inline forms (Search, newsletter, filters, etc.) keep the old responsive CSS pill appearance and do not mount COMPACT.
 - Artist's Edit illustrated selectors, C01 benefits, C08 wordmark/green-patch source, product-card interactions, routing and unrelated standalone projects were not edited.
 - A new isolated preview is at `/buttons/compact/`. The previous `/buttons/` page remains available as a comparison.
 
 ## QA
 
-- Original Illustrator SVG source SHA locked; 3 variants proved paint-only. C05-specific source tests pass.
+- Original Illustrator SVG source SHA locked; 3 variants proved paint-only. COMPACT-specific source tests pass.
 - Combined project full build and regression suite passed **136/136 tests**. Pre-existing Windows line-ending artifacts in the C08 master SVG and worktable CSS were normalized *temporarily during build*, and restored byte-for-byte after testing; they are not included in this PR.
 - Independent Chromium and Playwright WebKit suite passed **53/53 interactive/layout checks** across 1408, 834, 430 and 320 px: colors, exact paths, clipping, shadow stability, pointer press/cancel/release, hover, Space keyboard, touch tap and reduced-motion.
 - All six **long-button before/after screenshot pairs were pixel-identical (zero changed channel samples)** at 1408 and 430 widths, across all three existing long-button tones.
-- Homepage, Shop, product detail, About and Artist's Edit route smoke: only actual full compact CTAs mount C05; long and inline controls continue using CSS pills, and no application page errors were observed.
+- Homepage, Shop, product detail, About and Artist's Edit route smoke: only actual full compact CTAs mount COMPACT; long and inline controls continue using CSS pills, and no application page errors were observed.
 
 ## Visual evidence
 
-- Three color board screenshots in `docs/c05-evidence/c05-*-rest.png`, `c05-*-hover.png`, `c05-*-pressed.png`.
-- `c05-desktop-physical-press.webm`, `c05-tablet-touch-press.webm`, `c05-mobile-touch-press.webm` — actual browser recordings.
-- `c05-chrome-mobile.png`, `c05-webkit-mobile.png` — responsive screenshots.
+- Three color board screenshots in `docs/compact-evidence/compact-*-rest.png`, `compact-*-hover.png`, `compact-*-pressed.png`.
+- `compact-desktop-physical-press.webm`, `compact-tablet-touch-press.webm`, `compact-mobile-touch-press.webm` — actual browser recordings.
+- `compact-chrome-mobile.png`, `compact-webkit-mobile.png` — responsive screenshots.
 - `long-before-1408.png`, `long-after-1408.png`, `long-before-430.png`, `long-after-430.png`.
-- `c05-long-pixel-equality.json`, `c05-browser-qa.json` — machine-readable QA.
+- `compact-long-pixel-equality.json`, `compact-browser-qa.json` — machine-readable QA.
 
 ## Release gate
 
-Create **one isolated C05 draft PR**. Deploy only to the CHAPCHITRA review Render service after checking its current branch head and preserving ongoing Artist's Edit changes. **Do not merge** until owner approves the new compact button's tactile motion. Future long/elongated SVG integration is explicitly outside scope.
+Create **one isolated COMPACT draft PR**. Deploy only to the CHAPCHITRA review Render service after checking its current branch head and preserving ongoing Artist's Edit changes. **Do not merge** until owner approves the new compact button's tactile motion. Future long/elongated SVG integration is explicitly outside scope.

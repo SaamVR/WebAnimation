@@ -1,5 +1,5 @@
 /**
- * CHAPCHITRA C05 — compact-only enhancement.
+ * CHAPCHITRA COMPACT — compact-only enhancement.
  *
  * The approved Illustrator SVG is self-hosted and remains the only geometry
  * source. Physical face depression and the original ink wipe are independent
@@ -7,9 +7,9 @@
  */
 const SVG_NS='http://www.w3.org/2000/svg';
 const urls=Object.freeze({
- forest:'/assets/compact/compact-button-forest.svg?c05=final-colors-ink-2',
- terracotta:'/assets/compact/compact-button-terracotta.svg?c05=final-colors-ink-2',
- beige:'/assets/compact/compact-button-neutral.svg?c05=final-colors-ink-2'
+ forest:'/assets/compact/compact-button-forest.svg?compact=final-colors-ink-2',
+ terracotta:'/assets/compact/compact-button-terracotta.svg?compact=final-colors-ink-2',
+ beige:'/assets/compact/compact-button-neutral.svg?compact=final-colors-ink-2'
 });
 const cache=new Map();
 const pending=new WeakSet();
@@ -25,7 +25,7 @@ async function template(tone){
  if(!supported(tone))throw new Error('Invalid compact button palette '+tone);
  if(!cache.has(url)){
   cache.set(url,fetch(url,{cache:'force-cache'}).then(response=>{
-    if(!response.ok)throw new Error('C05 SVG HTTP '+response.status);
+    if(!response.ok)throw new Error('COMPACT SVG HTTP '+response.status);
     return response.text();
    }).then(xml=>{
     const doc=new DOMParser().parseFromString(xml,'image/svg+xml');
@@ -34,7 +34,7 @@ async function template(tone){
       !svg.querySelector('[id="BUTTON_FACE"]')||
       !svg.querySelector('[id="BUTTON_SHADOW"]')||
       !svg.querySelector('[id="Button_Face_Inside_1_"] > path.st7')){
-       throw new Error('C05 approved SVG layers or artboard do not match');
+       throw new Error('COMPACT approved SVG layers or artboard do not match');
     }
     return svg;
    }).catch(error=>{cache.delete(url);throw error}));
@@ -45,7 +45,7 @@ function addInkClip(svg){
  const face=svg.querySelector('[id="BUTTON_FACE"]');
  const inside=svg.querySelector('[id="Button_Face_Inside_1_"]');
  const base=inside.querySelector(':scope > path.st7');
- const clipId='c05-ink-clip-'+(++clipSequence);
+ const clipId='compact-ink-clip-'+(++clipSequence);
  const defs=document.createElementNS(SVG_NS,'defs');
  const clip=document.createElementNS(SVG_NS,'clipPath');
  clip.setAttribute('id',clipId);
@@ -77,7 +77,7 @@ function release(button){button.classList.remove('cc-compact-pressed');pressable
 function wirePress(button){
  button.addEventListener('pointerdown',event=>{
    if(event.button!==0||button.disabled||button.getAttribute('aria-disabled')==='true')return;
-   if(button.matches('a[href]'))button.dataset.c05PointerNavigation='1';
+   if(button.matches('a[href]'))button.dataset.compactPointerNavigation='1';
    pressables.add(button);button.classList.add('cc-compact-pressed');
  });
  // In Safari a pointer-focused anchor can be retained by the Back/Forward
@@ -86,12 +86,12 @@ function wirePress(button){
  // activates with detail=0 and keeps native keyboard-focus behavior.
  if(button.matches('a[href]')){
   button.addEventListener('click',event=>{
-   if(event.detail>0 && button.dataset.c05PointerNavigation==='1'){
+   if(event.detail>0 && button.dataset.compactPointerNavigation==='1'){
     button.blur();
-    delete button.dataset.c05PointerNavigation;
+    delete button.dataset.compactPointerNavigation;
    }
   });
-  button.addEventListener('keydown',()=>{delete button.dataset.c05PointerNavigation});
+  button.addEventListener('keydown',()=>{delete button.dataset.compactPointerNavigation});
  }
  for(const name of ['pointerup','pointercancel','pointerleave','lostpointercapture','blur'])
    button.addEventListener(name,()=>release(button));
@@ -112,15 +112,15 @@ window.addEventListener('blur',()=>{for(const button of pressables)release(butto
 // suppress actual keyboard focus; clear only links last activated by pointer.
 window.addEventListener('pageshow',event=>{
  if(!event.persisted)return;
- for(const button of document.querySelectorAll('.cc-compact-artwork[data-c05-pointer-navigation]')){
+ for(const button of document.querySelectorAll('.cc-compact-artwork[data-compact-pointer-navigation]')){
   if(document.activeElement===button)button.blur();
-  delete button.dataset.c05PointerNavigation;
+  delete button.dataset.compactPointerNavigation;
   release(button);
  }
  for(const button of [...pressables])release(button);
 });
 async function hydrate(button){
- if(pending.has(button)||button.dataset.c05==='ready')return;
+ if(pending.has(button)||button.dataset.compact==='ready')return;
  const art=button.querySelector(':scope > .cc-compact-art');
  if(!art)return;
  pending.add(button);
@@ -138,7 +138,7 @@ async function hydrate(button){
   const sheet=svg.querySelector(':scope > style');
   const colors=new Map([...sheet.textContent.matchAll(/\.(st\d+)\{fill:(#[0-9A-Fa-f]{6});\}/g)]
     .map(([,klass,color])=>[klass,color]));
-  if(colors.size<6)throw new Error('C05 variant paint classes missing');
+  if(colors.size<6)throw new Error('COMPACT variant paint classes missing');
   for(const element of svg.querySelectorAll('path,polygon')){
     const key=element.getAttribute('class');
     if(colors.has(key))element.style.fill=colors.get(key);
@@ -150,12 +150,12 @@ async function hydrate(button){
   const {face,ink,clipId}=addInkClip(svg);
   // Preserve BUTTON_FACE and BUTTON_SHADOW groups and every original path.
   art.replaceChildren(svg);
-  button.dataset.c05='ready';
-  button.dataset.c05InkClip=clipId;
+  button.dataset.compact='ready';
+  button.dataset.compactInkClip=clipId;
   wirePress(button);
  }catch(error){
-  button.dataset.c05='fallback';
-  console.warn('C05 retains its original SVG poster:',error);
+  button.dataset.compact='fallback';
+  console.warn('COMPACT retains its original SVG poster:',error);
  }finally{pending.delete(button)}
 }
 function scan(root=document){
@@ -174,12 +174,12 @@ function run(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});
 else run();
-window.__chapchitraC05={
+window.__chapchitraCompactButtons={
  sourceSHA:'d3a84e9f49ff2355261914d91c7607f402e0d958305102ad9b7512d5d4d8384f',
  get counts(){return {
   total:document.querySelectorAll('.cc-compact-artwork').length,
-  ready:document.querySelectorAll('.cc-compact-artwork[data-c05="ready"]').length,
-  fallback:document.querySelectorAll('.cc-compact-artwork[data-c05="fallback"]').length
+  ready:document.querySelectorAll('.cc-compact-artwork[data-compact="ready"]').length,
+  fallback:document.querySelectorAll('.cc-compact-artwork[data-compact="fallback"]').length
  }},
  setPreviewState(el,state){if(el?.matches?.('.cc-compact-artwork'))el.dataset.previewState=state}
 };

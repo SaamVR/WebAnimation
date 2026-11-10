@@ -1,4 +1,4 @@
-/* C06 owner acceptance — genuine Chrome/WebKit rendered SVG tests and recordings.
+/* LONG owner acceptance — genuine Chrome/WebKit rendered SVG tests and recordings.
  * Run with candidate preview at :4173 and preserved before-source at :4174.
  * NO modification or merge of either project branch.
  */
@@ -6,9 +6,9 @@ const {chromium,webkit}=require('playwright');
 const sharp=require('sharp');
 const {readFile,writeFile,mkdir,copyFile}=require('node:fs/promises');
 const {resolve}=require('node:path');
-const out=resolve(__dirname,'../perf-results/c06-final');
-const current=process.env.C06_URL||'http://127.0.0.1:4173';
-const before=process.env.C06_BEFORE_URL||'http://127.0.0.1:4174';
+const out=resolve(__dirname,'../perf-results/long-final');
+const current=process.env.LONG_BUTTON_URL||'http://127.0.0.1:4173';
+const before=process.env.LONG_BUTTON_BEFORE_URL||'http://127.0.0.1:4174';
 const colors={
  forest:{st0:'rgb(23, 36, 25)',st1:'rgb(216, 206, 194)',st2:'rgb(41, 61, 45)',st3:'rgb(35, 35, 35)'},
  terracotta:{st0:'rgb(31, 34, 22)',st1:'rgb(216, 206, 194)',st2:'rgb(138, 80, 59)',st3:'rgb(35, 35, 35)'},
@@ -18,9 +18,9 @@ const evidence=[];
 const requireCheck=(ok,label,extra={})=>{
  evidence.push({ok:!!ok,label,extra});
  console.log((ok?'PASS ':'FAIL ')+label+' '+JSON.stringify(extra));
- if(!ok)throw Error('C06 QA failed: '+label);
+ if(!ok)throw Error('LONG QA failed: '+label);
 };
-const ready=page=>page.waitForFunction(()=>window.__chapchitraC06?.counts.ready>=3,null,{timeout:30000});
+const ready=page=>page.waitForFunction(()=>window.__chapchitraLongButtons?.counts.ready>=3,null,{timeout:30000});
 const transform=async(loc)=>loc.evaluate(el=>getComputedStyle(el).transform);
 const yTransform=async(loc)=>loc.evaluate(el=>new DOMMatrix(getComputedStyle(el).transform).m42);
 const pixels=async(a,b)=>{
@@ -46,17 +46,17 @@ const pixels=async(a,b)=>{
     const page=await ctx.newPage(),errs=[];
     page.on('pageerror',e=>errs.push(e.message));
     const response=await page.goto(current+'/buttons/long/',{waitUntil:'domcontentloaded'});
-    await page.waitForFunction(()=>window.__chapchitraC06?.counts.ready===13,null,{timeout:30000});
+    await page.waitForFunction(()=>window.__chapchitraLongButtons?.counts.ready===13,null,{timeout:30000});
     const global=await page.evaluate(()=>({
-     total:window.__chapchitraC06.counts.total,ready:window.__chapchitraC06.counts.ready,
-     fallback:window.__chapchitraC06.counts.fallback,
+     total:window.__chapchitraLongButtons.counts.total,ready:window.__chapchitraLongButtons.counts.ready,
+     fallback:window.__chapchitraLongButtons.counts.fallback,
      over:document.documentElement.scrollWidth>innerWidth+1,
      compacts:document.querySelectorAll('.cc-compact-artwork').length
     }));
     requireCheck(response.status()===200&&global.total===13&&global.ready===13&&global.fallback===0&&!global.over&&global.compacts===1,
-      name+' '+width+' C06 and C05 coexist without overflow',global);
+      name+' '+width+' LONG and COMPACT coexist without overflow',global);
     for(const [tone,paint] of Object.entries(colors)){
-     const button=page.locator('.c06-panel[data-tone="'+tone+'"] .cc-long-artwork').first();
+     const button=page.locator('.long-panel[data-tone="'+tone+'"] .cc-long-artwork').first();
      const state=await button.evaluate(el=>({
       colors:Object.fromEntries(['st0','st1','st2','st3'].map(cls=>[cls,getComputedStyle(el.querySelector('svg .'+cls)).fill])),
       face:!!el.querySelector('svg #BUTTON_FACE'),shadow:!!el.querySelector('svg #BUTTON_SHADOW'),
@@ -67,13 +67,13 @@ const pixels=async(a,b)=>{
      }));
      requireCheck(Object.entries(paint).every(([key,value])=>state.colors[key]===value)&&
         state.face&&state.shadow&&state.src==='0 0 320 54'&&state.paths===427&&state.polygons===32&&
-        /^url\(#c06-face-ink-\d+\)$/.test(state.clip),
+        /^url\(#long-face-ink-\d+\)$/.test(state.clip),
         name+' '+width+' '+tone+' original shapes + final palette',state);
     }
     requireCheck(errs.length===0,name+' '+width+' JS errors',errs);
     if(width===1408){
      for(const tone of Object.keys(colors)){
-      const box=page.locator('.c06-panel[data-tone="'+tone+'"]');
+      const box=page.locator('.long-panel[data-tone="'+tone+'"]');
       const button=box.locator('.cc-long-artwork').last();
       await button.scrollIntoViewIfNeeded();await page.mouse.move(5,5);await page.waitForTimeout(375);
       const rest=await button.screenshot({animations:'disabled'});
@@ -99,25 +99,25 @@ const pixels=async(a,b)=>{
     }
     await ctx.close();
    }
-   // Original C05 compact pixels must match a build of the unchanged 32e6
+   // Original Compact pixels must match a build of the unchanged 32e6
    // baseline, in the SAME browser/viewport; do not compare cross-platform PNGs.
    for(const width of [1408,430]){
     const ctx=await browser.newContext({viewport:{width,height:1000},deviceScaleFactor:1,reducedMotion:'reduce'});
     const page=await ctx.newPage();
     await page.goto(current+'/buttons/compact/',{waitUntil:'domcontentloaded'});
-    await page.waitForFunction(()=>window.__chapchitraC05?.counts.ready===13);
+    await page.waitForFunction(()=>window.__chapchitraCompactButtons?.counts.ready===13);
     for(const tone of Object.keys(colors)){
-     const item=page.locator('.c05-panel[data-tone="'+tone+'"] .cc-compact-artwork').first();
+     const item=page.locator('[data-tone="'+tone+'"] .cc-compact-artwork').first();
      const candidate=await item.screenshot({animations:'disabled'});
      const old=await ctx.newPage();
      await old.goto(before+'/buttons/compact/',{waitUntil:'domcontentloaded'});
-     await old.waitForFunction(()=>window.__chapchitraC05?.counts.ready===13);
-     const baseline=await old.locator('.c05-panel[data-tone="'+tone+'"] .cc-compact-artwork').first().screenshot({animations:'disabled'});
+     await old.waitForFunction(()=>document.querySelectorAll('.cc-compact-artwork svg').length===13);
+     const baseline=await old.locator('[data-tone="'+tone+'"] .cc-compact-artwork').first().screenshot({animations:'disabled'});
      const comp=await pixels(candidate,baseline);
-     requireCheck(comp.diff===0,name+' '+width+' '+tone+' C05 before/after PIXEL-IDENTICAL',comp);
+     requireCheck(comp.diff===0,name+' '+width+' '+tone+' COMPACT before/after PIXEL-IDENTICAL',comp);
      if(name==='chromium'&&tone==='beige'){
-      await writeFile(resolve(out,'C05-before-'+width+'.png'),baseline);
-      await writeFile(resolve(out,'C05-after-'+width+'.png'),candidate);
+      await writeFile(resolve(out,'COMPACT-before-'+width+'.png'),baseline);
+      await writeFile(resolve(out,'COMPACT-after-'+width+'.png'),candidate);
      }
      await old.close();
     }
@@ -128,7 +128,7 @@ const pixels=async(a,b)=>{
      recordVideo:{dir:out,size:{width:1408,height:940}}});
    const page=await ctx.newPage();
    await page.goto(current+'/',{waitUntil:'domcontentloaded'});
-   await page.waitForFunction(()=>document.querySelectorAll('.cc-long-artwork[data-c06="ready"]').length>=3,null,{timeout:35000});
+   await page.waitForFunction(()=>document.querySelectorAll('.cc-long-artwork[data-long="ready"]').length>=3,null,{timeout:35000});
    const product=page.locator('[data-add-to-bag].cc-long-artwork').first();
    await product.scrollIntoViewIfNeeded();
    const label=product.locator('.cc-sketch-label');
@@ -163,7 +163,7 @@ const pixels=async(a,b)=>{
    requireCheck(progress>0&&progress<1,name+' Green return swipe visibly advances left→right',{greenMid,progress});
    await product.screenshot({path:resolve(out,name+'-cart-return-mid.png')});
    await page.waitForTimeout(420);
-   requireCheck((await label.textContent())==='ADD TO BAG'&&!await product.evaluate(e=>e.classList.contains('c06-returning')),
+   requireCheck((await label.textContent())==='ADD TO BAG'&&!await product.evaluate(e=>e.classList.contains('long-returning')),
      name+' original label and green resting state restored');
    await product.screenshot({path:resolve(out,name+'-cart-return-rest.png')});
    await page.close();await copyFile(await page.video().path(),resolve(out,name+'-add-to-bag-graphite-green.webm'));
@@ -172,8 +172,8 @@ const pixels=async(a,b)=>{
    const mobile=await browser.newContext({viewport:{width:430,height:932},isMobile:true,hasTouch:true});
    const touch=await mobile.newPage();
    await touch.goto(current+'/buttons/long/',{waitUntil:'domcontentloaded'});
-   await touch.waitForFunction(()=>window.__chapchitraC06?.counts.ready===13);
-   const button=touch.locator('.c06-panel[data-tone="terracotta"] .cc-long-artwork').last();
+   await touch.waitForFunction(()=>window.__chapchitraLongButtons?.counts.ready===13);
+   const button=touch.locator('.long-panel[data-tone="terracotta"] .cc-long-artwork').last();
    await button.dispatchEvent('pointerdown',{button:0,pointerType:'touch'});
    requireCheck(await button.evaluate(e=>e.classList.contains('cc-long-pressed')),name+' touch press state');
    await button.dispatchEvent('pointercancel',{pointerType:'touch'});
@@ -185,7 +185,7 @@ const pixels=async(a,b)=>{
    const navContext=await browser.newContext({viewport:{width:1408,height:950}});
    const nav=await navContext.newPage();
    await nav.goto(current+'/',{waitUntil:'domcontentloaded'});
-   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.c06==='ready',null,{timeout:30000});
+   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.long==='ready',null,{timeout:30000});
    const editor=nav.locator('.edit-banner .cc-long-artwork').first();
    await nav.keyboard.press('Tab');
    await editor.focus(); // Safari Tab-to-links depends on Full Keyboard Access.
@@ -195,15 +195,15 @@ const pixels=async(a,b)=>{
    await nav.waitForURL('**/artists-edit/',{timeout:35000});
    requireCheck(nav.url().endsWith('/artists-edit/'),name+' keyboard Enter editorial navigation');
    await nav.goBack({waitUntil:'commit'});
-   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.c06==='ready',null,{timeout:30000});
+   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.long==='ready',null,{timeout:30000});
    await nav.locator('.edit-banner .cc-long-artwork').first().click();
    await nav.waitForURL('**/artists-edit/',{timeout:35000});
    await nav.goBack({waitUntil:'commit'});
-   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.c06==='ready',null,{timeout:30000});
+   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.long==='ready',null,{timeout:30000});
    await nav.mouse.move(2,2);
    const back=await nav.locator('.edit-banner .cc-long-artwork').first().evaluate(e=>({
     focus:e.matches(':focus-visible'),pressed:e.classList.contains('cc-long-pressed'),
-    pointerRetained:!!e.dataset.c06PointerNavigation
+    pointerRetained:!!e.dataset.longPointerNavigation
    }));
    requireCheck(!back.focus&&!back.pressed&&!back.pointerRetained,
      name+' pointer browser Back restores unoutlined long CTA',back);
@@ -218,9 +218,9 @@ const pixels=async(a,b)=>{
     });
     const touchPage=await touchContext.newPage();
     await touchPage.goto(current+'/buttons/long/',{waitUntil:'domcontentloaded'});
-    await touchPage.waitForFunction(()=>window.__chapchitraC06?.counts.ready===13,null,{timeout:30000});
+    await touchPage.waitForFunction(()=>window.__chapchitraLongButtons?.counts.ready===13,null,{timeout:30000});
     for(const tone of Object.keys(colors)){
-     const specimen=touchPage.locator('.c06-panel[data-tone="'+tone+'"] .cc-long-artwork').last();
+     const specimen=touchPage.locator('.long-panel[data-tone="'+tone+'"] .cc-long-artwork').last();
      await specimen.scrollIntoViewIfNeeded();
      await touchPage.waitForTimeout(150);
      await specimen.dispatchEvent('pointerdown',{button:0,pointerType:'touch'});
@@ -250,6 +250,6 @@ const pixels=async(a,b)=>{
   }finally{await browser.close()}
  }
  const result={passed:evidence.filter(c=>c.ok).length,total:evidence.length,evidence};
- await writeFile(resolve(out,'c06-browser-qa.json'),JSON.stringify(result,null,2)+'\n');
- console.log('C06 BROWSER QA PASS',result.passed+'/'+result.total);
+ await writeFile(resolve(out,'long-browser-qa.json'),JSON.stringify(result,null,2)+'\n');
+ console.log('LONG BROWSER QA PASS',result.passed+'/'+result.total);
 })().catch(e=>{console.error(e);process.exitCode=1});
