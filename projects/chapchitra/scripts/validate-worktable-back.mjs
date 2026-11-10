@@ -22,7 +22,12 @@ export async function validateBackViewAssets(root){
   const item=data.assets?.[garment];
   if(item?.sha256!==expectedSha||item.original?.join('x')!=='4000x2250')
    throw new Error('Owner-supplied original SHA/dimensions mismatch: '+garment);
-  const rect=item.delivery?.stageBox,variants=item.delivery?.variants;
+  const rect=item.delivery?.stageBox,crop=item.delivery?.crop,variants=item.delivery?.variants;
+  // Crop is [left,top,width,height] in NATIVE 4000x2250 source pixels.
+  if(!Array.isArray(crop)||crop.length!==4||crop.some(v=>!Number.isInteger(v))||
+     crop[0]<0||crop[1]<0||crop[2]<1||crop[3]<1||
+     crop[0]+crop[2]>4000||crop[1]+crop[3]>2250)
+   throw new Error('Invalid back-view native alpha crop: '+garment);
   if(!Array.isArray(rect)||rect.length!==4||rect.some(v=>!Number.isFinite(v))||
     rect[2]<=0||rect[3]<=0||rect[0]<0||rect[1]<0||
     rect[0]+rect[2]>2048||rect[1]+rect[3]>1152||
