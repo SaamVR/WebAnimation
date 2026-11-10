@@ -6,6 +6,9 @@ on:
     paths:
       - 'projects/chapchitra/**'
       - '.github/workflows/chapchitra-c06-long-svg-qa.yml'
+  pull_request:
+    branches:
+      - review/chapchitra-c06-approval-base-20261111
   workflow_dispatch:
 permissions:
   contents: read
