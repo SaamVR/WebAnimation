@@ -576,7 +576,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    garmentSurface=colored;
    garmentImg.style.visibility='hidden';
    if(scene&&preview?.isConnected){
-    if(changedSide)scene.classList.add('cc-worktable-turn-in');
+    // Atomic scene includes the entire desk. NEVER animate or squash it:
+    // only the isolated garment canvas receives the 2D turn-in effect.
     preview.replaceWith(scene);preview=scene;
    }
    visualGarment=wantedGarment;visualColor=wantedColor;visualSide=wantedSide;
