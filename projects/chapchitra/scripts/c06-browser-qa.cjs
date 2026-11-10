@@ -179,6 +179,74 @@ const pixels=async(a,b)=>{
    await button.dispatchEvent('pointercancel',{pointerType:'touch'});
    requireCheck(!await button.evaluate(e=>e.classList.contains('cc-long-pressed')),name+' touch cancellation');
    await mobile.close();
+
+   // Browser Back and :focus-visible: pointer navigation clears stale focus
+   // while keyboard modality retains an accessible visible outline.
+   const navContext=await browser.newContext({viewport:{width:1408,height:950}});
+   const nav=await navContext.newPage();
+   await nav.goto(current+'/',{waitUntil:'domcontentloaded'});
+   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.c06==='ready',null,{timeout:30000});
+   const editor=nav.locator('.edit-banner .cc-long-artwork').first();
+   await nav.keyboard.press('Tab');
+   await editor.focus(); // Safari Tab-to-links depends on Full Keyboard Access.
+   const focus=await editor.evaluate(e=>({visible:e.matches(':focus-visible'),style:getComputedStyle(e).outlineStyle}));
+   requireCheck(focus.visible&&focus.style==='solid',name+' editorial keyboard focus visible',focus);
+   await nav.keyboard.press('Enter');
+   await nav.waitForURL('**/artists-edit/',{timeout:35000});
+   requireCheck(nav.url().endsWith('/artists-edit/'),name+' keyboard Enter editorial navigation');
+   await nav.goBack({waitUntil:'commit'});
+   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.c06==='ready',null,{timeout:30000});
+   await nav.locator('.edit-banner .cc-long-artwork').first().click();
+   await nav.waitForURL('**/artists-edit/',{timeout:35000});
+   await nav.goBack({waitUntil:'commit'});
+   await nav.waitForFunction(()=>document.querySelector('.edit-banner .cc-long-artwork')?.dataset.c06==='ready',null,{timeout:30000});
+   await nav.mouse.move(2,2);
+   const back=await nav.locator('.edit-banner .cc-long-artwork').first().evaluate(e=>({
+    focus:e.matches(':focus-visible'),pressed:e.classList.contains('cc-long-pressed'),
+    pointerRetained:!!e.dataset.c06PointerNavigation
+   }));
+   requireCheck(!back.focus&&!back.pressed&&!back.pointerRetained,
+     name+' pointer browser Back restores unoutlined long CTA',back);
+   await navContext.close();
+
+   // Separate actual browser VIDEO evidence of all three long face presses
+   // and touch cancellations on tablet and mobile.
+   for(const [device,width,height] of [['tablet',834,1112],['mobile',430,932]]){
+    const touchContext=await browser.newContext({
+     viewport:{width,height},hasTouch:true,isMobile:device==='mobile',deviceScaleFactor:1,
+     recordVideo:{dir:out,size:{width,height}}
+    });
+    const touchPage=await touchContext.newPage();
+    await touchPage.goto(current+'/buttons/long/',{waitUntil:'domcontentloaded'});
+    await touchPage.waitForFunction(()=>window.__chapchitraC06?.counts.ready===13,null,{timeout:30000});
+    for(const tone of Object.keys(colors)){
+     const specimen=touchPage.locator('.c06-panel[data-tone="'+tone+'"] .cc-long-artwork').last();
+     await specimen.scrollIntoViewIfNeeded();
+     await touchPage.waitForTimeout(150);
+     await specimen.dispatchEvent('pointerdown',{button:0,pointerType:'touch'});
+     await touchPage.waitForTimeout(125);
+     const press=await specimen.evaluate(e=>({
+      pressed:e.classList.contains('cc-long-pressed'),
+      travel:new DOMMatrix(getComputedStyle(e.querySelector('#BUTTON_FACE')).transform).m42,
+      shadow:getComputedStyle(e.querySelector('#BUTTON_SHADOW')).transform
+     }));
+     requireCheck(press.pressed&&Math.abs(press.travel-4.5)<.22&&press.shadow==='none',
+       name+' '+device+' '+tone+' original face presses without moving shadow',press);
+     await touchPage.waitForTimeout(140);
+     await specimen.dispatchEvent('pointercancel',{pointerType:'touch'});
+     await touchPage.waitForTimeout(255);
+     const released=await specimen.evaluate(e=>({
+      pressed:e.classList.contains('cc-long-pressed'),
+      travel:new DOMMatrix(getComputedStyle(e.querySelector('#BUTTON_FACE')).transform).m42
+     }));
+     requireCheck(!released.pressed&&Math.abs(released.travel)<.20,
+       name+' '+device+' '+tone+' cancellation restores face',released);
+    }
+    await touchPage.close();
+    await copyFile(await touchPage.video().path(),resolve(out,name+'-'+device+'-press-cancel.webm'));
+    await touchContext.close();
+   }
+
   }finally{await browser.close()}
  }
  const result={passed:evidence.filter(c=>c.ok).length,total:evidence.length,evidence};
