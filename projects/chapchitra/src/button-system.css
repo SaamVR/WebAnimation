@@ -347,3 +347,108 @@
    transition:none!important;
  }
 }
+
+
+/* C06 LONG ORIGINAL SVG ONLY — no changes to approved C05 or inline buttons.
+   SVG proportions always meet the frame; neither end cap nor texture stretches. */
+.cc-sketch--long.cc-long-artwork{
+  --cc-long-press:0px;
+  position:relative;
+  transform:none!important;
+  padding:0;
+  overflow:visible;
+}
+.cc-sketch--long.cc-long-artwork .cc-long-art{
+  position:absolute;inset:0;z-index:0;
+  display:grid;place-items:center;pointer-events:none;overflow:visible;
+}
+.cc-sketch--long.cc-long-artwork .cc-long-art>img,
+.cc-sketch--long.cc-long-artwork .cc-long-svg{
+  display:block;width:100%;height:100%;max-height:100%;max-width:100%;
+  object-fit:contain;overflow:visible;pointer-events:none;
+}
+.cc-sketch--long.cc-long-artwork .cc-long-svg #BUTTON_FACE{
+  transform:translateY(var(--cc-long-press));
+  transition:transform 210ms cubic-bezier(.18,.7,.22,1);
+}
+.cc-sketch--long.cc-long-artwork .cc-long-svg #BUTTON_SHADOW{
+  transform:none!important;
+}
+.cc-sketch--long.cc-long-artwork .cc-long-ink-graphite,
+.cc-sketch--long.cc-long-artwork .cc-long-ink-green{
+  transform:scaleX(0);
+  transform-origin:left center;
+  transform-box:view-box;
+  transition:transform 300ms cubic-bezier(.45,0,.55,1);
+}
+.cc-sketch--long.cc-long-artwork .cc-long-ink-graphite{
+  fill:#232323;opacity:.94;
+}
+.cc-sketch--long.cc-long-artwork .cc-long-ink-green{
+  fill:#293D2D;opacity:1;
+}
+@media(hover:hover) and (pointer:fine){
+  .cc-sketch--long.cc-long-artwork:not([data-add-to-bag]):hover:not(:disabled) .cc-long-ink-graphite{
+    transform:scaleX(1);
+  }
+}
+/* Product confirmation is synchronized with the existing .added / 950ms reset.
+   The Graphite state remains painted while green travels left->right over it. */
+.cc-sketch--long.cc-long-artwork.added .cc-long-ink-graphite,
+.cc-sketch--long.cc-long-artwork.c06-confirm-pending .cc-long-ink-graphite,
+.cc-sketch--long.cc-long-artwork.c06-returning .cc-long-ink-graphite,
+.cc-sketch--long.cc-long-artwork[data-preview-state="hover"] .cc-long-ink-graphite,
+.cc-sketch--long.cc-long-artwork[data-preview-state="pressed"] .cc-long-ink-graphite{
+  transform:scaleX(1);
+}
+.cc-sketch--long.cc-long-artwork.c06-returning .cc-long-ink-green{
+  transform:scaleX(1);
+}
+.cc-sketch--long.cc-long-artwork.c06-confirm-pending .cc-sketch-label-ink,
+.cc-sketch--long.cc-long-artwork.c06-returning .cc-sketch-label-ink{
+  clip-path:inset(0 0 0 0);
+}
+.cc-sketch--long.cc-long-artwork.c06-ink-reset .cc-long-ink-graphite,
+.cc-sketch--long.cc-long-artwork.c06-ink-reset .cc-long-ink-green{
+  transition:none!important;
+}
+.cc-sketch--long.cc-long-artwork.cc-long-pressed,
+.cc-sketch--long.cc-long-artwork[data-preview-state="pressed"]{
+  --cc-long-press:4.5px;
+}
+.cc-sketch--long.cc-long-artwork.cc-long-pressed .cc-long-svg #BUTTON_FACE,
+.cc-sketch--long.cc-long-artwork[data-preview-state="pressed"] .cc-long-svg #BUTTON_FACE{
+  transition-duration:85ms;
+  transition-timing-function:ease-out;
+}
+.cc-sketch--long.cc-long-artwork .cc-sketch-copy{
+  left:50%;
+  top:calc(50% - 3px);
+  transform:translate(-50%,-50%) translateY(var(--cc-long-press));
+  transition:transform 210ms cubic-bezier(.18,.7,.22,1);
+}
+.cc-sketch--long.cc-long-artwork.cc-long-pressed .cc-sketch-copy,
+.cc-sketch--long.cc-long-artwork[data-preview-state="pressed"] .cc-sketch-copy{
+  transition-duration:85ms;
+  transition-timing-function:ease-out;
+}
+.cc-sketch--long.cc-long-artwork:active,
+.cc-sketch--long.cc-long-artwork[data-preview-state="pressed"]{
+  transform:none!important;
+}
+.cc-sketch--long.cc-long-artwork:focus-visible{
+  outline:3px solid var(--acc);outline-offset:5px;border-radius:6px;
+}
+@media(max-width:600px){
+  .cc-sketch--long.cc-long-artwork{
+    height:51px;min-height:51px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .cc-sketch--long.cc-long-artwork .cc-long-svg #BUTTON_FACE,
+  .cc-sketch--long.cc-long-artwork .cc-long-ink-graphite,
+  .cc-sketch--long.cc-long-artwork .cc-long-ink-green,
+  .cc-sketch--long.cc-long-artwork .cc-sketch-copy{
+    transition:none!important;
+  }
+}
