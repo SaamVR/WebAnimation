@@ -1,0 +1,178 @@
+/* C06 owner acceptance — genuine Chrome/WebKit rendered SVG tests and recordings.
+ * Run with candidate preview at :4173 and preserved before-source at :4174.
+ * NO modification or merge of either project branch.
+ */
+const {chromium,webkit}=require('playwright');
+const sharp=require('sharp');
+const {readFile,writeFile,mkdir,copyFile}=require('node:fs/promises');
+const {resolve}=require('node:path');
+const out=resolve(__dirname,'../perf-results/c06-final');
+const current=process.env.C06_URL||'http://127.0.0.1:4173';
+const before=process.env.C06_BEFORE_URL||'http://127.0.0.1:4174';
+const colors={
+ forest:{st0:'rgb(23, 36, 25)',st1:'rgb(216, 206, 194)',st2:'rgb(41, 61, 45)',st3:'rgb(35, 35, 35)'},
+ terracotta:{st0:'rgb(31, 34, 22)',st1:'rgb(216, 206, 194)',st2:'rgb(138, 80, 59)',st3:'rgb(35, 35, 35)'},
+ beige:{st0:'rgb(138, 80, 59)',st1:'rgb(228, 227, 222)',st2:'rgb(166, 162, 155)',st3:'rgb(35, 35, 35)'}
+};
+const evidence=[];
+const requireCheck=(ok,label,extra={})=>{
+ evidence.push({ok:!!ok,label,extra});
+ console.log((ok?'PASS ':'FAIL ')+label+' '+JSON.stringify(extra));
+ if(!ok)throw Error('C06 QA failed: '+label);
+};
+const ready=page=>page.waitForFunction(()=>window.__chapchitraC06?.counts.ready>=3,null,{timeout:30000});
+const transform=async(loc)=>loc.evaluate(el=>getComputedStyle(el).transform);
+const yTransform=async(loc)=>loc.evaluate(el=>new DOMMatrix(getComputedStyle(el).transform).m42);
+const pixels=async(a,b)=>{
+ const A=await sharp(a).raw().toBuffer({resolveWithObject:true});
+ const B=await sharp(b).raw().toBuffer({resolveWithObject:true});
+ if(A.info.width!==B.info.width||A.info.height!==B.info.height)
+  return {diff:-1,dimensions:[A.info,B.info]};
+ let diff=0,corner=0;
+ for(let i=0;i<A.data.length;i++)if(A.data[i]!==B.data[i]){
+  diff++;
+  const pixel=Math.floor(i/A.info.channels),x=pixel%A.info.width,y=Math.floor(pixel/A.info.width);
+  if(x<6&&y<6)corner++;
+ }
+ return {diff,corner,width:A.info.width,height:A.info.height};
+};
+(async()=>{
+ await mkdir(out,{recursive:true});
+ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
+  const browser=await engine.launch({headless:true});
+  try{
+   for(const width of [1408,834,430,320]){
+    const ctx=await browser.newContext({viewport:{width,height:950},deviceScaleFactor:1});
+    const page=await ctx.newPage(),errs=[];
+    page.on('pageerror',e=>errs.push(e.message));
+    const response=await page.goto(current+'/buttons/long/',{waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>window.__chapchitraC06?.counts.ready===13,null,{timeout:30000});
+    const global=await page.evaluate(()=>({
+     total:window.__chapchitraC06.counts.total,ready:window.__chapchitraC06.counts.ready,
+     fallback:window.__chapchitraC06.counts.fallback,
+     over:document.documentElement.scrollWidth>innerWidth+1,
+     compacts:document.querySelectorAll('.cc-compact-artwork').length
+    }));
+    requireCheck(response.status()===200&&global.total===13&&global.ready===13&&global.fallback===0&&!global.over&&global.compacts===1,
+      name+' '+width+' C06 and C05 coexist without overflow',global);
+    for(const [tone,paint] of Object.entries(colors)){
+     const button=page.locator('.c06-panel[data-tone="'+tone+'"] .cc-long-artwork').first();
+     const state=await button.evaluate(el=>({
+      colors:Object.fromEntries(['st0','st1','st2','st3'].map(cls=>[cls,getComputedStyle(el.querySelector('svg .'+cls)).fill])),
+      face:!!el.querySelector('svg #BUTTON_FACE'),shadow:!!el.querySelector('svg #BUTTON_SHADOW'),
+      src:el.querySelector('svg').getAttribute('viewBox'),
+      paths:el.querySelectorAll('svg path').length,
+      polygons:el.querySelectorAll('svg polygon').length,
+      clip:el.querySelector('.cc-long-ink-shell')?.getAttribute('clip-path')
+     }));
+     requireCheck(Object.entries(paint).every(([key,value])=>state.colors[key]===value)&&
+        state.face&&state.shadow&&state.src==='0 0 320 54'&&state.paths===427&&state.polygons===32&&
+        /^url\(#c06-face-ink-\d+\)$/.test(state.clip),
+        name+' '+width+' '+tone+' original shapes + final palette',state);
+    }
+    requireCheck(errs.length===0,name+' '+width+' JS errors',errs);
+    if(width===1408){
+     for(const tone of Object.keys(colors)){
+      const box=page.locator('.c06-panel[data-tone="'+tone+'"]');
+      const button=box.locator('.cc-long-artwork').last();
+      await button.scrollIntoViewIfNeeded();await page.mouse.move(5,5);await page.waitForTimeout(375);
+      const rest=await button.screenshot({animations:'disabled'});
+      await button.hover();await page.waitForTimeout(380);
+      const hover=await button.screenshot();
+      const comparison=await pixels(rest,hover);
+      const fill=await button.locator('.cc-long-ink-graphite').evaluate(el=>({
+       transform:getComputedStyle(el).transform,paint:getComputedStyle(el).fill
+      }));
+      requireCheck(comparison.diff>2500&&comparison.corner===0&&fill.paint==='rgb(35, 35, 35)'&&fill.transform.includes('matrix(1, 0, 0, 1'),
+       name+' '+tone+' Graphite ink changes actual face with no corner leak',{comparison,fill});
+      await box.screenshot({path:resolve(out,name+'-'+tone+'-hover.png')});
+      await page.mouse.move(4,4);await page.waitForTimeout(380);
+      const face=button.locator('#BUTTON_FACE'),shadow=button.locator('#BUTTON_SHADOW');
+      const rect=await button.boundingBox();
+      await page.mouse.move(rect.x+rect.width/2,rect.y+rect.height/2);
+      await page.mouse.down();await page.waitForTimeout(120);
+      requireCheck(Math.abs((await yTransform(face))-4.5)<.15&&(await transform(shadow))==='none',
+       name+' '+tone+' physical face only press 4.5px');
+      await page.mouse.move(1,800);await page.mouse.up();await page.waitForTimeout(260);
+      requireCheck(Math.abs(await yTransform(face))<.15,name+' '+tone+' release outside clears press');
+     }
+    }
+    await ctx.close();
+   }
+   // Original C05 compact pixels must match a build of the unchanged 32e6
+   // baseline, in the SAME browser/viewport; do not compare cross-platform PNGs.
+   for(const width of [1408,430]){
+    const ctx=await browser.newContext({viewport:{width,height:1000},deviceScaleFactor:1,reducedMotion:'reduce'});
+    const page=await ctx.newPage();
+    await page.goto(current+'/buttons/compact/',{waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>window.__chapchitraC05?.counts.ready===13);
+    for(const tone of Object.keys(colors)){
+     const item=page.locator('.c05-panel[data-tone="'+tone+'"] .cc-compact-artwork').first();
+     const candidate=await item.screenshot({animations:'disabled'});
+     const old=await ctx.newPage();
+     await old.goto(before+'/buttons/compact/',{waitUntil:'domcontentloaded'});
+     await old.waitForFunction(()=>window.__chapchitraC05?.counts.ready===13);
+     const baseline=await old.locator('.c05-panel[data-tone="'+tone+'"] .cc-compact-artwork').first().screenshot({animations:'disabled'});
+     const comp=await pixels(candidate,baseline);
+     requireCheck(comp.diff===0,name+' '+width+' '+tone+' C05 before/after PIXEL-IDENTICAL',comp);
+     if(name==='chromium'&&tone==='beige'){
+      await writeFile(resolve(out,'C05-before-'+width+'.png'),baseline);
+      await writeFile(resolve(out,'C05-after-'+width+'.png'),candidate);
+     }
+     await old.close();
+    }
+    await page.close();await ctx.close();
+   }
+   // Actual storefront native ADD TO BAG -> ADDED -> Graphite -> Green swipe.
+   const ctx=await browser.newContext({viewport:{width:1408,height:940},deviceScaleFactor:1,
+     recordVideo:{dir:out,size:{width:1408,height:940}}});
+   const page=await ctx.newPage();
+   await page.goto(current+'/',{waitUntil:'domcontentloaded'});
+   await page.waitForFunction(()=>document.querySelectorAll('.cc-long-artwork[data-c06="ready"]').length>=3,null,{timeout:35000});
+   const product=page.locator('[data-add-to-bag].cc-long-artwork').first();
+   await product.scrollIntoViewIfNeeded();
+   const label=product.locator('.cc-sketch-label');
+   const beforeCount=Number(await page.locator('.bag-count').first().textContent());
+   const rect=await product.boundingBox();
+   await page.mouse.move(rect.x+rect.width/2,rect.y+rect.height/2);
+   await page.mouse.down();await page.waitForTimeout(140);
+   requireCheck(Math.abs((await yTransform(product.locator('#BUTTON_FACE')))-4.5)<.15,
+     name+' cart button receives immediate press feedback');
+   await page.mouse.up();
+   await page.waitForFunction(()=>document.querySelector('[data-add-to-bag].added')!==null,null,{timeout:5000});
+   requireCheck((await label.textContent())==='ADDED'&&
+      Number(await page.locator('.bag-count').first().textContent())===beforeCount+1,
+      name+' existing successful cart action and ADDED label');
+   await page.waitForTimeout(340);
+   const graphite=await transform(product.locator('.cc-long-ink-graphite'));
+   requireCheck(graphite.includes('matrix(1, 0, 0, 1'),name+' Graphite confirmation ink fully covers face',{graphite});
+   await product.screenshot({path:resolve(out,name+'-cart-confirm-graphite.png')});
+   await page.waitForFunction(()=>!document.querySelector('[data-add-to-bag]')?.classList.contains('added'),null,{timeout:6000});
+   await page.waitForTimeout(130);
+   const greenMid=await transform(product.locator('.cc-long-ink-green'));
+   const progress=parseFloat(greenMid.match(/matrix\(([-.\d]+)/)?.[1]??'0');
+   requireCheck(progress>0&&progress<1,name+' Green return swipe visibly advances left→right',{greenMid,progress});
+   await product.screenshot({path:resolve(out,name+'-cart-return-mid.png')});
+   await page.waitForTimeout(420);
+   requireCheck((await label.textContent())==='ADD TO BAG'&&!await product.evaluate(e=>e.classList.contains('c06-returning')),
+     name+' original label and green resting state restored');
+   await product.screenshot({path:resolve(out,name+'-cart-return-rest.png')});
+   await page.close();await copyFile(await page.video().path(),resolve(out,name+'-add-to-bag-graphite-green.webm'));
+   await ctx.close();
+   // Touch and keyboard navigation are native; no global focus changes.
+   const mobile=await browser.newContext({viewport:{width:430,height:932},isMobile:true,hasTouch:true});
+   const touch=await mobile.newPage();
+   await touch.goto(current+'/buttons/long/',{waitUntil:'domcontentloaded'});
+   await touch.waitForFunction(()=>window.__chapchitraC06?.counts.ready===13);
+   const button=touch.locator('.c06-panel[data-tone="terracotta"] .cc-long-artwork').last();
+   await button.dispatchEvent('pointerdown',{button:0,pointerType:'touch'});
+   requireCheck(await button.evaluate(e=>e.classList.contains('cc-long-pressed')),name+' touch press state');
+   await button.dispatchEvent('pointercancel',{pointerType:'touch'});
+   requireCheck(!await button.evaluate(e=>e.classList.contains('cc-long-pressed')),name+' touch cancellation');
+   await mobile.close();
+  }finally{await browser.close()}
+ }
+ const result={passed:evidence.filter(c=>c.ok).length,total:evidence.length,evidence};
+ await writeFile(resolve(out,'c06-browser-qa.json'),JSON.stringify(result,null,2)+'\n');
+ console.log('C06 BROWSER QA PASS',result.passed+'/'+result.total);
+})().catch(e=>{console.error(e);process.exitCode=1});
