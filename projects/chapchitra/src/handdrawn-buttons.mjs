@@ -15,9 +15,22 @@ function ensureCompactRuntime(){
     console.warn('C05 keeps its approved static SVG fallback:',error);
   });
 }
+// The C06 long controller is separate from the approved compact SVG player.
+function ensureLongRuntime(){
+  if(typeof window==='undefined'||window.__chapchitraC06LoaderRequested)return;
+  window.__chapchitraC06LoaderRequested=true;
+  void import('/long-button-runtime.mjs').catch(error=>{
+    window.__chapchitraC06LoaderRequested=false;
+    console.warn('C06 keeps its original, self-hosted long SVG poster:',error);
+  });
+}
 export const sketchTones = ['forest','terracotta','beige'];
 export const sketchVariants = ['compact','long'];
 export function sketchArt(variant='compact',tone='forest',organic=variant==='compact'){
+  if(variant==='long'){
+    const color=tone==='beige'?'neutral':tone;
+    return '<span class="cc-long-art" aria-hidden="true"><img class="cc-long-fallback" src="/assets/long/long-button-'+color+'.svg?c06=final-1" width="320" height="54" alt="" loading="eager" decoding="async"></span>';
+  }
   if(variant==='compact'&&organic){
     const color=tone==='beige'?'neutral':tone;
     if(!['forest','terracotta','neutral'].includes(color))throw new TypeError('Unsupported compact SVG tone');
@@ -39,7 +52,8 @@ export function sketchButton({label,variant='compact',tone='forest',href=null,at
   // Short inline form controls intentionally retain their existing CSS capsules.
   const organic=variant==='compact'&&!String(className).split(/\s+/).includes('cc-sketch--inline');
   if(organic)ensureCompactRuntime();
-  const classes=['cc-sketch','cc-sketch--'+variant,'cc-sketch--'+tone,organic?'cc-compact-artwork':'',className].filter(Boolean).join(' ');
+  if(variant==='long')ensureLongRuntime();
+  const classes=['cc-sketch','cc-sketch--'+variant,'cc-sketch--'+tone,organic?'cc-compact-artwork':'',variant==='long'?'cc-long-artwork':'',className].filter(Boolean).join(' ');
   const text=escapeHTML(label??'');
   return '<'+tag+linkAttr+' class="'+classes+'" '+attrs+'>'+
     sketchArt(variant,tone,organic)+
