@@ -436,3 +436,39 @@
  .cc-worktable-secondary-actions button{flex:1}
  .cc-worktable-scale-control{min-height:44px}
 }
+
+
+/* Back-view control is in the worktable frame but OUTSIDE the 16:9 art:
+   no overlap with owner-supplied garment hems, workers, or desk controls. */
+.cc-worktable-view-row{
+ min-height:62px;display:flex;align-items:center;justify-content:center;
+ padding:9px 14px;background:var(--color-cream);
+ border-top:1px solid var(--color-warm-beige);
+}
+.cc-worktable-view-button{
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;
+ min-width:144px;min-height:44px;padding:7px 18px;
+ border:1px solid var(--color-press-green);border-radius:25px;
+ background:var(--color-gallery-white);color:var(--color-press-green);
+ font:600 12px/1.4 var(--sans);letter-spacing:.01em;cursor:pointer;
+ transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.cc-worktable-view-button:hover{
+ background:var(--color-silver-mist);box-shadow:0 3px 9px rgb(23 36 25 / .10);
+}
+.cc-worktable-view-button:active{transform:translateY(1px)}
+.cc-worktable-view-button:focus-visible{
+ outline:2px solid var(--color-terracotta);outline-offset:3px;
+}
+.cc-worktable-view-button:disabled{opacity:.6;cursor:progress}
+.cc-worktable-view-glyph{font:500 22px/1 Georgia,serif;transform:translateY(-1px)}
+.cc-worktable-turn-in{animation:cc-worktable-turn-in .4s cubic-bezier(.19,.65,.35,1) both}
+@keyframes cc-worktable-turn-in{
+ 0%{opacity:.65;transform:scaleX(.91)}
+ 65%{opacity:1;transform:scaleX(1.015)}
+ 100%{opacity:1;transform:scaleX(1)}
+}
+@media(prefers-reduced-motion:reduce){
+ .cc-worktable-view-button{transition:none!important}
+ .cc-worktable-turn-in{animation:none!important}
+}
