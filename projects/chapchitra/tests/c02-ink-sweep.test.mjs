@@ -42,7 +42,10 @@ test('procedural ink covers fully and clears fully; holes close at full takeover
  assert.equal((inkPath(.5,{mode:'cover'}).match(/ M /g)||[]).length,0,'no misleading white opening');
  assert.ok(inkEdgeX(.5,500)>0 && inkEdgeX(.5,500)<1000);
  assert.equal(easeInk(0),0);assert.equal(easeInk(1),1);
- assert.equal(C02_MOTION.coverMs+C02_MOTION.revealMs,790);
+ assert.equal(C02_MOTION.coverMs,506);
+ assert.equal(C02_MOTION.revealMs,385);
+ assert.equal(C02_MOTION.coverMs+C02_MOTION.revealMs,891);
+ assert.ok(Math.abs(405/C02_MOTION.coverMs-0.8)<0.001,'roller and ink travel must be 20% slower');
  assert.equal(INK_PALETTE.press,'#293D2D');
  assert.equal(INK_PALETTE.forest,'#172419');
  assert.equal(INK_PALETTE.terra,'#8A503B');
