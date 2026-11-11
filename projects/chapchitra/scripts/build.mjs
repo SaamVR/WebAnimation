@@ -5,6 +5,11 @@ import { resolve } from 'node:path';
 const root=resolve(import.meta.dirname,'..');
 const src=resolve(root,'src');
 const output=resolve(root,'dist');
+// Validate owner-supplied back garments before publishing the two-sided editor.
+// C05/C06 original button installation and the front garment pipeline remain unchanged.
+const {validateBackViewAssets}=await import('./validate-worktable-back.mjs');
+const backAssets=await validateBackViewAssets(root);
+console.log('CHAPCHITRA four back garments verified:',backAssets);
 await rm(output,{recursive:true,force:true});
 await mkdir(output,{recursive:true});
 await cp(src,output,{recursive:true});
