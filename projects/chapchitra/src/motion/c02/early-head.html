@@ -2,11 +2,10 @@
      The JS engine remains the authoritative animation on all browsers. -->
 <style id="c02-prepaint">
 html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;background:#293D2D;pointer-events:auto}
-@media(prefers-reduced-motion:no-preference){
- @view-transition{navigation:auto}
- ::view-transition-old(root),::view-transition-new(root){animation:none!important}
- ::view-transition-group(root){animation:none!important}
-}
+/* Cross-document native View Transitions are deliberately not auto-enabled:
+   Chromium can suspend the outgoing animated document while snapshotting,
+   stranding an ink overlay. The one-use native-navigation fallback is the
+   release-safe progressive enhancement until cross-browser QA proves otherwise. */
 </style>
 <script id="c02-early">(function(){
  try{
