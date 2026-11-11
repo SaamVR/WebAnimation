@@ -1,0 +1,41 @@
+{
+  "project": "CHAPCHITRA",
+  "animation": "C05 Icon 01 — Stories You Can Wear",
+  "status": "isolated-prototype-unapproved",
+  "source_sha256": "4a2655d7d4224dc46e65f6df5117ab53bcb16853958a81154d3f4eb71496116a",
+  "source_groups": [
+    "Icon_circle",
+    "Tshirt",
+    "Book_Base",
+    "Right_page",
+    "Left_page"
+  ],
+  "runtime": {
+    "fps": 30,
+    "frames": 132,
+    "duration_seconds": 4.4
+  },
+  "vector_layers": 5,
+  "raster_assets": 0,
+  "external_images": 0,
+  "transforms": {
+    "Tshirt": [
+      "position",
+      "scale",
+      "rotation",
+      "opacity"
+    ],
+    "Left_page": [
+      "position",
+      "scale",
+      "rotation"
+    ]
+  },
+  "qa": {
+    "final_640px_changed_pixels": 0,
+    "chromium_offline_fallback": "passed desktop/mobile/iPad-size",
+    "lottie_web_runtime": "not certified",
+    "webkit_safari": "not certified"
+  },
+  "scope": "No website integration; no other C-series modifications; hold for creative approval"
+}
