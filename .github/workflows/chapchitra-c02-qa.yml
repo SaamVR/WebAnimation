@@ -70,39 +70,18 @@ jobs:
           C02_QA_ORIGIN: http://127.0.0.1:4272
           C02_QA_ENGINE: ${{ matrix.engine }}
         run: node scripts/c02-browser-qa-v2.cjs
-      - name: Prove real incoming DOM wait and record slow/reduced-motion journeys
+      - name: Verify continuously moving adaptive ink, 1/3/5/8s journeys and real routes
         working-directory: projects/chapchitra
         env:
           C02_QA_ORIGIN: http://127.0.0.1:4272
           C02_QA_ENGINE: ${{ matrix.engine }}
-        run: node scripts/c02-loader-hold-qa.cjs
-      - name: Prove one-click automatic reveal, 1/3/5s loading, native history, bad resources
-        working-directory: projects/chapchitra
-        env:
-          C02_QA_ORIGIN: http://127.0.0.1:4272
-          C02_QA_ENGINE: ${{ matrix.engine }}
-        run: node scripts/c02-lifecycle-qa.cjs
-      - name: Upload one-click cover-to-reveal browser recordings and lifecycle evidence
+        run: node scripts/c02-adaptive-qa.cjs
+      - name: Upload adaptive progress traces, timestamps, frames and full-speed WebM journeys
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: chapchitra-c02-lifecycle-${{ matrix.engine }}
-          path: projects/chapchitra/docs/c02-lifecycle-evidence/${{ matrix.engine }}/
-          if-no-files-found: warn
-          retention-days: 30
-      - name: Visual audit original roller colors, measured edge contact and before/after footage
-        working-directory: projects/chapchitra
-        env:
-          C02_QA_ORIGIN: http://127.0.0.1:4272
-          C02_QA_BEFORE: https://chapchitra-motion-demo-o6uvzok47-samvrc.vercel.app
-          C02_QA_ENGINE: ${{ matrix.engine }}
-        run: node scripts/c02-roller-visual-qa.cjs
-      - name: Upload C02 roller before-after frames and real-time desktop/tablet recordings
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: chapchitra-c02-roller-${{ matrix.engine }}-visual-review
-          path: projects/chapchitra/perf-results/c02-roller-correction/${{ matrix.engine }}/
+          name: chapchitra-c02-adaptive-${{ matrix.engine }}
+          path: projects/chapchitra/docs/c02-adaptive-evidence/${{ matrix.engine }}/
           if-no-files-found: warn
           retention-days: 30
       - name: Retain original browser recordings and screenshots (not physical iPad)
