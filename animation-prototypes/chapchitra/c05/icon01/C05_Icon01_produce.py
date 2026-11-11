@@ -7,10 +7,11 @@ from lxml import etree
 from PIL import Image, ImageDraw, ImageFont, ImageChops
 import cairosvg
 
-ROOT=Path('/mnt/data')
-OUT=ROOT/'CHAPCHITRA_C05_ICON01_STORYBOOK_PROTOTYPE'
+ROOT=Path(__file__).resolve().parent
+OUT=ROOT/'build'
 OUT.mkdir(exist_ok=True)
-SOURCE=ROOT/'C05_Icon01_source'/'More_than_a_tshirt_Icon_1.svg'
+SOURCE=ROOT/'More_than_a_tshirt_Icon_1.svg'
+if not SOURCE.exists(): SOURCE=ROOT/'More_than_a_tshirt_Icon_1_ORIGINAL.svg'
 MASTER=OUT/'More_than_a_tshirt_Icon_1_ORIGINAL.svg'
 shutil.copy2(SOURCE,MASTER)
 W=H=512; FPS=30; END=132; DUR=END/FPS
@@ -355,7 +356,8 @@ Files: `More_than_a_tshirt_Icon_1_ORIGINAL.svg` is the untouched source; `.json`
 No website integration. No other icon modifications. Review approval is required.
 '''
 (OUT/'README.md').write_text(readme)
-shutil.copy2(Path(__file__),OUT/'C05_Icon01_produce.py')
+if Path(__file__).resolve() != (OUT/'C05_Icon01_produce.py').resolve():
+    shutil.copy2(Path(__file__),OUT/'C05_Icon01_produce.py')
 zip_path=ROOT/'CHAPCHITRA_C05_ICON01_STANDALONE_LOTTIE_REVIEW.zip'
 with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
     for p in sorted(OUT.glob('*')):
