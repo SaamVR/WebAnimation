@@ -39,6 +39,7 @@ async function run(browser,engine,width,height){
   const url=route==='home'?'/':route==='artists-edit'?'/artists-edit/':'/'+(route==='about'?'about':route)+'/';
   await page.goto(origin+url,{waitUntil:'load',timeout:60000});
   await page.locator('#siteHeader').waitFor({timeout:30000});
+  if(route==='artists-edit') await page.locator('.cc-worktable-stage:not([aria-busy="true"])').waitFor({timeout:90000});
   const initial=await measure(page);
   check(engine+' '+route+' page identity',initial.route===route,{got:initial.route});
   check(engine+' '+route+' navbar in normal header flow initially',
