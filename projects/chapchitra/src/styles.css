@@ -2109,3 +2109,12 @@ html,body{overflow-x:visible}
  .route-head--artist-edit{min-height:56px;padding:8px 0}
  .route-head--artist-edit h1{font-size:26px}
 }
+
+/* Artist's Edit: normal document-flow navigation, deliberately not sticky.
+   Keep the global sticky header unchanged on every other route, including
+   the announcement bar and responsive/mobile navigation. */
+body[data-page="artists-edit"] #app > .site-header {
+  position: static;
+  top: auto;
+  inset-block-start: auto;
+}
