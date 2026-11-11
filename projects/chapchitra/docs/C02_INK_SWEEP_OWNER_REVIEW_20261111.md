@@ -1,38 +1,56 @@
-# CHAPCHITRA — C02 Ink-Sweep Page Transition · Owner Review
+# CHAPCHITRA C02 — Custom Ink-Swipe Page Transition & Loader
 
-**Status:** Implementation candidate; original creative concept approved, final motion/artwork **not yet creatively accepted**.
+**Status:** Owner creative review candidate; NOT creatively approved. Do not merge into main or deploy to the shared Render service.
+**Branch:** feature/chapchitra-c02-ink-sweep-20261111
+**Repository:** SaamVR/WebAnimation, exclusively projects/chapchitra/
 
-**Project:** `projects/chapchitra/` · **Render baseline:** `bdefd1d509a800a1537b03ae624156158fd784ed` · **Feature:** `feature/chapchitra-c02-ink-sweep-20261111`
+## Creative interpretation of the supplied reference
 
-## Approved interaction boundaries
+The supplied 26.1066-second video was inspected at 2–3.5s, 12.5–14s and 21–22s. The effect uses broad rounded paint masses, flowing openings, strong full-screen color takeover, short full coverage and an organic clearing reveal.
 
-- Entry route must be Home, via primary desktop/tablet navigation or mobile menu.
-- Only Home → Shop, Artist's Edit, Journal, About Us is animated.
-- Hero/editorial CTAs, Shop → Product Detail, Journal Story, cart, checkout, and other paths have native navigation without C02.
-- Ctrl/Meta/Shift/Alt modified clicks, non-`_self` targets, downloads and cross-origin links remain native.
-- The destination page awaits its actual application shell before the cover clears. A four-second **failure guard only** prevents a permanently obscured page; no artificial page-load delay occurs.
-- One-time session ticket matches exact destination path and expires. Browser Back/forward resumes without an overlaid screen.
-- Reduced-motion visitors use immediate native navigation. Links retain native keyboard activation, focus and history.
-- No new animation runtime or external imagery; SVG silhouette and the Web Animations API are self-contained.
+C02 generates new original cubic Bézier ink contours and a temporary teardrop-like negative opening at runtime. The palette is Press Green #293D2D, Deep Forest #172419 and a subtle Terracotta #8A503B edge. The reference website's bright blue and exact shapes were not copied.
 
-## Palette and proposed choreography
+The complete **approved original roller illustration** accompanies the traveling paint boundary. Its entire SVG is displayed in a 90-degree CSS orientation so the cylinder is vertical/perpendicular to horizontal travel. Cylinder and handle path geometry do not rotate relative to one another. The roller is deliberately small, not a dominant page element.
 
-A restrained, rough-edged ink sheet moves left-to-right. Deep Forest `#172419` and Press Green `#293D2D` lead; Terracotta `#8A503B` is a restrained accent on the irregular ink edge. No large literal roller. Cover 310 ms + reveal 285 ms = **595 ms of programmed motion**, excluding actual page load. Source art remains a **review candidate**.
+## Exact roller-source audit
 
-## Verification performed
+- The supplied Roller(1).rar contains ONE Roller.svg (2,162 bytes), with a trimmed 1700×1700 viewBox, ROLLER_CYLINDER, Layer_2 and ROLLER_HANDLE_x2B_ROD. The second separately prepared SVG described in the user brief was not present in this archive.
+- Byte-exact master: src/assets/c02/roller-original.svg
+- Master SHA-256: 1c1226b902299ef7519236b582b5012f5ec918aa7571a2f8091a86db95992d73
+- A derived file at dist/assets/c02/roller-prepared.svg changes ONLY the group label Layer_2 to ROLLER_FRAME; all three original vector paths, coordinates, colors and proportions are preserved.
+- scripts/build.mjs verifies the checksum before producing delivery files.
 
-- Pure Node tests: **4/4 pass** (approved four-route allowlist, exclusion cases, native link semantics, numbering independence).
-- Direct asset build: **PASS**. Long SVG source geometry and worktable source asset integrity remain intact.
-- Browser acceptance, **Google Chrome (Chromium) and Playwright WebKit**: **22/22 pass**, including four approved routes, browser Back, mid-sweep capture, Shop → Product exclusion, reduced-motion, mobile navigation, keyboard Enter and Artist's Edit entrypoint.
-- Reproducible script: `node scripts/c02-browser-qa.cjs` against `npm run preview` (expects port 4272 or `C02_QA_ORIGIN` override).
-- Browser evidence summary: `docs/c02-evidence/results.json`. PNG frames and WebM videos were captured on the local QA runner; not yet published as a hosted preview.
-- Full `npm run check` on the Windows runner **is not green**: several legacy byte/string-sensitive SVG and CSS assertions fail on Windows line endings. Do not treat that run as a passing full-suite gate. A clean Linux CI run is still required.
+## Navigation and loading architecture
 
-## Isolation and release gate
+- The site remains a multi-page application (MPA), not a newly invented SPA.
+- Eligible ordinary same-origin links between all existing internal pages are intercepted, including Home, Shop, Artist's Edit, Journal, About, product details, favorites, bag, account and related destinations.
+- Excludes same-document anchors, external origins, file downloads, other-target links, modified clicks, button-only Add to Bag/Favorite operations, artwork transforms and carousels.
+- The outgoing page gets a single SVG overlay. Animated covering stroke: ~405 ms. Its final state is an opaque full-screen painted surface.
+- A one-use session ticket matches the destination path AND query string. The build inserts an inline prepaint cover into all 20 current HTML entrypoints, stopping white flashes while the next document initializes.
+- The incoming document uses the full-cover SVG until its actual application shell is mounted. Artist's Edit also waits for its asynchronous worktable ready status. The reveal takes ~385 ms and softly reduces final opacity.
+- Programmed animation time: 790 ms, plus real network/page readiness. There are no fake percentages, generic spinners, or intentional multi-second waits.
+- Reduced motion takes ordinary native navigation without any C02 overlay.
+- The modern cross-document View Transition API is an enhancement in supported browsers; the manual cover/reveal session-ticket flow is the fallback for older browsers including WebKit variants.
+- Browser Back/Forward uses native history. Session ticket is one-use. BFCache events clean stale overlays. The prepaint cover has an 18-second failure-only guard; the outgoing overlay a 13-second failure-only guard.
 
-- Only adds C02 module, four tests, one narrowly scoped app boot import/installer, the browser QA script, and review evidence/docs.
-- Does not touch Artist's Edit worktable code, garment images, C01/C08 Lottie artwork, original Compact/Long SVG artwork, or THREADS.
-- **No merge to `main`, no Render deploy, and no owner creative approval is claimed.**
-- Independent visual critic must inspect motion edge, texture, entry/reveal continuity, tablet/mobile ergonomics and reduced-motion behavior before creative acceptance.
+## Protected systems and source boundary
 
-**Next gate:** Obtain an isolated browser-review preview, verify clean Linux CI and request owner visual acceptance of C02.
+The C01 service animation, C08 roller-wordmark Lottie, Compact and Long *unnumbered* SVG button components, original Add-to-Bag ink confirmation, sticky navbar, garment assets, and front/back illustrated worktable source are unchanged. The small addition to the build script is after the original source copy and before the existing version-stamped Artist's Edit release step.
+
+## Verification and acceptance gate
+
+- Five focused Node unit tests PASS (original roller SHA and paths, navigation scope and exclusions, geometry, early cover).
+- Direct build PASS (20 HTML entrypoints, exact original artwork archive and 43 delivery layers, original Long SVG artwork).
+- Chromium/WebKit desktop, iPad-size and mobile acceptance, slow-loading/failed-resource demonstrations and recorded visuals must be separately verified. Do not call a static test a passing browser test.
+- A browser viewport simulator is NOT a physical iPad test.
+- Owner must approve motion shape, timings, ink edge, roller scale/orientation and visual continuity before this module can be marked creatively complete.
+
+## Run locally
+
+1. cd projects/chapchitra
+2. npm ci
+3. node --test tests/c02-ink-sweep.test.mjs
+4. node scripts/build.mjs
+5. Set PORT=4272 and run npm run preview, then click ordinary internal page links.
+
+**Release gate: draft PR only; no production merge or shared Render deployment.**
