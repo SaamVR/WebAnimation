@@ -14,8 +14,14 @@ body{background:#f6f4ee;color:#293d2d}
 import {installC02PageTransitions} from '/motion/c02/ink-sweep.mjs';
 installC02PageTransitions();
 const raw=Number(new URLSearchParams(location.search).get('delay'));
-const delay=Number.isFinite(raw)&&raw>0?Math.min(6500,Math.max(1000,raw)):2200;
+const delay=Number.isFinite(raw)&&raw>0?Math.min(8000,Math.max(1000,raw)):2200;
 window.__c02SimulatedWaitMs=delay;
+// Review-only: counting starts at the outgoing click, not after destination
+// navigation, so 1/3/5/8s tests never incur TWO separate artificial waits.
+const alreadyElapsed=window.__c02DemoStartedAt?
+ Math.max(0,Date.now()-window.__c02DemoStartedAt):0;
+const remaining=Math.max(0,delay-alreadyElapsed);
+window.__c02RemainingWaitMs=remaining;
 setTimeout(()=>{
  const main=document.getElementById('main');
  const section=document.createElement('section');
@@ -27,7 +33,7 @@ setTimeout(()=>{
  const link=document.createElement('a');link.href='/c02-review/';link.textContent='Back to motion review';
  section.append(tag,heading,description,link);main.append(section);
  window.__c02DemoReady=true;
-},delay);
+},remaining);
 </script>
 </head><body data-page="c02-review-slow">
 <main id="main" aria-live="off"></main>
