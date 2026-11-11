@@ -4,6 +4,7 @@ import { FABRIC_PIGMENTS, applyFabricPigmentToRGBA } from './worktable-fabric-pi
 import { paperGuide, placementGeometry, printScaleLabel, resolutionGuidance } from './worktable-print-placement.mjs';
 import { createSideRecords, storeSide, loadSide, disposeSideRecords } from './worktable-two-sided-state.mjs';
 import { calculateArtistPrice, buildArtistCustomization, formatArtistBDT } from './worktable-pricing.mjs';
+import { WORKTABLE_PRICE_TAG } from './worktable-price-tag-config.mjs';
 
 // Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
 // Cropped WebP browser variants retain original alpha coordinates and source SHA256.
@@ -143,15 +144,15 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
           <p id="worktableBagStatus" class="cc-worktable-bag-status" role="status" aria-live="polite"></p>
         </div>
       </div>
-      <details class="cc-worktable-price-breakdown" id="worktablePriceBreakdown">
-        <summary>Price breakdown <span class="cc-worktable-price-chevron" aria-hidden="true">⌄</span></summary>
+      <section class="cc-worktable-price-breakdown cc-worktable-invoice" id="worktablePriceBreakdown" aria-label="Itemized price invoice">
+        <h3 class="cc-worktable-invoice-title">Price invoice</h3>
         <dl>
           <div><dt id="worktablePriceGarmentLabel">Regular Tee</dt><dd id="worktablePriceGarmentCharge">৳450</dd></div>
-          <div><dt id="worktablePriceFrontLabel">Front · No artwork</dt><dd id="worktablePriceFrontCharge">৳0</dd></div>
-          <div><dt id="worktablePriceBackLabel">Back · No artwork</dt><dd id="worktablePriceBackCharge">৳0</dd></div>
+          <div><dt id="worktablePriceFrontLabel">Front print · No Print</dt><dd id="worktablePriceFrontCharge">৳0</dd></div>
+          <div><dt id="worktablePriceBackLabel">Back print · No Print</dt><dd id="worktablePriceBackCharge">৳0</dd></div>
           <div class="cc-worktable-price-grand"><dt>Total</dt><dd id="worktablePriceBreakdownTotal">৳450</dd></div>
         </dl>
-      </details>
+      </section>
       <p class="cc-worktable-price-disclaimer">Demo bag stores configuration details only. Uploaded image files stay in this editor; no order is placed.</p>
     </section>
     <p class="cc-worktable-live" role="status" id="worktableMessage" aria-live="polite"></p>
@@ -170,6 +171,40 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  viewButton.innerHTML='<span aria-hidden="true" class="cc-worktable-view-glyph">↻</span><span class="cc-worktable-view-label">View back</span>';
  viewRow.append(viewButton);
  stage.append(viewRow);
+ // Illustrated price-tag artwork is independently registered to the wooden desk.
+ // Both tag displays receive the ONE calculated total, never a second price engine.
+ const createPriceTag=(mobile=false)=>{
+   const tag=document.createElement('div');
+   tag.className='cc-worktable-price-tag'+(mobile?' cc-worktable-price-tag-mobile':' cc-worktable-price-tag-stage');
+   tag.setAttribute('aria-hidden','true');tag.dataset.priceTag=mobile?'mobile':'stage';
+   const settings=WORKTABLE_PRICE_TAG;
+   const art=document.createElement('img');art.src=settings.assetPath;art.alt='';
+   art.width=settings.original.width;art.height=settings.original.height;
+   art.decoding='async';art.draggable=false;
+   const text=document.createElement('span');text.className='cc-worktable-tag-total';text.textContent='৳450';
+   text.style.left=settings.text.xPercent+'%';text.style.top=settings.text.yPercent+'%';
+   text.style.fontSize=settings.text.fontSizeCqw+'cqw';
+   text.style.textAlign=settings.text.align;
+   tag.style.setProperty('--cc-tag-desktop-x',settings.desktop.x/WORKTABLE_VIEWBOX.width*100+'%');
+   tag.style.setProperty('--cc-tag-desktop-y',settings.desktop.y/WORKTABLE_VIEWBOX.height*100+'%');
+   tag.style.setProperty('--cc-tag-desktop-w',settings.desktop.width/WORKTABLE_VIEWBOX.width*100+'%');
+   tag.style.setProperty('--cc-tag-tablet-x',settings.tablet.x/WORKTABLE_VIEWBOX.width*100+'%');
+   tag.style.setProperty('--cc-tag-tablet-y',settings.tablet.y/WORKTABLE_VIEWBOX.height*100+'%');
+   tag.style.setProperty('--cc-tag-tablet-w',settings.tablet.width/WORKTABLE_VIEWBOX.width*100+'%');
+   tag.style.setProperty('--cc-tag-mobile-x',settings.mobile.x/WORKTABLE_VIEWBOX.width*100+'%');
+   tag.style.setProperty('--cc-tag-mobile-y',settings.mobile.y/WORKTABLE_VIEWBOX.height*100+'%');
+   tag.style.setProperty('--cc-tag-mobile-w',settings.mobile.width/WORKTABLE_VIEWBOX.width*100+'%');
+   tag.style.setProperty('--cc-tag-max-width',settings.desktop.maxWidth+'px');
+   tag.style.setProperty('--cc-tag-mobile-width',settings.mobile.displayWidth+'px');
+   tag.style.setProperty('--cc-tag-rotation',settings.rotation+'deg');
+   tag.append(art,text);
+   return tag;
+ };
+ const stagePriceTag=createPriceTag();
+ stage.append(stagePriceTag);
+ const mobilePriceTag=createPriceTag(true);
+ stage.after(mobilePriceTag);
+ const tagPrices=[stagePriceTag.querySelector('.cc-worktable-tag-total'),mobilePriceTag.querySelector('.cc-worktable-tag-total')];
  const rail=root.querySelector('.cc-worktable-rail');
  const file=root.querySelector('#worktableFile');
  const uploadButton=root.querySelector('#worktableUploadArt');
@@ -408,6 +443,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   const syncPricing=()=>{
    const amount=calculateArtistPrice(selectionForPricing());
    priceTotal.textContent=formatArtistBDT(amount.total);
+   for(const node of tagPrices)node.textContent=formatArtistBDT(amount.total);
    priceGarmentLabel.textContent=amount.garmentLabel;
    priceGarmentCharge.textContent=formatArtistBDT(amount.base);
    for(const [which,label,value] of [
@@ -415,7 +451,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
     ['Back',priceBackLabel,priceBackCharge],
    ]){
     const side=amount[which.toLowerCase()];
-    label.textContent=which+' · '+side.sizeLabel;
+    label.textContent=which+' print · '+(side.hasArtwork?side.preset:'No Print');
     value.textContent=formatArtistBDT(side.charge);
    }
    priceBreakdownTotal.textContent=formatArtistBDT(amount.total);

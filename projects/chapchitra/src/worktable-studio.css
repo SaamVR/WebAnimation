@@ -588,3 +588,40 @@
  .cc-worktable-price-action button{width:100%}
  .cc-worktable-bag-status{text-align:left}
 }
+
+/* Owner's original illustrated price tag, alpha-trimmed WITHOUT drawing new art.
+   All coordinates are stage-relative and configurable in worktable-price-tag-config.mjs. */
+.cc-worktable-price-tag{
+ position:absolute;left:var(--cc-tag-desktop-x);top:var(--cc-tag-desktop-y);
+ width:var(--cc-tag-desktop-w);max-width:var(--cc-tag-max-width);
+ aspect-ratio:312/142;z-index:7;
+ transform:rotate(var(--cc-tag-rotation));transform-origin:center;
+ container-type:inline-size;pointer-events:none;user-select:none;
+}
+.cc-worktable-price-tag img{display:block;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.cc-worktable-tag-total{
+ position:absolute;display:block;transform:translate(-50%,-50%);
+ width:58%;white-space:nowrap;line-height:1.1;z-index:1;
+ font-family:Georgia,serif;font-weight:700;color:#293D2D;
+ font-variant-numeric:tabular-nums;pointer-events:none;
+}
+.cc-worktable-price-tag-mobile{display:none}
+@media(min-width:701px) and (max-width:1050px){
+ .cc-worktable-price-tag-stage{
+  left:var(--cc-tag-tablet-x);top:var(--cc-tag-tablet-y);
+  width:var(--cc-tag-tablet-w);
+ }
+}
+@media(max-width:700px){
+ .cc-worktable-price-tag-stage{display:none}
+ .cc-worktable-price-tag-mobile{
+  position:relative;display:block;left:auto;top:auto;
+  width:min(var(--cc-tag-mobile-width),85vw);max-width:100%;
+  margin:8px auto 4px;z-index:auto;
+ }
+}
+.cc-worktable-invoice{display:block;padding-top:9px}
+.cc-worktable-invoice-title{margin:0;padding:4px 0 6px;font:700 12px/1.3 var(--sans);letter-spacing:.03em;color:var(--color-press-green)}
+.cc-worktable-invoice dl{margin:0}
+.cc-worktable-invoice dl>div{padding:7px 0}
+.cc-worktable-invoice dl .cc-worktable-price-grand{padding-top:12px}

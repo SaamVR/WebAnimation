@@ -30,9 +30,14 @@ async function open(p){
    await sel(p,'garment','fullSleeve');await total(p,'৳950');
    await turn(p,'front');await total(p,'৳950');
    await sel(p,'size','XL');await sel(p,'color','green');await total(p,'৳950');
-   await p.locator('#worktablePriceBreakdown summary').click();
+   await p.locator('#worktablePriceBreakdown').waitFor();
    const txt=await p.locator('#worktablePriceBreakdown').innerText();
-   record(id+' correct breakdown',txt.includes('Full Sleeve')&&txt.includes('Front · A4')&&txt.includes('Back · A3')&&txt.includes('৳950'),txt);
+   record(id+' correct breakdown',txt.includes('Full Sleeve')&&txt.includes('Front print · A4')&&txt.includes('Back print · A3')&&txt.includes('৳950'),txt);
+   record(id+' invoice always visible',await p.locator('.cc-worktable-invoice').isVisible());
+   record(id+' both tag totals match invoice',await p.evaluate(()=>{
+      const expected=document.querySelector('#worktablePriceTotal').textContent.trim();
+      return [...document.querySelectorAll('.cc-worktable-tag-total')].every(el=>el.textContent.trim()===expected)
+   }));
    await p.locator('.cc-worktable-price').screenshot({path:path.join(dir,id+'-pricing.png')});
    await p.locator('#worktableAddDemoBag').click();
    await p.locator('#worktableBagStatus a').waitFor({timeout:15000});
