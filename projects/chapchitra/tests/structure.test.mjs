@@ -281,11 +281,11 @@ test('clean pill variants and color combinations use two solid matching layers',
     assert.match(html,/assets\/compact\/compact-button-/);
     assert.doesNotMatch(html,/cc-pill-art--|cc-pill-shadow|cc-pill-face/);
   }else{
-    // Explicitly preserve the already-approved full-width CSS capsule.
-    assert.match(html,/cc-pill-art--long/);
-    assert.match(html,/cc-pill-shadow/);
-    assert.match(html,/cc-pill-face/);
-    assert.match(html,/cc-pill-wipe/);
+    // Long controls use the original Illustrator SVG, not a CSS capsule.
+    assert.match(html,/cc-long-artwork/);
+    assert.match(html,/cc-long-fallback/);
+    assert.match(html,/assets\/long\/long-button-/);
+    assert.doesNotMatch(html,/cc-pill-art--long|cc-pill-face|cc-pill-shadow/);
   }
   assert.match(html,/cc-sketch-label-ink/);
   assert.doesNotMatch(html,/<svg|<path|<rect|cc-sketch-outline|cc-sketch-highlight|\.png|product-add-arrow|↗|→|✓/);
@@ -538,8 +538,8 @@ test('Hero 1 Terracotta and both banner CTAs reuse approved pill without changin
  assert.match(buttons,/\.hero-cover \.cc-sketch\.cc-sketch--beige\{\s*--cc-shadow-color:var\(--acc\)/);
  assert.match(buttons,/--cc-shadow-graphite:var\(--ink\)/);
  assert.match(buttons,/--cc-shadow-on-dark:var\(--grey\)/);
- assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest',href:'\/shop\/\?category=tie-dye'/);
- assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest',href:'\/artists-edit\/'/);
+ assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'terracotta',href:'\/shop\/\?category=tie-dye'/);
+ assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'beige',href:'\/artists-edit\/'/);
  assert.doesNotMatch(app,/class="text-link">Explore hand-dye studies ↗|class="text-link">Visit Artist’s Edit ↗/);
  assert.match(css,/\.banner-editorial-copy \.cc-sketch\.editorial-cta\{/);
  assert.doesNotMatch(css,/\.banner-editorial-copy \.text-link\{/);
@@ -591,8 +591,8 @@ test('banner four-edge and Featured top/bottom alpha masks are on unmasked backg
  assert.match(section,/#featured \.cc-printed-surface--featured > \.cc-printed-center\{\s*inset:37px 0/);
  assert.match(section,/#featured\.featured-zone > \.cc-printed-surface\{\s*--cc-printed-surface:var\(--deep\)/);
  assert.doesNotMatch(section,/animation:|transition:|grid-template-columns:|min-height:|filter:blur/);
- assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'forest'/);
- assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'forest'/);
+ assert.match(app,/sketchButton\(\{label:'Explore hand-dye studies',variant:'long',tone:'terracotta'/);
+ assert.match(app,/sketchButton\(\{label:"Visit Artist's Edit",variant:'long',tone:'beige'/);
  assert.match(app,/id="featuredFrames"/);
  assert.match(app,/id="featuredPrev"/);
  assert.match(app,/id="featuredNext"/);

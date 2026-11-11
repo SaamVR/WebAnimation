@@ -71,7 +71,7 @@
         "fill": "rgb(35, 35, 35)",
         "scale": "matrix(1, 0, 0, 1, 0, 0)",
         "opacity": "0.94",
-        "clip": "url(#c05-ink-clip-4)",
+        "clip": "url(#compact-ink-clip-4)",
         "order": true,
         "shadow": "none"
       }
@@ -86,7 +86,7 @@
         "fill": "rgb(35, 35, 35)",
         "scale": "matrix(1, 0, 0, 1, 0, 0)",
         "opacity": "0.94",
-        "clip": "url(#c05-ink-clip-9)",
+        "clip": "url(#compact-ink-clip-9)",
         "order": true,
         "shadow": "none"
       }
@@ -101,7 +101,7 @@
         "fill": "rgb(35, 35, 35)",
         "scale": "matrix(1, 0, 0, 1, 0, 0)",
         "opacity": "0.94",
-        "clip": "url(#c05-ink-clip-13)",
+        "clip": "url(#compact-ink-clip-13)",
         "order": true,
         "shadow": "none"
       }
@@ -189,7 +189,7 @@
         "fill": "rgb(35, 35, 35)",
         "scale": "matrix(1, 0, 0, 1, 0, 0)",
         "opacity": "0.94",
-        "clip": "url(#c05-ink-clip-4)",
+        "clip": "url(#compact-ink-clip-4)",
         "order": true,
         "shadow": "none"
       }
@@ -204,7 +204,7 @@
         "fill": "rgb(35, 35, 35)",
         "scale": "matrix(1, 0, 0, 1, 0, 0)",
         "opacity": "0.94",
-        "clip": "url(#c05-ink-clip-13)",
+        "clip": "url(#compact-ink-clip-13)",
         "order": true,
         "shadow": "none"
       }
@@ -219,7 +219,7 @@
         "fill": "rgb(35, 35, 35)",
         "scale": "matrix(1, 0, 0, 1, 0, 0)",
         "opacity": "0.94",
-        "clip": "url(#c05-ink-clip-13)",
+        "clip": "url(#compact-ink-clip-13)",
         "order": true,
         "shadow": "none"
       }

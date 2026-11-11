@@ -1,8 +1,8 @@
 const sharp=require('sharp');
 const fs=require('node:fs/promises');
 const path=require('node:path');
-const source='F:\\CHAPCHITRA_C05_QA';
-const dest=path.resolve(__dirname,'../docs/c05-evidence');
+const source='F:\\CHAPCHITRA_COMPACT_QA';
+const dest=path.resolve(__dirname,'../docs/compact-evidence');
 (async()=>{
  await fs.mkdir(dest,{recursive:true});
  const results=[];
@@ -21,7 +21,7 @@ const dest=path.resolve(__dirname,'../docs/c05-evidence');
    await fs.copyFile(after,path.join(dest,'long-after-'+width+'.png'));
   }
  }
- await fs.writeFile(path.join(dest,'c05-long-pixel-equality.json'),JSON.stringify({results,totalDifferences:results.reduce((s,x)=>s+x.differingChannelSamples,0)},null,2)+'\n');
+ await fs.writeFile(path.join(dest,'compact-long-pixel-equality.json'),JSON.stringify({results,totalDifferences:results.reduce((s,x)=>s+x.differingChannelSamples,0)},null,2)+'\n');
  console.log(JSON.stringify(results,null,2));
  if(results.some(x=>x.differingChannelSamples))process.exitCode=1;
 })().catch(e=>{console.error(e);process.exitCode=2});

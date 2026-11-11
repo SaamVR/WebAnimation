@@ -32,7 +32,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-1)",
+        "clip": "url(#compact-ink-clip-1)",
         "rect": {
           "x": 177.25,
           "y": 474.828125,
@@ -61,7 +61,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-6)",
+        "clip": "url(#compact-ink-clip-6)",
         "rect": {
           "x": 177.25,
           "y": 724.828125,
@@ -90,7 +90,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-10)",
+        "clip": "url(#compact-ink-clip-10)",
         "rect": {
           "x": 177.25,
           "y": 974.828125,
@@ -169,7 +169,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-1)",
+        "clip": "url(#compact-ink-clip-1)",
         "rect": {
           "x": 47,
           "y": 474.109375,
@@ -198,7 +198,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-6)",
+        "clip": "url(#compact-ink-clip-6)",
         "rect": {
           "x": 47,
           "y": 724.109375,
@@ -227,7 +227,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-10)",
+        "clip": "url(#compact-ink-clip-10)",
         "rect": {
           "x": 47,
           "y": 974.109375,
@@ -276,7 +276,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-1)",
+        "clip": "url(#compact-ink-clip-1)",
         "rect": {
           "x": 47,
           "y": 601.875,
@@ -305,7 +305,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-6)",
+        "clip": "url(#compact-ink-clip-6)",
         "rect": {
           "x": 47,
           "y": 946.875,
@@ -334,7 +334,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-10)",
+        "clip": "url(#compact-ink-clip-10)",
         "rect": {
           "x": 47,
           "y": 1291.875,
@@ -383,7 +383,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-1)",
+        "clip": "url(#compact-ink-clip-1)",
         "rect": {
           "x": 20.25,
           "y": 696.5625,
@@ -412,7 +412,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-6)",
+        "clip": "url(#compact-ink-clip-6)",
         "rect": {
           "x": 20.25,
           "y": 1035.5625,
@@ -441,7 +441,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-10)",
+        "clip": "url(#compact-ink-clip-10)",
         "rect": {
           "x": 20.25,
           "y": 1374.5625,
@@ -498,7 +498,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-1)",
+        "clip": "url(#compact-ink-clip-1)",
         "rect": {
           "x": 177.25,
           "y": 471.828125,
@@ -527,7 +527,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-6)",
+        "clip": "url(#compact-ink-clip-6)",
         "rect": {
           "x": 177.25,
           "y": 718.828125,
@@ -556,7 +556,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-10)",
+        "clip": "url(#compact-ink-clip-10)",
         "rect": {
           "x": 177.25,
           "y": 965.828125,
@@ -635,7 +635,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-1)",
+        "clip": "url(#compact-ink-clip-1)",
         "rect": {
           "x": 47,
           "y": 471.09375,
@@ -664,7 +664,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-6)",
+        "clip": "url(#compact-ink-clip-6)",
         "rect": {
           "x": 47,
           "y": 718.09375,
@@ -693,7 +693,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-10)",
+        "clip": "url(#compact-ink-clip-10)",
         "rect": {
           "x": 47,
           "y": 965.09375,
@@ -742,7 +742,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-1)",
+        "clip": "url(#compact-ink-clip-1)",
         "rect": {
           "x": 47,
           "y": 598.875,
@@ -771,7 +771,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-10)",
+        "clip": "url(#compact-ink-clip-10)",
         "rect": {
           "x": 47,
           "y": 940.875,
@@ -800,7 +800,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-6)",
+        "clip": "url(#compact-ink-clip-6)",
         "rect": {
           "x": 47,
           "y": 1282.875,
@@ -849,7 +849,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-1)",
+        "clip": "url(#compact-ink-clip-1)",
         "rect": {
           "x": 20.25,
           "y": 693.5625,
@@ -878,7 +878,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-6)",
+        "clip": "url(#compact-ink-clip-6)",
         "rect": {
           "x": 20.25,
           "y": 1029.5625,
@@ -907,7 +907,7 @@
         "shadow": "none",
         "paths": 115,
         "polygons": 10,
-        "clip": "url(#c05-ink-clip-10)",
+        "clip": "url(#compact-ink-clip-10)",
         "rect": {
           "x": 20.25,
           "y": 1365.5625,

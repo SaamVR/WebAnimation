@@ -1,11 +1,11 @@
-/* C05 independent source and browser behavior QA.
+/* COMPACT independent source and browser behavior QA.
    Real Chromium + WebKit play the exact owner-supplied SVG paths. */
 const {chromium,webkit}=require('playwright');
 const fs=require('node:fs/promises');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
-const out=path.resolve(root,'docs/c05-final-evidence');
-const origin=process.env.C05_URL||'http://127.0.0.1:19301/';
+const out=path.resolve(root,'docs/compact-final-evidence');
+const origin=process.env.COMPACT_BUTTON_URL||'http://127.0.0.1:19301/';
 const tones={
  forest:{st5:'rgb(23, 36, 25)',st7:'rgb(99, 117, 101)',st8:'rgb(41, 61, 45)',st9:'rgb(216, 206, 194)',st10:'rgb(35, 35, 35)'},
  terracotta:{st5:'rgb(31, 34, 22)',st7:'rgb(110, 82, 63)',st8:'rgb(138, 80, 59)',st9:'rgb(216, 206, 194)',st10:'rgb(35, 35, 35)'},
@@ -40,9 +40,9 @@ const matrixY=transform=>transform==='none'?0:(parseFloat(transform.match(/matri
     const jsErrors=[];
     page.on('pageerror',e=>jsErrors.push(e.message));
     const response=await page.goto(origin+'buttons/compact/',{waitUntil:'domcontentloaded',timeout:50000});
-    await page.waitForFunction(()=>window.__chapchitraC05?.counts.ready===13,null,{timeout:20000});
+    await page.waitForFunction(()=>window.__chapchitraCompactButtons?.counts.ready===13,null,{timeout:20000});
     const global=await page.evaluate(()=>({
-     counts:window.__chapchitraC05.counts,
+     counts:window.__chapchitraCompactButtons.counts,
      overflow:document.documentElement.scrollWidth>innerWidth+1,
      activeFiles:[...new Set([...document.querySelectorAll('.cc-compact-artwork img')].map(x=>x.getAttribute('src')))],
      clipCount:document.querySelectorAll('.cc-compact-artwork .cc-compact-ink-shell[clip-path]').length,
@@ -51,16 +51,16 @@ const matrixY=transform=>transform==='none'?0:(parseFloat(transform.match(/matri
     check(response.status()===200&&global.counts.ready===13&&!global.overflow&&global.clipCount===13&&global.long===1&&global.counts.fallback===0,
       name+' '+width+' isolated preview SVGs, clips, long controls, layout',global);
     for(const [tone,swatches] of Object.entries(tones)){
-     const selector='.c05-panel[data-tone="'+tone+'"] .cc-compact-artwork';
+     const selector='.compact-panel[data-tone="'+tone+'"] .cc-compact-artwork';
      const state=await get(page,selector);
      check(Object.entries(swatches).every(([k,v])=>state.fill[k]===v)&&state.paths===115&&state.polygons===10&&
-       state.clip?.startsWith('url(#c05-ink-clip-'),
+       state.clip?.startsWith('url(#compact-ink-clip-'),
        name+' '+width+' '+tone+' exact SVG paints, detailed original vectors',state);
     }
     const inactive=jsErrors.filter(x=>!x.startsWith('ResizeObserver loop completed with undelivered notifications'));
     check(inactive.length===0,name+' '+width+' no application JS exceptions',inactive);
     if(width===1408){
-     const interactive=page.locator('.c05-panel[data-tone="forest"] .cc-compact-artwork').last();
+     const interactive=page.locator('.compact-panel[data-tone="forest"] .cc-compact-artwork').last();
      await interactive.scrollIntoViewIfNeeded();
      const face=interactive.locator('[id="BUTTON_FACE"]');
      const shadow=interactive.locator('[id="BUTTON_SHADOW"]');
@@ -88,17 +88,17 @@ const matrixY=transform=>transform==='none'?0:(parseFloat(transform.match(/matri
      await page.keyboard.up('Space');
      check(keyboard&&!(await interactive.evaluate(e=>e.classList.contains('cc-compact-pressed'))),
        name+' keyboard Space press and release works without stuck state');
-     await page.locator('.c05-panel[data-tone="forest"]').screenshot({path:path.join(out,'c05-'+name.toLowerCase()+'-press-green.png')});
-     await page.locator('.c05-panel[data-tone="terracotta"]').screenshot({path:path.join(out,'c05-'+name.toLowerCase()+'-terracotta.png')});
-     await page.locator('.c05-panel[data-tone="beige"]').screenshot({path:path.join(out,'c05-'+name.toLowerCase()+'-neutral.png')});
+     await page.locator('.compact-panel[data-tone="forest"]').screenshot({path:path.join(out,'compact-'+name.toLowerCase()+'-press-green.png')});
+     await page.locator('.compact-panel[data-tone="terracotta"]').screenshot({path:path.join(out,'compact-'+name.toLowerCase()+'-terracotta.png')});
+     await page.locator('.compact-panel[data-tone="beige"]').screenshot({path:path.join(out,'compact-'+name.toLowerCase()+'-neutral.png')});
     }
-    if(width===430)await page.screenshot({path:path.join(out,'c05-'+name.toLowerCase()+'-mobile.png'),fullPage:true});
+    if(width===430)await page.screenshot({path:path.join(out,'compact-'+name.toLowerCase()+'-mobile.png'),fullPage:true});
     await context.close();
    }
    const reduced=await browser.newContext({viewport:{width:430,height:900},reducedMotion:'reduce'});
    const p=await reduced.newPage();
    await p.goto(origin+'buttons/compact/',{waitUntil:'domcontentloaded'});
-   await p.waitForFunction(()=>window.__chapchitraC05?.counts.ready===13,null,{timeout:15000});
+   await p.waitForFunction(()=>window.__chapchitraCompactButtons?.counts.ready===13,null,{timeout:15000});
    const styles=await p.locator('.cc-compact-artwork').first().evaluate(e=>({
     faceTransition:getComputedStyle(e.querySelector('[id="BUTTON_FACE"]')).transitionDuration,
     inkTransition:getComputedStyle(e.querySelector('.cc-compact-ink')).transitionDuration
@@ -113,20 +113,20 @@ const matrixY=transform=>transform==='none'?0:(parseFloat(transform.match(/matri
   const context=await browser.newContext({viewport:{width:430,height:932},isMobile:true,hasTouch:true,deviceScaleFactor:2});
   const p=await context.newPage();
   await p.goto(origin+'buttons/compact/',{waitUntil:'domcontentloaded'});
-  await p.waitForFunction(()=>window.__chapchitraC05?.counts.ready===13,null,{timeout:15000});
-  const tap=p.locator('.c05-panel[data-tone="terracotta"] .cc-compact-artwork').last();
+  await p.waitForFunction(()=>window.__chapchitraCompactButtons?.counts.ready===13,null,{timeout:15000});
+  const tap=p.locator('.compact-panel[data-tone="terracotta"] .cc-compact-artwork').last();
   await tap.dispatchEvent('pointerdown',{button:0,pointerType:'touch'});
   await p.waitForTimeout(120);
   check(await tap.evaluate(e=>e.classList.contains('cc-compact-pressed')),'Touch press moves the face');
   await tap.dispatchEvent('pointercancel',{pointerType:'touch'});
   check(!(await tap.evaluate(e=>e.classList.contains('cc-compact-pressed'))),'Touch pointercancel releases immediately');
   await tap.tap();
-  const status=await p.locator('#c05Response').textContent();
+  const status=await p.locator('#compactResponse').textContent();
   check(status.includes('terracotta interactive'),'Real mobile tap retains native click action',{status});
   await context.close();
  }finally{await browser.close()}
- const file=path.join(out,'c05-browser-qa.json');
+ const file=path.join(out,'compact-browser-qa.json');
  await fs.writeFile(file,JSON.stringify({origin,checks,passed:checks.filter(c=>c.ok).length,total:checks.length},null,2)+'\n');
- console.log('C05 BROWSER QA',checks.filter(x=>x.ok).length+'/'+checks.length);
+ console.log('COMPACT BROWSER QA',checks.filter(x=>x.ok).length+'/'+checks.length);
  if(checks.some(x=>!x.ok))process.exitCode=1;
-})().catch(e=>{console.error('C05 QA ERROR',e);process.exitCode=2});
+})().catch(e=>{console.error('COMPACT QA ERROR',e);process.exitCode=2});
