@@ -61,7 +61,7 @@ test('owner SVG source stays exactly the supplied original master',async()=>{
 });
 test('early incoming cover, cross-document transition and failure escape are present',async()=>{
  const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
- assert.match(early,/@view-transition/);
+ assert.doesNotMatch(early,/@view-transition\\s*\\{\\s*navigation:\\s*auto/);
  assert.match(early,/sessionStorage/);
  assert.match(early,/c02-pending/);
  assert.match(early,/prefers-reduced-motion/);
