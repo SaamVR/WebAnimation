@@ -3,7 +3,9 @@
 export const INK_PALETTE = Object.freeze({
   press:'#293D2D', forest:'#172419', terra:'#8A503B'
 });
-export const C02_MOTION = Object.freeze({coverMs:405,revealMs:385});
+// A 20% reduction in travel speed means duration = 405 / 0.8 ≈ 506ms.
+// Only the synchronized roller + advancing ink cover is slowed; reveal is untouched.
+export const C02_MOTION = Object.freeze({coverMs:506,revealMs:385});
 const clamp01=n=>Math.max(0,Math.min(1,Number(n)||0));
 export const easeInk=t=>{const x=clamp01(t);return x*x*(3-2*x)};
 export const C02_PAGES = Object.freeze([
