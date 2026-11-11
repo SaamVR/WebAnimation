@@ -53,7 +53,7 @@ async function run(engine,device){
     count:document.querySelectorAll('#c02-loader').length,
     src:overlay?.querySelector('img')?.getAttribute('src')};
   },device==='mobile');
-  check(name,'owner roller source',activated.src==='/assets/c02/roller-prepared.svg',
+  check(name,'owner roller source',activated.src==='/assets/c02/roller-original.svg',
    JSON.stringify(activated));
   check(name,'one active overlay',activated.count===1,JSON.stringify(activated));
   await page.waitForURL(u=>u.pathname==='/shop/',{timeout:15000});
