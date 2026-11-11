@@ -150,8 +150,11 @@ function awaitShell(win,doc){
    if(settled)return;settled=true;
    observer?.disconnect();win.clearTimeout(timeout);
    const fonts=doc.fonts?.ready||Promise.resolve();
+   // A waiting requestAnimationFrame can stall on WebKit during document
+   // activation; reveal readiness must not require another user gesture.
+   // Font readiness is real work, bounded at 250ms to avoid a deadlock.
    Promise.race([fonts,new Promise(r=>win.setTimeout(r,250))])
-    .finally(()=>win.requestAnimationFrame(()=>resolve()));
+    .then(resolve,resolve);
   }
   if(ready())return finish();
   observer=new win.MutationObserver(()=>{if(ready())finish()});
@@ -166,11 +169,33 @@ export function installC02PageTransitions(win=window,doc=document){
  const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
  // Warm the 2KB exact-source SVG so the first visible ink-edge frame has a roller.
  if(!reduced.matches){const image=new win.Image();image.src='/assets/c02/roller-original.svg';}
- let overlay=null,leaving=false,watchdog=0;
+ let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null;
+ const state=(phase)=>{
+  doc.documentElement.dataset.c02State=phase;
+  if(overlay?.overlay)overlay.overlay.dataset.c02State=phase;
+ };
+ state('idle');
  function cleanup(){
-  win.clearTimeout(watchdog);overlay?.destroy();overlay=null;leaving=false;
+  win.clearTimeout(watchdog);
+  win.clearTimeout(incomingGuard);
+  prefetchAbort?.abort();prefetchAbort=null;
+  overlay?.destroy();overlay=null;leaving=false;
   doc.documentElement.classList.remove('c02-pending');
   doc.documentElement.removeAttribute('data-c02-busy');
+  state('complete');
+ }
+ // Start the destination GET at click time, in parallel with the approved
+ // 506ms ink sweep; native MPA navigation still commits only once covered.
+ // Prefetch is best-effort and NEVER gates the cover/reveal or navigation.
+ function warmDestination(target){
+  if(typeof win.fetch!=='function')return;
+  try{
+   prefetchAbort=new win.AbortController();
+   win.fetch(target.href,{
+    method:'GET',credentials:'same-origin',cache:'default',
+    headers:{Accept:'text/html'},signal:prefetchAbort.signal
+   }).catch(()=>{}); // Any network failure leaves native navigation intact.
+  }catch{prefetchAbort=null}
  }
  const ticket=ticketFor(win);
  if(ticket&&!reduced.matches){
@@ -178,15 +203,24 @@ export function installC02PageTransitions(win=window,doc=document){
   overlay.render(0,'reveal'); // full cover, before first destination frame
   doc.documentElement.classList.remove('c02-pending');
   overlay.overlay.dataset.phase='loading';
+  state('waiting');
+  // Independent arrival watchdog: never leave an opaque page indefinitely
+  // even if the application or its readiness promise fails.
+  incomingGuard=win.setTimeout(cleanup,15000);
   awaitShell(win,doc).then(()=>{
-   if(overlay)overlay.animate('reveal',C02_MOTION.revealMs,cleanup);
+   if(!overlay)return;
+   state('revealing');
+   overlay.animate('reveal',C02_MOTION.revealMs,cleanup);
   },cleanup);
  }else{
   doc.documentElement.classList.remove('c02-pending');
   if(reduced.matches)clearTicket(win);
  }
  win.addEventListener('pageshow',e=>{if(e.persisted)cleanup()});
- win.addEventListener('pagehide',()=>win.clearTimeout(watchdog));
+ win.addEventListener('pagehide',()=>{
+  win.clearTimeout(watchdog);
+  prefetchAbort?.abort();prefetchAbort=null;
+ });
  reduced.addEventListener?.('change',()=>{if(reduced.matches&&overlay)cleanup()});
  doc.addEventListener('click',event=>{
   if(event.defaultPrevented||event.button!==0)return;
@@ -208,12 +242,16 @@ export function installC02PageTransitions(win=window,doc=document){
   })||reduced.matches)return;
   event.preventDefault();if(leaving||overlay)return;
   leaving=true;
+  // Begin obtaining the destination now, while the roller applies ink.
+  warmDestination(target);
   try{
    overlay=makeOverlay(doc,win);
    doc.documentElement.dataset.c02Busy='true';
+   state('covering');
    overlay.animate('cover',C02_MOTION.coverMs,()=>{
     if(!leaving)return;
     overlay.overlay.dataset.phase='loading';
+    state('waiting');
     storeTicket(win,target);
     try{win.location.assign(target.href)}catch{clearTicket(win);cleanup()}
    });
