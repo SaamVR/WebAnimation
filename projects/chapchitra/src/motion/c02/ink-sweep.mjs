@@ -80,6 +80,7 @@ function makeOverlay(doc,win){
  function render(progress,mode='cover'){
   const p=Math.min(1,Math.max(0,progress));
   overlay.dataset.phase=mode;
+  overlay.dataset.progress=String(p); // QA-readable contact alignment, not user UI
   forest.setAttribute('d',inkPath(p,{mode,offset:27}));
   ink.setAttribute('d',inkPath(p,{mode}));
   const isFull=(mode==='cover'&&p===1)||(mode==='reveal'&&p===0);
