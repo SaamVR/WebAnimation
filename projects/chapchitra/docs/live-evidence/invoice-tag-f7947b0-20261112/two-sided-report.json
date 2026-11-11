@@ -1,0 +1,315 @@
+{
+  "url": "https://chapchitra-motion-demo-p3u6qozzy-samvrc.vercel.app/artists-edit/",
+  "passed": 54,
+  "failed": 0,
+  "results": [
+    {
+      "label": "default front visible",
+      "pass": true
+    },
+    {
+      "label": "no eager back image requests",
+      "pass": true,
+      "data": []
+    },
+    {
+      "label": "regular back artwork and registration",
+      "pass": true
+    },
+    {
+      "label": "regular back contained in stage",
+      "pass": true,
+      "data": {
+        "x": 399.68212890625,
+        "y": 215.25,
+        "width": 639.1826171875,
+        "height": 625.71875
+      }
+    },
+    {
+      "label": "dropShoulder back artwork and registration",
+      "pass": true
+    },
+    {
+      "label": "dropShoulder back contained in stage",
+      "pass": true,
+      "data": {
+        "x": 418.77978515625,
+        "y": 218.96875,
+        "width": 604.5341796875,
+        "height": 616.71875
+      }
+    },
+    {
+      "label": "fullSleeve back artwork and registration",
+      "pass": true
+    },
+    {
+      "label": "fullSleeve back contained in stage",
+      "pass": true,
+      "data": {
+        "x": 453.09820556640625,
+        "y": 225.390625,
+        "width": 539.4129638671875,
+        "height": 608.109375
+      }
+    },
+    {
+      "label": "hoodie back artwork and registration",
+      "pass": true
+    },
+    {
+      "label": "hoodie back contained in stage",
+      "pass": true,
+      "data": {
+        "x": 449.583984375,
+        "y": 240.078125,
+        "width": 544.31640625,
+        "height": 597.71875
+      }
+    },
+    {
+      "label": "front signed shrink remains possible after 90-degree rotation",
+      "pass": true,
+      "data": {
+        "side": "front",
+        "garment": "regular",
+        "color": "white",
+        "source": "blob:https://chapchitra-motion-demo-p3u6qozzy-samvrc.vercel.app/a67647c5-0850-47d2-b728-5a424dfe00fd",
+        "size": "-20",
+        "preset": "A3",
+        "rotation": "90",
+        "x": 43.5046,
+        "y": 36.2283
+      }
+    },
+    {
+      "label": "front and back have different object URLs",
+      "pass": true,
+      "data": {
+        "front": "blob:https://chapchitra-motion-demo-p3u6qozzy-samvrc.vercel.app/a67647c5-0850-47d2-b728-5a424dfe00fd",
+        "back": "blob:https://chapchitra-motion-demo-p3u6qozzy-samvrc.vercel.app/3258148d-adee-44b7-bd99-eee65f83e27e"
+      }
+    },
+    {
+      "label": "front restores source",
+      "pass": true,
+      "data": {
+        "before": "blob:https://chapchitra-motion-demo-p3u6qozzy-samvrc.vercel.app/a67647c5-0850-47d2-b728-5a424dfe00fd",
+        "after": "blob:https://chapchitra-motion-demo-p3u6qozzy-samvrc.vercel.app/a67647c5-0850-47d2-b728-5a424dfe00fd"
+      }
+    },
+    {
+      "label": "front restores size",
+      "pass": true,
+      "data": {
+        "before": "-20",
+        "after": "-20"
+      }
+    },
+    {
+      "label": "front restores preset",
+      "pass": true,
+      "data": {
+        "before": "A3",
+        "after": "A3"
+      }
+    },
+    {
+      "label": "front restores rotation",
+      "pass": true,
+      "data": {
+        "before": "90",
+        "after": "90"
+      }
+    },
+    {
+      "label": "front restores x",
+      "pass": true,
+      "data": {
+        "before": 43.5046,
+        "after": 43.5046
+      }
+    },
+    {
+      "label": "front restores y",
+      "pass": true,
+      "data": {
+        "before": 36.2283,
+        "after": 36.2283
+      }
+    },
+    {
+      "label": "back restores source",
+      "pass": true,
+      "data": {
+        "before": "blob:https://chapchitra-motion-demo-p3u6qozzy-samvrc.vercel.app/3258148d-adee-44b7-bd99-eee65f83e27e",
+        "after": "blob:https://chapchitra-motion-demo-p3u6qozzy-samvrc.vercel.app/3258148d-adee-44b7-bd99-eee65f83e27e"
+      }
+    },
+    {
+      "label": "back restores size",
+      "pass": true,
+      "data": {
+        "before": "-15",
+        "after": "-15"
+      }
+    },
+    {
+      "label": "back restores preset",
+      "pass": true,
+      "data": {
+        "before": "A4",
+        "after": "A4"
+      }
+    },
+    {
+      "label": "back restores rotation",
+      "pass": true,
+      "data": {
+        "before": "180",
+        "after": "180"
+      }
+    },
+    {
+      "label": "back restores x",
+      "pass": true,
+      "data": {
+        "before": 45.2965,
+        "after": 45.2965
+      }
+    },
+    {
+      "label": "back restores y",
+      "pass": true,
+      "data": {
+        "before": 40.4563,
+        "after": 40.4563
+      }
+    },
+    {
+      "label": "removing back does not remove front",
+      "pass": true
+    },
+    {
+      "label": "front preserved after removing back",
+      "pass": true
+    },
+    {
+      "label": "regular back black",
+      "pass": true
+    },
+    {
+      "label": "regular back white",
+      "pass": true
+    },
+    {
+      "label": "regular back red",
+      "pass": true
+    },
+    {
+      "label": "regular back yellow",
+      "pass": true
+    },
+    {
+      "label": "regular back blue",
+      "pass": true
+    },
+    {
+      "label": "regular back green",
+      "pass": true
+    },
+    {
+      "label": "dropShoulder back black",
+      "pass": true
+    },
+    {
+      "label": "dropShoulder back white",
+      "pass": true
+    },
+    {
+      "label": "dropShoulder back red",
+      "pass": true
+    },
+    {
+      "label": "dropShoulder back yellow",
+      "pass": true
+    },
+    {
+      "label": "dropShoulder back blue",
+      "pass": true
+    },
+    {
+      "label": "dropShoulder back green",
+      "pass": true
+    },
+    {
+      "label": "fullSleeve back black",
+      "pass": true
+    },
+    {
+      "label": "fullSleeve back white",
+      "pass": true
+    },
+    {
+      "label": "fullSleeve back red",
+      "pass": true
+    },
+    {
+      "label": "fullSleeve back yellow",
+      "pass": true
+    },
+    {
+      "label": "fullSleeve back blue",
+      "pass": true
+    },
+    {
+      "label": "fullSleeve back green",
+      "pass": true
+    },
+    {
+      "label": "hoodie back black",
+      "pass": true
+    },
+    {
+      "label": "hoodie back white",
+      "pass": true
+    },
+    {
+      "label": "hoodie back red",
+      "pass": true
+    },
+    {
+      "label": "hoodie back yellow",
+      "pass": true
+    },
+    {
+      "label": "hoodie back blue",
+      "pass": true
+    },
+    {
+      "label": "hoodie back green",
+      "pass": true
+    },
+    {
+      "label": "WebKit tablet switches to actual back",
+      "pass": true
+    },
+    {
+      "label": "WebKit tablet returns to front",
+      "pass": true
+    },
+    {
+      "label": "no errors",
+      "pass": true,
+      "data": []
+    },
+    {
+      "label": "back resources served successfully",
+      "pass": true,
+      "data": []
+    }
+  ],
+  "errors": [],
+  "failedResponses": []
+}
