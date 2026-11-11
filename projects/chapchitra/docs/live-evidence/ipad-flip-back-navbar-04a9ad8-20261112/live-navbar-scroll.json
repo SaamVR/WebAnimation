@@ -1,0 +1,13 @@
+{
+  "source": "Headless Windows Chromium/WebKit; iPad Safari/Chrome toolbar NOT emulated",
+  "base": "https://chapchitra-webanimation.onrender.com",
+  "total": 117,
+  "passed": 117,
+  "failed": 0,
+  "errors": [],
+  "failedRows": [],
+  "visualViewportOffsets": [
+    0
+  ],
+  "physicalIPadGapStatus": "UNVERIFIED / OPEN"
+}

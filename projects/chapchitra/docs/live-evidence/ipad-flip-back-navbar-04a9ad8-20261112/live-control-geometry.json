@@ -1,0 +1,383 @@
+{
+  "url": "https://chapchitra-webanimation.onrender.com/artists-edit/review/04a9ad8ebde511404bba8f98b47fb77e43dd7d4f/",
+  "checks": [
+    {
+      "name": "desktop control inside original stage",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 1440,
+          "h": 810,
+          "bottom": 981
+        },
+        "button": {
+          "x": 648,
+          "y": 918.375,
+          "w": 144,
+          "h": 44,
+          "bottom": 962.375
+        },
+        "underlaySide": "front",
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "desktop horizontally centered",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 1440,
+          "h": 810,
+          "bottom": 981
+        },
+        "button": {
+          "x": 648,
+          "y": 918.375,
+          "w": 144,
+          "h": 44,
+          "bottom": 962.375
+        },
+        "underlaySide": "front",
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "desktop vertically inside stage",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 1440,
+          "h": 810,
+          "bottom": 981
+        },
+        "button": {
+          "x": 648,
+          "y": 918.375,
+          "w": 144,
+          "h": 44,
+          "bottom": 962.375
+        },
+        "underlaySide": "front",
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "desktop back toggles and control stays inside",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 90,
+          "w": 1440,
+          "h": 810,
+          "bottom": 900
+        },
+        "button": {
+          "x": 648,
+          "y": 837.375,
+          "w": 144,
+          "h": 44,
+          "bottom": 881.375
+        },
+        "underlaySide": "back",
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "ipad-landscape control inside original stage",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 1194,
+          "h": 671.625,
+          "bottom": 842.625
+        },
+        "button": {
+          "x": 525,
+          "y": 793.265625,
+          "w": 144,
+          "h": 44,
+          "bottom": 837.265625
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "ipad-landscape horizontally centered",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 1194,
+          "h": 671.625,
+          "bottom": 842.625
+        },
+        "button": {
+          "x": 525,
+          "y": 793.265625,
+          "w": 144,
+          "h": 44,
+          "bottom": 837.265625
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "ipad-landscape vertically inside stage",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 1194,
+          "h": 671.625,
+          "bottom": 842.625
+        },
+        "button": {
+          "x": 525,
+          "y": 793.265625,
+          "w": 144,
+          "h": 44,
+          "bottom": 837.265625
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "ipad-landscape back toggles and control stays inside",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 162,
+          "w": 1194,
+          "h": 671.625,
+          "bottom": 833.625
+        },
+        "button": {
+          "x": 525,
+          "y": 784.265625,
+          "w": 144,
+          "h": 44,
+          "bottom": 828.265625
+        },
+        "underlaySide": "back",
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "ipad-portrait control inside original stage",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 834,
+          "h": 469.125,
+          "bottom": 640.125
+        },
+        "button": {
+          "x": 345,
+          "y": 592.375,
+          "w": 144,
+          "h": 44,
+          "bottom": 636.375
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "ipad-portrait horizontally centered",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 834,
+          "h": 469.125,
+          "bottom": 640.125
+        },
+        "button": {
+          "x": 345,
+          "y": 592.375,
+          "w": 144,
+          "h": 44,
+          "bottom": 636.375
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "ipad-portrait vertically inside stage",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 834,
+          "h": 469.125,
+          "bottom": 640.125
+        },
+        "button": {
+          "x": 345,
+          "y": 592.375,
+          "w": 144,
+          "h": 44,
+          "bottom": 636.375
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "ipad-portrait back toggles and control stays inside",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 171,
+          "w": 834,
+          "h": 469.125,
+          "bottom": 640.125
+        },
+        "button": {
+          "x": 345,
+          "y": 592.375,
+          "w": 144,
+          "h": 44,
+          "bottom": 636.375
+        },
+        "underlaySide": "back",
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "mobile control inside original stage",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 167.1875,
+          "w": 390,
+          "h": 219.375,
+          "bottom": 386.5625
+        },
+        "button": {
+          "x": 173,
+          "y": 342.5625,
+          "w": 44,
+          "h": 44,
+          "bottom": 386.5625
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "mobile horizontally centered",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 167.1875,
+          "w": 390,
+          "h": 219.375,
+          "bottom": 386.5625
+        },
+        "button": {
+          "x": 173,
+          "y": 342.5625,
+          "w": 44,
+          "h": 44,
+          "bottom": 386.5625
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "mobile vertically inside stage",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 167.1875,
+          "w": 390,
+          "h": 219.375,
+          "bottom": 386.5625
+        },
+        "button": {
+          "x": 173,
+          "y": 342.5625,
+          "w": 44,
+          "h": 44,
+          "bottom": 386.5625
+        },
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    },
+    {
+      "name": "mobile back toggles and control stays inside",
+      "pass": true,
+      "data": {
+        "stage": {
+          "x": 0,
+          "y": 167.1875,
+          "w": 390,
+          "h": 219.375,
+          "bottom": 386.5625
+        },
+        "button": {
+          "x": 173,
+          "y": 342.5625,
+          "w": 44,
+          "h": 44,
+          "bottom": 386.5625
+        },
+        "underlaySide": "back",
+        "footerStyle": "rgba(0, 0, 0, 0)",
+        "stageContainsControl": true,
+        "extraFooter": 0
+      }
+    }
+  ],
+  "passed": 16,
+  "failed": 0,
+  "errors": []
+}

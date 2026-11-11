@@ -1,0 +1,43 @@
+{
+  "source": "Git committed previous WebPs vs corrected, same-pixel crop",
+  "variants": [
+    {
+      "path": "back/variants/regular.w768.webp",
+      "width": 336,
+      "height": 332,
+      "meanAlphaDifference": 0,
+      "maxAlphaDifference": 0,
+      "meanVisibleRgbDifference": 0.3373170979467271,
+      "originalBytes": 19950,
+      "optimizedBytes": 20450,
+      "sourceSHA256": "6a30e6f32fd61ced27e023970748792b09a40f970e6605201488c7389a8d995d",
+      "preservedAlpha": true
+    },
+    {
+      "path": "back/variants/regular.w1536.webp",
+      "width": 673,
+      "height": 665,
+      "meanAlphaDifference": 0,
+      "maxAlphaDifference": 0,
+      "meanVisibleRgbDifference": 0.42784899290949807,
+      "originalBytes": 53140,
+      "optimizedBytes": 55414,
+      "sourceSHA256": "952c40949287404f6524c0953b6e0d5cbe4037b7843c54b5bb9e5352a16b399c",
+      "preservedAlpha": true
+    },
+    {
+      "path": "back/variants/regular.w2560.webp",
+      "width": 1120,
+      "height": 1107,
+      "meanAlphaDifference": 0,
+      "maxAlphaDifference": 0,
+      "meanVisibleRgbDifference": 0.3486025194835565,
+      "originalBytes": 110488,
+      "optimizedBytes": 116592,
+      "sourceSHA256": "8f92bde052d25bc895cc780e2880bb502bebb6ea0c2206ffa5a81a9c7bc2f044",
+      "preservedAlpha": true
+    }
+  ],
+  "allAlphaExact": true,
+  "noExtraBackOnFirstView": true
+}

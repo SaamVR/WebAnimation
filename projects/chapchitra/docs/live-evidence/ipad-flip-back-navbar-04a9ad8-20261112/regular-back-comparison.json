@@ -1,0 +1,62 @@
+{
+  "oldUrl": "https://chapchitra-webanimation.onrender.com/artists-edit/review/5397801fe04af8b653ecb5f6103e3fd3f5deeb50/",
+  "newUrl": "http://127.0.0.1:4479/artists-edit/",
+  "results": {
+    "before": {
+      "canvas": {
+        "w": 758,
+        "h": 764
+      },
+      "visibleAlphaBBoxStage": {
+        "left": 646.0134271474641,
+        "top": 245.3126236183828,
+        "right": 1404.6634711228378,
+        "bottom": 994.9427865037813
+      },
+      "visibleWidth": 758.6500439753737,
+      "visibleHeight": 749.6301628853986,
+      "centerX": 1025.338449135151,
+      "viewRowOutsideStage": true
+    },
+    "after": {
+      "canvas": {
+        "w": 673,
+        "h": 665
+      },
+      "visibleAlphaBBoxStage": {
+        "left": 579.5546310054483,
+        "top": 184.8243943191312,
+        "right": 1466.3787023278853,
+        "bottom": 1061.3533834586467
+      },
+      "visibleWidth": 886.824071322437,
+      "visibleHeight": 876.5289891395155,
+      "centerX": 1022.9666666666668,
+      "viewRowOutsideStage": false
+    }
+  },
+  "checks": [
+    {
+      "name": "new back not narrower than 94% of approved front",
+      "pass": true
+    },
+    {
+      "name": "new back vertical height approximately 878 stage units",
+      "pass": true
+    },
+    {
+      "name": "new back width materially larger than prior",
+      "pass": true
+    },
+    {
+      "name": "new back horizontally centered",
+      "pass": true
+    },
+    {
+      "name": "footer removed",
+      "pass": true
+    }
+  ],
+  "passed": 5,
+  "failed": 0
+}
