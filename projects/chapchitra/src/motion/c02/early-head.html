@@ -1,7 +1,7 @@
 <!-- CHAPCHITRA C02: prepaint cover and opt-in cross-document enhancement.
      The JS engine remains the authoritative animation on all browsers. -->
 <style id="c02-prepaint">
-html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;background:#293D2D;pointer-events:auto}
+html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;background:#293D2D;pointer-events:auto;clip-path:var(--c02-prepaint-clip,polygon(0 0,65% 0,70% 50%,65% 100%,0 100%))}
 /* Cross-document native View Transitions are deliberately not auto-enabled:
    Chromium can suspend the outgoing animated document while snapshotting,
    stranding an ink overlay. The one-use native-navigation fallback is the
@@ -13,8 +13,22 @@ html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;ba
   var key='chapchitra-c02-arrival-v2';
   var ticket=JSON.parse(window.sessionStorage.getItem(key)||'null');
   var age=Date.now()-ticket?.created;
-  if(ticket&&ticket.to===location.pathname+location.search&&age>=0&&age<30000){
+  if(ticket&&ticket.to===location.pathname+location.search&&age>=0&&age<45000){
    document.documentElement.classList.add('c02-pending');
+   // Preserve a partly printed organic edge while the incoming document
+   // parses; a solid-green prepaint is explicitly prohibited.
+   var p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
+   function edge(y,offset){
+    var organic=104*Math.sin(Math.PI*y/1000*2.35+.32)
+     +48*Math.sin(Math.PI*y/1000*4.15+1.15)
+     +19*Math.sin(Math.PI*y/1000*7.1-.7);
+    return (-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*organic+offset)/10;
+   }
+   var points=['0% 0%'];
+   for(var i=0;i<=8;i++)points.push(edge(i*125,0)+'% '+(i*12.5)+'%');
+   points.push('0% 100%');
+   document.documentElement.style.setProperty('--c02-prepaint-clip',
+    'polygon('+points.join(',')+')');
    // Failure-only guard if the application JavaScript cannot initialize.
    window.setTimeout(function(){
     document.documentElement.classList.remove('c02-pending');
