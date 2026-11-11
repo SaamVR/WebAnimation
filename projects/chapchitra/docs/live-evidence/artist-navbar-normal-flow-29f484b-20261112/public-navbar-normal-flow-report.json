@@ -1,0 +1,1262 @@
+{
+  "origin": "https://chapchitra-webanimation.onrender.com",
+  "source": "Desktop Chromium and WebKit iPad emulation; NOT a physical iPad",
+  "checks": [
+    {
+      "label": "chromium-desktop artists-edit page identity",
+      "passed": true,
+      "got": "artists-edit"
+    },
+    {
+      "label": "chromium-desktop artists-edit navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1940,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop artists-edit retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1940,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop artists-edit computed position is static",
+      "passed": true,
+      "got": "static"
+    },
+    {
+      "label": "chromium-desktop artist page tall enough for scroll test",
+      "passed": true,
+      "max": 1040
+    },
+    {
+      "label": "chromium-desktop artist header physically scrolls out",
+      "passed": true,
+      "scrolled": {
+        "route": "artists-edit",
+        "scrollY": 650,
+        "headerTop": -616,
+        "headerBottom": -551,
+        "headerHeight": 65,
+        "mainTop": -551,
+        "announcementTop": -650,
+        "announcementBottom": -616,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1940,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop artist static header follows scroll without compensation",
+      "passed": true,
+      "initialHeaderTop": 34,
+      "scrolled": {
+        "route": "artists-edit",
+        "scrollY": 650,
+        "headerTop": -616,
+        "headerBottom": -551,
+        "headerHeight": 65,
+        "mainTop": -551,
+        "announcementTop": -650,
+        "announcementBottom": -616,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1940,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop artist remains nonsticky after deep scroll",
+      "passed": true,
+      "deep": {
+        "route": "artists-edit",
+        "scrollY": 1040,
+        "headerTop": -1006,
+        "headerBottom": -941,
+        "headerHeight": 65,
+        "mainTop": -941,
+        "announcementTop": -1040,
+        "announcementBottom": -1006,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1940,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop artist header remains in normal flow during reverse scroll",
+      "passed": true,
+      "reverse": {
+        "route": "artists-edit",
+        "scrollY": 180,
+        "headerTop": -146,
+        "headerBottom": -81,
+        "headerHeight": 65,
+        "mainTop": -81,
+        "announcementTop": -180,
+        "announcementBottom": -146,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1940,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop artist navbar returns only at page top",
+      "passed": true,
+      "returned": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1940,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop home page identity",
+      "passed": true,
+      "got": "home"
+    },
+    {
+      "label": "chromium-desktop home navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "home",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 5564,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop home retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "home",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 5564,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop home computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "chromium-desktop home still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "home",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 65,
+        "headerHeight": 65,
+        "mainTop": -251,
+        "announcementTop": -350,
+        "announcementBottom": -316,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 5564,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop shop page identity",
+      "passed": true,
+      "got": "shop"
+    },
+    {
+      "label": "chromium-desktop shop navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "shop",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2770,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop shop retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "shop",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2770,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop shop computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "chromium-desktop shop still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "shop",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 65,
+        "headerHeight": 65,
+        "mainTop": -251,
+        "announcementTop": -350,
+        "announcementBottom": -316,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2770,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop journal page identity",
+      "passed": true,
+      "got": "journal"
+    },
+    {
+      "label": "chromium-desktop journal navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "journal",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2154,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop journal retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "journal",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2154,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop journal computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "chromium-desktop journal still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "journal",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 65,
+        "headerHeight": 65,
+        "mainTop": -251,
+        "announcementTop": -350,
+        "announcementBottom": -316,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2154,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop about page identity",
+      "passed": true,
+      "got": "about"
+    },
+    {
+      "label": "chromium-desktop about navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "about",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1863,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop about retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "about",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1863,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-desktop about computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "chromium-desktop about still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "about",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 65,
+        "headerHeight": 65,
+        "mainTop": -251,
+        "announcementTop": -350,
+        "announcementBottom": -316,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1863,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad artists-edit page identity",
+      "passed": true,
+      "got": "artists-edit"
+    },
+    {
+      "label": "webkit-ipad artists-edit navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1962,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad artists-edit retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1962,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad artists-edit computed position is static",
+      "passed": true,
+      "got": "static"
+    },
+    {
+      "label": "webkit-ipad artist page tall enough for scroll test",
+      "passed": true,
+      "max": 850
+    },
+    {
+      "label": "webkit-ipad artist header physically scrolls out",
+      "passed": true,
+      "scrolled": {
+        "route": "artists-edit",
+        "scrollY": 650,
+        "headerTop": -616,
+        "headerBottom": -551,
+        "headerHeight": 65,
+        "mainTop": -551,
+        "announcementTop": -650,
+        "announcementBottom": -616,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1962,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad artist static header follows scroll without compensation",
+      "passed": true,
+      "initialHeaderTop": 34,
+      "scrolled": {
+        "route": "artists-edit",
+        "scrollY": 650,
+        "headerTop": -616,
+        "headerBottom": -551,
+        "headerHeight": 65,
+        "mainTop": -551,
+        "announcementTop": -650,
+        "announcementBottom": -616,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1962,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad artist remains nonsticky after deep scroll",
+      "passed": true,
+      "deep": {
+        "route": "artists-edit",
+        "scrollY": 850,
+        "headerTop": -816,
+        "headerBottom": -751,
+        "headerHeight": 65,
+        "mainTop": -751,
+        "announcementTop": -850,
+        "announcementBottom": -816,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1962,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad artist header remains in normal flow during reverse scroll",
+      "passed": true,
+      "reverse": {
+        "route": "artists-edit",
+        "scrollY": 180,
+        "headerTop": -146,
+        "headerBottom": -81,
+        "headerHeight": 65,
+        "mainTop": -81,
+        "announcementTop": -180,
+        "announcementBottom": -146,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1962,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad artist navbar returns only at page top",
+      "passed": true,
+      "returned": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1962,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad home page identity",
+      "passed": true,
+      "got": "home"
+    },
+    {
+      "label": "webkit-ipad home navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "home",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 6107,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad home retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "home",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 6107,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad home computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "webkit-ipad home still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "home",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 65,
+        "headerHeight": 65,
+        "mainTop": -251,
+        "announcementTop": -350,
+        "announcementBottom": -316,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 6107,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad shop page identity",
+      "passed": true,
+      "got": "shop"
+    },
+    {
+      "label": "webkit-ipad shop navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "shop",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 3684,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad shop retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "shop",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 3684,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad shop computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "webkit-ipad shop still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "shop",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 65,
+        "headerHeight": 65,
+        "mainTop": -251,
+        "announcementTop": -350,
+        "announcementBottom": -316,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 3684,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad journal page identity",
+      "passed": true,
+      "got": "journal"
+    },
+    {
+      "label": "webkit-ipad journal navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "journal",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2311,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad journal retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "journal",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2311,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad journal computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "webkit-ipad journal still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "journal",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 65,
+        "headerHeight": 65,
+        "mainTop": -251,
+        "announcementTop": -350,
+        "announcementBottom": -316,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2311,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad about page identity",
+      "passed": true,
+      "got": "about"
+    },
+    {
+      "label": "webkit-ipad about navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "about",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1911,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad about retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "about",
+        "scrollY": 0,
+        "headerTop": 34,
+        "headerBottom": 99,
+        "headerHeight": 65,
+        "mainTop": 99,
+        "announcementTop": 0,
+        "announcementBottom": 34,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1911,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "webkit-ipad about computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "webkit-ipad about still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "about",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 65,
+        "headerHeight": 65,
+        "mainTop": -251,
+        "announcementTop": -350,
+        "announcementBottom": -316,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 1911,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile artists-edit page identity",
+      "passed": true,
+      "got": "artists-edit"
+    },
+    {
+      "label": "chromium-mobile artists-edit navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2568,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile artists-edit retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2568,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile artists-edit computed position is static",
+      "passed": true,
+      "got": "static"
+    },
+    {
+      "label": "chromium-mobile artist page tall enough for scroll test",
+      "passed": true,
+      "max": 1724
+    },
+    {
+      "label": "chromium-mobile artist header physically scrolls out",
+      "passed": true,
+      "scrolled": {
+        "route": "artists-edit",
+        "scrollY": 650,
+        "headerTop": -604.8125,
+        "headerBottom": -538.8125,
+        "headerHeight": 66,
+        "mainTop": -538.8125,
+        "announcementTop": -650,
+        "announcementBottom": -604.8125,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2568,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile artist static header follows scroll without compensation",
+      "passed": true,
+      "initialHeaderTop": 45.1875,
+      "scrolled": {
+        "route": "artists-edit",
+        "scrollY": 650,
+        "headerTop": -604.8125,
+        "headerBottom": -538.8125,
+        "headerHeight": 66,
+        "mainTop": -538.8125,
+        "announcementTop": -650,
+        "announcementBottom": -604.8125,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2568,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile artist remains nonsticky after deep scroll",
+      "passed": true,
+      "deep": {
+        "route": "artists-edit",
+        "scrollY": 1500,
+        "headerTop": -1454.8125,
+        "headerBottom": -1388.8125,
+        "headerHeight": 66,
+        "mainTop": -1388.8125,
+        "announcementTop": -1500,
+        "announcementBottom": -1454.8125,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2568,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile artist header remains in normal flow during reverse scroll",
+      "passed": true,
+      "reverse": {
+        "route": "artists-edit",
+        "scrollY": 180,
+        "headerTop": -134.8125,
+        "headerBottom": -68.8125,
+        "headerHeight": 66,
+        "mainTop": -68.8125,
+        "announcementTop": -180,
+        "announcementBottom": -134.8125,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2568,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile artist navbar returns only at page top",
+      "passed": true,
+      "returned": {
+        "route": "artists-edit",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "static",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2568,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile home page identity",
+      "passed": true,
+      "got": "home"
+    },
+    {
+      "label": "chromium-mobile home navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "home",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 8323,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile home retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "home",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 8323,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile home computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "chromium-mobile home still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "home",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 66,
+        "headerHeight": 66,
+        "mainTop": -238.8125,
+        "announcementTop": -350,
+        "announcementBottom": -304.8125,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 8323,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile shop page identity",
+      "passed": true,
+      "got": "shop"
+    },
+    {
+      "label": "chromium-mobile shop navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "shop",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 4056,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile shop retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "shop",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 4056,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile shop computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "chromium-mobile shop still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "shop",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 66,
+        "headerHeight": 66,
+        "mainTop": -238.8125,
+        "announcementTop": -350,
+        "announcementBottom": -304.8125,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 4056,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile journal page identity",
+      "passed": true,
+      "got": "journal"
+    },
+    {
+      "label": "chromium-mobile journal navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "journal",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 3251,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile journal retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "journal",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 3251,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile journal computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "chromium-mobile journal still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "journal",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 66,
+        "headerHeight": 66,
+        "mainTop": -238.8125,
+        "announcementTop": -350,
+        "announcementBottom": -304.8125,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 3251,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile about page identity",
+      "passed": true,
+      "got": "about"
+    },
+    {
+      "label": "chromium-mobile about navbar in normal header flow initially",
+      "passed": true,
+      "initial": {
+        "route": "about",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2473,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile about retains initial nav height and announcement flow",
+      "passed": true,
+      "initial": {
+        "route": "about",
+        "scrollY": 0,
+        "headerTop": 45.1875,
+        "headerBottom": 111.1875,
+        "headerHeight": 66,
+        "mainTop": 111.1875,
+        "announcementTop": 0,
+        "announcementBottom": 45.1875,
+        "headerPosition": "sticky",
+        "topmostIsHeader": false,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2473,
+        "visualViewportOffset": 0
+      }
+    },
+    {
+      "label": "chromium-mobile about computed position is sticky",
+      "passed": true,
+      "got": "sticky"
+    },
+    {
+      "label": "chromium-mobile about still sticks at top",
+      "passed": true,
+      "scrolled": {
+        "route": "about",
+        "scrollY": 350,
+        "headerTop": 0,
+        "headerBottom": 66,
+        "headerHeight": 66,
+        "mainTop": -238.8125,
+        "announcementTop": -350,
+        "announcementBottom": -304.8125,
+        "headerPosition": "sticky",
+        "topmostIsHeader": true,
+        "headerInlineStyle": null,
+        "bodyScrollHeight": 2473,
+        "visualViewportOffset": 0
+      }
+    }
+  ],
+  "passed": 90,
+  "failed": 0,
+  "errors": [],
+  "responses": [],
+  "physicalIPadStatus": "UNVERIFIED"
+}
