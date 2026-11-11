@@ -173,7 +173,7 @@ DATA={'v':'5.9.6','fr':FPS,'ip':0,'op':END,'w':W,'h':H,'nm':'CHAPCHITRA C05 Icon
 JSON_PATH=OUT/'CHAPCHITRA_C05_Icon01_Stories_You_Can_Wear_PROTOTYPE.json'
 JSON_PATH.write_text(json.dumps(DATA,separators=(',',':')),encoding='utf8')
 LOTTIE_PATH=OUT/'CHAPCHITRA_C05_Icon01_Stories_You_Can_Wear_PROTOTYPE.lottie'
-manifest={'version':'1','generator':'CHAPCHITRA vector motion engineering','description':'C05 Icon 01 original illustrated storybook and floating cat T-shirt','activeAnimationId':'c05_icon01_storybook','animations':[{'id':'c05_icon01_storybook','autoplay':False,'loop':False,'speed':1,'direction':1}]}
+manifest={'version':'1','generator':'CHAPCHITRA vector motion engineering','description':'C05 Icon 01 original illustrated storybook and floating cat T-shirt','activeAnimationId':'c05_icon01_storybook','animations':[{'id':'c05_icon01_storybook','autoplay':True,'loop':False,'speed':1,'direction':1}]}
 with zipfile.ZipFile(LOTTIE_PATH,'w',compression=zipfile.ZIP_DEFLATED) as z:
     z.writestr('manifest.json',json.dumps(manifest,separators=(',',':')))
     z.writestr('animations/c05_icon01_storybook.json',json.dumps(DATA,separators=(',',':')))
