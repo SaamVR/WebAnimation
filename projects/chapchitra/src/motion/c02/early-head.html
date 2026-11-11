@@ -21,4 +21,13 @@ html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;ba
    },18000);
   }
  }catch(e){document.documentElement.classList.remove('c02-pending')}
-})();</script>
+})();
+</script>
+<!-- Install C02 independently of app.mjs so a delayed/failed app boot cannot
+     strand the incoming ink. Repeated app/review installs are idempotent. -->
+<script type="module" id="c02-independent-bootstrap">
+import { installC02PageTransitions } from '/motion/c02/ink-sweep.mjs';
+const install = () => installC02PageTransitions(window, document);
+if (document.body) install();
+else document.addEventListener('DOMContentLoaded', install, { once: true });
+</script>
