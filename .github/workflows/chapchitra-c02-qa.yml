@@ -76,6 +76,20 @@ jobs:
           C02_QA_ORIGIN: http://127.0.0.1:4272
           C02_QA_ENGINE: ${{ matrix.engine }}
         run: node scripts/c02-loader-hold-qa.cjs
+      - name: Prove one-click automatic reveal, 1/3/5s loading, native history, bad resources
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-lifecycle-qa.cjs
+      - name: Upload one-click cover-to-reveal browser recordings and lifecycle evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: chapchitra-c02-lifecycle-${{ matrix.engine }}
+          path: projects/chapchitra/docs/c02-lifecycle-evidence/${{ matrix.engine }}/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Visual audit original roller colors, measured edge contact and before/after footage
         working-directory: projects/chapchitra
         env:
