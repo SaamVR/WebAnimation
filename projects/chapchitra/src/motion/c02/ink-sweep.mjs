@@ -81,18 +81,32 @@ function makeOverlay(doc,win){
  }
  function animate(mode,ms,done){
   if(stopAnimation)stopAnimation();
-  let raf=0,ended=false,start;
+  let raf=0,ended=false,start,guard=0;
+  function finish(){
+   if(ended)return;
+   ended=true;
+   win.cancelAnimationFrame(raf);
+   win.clearTimeout(guard);
+   stopAnimation=null;
+   render(1,mode);
+   done();
+  }
   function frame(time){
    if(ended)return;
    if(start===undefined)start=time;
    const t=Math.min(1,(time-start)/ms);
    render(easeInk(t),mode);
-   if(t===1){ended=true;stopAnimation=null;done()}
+   if(t===1)finish();
    else raf=win.requestAnimationFrame(frame);
   }
   render(0,mode);
+  // RAF can stall during cross-document transition snapshots and hidden frames.
+  // Complete the same animation by deadline; never strand the destination.
+  guard=win.setTimeout(finish,ms+650);
   raf=win.requestAnimationFrame(frame);
-  stopAnimation=()=>{ended=true;win.cancelAnimationFrame(raf)};
+  stopAnimation=()=>{
+   ended=true;win.cancelAnimationFrame(raf);win.clearTimeout(guard);
+  };
  }
  return {overlay,render,animate,destroy};
 }
