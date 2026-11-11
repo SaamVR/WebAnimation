@@ -74,6 +74,23 @@ test('owner roller is exactly 300 percent of prior dimensions with the same cont
  assert.match(src,/scaleX\(-1\) rotate\(90deg\)/);
  assert.doesNotMatch(src,/clamp\(106px,11vw,150px\)/);
 });
+test('C02 auto-reveal is independently bootstrapped and never waits on RAF for readiness',async()=>{
+ const html=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
+ const runtime=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
+ assert.match(html,/id="c02-independent-bootstrap"/);
+ assert.match(html,/import \{ installC02PageTransitions \} from '\/motion\/c02\/ink-sweep\.mjs'/);
+ assert.match(html,/DOMContentLoaded/);
+ assert.doesNotMatch(runtime,/\.finally\(\(\)=>win\.requestAnimationFrame\(\(\)=>resolve\(\)\)\)/);
+ assert.match(runtime,/Promise\.race\(\[fonts,new Promise\(r=>win\.setTimeout\(r,250\)\)\]\)/);
+ assert.match(runtime,/\.then\(resolve,resolve\)/);
+ for(const phase of ['idle','covering','waiting','revealing','complete'])
+  assert.ok(runtime.includes("state('"+phase+"')"),'lifecycle state: '+phase);
+ assert.match(runtime,/incomingGuard=win\.setTimeout\(cleanup,15000\)/);
+ assert.match(runtime,/warmDestination\(target\)/);
+ assert.match(runtime,/win\.location\.assign\(target\.href\)/);
+ assert.equal(C02_MOTION.coverMs,506);
+ assert.equal(C02_MOTION.revealMs,385);
+});
 test('early incoming cover, cross-document transition and failure escape are present',async()=>{
  const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
  assert.doesNotMatch(early,/@view-transition\s*\{\s*navigation:\s*auto/);
