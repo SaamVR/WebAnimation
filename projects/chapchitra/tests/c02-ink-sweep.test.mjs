@@ -23,8 +23,9 @@ test('C02 expands to all ordinary cross-page navigation without changing URLs',(
 test('never intercept same-document anchors, external links, assets or downloads',()=>{
  for(const link of [
   '/shop/','/shop/#collection','/shop/?','/assets/c02/roller-prepared.svg',
-  '/asset.png','/downloads/artwork.zip','https://example.com/shop/'
+  '/asset.png','/downloads/artwork.zip'
  ]) assert.equal(isC02Eligible({current,destination:origin+link}),false,link);
+ assert.equal(isC02Eligible({current,destination:'https://example.com/shop/'}),false);
  for(const option of [
   {modified:true},{download:true},{external:true},{target:'_blank'},
   {target:'_parent'},{disabled:true}
