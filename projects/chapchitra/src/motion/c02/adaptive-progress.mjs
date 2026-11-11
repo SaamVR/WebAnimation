@@ -24,10 +24,13 @@ export function pendingInkProgress(elapsedMs,{cap=C02_ADAPTIVE.cap,knownMs=0}={}
  // derivative keeps the roller moving without racing to a false 100%.
  return cap*(1-Math.exp(-t/3300));
 }
-export function finishDuration(progress){
+export function finishDuration(progress,loadingAgeMs=0){
  const remaining=1-clamp(progress,0,1);
- return Math.round(clamp(remaining*950, C02_ADAPTIVE.shortFinishMs,
-  C02_ADAPTIVE.longFinishMs));
+ const natural=clamp(remaining*1250,C02_ADAPTIVE.shortFinishMs,
+  C02_ADAPTIVE.longFinishMs);
+ // A slow real destination must not provoke a sudden sprint across the
+ // last quarter of the viewport the moment its content becomes ready.
+ return Math.round(loadingAgeMs>3000?Math.max(480,natural):natural);
 }
 // Cubic Hermite: preserves position and a bounded incoming velocity, while
 // ending precisely at 1 with zero speed. No instantaneous progress jump.
