@@ -62,7 +62,8 @@ function organicWindow(p,mode,offset){
   const visibility=Math.min((p-.15)/.16,(.86-p)/.17,1);
   if(visibility<=0)return '';
   const radius=Math.max(0,visibility);
-  const x=edgeAt(526,p,offset)+(mode==='cover'?-179:179);
+  // The cutout must align through BOTH paint layers; offset only the outer edge.
+  const x=edgeAt(526,p,0)+(mode==='cover'?-179:179);
   const y=505+29*Math.sin(p*5.7);
   const rx=fmt(116*radius),ry=fmt(49*radius);
   if(rx<1||ry<1)return '';
