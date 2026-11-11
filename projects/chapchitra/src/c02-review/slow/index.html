@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>C02 Covered Loading Review · CHAPCHITRA</title>
+<link rel="stylesheet" href="/styles.css">
+<style>
+body{background:#f6f4ee;color:#293d2d}
+.c02-review-ready{max-width:900px;margin:12vh auto;padding:24px;font-family:system-ui,sans-serif}
+.c02-review-ready h1{font-size:clamp(30px,5vw,60px);line-height:1.1}
+.c02-review-ready p{line-height:1.65;max-width:65ch}
+.c02-review-ready a{display:inline-block;margin-top:14px;padding:14px 20px;background:#293d2d;color:#fff;text-decoration:none}
+</style>
+<script type="module">
+import {installC02PageTransitions} from '/motion/c02/ink-sweep.mjs';
+installC02PageTransitions();
+const raw=Number(new URLSearchParams(location.search).get('delay'));
+const delay=Number.isFinite(raw)&&raw>0?Math.min(6500,Math.max(1000,raw)):2200;
+window.__c02SimulatedWaitMs=delay;
+setTimeout(()=>{
+ const main=document.getElementById('main');
+ const section=document.createElement('section');
+ section.className='c02-review-ready';
+ const tag=document.createElement('p');tag.textContent='CHAPCHITRA / C02 / SIMULATED DESTINATION';
+ const heading=document.createElement('h1');heading.textContent='The ink has lifted. The page is ready.';
+ const description=document.createElement('p');
+ description.textContent='This page deliberately withheld its primary content for '+(delay/1000).toFixed(1)+' seconds so you can evaluate the fully covered loader. No real website page intentionally waits this long.';
+ const link=document.createElement('a');link.href='/c02-review/';link.textContent='Back to motion review';
+ section.append(tag,heading,description,link);main.append(section);
+ window.__c02DemoReady=true;
+},delay);
+</script>
+</head><body data-page="c02-review-slow">
+<main id="main" aria-live="off"></main>
+<noscript><p>JavaScript is required for this simulated loading demonstration. <a href="/c02-review/">Return to the review page.</a></p></noscript>
+</body></html>
