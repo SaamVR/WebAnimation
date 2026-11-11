@@ -69,7 +69,7 @@ test('early incoming cover, cross-document transition and failure escape are pre
  assert.match(runtime,/pageshow/);
  assert.match(runtime,/pagehide/);
  assert.match(runtime,/MutationObserver/);
- assert.match(runtime,/roller-prepared\.svg/);
+ assert.match(runtime,/roller-original\.svg/);
  assert.doesNotMatch(runtime,/lottie-web|gsap|sessionStorage\.clear/);
  assert.match(runtime,/scaleX\(-1\) rotate\(90deg\)/);
  assert.match(runtime,/img\.src='\/assets\/c02\/roller-original\.svg'/);
