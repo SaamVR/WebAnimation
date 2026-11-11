@@ -16,8 +16,8 @@ const CSS=[
  '.c02-loader{position:fixed;inset:0;z-index:2147483000;overflow:hidden;',
  'pointer-events:auto;isolation:isolate;touch-action:none;overscroll-behavior:contain}',
  '.c02-loader__surface{width:100%;height:100%;display:block;overflow:hidden}',
- '.c02-loader__roller{position:absolute;width:clamp(106px,11vw,150px);',
- 'height:clamp(106px,11vw,150px);pointer-events:none;z-index:2;isolation:isolate;',
+ '.c02-loader__roller{position:absolute;width:clamp(318px,33vw,450px);',
+ 'height:clamp(318px,33vw,450px);pointer-events:none;z-index:2;isolation:isolate;',
  'transform:translate(-50%,-50%) scaleX(-1) rotate(90deg);transform-origin:center;',
  'filter:none!important;mix-blend-mode:normal!important}',
  '.c02-loader__roller img{width:100%;height:100%;display:block;object-fit:contain;',
@@ -90,7 +90,7 @@ function makeOverlay(doc,win){
   // Align that real contact edge to the advancing OUTER forest ink contour;
   // the long graphite handle then extends to the unpainted RIGHT.
   if(mode==='cover'&&p<1&&!roller.hidden){
-   const size=Math.min(150,Math.max(106,win.innerWidth*.11));
+   const size=Math.min(450,Math.max(318,win.innerWidth*.33));
    const edgeX=inkEdgeX(p,470,27)*win.innerWidth/1000;
    const cylinderLeft=(ROLLER_CYLINDER_CONTACT_Y-ROLLER_VIEWBOX_CENTER)
      /ROLLER_VIEWBOX_SIZE*size;
