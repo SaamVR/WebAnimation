@@ -1,4 +1,4 @@
-# CHAPCHITRA C05 — Icon 01: Stories You Can Wear
+**REJECTED ORIGINAL:** The original prototype in this directory is superseded by [V2 corrected choreography](V2/README.md) and should not be submitted for creative approval. The first version remains solely for rollback/comparison.\n\n# CHAPCHITRA C05 — Icon 01: Stories You Can Wear
 
 **Status:** Standalone Lottie prototype for creative review. **Do not merge, integrate, or proceed to Icon 02.**
 
