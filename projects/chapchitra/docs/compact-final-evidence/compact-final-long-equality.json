@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "width": 1408,
+      "tone": 0,
+      "changedChannelBytes": 0
+    },
+    {
+      "width": 1408,
+      "tone": 1,
+      "changedChannelBytes": 0
+    },
+    {
+      "width": 1408,
+      "tone": 2,
+      "changedChannelBytes": 0
+    },
+    {
+      "width": 430,
+      "tone": 0,
+      "changedChannelBytes": 0
+    },
+    {
+      "width": 430,
+      "tone": 1,
+      "changedChannelBytes": 0
+    },
+    {
+      "width": 430,
+      "tone": 2,
+      "changedChannelBytes": 0
+    }
+  ],
+  "totalChangedChannelBytes": 0
+}

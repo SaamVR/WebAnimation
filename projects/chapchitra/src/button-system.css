@@ -260,3 +260,90 @@
 .hero-cover .cc-sketch.cc-sketch--beige{
   --cc-shadow-color:var(--acc);
 }
+
+/* COMPACT APPROVED COMPACT SVG ONLY. Every long and inline style above stays intact.
+   The vector face (not the complete button) moves; its shadow never moves. */
+.cc-sketch--compact.cc-compact-artwork{
+  width:164px;min-width:164px;max-width:100%;height:64px;min-height:64px;
+  padding:0;overflow:visible;transform:none;
+  --cc-press-depth:0px;
+  --cc-ink:var(--ink);
+}
+.cc-sketch--compact.cc-compact-artwork .cc-compact-art{
+  position:absolute;inset:0;z-index:0;display:grid;place-items:center;
+  pointer-events:none;overflow:visible;
+}
+.cc-sketch--compact.cc-compact-artwork .cc-compact-art>img,
+.cc-sketch--compact.cc-compact-artwork .cc-compact-svg{
+  display:block;width:100%;height:100%;max-width:100%;max-height:100%;
+  object-fit:contain;overflow:visible;pointer-events:none;
+}
+.cc-sketch--compact.cc-compact-artwork .cc-compact-svg [id="BUTTON_FACE"]{
+  transform:translateY(var(--cc-press-depth));
+  transition:transform 210ms cubic-bezier(.18,.7,.22,1);
+}
+.cc-sketch--compact.cc-compact-artwork .cc-compact-svg [id="BUTTON_SHADOW"]{
+  transform:none!important;
+}
+.cc-sketch--compact.cc-compact-artwork .cc-compact-ink{
+  fill:#232323;
+  /* Preserve the approved low-level handmade grain beneath the graphite
+     ink. The ink's color stays Graphite; original art stays unmodified. */
+  opacity:.94;
+  transform:scaleX(0);transform-origin:left center;
+  transform-box:view-box;
+  transition:transform 300ms cubic-bezier(.45,0,.55,1);
+}
+/* The source face path itself forms the SVG clipPath; the wipe cannot spill
+   into the original uneven outline or the independent fixed shadow. */
+@media(hover:hover) and (pointer:fine){
+  .cc-sketch--compact.cc-compact-artwork:hover:not(:disabled) .cc-compact-ink{
+    transform:scaleX(1);
+  }
+}
+.cc-sketch--compact.cc-compact-artwork[data-preview-state="hover"] .cc-compact-ink,
+.cc-sketch--compact.cc-compact-artwork[data-preview-state="pressed"] .cc-compact-ink{
+  transform:scaleX(1);
+}
+.cc-sketch--compact.cc-compact-artwork.cc-compact-pressed,
+.cc-sketch--compact.cc-compact-artwork[data-preview-state="pressed"]{
+  --cc-press-depth:4.5px;
+}
+.cc-sketch--compact.cc-compact-artwork.cc-compact-pressed .cc-compact-svg [id="BUTTON_FACE"],
+.cc-sketch--compact.cc-compact-artwork[data-preview-state="pressed"] .cc-compact-svg [id="BUTTON_FACE"]{
+  transition-duration:85ms;transition-timing-function:ease-out;
+}
+.cc-sketch--compact.cc-compact-artwork .cc-sketch-copy{
+  left:50%;top:calc(50% - 4px);
+  transform:translate(-50%,-50%) translateY(var(--cc-press-depth));
+  transition:transform 210ms cubic-bezier(.18,.7,.22,1);
+  width:calc(100% - 26px);max-width:calc(100% - 26px);
+}
+.cc-sketch--compact.cc-compact-artwork.cc-compact-pressed .cc-sketch-copy,
+.cc-sketch--compact.cc-compact-artwork[data-preview-state="pressed"] .cc-sketch-copy{
+  transition-duration:85ms;transition-timing-function:ease-out;
+}
+/* Override legacy entire-pill depression only on approved SVG compact CTAs. */
+.cc-sketch--compact.cc-compact-artwork:active,
+.cc-sketch--compact.cc-compact-artwork[data-preview-state="pressed"]{
+  transform:none!important;
+}
+.cc-sketch--compact.cc-compact-artwork.cc-sketch--beige{--cc-label:var(--ink)}
+.cc-sketch--compact.cc-compact-artwork:focus-visible{
+  outline:3px solid var(--acc);outline-offset:5px;border-radius:6px;
+}
+@media(max-width:600px){
+ .cc-sketch--compact.cc-compact-artwork{
+   width:145px;min-width:145px;height:58px;min-height:58px;
+ }
+ .cc-sketch--compact.cc-compact-artwork .cc-sketch-copy{
+   width:calc(100% - 20px);max-width:calc(100% - 20px);
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .cc-sketch--compact.cc-compact-artwork .cc-compact-svg [id="BUTTON_FACE"],
+ .cc-sketch--compact.cc-compact-artwork .cc-compact-ink,
+ .cc-sketch--compact.cc-compact-artwork .cc-sketch-copy{
+   transition:none!important;
+ }
+}

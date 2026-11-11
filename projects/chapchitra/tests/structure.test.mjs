@@ -275,10 +275,18 @@ test('clean pill variants and color combinations use two solid matching layers',
   assert.match(html,/<button type="button"/);
   assert.ok(html.includes('cc-sketch--'+variant));
   assert.ok(html.includes('cc-sketch--'+tone));
-  assert.match(html,/cc-pill-art--/);
-  assert.match(html,/cc-pill-shadow/);
-  assert.match(html,/cc-pill-face/);
-  assert.match(html,/cc-pill-wipe/);
+  if(variant==='compact'){
+    assert.match(html,/cc-compact-artwork/);
+    assert.match(html,/cc-compact-art/);
+    assert.match(html,/assets\/compact\/compact-button-/);
+    assert.doesNotMatch(html,/cc-pill-art--|cc-pill-shadow|cc-pill-face/);
+  }else{
+    // Explicitly preserve the already-approved full-width CSS capsule.
+    assert.match(html,/cc-pill-art--long/);
+    assert.match(html,/cc-pill-shadow/);
+    assert.match(html,/cc-pill-face/);
+    assert.match(html,/cc-pill-wipe/);
+  }
   assert.match(html,/cc-sketch-label-ink/);
   assert.doesNotMatch(html,/<svg|<path|<rect|cc-sketch-outline|cc-sketch-highlight|\.png|product-add-arrow|↗|→|✓/);
  }
