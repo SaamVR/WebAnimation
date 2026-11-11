@@ -16,7 +16,7 @@ const CSS=[
  '.c02-loader{position:fixed;inset:0;z-index:2147483000;overflow:hidden;',
  'pointer-events:auto;isolation:isolate;touch-action:none;overscroll-behavior:contain}',
  '.c02-loader__surface{width:100%;height:100%;display:block;overflow:hidden}',
- '.c02-loader__roller{position:absolute;width:clamp(78px,9.2vw,130px);',
+ '.c02-loader__roller{position:absolute;width:clamp(106px,11vw,150px);',
  'height:clamp(106px,11vw,150px);pointer-events:none;z-index:2;isolation:isolate;',
  'transform:translate(-50%,-50%) scaleX(-1) rotate(90deg);transform-origin:center;',
  'filter:none!important;mix-blend-mode:normal!important}',
@@ -163,6 +163,8 @@ export function installC02PageTransitions(win=window,doc=document){
  if(!doc.body||doc.documentElement.dataset.c02Installed==='v2')return;
  doc.documentElement.dataset.c02Installed='v2';
  const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
+ // Warm the 2KB exact-source SVG so the first visible ink-edge frame has a roller.
+ if(!reduced.matches){const image=new win.Image();image.src='/assets/c02/roller-original.svg';}
  let overlay=null,leaving=false,watchdog=0;
  function cleanup(){
   win.clearTimeout(watchdog);overlay?.destroy();overlay=null;leaving=false;
