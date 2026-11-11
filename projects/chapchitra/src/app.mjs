@@ -1,4 +1,6 @@
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
+import { installC02PageTransitions } from '/motion/c02/ink-sweep.mjs';
+installC02PageTransitions();
 async function boot(){
  const {shirtSilhouette,printSilhouette}=await import('./components.mjs');
  const {sketchButton}=await import('./handdrawn-buttons.mjs');
