@@ -1,0 +1,217 @@
+{
+  "schema": "chapchitra-worktable-back/1",
+  "originalCanvas": [
+    4000,
+    2250
+  ],
+  "designCanvas": [
+    2048,
+    1152
+  ],
+  "assets": {
+    "regular": {
+      "name": "chapchitra_regular_tshirt_back_4k_transparent.png",
+      "sha256": "4dfe2de4a4cca7a1730a801bb59d4bbf29cfa60a4ca82d0868d7ac673400aa24",
+      "original": [
+        4000,
+        2250
+      ],
+      "alphaBBoxStage": [
+        516.608,
+        125.44,
+        1521.664,
+        1138.688
+      ],
+      "delivery": {
+        "crop": [
+          1004,
+          240,
+          1973,
+          1989
+        ],
+        "stageBox": [
+          588.8188,
+          185.8019,
+          867.3623,
+          874.3962
+        ],
+        "variants": [
+          {
+            "path": "back/variants/regular.w768.webp",
+            "width": 379,
+            "height": 382,
+            "bytes": 19950,
+            "sha256": "9e7748f93530dfb55b96e5dda810e7621956ab0c78e8cba82cd03e23883e53ee"
+          },
+          {
+            "path": "back/variants/regular.w1536.webp",
+            "width": 758,
+            "height": 764,
+            "bytes": 53140,
+            "sha256": "152d2d041be4a47db6df0fcd5b829f8fca603c10509be1afb9435c40128f74f2"
+          },
+          {
+            "path": "back/variants/regular.w2560.webp",
+            "width": 1263,
+            "height": 1273,
+            "bytes": 110488,
+            "sha256": "2efe2cce267715bce502ebe8959b2632c3fe62f27dfb00b7aa4ec0263ae98311"
+          }
+        ]
+      }
+    },
+    "dropShoulder": {
+      "name": "chapchitra_drop_shoulder_back_4k_transparent.png",
+      "sha256": "97bbda67b4df4a210f3432cc86f8dfcecfe5bc725d7b288bf971460596427d68",
+      "original": [
+        4000,
+        2250
+      ],
+      "alphaBBoxStage": [
+        573.952,
+        182.272,
+        1460.736,
+        1055.744
+      ],
+      "delivery": {
+        "crop": [
+          1116,
+          351,
+          1742,
+          1716
+        ],
+        "stageBox": [
+          580.2995,
+          183.4443,
+          890.4009,
+          877.1114
+        ],
+        "variants": [
+          {
+            "path": "back/variants/dropShoulder.w768.webp",
+            "width": 334,
+            "height": 329,
+            "bytes": 18220,
+            "sha256": "001209be2d4d67daa89d315116ff9053a5b1a33b00fed106fd49b8ac3d1a81a5"
+          },
+          {
+            "path": "back/variants/dropShoulder.w1536.webp",
+            "width": 669,
+            "height": 659,
+            "bytes": 44210,
+            "sha256": "3bd48362d787bd046d44c3f5e2b00153f38c37c9d747e9782c282e153cb00179"
+          },
+          {
+            "path": "back/variants/dropShoulder.w2560.webp",
+            "width": 1115,
+            "height": 1098,
+            "bytes": 91396,
+            "sha256": "2c543591cbf20e65ee6e96374c966d4e629f37d3887f17c3653799a632786fdd"
+          }
+        ]
+      }
+    },
+    "fullSleeve": {
+      "name": "chapchitra_full_sleeve_back_4k_transparent.png",
+      "sha256": "4505c681629d629ea3dee1bd7d46575bebf79650ac192ffa45953a9d117b106d",
+      "original": [
+        4000,
+        2250
+      ],
+      "alphaBBoxStage": [
+        617.472,
+        191.488,
+        1439.232,
+        1055.232
+      ],
+      "delivery": {
+        "crop": [
+          1201,
+          369,
+          1615,
+          1697
+        ],
+        "stageBox": [
+          616.4517,
+          192.5558,
+          823.0966,
+          864.8885
+        ],
+        "variants": [
+          {
+            "path": "back/variants/fullSleeve.w768.webp",
+            "width": 310,
+            "height": 326,
+            "bytes": 17020,
+            "sha256": "fe3289ff67a2738e03d3cd70845ce7e901e2a9b8046afeb7dbc594a20112a844"
+          },
+          {
+            "path": "back/variants/fullSleeve.w1536.webp",
+            "width": 620,
+            "height": 652,
+            "bytes": 40726,
+            "sha256": "a99340f8669ce2855b3ba34dcbee7a7b3daabb62a254ed2bc17bf75daa1840b5"
+          },
+          {
+            "path": "back/variants/fullSleeve.w2560.webp",
+            "width": 1034,
+            "height": 1086,
+            "bytes": 83614,
+            "sha256": "f9a15fa26885f7570203d99c25b02fa77fb3557695f608b6cd37701508cfe2e1"
+          }
+        ]
+      }
+    },
+    "hoodie": {
+      "name": "chapchitra_hoodie_back_4k_transparent.png",
+      "sha256": "b26e7771a605d79d217c6fcfb03001f35cada4894d82b830bede09c0a24b06af",
+      "original": [
+        4000,
+        2250
+      ],
+      "alphaBBoxStage": [
+        652.8,
+        222.208,
+        1415.168,
+        1070.592
+      ],
+      "delivery": {
+        "crop": [
+          1270,
+          429,
+          1499,
+          1667
+        ],
+        "stageBox": [
+          644.2867,
+          213.4502,
+          764.4267,
+          850.0996
+        ],
+        "variants": [
+          {
+            "path": "back/variants/hoodie.w768.webp",
+            "width": 288,
+            "height": 320,
+            "bytes": 16450,
+            "sha256": "10d1a27c179dc16c273aaa7215a53a2b97a7043ee58984acd2b4e179f8e80d9f"
+          },
+          {
+            "path": "back/variants/hoodie.w1536.webp",
+            "width": 576,
+            "height": 640,
+            "bytes": 39122,
+            "sha256": "3c9f0d7ad85c61cc926a69de223e20bf8cf6d79714cc7b04210313a9f7e05b1e"
+          },
+          {
+            "path": "back/variants/hoodie.w2560.webp",
+            "width": 959,
+            "height": 1067,
+            "bytes": 79654,
+            "sha256": "2cac47204cb5f64205279a2720a1522f2e044ddf465bdad46f5ec4b96aa14fe0"
+          }
+        ]
+      }
+    }
+  }
+}
