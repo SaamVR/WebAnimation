@@ -1,35 +1,73 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {C02_PATHS,isC02Eligible} from '../src/motion/c02/ink-sweep.mjs';
-
-test('C02 targets precisely the four approved top-level Home journeys',()=>{
- assert.deepEqual(C02_PATHS,['/shop/','/artists-edit/','/journal/','/about/']);
- for(const pathname of C02_PATHS){
-  for(const source of ['primary','mobile']){
-   assert.equal(isC02Eligible({page:'home',pathname,source}),true,pathname+' '+source);
-  }
- }
+import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {
+ C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible
+} from '../src/motion/c02/ink-sweep.mjs';
+import {
+ inkPath,inkEdgePath,inkEdgeX,easeInk,INK_PALETTE
+} from '../src/motion/c02/ink-shapes.mjs';
+const origin='https://chapchitra-webanimation.onrender.com';
+const current=origin+'/shop/';
+const allow=to=>isC02Eligible({current,destination:origin+to});
+test('C02 expands to all ordinary cross-page navigation without changing URLs',()=>{
+ for(const path of [
+  '/', '/artists-edit/', '/journal/', '/about/', '/product/?id=study-1',
+  '/bag/', '/favorites/', '/account/', '/checkout/', '/order-confirmation/',
+  '/journal/story/?slug=prints-and-people','/shop/?category=regular-tees'
+ ])assert.ok(allow(path),path);
+ assert.ok(C02_PAGES.includes('/product/'));
+ assert.deepEqual(C02_PATHS,C02_PAGES);
 });
-test('C02 never catches product, checkout, cart, journal article, or other flows',()=>{
- for(const pathname of ['/product/','/product/?id=1','/bag/','/checkout/','/journal/story/','/favorites/','/','/shop/item/']){
-  assert.equal(isC02Eligible({page:'home',pathname,source:'primary'}),false,pathname);
- }
- for(const page of ['shop','artists-edit','journal','about','product','bag']){
-  assert.equal(isC02Eligible({page,pathname:'/shop/',source:'primary'}),false,page);
- }
- assert.equal(isC02Eligible({page:'home',pathname:'/shop/',source:'hero'}),false);
- assert.equal(isC02Eligible({page:'home',pathname:'/shop/',source:'footer'}),false);
+test('never intercept same-document anchors, external links, assets or downloads',()=>{
+ for(const link of [
+  '/shop/','/shop/#collection','/shop/?','/assets/c02/roller-prepared.svg',
+  '/asset.png','/downloads/artwork.zip','https://example.com/shop/'
+ ]) assert.equal(isC02Eligible({current,destination:origin+link}),false,link);
+ for(const option of [
+  {modified:true},{download:true},{external:true},{target:'_blank'},
+  {target:'_parent'},{disabled:true}
+ ])assert.equal(isC02Eligible({current,destination:origin+'/about/',...option}),false,JSON.stringify(option));
 });
-test('C02 preserves browser link semantics, downloads, external targets and origins',()=>{
- const base={page:'home',pathname:'/shop/',source:'primary'};
- for(const override of [
-  {modified:true},{sameOrigin:false},{download:true},
-  {target:'_blank'},{target:'_top'},{target:'_parent'}
- ]){
-  assert.equal(isC02Eligible({...base,...override}),false,JSON.stringify(override));
- }
- assert.equal(isC02Eligible({...base,target:'_self'}),true);
+test('procedural ink covers fully and clears fully; holes close at full takeover',()=>{
+ assert.equal(inkPath(0,{mode:'cover'}),'');
+ assert.match(inkPath(1,{mode:'cover'}),/^M -2 -2 H 1002 V 1002/);
+ assert.match(inkPath(0,{mode:'reveal'}),/^M -2 -2 H 1002 V 1002/);
+ assert.equal(inkPath(1,{mode:'reveal'}),'');
+ assert.match(inkPath(.5,{mode:'cover'}),/ C /);
+ assert.match(inkPath(.5,{mode:'reveal'}),/ C /);
+ assert.match(inkEdgePath(.5),/^M /);
+ assert.ok(inkPath(.5,{mode:'cover'}).split(' M ').length>=2,'ink window exists');
+ assert.ok(inkEdgeX(.5,500)>0 && inkEdgeX(.5,500)<1000);
+ assert.equal(easeInk(0),0);assert.equal(easeInk(1),1);
+ assert.equal(C02_MOTION.coverMs+C02_MOTION.revealMs,790);
+ assert.equal(INK_PALETTE.press,'#293D2D');
+ assert.equal(INK_PALETTE.forest,'#172419');
+ assert.equal(INK_PALETTE.terra,'#8A503B');
 });
-test('C02 has an independent ID; reusable SVG buttons never occupy this module',()=>{
- assert.equal(C02_PATHS.length,4);
+test('owner SVG source stays exactly the supplied original master',async()=>{
+ const original=await readFile(new URL('../src/assets/c02/roller-original.svg',import.meta.url));
+ assert.equal(original.length,2162);
+ assert.equal(createHash('sha256').update(original).digest('hex'),
+  '1c1226b902299ef7519236b582b5012f5ec918aa7571a2f8091a86db95992d73');
+ const src=original.toString('utf8');
+ assert.equal((src.match(/<path\b/g)||[]).length,3);
+ assert.match(src,/id="ROLLER_CYLINDER"/);
+ assert.match(src,/id="ROLLER_HANDLE_x2B_ROD"/);
+ assert.match(src,/id="Layer_2"/);
+ assert.match(src,/#293D2D/);assert.match(src,/#232323/);
+});
+test('early incoming cover, cross-document transition and failure escape are present',async()=>{
+ const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
+ assert.match(early,/@view-transition/);
+ assert.match(early,/sessionStorage/);
+ assert.match(early,/c02-pending/);
+ assert.match(early,/prefers-reduced-motion/);
+ const runtime=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
+ assert.match(runtime,/pageshow/);
+ assert.match(runtime,/pagehide/);
+ assert.match(runtime,/MutationObserver/);
+ assert.match(runtime,/roller-prepared\.svg/);
+ assert.doesNotMatch(runtime,/lottie-web|gsap|sessionStorage\.clear/);
 });
