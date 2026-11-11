@@ -42,13 +42,20 @@ async function run(engine,device){
  try{
   await goto('/');
   // Confirm exact source SVG loads and the real overlay—not a generic opacity fade.
-  if(device==='mobile'){await page.locator('#menuButton').click();await page.evaluate(()=>document.querySelector('#mobileNav a[href="/shop/"]').click())}
-  else await page.evaluate(()=>document.querySelector('.nav-center a[href="/shop/"]').click());
-  await page.locator('#c02-loader').waitFor({timeout:2500});
-  const src=await page.locator('#c02-loader img').getAttribute('src');
-  check(name,'owner roller source',src==='/assets/c02/roller-prepared.svg',src);
-  const loader=await page.locator('#c02-loader').count();
-  check(name,'one active overlay',loader===1);
+  if(device==='mobile')await page.locator('#menuButton').click();
+  // Capture this state synchronously: the outgoing cover lasts only 405ms.
+  const activated=await page.evaluate(isMobile=>{
+   const link=document.querySelector(isMobile?
+    '#mobileNav a[href="/shop/"]':'.nav-center a[href="/shop/"]');
+   link.click();
+   const overlay=document.getElementById('c02-loader');
+   return {installed:document.documentElement.dataset.c02Installed,
+    count:document.querySelectorAll('#c02-loader').length,
+    src:overlay?.querySelector('img')?.getAttribute('src')};
+  },device==='mobile');
+  check(name,'owner roller source',activated.src==='/assets/c02/roller-prepared.svg',
+   JSON.stringify(activated));
+  check(name,'one active overlay',activated.count===1,JSON.stringify(activated));
   await page.waitForURL(u=>u.pathname==='/shop/',{timeout:15000});
   await settled(page);
   check(name,'home to shop',true);
