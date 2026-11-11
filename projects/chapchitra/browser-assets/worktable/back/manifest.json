@@ -17,46 +17,69 @@
         2250
       ],
       "alphaBBoxStage": [
-        516.608,
-        125.44,
-        1521.664,
-        1138.688
+        580.608,
+        192,
+        1464.32,
+        1065.472
       ],
       "delivery": {
         "crop": [
-          1004,
-          240,
-          1973,
-          1989
+          1122,
+          363,
+          1750,
+          1730
         ],
         "stageBox": [
-          588.8188,
-          185.8019,
-          867.3623,
-          874.3962
+          572.8752,
+          178.1472,
+          900.2016,
+          889.9136
         ],
         "variants": [
           {
             "path": "back/variants/regular.w768.webp",
-            "width": 379,
-            "height": 382,
-            "bytes": 19950,
-            "sha256": "9e7748f93530dfb55b96e5dda810e7621956ab0c78e8cba82cd03e23883e53ee"
+            "width": 336,
+            "height": 332,
+            "bytes": 20450,
+            "sha256": "6a30e6f32fd61ced27e023970748792b09a40f970e6605201488c7389a8d995d"
           },
           {
             "path": "back/variants/regular.w1536.webp",
-            "width": 758,
-            "height": 764,
-            "bytes": 53140,
-            "sha256": "152d2d041be4a47db6df0fcd5b829f8fca603c10509be1afb9435c40128f74f2"
+            "width": 673,
+            "height": 665,
+            "bytes": 55414,
+            "sha256": "952c40949287404f6524c0953b6e0d5cbe4037b7843c54b5bb9e5352a16b399c"
           },
           {
             "path": "back/variants/regular.w2560.webp",
-            "width": 1263,
-            "height": 1273,
-            "bytes": 110488,
-            "sha256": "2efe2cce267715bce502ebe8959b2632c3fe62f27dfb00b7aa4ec0263ae98311"
+            "width": 1120,
+            "height": 1107,
+            "bytes": 116592,
+            "sha256": "8f92bde052d25bc895cc780e2880bb502bebb6ea0c2206ffa5a81a9c7bc2f044"
           }
+        ]
+      },
+      "registration": {
+        "method": "alpha-threshold-visible-silhouette",
+        "threshold": 12,
+        "nativeVisibleBounds": [
+          1134,
+          375,
+          2860,
+          2081
+        ],
+        "nativePadding": 12,
+        "frontReferenceBBoxStage": [
+          561.152,
+          184.32,
+          1484.8,
+          1061.888
+        ],
+        "source": "Owner original 4000x2250 RGBA PNG SHA-256 pinned in same manifest",
+        "preservedComponents": [
+          "dropShoulder",
+          "fullSleeve",
+          "hoodie"
         ]
       }
     },
