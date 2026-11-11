@@ -85,12 +85,48 @@ test('C02 auto-reveal is independently bootstrapped and never waits on RAF for r
  assert.match(runtime,/\.then\(resolve,resolve\)/);
  for(const phase of ['idle','covering','waiting','revealing','complete'])
   assert.ok(runtime.includes("state('"+phase+"')"),'lifecycle state: '+phase);
- assert.match(runtime,/incomingGuard=win\.setTimeout\(cleanup,15000\)/);
+ assert.match(runtime,/incomingGuard=win\.setTimeout\(cleanup,18000\)/);
  assert.match(runtime,/warmDestination\(target\)/);
  assert.match(runtime,/win\.location\.assign\(target\.href\)/);
  assert.equal(C02_MOTION.coverMs,506);
  assert.equal(C02_MOTION.revealMs,385);
 });
+
+test('adaptive progress never fully covers a still-loading page',async()=>{
+ const m=await import('../src/motion/c02/adaptive-progress.mjs');
+ for(const known of [0,1000,3000,5000,8000]){
+  let prior=-1;
+  for(let t=0;t<Math.max(9000,known)+100;t+=100){
+   const p=m.pendingInkProgress(t,{knownMs:known});
+   assert.ok(p>=prior,'monotonic '+known+' '+t);
+   assert.ok(p<1,'never fully green before ready '+known+' '+t);
+   prior=p;
+  }
+ }
+ for(const t of [1000,3000,5000,8000])
+  assert.equal(m.getReviewDelayMs('/c02-review/slow/?delay='+t),t);
+ assert.equal(m.getReviewDelayMs('/shop/'),0);
+ for(const start of [.1,.4,.68,.76]){
+  const duration=m.finishDuration(start);
+  assert.equal(m.finishInkProgress(start,duration,duration,0),1);
+  assert.equal(m.finishInkProgress(start,0,duration,0),start);
+ }
+});
+test('adaptive handoff leaves the approved roller, organic paths and reveal untouched',async()=>{
+ const runtime=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
+ const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
+ const simulated=await readFile(new URL('../src/c02-review/slow/index.html',import.meta.url),'utf8');
+ assert.match(runtime,/driveAdaptive/);
+ assert.match(runtime,/pendingInkProgress/);
+ assert.match(runtime,/getReviewDelayMs/);
+ assert.doesNotMatch(runtime,/animate\('cover',C02_MOTION\.coverMs/);
+ assert.match(runtime,/animate\('reveal',C02_MOTION\.revealMs,cleanup/);
+ assert.match(runtime,/roller-original\.svg/);
+ assert.match(early,/--c02-prepaint-clip/);
+ assert.match(simulated,/__c02DemoStartedAt/);
+ assert.match(simulated,/Math\.min\(8000/);
+});
+
 test('early incoming cover, cross-document transition and failure escape are present',async()=>{
  const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
  assert.doesNotMatch(early,/@view-transition\s*\{\s*navigation:\s*auto/);
