@@ -39,7 +39,7 @@ test('procedural ink covers fully and clears fully; holes close at full takeover
  assert.match(inkPath(.5,{mode:'cover'}),/ C /);
  assert.match(inkPath(.5,{mode:'reveal'}),/ C /);
  assert.match(inkEdgePath(.5),/^M /);
- assert.ok(inkPath(.5,{mode:'cover'}).split(' M ').length>=2,'ink window exists');
+ assert.equal((inkPath(.5,{mode:'cover'}).match(/ M /g)||[]).length,0,'no misleading white opening');
  assert.ok(inkEdgeX(.5,500)>0 && inkEdgeX(.5,500)<1000);
  assert.equal(easeInk(0),0);assert.equal(easeInk(1),1);
  assert.equal(C02_MOTION.coverMs+C02_MOTION.revealMs,790);
@@ -71,4 +71,9 @@ test('early incoming cover, cross-document transition and failure escape are pre
  assert.match(runtime,/MutationObserver/);
  assert.match(runtime,/roller-prepared\.svg/);
  assert.doesNotMatch(runtime,/lottie-web|gsap|sessionStorage\.clear/);
+ assert.match(runtime,/scaleX\(-1\) rotate\(90deg\)/);
+ assert.match(runtime,/img\.src='\/assets\/c02\/roller-original\.svg'/);
+ assert.match(runtime,/ROLLER_CYLINDER_CONTACT_Y=48\.7199/);
+ assert.match(runtime,/inkEdgeX\(p,470,27\)/);
+ assert.doesNotMatch(runtime,/p>\.065|p<\.92|roller\.style\.opacity=String/);
 });
