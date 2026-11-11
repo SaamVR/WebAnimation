@@ -174,7 +174,10 @@ function makeOverlay(doc,win){
     if(stopped||completing)return;
     const target=Math.max(p,Math.min(1,end));
     const now=win.performance.now(),start=p;
-    const d=finishDuration(start);
+    const fullSweep=target>=.999;
+    let d=fullSweep?finishDuration(start,Date.now()-startedAt):
+     Math.round(Math.max(240,Math.min(700,(target-start)*1000)));
+    if(!fullSweep&&knownMs===1000)d=Math.min(420,d);
     const velocity=Math.min((p-initial)/Math.max(1,Date.now()-startedAt),
      Math.max(.00005,(target-p)/d));
     completing={start,end:target,at:now,duration:d,velocity,done};
