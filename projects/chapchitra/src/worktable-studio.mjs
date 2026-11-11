@@ -196,6 +196,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    tag.style.setProperty('--cc-tag-mobile-w',settings.mobile.width/WORKTABLE_VIEWBOX.width*100+'%');
    tag.style.setProperty('--cc-tag-max-width',settings.desktop.maxWidth+'px');
    tag.style.setProperty('--cc-tag-mobile-width',settings.mobile.displayWidth+'px');
+   tag.style.setProperty('--cc-tag-mobile-offset-x',settings.mobile.x+'px');
+   tag.style.setProperty('--cc-tag-mobile-offset-y',settings.mobile.y+'px');
    tag.style.setProperty('--cc-tag-rotation',settings.rotation+'deg');
    tag.append(art,text);
    return tag;

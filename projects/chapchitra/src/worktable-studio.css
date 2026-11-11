@@ -615,9 +615,12 @@
 @media(max-width:700px){
  .cc-worktable-price-tag-stage{display:none}
  .cc-worktable-price-tag-mobile{
-  position:relative;display:block;left:auto;top:auto;
+  position:relative;display:block;
+  left:calc(50% + var(--cc-tag-mobile-offset-x));
+  top:var(--cc-tag-mobile-offset-y);
   width:min(var(--cc-tag-mobile-width),85vw);max-width:100%;
-  margin:8px auto 4px;z-index:auto;
+  transform:translateX(-50%) rotate(var(--cc-tag-rotation));
+  margin:8px 0 4px;z-index:auto;
  }
 }
 .cc-worktable-invoice{display:block;padding-top:9px}
