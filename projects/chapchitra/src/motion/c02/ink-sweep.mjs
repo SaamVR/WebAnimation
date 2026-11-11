@@ -5,14 +5,23 @@ import {C02_PAGES,C02_PATHS,C02_MOTION,INK_PALETTE,isC02Eligible,
 export {C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible};
 const KEY='chapchitra-c02-arrival-v2',TTL=30000,FAILSAFE_MS=13000;
 const NS='http://www.w3.org/2000/svg';
+// Contact edge comes from the ORIGINAL cylinder's Chromium/WebKit SVG getBBox():
+// y=48.7199, height=273.2201 in the untouched 1700x1700 Illustrator viewBox.
+// After a screen-space mirror + 90° rotation, original +Y becomes screen +X.
+const ROLLER_VIEWBOX_SIZE=1700;
+const ROLLER_CYLINDER_CONTACT_Y=48.7199;
+const ROLLER_VIEWBOX_CENTER=850;
+const ROLLER_CONTACT_OVERLAP_PX=2;
 const CSS=[
  '.c02-loader{position:fixed;inset:0;z-index:2147483000;overflow:hidden;',
  'pointer-events:auto;isolation:isolate;touch-action:none;overscroll-behavior:contain}',
  '.c02-loader__surface{width:100%;height:100%;display:block;overflow:hidden}',
  '.c02-loader__roller{position:absolute;width:clamp(78px,9.2vw,130px);',
- 'height:clamp(78px,9.2vw,130px);pointer-events:none;',
- 'transform:translate(-50%,-50%) rotate(90deg);transform-origin:center}',
- '.c02-loader__roller img{width:100%;height:100%;display:block;object-fit:contain}',
+ 'height:clamp(106px,11vw,150px);pointer-events:none;z-index:2;isolation:isolate;',
+ 'transform:translate(-50%,-50%) scaleX(-1) rotate(90deg);transform-origin:center;',
+ 'filter:none!important;mix-blend-mode:normal!important}',
+ '.c02-loader__roller img{width:100%;height:100%;display:block;object-fit:contain;',
+ 'filter:none!important;mix-blend-mode:normal!important;opacity:1!important}',
  // Long real page loads receive a barely perceptible ink-pressure breathing,
  // not a fake spinner, percentage, roller cycle, or arbitrary time delay.
  '.c02-loader[data-phase="loading"]::after{content:"";position:absolute;inset:-4%;',
@@ -62,8 +71,9 @@ function makeOverlay(doc,win){
  const outline=path(INK_PALETTE.terra,true);
  const roller=doc.createElement('div');roller.className='c02-loader__roller';
  roller.setAttribute('aria-hidden','true');
- const img=doc.createElement('img');img.src='/assets/c02/roller-prepared.svg';
- img.alt='';img.draggable=false;img.decoding='async';
+ const img=doc.createElement('img');img.src='/assets/c02/roller-original.svg';
+ img.alt='';img.draggable=false;img.decoding='async';img.loading='eager';
+ img.setAttribute('fetchpriority','high');
  img.addEventListener('error',()=>{roller.hidden=true},{once:true});
  roller.append(img);overlay.append(svg,roller);doc.body.append(overlay);
  let stopAnimation=null;
@@ -75,11 +85,18 @@ function makeOverlay(doc,win){
   const isFull=(mode==='cover'&&p===1)||(mode==='reveal'&&p===0);
   const isEmpty=(mode==='cover'&&p===0)||(mode==='reveal'&&p===1);
   outline.setAttribute('d',isFull||isEmpty?'':inkEdgePath(p));
-  if(mode==='cover'&&p>.065&&p<.92&&!roller.hidden){
-   const size=Math.min(130,Math.max(78,win.innerWidth*.092));
-   roller.style.left=(inkEdgeX(p,470)*win.innerWidth/1000-size*.38)+'px';
-   roller.style.top='48%';roller.style.display='block';
-   roller.style.opacity=String(Math.min(1,(p-.065)*16,(.92-p)*15));
+  // The unmodified colored cylinder starts at y=48.7199 in its SVG viewBox.
+  // Align that real contact edge to the advancing OUTER forest ink contour;
+  // the long graphite handle then extends to the unpainted RIGHT.
+  if(mode==='cover'&&p<1&&!roller.hidden){
+   const size=Math.min(150,Math.max(106,win.innerWidth*.11));
+   const edgeX=inkEdgeX(p,470,27)*win.innerWidth/1000;
+   const cylinderLeft=(ROLLER_CYLINDER_CONTACT_Y-ROLLER_VIEWBOX_CENTER)
+     /ROLLER_VIEWBOX_SIZE*size;
+   roller.style.left=(edgeX-cylinderLeft-ROLLER_CONTACT_OVERLAP_PX)+'px';
+   roller.style.top='48%';
+   roller.style.display='block';
+   roller.style.opacity='1';
   }else roller.style.display='none';
   overlay.style.opacity=mode==='reveal'&&p>.88
    ?String(1-(p-.88)/.12*.13):'1';
