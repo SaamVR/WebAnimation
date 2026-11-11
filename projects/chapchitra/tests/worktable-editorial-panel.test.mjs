@@ -52,7 +52,7 @@ test('six new visual swatches derive from calibrated FABRIC pigments without mod
 test('panel and worktable share reducer and update semantics, with no separate control state',()=>{
  assert.match(source,/const buttons=\[\.\.\.root\.querySelectorAll\('\[data-group\]\[data-value\]'\)\]/);
  assert.match(source,/current=worktableReducer\(current,\{type:'select',group,value\}\)/);
- assert.match(source,/paintSelection\(group==='garment'\);announce/);
+ assert.match(source,/paintSelection\(group==='garment'\);syncPricing\(\);announce/);
  assert.match(source,/if\(group==='garment'\|\|group==='color'\)void queueGarmentVisual\(\)/);
  assert.match(source,/for\(const b of buttons\)\{\s*b\.addEventListener\('click'/);
  assert.match(source,/img\.classList\.toggle\('is-selected'/);

@@ -3,6 +3,7 @@ import { UPLOAD_ARTWORK_SVG } from './worktable-upload-icon.mjs';
 import { FABRIC_PIGMENTS, applyFabricPigmentToRGBA } from './worktable-fabric-pigments.mjs';
 import { paperGuide, placementGeometry, printScaleLabel, resolutionGuidance } from './worktable-print-placement.mjs';
 import { createSideRecords, storeSide, loadSide, disposeSideRecords } from './worktable-two-sided-state.mjs';
+import { calculateArtistPrice, buildArtistCustomization, formatArtistBDT } from './worktable-pricing.mjs';
 
 // Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
 // Cropped WebP browser variants retain original alpha coordinates and source SHA256.
@@ -130,6 +131,29 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
       </div>
     </section>
     <p class="cc-worktable-hint">Move, resize or rotate directly on the shirt.</p>
+    <section class="cc-worktable-price" aria-label="Custom garment estimated price">
+      <div class="cc-worktable-price-head">
+        <div class="cc-worktable-price-primary">
+          <p class="cc-worktable-price-kicker">YOUR CUSTOM GARMENT / ESTIMATE</p>
+          <output id="worktablePriceTotal" class="cc-worktable-price-total" aria-label="Estimated garment and print price">৳450</output>
+          <p class="cc-worktable-price-note">Temporary BDT pricing · No checkout or payment</p>
+        </div>
+        <div class="cc-worktable-price-action">
+          <button type="button" id="worktableAddDemoBag">Add to demo bag</button>
+          <p id="worktableBagStatus" class="cc-worktable-bag-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <details class="cc-worktable-price-breakdown" id="worktablePriceBreakdown">
+        <summary>Price breakdown <span class="cc-worktable-price-chevron" aria-hidden="true">⌄</span></summary>
+        <dl>
+          <div><dt id="worktablePriceGarmentLabel">Regular Tee</dt><dd id="worktablePriceGarmentCharge">৳450</dd></div>
+          <div><dt id="worktablePriceFrontLabel">Front · No artwork</dt><dd id="worktablePriceFrontCharge">৳0</dd></div>
+          <div><dt id="worktablePriceBackLabel">Back · No artwork</dt><dd id="worktablePriceBackCharge">৳0</dd></div>
+          <div class="cc-worktable-price-grand"><dt>Total</dt><dd id="worktablePriceBreakdownTotal">৳450</dd></div>
+        </dl>
+      </details>
+      <p class="cc-worktable-price-disclaimer">Demo bag stores configuration details only. Uploaded image files stay in this editor; no order is placed.</p>
+    </section>
     <p class="cc-worktable-live" role="status" id="worktableMessage" aria-live="polite"></p>
   </section>
   <input id="worktableFile" type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Choose local design image">`;
@@ -358,7 +382,53 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  document.addEventListener('visibilitychange',syncUploadMotion);
  syncUploadMotion();
  const buttons=[...root.querySelectorAll('[data-group][data-value]')];
- const announce=t=>{msg.textContent=t};
+   const announce=t=>{msg.textContent=t};
+  const priceTotal=root.querySelector('#worktablePriceTotal');
+  const priceGarmentLabel=root.querySelector('#worktablePriceGarmentLabel');
+  const priceGarmentCharge=root.querySelector('#worktablePriceGarmentCharge');
+  const priceFrontLabel=root.querySelector('#worktablePriceFrontLabel');
+  const priceFrontCharge=root.querySelector('#worktablePriceFrontCharge');
+  const priceBackLabel=root.querySelector('#worktablePriceBackLabel');
+  const priceBackCharge=root.querySelector('#worktablePriceBackCharge');
+  const priceBreakdownTotal=root.querySelector('#worktablePriceBreakdownTotal');
+  const addDemoBag=root.querySelector('#worktableAddDemoBag');
+  const selectionForPricing=()=>{
+   const record=sideName=>{
+    const active=sideName===view;
+    const saved=sideRecords[sideName];
+    return {
+     hasArtwork:active?Boolean(artURL&&artBitmap):Boolean(saved.url&&saved.bitmap),
+     preset:active?current.printSize:saved.preset,
+     editor:active?{...editor}:{...saved.editor},
+    };
+   };
+   return {garment:current.garment,color:current.color,size:current.size,
+    front:record('front'),back:record('back')};
+  };
+  const syncPricing=()=>{
+   const amount=calculateArtistPrice(selectionForPricing());
+   priceTotal.textContent=formatArtistBDT(amount.total);
+   priceGarmentLabel.textContent=amount.garmentLabel;
+   priceGarmentCharge.textContent=formatArtistBDT(amount.base);
+   for(const [which,label,value] of [
+    ['Front',priceFrontLabel,priceFrontCharge],
+    ['Back',priceBackLabel,priceBackCharge],
+   ]){
+    const side=amount[which.toLowerCase()];
+    label.textContent=which+' · '+side.sizeLabel;
+    value.textContent=formatArtistBDT(side.charge);
+   }
+   priceBreakdownTotal.textContent=formatArtistBDT(amount.total);
+   return amount;
+  };
+  addDemoBag.addEventListener('click',()=>{
+   const config=buildArtistCustomization(selectionForPricing());
+   root.querySelector('#worktableBagStatus').textContent='Adding to demo bag…';
+   root.dispatchEvent(new CustomEvent('chapchitra:artist-demo-add',{
+    bubbles:true,detail:{selection:config}
+   }));
+  });
+  syncPricing();
  // Paper reference and uploaded-image transform are separate stage layers.
  let placementFeedbackTimer=null,guideTimer=null,guideVisible=false,boundaryAnnounced=false;
  let lastInfo=null;
@@ -647,7 +717,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   scale.disabled=!artURL;reset.disabled=!artURL;remove.disabled=!artURL;
   scale.value=String(editor.adjustment);
   scaleOut.textContent=printScaleLabel(editor.adjustment);
-  paintSelection();revealGuide();printPosition();
+  paintSelection();revealGuide();printPosition();syncPricing();
  };
  viewButton.addEventListener('click',async()=>{
   if(viewButton.disabled)return;
@@ -684,7 +754,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   current=worktableReducer(current,{type:'select',group,value});
   // Retain relative placement and recompute safe bounds for garment/preset changes.
   if(group==='printSize')revealGuide();
-  paintSelection(group==='garment');announce(`${labels[value]} selected`);
+     paintSelection(group==='garment');syncPricing();announce(`${labels[value]} selected`);
   if(group==='garment'||group==='color')void queueGarmentVisual();
  };
  let uploadAckTimer=null;
@@ -735,7 +805,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    editor.x=editor.y=0;editor.adjustment=0;editor.rotation=0;editor.selected=false;editor.mode='move';
    scale.value='0';scaleOut.textContent='0%';scale.disabled=false;remove.disabled=false;reset.disabled=false;
    // Precompute the new fitted bounds before showing the new source pixels.
-   paintSelection();artImg.style.objectFit='contain';artImg.src=artURL;revealGuide();
+       paintSelection();syncPricing();artImg.style.objectFit='contain';artImg.src=artURL;revealGuide();
    announce('Artwork loaded locally at 0% adjustment to the '+current.printSize+
     ' visual reference. Drag to position or use the signed resize slider.');
   }catch{URL.revokeObjectURL(next);announce('The selected image could not be decoded.');}
@@ -755,7 +825,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
   placementFeedbackTimer=null;
   editor.rotation=0;editor.selected=false;editor.mode='move';
-  scale.value='0';scaleOut.textContent='0%';paintSelection();hideEditor();announce('Artwork removed.');
+     scale.value='0';scaleOut.textContent='0%';paintSelection();syncPricing();hideEditor();announce('Artwork removed.');
  });
  const dragLayer=document.createElement('button');
  dragLayer.type='button';dragLayer.className='cc-worktable-drag';
@@ -926,7 +996,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   throw new Error('The complete stage preview could not decode on this browser: '+String(error?.message||error));
  }
  void hydrate();
- return {getState:()=>({...current,view}),getPlacement:()=>({...editor,scale:1+editor.adjustment/100}),destroy:()=>{
+ return {getState:()=>({...current,view}),getPricing:()=>calculateArtistPrice(selectionForPricing()),getOrderData:()=>buildArtistCustomization(selectionForPricing()),getPlacement:()=>({...editor,scale:1+editor.adjustment/100}),destroy:()=>{
   saveActiveSide();disposeSideRecords(sideRecords,url=>URL.revokeObjectURL(url));
   artURL=null;artBitmap=null;
   if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
