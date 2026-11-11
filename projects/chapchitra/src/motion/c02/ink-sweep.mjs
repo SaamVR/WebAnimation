@@ -152,7 +152,11 @@ function makeOverlay(doc,win){
      c.done();
     }
    }else{
-    const target=pendingInkProgress(Date.now()-startedAt,{cap,knownMs});
+    let target=pendingInkProgress(Date.now()-startedAt,{cap,knownMs});
+    // Navigation may remain in the outgoing document while HTML arrives.
+    // Never park the roller at the prefetch handoff position.
+    if(doc.documentElement.dataset.c02State==='waiting')
+     target=Math.max(target,Math.min(.975,p+dt*.000065));
     // Cap each frame's movement on tab activation; never visually jump
     // several hundred pixels after a background/suspended WebKit frame.
     const maxDelta=dt*Math.max(.00012,cap/Math.max(1200,knownMs||3300)*2.5);
@@ -227,6 +231,8 @@ export function installC02PageTransitions(win=window,doc=document){
   overlay?.destroy();overlay=null;leaving=false;navigationCommitted=false;
   doc.documentElement.classList.remove('c02-pending');
   doc.documentElement.removeAttribute('data-c02-busy');
+  if(doc.documentElement.dataset.c02State==='revealing')
+   doc.documentElement.dataset.c02RevealEndAt=String(Date.now());
   state('complete');
  }
  // Prefetch the real HTML immediately to obtain a meaningful response/body
@@ -253,6 +259,7 @@ export function installC02PageTransitions(win=window,doc=document){
   const p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
   doc.documentElement.classList.remove('c02-pending');
   if(ticket.demoMs)win.__c02DemoStartedAt=ticket.startedAt;
+  doc.documentElement.dataset.c02StartedAt=String(ticket.startedAt||Date.now());
   state('waiting');
   drive=overlay.driveAdaptive({
    initial:p,startedAt:ticket.startedAt||Date.now(),knownMs:ticket.demoMs||0
@@ -260,8 +267,10 @@ export function installC02PageTransitions(win=window,doc=document){
   incomingGuard=win.setTimeout(cleanup,18000);
   awaitShell(win,doc).then(()=>{
    if(!overlay||!drive)return;
+   doc.documentElement.dataset.c02ReadyAt=String(Date.now());
    state('finishing');
    drive.finishTo(1,()=>{
+    doc.documentElement.dataset.c02RollerEndAt=String(Date.now());
     drive?.stop();drive=null;
     if(!overlay)return;
     state('revealing');
