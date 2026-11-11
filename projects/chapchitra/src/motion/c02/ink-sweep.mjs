@@ -339,7 +339,7 @@ export function installC02PageTransitions(win=window,doc=document){
    // 1/3/5/8-second scripted examples estimate duration only here,
    // never on normal pages. They pace the shared roller/ink controller.
    if(demoMs){
-    commitTimer=win.setTimeout(commit,Math.max(0,demoMs-600));
+    commitTimer=win.setTimeout(commit,Math.max(0,demoMs-900));
    }else{
     warmDestination(target).then(ok=>{
      if(!leaving||navigationCommitted)return;
