@@ -212,7 +212,8 @@ export function installC02PageTransitions(win=window,doc=document){
  const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
  // Warm the 2KB exact-source SVG so the first visible ink-edge frame has a roller.
  if(!reduced.matches){const image=new win.Image();image.src='/assets/c02/roller-original.svg';}
- let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null;
+ let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null,
+  drive=null,commitTimer=0,navigationCommitted=false;
  const state=(phase)=>{
   doc.documentElement.dataset.c02State=phase;
   if(overlay?.overlay)overlay.overlay.dataset.c02State=phase;
@@ -220,40 +221,52 @@ export function installC02PageTransitions(win=window,doc=document){
  state('idle');
  function cleanup(){
   win.clearTimeout(watchdog);
-  win.clearTimeout(incomingGuard);
+  win.clearTimeout(incomingGuard);win.clearTimeout(commitTimer);
+  drive?.stop();drive=null;
   prefetchAbort?.abort();prefetchAbort=null;
-  overlay?.destroy();overlay=null;leaving=false;
+  overlay?.destroy();overlay=null;leaving=false;navigationCommitted=false;
   doc.documentElement.classList.remove('c02-pending');
   doc.documentElement.removeAttribute('data-c02-busy');
   state('complete');
  }
- // Start the destination GET at click time, in parallel with the approved
- // 506ms ink sweep; native MPA navigation still commits only once covered.
- // Prefetch is best-effort and NEVER gates the cover/reveal or navigation.
+ // Prefetch the real HTML immediately to obtain a meaningful response/body
+ // milestone. There is no reliable cross-document percent-complete API.
+ // The incoming page's actual rendered DOM remains the final readiness gate.
  function warmDestination(target){
-  if(typeof win.fetch!=='function')return;
+  if(typeof win.fetch!=='function')return Promise.resolve(false);
   try{
    prefetchAbort=new win.AbortController();
-   win.fetch(target.href,{
+   return win.fetch(target.href,{
     method:'GET',credentials:'same-origin',cache:'default',
     headers:{Accept:'text/html'},signal:prefetchAbort.signal
-   }).catch(()=>{}); // Any network failure leaves native navigation intact.
-  }catch{prefetchAbort=null}
+   }).then(response=>{
+    if(!response.ok)throw Error('C02 destination response '+response.status);
+    return response.text();
+   }).then(()=>true).catch(()=>false);
+  }catch{return Promise.resolve(false)}
  }
  const ticket=ticketFor(win);
  if(ticket&&!reduced.matches){
   overlay=makeOverlay(doc,win);
-  overlay.render(0,'reveal'); // full cover, before first destination frame
+  // Preserve the partial, unpainted opening across the document handoff.
+  // No green full-viewport prepaint and no stationary loading phase.
+  const p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
   doc.documentElement.classList.remove('c02-pending');
-  overlay.overlay.dataset.phase='loading';
+  if(ticket.demoMs)win.__c02DemoStartedAt=ticket.startedAt;
   state('waiting');
-  // Independent arrival watchdog: never leave an opaque page indefinitely
-  // even if the application or its readiness promise fails.
-  incomingGuard=win.setTimeout(cleanup,15000);
+  drive=overlay.driveAdaptive({
+   initial:p,startedAt:ticket.startedAt||Date.now(),knownMs:ticket.demoMs||0
+  });
+  incomingGuard=win.setTimeout(cleanup,18000);
   awaitShell(win,doc).then(()=>{
-   if(!overlay)return;
-   state('revealing');
-   overlay.animate('reveal',C02_MOTION.revealMs,cleanup);
+   if(!overlay||!drive)return;
+   state('finishing');
+   drive.finishTo(1,()=>{
+    drive?.stop();drive=null;
+    if(!overlay)return;
+    state('revealing');
+    overlay.animate('reveal',C02_MOTION.revealMs,cleanup);
+   });
   },cleanup);
  }else{
   doc.documentElement.classList.remove('c02-pending');
@@ -261,7 +274,8 @@ export function installC02PageTransitions(win=window,doc=document){
  }
  win.addEventListener('pageshow',e=>{if(e.persisted)cleanup()});
  win.addEventListener('pagehide',()=>{
-  win.clearTimeout(watchdog);
+  win.clearTimeout(watchdog);win.clearTimeout(commitTimer);
+  drive?.stop();drive=null;
   prefetchAbort?.abort();prefetchAbort=null;
  });
  reduced.addEventListener?.('change',()=>{if(reduced.matches&&overlay)cleanup()});
@@ -285,19 +299,51 @@ export function installC02PageTransitions(win=window,doc=document){
   })||reduced.matches)return;
   event.preventDefault();if(leaving||overlay)return;
   leaving=true;
-  // Begin obtaining the destination now, while the roller applies ink.
-  warmDestination(target);
+  const startedAt=Date.now(),demoMs=getReviewDelayMs(target.href);
   try{
    overlay=makeOverlay(doc,win);
    doc.documentElement.dataset.c02Busy='true';
    state('covering');
-   overlay.animate('cover',C02_MOTION.coverMs,()=>{
-    if(!leaving)return;
-    overlay.overlay.dataset.phase='loading';
-    state('waiting');
-    storeTicket(win,target);
-    try{win.location.assign(target.href)}catch{clearTicket(win);cleanup()}
+   drive=overlay.driveAdaptive({
+    startedAt,knownMs:demoMs,
+    onProgress:p=>{
+     // The old page remains alive while the browser commits a native
+     // navigation. Carry the latest progress to the destination document.
+     if(navigationCommitted)storeTicket(win,target,{
+      progress:p,startedAt,demoMs
+     });
+    }
    });
+   const navigate=()=>{
+    if(!leaving||navigationCommitted)return;
+    navigationCommitted=true;
+    state('waiting');
+    storeTicket(win,target,{progress:drive?.progress()||.68,startedAt,demoMs});
+    try{win.location.assign(target.href)}
+    catch{clearTicket(win);cleanup()}
+   };
+   const commit=()=>{
+    if(!leaving||navigationCommitted||!drive)return;
+    const current=drive.progress();
+    drive.finishTo(Math.max(current+.012,.68),navigate);
+   };
+   // 1/3/5/8-second scripted examples estimate duration only here,
+   // never on normal pages. They pace the shared roller/ink controller.
+   if(demoMs){
+    commitTimer=win.setTimeout(commit,Math.max(0,demoMs-600));
+   }else{
+    warmDestination(target).then(ok=>{
+     if(!leaving||navigationCommitted)return;
+     if(ok)commit();
+     else{
+      // If prefetch fails, native navigation is allowed a bounded
+      // attempt; the outgoing watchdog restores the old page on failure.
+      commitTimer=win.setTimeout(commit,350);
+     }
+    });
+    // Extremely slow/streaming HTML: never hold the visitor indefinitely.
+    win.setTimeout(commit,Math.min(12000,FAILSAFE_MS-3500));
+   }
    watchdog=win.setTimeout(()=>{clearTicket(win);cleanup()},FAILSAFE_MS);
   }catch{cleanup();win.location.assign(target.href)}
  },{capture:true});
