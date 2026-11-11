@@ -31,6 +31,6 @@ Book base, circle and right page stay stationary. All original path fills and de
 - Chromium **SVG fallback reference** passed desktop, mobile and iPad-size viewport checks without JavaScript errors.
 - The isolated review HTML attempts the official `lottie-web` renderer first. When it cannot load, it clearly labels and plays the vector SVG fallback.
 - **Official lottie-web rendering in Chromium and Safari/WebKit remains unverified** in this sandbox; do not claim production certification.
-- No staging URL or deployment has been created. The downloadable isolated HTML preview is the current review surface.
+- Independent Vercel review project deployed READY: https://chapchitra-c05-icon01-standalone-review-8msedc14d-samvrc.vercel.app/ (deployment dpl_DA2dtzHnLmtggdDXmG87ctK2PuJW). This new review project is separate from existing CHAPCHITRA sites; live DOM playback and public reachability still require direct browser verification.
 
 **Awaiting owner visual approval.**
