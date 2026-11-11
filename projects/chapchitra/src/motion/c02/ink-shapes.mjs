@@ -57,26 +57,7 @@ function contour(points,reverse=false){
   }
   return d;
 }
-function organicWindow(p,mode,offset){
-  // One elliptical, flowing opening inside the paint; closes before takeover.
-  const visibility=Math.min((p-.15)/.16,(.86-p)/.17,1);
-  if(visibility<=0)return '';
-  const radius=Math.max(0,visibility);
-  // The cutout must align through BOTH paint layers; offset only the outer edge.
-  const x=edgeAt(526,p,0)+(mode==='cover'?-179:179);
-  const y=505+29*Math.sin(p*5.7);
-  const rx=fmt(116*radius),ry=fmt(49*radius);
-  if(rx<1||ry<1)return '';
-  // Tear-drop-like aperture. The evenodd winding makes a genuine window.
-  return ' M '+fmt(x-rx)+' '+fmt(y)
-    +' C '+fmt(x-rx*.78)+' '+fmt(y-ry*.94)
-    +' '+fmt(x+rx*.30)+' '+fmt(y-ry*1.18)
-    +' '+fmt(x+rx)+' '+fmt(y-ry*.17)
-    +' C '+fmt(x+rx*.82)+' '+fmt(y+ry*.84)
-    +' '+fmt(x-rx*.44)+' '+fmt(y+ry*.87)
-    +' '+fmt(x-rx)+' '+fmt(y)+' Z';
-}
-export function inkPath(p,{mode='cover',offset=0,opening=true}={}){
+export function inkPath(p,{mode='cover',offset=0}={}){
   const progress=clamp01(p);
   if(mode!=='cover'&&mode!=='reveal')throw Error('Unknown C02 ink phase');
   if(mode==='cover'&&progress===0 || mode==='reveal'&&progress===1)return '';
@@ -87,7 +68,7 @@ export function inkPath(p,{mode='cover',offset=0,opening=true}={}){
   const outer=mode==='cover'
     ?'M -2 -2 L '+top.x+' -2 L '+top.x+' 0'+contour(points)+' L -2 1002 Z'
     :'M '+top.x+' 0 L 1002 -2 L 1002 1002 L '+bottom.x+' 1000'+contour(points,true)+' Z';
-  return outer+(opening?organicWindow(progress,mode,offset):'');
+  return outer;
 }
 export function inkEdgePath(p,offset=0){
   const points=edgePoints(clamp01(p),offset);
