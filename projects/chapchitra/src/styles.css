@@ -2118,3 +2118,19 @@ body[data-page="artists-edit"] #app > .site-header {
   top: auto;
   inset-block-start: auto;
 }
+
+/* Artist's Edit configurations coexist with the original session-only sample bag.
+   No payment or actual artwork files are stored in these demo rows. */
+.cc-artist-demo-bag-row .demo-bag-info>p{margin:5px 0}
+.cc-artist-bag-mark{
+ display:grid;place-items:center;min-height:105px;padding:12px;
+ border:1px solid var(--grey);background:var(--mist);
+ color:var(--press);font:700 11px/1.45 var(--sans);
+ letter-spacing:.10em;text-align:center;
+}
+.cc-artist-bag-breakdown{margin:10px 0}
+.cc-artist-bag-breakdown summary{min-height:40px;cursor:pointer;color:var(--press);font-weight:600}
+.cc-artist-bag-breakdown p{font-size:12px;line-height:1.6;color:var(--mut);margin:4px 0}
+@media(max-width:600px){
+ .cc-artist-bag-mark{min-height:82px;padding:6px;font-size:9px}
+}
