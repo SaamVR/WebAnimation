@@ -64,9 +64,10 @@ const snapshot=async page=>page.evaluate(()=>{
   await art(page,410,570,28,152,108,'front-green.png');
   await page.locator('.cc-worktable-drag').click();
   await page.locator('.cc-worktable-tool[data-tool=rotate]').click();
-  await page.locator('#worktableArtScale').fill('20');
+  await page.locator('#worktableArtScale').fill('-20');
   await page.locator('.cc-worktable-drag').focus();await page.keyboard.press('ArrowRight');
   const front=await snapshot(page);
+  check('front signed shrink remains possible after 90-degree rotation',front.size==='-20',front);
   await turn(page,'back');await choose(page,'printSize','A4');
   await art(page,620,350,215,52,42,'back-red.png');
   await page.locator('.cc-worktable-drag').click();

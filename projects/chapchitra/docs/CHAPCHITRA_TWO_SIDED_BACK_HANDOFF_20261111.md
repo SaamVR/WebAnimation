@@ -2,14 +2,14 @@
 
 ## Production state
 
-**DRAFT / NOT DEPLOYABLE until the exact owner-supplied back WebP asset pack is installed.**
+**DRAFT / optimized asset pack installed; integrated browser QA and owner visual acceptance are required before release.**
 
 - Source base: `b99fe7b1648aa870c782a6ecda3deef0f5a838c5`
 - Original owner upload: `Tshirt back.zip`
 - Original alpha RGBA source images are **4000×2250**, not 2048×1152 as stated in the initial brief. Runtime stage coordinates remain 2048×1152.
 - Source changes are confined to CHAPCHITRA's Artist's Edit and its build validator.
-- New back assets are NOT copied to this draft branch because the connected development device hit its monthly tool limit before the local attachment could be transferred.
-- **Do not merge or update the shared Render review branch until the exact assets have been installed and all browser QA has passed.**
+- The four back-view originals remain byte-preserved outside the runtime tree. The 12 WebP browser variants and registration manifest were installed on this draft branch at commit `3497bf442a94b12e7d51e1c71f0083fe6a2f27a3`.
+- **Do not merge or update the shared Render review branch until integrated browser QA passes and concurrent changes have been reconciled.**
 
 ## Owner-supplied exact PNG checksums
 
@@ -39,7 +39,7 @@ The **separate downloadable companion package** delivered to the owner includes:
 - `owner-originals/` with all four unmodified RGBA PNGs
 - a registration report and contact sheet
 
-Copy **only** the `browser-assets/worktable/back/` subtree into the repository at the same relative path; preserve the four originals separately (outside the published browser-assets directory). This supplies the 12 compact, exact SHA-pinned optimized WebPs and their registration manifest. Nothing in the original front manifest, front sources, workers, color-pots, or scene must be overwritten.
+The `browser-assets/worktable/back/` subtree is now installed in this feature branch. Preserve the four originals separately (outside the published browser-assets directory). This supplies the 12 compact, exact SHA-pinned optimized WebPs and their registration manifest. Nothing in the original front manifest, front sources, workers, color-pots, or scene must be overwritten.
 
 Once files exist, run from `projects/chapchitra`:
 ```sh
@@ -63,7 +63,7 @@ The build deliberately **fails closed** when the back manifest/variants are abse
 
 ## Gates still required
 
-- Install the asset bundle on the **same** feature branch and pass `npm run build`.
+- ✅ Asset bundle installed on the **same** feature branch; full cloud build and 149/149 source tests passed at commit `3497bf4`.
 - Browser and image checks: 4 garments × 2 sides, all six pigments, A4/A3 guide alignment, several switches, simultaneous front A/back B.
 - Inspect all screenshots and desktop/tablet/mobile recordings; physical iPad remains unverified until owner tests it.
 - Check performance: no back files fetched on initial Front visit.
