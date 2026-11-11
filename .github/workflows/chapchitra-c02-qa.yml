@@ -70,6 +70,12 @@ jobs:
           C02_QA_ORIGIN: http://127.0.0.1:4272
           C02_QA_ENGINE: ${{ matrix.engine }}
         run: node scripts/c02-browser-qa-v2.cjs
+      - name: Prove real incoming DOM wait and record slow/reduced-motion journeys
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-loader-hold-qa.cjs
       - name: Retain original browser recordings and screenshots (not physical iPad)
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
