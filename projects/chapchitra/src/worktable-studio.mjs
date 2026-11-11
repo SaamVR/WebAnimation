@@ -136,8 +136,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  if(embedded)body.querySelector('.cc-worktable-header')?.remove();
  root.replaceChildren(body);
  const stage=root.querySelector('.cc-worktable-stage');
- // The accessible turn action sits BELOW the desk image so it never obscures
- // a long garment hem, a worker, or one of the original illustrated controls.
+ // The accessible turn button belongs INSIDE the wooden stage, centered
+ // below the hem in the free lower desk area; no artificial cream footer.
  const viewRow=document.createElement('div');
  viewRow.className='cc-worktable-view-row';
  const viewButton=document.createElement('button');
@@ -145,7 +145,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  viewButton.setAttribute('aria-label','View back');
  viewButton.innerHTML='<span aria-hidden="true" class="cc-worktable-view-glyph">↻</span><span class="cc-worktable-view-label">View back</span>';
  viewRow.append(viewButton);
- stage.after(viewRow);
+ stage.append(viewRow);
  const rail=root.querySelector('.cc-worktable-rail');
  const file=root.querySelector('#worktableFile');
  const uploadButton=root.querySelector('#worktableUploadArt');
