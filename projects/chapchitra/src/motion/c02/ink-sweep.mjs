@@ -64,7 +64,24 @@ export function installC02PageTransitions(win=window,doc=document){
  const cleanup=()=>{active?.overlay.remove();active=null;busy=false;};
  if(consumeTicket(win)&&!reduce.matches){
   active=overlayFor(doc);active.surface.style.transform='translate3d(0,0,0)';
-  animateInk(win,active.surface,['translate3d(0,0,0)','translate3d(112%,0,0)'],REVEAL_MS,cleanup);
+  const reveal=()=>animateInk(win,active.surface,
+   ['translate3d(0,0,0)','translate3d(112%,0,0)'],REVEAL_MS,cleanup);
+  // Uncover only after the actual destination page shell exists.
+  const app=doc.getElementById('app');
+  if(app&&!app.firstElementChild&&typeof win.MutationObserver==='function'){
+   let settled=false;
+   const observer=new win.MutationObserver(()=>{
+    if(app.firstElementChild)ready();
+   });
+   const ready=()=>{
+    if(settled)return;settled=true;observer.disconnect();
+    win.clearTimeout(safety);
+    win.requestAnimationFrame(reveal);
+   };
+   // Failure-only escape hatch, never a normal page-load delay.
+   const safety=win.setTimeout(ready,4000);
+   observer.observe(app,{childList:true});
+  }else reveal();
  }
  if(doc.body.dataset.page!=='home')return;
  doc.addEventListener('click',event=>{
