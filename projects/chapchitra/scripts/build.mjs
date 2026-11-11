@@ -13,6 +13,38 @@ console.log('CHAPCHITRA four back garments verified:',backAssets);
 await rm(output,{recursive:true,force:true});
 await mkdir(output,{recursive:true});
 await cp(src,output,{recursive:true});
+// C02: preserve the owner's Illustrator roller master byte-for-byte.
+// The derived playback copy changes ONLY the second group's name.
+const rollerBytes=await readFile(resolve(src,'assets/c02/roller-original.svg'));
+const rollerSHA=createHash('sha256').update(rollerBytes).digest('hex');
+if(rollerSHA!=='1c1226b902299ef7519236b582b5012f5ec918aa7571a2f8091a86db95992d73')
+ throw Error('CHAPCHITRA C02 master roller checksum mismatch');
+const originalSVG=rollerBytes.toString('utf8');
+if(originalSVG.split('<g id="Layer_2">').length!==2||
+ !originalSVG.includes('<g id="ROLLER_CYLINDER">')||
+ !originalSVG.includes('#293D2D')||!originalSVG.includes('#232323'))
+ throw Error('CHAPCHITRA C02 original roller layers are not as approved');
+const rollerPrepared=originalSVG.replace('<g id="Layer_2">','<g id="ROLLER_FRAME">');
+await writeFile(resolve(output,'assets/c02/roller-prepared.svg'),rollerPrepared,'utf8');
+// Prepaint cover must be installed in the HTML head, before deferred app.mjs.
+// Keep all existing route controllers and cached Artist's Edit release paths intact.
+const earlyC02=await readFile(resolve(src,'motion/c02/early-head.html'),'utf8');
+let patchedC02Entries=0;
+async function injectC02(dir){
+ for(const entry of await readdir(dir,{withFileTypes:true})){
+  const full=resolve(dir,entry.name);
+  if(entry.isDirectory()){await injectC02(full);continue;}
+  if(!entry.isFile()||entry.name!=='index.html')continue;
+  const html=await readFile(full,'utf8');
+  if(!html.includes('<head>'))throw Error('C02 HTML head missing: '+full);
+  if(html.includes('id="c02-early"'))throw Error('C02 prepaint duplicated: '+full);
+  await writeFile(full,html.replace('<head>','<head>'+earlyC02));
+  patchedC02Entries++;
+ }
+}
+await injectC02(output);
+if(patchedC02Entries<12)throw Error('C02 route entrypoint coverage incomplete: '+patchedC02Entries);
+console.log('CHAPCHITRA C02 prepaint entries:',patchedC02Entries,'roller SHA:',rollerSHA);
 // LONG self-hosted, source-hash-verified Illustrator long SVG variants.
 const {installLongSvgAssets}=await import('./long-install-svg.mjs');
 console.log('CHAPCHITRA Long SVG integrity:',await installLongSvgAssets(output));
