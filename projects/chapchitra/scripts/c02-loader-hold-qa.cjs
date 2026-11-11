@@ -29,7 +29,7 @@ async function run(engine,device){
     roller:document.querySelector('#c02-loader img')?.getAttribute('src')};
   });
   assert.equal(original.overlays,1,'exactly one outgoing overlay');
-  assert.equal(original.roller,'/assets/c02/roller-prepared.svg');
+  assert.equal(original.roller,'/assets/c02/roller-original.svg');
   await page.waitForURL(url=>url.pathname==='/c02-review/slow/',{timeout:18000});
   await page.waitForFunction(()=>{
    const stage=document.getElementById('c02-loader');
