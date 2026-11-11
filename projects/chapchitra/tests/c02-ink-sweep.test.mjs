@@ -59,6 +59,18 @@ test('owner SVG source stays exactly the supplied original master',async()=>{
  assert.match(src,/id="Layer_2"/);
  assert.match(src,/#293D2D/);assert.match(src,/#232323/);
 });
+test('owner roller is exactly 300 percent of prior dimensions with the same contact geometry',async()=>{
+ const src=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
+ assert.equal(106*3,318);
+ assert.equal(150*3,450);
+ assert.equal(11*3,33);
+ assert.match(src,/width:clamp\(318px,33vw,450px\)/);
+ assert.match(src,/height:clamp\(318px,33vw,450px\)/);
+ assert.match(src,/const size=Math\.min\(450,Math\.max\(318,win\.innerWidth\*\.33\)\)/);
+ assert.match(src,/edgeX-cylinderLeft-ROLLER_CONTACT_OVERLAP_PX/);
+ assert.match(src,/scaleX\(-1\) rotate\(90deg\)/);
+ assert.doesNotMatch(src,/clamp\(106px,11vw,150px\)/);
+});
 test('early incoming cover, cross-document transition and failure escape are present',async()=>{
  const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
  assert.doesNotMatch(early,/@view-transition\s*\{\s*navigation:\s*auto/);
