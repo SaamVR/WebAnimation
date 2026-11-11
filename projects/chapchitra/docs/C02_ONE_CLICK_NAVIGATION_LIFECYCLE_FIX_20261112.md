@@ -14,8 +14,8 @@ The earlier incoming reveal depended partly on the website application module in
 
 1. Independent first-paint C02 bootstrap is injected into all 22 generated HTML entrypoints. It runs even if website app.mjs fails; idempotence guards duplicate installation.
 2. Destination readiness resolves after real main content and required Artist's Edit worktable readiness, with bounded font settlement, without requiring an additional requestAnimationFrame or user gesture.
-3. Navigation state is exposed for deterministic QA as idle → covering → waiting → revealing → complete. A busy guard prevents duplicate overlays and repeated navigation.
-4. A best-effort, same-origin GET starts at the initial eligible click while the approved covering animation runs. This request never blocks navigation. Native document navigation commits once covering has finished.
+3. Navigation state is exposed for deterministic QA as idle → covering → waiting → revealing → complete. A busy guard prevents duplicate overlays and repeated native navigation.
+4. A best-effort, same-origin prefetch GET starts at the initial eligible click while the approved covering animation runs. Native document navigation commits once covering has finished. The browser may still perform its own GET; these are not multiple navigation commits. Prefetch neither blocks nor delays navigation.
 5. The one-use exact-route ticket automatically starts the existing destination reveal when ready. A separate 15s failure-only incoming watchdog clears any stranded cover; outgoing 13s recovery and initial-paint 18s protection remain.
 6. The isolated review offers 1-, 3- and 5-second content-readiness demos alongside existing 2.2s/4.5s examples. Real pages receive no artificial delays.
 
