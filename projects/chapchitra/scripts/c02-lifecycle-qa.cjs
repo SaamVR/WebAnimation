@@ -22,7 +22,7 @@ function outcome(device,test,pass,detail=''){
 }
 async function prepare(ctx){
  await ctx.addInitScript(key=>{
-  const root=document.documentElement;
+  // init scripts may execute before <html> exists: observe Document itself.
   const store=phase=>{
    if(!phase)return;
    try{
@@ -33,9 +33,11 @@ async function prepare(ctx){
   };
   const observer=new MutationObserver(records=>{
    for(const record of records)
-    if(record.attributeName==='data-c02-state')store(root.dataset.c02State);
+    if(record.attributeName==='data-c02-state'&&record.target===document.documentElement)
+     store(document.documentElement.dataset.c02State);
   });
-  observer.observe(root,{attributes:true,attributeFilter:['data-c02-state']});
+  observer.observe(document,{attributes:true,subtree:true,
+   attributeFilter:['data-c02-state']});
  },TRACE);
 }
 async function cleanStart(page){
@@ -143,7 +145,7 @@ async function run(device,width,height){
   await cleanStart(page);
   await page.route(url=>new URL(url).pathname==='/about/',route=>route.abort('failed'));
   await page.locator('a[href="/about/"]').click({noWaitAfter:true});
-  await sleep(1200); // allow outgoing navigation error / recovery path
+  await sleep(14000); // allow the 13s outgoing failure-only recovery watchdog
   const failedState=await page.evaluate(()=>({
    path:location.pathname,overlay:document.querySelector('#c02-loader')?.dataset.phase,
    pending:document.documentElement.classList.contains('c02-pending')
