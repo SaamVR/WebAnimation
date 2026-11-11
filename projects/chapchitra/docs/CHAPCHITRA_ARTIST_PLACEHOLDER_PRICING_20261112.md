@@ -42,3 +42,7 @@ Pure unit tests cover all garments, artwork presence combinations, A3/A4 mixes, 
 Browser tests cover three viewport engines: desktop Chromium, iPad-sized WebKit and mobile Chromium, including independent uploads, side switching, price breakdown, demo bag persistence, metadata and removal. Existing two-sided editor and navbar regressions must pass.
 
 Keep this work in a DRAFT PR with a preview-only deployment. Do NOT merge main or advance the existing Render shared review before owner visual approval. No physical iPad test has been performed.
+
+## Clean-preview responsive image preload
+
+The original Artist's Edit HTML had two obsolete w768/w2560 preload URLs for the assembled Regular Tee composition. They returned 404 on a clean Vercel preview but happened to remain accessible in the older shared Render deployment. The HTML srcset now references the three **already approved and present** SVG-registered WebPs from the source manifest. This is a filename-only preload correction: no image bytes, layering, garment registration, print guide or animation assets were changed. A source test verifies all candidate preload files are present.
