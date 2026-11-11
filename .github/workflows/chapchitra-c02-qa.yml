@@ -76,6 +76,21 @@ jobs:
           C02_QA_ORIGIN: http://127.0.0.1:4272
           C02_QA_ENGINE: ${{ matrix.engine }}
         run: node scripts/c02-loader-hold-qa.cjs
+      - name: Visual audit original roller colors, measured edge contact and before/after footage
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_BEFORE: https://chapchitra-motion-demo-o6uvzok47-samvrc.vercel.app
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-roller-visual-qa.cjs
+      - name: Upload C02 roller before-after frames and real-time desktop/tablet recordings
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: chapchitra-c02-roller-${{ matrix.engine }}-visual-review
+          path: projects/chapchitra/perf-results/c02-roller-correction/${{ matrix.engine }}/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Retain original browser recordings and screenshots (not physical iPad)
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
