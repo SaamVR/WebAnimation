@@ -1,0 +1,25 @@
+<!-- CHAPCHITRA C02: prepaint cover and opt-in cross-document enhancement.
+     The JS engine remains the authoritative animation on all browsers. -->
+<style id="c02-prepaint">
+html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;background:#293D2D;pointer-events:auto}
+@media(prefers-reduced-motion:no-preference){
+ @view-transition{navigation:auto}
+ ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+ ::view-transition-group(root){animation:none!important}
+}
+</style>
+<script id="c02-early">(function(){
+ try{
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var key='chapchitra-c02-arrival-v2';
+  var ticket=JSON.parse(window.sessionStorage.getItem(key)||'null');
+  var age=Date.now()-ticket?.created;
+  if(ticket&&ticket.to===location.pathname+location.search&&age>=0&&age<30000){
+   document.documentElement.classList.add('c02-pending');
+   // Failure-only guard if the application JavaScript cannot initialize.
+   window.setTimeout(function(){
+    document.documentElement.classList.remove('c02-pending');
+   },18000);
+  }
+ }catch(e){document.documentElement.classList.remove('c02-pending')}
+})();</script>
