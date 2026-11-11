@@ -2,8 +2,10 @@
 // Original roller paths remain external and untouched.
 import {C02_PAGES,C02_PATHS,C02_MOTION,INK_PALETTE,isC02Eligible,
  easeInk,inkPath,inkEdgePath,inkEdgeX} from './ink-shapes.mjs';
+import {C02_ADAPTIVE,pendingInkProgress,finishDuration,
+ finishInkProgress,getReviewDelayMs} from './adaptive-progress.mjs';
 export {C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible};
-const KEY='chapchitra-c02-arrival-v2',TTL=30000,FAILSAFE_MS=13000;
+const KEY='chapchitra-c02-arrival-v2',TTL=45000,FAILSAFE_MS=26000;
 const NS='http://www.w3.org/2000/svg';
 // Contact edge comes from the ORIGINAL cylinder's Chromium/WebKit SVG getBBox():
 // y=48.7199, height=273.2201 in the untouched 1700x1700 Illustrator viewBox.
@@ -22,14 +24,8 @@ const CSS=[
  'filter:none!important;mix-blend-mode:normal!important}',
  '.c02-loader__roller img{width:100%;height:100%;display:block;object-fit:contain;',
  'filter:none!important;mix-blend-mode:normal!important;opacity:1!important}',
- // Long real page loads receive a barely perceptible ink-pressure breathing,
- // not a fake spinner, percentage, roller cycle, or arbitrary time delay.
- '.c02-loader[data-phase="loading"]::after{content:"";position:absolute;inset:-4%;',
- 'pointer-events:none;background:radial-gradient(ellipse 55% 50% at 62% 45%,',
- 'rgba(23,36,25,.15),transparent 75%);',
- 'animation:c02-print-breathe 2600ms ease-in-out infinite alternate}',
- '@keyframes c02-print-breathe{from{opacity:.18;transform:translate3d(-1%,0,0)}',
- 'to{opacity:.38;transform:translate3d(1%,0,0)}}',
+ // No static full-green waiting state or separate loading spinner. The same
+ // live progress signal drives roller location and both organic ink paths.
  '@media(prefers-reduced-motion:reduce){.c02-loader{display:none!important}',
  '.c02-loader::after{animation:none!important}}'
 ].join('');
@@ -41,9 +37,10 @@ function ticketFor(win){
   return t?.to===win.location.pathname+win.location.search&&age>=0&&age<TTL?t:null;
  }catch{return null}
 }
-function storeTicket(win,url){
+function storeTicket(win,url,{progress=0,startedAt=Date.now(),demoMs=0}={}){
  try{win.sessionStorage.setItem(KEY,JSON.stringify({
-  to:url.pathname+url.search,created:Date.now()
+  to:url.pathname+url.search,created:Date.now(),
+  progress:Math.max(0,Math.min(.985,progress)),startedAt,demoMs
  }))}catch{}
 }
 function clearTicket(win){try{win.sessionStorage.removeItem(KEY)}catch{}}
@@ -135,7 +132,53 @@ function makeOverlay(doc,win){
    ended=true;win.cancelAnimationFrame(raf);win.clearTimeout(guard);
   };
  }
- return {overlay,render,animate,destroy};
+ function driveAdaptive({startedAt=Date.now(),initial=0,knownMs=0,onProgress}={}){
+  let p=Math.max(0,Math.min(.985,initial));
+  let raf=0,last=win.performance.now(),stopped=false,completing=null;
+  const cap=C02_ADAPTIVE.cap;
+  function tick(now){
+   if(stopped)return;
+   const dt=Math.max(1,Math.min(90,now-last));
+   last=now;
+   if(completing){
+    const c=completing;
+    const elapsed=now-c.at;
+    const ratio=finishInkProgress(c.start/c.end,elapsed,c.duration,
+     c.velocity/c.end);
+    p=Math.max(p,Math.min(c.end,ratio*c.end));
+    if(elapsed>=c.duration){
+     p=c.end;completing=null;
+     render(p,'cover');onProgress?.(p);
+     c.done();
+    }
+   }else{
+    const target=pendingInkProgress(Date.now()-startedAt,{cap,knownMs});
+    // Cap each frame's movement on tab activation; never visually jump
+    // several hundred pixels after a background/suspended WebKit frame.
+    const maxDelta=dt*Math.max(.00012,cap/Math.max(1200,knownMs||3300)*2.5);
+    p=Math.max(p,Math.min(target,p+maxDelta));
+   }
+   if(stopped)return;
+   render(p,'cover');onProgress?.(p);
+   raf=win.requestAnimationFrame(tick);
+  }
+  render(p,'cover');
+  raf=win.requestAnimationFrame(tick);
+  return {
+   progress:()=>p,
+   finishTo(end,done){
+    if(stopped||completing)return;
+    const target=Math.max(p,Math.min(1,end));
+    const now=win.performance.now(),start=p;
+    const d=finishDuration(start);
+    const velocity=Math.min((p-initial)/Math.max(1,Date.now()-startedAt),
+     Math.max(.00005,(target-p)/d));
+    completing={start,end:target,at:now,duration:d,velocity,done};
+   },
+   stop(){stopped=true;win.cancelAnimationFrame(raf);completing=null;}
+  };
+ }
+ return {overlay,render,animate,driveAdaptive,destroy};
 }
 function awaitShell(win,doc){
  return new Promise(resolve=>{
