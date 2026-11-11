@@ -348,9 +348,11 @@ export function installC02PageTransitions(win=window,doc=document){
      if(!leaving||navigationCommitted)return;
      if(ok)commit();
      else{
-      // If prefetch fails, native navigation is allowed a bounded
-      // attempt; the outgoing watchdog restores the old page on failure.
-      commitTimer=win.setTimeout(commit,350);
+      // A failed HTML fetch is a real failure signal, not "95% loaded".
+      // Immediately remove the blocking ink and allow native navigation
+      // to succeed or display the browser's own error/retry UI.
+      clearTicket(win);cleanup();
+      try{win.location.assign(target.href)}catch{}
      }
     });
     // Extremely slow/streaming HTML: never hold the visitor indefinitely.
