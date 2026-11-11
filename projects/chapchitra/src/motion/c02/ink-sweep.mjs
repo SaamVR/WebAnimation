@@ -13,7 +13,16 @@ const CSS=[
  'height:clamp(78px,9.2vw,130px);pointer-events:none;',
  'transform:translate(-50%,-50%) rotate(90deg);transform-origin:center}',
  '.c02-loader__roller img{width:100%;height:100%;display:block;object-fit:contain}',
- '@media(prefers-reduced-motion:reduce){.c02-loader{display:none!important}}'
+ // Long real page loads receive a barely perceptible ink-pressure breathing,
+ // not a fake spinner, percentage, roller cycle, or arbitrary time delay.
+ '.c02-loader[data-phase="loading"]::after{content:"";position:absolute;inset:-4%;',
+ 'pointer-events:none;background:radial-gradient(ellipse 55% 50% at 62% 45%,',
+ 'rgba(23,36,25,.15),transparent 75%);',
+ 'animation:c02-print-breathe 2600ms ease-in-out infinite alternate}',
+ '@keyframes c02-print-breathe{from{opacity:.18;transform:translate3d(-1%,0,0)}',
+ 'to{opacity:.38;transform:translate3d(1%,0,0)}}',
+ '@media(prefers-reduced-motion:reduce){.c02-loader{display:none!important}',
+ '.c02-loader::after{animation:none!important}}'
 ].join('');
 function ticketFor(win){
  try{
