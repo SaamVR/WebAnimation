@@ -164,7 +164,7 @@ test('full sweep preserves approved easing with bounded 90ms roller velocity',as
   assert.ok(peak<.24,'approved 90ms velocity preserved: '+start+' peak='+peak);
  }
  const runtime=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
- assert.match(runtime,/if\(fullSweep\)d=Math\.max\(d,Math\.ceil\(\(target-start\)\*1120\)\)/);
+ assert.match(runtime,/if\(fullSweep\)d=Math\.max\(d,Math\.ceil\(\(target-start\)\*1900\)\)/);
  assert.match(runtime,/demoMs<=1000\?40:/);
 });
 
