@@ -391,26 +391,44 @@ export function installC02PageTransitions(win=window,doc=document){
   // Preserve the partial, unpainted opening across the document handoff.
   // No green full-viewport prepaint and no stationary loading phase.
   const p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
-  // Keep matching initial PNG prepaint until the incoming images decode.
-  // This prevents a white or procedural flash during WebKit MPA handoff.
-  void overlay.assetsReady.then(ok=>{
-   if(!overlay)return;
-   if(!ok){cleanup();return;}
-   // Release prepaint on a paint boundary, not an arbitrary timeout.
-   win.requestAnimationFrame(()=>{
-    if(overlay)doc.documentElement.classList.remove('c02-pending');
-   });
-  });
+  // First paint is native CSS with the exact saved SVG transform.
+  // Do not advance a second, independently moving image underneath it:
+  // that caused random jumps when WebKit decoded the 1.8 MB vector slowly.
+  // Asset readiness is genuine; there is no arbitrary progress hold.
+  overlay.render(p,'cover');
   if(ticket.demoMs)win.__c02DemoStartedAt=ticket.startedAt;
   doc.documentElement.dataset.c02StartedAt=String(ticket.startedAt||Date.now());
   state('waiting');
-  drive=overlay.driveAdaptive({
-   initial:p,startedAt:ticket.startedAt||Date.now(),knownMs:ticket.demoMs||0
-  });
   incomingGuard=win.setTimeout(cleanup,18000);
-  Promise.all([awaitShell(win,doc),overlay.assetsReady]).then(([,ok])=>{
-   if(!overlay||!drive)return;
+  const incomingPaintReady=overlay.assetsReady.then(ok=>{
+   if(!overlay)return false;
+   if(!ok)return false;
+   return new Promise(resolve=>{
+    let committed=false,raf=0,guard=0;
+    const expose=()=>{
+     if(committed)return;
+     committed=true;win.cancelAnimationFrame(raf);win.clearTimeout(guard);
+     if(!overlay){resolve(false);return;}
+     // Same exact saved p and same viewport geometry on BOTH layers.
+     // Removing prepaint and starting RAF occur in one rendering task.
+     overlay.render(p,'cover');
+     doc.documentElement.classList.remove('c02-pending');
+     drive=overlay.driveAdaptive({
+      initial:p,startedAt:ticket.startedAt||Date.now(),
+      knownMs:ticket.demoMs||0
+     });
+     doc.documentElement.dataset.c02Handoff='matched-first-frame';
+     resolve(true);
+    };
+    raf=win.requestAnimationFrame(expose);
+    // Failure-only RAF escape when an iPad suspends display callbacks.
+    guard=win.setTimeout(expose,150);
+   });
+  });
+  Promise.all([awaitShell(win,doc),incomingPaintReady]).then(([,ok])=>{
+   if(!overlay)return;
    if(!ok){cleanup();return;}
+   if(!drive)return;
    doc.documentElement.dataset.c02ReadyAt=String(Date.now());
    state('finishing');
    drive.finishTo(1,()=>{
