@@ -37,7 +37,7 @@ const img=()=>sharp({create:{width:760,height:920,channels:4,background:{r:31,g:
     for(const filename of ['worktable-studio.mjs','worktable-mobile.mjs','worktable-studio.css']){
      await page.route('**/'+filename+'*',route=>route.fulfill({status:200,
       contentType:filename.endsWith('css')?'text/css':'text/javascript',
-      body:fs.readFileSync(path.join(__dirname,filename),'utf8')}));
+      body:fs.readFileSync(path.resolve(__dirname,'../../src',filename),'utf8')}));
     }
    }
    await page.goto(root+'/artists-edit/',{waitUntil:'load',timeout:60000});
@@ -121,9 +121,9 @@ const img=()=>sharp({create:{width:760,height:920,channels:4,background:{r:31,g:
    verify(id+' Done restores five-button navigation',await nav.isVisible());
    const button=page.locator('.cc-worktable-view-button');
    await button.click();
-   await page.waitForFunction(()=>document.querySelector('.cc-worktable-view-button')?.getAttribute('aria-label')==='View front',{timeout:35000});
+   await page.waitForFunction(()=>document.querySelector('.cc-worktable-view-button')?.getAttribute('aria-label')==='View front',null,{timeout:35000});
    await button.click();
-   await page.waitForFunction(()=>document.querySelector('.cc-worktable-view-button')?.getAttribute('aria-label')==='View back',{timeout:35000});
+   await page.waitForFunction(()=>document.querySelector('.cc-worktable-view-button')?.getAttribute('aria-label')==='View back',null,{timeout:35000});
    verify(id+' front/back retains uploaded front image',await page.locator('.cc-worktable-print.has-art').count()===1);
   }catch(e){report.errors.push({id,error:e.stack||e.message})}
   finally{await browser.close()}
