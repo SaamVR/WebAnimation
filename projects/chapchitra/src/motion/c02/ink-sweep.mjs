@@ -97,8 +97,10 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  inkAssetLayer.className='c02-loader__ink-asset-layer';
  inkAssetLayer.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;display:none;';
  const inkAssetFill=doc.createElement('div');
- inkAssetFill.className='c02-loader__ink-asset-fill';
- inkAssetFill.style.cssText='position:absolute;top:0;bottom:0;left:0;background:#293D2D;width:0;';
+ inkAssetFill.className='c02-loader__ink-asset-interior';
+ inkAssetFill.style.cssText='position:absolute;top:0;left:0;width:0;height:0;'+
+  'pointer-events:none;background-image:url('+C02_INK_ASSET.interior.path+');'+
+  'background-repeat:repeat-x;background-position:right top;';
  const inkAssetImg=doc.createElement('img');
  inkAssetImg.className='c02-loader__ink-asset';
  inkAssetImg.alt='';inkAssetImg.draggable=false;
@@ -133,7 +135,11 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    const x=inkEdgeX(p,470,27)*win.innerWidth/1000;
    const placement=c02InkAssetPlacement({edgeX:x,viewportWidth:win.innerWidth,
     viewportHeight:win.innerHeight});
-   inkAssetFill.style.width=placement.solidFillWidth+'px';
+   inkAssetFill.style.width=placement.interiorFillWidth+'px';
+   inkAssetFill.style.top=placement.top+'px';
+   inkAssetFill.style.height=placement.renderHeight+'px';
+   inkAssetFill.style.backgroundSize=placement.interiorLoopWidth+'px '+
+    placement.renderHeight+'px';
    inkAssetImg.style.width=placement.renderedWidth+'px';
    inkAssetImg.style.height=placement.renderHeight+'px';
    inkAssetImg.style.left=placement.left+'px';
@@ -305,6 +311,7 @@ export function installC02PageTransitions(win=window,doc=document){
   const rollerImg=new win.Image();rollerImg.src='/assets/c02/roller-original.svg';
   // Prewarm the owner's original PNG without holding navigation for decode.
   const inkImg=new win.Image();inkImg.src=C02_INK_ASSET.path;
+  const interiorImg=new win.Image();interiorImg.src=C02_INK_ASSET.interior.path;
  }
  let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null,
   drive=null,commitTimer=0,navigationCommitted=false;
