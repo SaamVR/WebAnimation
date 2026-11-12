@@ -25,7 +25,12 @@ async function run(engine,device){
  });
  const page=await ctx.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
- const goto=async p=>{await page.goto(ORIGIN+p);await page.locator('#main').waitFor()};
+ const goto=async p=>{
+  await page.goto(ORIGIN+p);await page.locator('#main').waitFor();
+  if(!await page.evaluate(()=>matchMedia('(prefers-reduced-motion:reduce)').matches))
+   await page.waitForFunction(()=>document.documentElement.dataset.c02AssetReady==='true',
+    null,{timeout:18000});
+ };
  const clickNav=async href=>{
   if(device==='mobile'){
    await page.locator('#menuButton').click();
