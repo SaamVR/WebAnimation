@@ -105,7 +105,9 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  inkAssetImg.style.cssText='position:absolute;left:0;top:0;max-width:none;'+
   'object-fit:fill;pointer-events:none;will-change:transform;';
  inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='owner-svg';},{once:true});
- inkAssetImg.src=C02_INK_ASSET.path;
+ // An atomic single SVG embeds the inset white backing *under* the owner's
+ // unchanged green strokes; no independently decoded white rectangle.
+ inkAssetImg.src=C02_INK_ASSET.composedPath;
  const assetsReady=edgeStyle==='asset'
   ?inkAssetImg.decode().then(()=>true,()=>{overlay.dataset.assetError='decode';return false;})
   :Promise.resolve(true);
@@ -159,12 +161,14 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     :p===0?'inset(0 100% 0 0)':'none';
    if(inkAssetLayer.style.clipPath!==clip)inkAssetLayer.style.clipPath=clip;
    overlay.dataset.inkAsset='owner-vector-svg';
+   overlay.dataset.inkBacking='gallery-white-source-envelope';
    overlay.dataset.inkContactX=String(placement.contactX);
    // Retain one proof of the actual reveal surface after the overlay is
    // removed. Ultrawide screenshots can miss the 385ms reveal entirely.
    if(mode==='reveal'&&!doc.documentElement.dataset.c02RevealSurface){
     doc.documentElement.dataset.c02RevealSurface=JSON.stringify({
      source:inkAssetImg.getAttribute('src'),asset:overlay.dataset.inkAsset,
+     backing:overlay.dataset.inkBacking,
      layers:inkAssetLayer.children.length,svgHidden:svg.style.visibility==='hidden',
      progress:p,contact:placement.contactX
     });
@@ -346,7 +350,7 @@ export function installC02PageTransitions(win=window,doc=document){
   const rollerImg=new win.Image();rollerImg.src='/assets/c02/roller-original.svg';
   // Warm and decode SVG once before eligible clicks. No arbitrary buffer.
   const inkImg=new win.Image();inkImg.decoding='async';
-  inkImg.src=C02_INK_ASSET.path;
+  inkImg.src=C02_INK_ASSET.composedPath;
   inkImg.decode().then(()=>{
    inkPreloaded=true;doc.documentElement.dataset.c02AssetReady='true';
   },()=>{
