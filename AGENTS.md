@@ -17,3 +17,20 @@ This is a shared Git repository containing **independent** demos, not one couple
 - Existing Creative Motion Lab: Render static `site/` deploy via root `render.yaml`; do not edit.
 - CHAPCHITRA: own app under `projects/chapchitra/`; own Vercel project `chapchitra-motion-demo`.
 - Future CHAPCHITRA changes: feature branch → isolated tests → preview → owner approval → merge. Keep THREADS unchanged.
+
+
+## CHAPCHITRA unified staging and parallel-development rule (owner directive, 2026-11-12)
+
+**Mandatory for every existing or newly opened CHAPCHITRA development chat, coding agent, contractor, and GitHub contributor.** Read `projects/chapchitra/AGENTS.md` and `projects/chapchitra/docs/UNIFIED_STAGING_WORKFLOW.md` before making changes. The newer CHAPCHITRA staging rule supersedes the older "feature branch -> independent preview" convention where those conflict; all unrelated project boundaries above remain binding.
+
+- CHAPCHITRA is **one website with one persistent, canonical staging/review URL**. Integrate Artist's Edit and approved animation changes into the same website for owner review.
+- Two parallel feature-development lanes may operate independently: **Artist's Edit/main website** and **animations/GSAP/Lottie integration**. Separate branches/PRs and exclusive file ownership remain required.
+- Only **one serial Integration Owner** may write/merge into the shared CHAPCHITRA staging/integration branch at a time. Until formally reassigned, the Artist's Edit/main website lane coordinates integration. Other lanes submit PRs and evidence, never race to update staging.
+- The existing `deploy/chapchitra-render-review` branch is a **candidate** shared staging branch, not automatically the live source. Verify current GitHub ancestry and actual hosting configuration before switching or updating it.
+- **Update the existing CHAPCHITRA staging deployment** after integrated changes; do not create a new Render/Vercel service, permanent domain, or unrelated owner-facing review site for every correction. Temporary isolated test previews are allowed when needed, but are not substitutes for the shared staging URL.
+- Protect production: isolated tests -> integrator conflict review -> shared staging -> owner visual acceptance -> production merge/release only with explicit authorization. A staging update is not production approval.
+- Standalone **C05 individual Lottie prototypes** stay isolated until separately approved; only then may the Animation lane submit them for shared-site integration.
+- Never touch THREADS, `site/`, EcomCMS, or unrelated deployment configuration while doing CHAPCHITRA work. Changes to repository-level governance/workflows/hosting settings need explicit owner authorization and appropriate regression review.
+- Before and after every integration, report source PRs, exact commits, staging branch/head, stable review URL, tests, and blockers. Never label unverified deployments or combined features as live.
+
+**Tooling limitation:** `AGENTS.md` guides agents that read it. GitHub branch protection/required CI checks are separate repository settings; instructions alone do not mechanically prevent an unauthorized deployment or merge.
