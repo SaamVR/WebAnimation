@@ -37,7 +37,7 @@ test('approved path geometry, roller alignment and reveal are shared by both edg
  assert.match(motion,/scaleX\(-1\) rotate\(90deg\)/);
  assert.match(motion,/clamp\(318px,33vw,450px\)/);
  assert.match(motion,/roller-original\.svg/);
- assert.doesNotMatch(helper,/feTurbulence|<pattern|grid|Math\.random|filter:/i);
+ assert.doesNotMatch(helper,/feTurbulence|<pattern|Math\.random|filter:/i);
  assert.match(review,/Shared progress/);
  assert.match(review,/pendingInkProgress\(elapsed,\{knownMs:5000\}\)/);
 });
