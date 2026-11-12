@@ -1,22 +1,24 @@
 /**
  * CHAPCHITRA — illustrated price tag registration (editable presentation only).
  *
- * The uploaded 2048×1152 PNG has a mostly transparent canvas. For reliable
- * responsive scaling we preserved its pixels and trimmed transparent padding:
- * original alpha bounds x=1497..1793, y=27..153; 8px safety margin.
- * PNG here is 312×142 RGBA, unchanged color/texture/alpha.
+ * Owner's revised source: Price_tag(2).png (2048x1152 RGBA).
+ * Measured alpha bbox: (1497,28)-(1793,153) with nonzero alpha.
+ * Crop rectangle: (1489,19)-(1801,161), preserving an approved
+ * 312x142 registration and the replacement's original RGBA pixels.
+ * The word "Total" is printed on the PNG itself: NEVER overlay a title.
  *
  * Coordinates are independent 2048×1152 WORKTABLE units; do not alter garment
  * registration or printing geometry to position the tag.
  * Text percentages are local to the PNG (no price numbers rasterized).
  * Mobile x/y are pixel offsets from the centered below-stage fallback area.
  *
- * ONLY the two-line HTML typography rotates. The illustrated PNG's
- * existing position/size/rotation are approved and MUST remain unchanged.
- * The paper's upper/lower edges rise ~2.5 degrees toward the right,
- * hence the restrained -2.5 degree print angle (adjust here if needed).
- * Font sizes and gap use container-query width units (cqw), so the text
- * scales together with the tag on desktop, tablet and mobile.
+ * HTML contains ONLY the live amount. It is positioned under the
+ * already-printed "Total" and angled to follow the paper's edge.
+ * Never rotate or reposition the PNG: image layout is owner-approved.
+ * Use Georgia Bold's editorial numerals, visually closer to the owner's
+ * printed "Total", with the already-loaded Noto Serif Bengali as fallback
+ * for the Bengali taka glyph. No new external font asset is required.
+ * Amount size uses container-query width units for responsive scale.
  */
 export const WORKTABLE_PRICE_TAG=Object.freeze({
  assetPath:'/assets/worktable/price-tag/price-tag.png',
@@ -26,10 +28,14 @@ export const WORKTABLE_PRICE_TAG=Object.freeze({
  mobile:Object.freeze({x:0,y:0,width:330,displayWidth:235}),
  rotation:0,
  text:Object.freeze({
-  xPercent:63,yPercent:52,rotationDeg:-2.5,align:'center',
-  labelFontSizeCqw:5.2,amountFontSizeCqw:12.2,lineGapCqw:0.75,
-  labelLetterSpacingEm:0.12,amountLetterSpacingEm:0,
-  labelFontWeight:600,amountFontWeight:700,
-  labelLineHeight:1,amountLineHeight:1.12,
+  xPercent:58.5,yPercent:66.5,
+  rotationDeg:-2.5,
+  fontSizeCqw:15.5,
+  fontFamily:'Georgia,"Noto Serif Bengali",serif',
+  fontWeight:700,
+  widthPercent:70,
+  letterSpacingEm:-0.025,
+  lineHeight:1.1,
+  align:'center',
  }),
 });

@@ -181,25 +181,20 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    const art=document.createElement('img');art.src=settings.assetPath;art.alt='';
    art.width=settings.original.width;art.height=settings.original.height;
    art.decoding='async';art.draggable=false;
-   // Rotate BOTH printed lines together to match the existing paper tilt.
-   // The original transparent PNG remains completely untransformed.
+   // The replacement PNG already contains "Total". Only the live amount
+   // is HTML, preserving the original paper texture, label and orientation.
    const text=document.createElement('span');text.className='cc-worktable-tag-typography';
-   const label=document.createElement('span');label.className='cc-worktable-tag-label';label.textContent='TOTAL';
    const amount=document.createElement('span');amount.className='cc-worktable-tag-total';amount.textContent='৳450';
-   text.append(label,amount);
+   text.append(amount);
    text.style.left=settings.text.xPercent+'%';text.style.top=settings.text.yPercent+'%';
    text.style.setProperty('--cc-tag-type-angle',settings.text.rotationDeg+'deg');
-   text.style.setProperty('--cc-tag-label-size',settings.text.labelFontSizeCqw+'cqw');
-   text.style.setProperty('--cc-tag-amount-size',settings.text.amountFontSizeCqw+'cqw');
-   text.style.setProperty('--cc-tag-line-gap',settings.text.lineGapCqw+'cqw');
-   text.style.setProperty('--cc-tag-label-spacing',settings.text.labelLetterSpacingEm+'em');
-   text.style.setProperty('--cc-tag-amount-spacing',settings.text.amountLetterSpacingEm+'em');
-   text.style.setProperty('--cc-tag-label-weight',settings.text.labelFontWeight);
-   text.style.setProperty('--cc-tag-amount-weight',settings.text.amountFontWeight);
-   text.style.setProperty('--cc-tag-label-leading',settings.text.labelLineHeight);
-   text.style.setProperty('--cc-tag-amount-leading',settings.text.amountLineHeight);
+   text.style.setProperty('--cc-tag-amount-size',settings.text.fontSizeCqw+'cqw');
+   text.style.setProperty('--cc-tag-amount-font',settings.text.fontFamily);
+   text.style.setProperty('--cc-tag-amount-width',settings.text.widthPercent+'%');
+   text.style.setProperty('--cc-tag-amount-spacing',settings.text.letterSpacingEm+'em');
+   text.style.setProperty('--cc-tag-amount-weight',settings.text.fontWeight);
+   text.style.setProperty('--cc-tag-amount-leading',settings.text.lineHeight);
    text.style.textAlign=settings.text.align;
-   text.style.alignItems=settings.text.align==='left'?'flex-start':settings.text.align==='right'?'flex-end':'center';
    tag.style.setProperty('--cc-tag-desktop-x',settings.desktop.x/WORKTABLE_VIEWBOX.width*100+'%');
    tag.style.setProperty('--cc-tag-desktop-y',settings.desktop.y/WORKTABLE_VIEWBOX.height*100+'%');
    tag.style.setProperty('--cc-tag-desktop-w',settings.desktop.width/WORKTABLE_VIEWBOX.width*100+'%');

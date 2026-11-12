@@ -16,32 +16,35 @@ test('approved desk PNG, size, desktop/tablet/mobile placement, and outer rotati
  assert.match(css,/transform:rotate\(var\(--cc-tag-rotation\)\)/);
  assert.match(css,/pointer-events:none/);
 });
-test('TOTAL + live amount use one rotated Hind Siliguri typography group',()=>{
- assert.match(js,/label\.textContent='TOTAL'/);
- assert.match(js,/text\.append\(label,amount\)/);
+test('new PNG owns printed Total; HTML contains only one rotated dynamic amount',()=>{
+ assert.doesNotMatch(js,/label\.textContent='TOTAL'/);
+ assert.doesNotMatch(js,/cc-worktable-tag-label/);
+ assert.match(js,/text\.append\(amount\)/);
  assert.match(js,/amount\.textContent='৳450'/);
  assert.match(js,/for\(const node of tagPrices\)node\.textContent=formatArtistBDT\(amount\.total\)/);
- assert.match(css,/font-family:"Hind Siliguri",var\(--sans\)/);
- assert.doesNotMatch(css,/\.cc-worktable-tag-total\{[^}]*Georgia/s);
+ assert.match(css,/font-family:var\(--cc-tag-amount-font\)/);
+ assert.doesNotMatch(css,/\.cc-worktable-tag-label\{/);
  assert.match(css,/rotate\(var\(--cc-tag-type-angle\)\)/);
  assert.equal(c.text.rotationDeg,-2.5);
- assert.equal(c.text.labelFontWeight,600);
- assert.equal(c.text.amountFontWeight,700);
- assert.ok(c.text.amountFontSizeCqw>c.text.labelFontSizeCqw);
+ assert.equal(c.text.fontWeight,700);
+ assert.ok(c.text.fontFamily.startsWith('Georgia'),'Bold editorial numerals must use the selected serif');
+ assert.match(c.text.fontFamily,/Noto Serif Bengali/,'Taka glyph must have a Bengali-capable fallback');
+ assert.equal(c.text.xPercent,58.5);
+ assert.equal(c.text.yPercent,66.5);
+ assert.ok(c.text.fontSizeCqw>=15 && c.text.fontSizeCqw<=17);
  assert.equal(c.text.align,'center');
 });
 test('all tag typography properties are centralized and bind to CSS',()=>{
- for(const p of ['xPercent','yPercent','rotationDeg','labelFontSizeCqw','amountFontSizeCqw',
-  'lineGapCqw','labelLetterSpacingEm','amountLetterSpacingEm',
-  'labelFontWeight','amountFontWeight','labelLineHeight','amountLineHeight','align']){
+ for(const p of ['xPercent','yPercent','rotationDeg','fontSizeCqw','fontFamily',
+   'fontWeight','widthPercent','letterSpacingEm','lineHeight','align']){
   assert.ok(Object.hasOwn(c.text,p),p);
  }
- for(const v of ['--cc-tag-type-angle','--cc-tag-label-size','--cc-tag-amount-size',
-  '--cc-tag-line-gap','--cc-tag-label-spacing','--cc-tag-amount-spacing',
-  '--cc-tag-label-weight','--cc-tag-amount-weight']){
+ for(const v of ['--cc-tag-type-angle','--cc-tag-amount-size','--cc-tag-amount-font',
+   '--cc-tag-amount-width','--cc-tag-amount-spacing',
+   '--cc-tag-amount-weight','--cc-tag-amount-leading']){
   assert.ok(js.includes(v),v);
  }
- assert.match(css,/\.cc-worktable-tag-label\{/);
+ assert.doesNotMatch(css,/\.cc-worktable-tag-label\{/);
  assert.match(css,/\.cc-worktable-tag-total\{/);
  assert.match(css,/white-space:nowrap/);
  assert.match(css,/color:#293D2D/);
