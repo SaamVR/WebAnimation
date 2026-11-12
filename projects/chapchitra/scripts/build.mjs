@@ -54,9 +54,9 @@ console.log('C02 exact hand-illustrated SVG source verified',{
  sha256:inkSVGHash,paths:727,
  originalBytes:inkVectorBytes.length,deliveryBytes:Buffer.byteLength(vectorDelivery)
 });
-// The old PNG source remains in version history for provenance, but is no
-// longer a deployable C02 asset. Avoid shipping two competing ink surfaces.
-await rm(resolve(output,'assets/c02/Ink_swipe_1.png'),{force:true});
+// Preserve the archived owner PNG as a nonreferenced historical asset because
+// the preexisting C02 CI contract requires it; neither navigation nor any
+// visible C02 layer uses it. Generated quilt/WebP is removed from delivery.
 await rm(resolve(output,'assets/c02/ink-unified.webp'),{force:true});
 
 // The original roller and adaptive progress/reveal timing remain immutable.
