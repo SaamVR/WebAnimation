@@ -314,7 +314,41 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     win.clearTimeout(finishGuard);completing=null;}
   };
  }
- return {overlay,render,animate,driveAdaptive,destroy,assetsReady};
+ function fullCoverage(){
+  const viewport=c02InkVisualViewport(win),bounds=overlay.getBoundingClientRect();
+  const imageBounds=inkAssetImg.getBoundingClientRect();
+  // The SVG canvas extends beyond the actual pigment. Check the approved
+  // moving contact envelope across the full height, not just a progress
+  // number or the right-hand edge of a transparent <img> rectangle.
+  const minPigmentEdge=Math.min(...Array.from({length:33},(_,i)=>
+   inkEdgeX(1,i*1000/32,27)))*viewport.width/1000;
+  const ready=inkAssetImg.complete&&
+   inkAssetImg.naturalWidth===C02_INK_ASSET.width&&
+   inkAssetImg.naturalHeight===C02_INK_ASSET.height;
+  const frameFits=Math.abs(bounds.left-viewport.left)<2&&
+   Math.abs(bounds.top-viewport.top)<2&&
+   Math.abs(bounds.width-viewport.width)<2&&
+   Math.abs(bounds.height-viewport.height)<2;
+  const imageSpans=imageBounds.left<=bounds.left&&
+   imageBounds.top<=bounds.top&&
+   imageBounds.right>=bounds.right&&
+   imageBounds.bottom>=bounds.bottom;
+  const style=win.getComputedStyle(inkAssetLayer);
+  const complete=Number(overlay.dataset.progress)>=1&&
+   overlay.dataset.phase==='cover';
+  const covered=complete&&frameFits&&(edgeStyle==='asset'
+   ?ready&&imageSpans&&style.display==='block'&&
+    style.clipPath==='none'&&minPigmentEdge>=viewport.width+2
+   :inkPath(1,{mode:'cover'}).includes('H 1002 V 1002'));
+  const proof={covered,progress:Number(overlay.dataset.progress),
+   imageReady:ready,frameFits,imageSpans,clip:style.clipPath,
+   minPigmentEdgePx:minPigmentEdge,
+   viewport,bounds:{left:bounds.left,top:bounds.top,
+    width:bounds.width,height:bounds.height}};
+  overlay.dataset.c02FullCoverage=JSON.stringify(proof);
+  return proof;
+ }
+ return {overlay,render,animate,driveAdaptive,destroy,assetsReady,fullCoverage};
 }
 function awaitShell(win,doc){
  return new Promise(resolve=>{
