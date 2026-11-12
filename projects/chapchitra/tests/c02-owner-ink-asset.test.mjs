@@ -1,102 +1,95 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {C02_INK_ASSET,c02InkAssetPlacement,c02InkVisualViewport,
- c02InkInteriorCoverage,c02InkRevealClip} from '../src/motion/c02/ink-asset.mjs';
+import {createHash} from 'node:crypto';
+import {C02_INK_ASSET,UNIFIED_INK,c02InkAssetPlacement,
+ c02InkVisualViewport,c02InkRevealClip} from '../src/motion/c02/ink-asset.mjs';
 import {inkEdgeX} from '../src/motion/c02/ink-shapes.mjs';
-test('owner PNG is placed by its visible alpha extent at constant intrinsic aspect ratio',()=>{
+import {generateUnifiedInk} from '../scripts/c02-unified-ink.mjs';
+test('owner original PNG SHA, contact point and composite geometry are immutable',async()=>{
+ const original=await readFile(new URL('../src/assets/c02/Ink_swipe_1.png',import.meta.url));
+ assert.equal(createHash('sha256').update(original).digest('hex'),
+  '44ad9ce947981a02b161c0987bb49aad7ef29310f7e0205e1896f94a5d353336');
  assert.equal(C02_INK_ASSET.path,'/assets/c02/Ink_swipe_1.png');
- assert.equal(C02_INK_ASSET.width,2048);
- assert.equal(C02_INK_ASSET.height,1152);
  assert.equal(C02_INK_ASSET.paintedRight,1689);
  assert.equal(C02_INK_ASSET.press,'#293D2D');
- assert.equal(C02_INK_ASSET.interior.path,'/assets/c02/ink-interior-loop.webp');
- assert.equal(C02_INK_ASSET.interior.cropStart,0);
- assert.equal(C02_INK_ASSET.interior.cropWidth,1160);
- assert.equal(C02_INK_ASSET.interior.loopWidth,2320);
- for(const [width,height] of [[1920,1080],[1280,800],[834,1112],[390,844]]){
-  for(const p of [.1,.25,.38,.57,.76,.92]){
-   const x=inkEdgeX(p,470,27)*width/1000;
-   const geometry=c02InkAssetPlacement({edgeX:x,
+ assert.equal(C02_INK_ASSET.composite.path,'/assets/c02/ink-unified.webp');
+ assert.equal(C02_INK_ASSET.composite.width,8192);
+ assert.equal(C02_INK_ASSET.composite.tail,6144);
+ assert.equal(UNIFIED_INK.seed,0xC0222026);
+ assert.equal(UNIFIED_INK.tail+2048,UNIFIED_INK.width);
+ for(const [width,height] of [[390,844],[834,1112],[1280,800],
+  [1920,1080],[3440,900]]){
+  for(const p of [.01,.25,.5,.75,.95,1]){
+   const edge=inkEdgeX(p,470,27)*width/1000;
+   const place=c02InkAssetPlacement({edgeX:edge,
     viewportWidth:width,viewportHeight:height});
-   assert.ok(Math.abs(geometry.contactX-x)<1e-7,'contact stays at roller edge');
-   assert.ok(Math.abs(geometry.renderedWidth/geometry.renderHeight-2048/1152)<1e-9,
-    'aspect ratio stays exactly 2048:1152');
-   assert.equal(geometry.renderHeight,height*1.06);
-   assert.ok(geometry.interiorFillWidth<=width);
-   assert.ok(geometry.interiorFillWidth<=Math.max(0,geometry.left)+1e-7,
-    'mirrored pigment ends at exact original PNG left boundary');
-   assert.ok(Math.abs(geometry.interiorLoopWidth-2320*geometry.scale)<1e-7);
+   assert.ok(Math.abs(place.contactX-edge)<1e-7);
+   assert.ok(Math.abs(place.compositeLeft+
+    UNIFIED_INK.tail*place.scale-place.left)<1e-7);
+   assert.ok(Math.abs(place.renderedWidth/place.renderHeight-8192/1152)<1e-9);
+   assert.equal(place.renderHeight,height*1.06);
   }
  }
 });
-test('C02 cover may use original full transparent image while its reveal is unchanged',async()=>{
+test('original brush edge is byte-exact and old mirrored band never repeats',async()=>{
+ const original=await readFile(new URL('../src/assets/c02/Ink_swipe_1.png',import.meta.url));
+ const {rgba,source,webp,provenance}=await generateUnifiedInk(original);
+ assert.ok(webp.length>250000 && webp.length<2500000);
+ assert.ok(provenance.length>75);
+ assert.ok(new Set(provenance.map(v=>v.source.join(','))).size>65);
+ for(let y=0;y<1152;y++){
+  const sourceOffset=y*2048*4+UNIFIED_INK.blendToOriginal*4;
+  const destOffset=y*8192*4+(UNIFIED_INK.tail+UNIFIED_INK.blendToOriginal)*4;
+  assert.ok(rgba.subarray(destOffset,destOffset+4*(2048-UNIFIED_INK.blendToOriginal))
+   .equals(source.subarray(sourceOffset,sourceOffset+4*(2048-UNIFIED_INK.blendToOriginal))));
+ }
+ let mismatched=0,sampled=0;
+ for(let y=7;y<1152;y+=7)for(let x=10;x<3450;x+=7){
+  if(Math.abs(rgba[(y*8192+x)*4+3]-rgba[(y*8192+x+2320)*4+3])>=2)
+   mismatched++;
+  sampled++;
+ }
+ assert.ok(mismatched/sampled>.045,'reject legacy mirrored 2320px texture period');
+});
+test('runtime has one bitmap and no left-fill or CSS repeat, including reveal',async()=>{
  const runtime=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
- assert.match(runtime,/inkAssetImg\.src=C02_INK_ASSET\.path/);
- assert.match(runtime,/overlay\.append\(svg,inkAssetLayer,roller\)/);
- assert.match(runtime,/const rasterSurface=edgeStyle==='asset'/);
- assert.match(runtime,/surfaceP=mode==='reveal'\?1:p/);
- assert.match(runtime,/c02InkRevealClip\(p,viewport.width,viewport.height\)/);
- assert.doesNotMatch(runtime,/svg\.style\.visibility=pngCover/);
- assert.match(runtime,/inkAssetImg\.style\.width=placement\.renderedWidth/);
- assert.match(runtime,/inkAssetImg\.style\.height=placement\.renderHeight/);
+ const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
+ const build=await readFile(new URL('../scripts/build.mjs',import.meta.url),'utf8');
+ assert.match(runtime,/inkAssetImg\.src=C02_INK_ASSET\.composite\.path/);
+ assert.match(runtime,/inkAssetLayer\.append\(inkAssetImg\)/);
+ assert.match(runtime,/const surfaceP=mode==='reveal'\?1:p/);
+ assert.match(runtime,/c02InkRevealClip\(p,viewport\.width,viewport\.height\)/);
  assert.match(runtime,/inkAssetImg\.style\.transform='translate3d\('/);
- assert.doesNotMatch(runtime,/inkAssetImg\.style\.left=placement\.left/);
- assert.match(runtime,/inkAssetFill\.style\.width=fillWidth/);
- assert.match(runtime,/background-repeat:repeat-x;background-position:right top/);
- assert.match(runtime,/inkAssetFill\.style\.backgroundSize=placement\.interiorLoopWidth/);
- assert.doesNotMatch(runtime,/background:#293D2D;width:0/);
+ assert.match(runtime,/placement\.compositeLeft/);
+ assert.match(runtime,/roller\.style\.transform='translate3d\('/);
+ assert.match(runtime,/if\(!rasterSurface\)/);
  assert.match(runtime,/svg\.style\.visibility=rasterSurface\?'hidden':'visible'/);
  assert.match(runtime,/overlay\.animate\('reveal',C02_MOTION\.revealMs,cleanup\)/);
- assert.match(runtime,/inkEdgeX\(surfaceP,470,27\)\*viewport\.width\/1000/);
- assert.match(runtime,/scaleX\(-1\) rotate\(90deg\)/);
  assert.match(runtime,/Promise\.all\(\[awaitShell\(win,doc\),overlay\.assetsReady\]\)/);
- assert.match(runtime,/overlay\.style\.height=viewport\.height/);
- const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
- assert.match(early,/c02-asset-arrival::after/);
- assert.match(early,/background-image:url\('\/assets\/c02\/Ink_swipe_1\.png'\)/);
- assert.match(early,/ticket\.edgeStyle==='asset'/);
- assert.match(early,/rightContact-1689\*scale/);
- assert.match(early,/ink-interior-loop\.webp/);
- assert.match(early,/--c02-asset-loop-width/);
- const build=await readFile(new URL('../scripts/build.mjs',import.meta.url),'utf8');
- assert.match(build,/\.flop\(\)/);
- assert.match(build,/webp\(\{lossless:true/);
- assert.match(build,/C02 seamless original-PNG interior generated/);
+ assert.doesNotMatch(runtime,/inkAssetFill|inkAssetLayer\.append\(inkAssetFill/);
+ assert.doesNotMatch(runtime,/background-repeat:repeat-x|\.interior\.path|pngCover/);
+ assert.match(early,/background-image:url\('\/assets\/c02\/ink-unified\.webp'\)/);
+ assert.match(early,/content:none/);
+ assert.match(early,/rightContact-\(1689\+6144\)\*scale/);
+ assert.doesNotMatch(early,/ink-interior-loop\.webp|--c02-asset-fill|repeat-x/);
+ assert.match(build,/generateUnifiedInk/);
+ assert.match(build,/anti-repeat nonmatching pigment fraction/);
+ assert.doesNotMatch(build,/\.flop\(\)/);
 });
-
-test('original pigment remains one bitmap through partial/full cover and reveal',()=>{
- for(const [width,height] of [[390,844],[834,1112],[1280,800],[3440,900]]){
-  const a=c02InkAssetPlacement({edgeX:width*1.29,viewportWidth:width,
-   viewportHeight:height});
-  assert.equal(c02InkInteriorCoverage(a,width,1),width,
-   'full original-pigment coverage at p=1');
-  let prev=0;
-  for(let p=.78;p<=1.0001;p+=.02){
-   const value=c02InkInteriorCoverage(a,width,p);
-   assert.ok(value>=prev,'pigment only expands');
-   assert.ok(value<=width);
-   prev=value;
-  }
-  assert.equal(c02InkRevealClip(0,width,height),'none');
-  assert.equal(c02InkRevealClip(1,width,height),'inset(0 0 0 100%)');
-  const mid=c02InkRevealClip(.5,width,height);
-  assert.match(mid,/^polygon\(100% 0%,100% 100%,/);
-  assert.equal((mid.match(/px/g)||[]).length,9);
- }
-});
-test('iPad visual viewport offset and toolbar changes are reflected in coordinates',()=>{
+test('iPad visual viewport and clip remain relative to visible browser rectangle',()=>{
  const win={innerWidth:834,innerHeight:1112,
   visualViewport:{width:834,height:1020,offsetLeft:0,offsetTop:42}};
- assert.deepEqual(c02InkVisualViewport(win),{
-  width:834,height:1020,left:0,top:42
- });
+ assert.deepEqual(c02InkVisualViewport(win),{width:834,height:1020,left:0,top:42});
  win.visualViewport.height=925;win.visualViewport.offsetTop=70;
- assert.deepEqual(c02InkVisualViewport(win),{
-  width:834,height:925,left:0,top:70
- });
+ assert.deepEqual(c02InkVisualViewport(win),{width:834,height:925,left:0,top:70});
  win.visualViewport=null;
- assert.deepEqual(c02InkVisualViewport(win),{
-  width:834,height:1112,left:0,top:0
- });
+ assert.deepEqual(c02InkVisualViewport(win),{width:834,height:1112,left:0,top:0});
+ for(const [w,h] of [[390,844],[834,1112],[3440,900]]){
+  assert.equal(c02InkRevealClip(0,w,h),'none');
+  assert.equal(c02InkRevealClip(1,w,h),'inset(0 0 0 100%)');
+  const clip=c02InkRevealClip(.5,w,h);
+  assert.match(clip,/^polygon\(100% 0%,100% 100%,/);
+  assert.equal((clip.match(/px/g)||[]).length,9);
+ }
 });
