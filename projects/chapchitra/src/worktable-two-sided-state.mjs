@@ -3,7 +3,7 @@
  * Shared garment, size and dye remain in the existing worktable reducer.
  * Records own their object URLs until that exact side is replaced/removed.
  */
-const DEFAULT_EDITOR=()=>({x:0,y:0,adjustment:0,rotation:0,selected:false,mode:'move'});
+const DEFAULT_EDITOR=()=>({x:0,y:0,frameX:0,frameY:0,adjustment:0,rotation:0,selected:false,mode:'move'});
 const side=initialPreset=>({url:null,bitmap:null,preset:initialPreset,editor:DEFAULT_EDITOR()});
 const assertSide=(records,key)=>{
  if(!records||!Object.prototype.hasOwnProperty.call(records,key))

@@ -93,7 +93,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const sideRecords=createSideRecords(current.printSize);
  let artURL=null;
  let artBitmap=null;
- const editor={x:0,y:0,adjustment:0,rotation:0,selected:false,mode:'move'};
+ const editor={x:0,y:0,frameX:0,frameY:0,adjustment:0,rotation:0,selected:false,mode:'move'};
  let dragging=null;
  const body=document.createElement('div');
  body.className='cc-worktable is-loading is-hydrating';
@@ -348,12 +348,26 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  if(!uploadVisual)throw new Error('Illustrated upload SVG was not mounted');
  let garmentImg=addImage(ALL.garment.regular,'cc-worktable-garment');
  const tint=document.createElement('div'); tint.className='cc-worktable-tint'; stage.append(tint);
+ // One atomic stage-relative print rectangle owns BOTH its guide and clip.
+ // Independent percentage rectangles can lag by a paint frame on WebKit/
+ // Chromium reduced-motion changes. Their shared parent removes that race.
+ const printFrame=document.createElement('div');printFrame.className='cc-worktable-print-frame';
+ stage.append(printFrame);
  const guideVisual=document.createElement('div');
  guideVisual.className='cc-worktable-paper-guide';
- guideVisual.setAttribute('aria-hidden','true');stage.append(guideVisual);
+ guideVisual.setAttribute('aria-hidden','true');printFrame.append(guideVisual);
+ // Hard clipping is a secondary defense: placementGeometry constrains the
+ // complete rotated artwork before it reaches this print-area layer.
+ const printClip=document.createElement('div');printClip.className='cc-worktable-print-clip';
  const print=document.createElement('div');print.className='cc-worktable-print';
  const artImg=document.createElement('img');artImg.alt='Your uploaded artwork preview';artImg.draggable=false;
- print.append(artImg);stage.append(print);
+ print.append(artImg);printClip.append(print);printFrame.append(printClip);
+ const frameHandle=document.createElement('button');
+ frameHandle.type='button';frameHandle.className='cc-worktable-frame-handle';
+ frameHandle.setAttribute('aria-label','Move A4 print frame within safe A3 printing area');
+ frameHandle.title='Drag to reposition the A4 print frame';
+ frameHandle.textContent='↕';frameHandle.hidden=true;
+ stage.append(frameHandle);
  const artBounds=document.createElement('div');artBounds.className='cc-worktable-art-bounds';
  artBounds.setAttribute('aria-hidden','true');stage.append(artBounds);
  const cornerHandles=new Map();
@@ -481,11 +495,19 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  let placementFeedbackTimer=null,guideTimer=null,guideVisible=false,boundaryAnnounced=false;
  let lastInfo=null;
  const syncPaperGuide=()=>{
-  const paper=paperGuide(current.garment,current.printSize);
-  guideVisual.style.left=percent(paper.x,2048);guideVisual.style.top=percent(paper.y,1152);
-  guideVisual.style.width=percent(paper.width,2048);guideVisual.style.height=percent(paper.height,1152);
-  guideVisual.classList.toggle('is-visible',guideVisible||editor.selected);
+  const paper=paperGuide(current.garment,current.printSize,{
+   frameX:editor.frameX,frameY:editor.frameY,
+  });
+  if(current.printSize==='A4'){
+   editor.frameX=paper.frameX;editor.frameY=paper.frameY;
+  }
+  printFrame.style.left=percent(paper.x,2048);printFrame.style.top=percent(paper.y,1152);
+  printFrame.style.width=percent(paper.width,2048);printFrame.style.height=percent(paper.height,1152);
+  guideVisual.classList.toggle('is-visible',current.printSize==='A4'||guideVisible||editor.selected);
   guideVisual.dataset.preset=current.printSize;
+  frameHandle.hidden=current.printSize!=='A4';
+  frameHandle.style.left=percent(paper.x+paper.width,2048);
+  frameHandle.style.top=percent(paper.y,1152);
   return paper;
  };
  const revealGuide=(delay=2000)=>{
@@ -549,6 +571,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const printPosition=({feedback=false}={})=>{
   syncPaperGuide();
   if(!artBitmap){
+   lastInfo=null;
    scaleOut.textContent='0%';sizeGuidance.textContent='';sizeGuidance.hidden=true;quality.textContent='';quality.hidden=true;
    syncTransformTools(null);
    return;
@@ -558,13 +581,19 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    garment:current.garment,preset:current.printSize,
    imageWidth:artBitmap.naturalWidth,imageHeight:artBitmap.naturalHeight,
    adjustment:requested,dx:editor.x,dy:editor.y,rotation:editor.rotation,
+   frameX:editor.frameX,frameY:editor.frameY,
   });
   lastInfo=info;
   editor.adjustment=info.adjustment;editor.x=info.dx;editor.y=info.dy;editor.rotation=info.rotation;
+  if(current.printSize==='A4'){editor.frameX=info.frameX;editor.frameY=info.frameY;}
   scale.max=String(info.maxAdjustment);scale.value=String(info.adjustment);
   scaleOut.textContent=printScaleLabel(info.adjustment);
-  print.style.left=percent(info.x,2048);print.style.top=percent(info.y,1152);
-  print.style.width=percent(info.width,2048);print.style.height=percent(info.height,1152);
+  // Print lives inside a fixed, stage-registered clipping rectangle.
+  // Relative positioning is local to the selected print guide, not the desk.
+  print.style.left=percent(info.x-info.guide.x,info.guide.width);
+  print.style.top=percent(info.y-info.guide.y,info.guide.height);
+  print.style.width=percent(info.width,info.guide.width);
+  print.style.height=percent(info.height,info.guide.height);
   print.style.transform='rotate('+info.rotation+'deg)';
   print.dataset.rotation=String(info.rotation);
   print.classList.toggle('is-beyond-reference',info.exceedsReference);
@@ -581,7 +610,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   quality.classList.toggle('is-low-resolution',assessment.low);
   syncTransformTools(info);
   if(dragging&&info.constrained&&!boundaryAnnounced){
-   announce('Artwork reached the edge of the garment preview safe area.');
+   announce('Artwork reached the edge of the selected print frame.');
    boundaryAnnounced=true;
   }else if(!info.constrained)boundaryAnnounced=false;
   if(feedback&&requested>info.maxAdjustment)
@@ -851,6 +880,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    if(img.naturalWidth<1||img.naturalHeight<1||img.naturalWidth>8192||img.naturalHeight>8192)throw Error('Unsupported image dimensions');
    clearArtURL();artURL=next;artBitmap=img;
    editor.x=editor.y=0;editor.adjustment=0;editor.rotation=0;editor.selected=false;editor.mode='move';
+   // The selected A4 frame location is independent from newly uploaded artwork.
    scale.value='0';scaleOut.textContent='0%';scale.disabled=false;remove.disabled=false;reset.disabled=false;
    // Precompute the new fitted bounds before showing the new source pixels.
        paintSelection();syncPricing();artImg.style.objectFit='contain';artImg.src=artURL;revealGuide();
@@ -864,7 +894,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   printPosition({feedback:true});indicatePlacement();
  });
  reset.addEventListener('click',()=>{
-  editor.x=editor.y=0;editor.adjustment=0;editor.rotation=0;scale.value='0';
+  editor.x=editor.y=0;editor.frameX=editor.frameY=0;editor.adjustment=0;editor.rotation=0;scale.value='0';
   printPosition();indicatePlacement();announce('Artwork placement reset to 0%, centered on '+current.printSize+', rotation 0°.');
  });
  remove.addEventListener('click',()=>{
@@ -900,36 +930,96 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    revealGuide();printPosition();
   });
  }
+ // Pointer capture is attached to the actual clipped print. One finger
+ // moves artwork locally; two fingers pinch it, with the same hard bounds.
+ const artworkPointers=new Map();
  const dragStart=e=>{
   if(!artURL)return;
   e.preventDefault();
   if(!editor.selected)selectEditor('move');
-  if(editor.mode!=='move')return;
+  if(editor.mode!=='move'&&editor.mode!=='resize')return;
   const stageRect=stage.getBoundingClientRect(),factor=2048/stageRect.width;
-  dragging={type:'move',id:e.pointerId,x:e.clientX,y:e.clientY,startX:editor.x,startY:editor.y,factor};
+  artworkPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
   dragLayer.setPointerCapture(e.pointerId);
+  if(artworkPointers.size>=2){
+   const [first,second]=[...artworkPointers.values()];
+   dragging={type:'pinch',factor,distance:Math.max(1,Math.hypot(second.x-first.x,second.y-first.y)),
+    x:(first.x+second.x)/2,y:(first.y+second.y)/2,
+    startX:editor.x,startY:editor.y,startAdjustment:editor.adjustment};
+  }else{
+   dragging={type:'move',id:e.pointerId,x:e.clientX,y:e.clientY,startX:editor.x,startY:editor.y,factor};
+  }
   dragLayer.classList.add('is-dragging');indicatePlacement(true);
  };
  dragLayer.addEventListener('pointerdown',dragStart);
  dragLayer.addEventListener('click',()=>{if(artURL&&!editor.selected)selectEditor('move')});
  dragLayer.addEventListener('pointermove',e=>{
-  if(!dragging||dragging.type!=='move'||dragging.id!==e.pointerId)return;
-  editor.x=dragging.startX+(e.clientX-dragging.x)*dragging.factor;
-  editor.y=dragging.startY+(e.clientY-dragging.y)*dragging.factor;
+  if(!artworkPointers.has(e.pointerId)||!dragging)return;
+  artworkPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(dragging.type==='pinch'&&artworkPointers.size>=2){
+   const [first,second]=[...artworkPointers.values()];
+   const distance=Math.hypot(second.x-first.x,second.y-first.y);
+   const centerX=(first.x+second.x)/2,centerY=(first.y+second.y)/2;
+   editor.adjustment=Math.round((1+dragging.startAdjustment/100)*distance/dragging.distance*100-100);
+   editor.x=dragging.startX+(centerX-dragging.x)*dragging.factor;
+   editor.y=dragging.startY+(centerY-dragging.y)*dragging.factor;
+  }else if(dragging.type==='move'&&dragging.id===e.pointerId){
+   editor.x=dragging.startX+(e.clientX-dragging.x)*dragging.factor;
+   editor.y=dragging.startY+(e.clientY-dragging.y)*dragging.factor;
+  }else return;
   printPosition();
  });
  const endDrag=e=>{
-  if(!dragging||dragging.id!==e.pointerId)return;
-  if(dragging.type==='move'&&dragLayer.hasPointerCapture(e.pointerId))
-   dragLayer.releasePointerCapture(e.pointerId);
-  if(dragging.type==='resize'){
+  if(artworkPointers.has(e.pointerId)){
+   artworkPointers.delete(e.pointerId);
+   if(dragLayer.hasPointerCapture(e.pointerId))dragLayer.releasePointerCapture(e.pointerId);
+   if(artworkPointers.size===1){
+    const [id,position]=[...artworkPointers.entries()][0];
+    dragging={type:'move',id,x:position.x,y:position.y,
+     startX:editor.x,startY:editor.y,factor:2048/stage.getBoundingClientRect().width};
+   }else if(!artworkPointers.size)dragging=null;
+  }else if(dragging?.type==='resize'&&dragging.id===e.pointerId){
    const handle=cornerHandles.get(dragging.corner);
    if(handle?.hasPointerCapture(e.pointerId))handle.releasePointerCapture(e.pointerId);
+   dragging=null;
   }
-  dragging=null;dragLayer.classList.remove('is-dragging');indicatePlacement();
+  if(!dragging){dragLayer.classList.remove('is-dragging');indicatePlacement();}
  };
  dragLayer.addEventListener('pointerup',endDrag);
  dragLayer.addEventListener('pointercancel',endDrag);
+ // Frame handle is separate from the artwork's drag target, so repositioning
+ // an A4 print moves both its fixed rectangle and every pixel of its artwork.
+ frameHandle.addEventListener('pointerdown',e=>{
+  if(current.printSize!=='A4')return;
+  e.preventDefault();e.stopPropagation();
+  const factor=2048/stage.getBoundingClientRect().width;
+  dragging={type:'frame',id:e.pointerId,x:e.clientX,y:e.clientY,
+   startX:editor.frameX,startY:editor.frameY,factor};
+  frameHandle.setPointerCapture(e.pointerId);indicatePlacement(true);
+ });
+ frameHandle.addEventListener('pointermove',e=>{
+  if(dragging?.type!=='frame'||dragging.id!==e.pointerId)return;
+  editor.frameX=dragging.startX+(e.clientX-dragging.x)*dragging.factor;
+  editor.frameY=dragging.startY+(e.clientY-dragging.y)*dragging.factor;
+  printPosition();
+ });
+ const endFrame=e=>{
+  if(dragging?.type!=='frame'||dragging.id!==e.pointerId)return;
+  if(frameHandle.hasPointerCapture(e.pointerId))frameHandle.releasePointerCapture(e.pointerId);
+  dragging=null;indicatePlacement();
+ };
+ frameHandle.addEventListener('pointerup',endFrame);
+ frameHandle.addEventListener('pointercancel',endFrame);
+ frameHandle.addEventListener('keydown',e=>{
+  if(current.printSize!=='A4')return;
+  const delta=e.shiftKey?14:4;
+  const dx={ArrowLeft:-delta,ArrowRight:delta}[e.key];
+  const dy={ArrowUp:-delta,ArrowDown:delta}[e.key];
+  if(dx===undefined&&dy===undefined)return;
+  e.preventDefault();
+  editor.frameX+=dx||0;editor.frameY+=dy||0;
+  printPosition();indicatePlacement();
+ });
  dragLayer.addEventListener('keydown',e=>{
   if(!artURL)return;
   if(e.key==='Enter'||e.key===' '){e.preventDefault();selectEditor('move');return;}

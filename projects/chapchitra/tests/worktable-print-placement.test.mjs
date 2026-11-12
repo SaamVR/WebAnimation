@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PAPER_REFERENCES,MIN_ADJUSTMENT,MAX_ADJUSTMENT,
- placementGeometry,printableRegion,printScaleLabel,resolutionGuidance}
+ placementGeometry,paperGuide,printableRegion,printScaleLabel,resolutionGuidance}
  from '../src/worktable-print-placement.mjs';
 const garments=['regular','dropShoulder','fullSleeve','hoodie'];
 const aspects=[[800,1200,'portrait'],[1200,800,'landscape'],[800,800,'square'],[500,1400,'extra-tall']];
@@ -19,7 +19,8 @@ test('portrait A3 area twice A4 in all four garments',()=>{
   assert.ok(near(a3.width/a4.width,Math.SQRT2,.005),garment);
   assert.ok(near(a3.height/a4.height,Math.SQRT2,.005),garment);
   assert.ok(near((a3.width*a3.height)/(a4.width*a4.height),2,.02),garment);
-  assert.ok(a3.y>a3.region.y&&a3.y<a3.region.y+a3.region.height*.14);
+  assert.ok(near(a3.guide.x,a3.region.x)&&near(a3.guide.y,a3.region.y));
+  assert.ok(near(a3.guide.width,a3.region.width)&&near(a3.guide.height,a3.region.height));
  }
 });
 test('different source image ratios fit entirely inside reference, without clipping',()=>{
@@ -52,10 +53,10 @@ test('dragging from below collar reaches all edges without going off garment',()
   const lower=placementGeometry({...base,dy:9999});
   const left=placementGeometry({...base,dx:-9999});
   const right=placementGeometry({...base,dx:9999});
-  assert.ok(lower.y>home.y+40,garment);
-  assert.ok(near(lower.y+lower.height,lower.region.y+lower.region.height));
-  assert.ok(near(left.x,left.region.x));
-  assert.ok(near(right.x+right.width,right.region.x+right.region.width));
+  assert.ok(lower.y>home.y+20,garment);
+  assert.ok(near(lower.bounds.y+lower.bounds.height,lower.guide.y+lower.guide.height));
+  assert.ok(near(left.bounds.x,left.guide.x));
+  assert.ok(near(right.bounds.x+right.bounds.width,right.guide.x+right.guide.width));
  }
 });
 test('switching presets and garments retains intent and clamps to safe area',()=>{
@@ -85,4 +86,71 @@ test('unknown garments, presets and zero-sized images fail',()=>{
  assert.throws(()=>placementGeometry({garment:'hoodie',preset:'A2',imageWidth:100,imageHeight:200}),RangeError);
  assert.throws(()=>placementGeometry({imageWidth:0,imageHeight:200}),RangeError);
  assert.throws(()=>placementGeometry({imageWidth:NaN,imageHeight:200}),RangeError);
+});
+
+test('A3 is the exact fixed calibration — no enlarged garment envelope',()=>{
+ for(const garment of garments){
+  const a3=paperGuide(garment,'A3');
+  const safe=printableRegion(garment);
+  for(const key of ['x','y','width','height'])assert.ok(near(a3[key],safe[key]),garment+' '+key);
+  const forced=paperGuide(garment,'A3',{frameX:9999,frameY:-9999});
+  for(const key of ['x','y','width','height'])assert.ok(near(forced[key],safe[key]));
+ }
+});
+test('A4 keeps A-series 1:2 area, fixed dimensions and can move to ALL four A3 corners',()=>{
+ for(const garment of garments){
+  const safe=printableRegion(garment);
+  const home=paperGuide(garment,'A4');
+  assert.ok(near(home.width*home.height*2,safe.width*safe.height,.02));
+  for(const [sx,sy] of [[-1,-1],[-1,1],[1,-1],[1,1]]){
+   const a4=paperGuide(garment,'A4',{frameX:sx*1e5,frameY:sy*1e5});
+   assert.ok(near(a4.width,home.width)&&near(a4.height,home.height),garment);
+   assert.ok(near(a4.x,sx<0?safe.x:safe.x+safe.width-a4.width),garment);
+   assert.ok(near(a4.y,sy<0?safe.y:safe.y+safe.height-a4.height),garment);
+  }
+ }
+});
+test('rotated, enlarged and extreme-offset artwork stays inside selected A3/A4',()=>{
+ for(const garment of garments)for(const preset of ['A3','A4'])
+  for(const [w,h] of [[800,1200],[1200,800],[300,300],[500,1400]]){
+   for(const rotation of [0,90,180,270]){
+    for(const adjustment of [-50,0,25,80,100]){
+     for(const [dx,dy] of [[0,0],[-9999,-9999],[9999,9999],[-9999,9999],[9999,-9999]]){
+      const p=placementGeometry({garment,preset,imageWidth:w,imageHeight:h,rotation,
+       adjustment,dx,dy,frameX:9999,frameY:-9999});
+      const g=p.guide;
+      assert.ok(p.bounds.x>=g.x-1e-6,JSON.stringify({garment,preset,rotation,p,reason:'left'}));
+      assert.ok(p.bounds.y>=g.y-1e-6,JSON.stringify({garment,preset,rotation,p,reason:'top'}));
+      assert.ok(p.bounds.x+p.bounds.width<=g.x+g.width+1e-6,JSON.stringify({garment,preset,rotation,p,reason:'right'}));
+      assert.ok(p.bounds.y+p.bounds.height<=g.y+g.height+1e-6,JSON.stringify({garment,preset,rotation,p,reason:'bottom'}));
+      assert.ok(near(p.width/p.height,w/h,1e-7),'source aspect must be preserved');
+      assert.ok(p.maxAdjustment>=0&&p.adjustment<=p.maxAdjustment);
+     }
+    }
+   }
+  }
+});
+test('A4 frame translation carries local artwork offset without changing scale or rotation',()=>{
+ for(const garment of garments){
+  const args={garment,preset:'A4',imageWidth:960,imageHeight:1440,dx:12,dy:18,adjustment:10,rotation:90};
+  const original=placementGeometry(args);
+  const moved=placementGeometry({...args,frameX:35,frameY:-22});
+  const marginX=moved.guide.frameX,marginY=moved.guide.frameY;
+  assert.ok(near(moved.bounds.x-original.bounds.x,marginX),garment);
+  assert.ok(near(moved.bounds.y-original.bounds.y,marginY),garment);
+  assert.ok(near(moved.width,original.width));
+  assert.ok(near(moved.height,original.height));
+  assert.equal(moved.rotation,90);
+ }
+});
+test('different front/back A4 frame offsets can be retained independently',async()=>{
+ const {createSideRecords,storeSide,loadSide}=await import('../src/worktable-two-sided-state.mjs');
+ const sides=createSideRecords();
+ const front={x:1,y:2,frameX:36,frameY:-18,adjustment:12,rotation:90,selected:true,mode:'move'};
+ const back={x:0,y:0,frameX:-36,frameY:18,adjustment:-20,rotation:0,selected:false,mode:'move'};
+ storeSide(sides,'front',{url:'blob:front',bitmap:{naturalWidth:800,naturalHeight:1200},preset:'A4',editor:front});
+ storeSide(sides,'back',{url:'blob:back',bitmap:{naturalWidth:900,naturalHeight:1200},preset:'A3',editor:back});
+ assert.deepEqual(loadSide(sides,'front').editor,front);
+ assert.deepEqual(loadSide(sides,'back').editor,back);
+ assert.equal(loadSide(sides,'back').preset,'A3');
 });
