@@ -98,7 +98,9 @@ async function step(page,device,delay){
  if(device==='ultrawide'&&delay>=5000)
   record(device,'5s extended unique pigment coverage',texturedInterior,
    {delay,texturedInterior});
- await page.waitForURL(u=>u.pathname==='/c02-review/slow/',{timeout:18000});
+ await page.waitForURL(u=>u.pathname==='/c02-review/slow/',{
+  waitUntil:'domcontentloaded',timeout:18000
+ });
  // The 385ms reveal must use the SAME pigment surface as full cover.
  // Inspect the actual incoming document rather than source-only assertions.
  if(delay>=5000){
