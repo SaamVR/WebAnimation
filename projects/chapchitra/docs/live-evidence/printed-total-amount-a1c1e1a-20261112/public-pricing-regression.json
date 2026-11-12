@@ -1,0 +1,256 @@
+{
+  "base": "https://chapchitra-artist-tag-final-review.onrender.com",
+  "checks": [
+    {
+      "name": "desktop price below wooden stage",
+      "pass": true
+    },
+    {
+      "name": "desktop no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳650",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳750",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "desktop correct breakdown",
+      "pass": true,
+      "detail": "Price invoice\nFull Sleeve\n৳650\nFront print · A4\n৳100\nBack print · A3\n৳200\nTotal\n৳950"
+    },
+    {
+      "name": "desktop invoice always visible",
+      "pass": true
+    },
+    {
+      "name": "desktop both tag totals match invoice",
+      "pass": true
+    },
+    {
+      "name": "desktop storage without image bytes",
+      "pass": true
+    },
+    {
+      "name": "desktop bag dimensions and price",
+      "pass": true,
+      "detail": "ARTIST’S EDIT\nFull Sleeve · Custom print\n\nSize XL · green fabric\n\n৳950 · Placeholder estimate\n\nCustomization details\n\nGarment: ৳650\n\nFront: A4 (210 × 297 mm) · ৳100\n\nBack: A3 (297 × 420 mm) · ৳200\n\nFront artwork: yes · Back artwork: yes\n\nPlacement (front): x 0, y 0, size 0%, rotation 0°\n\nPlacement (back): x 0, y 0, size 0%, rotation 0°\n\nRemove customization"
+    },
+    {
+      "name": "desktop removal",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit price below wooden stage",
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳650",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳750",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit correct breakdown",
+      "pass": true,
+      "detail": "Price invoice\nFull Sleeve\n৳650\nFront print · A4\n৳100\nBack print · A3\n৳200\nTotal\n৳950"
+    },
+    {
+      "name": "ipad-webkit invoice always visible",
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit both tag totals match invoice",
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit storage without image bytes",
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit bag dimensions and price",
+      "pass": true,
+      "detail": "ARTIST’S EDIT\nFull Sleeve · Custom print\n\nSize XL · green fabric\n\n৳950 · Placeholder estimate\n\nCustomization details\n\nGarment: ৳650\n\nFront: A4 (210 × 297 mm) · ৳100\n\nBack: A3 (297 × 420 mm) · ৳200\n\nFront artwork: yes · Back artwork: yes\n\nPlacement (front): x 0, y 0, size 0%, rotation 0°\n\nPlacement (back): x 0, y 0, size 0%, rotation 0°\n\nRemove customization"
+    },
+    {
+      "name": "ipad-webkit removal",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "mobile price below wooden stage",
+      "pass": true
+    },
+    {
+      "name": "mobile no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳650",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳750",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "Total ৳950",
+      "pass": true
+    },
+    {
+      "name": "mobile correct breakdown",
+      "pass": true,
+      "detail": "Price invoice\nFull Sleeve\n৳650\nFront print · A4\n৳100\nBack print · A3\n৳200\nTotal\n৳950"
+    },
+    {
+      "name": "mobile invoice always visible",
+      "pass": true
+    },
+    {
+      "name": "mobile both tag totals match invoice",
+      "pass": true
+    },
+    {
+      "name": "mobile storage without image bytes",
+      "pass": true
+    },
+    {
+      "name": "mobile bag dimensions and price",
+      "pass": true,
+      "detail": "ARTIST’S EDIT\nFull Sleeve · Custom print\n\nSize XL · green fabric\n\n৳950 · Placeholder estimate\n\nCustomization details\n\nGarment: ৳650\n\nFront: A4 (210 × 297 mm) · ৳100\n\nBack: A3 (297 × 420 mm) · ৳200\n\nFront artwork: yes · Back artwork: yes\n\nPlacement (front): x 0, y 0, size 0%, rotation 0°\n\nPlacement (back): x 0, y 0, size 0%, rotation 0°\n\nRemove customization"
+    },
+    {
+      "name": "mobile removal",
+      "pass": true
+    },
+    {
+      "name": "Total ৳550",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    },
+    {
+      "name": "Total ৳450",
+      "pass": true
+    }
+  ],
+  "passed": 60,
+  "failed": 0,
+  "errors": [],
+  "http": [],
+  "physicalIPad": "NOT TESTED"
+}

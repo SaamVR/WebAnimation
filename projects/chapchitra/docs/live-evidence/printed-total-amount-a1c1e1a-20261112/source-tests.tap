@@ -1,0 +1,1030 @@
+TAP version 13
+# Subtest: Artist Edit alone opts out of sticky header with static normal flow
+ok 1 - Artist Edit alone opts out of sticky header with static normal flow
+  ---
+  duration_ms: 3.0695
+  type: 'test'
+  ...
+# Subtest: Every other page still inherits existing sticky CSS
+ok 2 - Every other page still inherits existing sticky CSS
+  ---
+  duration_ms: 0.9267
+  type: 'test'
+  ...
+# Subtest: Artist preloaded responsive scene image candidates all exist as approved built assets
+ok 3 - Artist preloaded responsive scene image candidates all exist as approved built assets
+  ---
+  duration_ms: 4.8947
+  type: 'test'
+  ...
+# Subtest: the four approved original Lottie JSON files are byte-for-byte preserved
+ok 4 - the four approved original Lottie JSON files are byte-for-byte preserved
+  ---
+  duration_ms: 150.9377
+  type: 'test'
+  ...
+# Subtest: full-fidelity delivery V2 has original embedded PNG asset, never optimized candidate or V1
+ok 5 - full-fidelity delivery V2 has original embedded PNG asset, never optimized candidate or V1
+  ---
+  duration_ms: 65.0695
+  type: 'test'
+  ...
+# Subtest: owner-approved four single-line feature labels supersede old two-line copy
+ok 6 - owner-approved four single-line feature labels supersede old two-line copy
+  ---
+  duration_ms: 24.7072
+  type: 'test'
+  ...
+# Subtest: V3 synchronized single clock and connector starts/ends are preserved
+ok 7 - V3 synchronized single clock and connector starts/ends are preserved
+  ---
+  duration_ms: 5.5986
+  type: 'test'
+  ...
+# Subtest: self-hosted Lottie JS is licensed and posters support static reduced motion
+ok 8 - self-hosted Lottie JS is licensed and posters support static reduced motion
+  ---
+  duration_ms: 13.3708
+  type: 'test'
+  ...
+# Subtest: C01 wide layout uses the site gutters and preserves mobile/resize registration
+ok 9 - C01 wide layout uses the site gutters and preserves mobile/resize registration
+  ---
+  duration_ms: 4.6326
+  type: 'test'
+  ...
+# Subtest: future icon guide circles match inactive connector strokes without changing V3 activation
+ok 10 - future icon guide circles match inactive connector strokes without changing V3 activation
+  ---
+  duration_ms: 10.9486
+  type: 'test'
+  ...
+# Subtest: C08 original green patch plus two-color wordmark fallback retain audited bytes and dimensions without native CI codecs
+ok 11 - C08 original green patch plus two-color wordmark fallback retain audited bytes and dimensions without native CI codecs
+  ---
+  duration_ms: 82.375
+  type: 'test'
+  ...
+# Subtest: C08 dark-surface brand uses versioned asset URLs while light-background navbar retains original source
+ok 12 - C08 dark-surface brand uses versioned asset URLs while light-background navbar retains original source
+  ---
+  duration_ms: 21.3608
+  type: 'test'
+  ...
+# Subtest: C08 build code cannot recolor the original patch or silently retime Lottie
+ok 13 - C08 build code cannot recolor the original patch or silently retime Lottie
+  ---
+  duration_ms: 36.6965
+  type: 'test'
+  ...
+# Subtest: approved C08 master, original Lottie JSON and dotLottie archive are preserved byte-for-byte
+ok 14 - approved C08 master, original Lottie JSON and dotLottie archive are preserved byte-for-byte
+  ---
+  duration_ms: 22.4147
+  type: 'test'
+  ...
+# Subtest: approved C08 source has 240 frames at 60fps, exact 6 vector layers and zero raster assets
+ok 15 - approved C08 source has 240 frames at 60fps, exact 6 vector layers and zero raster assets
+  ---
+  duration_ms: 7.2945
+  type: 'test'
+  ...
+# Subtest: dark-surface C08 animation uses only Cream and Terracotta while preserving complete source choreography
+ok 16 - dark-surface C08 animation uses only Cream and Terracotta while preserving complete source choreography
+  ---
+  duration_ms: 55.5371
+  type: 'test'
+  ...
+# Subtest: dark-surface derived SVG has the same original vector path geometry and exactly two ink swatches
+ok 17 - dark-surface derived SVG has the same original vector path geometry and exactly two ink swatches
+  ---
+  duration_ms: 4.9449
+  type: 'test'
+  ...
+# Subtest: original full hero lockup and navbar raster remain the immediate static fallbacks
+ok 18 - original full hero lockup and navbar raster remain the immediate static fallbacks
+  ---
+  duration_ms: 3.556
+  type: 'test'
+  ...
+# Subtest: C08 hero keeps initial slider hold; navbar never automatically starts
+ok 19 - C08 hero keeps initial slider hold; navbar never automatically starts
+  ---
+  duration_ms: 4.5415
+  type: 'test'
+  ...
+# Subtest: C08 uses scoped placement, reduced motion and leaves footer static
+ok 20 - C08 uses scoped placement, reduced motion and leaves footer static
+  ---
+  duration_ms: 3.721
+  type: 'test'
+  ...
+# Subtest: global C08 navbar resolves from versioned Artist Edit release without changing the editor
+ok 21 - global C08 navbar resolves from versioned Artist Edit release without changing the editor
+  ---
+  duration_ms: 10.3224
+  type: 'test'
+  ...
+# Subtest: COMPACT approved Illustrator SVG is byte exact and has independent face/shadow
+ok 22 - COMPACT approved Illustrator SVG is byte exact and has independent face/shadow
+  ---
+  duration_ms: 29.7096
+  type: 'test'
+  ...
+# Subtest: COMPACT three approved variants change only original SVG paint declarations
+ok 23 - COMPACT three approved variants change only original SVG paint declarations
+  ---
+  duration_ms: 22.4451
+  type: 'test'
+  ...
+# Subtest: Compact uses original SVG source and semantic HTML labels
+ok 24 - Compact uses original SVG source and semantic HTML labels
+  ---
+  duration_ms: 2.481
+  type: 'test'
+  ...
+# Subtest: Compact inline forms remain unchanged while Long buttons use source SVG
+ok 25 - Compact inline forms remain unchanged while Long buttons use source SVG
+  ---
+  duration_ms: 0.8494
+  type: 'test'
+  ...
+# Subtest: COMPACT CSS and runtime keep stationary shadow, exact organic ink clip, independent face and reduced motion
+ok 26 - COMPACT CSS and runtime keep stationary shadow, exact organic ink clip, independent face and reduced motion
+  ---
+  duration_ms: 23.1906
+  type: 'test'
+  ...
+# Subtest: COMPACT website and isolated preview load one lightweight compact controller
+ok 27 - COMPACT website and isolated preview load one lightweight compact controller
+  ---
+  duration_ms: 8.6433
+  type: 'test'
+  ...
+# Subtest: LONG approved RAR source survives exactly and four-class palettes are paint-only
+ok 28 - LONG approved RAR source survives exactly and four-class palettes are paint-only
+  ---
+  duration_ms: 44.3232
+  type: 'test'
+  ...
+# Subtest: LONG generated SVGs self-host at exact byte-equal build destinations
+ok 29 - LONG generated SVGs self-host at exact byte-equal build destinations
+  ---
+  duration_ms: 42.2335
+  type: 'test'
+  ...
+# Subtest: Long markup uses original SVG with accessible HTML labels and native actions
+ok 30 - Long markup uses original SVG with accessible HTML labels and native actions
+  ---
+  duration_ms: 1.6095
+  type: 'test'
+  ...
+# Subtest: LONG editorial variants are intentionally assigned; product add remains Press Green
+ok 31 - LONG editorial variants are intentionally assigned; product add remains Press Green
+  ---
+  duration_ms: 5.764
+  type: 'test'
+  ...
+# Subtest: Long overlay clips exact source silhouette, two swipe colors and independent fixed shadow
+ok 32 - Long overlay clips exact source silhouette, two swipe colors and independent fixed shadow
+  ---
+  duration_ms: 6.213
+  type: 'test'
+  ...
+# Subtest: COMPACT source and runtime stay untouched by the dedicated LONG renderer
+ok 33 - COMPACT source and runtime stay untouched by the dedicated LONG renderer
+  ---
+  duration_ms: 20.1506
+  type: 'test'
+  ...
+# Subtest: all twelve distinct route entrypoints exist
+ok 34 - all twelve distinct route entrypoints exist
+  ---
+  duration_ms: 58.1848
+  type: 'test'
+  ...
+# Subtest: eleven homepage units and functional UX controller contracts
+ok 35 - eleven homepage units and functional UX controller contracts
+  ---
+  duration_ms: 3.8676
+  type: 'test'
+  ...
+# Subtest: catalogue pagination, price integrity and overlapping categories
+ok 36 - catalogue pagination, price integrity and overlapping categories
+  ---
+  duration_ms: 1.0987
+  type: 'test'
+  ...
+# Subtest: static street has distinct future SVG motion slots
+ok 37 - static street has distinct future SVG motion slots
+  ---
+  duration_ms: 6.8281
+  type: 'test'
+  ...
+# Subtest: provisional graphite palette, responsive breakpoints and C01-C04 isolation
+ok 38 - provisional graphite palette, responsive breakpoints and C01-C04 isolation
+  ---
+  duration_ms: 4.7093
+  type: 'test'
+  ...
+# Subtest: favorite state bootstraps before product detail rendering
+ok 39 - favorite state bootstraps before product detail rendering
+  ---
+  duration_ms: 7.5312
+  type: 'test'
+  ...
+# Subtest: Featured Prints uses stable five-card presentation with independent accessible UI timing
+ok 40 - Featured Prints uses stable five-card presentation with independent accessible UI timing
+  ---
+  duration_ms: 9.8523
+  type: 'test'
+  ...
+# Subtest: surgical refinements keep approved header, category/collection and C01-C04 alone
+ok 41 - surgical refinements keep approved header, category/collection and C01-C04 alone
+  ---
+  duration_ms: 8.035
+  type: 'test'
+  ...
+# Subtest: authoritative twelve brand colors have one canonical root and semantic aliases
+ok 42 - authoritative twelve brand colors have one canonical root and semantic aliases
+  ---
+  duration_ms: 14.7495
+  type: 'test'
+  ...
+# Subtest: text and button contrast remain readable; minor Mushroom Gray is not small copy
+ok 43 - text and button contrast remain readable; minor Mushroom Gray is not small copy
+  ---
+  duration_ms: 3.6631
+  type: 'test'
+  ...
+# Subtest: supporting-page UI uses palette roles without recoloring product previews
+ok 44 - supporting-page UI uses palette roles without recoloring product previews
+  ---
+  duration_ms: 8.3561
+  type: 'test'
+  ...
+# Subtest: exact homepage section and individual card background mapping is maintained
+ok 45 - exact homepage section and individual card background mapping is maintained
+  ---
+  duration_ms: 4.4404
+  type: 'test'
+  ...
+# Subtest: product hover and Add to Cart use one shared card component and retain motion boundaries
+ok 46 - product hover and Add to Cart use one shared card component and retain motion boundaries
+  ---
+  duration_ms: 4.8436
+  type: 'test'
+  ...
+# Subtest: session-only demo bag is not a real order flow
+ok 47 - session-only demo bag is not a real order flow
+  ---
+  duration_ms: 2.125
+  type: 'test'
+  ...
+# Subtest: approved tilt and legacy 14px baseline are preserved under the new Polaroid caption
+ok 48 - approved tilt and legacy 14px baseline are preserved under the new Polaroid caption
+  ---
+  duration_ms: 4.3429
+  type: 'test'
+  ...
+# Subtest: Add to Cart has progressive left-to-right charcoal overlay and accessible motion fallback
+ok 49 - Add to Cart has progressive left-to-right charcoal overlay and accessible motion fallback
+  ---
+  duration_ms: 5.9776
+  type: 'test'
+  ...
+# Subtest: clean pill variants and color combinations use two solid matching layers
+ok 50 - clean pill variants and color combinations use two solid matching layers
+  ---
+  duration_ms: 6.2975
+  type: 'test'
+  ...
+# Subtest: true capsule geometry and directional fill preserve accessibility
+ok 51 - true capsule geometry and directional fill preserve accessibility
+  ---
+  duration_ms: 12.8179
+  type: 'test'
+  ...
+# Subtest: compact sketch actions retain native submit semantics and working filter selectors
+ok 52 - compact sketch actions retain native submit semantics and working filter selectors
+  ---
+  duration_ms: 9.4451
+  type: 'test'
+  ...
+# Subtest: integrated pill labels remain centered, single-line and inherit variant contrast
+ok 53 - integrated pill labels remain centered, single-line and inherit variant contrast
+  ---
+  duration_ms: 14.6866
+  type: 'test'
+  ...
+# Subtest: polaroid cards are one reusable paper-photo retail component in every listing
+ok 54 - polaroid cards are one reusable paper-photo retail component in every listing
+  ---
+  duration_ms: 7.1924
+  type: 'test'
+  ...
+# Subtest: polaroid card styles leave approved hover, Shop grid, pill and session cart alone
+ok 55 - polaroid card styles leave approved hover, Shop grid, pill and session cart alone
+  ---
+  duration_ms: 3.9572
+  type: 'test'
+  ...
+# Subtest: photo tone wins over legacy homepage and even-card backgrounds on all listings
+ok 56 - photo tone wins over legacy homepage and even-card backgrounds on all listings
+  ---
+  duration_ms: 2.9756
+  type: 'test'
+  ...
+# Subtest: owner-approved Polaroid compactness and external stationary CTA have independent motion
+ok 57 - owner-approved Polaroid compactness and external stationary CTA have independent motion
+  ---
+  duration_ms: 5.6028
+  type: 'test'
+  ...
+# Subtest: graphite shadow defaults and reusable dark-context contrasts preserve pill geometry
+ok 58 - graphite shadow defaults and reusable dark-context contrasts preserve pill geometry
+  ---
+  duration_ms: 4.7656
+  type: 'test'
+  ...
+# Subtest: single gently imperfect SVG perimeter has responsive geometry and no decorative marks
+ok 59 - single gently imperfect SVG perimeter has responsive geometry and no decorative marks
+  ---
+  duration_ms: 8.4415
+  type: 'test'
+  ...
+# Subtest: single SVG frame border and solid rounded shadow preserve CTA isolation
+ok 60 - single SVG frame border and solid rounded shadow preserve CTA isolation
+  ---
+  duration_ms: 7.3493
+  type: 'test'
+  ...
+# Subtest: Polaroid outline stays one variable-width SVG shape, with a light-gray frame shadow
+ok 61 - Polaroid outline stays one variable-width SVG shape, with a light-gray frame shadow
+  ---
+  duration_ms: 7.0629
+  type: 'test'
+  ...
+# Subtest: Hero 1 Terracotta and both banner CTAs reuse approved pill without changing destinations
+ok 62 - Hero 1 Terracotta and both banner CTAs reuse approved pill without changing destinations
+  ---
+  duration_ms: 6.2007
+  type: 'test'
+  ...
+# Subtest: authoritative SVG dry-brush tiles have high-frequency alpha paint deposits and voids
+ok 63 - authoritative SVG dry-brush tiles have high-frequency alpha paint deposits and voids
+  ---
+  duration_ms: 4.4616
+  type: 'test'
+  ...
+# Subtest: banner four-edge and Featured top/bottom alpha masks are on unmasked background layers only
+ok 64 - banner four-edge and Featured top/bottom alpha masks are on unmasked background layers only
+  ---
+  duration_ms: 4.0678
+  type: 'test'
+  ...
+# Subtest: sticky header, retone, and viewport carousel overrides stay localized
+ok 65 - sticky header, retone, and viewport carousel overrides stay localized
+  ---
+  duration_ms: 7.1859
+  type: 'test'
+  ...
+# Subtest: Featured has straight full-bleed sides and zero vertical edge strips
+ok 66 - Featured has straight full-bleed sides and zero vertical edge strips
+  ---
+  duration_ms: 8.9451
+  type: 'test'
+  ...
+# Subtest: native sticky uses announcement normal flow and never patches navbar position
+ok 67 - native sticky uses announcement normal flow and never patches navbar position
+  ---
+  duration_ms: 8.1955
+  type: 'test'
+  ...
+# Subtest: Safari viewport offsets remain diagnostic-only, not navbar corrections
+ok 68 - Safari viewport offsets remain diagnostic-only, not navbar corrections
+  ---
+  duration_ms: 26.7895
+  type: 'test'
+  ...
+# Subtest: opt-in physical iPad report distinguishes DOM gap from Safari browser chrome
+ok 69 - opt-in physical iPad report distinguishes DOM gap from Safari browser chrome
+  ---
+  duration_ms: 57.4104
+  type: 'test'
+  ...
+# Subtest: CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only
+ok 70 - CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only
+  ---
+  duration_ms: 19.357
+  type: 'test'
+  ...
+# Subtest: authentic cropped final logo used in navbar, Hero 1, footer and favicon
+ok 71 - authentic cropped final logo used in navbar, Hero 1, footer and favicon
+  ---
+  duration_ms: 21.4954
+  type: 'test'
+  ...
+# Subtest: all final logo binaries are real optimized image files with expected magic bytes
+ok 72 - all final logo binaries are real optimized image files with expected magic bytes
+  ---
+  duration_ms: 54.427
+  type: 'test'
+  ...
+# Subtest: owner-rejected visible Polaroid border stays hidden without removing shadow or tilt
+ok 73 - owner-rejected visible Polaroid border stays hidden without removing shadow or tilt
+  ---
+  duration_ms: 2.3769
+  type: 'test'
+  ...
+# Subtest: Shop retains its static banner and adds Price between existing Category, Size and Color
+ok 74 - Shop retains its static banner and adds Price between existing Category, Size and Color
+  ---
+  duration_ms: 4.745
+  type: 'test'
+  ...
+# Subtest: Shop size/color filters map only verified metadata and persist multi-selection
+ok 75 - Shop size/color filters map only verified metadata and persist multi-selection
+  ---
+  duration_ms: 3.6594
+  type: 'test'
+  ...
+# Subtest: Price sorting is numeric, gated on verified prices, and happens before pagination
+ok 76 - Price sorting is numeric, gated on verified prices, and happens before pagination
+  ---
+  duration_ms: 6.9244
+  type: 'test'
+  ...
+# Subtest: homepage and non-Shop sections retain their existing nav routes and assets
+ok 77 - homepage and non-Shop sections retain their existing nav routes and assets
+  ---
+  duration_ms: 4.1905
+  type: 'test'
+  ...
+# Subtest: all six colors use one in-memory canvas surface for any garment without 24 on-disk variants
+ok 78 - all six colors use one in-memory canvas surface for any garment without 24 on-disk variants
+  ---
+  duration_ms: 21.9056
+  type: 'test'
+  ...
+# Subtest: never expose white garment when another color is selected
+ok 79 - never expose white garment when another color is selected
+  ---
+  duration_ms: 2.3292
+  type: 'test'
+  ...
+# Subtest: selected glow after pointer exit is exactly the hover-style glow with original lift
+ok 80 - selected glow after pointer exit is exactly the hover-style glow with original lift
+  ---
+  duration_ms: 1.2347
+  type: 'test'
+  ...
+# Subtest: approved Upload Artwork vector implementation and motion CSS are unchanged
+ok 81 - approved Upload Artwork vector implementation and motion CSS are unchanged
+  ---
+  duration_ms: 10.4067
+  type: 'test'
+  ...
+# Subtest: uses authoritative CHAPCHITRA tokens and both approved typography families
+ok 82 - uses authoritative CHAPCHITRA tokens and both approved typography families
+  ---
+  duration_ms: 3.7612
+  type: 'test'
+  ...
+# Subtest: manual panel is editorial hierarchy, retains accessible native fieldsets and all 17 choices
+ok 83 - manual panel is editorial hierarchy, retains accessible native fieldsets and all 17 choices
+  ---
+  duration_ms: 1.2112
+  type: 'test'
+  ...
+# Subtest: six new visual swatches derive from calibrated FABRIC pigments without modifying illustrated pots
+ok 84 - six new visual swatches derive from calibrated FABRIC pigments without modifying illustrated pots
+  ---
+  duration_ms: 0.668
+  type: 'test'
+  ...
+# Subtest: panel and worktable share reducer and update semantics, with no separate control state
+ok 85 - panel and worktable share reducer and update semantics, with no separate control state
+  ---
+  duration_ms: 0.8081
+  type: 'test'
+  ...
+# Subtest: native artwork-management handlers and production disclaimer remain intact
+ok 86 - native artwork-management handlers and production disclaimer remain intact
+  ---
+  duration_ms: 0.7584
+  type: 'test'
+  ...
+# Subtest: four/two/one responsive columns, >=44px controls and visible focus styles are defined
+ok 87 - four/two/one responsive columns, >=44px controls and visible focus styles are defined
+  ---
+  duration_ms: 0.6512
+  type: 'test'
+  ...
+# Subtest: approved renderer, focus and upload SVG implementation references remain in place
+ok 88 - approved renderer, focus and upload SVG implementation references remain in place
+  ---
+  duration_ms: 0.5324
+  type: 'test'
+  ...
+# Subtest: independently calibrated profiles do not modify original six illustrated paint-pot swatches
+ok 89 - independently calibrated profiles do not modify original six illustrated paint-pot swatches
+  ---
+  duration_ms: 60.1711
+  type: 'test'
+  ...
+# Subtest: 24 combinations match the calibrated fabric midtone despite different garment neutral whites
+ok 90 - 24 combinations match the calibrated fabric midtone despite different garment neutral whites
+  ---
+  duration_ms: 4.4096
+  type: 'test'
+  ...
+# Subtest: black is deep neutral fabric with preserved folds and subdued non-gray highlights
+ok 91 - black is deep neutral fabric with preserved folds and subdued non-gray highlights
+  ---
+  duration_ms: 2.6527
+  type: 'test'
+  ...
+# Subtest: red is rich saturated red, never pale pink or muddy-neutral maroon
+ok 92 - red is rich saturated red, never pale pink or muddy-neutral maroon
+  ---
+  duration_ms: 1.0411
+  type: 'test'
+  ...
+# Subtest: yellow, blue and green are pigmented, nonclipped and show natural highlights/folds
+ok 93 - yellow, blue and green are pigmented, nonclipped and show natural highlights/folds
+  ---
+  duration_ms: 3.9552
+  type: 'test'
+  ...
+# Subtest: all 24 combinations preserve source alpha exactly, including antialiased boundaries
+ok 94 - all 24 combinations preserve source alpha exactly, including antialiased boundaries
+  ---
+  duration_ms: 2.9485
+  type: 'test'
+  ...
+# Subtest: white garment remains byte-for-byte source original for all four shapes
+ok 95 - white garment remains byte-for-byte source original for all four shapes
+  ---
+  duration_ms: 0.5401
+  type: 'test'
+  ...
+# Subtest: all garment pigment curves preserve monotonic CIE-lightness depth across folds
+ok 96 - all garment pigment curves preserve monotonic CIE-lightness depth across folds
+  ---
+  duration_ms: 1.9743
+  type: 'test'
+  ...
+# Subtest: unknown pigment/garment or misaligned pixels fail without tinting the source
+ok 97 - unknown pigment/garment or misaligned pixels fail without tinting the source
+  ---
+  duration_ms: 1.8063
+  type: 'test'
+  ...
+# Subtest: original owner artwork remains immutable while trimmed browser variants are independently traceable
+ok 98 - original owner artwork remains immutable while trimmed browser variants are independently traceable
+  ---
+  duration_ms: 31.791
+  type: 'test'
+  ...
+# Subtest: every required interactive control uses original full-canvas overlay and exact alpha box
+ok 99 - every required interactive control uses original full-canvas overlay and exact alpha box
+  ---
+  duration_ms: 5.0339
+  type: 'test'
+  ...
+# Subtest: alpha-trimmed layers use shared stage coordinates and never intercept click targets
+ok 100 - alpha-trimmed layers use shared stage coordinates and never intercept click targets
+  ---
+  duration_ms: 4.3957
+  type: 'test'
+  ...
+# Subtest: local upload stays local, restricts MIME and size, revokes object URLs, supports pointer and keyboard
+ok 101 - local upload stays local, restricts MIME and size, revokes object URLs, supports pointer and keyboard
+  ---
+  duration_ms: 3.0796
+  type: 'test'
+  ...
+# Subtest: upload notebook and accessible mobile upload action remain available
+ok 102 - upload notebook and accessible mobile upload action remain available
+  ---
+  duration_ms: 4.5926
+  type: 'test'
+  ...
+# Subtest: print size preview is conservatively limited until production masks/specs arrive
+ok 103 - print size preview is conservatively limited until production masks/specs arrive
+  ---
+  duration_ms: 8.5083
+  type: 'test'
+  ...
+# Subtest: manifest is validated without stale-cache reuse and never silently falls back to old configurator
+ok 104 - manifest is validated without stale-cache reuse and never silently falls back to old configurator
+  ---
+  duration_ms: 9.1553
+  type: 'test'
+  ...
+# Subtest: complete compiled first frame reveals before independent bounded decoded layers
+ok 105 - complete compiled first frame reveals before independent bounded decoded layers
+  ---
+  duration_ms: 7.0343
+  type: 'test'
+  ...
+# Subtest: all 43 optimized runtime assets preserve source SHA, original position and three transparent WebP sizes
+ok 106 - all 43 optimized runtime assets preserve source SHA, original position and three transparent WebP sizes
+  ---
+  duration_ms: 446.7456
+  type: 'test'
+  ...
+# Subtest: assembled initial scene is made only from source runtime layers, not reference compositions
+ok 107 - assembled initial scene is made only from source runtime layers, not reference compositions
+  ---
+  duration_ms: 33.1307
+  type: 'test'
+  ...
+# Subtest: master archive is verified but never shipped as original 4K PNGs
+ok 108 - master archive is verified but never shipped as original 4K PNGs
+  ---
+  duration_ms: 6.076
+  type: 'test'
+  ...
+# Subtest: atomic renderer keeps previous complete garment visible during candidate decoding
+ok 109 - atomic renderer keeps previous complete garment visible during candidate decoding
+  ---
+  duration_ms: 6.8584
+  type: 'test'
+  ...
+# Subtest: four complete previews offer all responsive widths and safe deferred switching
+ok 110 - four complete previews offer all responsive widths and safe deferred switching
+  ---
+  duration_ms: 47.7308
+  type: 'test'
+  ...
+# Subtest: worktable critical image is preloaded and manifest is reused once
+ok 111 - worktable critical image is preloaded and manifest is reused once
+  ---
+  duration_ms: 5.6807
+  type: 'test'
+  ...
+# Subtest: release build stages immutable versioned JavaScript manifest and review URL
+ok 112 - release build stages immutable versioned JavaScript manifest and review URL
+  ---
+  duration_ms: 7.271
+  type: 'test'
+  ...
+# Subtest: physical stage buttons render silhouette shadows without rectangular hitbox outlines
+ok 113 - physical stage buttons render silhouette shadows without rectangular hitbox outlines
+  ---
+  duration_ms: 3.9648
+  type: 'test'
+  ...
+# Subtest: paint pot front panel remains in front and reduced motion disables transforms
+ok 114 - paint pot front panel remains in front and reduced motion disables transforms
+  ---
+  duration_ms: 5.6029
+  type: 'test'
+  ...
+# Subtest: tag always uses same calculator result and has independent stage registration
+ok 115 - tag always uses same calculator result and has independent stage registration
+  ---
+  duration_ms: 4.0851
+  type: 'test'
+  ...
+# Subtest: itemized invoice is permanent with no collapsible pricing control
+ok 116 - itemized invoice is permanent with no collapsible pricing control
+  ---
+  duration_ms: 0.5066
+  type: 'test'
+  ...
+# Subtest: Artist page keeps a compact semantic heading and no visible build metadata
+ok 117 - Artist page keeps a compact semantic heading and no visible build metadata
+  ---
+  duration_ms: 2.2733
+  type: 'test'
+  ...
+# Subtest: simplified controls retain keyboard-compatible tools and Print tips
+ok 118 - simplified controls retain keyboard-compatible tools and Print tips
+  ---
+  duration_ms: 0.5478
+  type: 'test'
+  ...
+# Subtest: revised owner-supplied tag trim keeps the approved image registration
+ok 119 - revised owner-supplied tag trim keeps the approved image registration
+  ---
+  duration_ms: 3.5742
+  type: 'test'
+  ...
+# Subtest: approved desk PNG, size, desktop/tablet/mobile placement, and outer rotation are unchanged
+ok 120 - approved desk PNG, size, desktop/tablet/mobile placement, and outer rotation are unchanged
+  ---
+  duration_ms: 5.1783
+  type: 'test'
+  ...
+# Subtest: new PNG owns printed Total; HTML contains only one rotated dynamic amount
+ok 121 - new PNG owns printed Total; HTML contains only one rotated dynamic amount
+  ---
+  duration_ms: 1.2693
+  type: 'test'
+  ...
+# Subtest: all tag typography properties are centralized and bind to CSS
+ok 122 - all tag typography properties are centralized and bind to CSS
+  ---
+  duration_ms: 0.7238
+  type: 'test'
+  ...
+# Subtest: invoice is unchanged and permanent
+ok 123 - invoice is unchanged and permanent
+  ---
+  duration_ms: 0.5892
+  type: 'test'
+  ...
+# Subtest: all four garment baseline values and provisional BDT config
+ok 124 - all four garment baseline values and provisional BDT config
+  ---
+  duration_ms: 3.6374
+  type: 'test'
+  ...
+# Subtest: five owner examples calculate exactly
+ok 125 - five owner examples calculate exactly
+  ---
+  duration_ms: 74.3336
+  type: 'test'
+  ...
+# Subtest: no artwork is free even when chosen print-size is A3; independent side charging
+ok 126 - no artwork is free even when chosen print-size is A3; independent side charging
+  ---
+  duration_ms: 0.5634
+  type: 'test'
+  ...
+# Subtest: four garments ├ù all sides ├ù both paper sizes, color and garment size are price-neutral
+ok 127 - four garments ├ù all sides ├ù both paper sizes, color and garment size are price-neutral
+  ---
+  duration_ms: 1.1905
+  type: 'test'
+  ...
+# Subtest: print dimensions and edit settings accompany demo-bag metadata (no uploaded bytes)
+ok 128 - print dimensions and edit settings accompany demo-bag metadata (no uploaded bytes)
+  ---
+  duration_ms: 2.961
+  type: 'test'
+  ...
+# Subtest: session bag parsing ignores stored client totals, recalculates, rejects malformed items
+ok 129 - session bag parsing ignores stored client totals, recalculates, rejects malformed items
+  ---
+  duration_ms: 2.2071
+  type: 'test'
+  ...
+# Subtest: invalid presets, garments, sizes, colors and falsified presence are rejected
+ok 130 - invalid presets, garments, sizes, colors and falsified presence are rejected
+  ---
+  duration_ms: 1.7508
+  type: 'test'
+  ...
+# Subtest: A3/A4 visual reference sizes and signed slider bounds
+ok 131 - A3/A4 visual reference sizes and signed slider bounds
+  ---
+  duration_ms: 13.3445
+  type: 'test'
+  ...
+# Subtest: portrait A3 area twice A4 in all four garments
+ok 132 - portrait A3 area twice A4 in all four garments
+  ---
+  duration_ms: 5.1239
+  type: 'test'
+  ...
+# Subtest: different source image ratios fit entirely inside reference, without clipping
+ok 133 - different source image ratios fit entirely inside reference, without clipping
+  ---
+  duration_ms: 2.0551
+  type: 'test'
+  ...
+# Subtest: all signed slider values are constrained to the safe garment bounds
+ok 134 - all signed slider values are constrained to the safe garment bounds
+  ---
+  duration_ms: 9.1099
+  type: 'test'
+  ...
+# Subtest: dragging from below collar reaches all edges without going off garment
+ok 135 - dragging from below collar reaches all edges without going off garment
+  ---
+  duration_ms: 0.7343
+  type: 'test'
+  ...
+# Subtest: switching presets and garments retains intent and clamps to safe area
+ok 136 - switching presets and garments retains intent and clamps to safe area
+  ---
+  duration_ms: 0.8053
+  type: 'test'
+  ...
+# Subtest: signed labels and relative 300 PPI guidance
+ok 137 - signed labels and relative 300 PPI guidance
+  ---
+  duration_ms: 1.1838
+  type: 'test'
+  ...
+# Subtest: unknown garments, presets and zero-sized images fail
+ok 138 - unknown garments, presets and zero-sized images fail
+  ---
+  duration_ms: 1.8695
+  type: 'test'
+  ...
+# Subtest: nominal print guide is fixed for image aspect, rotation, scale and offsets
+ok 139 - nominal print guide is fixed for image aspect, rotation, scale and offsets
+  ---
+  duration_ms: 7.6549
+  type: 'test'
+  ...
+# Subtest: A3 has ~double A4 visual area across all garments
+ok 140 - A3 has ~double A4 visual area across all garments
+  ---
+  duration_ms: 2.4358
+  type: 'test'
+  ...
+# Subtest: 0% auto-fits all aspect ratios inside paper, centered without cropping
+ok 141 - 0% auto-fits all aspect ratios inside paper, centered without cropping
+  ---
+  duration_ms: 1.0282
+  type: 'test'
+  ...
+# Subtest: four clockwise rotations preserve center and wrap at 360
+ok 142 - four clockwise rotations preserve center and wrap at 360
+  ---
+  duration_ms: 1.3789
+  type: 'test'
+  ...
+# Subtest: signed resizing respects safe region even when rotated and positioned at edge
+ok 143 - signed resizing respects safe region even when rotated and positioned at edge
+  ---
+  duration_ms: 4.3036
+  type: 'test'
+  ...
+# Subtest: marked Regular Tee A4/A3 screenshots calibrate relative visual areas and shared upper anchor
+ok 144 - marked Regular Tee A4/A3 screenshots calibrate relative visual areas and shared upper anchor
+  ---
+  duration_ms: 0.756
+  type: 'test'
+  ...
+# Subtest: Regular Tee back uses measured visible source silhouette, not low-alpha debris
+ok 145 - Regular Tee back uses measured visible source silhouette, not low-alpha debris
+  ---
+  duration_ms: 5.2948
+  type: 'test'
+  ...
+# Subtest: visible front and back collars, centers and hems match without nonuniform stretching
+ok 146 - visible front and back collars, centers and hems match without nonuniform stretching
+  ---
+  duration_ms: 1.6403
+  type: 'test'
+  ...
+# Subtest: Only Regular Tee variant registration is revised; other three remain original
+ok 147 - Only Regular Tee variant registration is revised; other three remain original
+  ---
+  duration_ms: 0.7394
+  type: 'test'
+  ...
+# Subtest: persistent selected highlight matches existing selected+hover visual filter
+ok 148 - persistent selected highlight matches existing selected+hover visual filter
+  ---
+  duration_ms: 3.3147
+  type: 'test'
+  ...
+# Subtest: resting artwork and ALL approved hover/selected-hover remain unchanged
+ok 149 - resting artwork and ALL approved hover/selected-hover remain unchanged
+  ---
+  duration_ms: 0.6495
+  type: 'test'
+  ...
+# Subtest: all four approved group lifts and paint-tray occlusion remain exactly unchanged
+ok 150 - all four approved group lifts and paint-tray occlusion remain exactly unchanged
+  ---
+  duration_ms: 0.5146
+  type: 'test'
+  ...
+# Subtest: approved nonselected illustrated hover choreography is unchanged
+ok 151 - approved nonselected illustrated hover choreography is unchanged
+  ---
+  duration_ms: 2.3847
+  type: 'test'
+  ...
+# Subtest: persistent selection has per-group elevation; selected hover never falls to resting hover
+ok 152 - persistent selection has per-group elevation; selected hover never falls to resting hover
+  ---
+  duration_ms: 0.6414
+  type: 'test'
+  ...
+# Subtest: upload target alone has 3px hover and no persistent selected state
+ok 153 - upload target alone has 3px hover and no persistent selected state
+  ---
+  duration_ms: 0.4507
+  type: 'test'
+  ...
+# Subtest: paint pot front panel and reduced motion are unchanged
+ok 154 - paint pot front panel and reduced motion are unchanged
+  ---
+  duration_ms: 0.5573
+  type: 'test'
+  ...
+# Subtest: 2048x1152 stage exactly maps four 4000x2250 originals without cropping
+ok 155 - 2048x1152 stage exactly maps four 4000x2250 originals without cropping
+  ---
+  duration_ms: 6.4245
+  type: 'test'
+  ...
+# Subtest: four garment positions and preliminary chest guides remain separate variants
+ok 156 - four garment positions and preliminary chest guides remain separate variants
+  ---
+  duration_ms: 1.0993
+  type: 'test'
+  ...
+# Subtest: every required worktable item has one independently addressable layer
+ok 157 - every required worktable item has one independently addressable layer
+  ---
+  duration_ms: 1.3367
+  type: 'test'
+  ...
+# Subtest: variant resolution keeps garment below three painters without activating missing artwork
+ok 158 - variant resolution keeps garment below three painters without activating missing artwork
+  ---
+  duration_ms: 2.2842
+  type: 'test'
+  ...
+# Subtest: single letterbox geometry supports both desktop and portrait tablet/mobile
+ok 159 - single letterbox geometry supports both desktop and portrait tablet/mobile
+  ---
+  duration_ms: 1.0354
+  type: 'test'
+  ...
+# Subtest: local-only reducer validates four selection groups and forbids fake uploads
+ok 160 - local-only reducer validates four selection groups and forbids fake uploads
+  ---
+  duration_ms: 1.1301
+  type: 'test'
+  ...
+# Subtest: Artist route opens directly on the approved worktable without stale planner controls
+ok 161 - Artist route opens directly on the approved worktable without stale planner controls
+  ---
+  duration_ms: 43.9253
+  type: 'test'
+  ...
+# Subtest: front and back artwork objects, locations and A3/A4 choices remain independent
+ok 162 - front and back artwork objects, locations and A3/A4 choices remain independent
+  ---
+  duration_ms: 7.7058
+  type: 'test'
+  ...
+# Subtest: reset/remove applies to only one side and does not revoke opposite bitmap
+ok 163 - reset/remove applies to only one side and does not revoke opposite bitmap
+  ---
+  duration_ms: 1.8387
+  type: 'test'
+  ...
+# Subtest: page disposal revokes both surviving URLs once
+ok 164 - page disposal revokes both surviving URLs once
+  ---
+  duration_ms: 1.2232
+  type: 'test'
+  ...
+# Subtest: invalid side and print format fail closed
+ok 165 - invalid side and print format fail closed
+  ---
+  duration_ms: 1.6102
+  type: 'test'
+  ...
+# Subtest: user-supplied original SVG is preserved byte-for-byte in source, with real named groups and 512 viewBox
+ok 166 - user-supplied original SVG is preserved byte-for-byte in source, with real named groups and 512 viewBox
+  ---
+  duration_ms: 57.8173
+  type: 'test'
+  ...
+# Subtest: only the old raster upload button is omitted from compiled scene, never notebook or original archive
+ok 167 - only the old raster upload button is omitted from compiled scene, never notebook or original archive
+  ---
+  duration_ms: 7.3313
+  type: 'test'
+  ...
+# Subtest: inline vector replaces only the original upload image element while hit area and handling stay unchanged
+ok 168 - inline vector replaces only the original upload image element while hit area and handling stay unchanged
+  ---
+  duration_ms: 3.6411
+  type: 'test'
+  ...
+# Subtest: idle motion is slow, offscreen-aware, reduced-motion aware, circle-only inversion and no rectangular glow
+ok 169 - idle motion is slow, offscreen-aware, reduced-motion aware, circle-only inversion and no rectangular glow
+  ---
+  duration_ms: 4.6102
+  type: 'test'
+  ...
+# Subtest: Front/Back rotation button is a true worktable-stage overlay, never a cream footer
+ok 170 - Front/Back rotation button is a true worktable-stage overlay, never a cream footer
+  ---
+  duration_ms: 3.2225
+  type: 'test'
+  ...
+1..170
+# tests 170
+# suites 0
+# pass 170
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3384.1464
