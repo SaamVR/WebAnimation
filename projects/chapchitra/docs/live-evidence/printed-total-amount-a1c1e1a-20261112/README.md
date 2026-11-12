@@ -33,7 +33,7 @@ These parameters remain adjustable in `projects/chapchitra/src/worktable-price-t
 - [Unmodified pricing and demo-bag browser regression](public-pricing-regression.json): **60 / 60 PASS**, 0 JS errors, 0 failed HTTP requests.
 - [Unmodified two-sided editor browser regression](public-front-back-regression.json): **54 / 54 PASS**, 0 JS errors, 0 failed HTTP requests.
 - [Navbar browser regression](public-navbar-regression.json): **90 / 90 PASS**, preserving the Artist's Edit normal-flow navbar and other pages' sticky behavior.
-- [Local Node unit test report](source-tests.tap): **170 / 170 PASS** on the initial price-tag replacement candidate `92ddd34c`. The subsequent calibrated implementation `a1c1e1a` modified only typography configuration and its matching assertions; the deployed Render build from this exact final SHA is **LIVE**.
+- [Local Node unit test report](source-tests.tap): **170 / 170 PASS** on the initial replacement candidate `92ddd34c`. **Additionally, the isolated Render build logs explicitly confirm `ℹ tests 170`, `ℹ pass 170`, `ℹ fail 0` on the exact final deployed source SHA `a1c1e1ab40f9b85838864cac8889f3d80131add8`; the full build completed and the deployment is LIVE.**
 - [Reproducible public browser QA source](public-browser-qa.cjs).
 
 **Remaining hardware gate:** No real iPadOS/iPad device was tested. Owner visual acceptance is still required.
