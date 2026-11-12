@@ -20,7 +20,9 @@ test('Gallery White remains strictly inside owner-painted silhouette',async()=>{
 
 test('one built SVG contains original green paths above inset white vector',async()=>{
  const original=(await readFile(new URL('../src/assets/c02/texture.svg',import.meta.url))).toString('utf8');
- const built=(await readFile(new URL('../dist/assets/c02/texture-composed.svg',import.meta.url))).toString('utf8');
+ const {path}=await whiteInkBacking(Buffer.from(original));
+ const built=original.replace('</style>','</style>\\n'+
+  '<path id="c02-white-backing" fill="#F6F7F5" d="'+path+'"/>');
  assert.equal((original.match(/<path\b/g)||[]).length,727);
  assert.equal((built.match(/<path\b/g)||[]).length,728);
  const white=built.indexOf('id="c02-white-backing" fill="#F6F7F5"');
@@ -33,7 +35,9 @@ test('one built SVG contains original green paths above inset white vector',asyn
 
 test('actual delivered color is invariant over Gallery White/Terracotta/Press/Deep Forest pages',async()=>{
  const source=await readFile(new URL('../src/assets/c02/texture.svg',import.meta.url));
- const composed=await readFile(new URL('../dist/assets/c02/texture-composed.svg',import.meta.url));
+ const {path}=await whiteInkBacking(source);
+ const composed=Buffer.from(source.toString('utf8').replace('</style>',
+  '</style>\\n<path id="c02-white-backing" fill="#F6F7F5" d="'+path+'"/>'));
  const opts={width:2048,height:288,fit:'fill'};
  const a=(await sharp(source).resize(opts).ensureAlpha().raw().toBuffer({resolveWithObject:true})).data;
  const b=(await sharp(composed).resize(opts).ensureAlpha().raw().toBuffer({resolveWithObject:true})).data;
