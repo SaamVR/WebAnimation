@@ -302,12 +302,12 @@ def page_layer(which,idx):
        'ks':{'o':kf([(f,page_op(f,*PAGE_TIMES[which])) for f in range(END+1)],linear=True),
              'r':static(0),'p':static([0,0,0]),'a':static([0,0,0]),'s':static([100,100,100])},
        'ao':0,'shapes':[{'ty':'gr','nm':'Curled right-side sheet','it':items}],
-       'ip':0,'op':END,'st':0,'bm':0}
+       'ip':0,'op':END+1,'st':0,'bm':0}
 
 def vector_layer(name,grp,idx,tee=False):
     ks={'o':static(100),'r':static(0),'p':static([0,0,0]),'a':static([0,0,0]),'s':static([100,100,100])}
     lay={'ddd':0,'ind':idx,'ty':4,'nm':name,'sr':1,'ks':ks,'ao':0,
-         'shapes':extract_group(grp),'ip':0,'op':END,'st':0,'bm':0}
+         'shapes':extract_group(grp),'ip':0,'op':END+1,'st':0,'bm':0}
     if tee:
         pp=[(f,[*shirt(f)[0],0]) for f in range(END+1)]
         sc=[(f,[shirt(f)[1],shirt(f)[1],100]) for f in range(END+1)]
@@ -326,7 +326,7 @@ LAYERS=[vector_layer('Tshirt / emergence from left-side printed illustration',TE
         vector_layer('Book_Base / ORIGINAL STATIONARY',fgroup('Book_Base'),7),
         vector_layer('Icon_circle / ORIGINAL STATIONARY',fgroup('Icon_circle'),8)]
 
-DATA={'v':'5.9.6','fr':FPS,'ip':0,'op':END,'w':512,'h':512,
+DATA={'v':'5.9.6','fr':FPS,'ip':0,'op':END+1,'w':512,'h':512,
       'nm':'CHAPCHITRA C05 Icon 01 / Stories You Can Wear / Right Page V3',
       'ddd':0,'assets':[],'layers':LAYERS,'markers':[],
       'meta':{'generator':'CHAPCHITRA C05 independent native vector shape pipeline',

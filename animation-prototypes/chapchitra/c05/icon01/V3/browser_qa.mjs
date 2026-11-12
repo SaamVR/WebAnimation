@@ -1,5 +1,6 @@
 import { chromium, webkit } from 'playwright';
 import assert from 'node:assert/strict';
+import { PNG } from 'pngjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -24,7 +25,13 @@ for (const [browserName, browserType] of [['chromium', chromium], ['webkit', web
       await page.evaluate(f => window.__c05V3.seek(f), frame);
       await page.waitForTimeout(100);
       if ([0, 78, 150].includes(frame)) {
-        await page.locator('#animated').screenshot({ path: path.join(output, `${browserName}-${viewportName}-${frame}.png`) });
+        const pngBytes = await page.locator('#animated').screenshot({ path: path.join(output, `${browserName}-${viewportName}-${frame}.png`) });
+        if (frame === 150) {
+          const image = PNG.sync.read(pngBytes);
+          const ix = (Math.floor(image.height/2) * image.width + Math.floor(image.width/2)) * 4;
+          assert.ok(image.data[ix] < 150 && image.data[ix+1] < 150,
+            `${browserName} ${viewportName} blank final frame: ${Array.from(image.data.slice(ix,ix+3))}`);
+        }
       }
     }
     assert.equal(errors.length, 0, `${browserName} ${viewportName}: ${errors.join('; ')}`);
