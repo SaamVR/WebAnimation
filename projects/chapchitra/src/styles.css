@@ -2095,19 +2095,13 @@ html,body{overflow-x:visible}
   .shop-color-dot{width:28px;height:28px}
 }
 
-/* Artist's Edit opens directly onto the illustrated printmaking studio. */
-.route-head--artist-edit{
- min-height:72px;padding:10px 0 11px;border-bottom:0;
- display:flex;align-items:center;
-}
-.route-head--artist-edit h1{
- margin:0;color:var(--color-press-green);
- font:normal clamp(25px,2.15vw,34px)/1.1 var(--serif);
- letter-spacing:-.045em;
-}
-@media(max-width:600px){
- .route-head--artist-edit{min-height:56px;padding:8px 0}
- .route-head--artist-edit h1{font-size:26px}
+/* The existing site navigation flows directly into the Artist's Edit
+   worktable mount. The async mount wrapper is structural, not a spacer. */
+body[data-page="artists-edit"] #main,
+body[data-page="artists-edit"] #main > .cc-worktable-mount{
+ margin:0;
+ padding:0;
+ border:0;
 }
 
 /* Artist's Edit: normal document-flow navigation, deliberately not sticky.
