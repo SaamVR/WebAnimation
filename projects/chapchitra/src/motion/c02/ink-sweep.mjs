@@ -5,6 +5,7 @@ import {C02_PAGES,C02_PATHS,C02_MOTION,INK_PALETTE,isC02Eligible,
 import {C02_ADAPTIVE,pendingInkProgress,finishDuration,
  finishInkProgress,getReviewDelayMs} from './adaptive-progress.mjs';
 import {gritEdgePaths} from './grit-edge.mjs';
+import {C02_INK_ASSET,c02InkAssetPlacement} from './ink-asset.mjs';
 export {C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible};
 const KEY='chapchitra-c02-arrival-v2',TTL=45000,FAILSAFE_MS=26000;
 const NS='http://www.w3.org/2000/svg';
@@ -38,14 +39,14 @@ function ticketFor(win){
   return t?.to===win.location.pathname+win.location.search&&age>=0&&age<TTL?t:null;
  }catch{return null}
 }
-function storeTicket(win,url,{progress=0,startedAt=Date.now(),demoMs=0,edgeStyle='grit'}={}){
+function storeTicket(win,url,{progress=0,startedAt=Date.now(),demoMs=0,edgeStyle='asset'}={}){
  try{win.sessionStorage.setItem(KEY,JSON.stringify({
   to:url.pathname+url.search,created:Date.now(),
   progress:Math.max(0,Math.min(.985,progress)),startedAt,demoMs,edgeStyle
  }))}catch{}
 }
 function clearTicket(win){try{win.sessionStorage.removeItem(KEY)}catch{}}
-function makeOverlay(doc,win,edgeStyle='grit'){
+function makeOverlay(doc,win,edgeStyle='asset'){
  doc.getElementById('c02-loader')?.remove();
  if(!doc.getElementById('c02-style')){
   const s=doc.createElement('style');s.id='c02-style';s.textContent=CSS;doc.head.append(s);
@@ -91,13 +92,29 @@ function makeOverlay(doc,win,edgeStyle='grit'){
  deposits.setAttribute('fill',INK_PALETTE.press);
  svg.append(deposits);
  const outline=path(INK_PALETTE.terra,true);
+ // Actual full transparent PNG, with uniform scale and true alpha holes.
+ const inkAssetLayer=doc.createElement('div');
+ inkAssetLayer.className='c02-loader__ink-asset-layer';
+ inkAssetLayer.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;display:none;';
+ const inkAssetFill=doc.createElement('div');
+ inkAssetFill.className='c02-loader__ink-asset-fill';
+ inkAssetFill.style.cssText='position:absolute;top:0;bottom:0;left:0;background:#293D2D;width:0;';
+ const inkAssetImg=doc.createElement('img');
+ inkAssetImg.className='c02-loader__ink-asset';
+ inkAssetImg.src=C02_INK_ASSET.path;
+ inkAssetImg.alt='';inkAssetImg.draggable=false;
+ inkAssetImg.decoding='async';inkAssetImg.loading='eager';
+ inkAssetImg.style.cssText='position:absolute;max-width:none;object-fit:fill;pointer-events:none;';
+ let pngFailed=false;
+ inkAssetImg.addEventListener('error',()=>{pngFailed=true;},{once:true});
+ inkAssetLayer.append(inkAssetFill,inkAssetImg);
  const roller=doc.createElement('div');roller.className='c02-loader__roller';
  roller.setAttribute('aria-hidden','true');
  const img=doc.createElement('img');img.src='/assets/c02/roller-original.svg';
  img.alt='';img.draggable=false;img.decoding='async';img.loading='eager';
  img.setAttribute('fetchpriority','high');
  img.addEventListener('error',()=>{roller.hidden=true},{once:true});
- roller.append(img);overlay.append(svg,roller);doc.body.append(overlay);
+ roller.append(img);overlay.append(svg,inkAssetLayer,roller);doc.body.append(overlay);
  let stopAnimation=null;
  function render(progress,mode='cover'){
   const p=Math.min(1,Math.max(0,progress));
@@ -105,6 +122,23 @@ function makeOverlay(doc,win,edgeStyle='grit'){
   overlay.dataset.progress=String(p); // QA-readable contact alignment, not user UI
   forest.setAttribute('d',inkPath(p,{mode,offset:27}));
   ink.setAttribute('d',inkPath(p,{mode}));
+  const pngCover=edgeStyle==='asset'&&mode==='cover'&&p>0&&p<1&&!pngFailed;
+  inkAssetLayer.style.display=pngCover?'block':'none';
+  svg.style.visibility=pngCover?'hidden':'visible';
+  if(pngCover){
+   const x=inkEdgeX(p,470,27)*win.innerWidth/1000;
+   const placement=c02InkAssetPlacement({edgeX:x,viewportWidth:win.innerWidth,
+    viewportHeight:win.innerHeight});
+   inkAssetFill.style.width=placement.solidFillWidth+'px';
+   inkAssetImg.style.width=placement.renderedWidth+'px';
+   inkAssetImg.style.height=placement.renderHeight+'px';
+   inkAssetImg.style.left=placement.left+'px';
+   inkAssetImg.style.top=placement.top+'px';
+   overlay.dataset.inkAsset='original-png';
+   overlay.dataset.inkContactX=String(placement.contactX);
+  }else{
+   overlay.dataset.inkAsset=edgeStyle==='asset'?'png-fallback':'procedural';
+  }
   const isFull=(mode==='cover'&&p===1)||(mode==='reveal'&&p===0);
   const isEmpty=(mode==='cover'&&p===0)||(mode==='reveal'&&p===1);
   outline.setAttribute('d',isFull||isEmpty?'':inkEdgePath(p));
@@ -301,9 +335,10 @@ export function installC02PageTransitions(win=window,doc=document){
  }
  const ticket=ticketFor(win);
  const reviewPath=win.location.pathname.startsWith('/c02-review/');
- const edgeStyle=ticket?.edgeStyle==='original'?'original':
-  reviewPath&&new URLSearchParams(win.location.search).get('edge')==='original'
-   ?'original':'grit';
+ const requestedEdge=reviewPath?new URLSearchParams(win.location.search).get('edge'):null;
+ const edgeStyle=['original','grit','asset'].includes(ticket?.edgeStyle)
+  ?ticket.edgeStyle:['original','grit','asset'].includes(requestedEdge)
+   ?requestedEdge:'asset';
  if(ticket&&!reduced.matches){
   overlay=makeOverlay(doc,win,edgeStyle);
   // Preserve the partial, unpainted opening across the document handoff.
