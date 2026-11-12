@@ -493,7 +493,7 @@
 @media(min-width:601px) and (max-width:1050px){
  /* The tighter iPad desk strip needs the smaller artwork at its lower edge,
     without touching the existing garment or changing stage geometry. */
- .cc-worktable-view-row{bottom:-.7%}
+ .cc-worktable-view-row{bottom:-2.1%}
  .cc-worktable-view-button.cc-sketch.cc-compact-artwork{
   width:150px;min-width:150px;height:60px;min-height:60px;
   font-size:16px;
