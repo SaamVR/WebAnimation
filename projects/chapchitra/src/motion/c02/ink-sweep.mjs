@@ -421,7 +421,12 @@ export function installC02PageTransitions(win=window,doc=document){
      const differenceY=position?Math.abs(Number(position[2])-prepaintY):NaN;
      doc.documentElement.dataset.c02FirstPaintDelta=JSON.stringify({
       x:differenceX,y:differenceY,progress:p,
-      viewport:overlay.overlay.dataset.viewport
+      viewport:overlay.overlay.dataset.viewport,
+      rawTransform:firstImg?.style.transform,
+      rawPrepaintX:doc.documentElement.style.getPropertyValue('--c02-asset-left'),
+      rawPrepaintY:doc.documentElement.style.getPropertyValue('--c02-asset-top'),
+      pendingClass:doc.documentElement.classList.contains('c02-pending'),
+      originalTicketProgress:ticket.progress
      });
      doc.documentElement.classList.remove('c02-pending');
      drive=overlay.driveAdaptive({
