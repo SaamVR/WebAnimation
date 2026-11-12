@@ -22,7 +22,7 @@ test('Mobile 9:16 uses uniform source stage, not mutable print coordinates',()=>
  assert.match(css,/\.cc-worktable-stage\{[\s\S]*?width:128%;height:auto;aspect-ratio:16\/9/);
  assert.match(css,/\.cc-worktable\.cc-mobile-editing \.cc-worktable-stage\{[\s\S]*?transform:scale\(1\.65\)/);
  assert.match(mobile,/sourceInfo/);
- assert.match(studio,/const factor=2048\/stageRect\.width/);
+ assert.match(studio,/factor=2048\/stageRect\.width/);
  assert.match(geometry,/export function placementGeometry/);
  assert.doesNotMatch(mobile,/editor\.frameX|editor\.frameY|editor\.rotation|editor\.adjustment/);
 });
