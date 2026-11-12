@@ -48,7 +48,11 @@ export function mountMobileArtistEdit({
   el.style.left=item.left+'%';el.style.top=item.top+'%';
   el.style.width=item.width+'%';
   el.style.aspectRatio=w+' / '+h;
-  el.style.clipPath=item.mask;
+  // Feather the boundary between the source backdrop crop and stretched
+  // portrait wood. Hard ellipse clipping made obvious circular wood patches.
+  // The ornament remains an independent, original-image crop, never redrawn.
+  el.style.webkitMaskImage='radial-gradient(ellipse 70% 70% at center, #000 65%, transparent 84%)';
+  el.style.maskImage='radial-gradient(ellipse 70% 70% at center, #000 65%, transparent 84%)';
   const img=document.createElement('img');
   img.src=wood;img.alt='';img.draggable=false;img.decoding='async';
   img.style.position='absolute';
