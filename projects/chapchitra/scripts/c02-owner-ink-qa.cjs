@@ -42,7 +42,8 @@ async function step(page,device,delay){
    };
    return data;
   }).catch(()=>({}));
-  if(state.inkType==='original-png-continuous'&&state.p>.05&&state.p<.99){
+  if(state.inkType==='original-png-continuous'&&state.p>.05&&state.p<.99&&
+   state.originalSize?.[0]===2048&&state.originalSize?.[1]===1152){
    if(!observed){
     observed=true;
     record(device,delay+'ms exact source',state.source==='/assets/c02/Ink_swipe_1.png'
@@ -92,6 +93,64 @@ async function step(page,device,delay){
   finished.rollerDone>=finished.ready&&finished.revealed>=finished.rollerDone,
   {elapsedMs:Date.now()-started,...finished});
 }
+// Real compositor check: grow/shrink the iPad viewport DURING an active
+// partial printed cover, then verify the mask, roller and raster use the
+// same visualViewport rectangle. This cannot emulate physical toolbar chrome.
+async function viewportScenario(page,device,width,height){
+ await page.goto(origin+'/c02-review/?edge=asset',{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2');
+ await page.locator('a[href="/c02-review/slow/?delay=5000"]').click({noWaitAfter:true});
+ await page.waitForFunction(()=>{
+  const o=document.getElementById('c02-loader');
+  return o?.dataset.inkAsset==='original-png-continuous'&&
+   Number(o.dataset.progress)>.10;
+ },null,{timeout:6500});
+ const read=()=>page.evaluate(()=>{
+  const o=document.getElementById('c02-loader');
+  const frame=o?.getBoundingClientRect();
+  const vp=window.visualViewport;
+  const rect=o?.querySelector('.c02-loader__ink-asset-layer')?.getBoundingClientRect();
+  const roller=o?.querySelector('.c02-loader__roller')?.getBoundingClientRect();
+  return {phase:o?.dataset.phase,p:Number(o?.dataset.progress),
+   asset:o?.dataset.inkAsset,bodyScroll:scrollY,
+   outer:frame?{x:frame.x,y:frame.y,width:frame.width,height:frame.height}:null,
+   ink:rect?{x:rect.x,y:rect.y,width:rect.width,height:rect.height}:null,
+   roller:roller?{x:roller.x,y:roller.y,width:roller.width,height:roller.height}:null,
+   viewport:{x:vp?.offsetLeft||0,y:vp?.offsetTop||0,
+    width:vp?.width||innerWidth,height:vp?.height||innerHeight},
+   inner:[innerWidth,innerHeight],page:[document.documentElement.scrollWidth,
+    document.documentElement.scrollHeight]};
+ });
+ const initial=await read();
+ const shorter=Math.max(500,height-120);
+ await page.setViewportSize({width,height:shorter});
+ await page.waitForFunction(()=>{
+  const o=document.getElementById('c02-loader');
+  const v=window.visualViewport;
+  return o&&Math.abs(o.getBoundingClientRect().height-(v?.height||innerHeight))<2;
+ },null,{timeout:3500});
+ const resized=await read();
+ record(device,'visual-viewport changed without ink clipping',
+  resized.asset==='original-png-continuous'&&resized.phase==='cover'&&
+  Math.abs(resized.outer.height-resized.viewport.height)<2&&
+  Math.abs(resized.outer.width-resized.viewport.width)<2&&
+  Math.abs(resized.outer.x-resized.viewport.x)<2&&
+  Math.abs(resized.outer.y-resized.viewport.y)<2&&
+  resized.ink.height>resized.outer.height-1,
+  {initial,resized});
+ await page.screenshot({path:path.join(output,device+'-viewport-resized.png')});
+ await page.setViewportSize({width,height});
+ await page.waitForURL(u=>u.pathname==='/c02-review/slow/',{timeout:20000});
+ await page.waitForFunction(()=>window.__c02DemoReady===true&&
+  !document.getElementById('c02-loader'),null,{timeout:20000});
+ const destination=await page.evaluate(()=>({scrollY,viewportHeight:visualViewport?.height,
+  innerHeight,docHeight:document.documentElement.scrollHeight,
+  phase:document.documentElement.dataset.c02State}));
+ record(device,'resized-viewport navigation completed without forced scroll',
+  destination.phase==='complete'&&destination.scrollY===0,
+  {initial,resized,destination});
+}
+
 async function compare(page,device){
  await page.goto(origin+'/c02-review/asset-compare/',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.querySelector('#after image')?.getAttribute('href')
@@ -129,6 +188,8 @@ async function main(){
   try{
    await compare(page,device);
    for(const delay of [1000,5000])await step(page,device,delay);
+   if(device==='ipad'||device==='desktop')
+    await viewportScenario(page,device,width,height);
   }catch(e){results.push({engine:engineName,device,name:'suite',passed:false,error:String(e.stack||e).slice(0,2000)});}
   finally{
    await context.close();
