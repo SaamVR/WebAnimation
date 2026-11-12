@@ -6,7 +6,7 @@ import {C02_ADAPTIVE,pendingInkProgress,finishDuration,
  finishInkProgress,getReviewDelayMs} from './adaptive-progress.mjs';
 import {gritEdgePaths} from './grit-edge.mjs';
 import {C02_INK_ASSET,c02InkAssetPlacement,c02InkVisualViewport,
- c02InkInteriorCoverage,c02InkRevealClip} from './ink-asset.mjs';
+ c02InkRevealClip} from './ink-asset.mjs';
 export {C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible};
 const KEY='chapchitra-c02-arrival-v2',TTL=45000,FAILSAFE_MS=26000;
 const NS='http://www.w3.org/2000/svg';
@@ -21,9 +21,10 @@ const CSS=[
  '.c02-loader{position:fixed;inset:auto;z-index:2147483000;overflow:hidden;',
  'pointer-events:auto;isolation:isolate;touch-action:none;overscroll-behavior:contain}',
  '.c02-loader__surface{width:100%;height:100%;display:block;overflow:hidden}',
- '.c02-loader__roller{position:absolute;width:clamp(318px,33vw,450px);',
+ '.c02-loader__roller{position:absolute;top:0;left:0;width:clamp(318px,33vw,450px);',
  'height:clamp(318px,33vw,450px);pointer-events:none;z-index:2;isolation:isolate;',
  'transform:translate(-50%,-50%) scaleX(-1) rotate(90deg);transform-origin:center;',
+ 'will-change:transform;',
  'filter:none!important;mix-blend-mode:normal!important}',
  '.c02-loader__roller img{width:100%;height:100%;display:block;object-fit:contain;',
  'filter:none!important;mix-blend-mode:normal!important;opacity:1!important}',
@@ -93,32 +94,22 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  deposits.setAttribute('fill',INK_PALETTE.press);
  svg.append(deposits);
  const outline=path(INK_PALETTE.terra,true);
- // Actual full transparent PNG, with uniform scale and true alpha holes.
+ // One original-source unified bitmap; no overlapping runtime layers.
  const inkAssetLayer=doc.createElement('div');
  inkAssetLayer.className='c02-loader__ink-asset-layer';
  inkAssetLayer.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;display:none;';
- const inkAssetFill=doc.createElement('div');
- inkAssetFill.className='c02-loader__ink-asset-interior';
- inkAssetFill.style.cssText='position:absolute;top:0;left:0;width:0;height:0;'+
-  'pointer-events:none;background-image:url('+C02_INK_ASSET.interior.path+');'+
-  'background-repeat:repeat-x;background-position:right top;';
  const inkAssetImg=doc.createElement('img');
  inkAssetImg.className='c02-loader__ink-asset';
  inkAssetImg.alt='';inkAssetImg.draggable=false;
  inkAssetImg.decoding='async';inkAssetImg.loading='eager';
  inkAssetImg.style.cssText='position:absolute;left:0;top:0;max-width:none;'+
   'object-fit:fill;pointer-events:none;will-change:transform;';
- inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='original-png';},{once:true});
- inkAssetImg.src=C02_INK_ASSET.path;
- // Decode source artwork for handoff readiness; never switch to procedural
- // pigment when the texture arrives or the page begins revealing.
- const interiorProbe=new win.Image();
- interiorProbe.decoding='async';interiorProbe.src=C02_INK_ASSET.interior.path;
- interiorProbe.addEventListener('error',()=>{overlay.dataset.assetError='interior-pigment';},{once:true});
- const assetsReady=edgeStyle==='asset'?Promise.all([
-  inkAssetImg.decode(),interiorProbe.decode()
- ]).catch(()=>{overlay.dataset.assetError='decode';}):Promise.resolve();
- inkAssetLayer.append(inkAssetFill,inkAssetImg);
+ inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='unified-ink';},{once:true});
+ inkAssetImg.src=C02_INK_ASSET.composite.path;
+ const assetsReady=edgeStyle==='asset'
+  ?inkAssetImg.decode().catch(()=>{overlay.dataset.assetError='decode';})
+  :Promise.resolve();
+ inkAssetLayer.append(inkAssetImg);
  const roller=doc.createElement('div');roller.className='c02-loader__roller';
  roller.setAttribute('aria-hidden','true');
  const img=doc.createElement('img');img.src='/assets/c02/roller-original.svg';
@@ -126,7 +117,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  img.setAttribute('fetchpriority','high');
  img.addEventListener('error',()=>{roller.hidden=true},{once:true});
  roller.append(img);overlay.append(svg,inkAssetLayer,roller);doc.body.append(overlay);
- let stopAnimation=null,viewportKey='';
+ let stopAnimation=null,viewportKey='',rasterSizeKey='';
  function render(progress,mode='cover'){
   const p=Math.min(1,Math.max(0,progress));
   overlay.dataset.phase=mode;
@@ -143,56 +134,52 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    overlay.style.height=viewport.height+'px';
    overlay.dataset.viewport=JSON.stringify(viewport);
   }
-  forest.setAttribute('d',inkPath(p,{mode,offset:27}));
-  ink.setAttribute('d',inkPath(p,{mode}));
-  // The exact SAME original PNG + lossless derived interior stays mounted
-  // through partial cover, full cover and organic reveal. No asset/procedural
-  // renderer swap at p=1, or on cold decode/handoff between HTML documents.
+  // Build-derived original-source bitmap is a single permanent paint layer
+  // for cover, waiting, full coverage and reveal. Hidden procedural SVG
+  // paths are not recomputed every 120Hz frame on iPad.
   const rasterSurface=edgeStyle==='asset';
   inkAssetLayer.style.display=rasterSurface?'block':'none';
   svg.style.visibility=rasterSurface?'hidden':'visible';
   if(rasterSurface){
-   // Reveal clips the already printed p=1 surface; it does not move or
-   // rebuild the pigment image or introduce procedural SVG green.
+   // At reveal p=0, retain the exact final cover transform.
    const surfaceP=mode==='reveal'?1:p;
    const x=inkEdgeX(surfaceP,470,27)*viewport.width/1000;
    const placement=c02InkAssetPlacement({edgeX:x,
     viewportWidth:viewport.width,viewportHeight:viewport.height});
-   const fillWidth=c02InkInteriorCoverage(placement,viewport.width,surfaceP);
-   inkAssetFill.style.width=fillWidth+'px';
-   inkAssetFill.style.top=placement.top+'px';
-   inkAssetFill.style.height=placement.renderHeight+'px';
-   inkAssetFill.style.backgroundSize=placement.interiorLoopWidth+'px '+
-    placement.renderHeight+'px';
-   inkAssetImg.style.width=placement.renderedWidth+'px';
-   inkAssetImg.style.height=placement.renderHeight+'px';
-   // Move the large original raster on the compositor rather than laying
-   // out a 2048px image on every 120 Hz tablet animation frame.
-   inkAssetImg.style.transform='translate3d('+placement.left+'px,'+
+   const dimensions=placement.renderedWidth+':'+placement.renderHeight;
+   if(dimensions!==rasterSizeKey){
+    rasterSizeKey=dimensions;
+    inkAssetImg.style.width=placement.renderedWidth+'px';
+    inkAssetImg.style.height=placement.renderHeight+'px';
+   }
+   inkAssetImg.style.transform='translate3d('+placement.compositeLeft+'px,'+
     placement.top+'px,0)';
-   inkAssetLayer.style.clipPath=mode==='reveal'
-    ?c02InkRevealClip(p,viewport.width,viewport.height)
+   const clip=mode==='reveal'?c02InkRevealClip(p,viewport.width,viewport.height)
     :p===0?'inset(0 100% 0 0)':'none';
-   overlay.dataset.inkAsset='original-png-continuous';
+   if(inkAssetLayer.style.clipPath!==clip)inkAssetLayer.style.clipPath=clip;
+   overlay.dataset.inkAsset='original-quilt-unified';
    overlay.dataset.inkContactX=String(placement.contactX);
-   overlay.dataset.inkFillWidth=String(fillWidth);
   }else{
    overlay.dataset.inkAsset='procedural-legacy-review';
   }
-  const isFull=(mode==='cover'&&p===1)||(mode==='reveal'&&p===0);
-  const isEmpty=(mode==='cover'&&p===0)||(mode==='reveal'&&p===1);
-  outline.setAttribute('d',isFull||isEmpty?'':inkEdgePath(p));
-  // Identical progress, easing, roller contact and main inkPath in both
-  // variants. Only the moving cover edge gains dry pigment breaks.
-  const gritty=edgeStyle==='grit'&&mode==='cover'&&p>0&&p<1;
-  if(gritty){
-   const texture=gritEdgePaths(p);
-   dry.setAttribute('d',texture.dry);
-   deposits.setAttribute('d',texture.deposits);
-   paint.setAttribute('mask','url(#c02-grit-contact-mask)');
-  }else{
-   paint.removeAttribute('mask');
-   deposits.setAttribute('d','');
+  // Keep legacy procedural compare modes intact, but do not lay out
+  // invisible SVG geometry for the active source-asset compositor.
+  if(!rasterSurface){
+   forest.setAttribute('d',inkPath(p,{mode,offset:27}));
+   ink.setAttribute('d',inkPath(p,{mode}));
+   const isFull=(mode==='cover'&&p===1)||(mode==='reveal'&&p===0);
+   const isEmpty=(mode==='cover'&&p===0)||(mode==='reveal'&&p===1);
+   outline.setAttribute('d',isFull||isEmpty?'':inkEdgePath(p));
+   const gritty=edgeStyle==='grit'&&mode==='cover'&&p>0&&p<1;
+   if(gritty){
+    const texture=gritEdgePaths(p);
+    dry.setAttribute('d',texture.dry);
+    deposits.setAttribute('d',texture.deposits);
+    paint.setAttribute('mask','url(#c02-grit-contact-mask)');
+   }else{
+    paint.removeAttribute('mask');
+    deposits.setAttribute('d','');
+   }
   }
   // The unmodified colored cylinder starts at y=48.7199 in its SVG viewBox.
   // Align that real contact edge to the advancing OUTER forest ink contour;
@@ -202,8 +189,9 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    const edgeX=inkEdgeX(p,470,27)*viewport.width/1000;
    const cylinderLeft=(ROLLER_CYLINDER_CONTACT_Y-ROLLER_VIEWBOX_CENTER)
      /ROLLER_VIEWBOX_SIZE*size;
-   roller.style.left=(edgeX-cylinderLeft-ROLLER_CONTACT_OVERLAP_PX)+'px';
-   roller.style.top='48%';
+   const contactPosition=edgeX-cylinderLeft-ROLLER_CONTACT_OVERLAP_PX;
+   roller.style.transform='translate3d('+contactPosition+'px,'+
+    (viewport.height*.48)+'px,0) translate(-50%,-50%) scaleX(-1) rotate(90deg)';
    roller.style.display='block';
    roller.style.opacity='1';
   }else roller.style.display='none';
@@ -339,9 +327,8 @@ export function installC02PageTransitions(win=window,doc=document){
  // Warm the 2KB exact-source SVG so the first visible ink-edge frame has a roller.
  if(!reduced.matches){
   const rollerImg=new win.Image();rollerImg.src='/assets/c02/roller-original.svg';
-  // Prewarm the owner's original PNG without holding navigation for decode.
-  const inkImg=new win.Image();inkImg.src=C02_INK_ASSET.path;
-  const interiorImg=new win.Image();interiorImg.src=C02_INK_ASSET.interior.path;
+  // Prewarm the complete unified image; do not load separate paint tiles.
+  const inkImg=new win.Image();inkImg.src=C02_INK_ASSET.composite.path;
  }
  let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null,
   drive=null,commitTimer=0,navigationCommitted=false;
