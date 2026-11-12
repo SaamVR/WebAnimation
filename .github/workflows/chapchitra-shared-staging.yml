@@ -1,0 +1,146 @@
+name: CHAPCHITRA Shared Staging Integration Gate
+on:
+  push:
+    branches:
+      - integration/chapchitra-staging-candidate-20261112
+      - deploy/chapchitra-render-review
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-shared-staging.yml'
+      - '.github/workflows/chapchitra-c02-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: chapchitra-staging-serial
+  cancel-in-progress: false
+jobs:
+  source-integrity:
+    name: Scope + native test + build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Reject stale/non-descendant integration and unrelated changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin deploy/chapchitra-render-review
+          git merge-base --is-ancestor origin/deploy/chapchitra-render-review HEAD
+          git diff --name-only origin/deploy/chapchitra-render-review HEAD > /tmp/chapchitra-stage-scope.txt
+          cat /tmp/chapchitra-stage-scope.txt
+          while IFS= read -r file; do
+            case "$file" in
+              projects/chapchitra/*|.github/workflows/chapchitra-shared-staging.yml|.github/workflows/chapchitra-c02-qa.yml) ;;
+              *) echo "Out-of-scope edit: $file"; exit 1 ;;
+            esac
+          done < /tmp/chapchitra-stage-scope.txt
+          if git diff --name-only origin/deploy/chapchitra-render-review HEAD -- projects/chapchitra/browser-assets/worktable/back/ | grep .; then
+            echo "Approved back-garment source changed; integrator review required"
+            exit 1
+          fi
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Full source integrity and production-equivalent app build
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+          test -f dist/artists-edit/index.html
+          test -f dist/shop/index.html
+          test -f dist/assets/worktable/price-tag/price-tag.png
+      - name: Record exact source and staging identities
+        run: |
+          git rev-parse HEAD
+          git rev-parse origin/deploy/chapchitra-render-review
+  browser-smoke:
+    name: Home Shop Artist invoice navbar Chromium/WebKit mobile
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    needs: source-integrity
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Prepare the isolated candidate
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          node scripts/build.mjs
+          npx playwright install --with-deps chromium webkit
+          PORT=4272 npm run preview >/tmp/chapchitra-stage-preview.log 2>&1 &
+          for n in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:4272/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/chapchitra-stage-preview.log
+          exit 1
+      - name: Front/back pricing, invoice, and demo bag
+        working-directory: projects/chapchitra
+        env:
+          CC_QA_ROOT: http://127.0.0.1:4272
+          CC_QA_OUT: perf-results/shared-stage-pricing
+        run: node scripts/perf/artist-pricing-qa.cjs
+      - name: Preserve front/back editor and garment artwork
+        working-directory: projects/chapchitra
+        env:
+          CC_QA_URL: http://127.0.0.1:4272/artists-edit/
+          CC_QA_OUT: perf-results/shared-stage-two-sided
+        run: node scripts/perf/two-sided-qa.cjs
+      - name: Home, Shop, Journal, About and Artist navbar / responsive smoke
+        working-directory: projects/chapchitra
+        env:
+          CC_QA_ROOT: http://127.0.0.1:4272
+          CC_QA_OUT: perf-results/shared-stage-navbar
+        run: node scripts/perf/artist-navbar-normal-flow-qa.cjs
+      - name: Browser report and screenshot retention
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: chapchitra-shared-stage-browser
+          path: projects/chapchitra/perf-results/shared-stage-*/
+          if-no-files-found: warn
+          retention-days: 14
+  c02-navigation-gate:
+    name: Exact merged C02, when present
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    needs: source-integrity
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Gate actual C02 navigation and adaptive loader when added to staging
+        working-directory: projects/chapchitra
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test ! -f scripts/c02-browser-qa-v2.cjs; then
+            echo "C02 not yet integrated; no animation approval claimed"
+            exit 0
+          fi
+          npm ci --no-audit --no-fund
+          node scripts/build.mjs
+          npx playwright install --with-deps chromium webkit
+          PORT=4273 npm run preview >/tmp/chapchitra-c02-stage.log 2>&1 &
+          for n in $(seq 1 60); do
+            curl -fsS http://127.0.0.1:4273/ >/dev/null && break
+            sleep 1
+          done
+          for engine in chromium webkit; do
+            export C02_QA_ORIGIN=http://127.0.0.1:4273
+            export C02_QA_ENGINE="$engine"
+            node scripts/c02-browser-qa-v2.cjs
+            node scripts/c02-adaptive-qa.cjs
+          done
