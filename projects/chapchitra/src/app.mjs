@@ -198,9 +198,10 @@ async function boot(){
    '</div></div></section>';
  }
  function artistsEdit(){
-  // This page is the illustrated studio, not a full-height informational hero.
-  return '<section class="route-head route-head--artist-edit wrap" aria-labelledby="artistEditTitle"><h1 id="artistEditTitle">Artist’s Edit</h1></section>'+
-   '<section class="customize-layout" hidden aria-hidden="true"></section>';
+  // Retain the existing async worktable mount point only. The one semantic
+  // (visually hidden) page heading is rendered inside the worktable itself.
+  // No visible route heading, hero, spacer or scroll intervention.
+  return '<section class="customize-layout" hidden aria-hidden="true"></section>';
  }
  function journal(){
   return pageTop('STORIES / PROCESS','The Journal','A structural editorial collection. Feature rotation and individual pages work; final story copy is pending.')+
