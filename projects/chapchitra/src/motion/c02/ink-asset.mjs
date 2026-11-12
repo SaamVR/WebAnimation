@@ -1,3 +1,4 @@
+import {inkEdgeX} from './ink-shapes.mjs';
 // CHAPCHITRA C02 — preserve the owner's COMPLETE transparent PNG ink stroke.
 // Only cover-phase visual placement uses this file. No animation timeline,
 // navigation readiness, roller geometry, or reveal paths are changed.
@@ -31,4 +32,40 @@ export function c02InkAssetPlacement({edgeX,viewportWidth,viewportHeight}){
  return {scale,left,top,renderedWidth,renderHeight,paintedExtent,
   interiorFillWidth,interiorLoopWidth:C02_INK_ASSET.interior.loopWidth*scale,
   contactX:left+paintedExtent,paintedRight:C02_INK_ASSET.paintedRight};
+}
+
+// Use visible viewport geometry for roller, raster and clip together.
+export function c02InkVisualViewport(win){
+ const visual=win.visualViewport;
+ const positive=(value,fallback)=>Number.isFinite(Number(value))&&Number(value)>0
+  ?Number(value):fallback;
+ return {
+  width:positive(visual?.width,positive(win.innerWidth,1)),
+  height:positive(visual?.height,positive(win.innerHeight,1)),
+  left:Number.isFinite(visual?.offsetLeft)?visual.offsetLeft:0,
+  top:Number.isFinite(visual?.offsetTop)?visual.offsetTop:0
+ };
+}
+// During the last part of the roller pass, smoothly fill remaining transparent
+// bristle pits with the SAME source-derived interior pigment. Full cover and
+// reveal then retain exactly the same textured bitmap on all aspect ratios.
+export function c02InkInteriorCoverage(placement,width,progress){
+ const visibleWidth=Math.max(1,width);
+ const base=Math.min(visibleWidth,Math.max(0,placement.interiorFillWidth));
+ const t=Math.max(0,Math.min(1,(progress-.78)/.22));
+ const eased=t*t*(3-2*t);
+ return base+(visibleWidth-base)*eased;
+}
+// Clip one unchanged, source-derived texture during reveal; never substitute
+// a procedural flat-green SVG. Keep the approved organic reveal contour.
+export function c02InkRevealClip(progress,width,height){
+ if(progress<=0)return 'none';
+ if(progress>=1)return 'inset(0 0 0 100%)';
+ const points=['100% 0%','100% 100%'];
+ for(let i=8;i>=0;i--){
+  const y=i*125;
+  const x=inkEdgeX(progress,y)*width/1000;
+  points.push(x.toFixed(2)+'px '+(y/10).toFixed(2)+'%');
+ }
+ return 'polygon('+points.join(',')+')';
 }
