@@ -79,6 +79,34 @@ async function step(page,device,delay){
   record(device,'5s extended pigment coverage',texturedInterior,
    {delay,texturedInterior});
  await page.waitForURL(u=>u.pathname==='/c02-review/slow/',{timeout:18000});
+ // The 385ms reveal must use the SAME pigment surface as full cover.
+ // Inspect the actual incoming document rather than source-only assertions.
+ if(delay>=5000){
+  await page.waitForFunction(()=>document.getElementById('c02-loader')?.dataset.phase==='reveal',
+   null,{timeout:16000});
+  const reveal=await page.evaluate(()=>{
+   const o=document.getElementById('c02-loader');
+   const bitmap=o?.querySelector('.c02-loader__ink-asset');
+   const fill=o?.querySelector('.c02-loader__ink-asset-interior');
+   const layer=o?.querySelector('.c02-loader__ink-asset-layer');
+   const svg=o?.querySelector('svg.c02-loader__surface');
+   const vp=window.visualViewport;
+   return {phase:o?.dataset.phase,asset:o?.dataset.inkAsset,
+    progress:Number(o?.dataset.progress),source:bitmap?.getAttribute('src'),
+    fillWidth:parseFloat(fill?.style.width||'0'),
+    layerDisplay:getComputedStyle(layer).display,
+    svgVisibility:getComputedStyle(svg).visibility,
+    viewportWidth:vp?.width||innerWidth,scrollY,
+    viewportHeight:vp?.height||innerHeight,
+    clip:layer?.style.clipPath};
+  });
+  record(device,'5s reveal retains textured original raster without SVG switch',
+   reveal.phase==='reveal'&&reveal.asset==='original-png-continuous'&&
+   reveal.source==='/assets/c02/Ink_swipe_1.png'&&
+   reveal.layerDisplay==='block'&&reveal.svgVisibility==='hidden'&&
+   reveal.fillWidth>=reveal.viewportWidth-1,reveal);
+  await page.screenshot({path:path.join(output,device+'-5s-textured-reveal.png')});
+ }
  await page.waitForFunction(()=>window.__c02DemoReady===true&&!document.getElementById('c02-loader'),
   null,{timeout:18000});
  const finished=await page.evaluate(()=>({
