@@ -1,18 +1,15 @@
-<!-- CHAPCHITRA C02: prepaint cover and opt-in cross-document enhancement.
-     The JS engine remains the authoritative animation on all browsers. -->
+<!-- CHAPCHITRA C02: same immutable unified compositor in early first paint
+     and the incoming JS overlay; no tile swap or artificial loading wait. -->
+<link rel="preload" as="image" href="/assets/c02/ink-unified.webp" fetchpriority="high">
 <style id="c02-prepaint">
 html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;background:#293D2D;pointer-events:auto;clip-path:var(--c02-prepaint-clip,polygon(0 0,65% 0,70% 50%,65% 100%,0 100%))}
 /* Match the actual owner PNG on the very FIRST incoming frame, before the
    independent module boots. No procedural wipe flashes on PNG navigation. */
-html.c02-pending.c02-asset-arrival::before{clip-path:none;
-inset:calc(var(--c02-viewport-top,0px) + var(--c02-asset-top,0px)) auto auto var(--c02-viewport-left,0px);
-width:var(--c02-asset-fill,0px);height:var(--c02-asset-height,0px);
-background:transparent url('/assets/c02/ink-interior-loop.webp') right top /
-var(--c02-asset-loop-width,0px) var(--c02-asset-height,0px) repeat-x}
+html.c02-pending.c02-asset-arrival::before{content:none}
 html.c02-pending.c02-asset-arrival::after{content:"";position:fixed;
 inset:var(--c02-viewport-top,0px) auto auto var(--c02-viewport-left,0px);
 width:var(--c02-viewport-width,100vw);height:var(--c02-viewport-height,100vh);
-background-image:url('/assets/c02/Ink_swipe_1.png');background-repeat:no-repeat;
+background-image:url('/assets/c02/ink-unified.webp');background-repeat:no-repeat;
 background-size:var(--c02-asset-width,0px) var(--c02-asset-height,0px);
 background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-events:auto}
 /* Cross-document native View Transitions are deliberately not auto-enabled:
@@ -46,18 +43,13 @@ background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-e
      104*Math.sin(Math.PI*470/1000*2.35+.32)+
      48*Math.sin(Math.PI*470/1000*4.15+1.15)+
      19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*vw/1000;
-    var left=rightContact-1689*scale;
+    var left=rightContact-(1689+6144)*scale;
     var root=document.documentElement;
     root.style.setProperty('--c02-viewport-left',(vv?.offsetLeft||0)+'px');
     root.style.setProperty('--c02-viewport-top',(vv?.offsetTop||0)+'px');
     root.style.setProperty('--c02-viewport-width',vw+'px');
     root.style.setProperty('--c02-viewport-height',vh+'px');
-    var base=Math.min(vw,Math.max(0,left));
-    var t=Math.max(0,Math.min(1,(p-.78)/.22));
-    var extent=base+(vw-base)*t*t*(3-2*t);
-    root.style.setProperty('--c02-asset-fill',extent+'px');
-    root.style.setProperty('--c02-asset-loop-width',2320*scale+'px');
-    root.style.setProperty('--c02-asset-width',2048*scale+'px');
+    root.style.setProperty('--c02-asset-width',8192*scale+'px');
     root.style.setProperty('--c02-asset-height',1152*scale+'px');
     root.style.setProperty('--c02-asset-left',left+'px');
     root.style.setProperty('--c02-asset-top',((vh-1152*scale)/2)+'px');
