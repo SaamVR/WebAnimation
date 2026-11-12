@@ -305,6 +305,12 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     const fullSweep=target>=.999;
     let d=fullSweep?finishDuration(start,Date.now()-startedAt):
      Math.round(Math.max(240,Math.min(700,(target-start)*1000)));
+    // A .68 native commit previously skipped the last 32% of travel.
+    // Completing that travel with the old abbreviated handoff would exceed
+    // the existing 24%-of-viewport/90ms roller speed acceptance. Keep the
+    // approved cubic easing, but budget enough REAL painting time to keep
+    // its velocity bounded. This is movement, never a stationary wait.
+    if(fullSweep)d=Math.max(d,Math.ceil((target-start)*1120));
     // The 1s simulator previously compressed up to .68 progress into 420ms,
     // creating a verified 25.8% viewport / 91ms roller sprint in WebKit.
     // Begin the handoff earlier instead; keep document-commit wall time.
