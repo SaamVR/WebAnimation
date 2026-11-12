@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>C02 Grit Roller Edge — Synchronized Comparison</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,sans-serif;color:#26392b;background:#f3f0e8}
+body{margin:0}
+header,main,footer{max-width:1250px;margin:auto;padding:24px}
+h1{font-size:clamp(26px,4vw,46px);margin:12px 0}
+p{line-height:1.5;max-width:75ch}
+a{color:#293d2d}
+.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.panel{background:white;border:1px solid #b9b9a6;border-radius:9px;overflow:hidden}
+.panel h2{font-size:17px;margin:0;padding:14px 18px;border-bottom:1px solid #d7d5cd}
+.panel svg{display:block;width:100%;aspect-ratio:5/4;background:#faf9f6}
+.panel p{margin:0;padding:12px 18px;font-size:13px}
+.controls{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:22px 0}
+button{min-height:44px;padding:10px 18px;border:0;background:#293d2d;color:white;
+border-radius:4px;font:600 14px system-ui;cursor:pointer}
+input[type=range]{flex:1;min-width:180px;accent-color:#293d2d}
+output{min-width:8ch;font-variant-numeric:tabular-nums}
+small{color:#5f655d}
+@media(max-width:650px){.compare{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){button[data-play]{display:none}}
+</style></head>
+<body data-page="c02-edge-compare">
+<header><a href="/c02-review/">← Return to C02 motion review</a>
+<h1>Grit Roller — advancing ink edge comparison</h1>
+<p>Both panels share the <strong>same progress signal and identical 5-second timing</strong>.
+Only the advancing ink boundary treatment differs. This is an illustrative
+dry-bristle interpretation until an exact Grit Roller stroke asset is supplied.
+The approved roller illustration is deliberately omitted from these cropped edge studies;
+it remains unchanged in the actual navigation preview.</p></header>
+<main>
+<div class="compare">
+<section class="panel" aria-label="Original ink edge">
+<h2>Before — approved original edge</h2><svg id="original" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-label="Original smooth organic ink boundary"></svg>
+<p>Original organic curve, Press Green, forest backing and terracotta contour.</p>
+</section>
+<section class="panel" aria-label="Grit Roller ink edge">
+<h2>After — provisional Grit Roller dry-bristle edge</h2><svg id="grit" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-label="Same curve with fine dry-bristle interruptions"></svg>
+<p>Identical geometry with tapered pigment breaks and sparse trailing deposits near the contact edge.</p>
+</section>
+</div>
+<div class="controls">
+<button type="button" data-play id="replay">Replay both together</button>
+<label for="progress">Shared progress</label>
+<input id="progress" type="range" min="0" max="760" value="380" step="1">
+<output id="readout" for="progress">38.0%</output>
+</div>
+<p><small>Comparison-only: a single 5-second progress clock drives both panels; the
+actual adaptive page loader continues to respond to genuine destination readiness.</small></p>
+</main>
+<footer><a href="/c02-review/?edge=original">Test original edge in navigation</a>
+ · <a href="/c02-review/?edge=grit">Test Grit Roller edge in navigation</a></footer>
+<script type="module">
+import {INK_PALETTE,inkPath,inkEdgePath} from '/motion/c02/ink-shapes.mjs';
+import {gritEdgePaths} from '/motion/c02/grit-edge.mjs';
+import {pendingInkProgress} from '/motion/c02/adaptive-progress.mjs';
+const NS='http://www.w3.org/2000/svg';
+function node(tag,attrs={},parent){
+ const el=document.createElementNS(NS,tag);
+ for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));
+ parent?.append(el);return el;
+}
+function panel(id,isGrit){
+ const svg=document.getElementById(id);
+ const defs=node('defs',{},svg), group=node('g',{},svg);
+ const forest=node('path',{fill:INK_PALETTE.forest},group);
+ const ink=node('path',{fill:INK_PALETTE.press},group);
+ let dry,dep;
+ if(isGrit){
+  const mask=node('mask',{id:'c02-comparison-grit-mask',
+   maskUnits:'userSpaceOnUse',maskContentUnits:'userSpaceOnUse',
+   x:-100,y:-100,width:1200,height:1200},defs);
+  node('rect',{x:-100,y:-100,width:1200,height:1200,fill:'white'},mask);
+  dry=node('path',{fill:'black'},mask);
+  group.setAttribute('mask','url(#c02-comparison-grit-mask)');
+  dep=node('path',{fill:INK_PALETTE.press},svg);
+ }
+ const outline=node('path',{fill:'none',stroke:INK_PALETTE.terra,
+  'stroke-opacity':'.5','stroke-width':'3.6','stroke-linecap':'round'},svg);
+ return p=>{
+  forest.setAttribute('d',inkPath(p,{offset:27}));
+  ink.setAttribute('d',inkPath(p));
+  outline.setAttribute('d',inkEdgePath(p));
+  if(isGrit){
+   const edge=gritEdgePaths(p);
+   dry.setAttribute('d',edge.dry);dep.setAttribute('d',edge.deposits);
+  }
+ };
+}
+const drawOriginal=panel('original',false),drawGrit=panel('grit',true);
+const slider=document.getElementById('progress'),readout=document.getElementById('readout');
+let raf=0;
+function draw(p){
+ const value=Math.max(0,Math.min(.76,p));
+ drawOriginal(value);drawGrit(value);
+ slider.value=String(Math.round(value*1000));
+ readout.textContent=(value*100).toFixed(1)+'%';
+}
+draw(.38);
+function replay(){
+ cancelAnimationFrame(raf);
+ const started=performance.now();
+ function frame(now){
+  const elapsed=Math.min(5000,now-started);
+  draw(pendingInkProgress(elapsed,{knownMs:5000}));
+  if(elapsed<5000)raf=requestAnimationFrame(frame);
+ }
+ raf=requestAnimationFrame(frame);
+}
+document.getElementById('replay').addEventListener('click',replay);
+slider.addEventListener('input',()=>{cancelAnimationFrame(raf);draw(Number(slider.value)/1000)});
+</script>
+</body></html>
