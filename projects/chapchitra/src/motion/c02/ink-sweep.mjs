@@ -109,8 +109,8 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  inkAssetImg.style.cssText='position:absolute;max-width:none;object-fit:fill;pointer-events:none;';
  inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='original-png';},{once:true});
  inkAssetImg.src=C02_INK_ASSET.path;
- // Decode the generated, lossless interior before opting into PNG cover.
- // If either raster fails, use the existing procedural fallback without gaps.
+ // Decode source artwork for handoff readiness; never switch to procedural
+ // pigment when the texture arrives or the page begins revealing.
  const interiorProbe=new win.Image();
  interiorProbe.decoding='async';interiorProbe.src=C02_INK_ASSET.interior.path;
  interiorProbe.addEventListener('error',()=>{overlay.dataset.assetError='interior-pigment';},{once:true});
@@ -125,17 +125,23 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  img.setAttribute('fetchpriority','high');
  img.addEventListener('error',()=>{roller.hidden=true},{once:true});
  roller.append(img);overlay.append(svg,inkAssetLayer,roller);doc.body.append(overlay);
- let stopAnimation=null;
+ let stopAnimation=null,viewportKey='';
  function render(progress,mode='cover'){
   const p=Math.min(1,Math.max(0,progress));
   overlay.dataset.phase=mode;
   overlay.dataset.progress=String(p); // QA-readable contact alignment, not user UI
   const viewport=c02InkVisualViewport(win);
-  overlay.style.left=viewport.left+'px';
-  overlay.style.top=viewport.top+'px';
-  overlay.style.width=viewport.width+'px';
-  overlay.style.height=viewport.height+'px';
-  overlay.dataset.viewport=JSON.stringify(viewport);
+  const nextViewportKey=[viewport.left,viewport.top,viewport.width,viewport.height].join(':');
+  // A 120 Hz iPad must not invalidate layout on every animation frame when
+  // the toolbar is stationary. Reflow only on an actual visual-viewport change.
+  if(nextViewportKey!==viewportKey){
+   viewportKey=nextViewportKey;
+   overlay.style.left=viewport.left+'px';
+   overlay.style.top=viewport.top+'px';
+   overlay.style.width=viewport.width+'px';
+   overlay.style.height=viewport.height+'px';
+   overlay.dataset.viewport=JSON.stringify(viewport);
+  }
   forest.setAttribute('d',inkPath(p,{mode,offset:27}));
   ink.setAttribute('d',inkPath(p,{mode}));
   // The exact SAME original PNG + lossless derived interior stays mounted
