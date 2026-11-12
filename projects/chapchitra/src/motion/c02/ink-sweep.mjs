@@ -564,18 +564,58 @@ export function installC02PageTransitions(win=window,doc=document){
      });
     }
    });
-   const navigate=()=>{
-    if(!leaving||navigationCommitted)return;
+   let committing=false,coverPaintRaf=0,coverPaintGuard=0;
+   const navigate=proof=>{
+    if(!leaving||navigationCommitted||!proof?.covered)return;
     navigationCommitted=true;
     state('waiting');
-    storeTicket(win,target,{progress:drive?.progress()||.68,startedAt,demoMs,edgeStyle});
+    const committedAt=Date.now();
+    try{win.sessionStorage.setItem(COVER_PROOF_KEY,JSON.stringify({
+     ...proof,committedAt,startedAt,from:win.location.pathname,
+     to:target.pathname
+    }));}catch{}
+    doc.documentElement.dataset.c02NavigationCommitProgress='1';
+    doc.documentElement.dataset.c02NavigationCommitAt=String(committedAt);
+    storeTicket(win,target,{progress:1,startedAt,demoMs,edgeStyle});
     try{win.location.assign(target.href)}
     catch{clearTicket(win);cleanup()}
    };
    const commit=()=>{
-    if(!leaving||navigationCommitted||!drive)return;
-    const current=drive.progress();
-    drive.finishTo(Math.max(current+.012,.68),navigate);
+    if(!leaving||navigationCommitted||!drive||committing)return;
+    committing=true;
+    drive.finishTo(1,()=>{
+     if(!overlay||!leaving||navigationCommitted)return;
+     const validate=()=>{
+      if(!overlay||!leaving||navigationCommitted)return;
+      const proof=overlay.fullCoverage();
+      if(proof.covered){navigate(proof);return;}
+      // Asset decoding may still be pending on a cold WebKit image.
+      // Do not commit a partially rendered/transparent animated document.
+      overlay.assetsReady.then(ok=>{
+       if(!overlay||!leaving||navigationCommitted)return;
+       if(!ok){clearTicket(win);cleanup();
+        try{win.location.assign(target.href)}catch{};return;}
+       overlay.render(1,'cover');
+       coverPaintRaf=win.requestAnimationFrame(()=>{
+        const result=overlay?.fullCoverage();
+        if(result?.covered)navigate(result);
+        else{clearTicket(win);cleanup();
+         try{win.location.assign(target.href)}catch{};}
+       });
+      });
+     };
+     // A rendered 100% progress value is NOT yet a painted frame. Observe
+     // one browser paint boundary before native navigation destroys this DOM.
+     coverPaintRaf=win.requestAnimationFrame(()=>{
+      coverPaintRaf=win.requestAnimationFrame(validate);
+     });
+     coverPaintGuard=win.setTimeout(()=>{
+      // A hidden tab can suspend RAF indefinitely. Resume only if the full
+      // SVG has loaded and geometry has been verified; never commit at .68.
+      if(doc.visibilityState==='hidden'&&overlay&&!navigationCommitted)
+       navigate(overlay.fullCoverage());
+     },450);
+    });
    };
    // 1/3/5/8-second scripted examples estimate duration only here,
    // never on normal pages. They pace the shared roller/ink controller.
