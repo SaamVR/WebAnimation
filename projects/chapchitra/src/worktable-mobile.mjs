@@ -31,7 +31,7 @@ const cropData=[
 
 export function mountMobileArtistEdit({
  body,frame,stage,manifest,layers,sourceURL,sourceInfo,
- artworkZone,update,file,uploadVisual,selectArtwork,refreshPlacement,
+ artworkZone,update,file,uploadVisual,selectArtwork,refreshPlacement,getState,
 }){
  const media=window.matchMedia(MOBILE_QUERY);
  const wood=sourceURL(manifest['Artist-edit-backdrop-1.png'].delivery.variants[1]);
@@ -183,13 +183,12 @@ export function mountMobileArtistEdit({
  };
  const syncSelected=()=>{
   for(const button of art.querySelectorAll('.cc-mobile-popup-option[data-group]')){
-   const live=window.__ccMobileState?.()||null;
+   const live=getState();
    if(!live)continue;
    button.setAttribute('aria-pressed',String(live[button.dataset.group]===button.dataset.value));
   }
  };
  // State is fetched from the existing editor closure. There is no new reducer.
- const stateAccessor=value=>{window.__ccMobileState=value};
  const openPopup=group=>{
   if(!isMobile()||zoomed)return;
   if(active===group){closePopup({returnFocus:true});return}
@@ -232,13 +231,12 @@ export function mountMobileArtistEdit({
  document.addEventListener('keydown',onKey);
  media.addEventListener?.('change',viewportChanged);
  // Do not introduce a second price/garment/side editor. The caller owns it all.
- return {isMobile,isZoomed,enterZoom,exitZoom,openPopup,closePopup,syncSelected,stateAccessor,
+ return {isMobile,isZoomed,enterZoom,exitZoom,openPopup,closePopup,syncSelected,
   destroy(){
    if(disposed)return;disposed=true;
    closePopup();exitZoom();media.removeEventListener?.('change',viewportChanged);
    document.removeEventListener('pointerdown',onOutside,true);
    document.removeEventListener('keydown',onKey);
    nav.remove();popup.remove();done.remove();decors.remove();
-   delete window.__ccMobileState;
   }};
 }
