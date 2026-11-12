@@ -40,54 +40,51 @@ if(!inkAssetBytes.subarray(0,8).equals(
  inkAssetBytes.readUInt32BE(20)!==1152)
  throw Error('C02 Ink_swipe_1.png is not the original 2048x1152 PNG');
 console.log('C02 owner ink original checksum verified',inkAssetSHA);
-// C02: derive a seamless loop from the checksum-pinned ORIGINAL PNG's
-// densely printed interior. Alternating normal/reflected samples make each
-// boundary pixel-exact, without repeating its distinctive distressed edge.
+// C02: one composited bitmap, not a reflected/repeating runtime tile.
+// The right-hand source and its original transparent leading edge are exact;
+// irregular authentic source-interior samples are feathered at build time.
+const {generateUnifiedInk,UNIFIED_INK}=await import('./c02-unified-ink.mjs');
 const {default:sharp}=await import('sharp');
-const {C02_INK_ASSET}=await import('../src/motion/c02/ink-asset.mjs');
-const interior=C02_INK_ASSET.interior;
-if(interior.cropStart!==0||interior.cropWidth*2!==interior.loopWidth||
- interior.cropWidth>=1450)
- throw Error('C02 loop dimensions could repeat the unique right edge');
-const interiorCrop=await sharp(inkAssetBytes).extract({
- left:interior.cropStart,top:0,width:interior.cropWidth,
- height:C02_INK_ASSET.height
-}).png().toBuffer();
-const reflectedCrop=await sharp(interiorCrop).flop().png().toBuffer();
-const interiorLoop=await sharp({create:{
- width:interior.loopWidth,height:C02_INK_ASSET.height,channels:4,
- background:{r:0,g:0,b:0,alpha:0}
-}}).composite([
- {input:interiorCrop,top:0,left:0},
- {input:reflectedCrop,top:0,left:interior.cropWidth}
-]).webp({lossless:true,effort:4}).toBuffer();
-await writeFile(resolve(output,'assets/c02/ink-interior-loop.webp'),interiorLoop);
-// Build-time adversarial pixel check: both reflected joins must match exactly.
-// This catches nonseamless changes before browser deployment.
-const {data:loopRGBA,info:loopInfo}=await sharp(interiorLoop)
- .ensureAlpha().raw().toBuffer({resolveWithObject:true});
-if(loopInfo.width!==interior.loopWidth||loopInfo.height!==C02_INK_ASSET.height||
- loopInfo.channels!==4)throw Error('C02 interior loop format invalid');
-const pixel=(x,y)=>Array.from(loopRGBA.subarray(
- (y*loopInfo.width+x)*4,(y*loopInfo.width+x+1)*4));
-for(const y of [37,173,311,577,823,1079]){
- const equals=(a,b)=>a.every((v,i)=>v===b[i]);
- if(!equals(pixel(0,y),pixel(interior.loopWidth-1,y))||
-  !equals(pixel(interior.cropWidth-1,y),pixel(interior.cropWidth,y)))
-  throw Error('C02 interior mirrored seam does not match at y='+y);
+const composed=await generateUnifiedInk(inkAssetBytes);
+const derivedPath=resolve(output,'assets/c02/ink-unified.webp');
+await writeFile(derivedPath,composed.webp);
+const expected=UNIFIED_INK.width*UNIFIED_INK.height*4;
+if(composed.rgba.length!==expected||composed.provenance.length<75)
+ throw Error('C02 quilt geometry or source-patch diversity invalid');
+if(new Set(composed.provenance.map(p=>p.source.join(','))).size<65)
+ throw Error('C02 source-patch selection repeats too predictably');
+// Verify the source's unique leading-edge pixels and alpha byte-for-byte.
+const originalStride=2048*4,derivedStride=UNIFIED_INK.width*4;
+for(let y=0;y<UNIFIED_INK.height;y++){
+ const sourceStart=y*originalStride+UNIFIED_INK.blendToOriginal*4;
+ const derivedStart=y*derivedStride+
+  (UNIFIED_INK.tail+UNIFIED_INK.blendToOriginal)*4;
+ if(!composed.rgba.subarray(derivedStart,derivedStart+
+  originalStride-UNIFIED_INK.blendToOriginal*4).equals(
+  composed.source.subarray(sourceStart,sourceStart+
+   originalStride-UNIFIED_INK.blendToOriginal*4)))
+  throw Error('C02 original interior/leading edge modified at row '+y);
 }
-// Inspect ALL interior pixels, not sparse points that can miss genuine
-// low-frequency bristle holes in the owner's nearly opaque brush body.
-const cropStats=await sharp(interiorCrop).stats();
-const alphaDeviation=cropStats.channels[3]?.stdev??0;
-if(alphaDeviation<3)
- throw Error('C02 pigment strip lost its authentic alpha variation');
-console.log('C02 original interior alpha deviation:',alphaDeviation.toFixed(3));
-console.log('C02 seamless original-PNG interior generated:',
- interiorLoop.length+' bytes',interior.loopWidth+'x'+C02_INK_ASSET.height);
-
-// Only the cover rendering changes: roller, adaptive progress and reveal
-// runtime modules remain exactly as approved.
+const derivedSHA=createHash('sha256').update(composed.webp).digest('hex');
+console.log('C02 unified original-source quilt built',{
+ width:UNIFIED_INK.width,height:UNIFIED_INK.height,
+ sourcePatches:composed.provenance.length,
+ losslessWebpBytes:composed.webp.length,sha256:derivedSHA
+});
+// Build-time anti-repeat visual QA: deliberately test the original 2320px
+// mirror period. Exact equal seam pixels were never proof of unique texture.
+let changed=0,count=0;
+for(let y=7;y<UNIFIED_INK.height;y+=7)for(let x=10;x<3450;x+=7){
+ const a=composed.rgba[(y*UNIFIED_INK.width+x)*4+3];
+ const b=composed.rgba[(y*UNIFIED_INK.width+x+2320)*4+3];
+ if(Math.abs(a-b)>=2)changed++;
+ count++;
+}
+if(changed/count<.045)
+ throw Error('C02 texture visually repetitive at obsolete 2320px period');
+console.log('C02 anti-repeat nonmatching pigment fraction',
+ (changed/count).toFixed(4));
+// The original roller and adaptive progress/reveal timing remain immutable.
 // Prepaint cover must be installed in the HTML head, before deferred app.mjs.
 // Keep all existing route controllers and cached Artist's Edit release paths intact.
 const earlyC02=await readFile(resolve(src,'motion/c02/early-head.html'),'utf8');
