@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+"""Build self-contained C05 Icon01 V4 SVG reference + native Lottie browser review."""
+from pathlib import Path
+from lxml import etree
+from copy import deepcopy
+import importlib.util,json
+R=Path(__file__).resolve().parent
+src=R/'C05_Icon01_V4_editable.py'
+spec=importlib.util.spec_from_file_location('c05v4',str(src))
+m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+source=(R/'More_than_a_tshirt_Icon_1_named_ORIGINAL.svg').read_text()
+final=etree.tostring(etree.fromstring(m.svg_frame(150)),encoding='unicode')
+# Extract only the genuinely animated sheet group markup per frame.
+frames=[]
+for f in range(m.END+1):
+    p,scale,rot,op=m.shirt(f)
+    page_groups=[]
+    for index,(start,end) in enumerate(m.PAGE_TIMES):
+        if start<=f<=end:
+            face='front' if m.angle_u(f,index)<=.5 else 'back'
+            grp=deepcopy(m.fgroup(m.SHEET_NAMES[index][0 if face=='front' else 1]))
+            angle=m.face_angle(f,index)
+            for path in grp.xpath('.//s:path',namespaces=m.NS):
+                path.set('d',' '.join(m.shape_path(m.warp_shape(shape,angle,face)) for shape in m.path_parse(path.get('d'))))
+            page_groups.append(etree.tostring(grp,encoding='unicode'))
+        right=m.left_overlay_mask_shape(f,index)['v'][1][0]
+        if right>.0001:
+            # The stationary left-page artwork covers the sheet where it lands,
+            # without changing opacity of the turning sheet.
+            page_groups.append('<g class="landing" data-right="%.5f" data-index="%d"></g>'%(right,index))
+    frames.append({'sheet':' '.join(page_groups),'position':m.rv(p),'s':round(scale,5),'r':round(rot,5),
+                   'opacity':round(op,5),'shirtClip':m.rv(m.mask_rect_screen(f))})
+css='''
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172419;background:#f6f7f5}
+*{box-sizing:border-box}body{margin:0}main{max-width:1040px;margin:0 auto;padding:clamp(16px,3vw,34px)}
+header small{color:#8a503b;text-transform:uppercase;letter-spacing:2px;font-weight:700}h1{font-size:clamp(21px,3vw,34px);line-height:1.15;margin:8px 0}p{color:#4d5b4f;line-height:1.55;font-size:13px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:23px}.card{background:white;border-radius:13px;padding:16px;border:1px solid #d9ddd7;min-width:0}h2{font-size:15px;margin:0 0 8px}
+.art{position:relative;width:100%;aspect-ratio:1;max-width:480px;margin:auto}.art svg{width:100%;height:100%;display:block}.animated>*{position:absolute;inset:0;width:100%;height:100%}#native{display:none}#overlay{opacity:0;pointer-events:none}
+.controls{background:#fff;border:1px solid #d9ddd7;padding:18px;border-radius:12px;margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.controls button,.controls select{font:inherit;font-size:13px;border:1px solid #293d2d;background:white;color:#293d2d;border-radius:7px;padding:9px 13px;cursor:pointer}.controls button:first-child{background:#293d2d;color:white}.controls label{font-size:12px;display:flex;gap:5px;align-items:center}#scrub{width:100%;accent-color:#8a503b}#engine{font-size:11px;color:#8a503b;margin:12px 0 0}.checker{background:conic-gradient(#eee 25%,white 0 50%,#eee 0 75%,white 0);background-size:24px 24px}
+@media(max-width:620px){.cards{grid-template-columns:1fr}.controls{padding:12px;gap:8px}}
+'''
+script=r'''(()=>{'use strict';
+const ns='http://www.w3.org/2000/svg', g=id=>document.getElementById(id);
+const F=JSON.parse(g('states').textContent), source=JSON.parse(g('source').textContent),
+ target=JSON.parse(g('final').textContent),data=JSON.parse(g('data').textContent);
+g('original').innerHTML=source;
+g('svg-reference').innerHTML=target;
+g('overlay').innerHTML=target;
+const root=g('svg-reference').querySelector('svg');
+// The derivative is a known static final composition with all unused source-sheet
+// copies removed. Rebuild the SVG reference view from those exact source layers.
+for(const id of ['Turning_x5F_Page_x5F_Front_x5F_1','Turning_x5F_Page_x5F_Back_x5F_1',
+ 'Turning_x5F_Page_x5F_Front_x5F_2','Turning_x5F_Page_x5F_Back_x5F_2',
+ 'Right_x5F_Page_x5F_Front','Right_x5F_Page_x5F_Back'])root.querySelector('#'+id)?.remove();
+root.querySelector('#LEFT_TUCK_CLIP_1')?.parentNode?.remove();
+for(const e of [...root.querySelectorAll('[id^="LEFT_PAGE_STATIONARY_LANDING"]')])e.remove();
+const shirt=root.querySelector('#Tshirt'),wrap=shirt?.parentNode;
+shirt.remove();wrap?.remove();
+root.querySelector('#Spine_x5F_Foreground_overlay')?.remove();
+const pages=document.createElementNS(ns,'g');pages.setAttribute('id','active-page-surfaces');root.appendChild(pages);
+const spine=g('original').querySelector('#Spine_x5F_Foreground');
+if(spine){const sp=document.createElementNS(ns,'g');sp.setAttribute('id','fixed-spine');sp.appendChild(spine.cloneNode(true));root.appendChild(sp)}
+const defs=document.createElementNS(ns,'defs'),clip=document.createElementNS(ns,'clipPath'),rect=document.createElementNS(ns,'rect');
+clip.setAttribute('id','tee-clip');clip.append(rect);defs.append(clip);root.append(defs);
+const teeWrap=document.createElementNS(ns,'g');teeWrap.setAttribute('clip-path','url(#tee-clip)');teeWrap.appendChild(shirt);root.append(teeWrap);
+const staticLeft=root.querySelector('#Left_page');
+let frame=0,playing=false,loop=false,speed=1,last=0,raf=0,engine='svg',inst=null;
+const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches||false;
+const clamp=(x,a,b)=>Math.min(Math.max(x,a),b);
+function renderSvg(n){const o=F[clamp(Math.round(n),0,150)];
+ pages.innerHTML=o.sheet;
+ for(const e of pages.querySelectorAll('g.landing')){
+    const mask=document.createElementNS(ns,'clipPath'),id='landingclip-'+e.dataset.index;
+    mask.setAttribute('id',id);const r=document.createElementNS(ns,'rect');r.setAttribute('x','0');r.setAttribute('y','0');r.setAttribute('width',e.dataset.right);r.setAttribute('height','512');mask.append(r);e.append(mask);
+    const copy=staticLeft.cloneNode(true);copy.removeAttribute('id');copy.setAttribute('clip-path','url(#'+id+')');e.append(copy);
+ }
+ shirt.setAttribute('transform',`translate(${o.position[0]} ${o.position[1]}) rotate(${o.r}) scale(${o.s/100}) translate(-326 -155)`);
+ shirt.setAttribute('opacity',o.opacity/100);
+ const c=o.shirtClip;rect.setAttribute('x',c[0]);rect.setAttribute('y',c[1]);rect.setAttribute('width',c[2]-c[0]);rect.setAttribute('height',c[3]-c[1]);
+}
+function seek(n){frame=clamp(Number(n),0,150);if(engine==='lottie'&&inst){inst.goToAndStop(frame,true)}else renderSvg(frame);
+ g('scrub').value=frame;g('clock').textContent=(frame/30).toFixed(2)+' / 5.00 s'}
+function stop(){playing=false;if(raf)cancelAnimationFrame(raf);raf=0;last=0;inst?.pause()}
+function tick(time){if(!playing)return;let dt=last?Math.min(.07,(time-last)/1000):0;last=time;let n=frame+dt*30*speed;
+ if(n>=150){if(loop)n%=150;else{seek(150);stop();return}}seek(n);raf=requestAnimationFrame(tick)}
+function play(){stop();if(frame>=150)seek(0);playing=true;raf=requestAnimationFrame(tick)}
+g('play').onclick=play;g('pause').onclick=stop;g('replay').onclick=()=>{seek(0);play()};
+g('scrub').oninput=()=>{stop();seek(g('scrub').value)};
+g('speed').onchange=e=>speed=+e.target.value;g('loop').onchange=e=>loop=e.target.checked;
+g('checker').onchange=e=>{document.querySelectorAll('.art').forEach(x=>x.classList.toggle('checker',e.target.checked))};
+g('align').onchange=e=>g('overlay').style.opacity=e.target.checked?'.38':'0';
+function native(){if(!window.lottie){g('engine').textContent='Offline vector SVG reference · official Lottie runtime unavailable';return;}
+ try{inst=window.lottie.loadAnimation({container:g('native'),renderer:'svg',loop:false,autoplay:false,
+   animationData:data,rendererSettings:{preserveAspectRatio:'xMidYMid meet',clearCanvas:true}});
+ inst.addEventListener('DOMLoaded',()=>{engine='lottie';g('svg-reference').style.display='none';g('native').style.display='block';g('engine').textContent='Official lottie-web SVG renderer · native JSON';seek(frame)});
+ inst.addEventListener('data_failed',()=>{engine='svg';inst?.destroy();inst=null;g('native').style.display='none';g('svg-reference').style.display='block';g('engine').textContent='SVG reference fallback · Lottie failed';seek(frame)});
+ }catch(e){g('engine').textContent='SVG vector reference · native runtime failed: '+e.message}}
+seek(reduced?150:0);native();if(!reduced)play();
+window.__c05V4={seek,play,pause:stop,state:()=>({frame,engine,playing,speed}),engine:()=>engine};
+})();'''
+block=lambda id,value: '<script type="application/json" id="'+id+'">'+json.dumps(value,separators=(',',':')).replace('</','<\\/')+'</script>'
+# Standard lottie-web loads when connected. Review fallback is self-contained.
+html=['<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CHAPCHITRA C05 — Icon 01 V4 · Sheet Pair Review</title>',
+      '<style>'+css+'</style><script defer src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script></head><body><main>',
+      '<header><small>CHAPCHITRA · C05 · Icon 01 · V4 prototype</small><h1>Stories You Can Wear</h1><p>Three physical right-to-left page turns, paired fronts and backs, followed by the approved cat T-shirt emergence. Source SVG is unchanged; no website integration.</p></header>',
+      '<div class="cards"><section class="card"><h2>Original layered master SVG</h2><div id="original" class="art"></div></section>',
+      '<section class="card"><h2>Revised page-turn animation</h2><div class="art animated" id="animated"><div id="svg-reference"></div><div id="native"></div><div id="overlay"></div></div><div id="engine">Initializing review…</div></section></div>',
+      '<section class="controls"><button id="play">Play</button><button id="pause">Pause</button><button id="replay">Replay</button><label><input type="checkbox" id="loop"> Loop (review only)</label>',
+      '<label>Speed <select id="speed"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>',
+      '<label><input type="checkbox" id="checker"> Checkerboard</label><label><input type="checkbox" id="align"> Final-pose overlay</label><span id="clock">0.00 / 5.00 s</span>',
+      '<input type="range" id="scrub" min="0" max="150" step="0.1" value="0" aria-label="Scrub animation"></section>',
+      '<p>Original master artwork preserved byte-for-byte. This V4 preview intentionally suppresses inactive duplicate page backs that obscure <code>Black_Illustration</code> in the Illustrator export. The source-static panel displays those layers as exported, for comparison.</p>',
+      '</main>',block('source',source),block('final',final),block('data',m.DATA),block('states',frames),'<script>'+script+'</script></body></html>']
+p=R/'CHAPCHITRA_C05_Icon01_V4_ISOLATED_PREVIEW.html'
+p.write_text(''.join(html))
+print(p,round(p.stat().st_size/1e6,2),'MB',len(frames),'frames')
