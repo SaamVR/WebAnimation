@@ -40,6 +40,8 @@ test('C02 cover may use original full transparent image while its reveal is unch
  assert.doesNotMatch(runtime,/svg\.style\.visibility=pngCover/);
  assert.match(runtime,/inkAssetImg\.style\.width=placement\.renderedWidth/);
  assert.match(runtime,/inkAssetImg\.style\.height=placement\.renderHeight/);
+ assert.match(runtime,/inkAssetImg\.style\.transform='translate3d\('/);
+ assert.doesNotMatch(runtime,/inkAssetImg\.style\.left=placement\.left/);
  assert.match(runtime,/inkAssetFill\.style\.width=fillWidth/);
  assert.match(runtime,/background-repeat:repeat-x;background-position:right top/);
  assert.match(runtime,/inkAssetFill\.style\.backgroundSize=placement\.interiorLoopWidth/);
