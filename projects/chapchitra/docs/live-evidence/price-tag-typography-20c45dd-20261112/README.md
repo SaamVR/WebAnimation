@@ -31,7 +31,8 @@ Edit **`projects/chapchitra/src/worktable-price-tag-config.mjs`**, `WORKTABLE_PR
 - **Public price-tag / live pricing checks: 201 / 201 passed**, desktop Chromium, tablet-viewport WebKit and mobile Chromium. All four garment bases, front/back A4/A3 selections, independent artwork and dual-sided max price were exercised. No clippings were detected in font/layout bounds for `৳1,250`.
 - [Full machine-readable public browser QA report](public-typography-qa.json): zero JS errors, zero failed HTTP requests, Hind Siliguri loaded, correct 600/700 weights, matching text rotation and shared invoice/tag amounts.
 - [Browser QA source code](browser-qa-script.cjs) for reproducibility.
-- **Public front/back artwork regression: 54 / 54 passed** on the same Render review.
+- [Public front/back artwork regression](front-back-regression.json): **54 / 54 passed**, zero browser errors or failed requests.
+- [Public navbar preservation regression](navbar-regression.json): **90 / 90 passed**, Artist's Edit remains nonsticky while other pages retain approved sticky behavior, zero browser errors or failed requests.
 - Physical iPad Safari/Chrome remains **unverified**.
 
 ## Release guard
