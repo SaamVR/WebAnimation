@@ -78,6 +78,7 @@ test('C02 has exactly one vector surface through cover/full/loading/reveal',asyn
  assert.match(runtime,/const incomingPaintReady=overlay\.assetsReady\.then/);
  assert.match(runtime,/doc\.documentElement\.dataset\.c02Handoff='matched-first-frame'/);
  assert.match(runtime,/doc\.documentElement\.dataset\.c02FirstPaintDelta=/);
+ assert.match(runtime,/doc\.documentElement\.dataset\.c02RevealSurface=JSON\.stringify/);
  assert.match(runtime,/win\.setTimeout\(expose,150\)/);
  assert.match(early,/visualViewport\.addEventListener\('resize',positionPrepaint/);
  assert.match(early,/visualViewport\.addEventListener\('scroll',positionPrepaint/);
