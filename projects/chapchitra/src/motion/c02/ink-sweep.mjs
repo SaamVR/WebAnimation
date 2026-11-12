@@ -280,7 +280,10 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     const fullSweep=target>=.999;
     let d=fullSweep?finishDuration(start,Date.now()-startedAt):
      Math.round(Math.max(240,Math.min(700,(target-start)*1000)));
-    if(!fullSweep&&knownMs===1000)d=Math.min(420,d);
+    // The 1s simulator previously compressed up to .68 progress into 420ms,
+    // creating a verified 25.8% viewport / 91ms roller sprint in WebKit.
+    // Begin the handoff earlier instead; keep document-commit wall time.
+    if(!fullSweep&&knownMs===1000)d=Math.min(600,Math.max(560,d));
     const velocity=Math.min((p-initial)/Math.max(1,Date.now()-startedAt),
      Math.max(.00005,(target-p)/d));
     completing={start,end:target,at:now,duration:d,velocity,done};
@@ -490,7 +493,7 @@ export function installC02PageTransitions(win=window,doc=document){
    // 1/3/5/8-second scripted examples estimate duration only here,
    // never on normal pages. They pace the shared roller/ink controller.
    if(demoMs){
-    commitTimer=win.setTimeout(commit,demoMs<=1000?220:Math.max(0,demoMs-1050));
+    commitTimer=win.setTimeout(commit,demoMs<=1000?40:Math.max(0,demoMs-1050));
    }else{
     warmDestination(target).then(ok=>{
      if(!leaving||navigationCommitted)return;
