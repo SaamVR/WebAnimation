@@ -18,15 +18,19 @@ async function step(page,device,delay){
  const started=Date.now();
  await page.locator('a[href="/c02-review/slow/?delay='+delay+'"]').click({noWaitAfter:true});
  let observed=false,texturedInterior=false;
+ const captures=new Set();
  const requireInterior=device==='ultrawide'&&delay>=5000;
- const deadline=Date.now()+(requireInterior?delay+1200:Math.min(delay,1800));
- while(Date.now()<deadline&&(!observed||(requireInterior&&!texturedInterior))){
+ const detailed=delay===5000;
+ const deadline=Date.now()+(detailed?delay+3500:Math.min(delay,1800));
+ while(Date.now()<deadline&&(!observed||(requireInterior&&!texturedInterior)||
+  (detailed&&captures.size<4))){
   const state=await page.evaluate(()=>{
    const o=document.getElementById('c02-loader');
    const img=o?.querySelector('.c02-loader__ink-asset');
    const roller=o?.querySelector('.c02-loader__roller img');
-   const fill=o?.querySelector('.c02-loader__ink-asset-interior');
-   const fillStyle=fill?getComputedStyle(fill):null;
+   const layer=o?.querySelector('.c02-loader__ink-asset-layer');
+   const viewport=window.visualViewport;
+   const scale=(viewport?.height||innerHeight)*1.06/1152;
    const data={
     p:Number(o?.dataset.progress),inkType:o?.dataset.inkAsset,
     source:img?.getAttribute('src'),originalSize:[img?.naturalWidth,img?.naturalHeight],
@@ -34,49 +38,64 @@ async function step(page,device,delay){
     style:img?getComputedStyle(img).display:null,
     width:img?parseFloat(img.style.width):0,height:img?parseFloat(img.style.height):0,
     contact:Number(o?.dataset.inkContactX),viewport:innerWidth,
-    fillWidth:fill?parseFloat(fill.style.width):0,
-    fillImage:fillStyle?.backgroundImage,
-    fillRepeat:fillStyle?.backgroundRepeat,
-    fillPosition:fillStyle?.backgroundPosition,
-    fillColor:fillStyle?.backgroundColor
+    sourceStartX:Number(o?.dataset.inkContactX)-1689*scale,
+    layers:layer?.children.length,
+    svgVisible:o?getComputedStyle(o.querySelector('svg.c02-loader__surface')).visibility:null,
+    layerDisplay:layer?getComputedStyle(layer).display:null,
+    backgroundRepeat:layer?getComputedStyle(layer).backgroundRepeat:null
    };
    return data;
   }).catch(()=>({}));
-  if(state.inkType==='original-png-continuous'&&state.p>.05&&state.p<.99&&
-   state.originalSize?.[0]===2048&&state.originalSize?.[1]===1152){
+  if(state.inkType==='original-quilt-unified'&&state.p>.05&&state.p<=1&&
+   state.originalSize?.[0]===8192&&state.originalSize?.[1]===1152){
    if(!observed){
     observed=true;
-    record(device,delay+'ms exact source',state.source==='/assets/c02/Ink_swipe_1.png'
-     &&state.originalSize[0]===2048&&state.originalSize[1]===1152
-     &&state.roller==='/assets/c02/roller-original.svg',state);
-    record(device,delay+'ms aspect ratio',
-     Math.abs(state.width/state.height-2048/1152)<.00002,state);
+    record(device,delay+'ms single unified original-source bitmap',
+     state.source==='/assets/c02/ink-unified.webp'&&
+     state.originalSize[0]===8192&&state.originalSize[1]===1152&&
+     state.roller==='/assets/c02/roller-original.svg'&&state.layers===1&&
+     state.svgVisible==='hidden',state);
+    record(device,delay+'ms full composite aspect ratio',
+     Math.abs(state.width/state.height-8192/1152)<.00002,state);
     record(device,delay+'ms moving contact',
      Number.isFinite(state.contact)&&state.contact>-state.viewport,state);
-    record(device,delay+'ms authentic repeated pigment layer',
-     state.fillImage?.includes('ink-interior-loop.webp')&&
-     state.fillRepeat==='repeat-x'&&state.fillPosition?.startsWith('100%')&&
-     ['rgba(0, 0, 0, 0)','transparent'].includes(state.fillColor),state);
+    record(device,delay+'ms no mirrored tile layer or runtime overlap',
+     state.layers===1&&state.layerDisplay==='block'&&
+     !state.backgroundRepeat?.includes('repeat-x'),state);
     if(delay>=5000&&!requireInterior)
      await page.screenshot({path:path.join(output,device+'-5s-original-png-roller.png')});
    }
-   if(requireInterior&&state.fillWidth>260){
+   if(requireInterior&&!texturedInterior&&state.sourceStartX>260){
     texturedInterior=true;
     const screenshot=await page.screenshot({path:path.join(output,
-     'ultrawide-5s-texture-extension.png')});
+     'ultrawide-5s-unified-texture.png')});
     const sharp=require('sharp');
     const sampled=await sharp(screenshot).extract({
-     left:40,top:240,width:180,height:180
+     left:10,top:125,width:430,height:330
     }).stats();
     const rgbDeviation=sampled.channels.slice(0,3).map(c=>c.stdev);
-    record(device,'ultrawide visibly textured region',Math.max(...rgbDeviation)>0.6,
-     {fillWidth:state.fillWidth,rgbDeviation});
-   }else if(requireInterior)await page.waitForTimeout(65);
+    record(device,'ultrawide composite visibly retains source-pigment variance',
+     Math.max(...rgbDeviation)>.25,
+     {sourceStartX:state.sourceStartX,rgbDeviation});
+   }
+   if(detailed){
+    for(const threshold of [.25,.5,.75,.95]){
+     if(state.p>=threshold&&!captures.has(threshold)){
+      captures.add(threshold);
+      await page.screenshot({path:path.join(output,
+       device+'-5s-cover-'+Math.round(threshold*100)+'pct.png')});
+      break;
+     }
+    }
+   }
+   if(detailed&&!requireInterior)await page.waitForTimeout(28);
+   else if(requireInterior&&!texturedInterior)await page.waitForTimeout(28);
   }else await page.waitForTimeout(45);
  }
- if(delay>=5000)record(device,'5s visibly textured cover',observed,{delay,observed});
+ if(delay>=5000)record(device,'5s continuously textured cover',observed,
+  {delay,observed,coverageStages:[...captures]});
  if(device==='ultrawide'&&delay>=5000)
-  record(device,'5s extended pigment coverage',texturedInterior,
+  record(device,'5s extended unique pigment coverage',texturedInterior,
    {delay,texturedInterior});
  await page.waitForURL(u=>u.pathname==='/c02-review/slow/',{timeout:18000});
  // The 385ms reveal must use the SAME pigment surface as full cover.
@@ -87,13 +106,12 @@ async function step(page,device,delay){
   const reveal=await page.evaluate(()=>{
    const o=document.getElementById('c02-loader');
    const bitmap=o?.querySelector('.c02-loader__ink-asset');
-   const fill=o?.querySelector('.c02-loader__ink-asset-interior');
    const layer=o?.querySelector('.c02-loader__ink-asset-layer');
    const svg=o?.querySelector('svg.c02-loader__surface');
    const vp=window.visualViewport;
    return {phase:o?.dataset.phase,asset:o?.dataset.inkAsset,
     progress:Number(o?.dataset.progress),source:bitmap?.getAttribute('src'),
-    fillWidth:parseFloat(fill?.style.width||'0'),
+    layers:layer?.children.length,natural:[bitmap?.naturalWidth,bitmap?.naturalHeight],
     layerDisplay:getComputedStyle(layer).display,
     svgVisibility:getComputedStyle(svg).visibility,
     viewportWidth:vp?.width||innerWidth,scrollY,
@@ -101,10 +119,10 @@ async function step(page,device,delay){
     clip:layer?.style.clipPath};
   });
   record(device,'5s reveal retains textured original raster without SVG switch',
-   reveal.phase==='reveal'&&reveal.asset==='original-png-continuous'&&
-   reveal.source==='/assets/c02/Ink_swipe_1.png'&&
-   reveal.layerDisplay==='block'&&reveal.svgVisibility==='hidden'&&
-   reveal.fillWidth>=reveal.viewportWidth-1,reveal);
+   reveal.phase==='reveal'&&reveal.asset==='original-quilt-unified'&&
+   reveal.source==='/assets/c02/ink-unified.webp'&&
+   reveal.layers===1&&reveal.natural[0]===8192&&
+   reveal.layerDisplay==='block'&&reveal.svgVisibility==='hidden',reveal);
   await page.screenshot({path:path.join(output,device+'-5s-textured-reveal.png')});
  }
  await page.waitForFunction(()=>window.__c02DemoReady===true&&!document.getElementById('c02-loader'),
@@ -130,7 +148,7 @@ async function viewportScenario(page,device,width,height){
  await page.locator('a[href="/c02-review/slow/?delay=5000"]').click({noWaitAfter:true});
  await page.waitForFunction(()=>{
   const o=document.getElementById('c02-loader');
-  return o?.dataset.inkAsset==='original-png-continuous'&&
+  return o?.dataset.inkAsset==='original-quilt-unified'&&
    Number(o.dataset.progress)>.10;
  },null,{timeout:6500});
  const read=()=>page.evaluate(()=>{
@@ -159,7 +177,7 @@ async function viewportScenario(page,device,width,height){
  },null,{timeout:3500});
  const resized=await read();
  record(device,'visual-viewport changed without ink clipping',
-  resized.asset==='original-png-continuous'&&resized.phase==='cover'&&
+  resized.asset==='original-quilt-unified'&&resized.phase==='cover'&&
   Math.abs(resized.outer.height-resized.viewport.height)<2&&
   Math.abs(resized.outer.width-resized.viewport.width)<2&&
   Math.abs(resized.outer.x-resized.viewport.x)<2&&
@@ -215,7 +233,7 @@ async function main(){
   const page=await context.newPage();
   try{
    await compare(page,device);
-   for(const delay of [1000,5000])await step(page,device,delay);
+   for(const delay of [1000,3000,5000])await step(page,device,delay);
    if(device==='ipad'||device==='desktop')
     await viewportScenario(page,device,width,height);
   }catch(e){results.push({engine:engineName,device,name:'suite',passed:false,error:String(e.stack||e).slice(0,2000)});}
