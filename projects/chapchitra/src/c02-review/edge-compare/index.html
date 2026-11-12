@@ -72,7 +72,7 @@ function panel(id,isGrit){
  let dry,dep;
  if(isGrit){
   const mask=node('mask',{id:'c02-comparison-grit-mask',
-   maskUnits:'userSpaceOnUse',maskContentUnits:'userSpaceOnUse',
+   style:'mask-type:luminance',maskUnits:'userSpaceOnUse',maskContentUnits:'userSpaceOnUse',
    x:-100,y:-100,width:1200,height:1200},defs);
   node('rect',{x:-100,y:-100,width:1200,height:1200,fill:'white'},mask);
   dry=node('path',{fill:'black'},mask);
