@@ -8,7 +8,10 @@ export const C02_INK_ASSET=Object.freeze({
  // Actual positive-alpha extent measured directly from original source.
  // Blank transparent padding x=1689..2048 MUST NOT anchor the roller.
  paintedRight:1689,
- press:'#293D2D'
+ press:'#293D2D',
+ // Reflect only dense interior pigment; never duplicate the leading brush edge.
+ interior:Object.freeze({path:'/assets/c02/ink-interior-loop.webp',
+  cropStart:0,cropWidth:1160,loopWidth:2320})
 });
 const finite=(value,fallback=0)=>Number.isFinite(Number(value))?Number(value):fallback;
 export function c02InkAssetPlacement({edgeX,viewportWidth,viewportHeight}){
@@ -22,10 +25,10 @@ export function c02InkAssetPlacement({edgeX,viewportWidth,viewportHeight}){
  const left=finite(edgeX)-paintedExtent;
  const top=(height-renderHeight)/2;
  const renderedWidth=C02_INK_ASSET.width*scale;
- // Only extend flat color to meet the LEFT of the full PNG body, with 3px
- // overlap. Never place a green rectangle beneath the textured PNG interior:
- // its real transparent brush pits must remain visible.
- const solidFillWidth=Math.min(width,Math.max(0,left+3));
+ // Repeat only real pigment to the LEFT. Its reflected rightmost column
+ // exactly matches the original PNG's first column; no solid backing required.
+ const interiorFillWidth=Math.min(width,Math.max(0,left));
  return {scale,left,top,renderedWidth,renderHeight,paintedExtent,
-  solidFillWidth,contactX:left+paintedExtent,paintedRight:C02_INK_ASSET.paintedRight};
+  interiorFillWidth,interiorLoopWidth:C02_INK_ASSET.interior.loopWidth*scale,
+  contactX:left+paintedExtent,paintedRight:C02_INK_ASSET.paintedRight};
 }
