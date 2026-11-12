@@ -3,7 +3,7 @@
 import {C02_PAGES,C02_PATHS,C02_MOTION,INK_PALETTE,isC02Eligible,
  easeInk,inkPath,inkEdgePath,inkEdgeX} from './ink-shapes.mjs';
 import {C02_ADAPTIVE,pendingInkProgress,finishDuration,
- finishInkProgress,getReviewDelayMs} from './adaptive-progress.mjs';
+ finishInkProgress,smoothHandoffProgress,getReviewDelayMs} from './adaptive-progress.mjs';
 import {gritEdgePaths} from './grit-edge.mjs';
 import {C02_INK_ASSET,c02InkAssetPlacement,c02InkVisualViewport,
  c02InkRevealClip} from './ink-asset.mjs';
@@ -242,9 +242,12 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    if(completing){
     const c=completing;
     const elapsed=now-c.at;
-    const ratio=finishInkProgress(c.start/c.end,elapsed,c.duration,
-     c.velocity/c.end);
-    p=Math.max(p,Math.min(c.end,ratio*c.end));
+    // Only the still-unready, partial outbound handoff needs the measured
+    // velocity-cap correction. Full coverage/reveal keep approved easing.
+    const target=c.end>=.999
+     ?finishInkProgress(c.start/c.end,elapsed,c.duration,c.velocity/c.end)*c.end
+     :smoothHandoffProgress(c.start,c.end,elapsed,c.duration,c.velocity);
+    p=Math.max(p,Math.min(c.end,target));
     if(elapsed>=c.duration){
      p=c.end;completing=null;win.clearTimeout(finishGuard);
      render(p,'cover');onProgress?.(p);
