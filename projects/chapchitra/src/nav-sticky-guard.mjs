@@ -73,8 +73,55 @@ export function installStickyViewportDiagnostics(root = document, view = window)
     // browser chrome/compositing outside the measured DOM viewport.
     const cx = Math.max(1, Math.floor((view.innerWidth ?? 0) / 2));
     const cy = 2;
+    // A physical iPad screenshot alone cannot identify whether a strip
+    // belongs to the browser toolbar, the DOM layout, or the compositor.
+    // Capture all requested boxes and the DOM point immediately below chrome.
+    const app = root.getElementById('app');
+    const main = root.getElementById('main');
+    const nodes = { html:root.documentElement, body:root.body,
+      app, announcement, siteHeader:header, main };
+    const boxOf = element => {
+      if (!element) return null;
+      const rect = element.getBoundingClientRect();
+      const css = view.getComputedStyle(element);
+      return {
+        x:round(rect.x),y:round(rect.y),top:round(rect.top),
+        bottom:round(rect.bottom),height:round(rect.height),
+        left:round(rect.left),right:round(rect.right),
+        width:round(rect.width),
+        marginTop:css.marginTop,marginBottom:css.marginBottom,
+        paddingTop:css.paddingTop,paddingBottom:css.paddingBottom,
+        position:css.position,topCSS:css.top,
+        transform:css.transform,translate:css.translate,
+        background:css.backgroundColor
+      };
+    };
+    const rectangles = Object.fromEntries(
+      Object.entries(nodes).map(([name,element])=>[name,boxOf(element)])
+    );
+    const atVisualTop = Math.min(Math.max(2,(view.innerHeight ?? 3)-1),
+      Math.max(2,Math.floor((view.visualViewport?.offsetTop ?? 0)+2)));
+    const announceTop = rectangles.announcement?.top ?? NaN;
+    const pointAtTop = root.elementFromPoint(cx,cy);
+    const pointAtVisual = root.elementFromPoint(cx,atVisualTop);
+    const topDiagnosis = Math.abs(state.scrollY)<2 && Math.abs(announceTop)<2 &&
+      announcement.contains(pointAtTop)
+      ? 'document-starts-at-viewport-top; screenshot-only strip is outside DOM or compositor'
+      : announceTop>2 && state.scrollY<2
+        ? 'document-announcement-displaced; inspect html/body/#app boxes and computed spacing'
+        : 'scroll/overlay/viewport-dependent; inspect full geometry';
     return {
       ...state,
+      rectangles,
+      topDiagnosis,
+      samplePoints:{
+        viewportTop:{x:cx,y:cy,element:describeElement(pointAtTop)},
+        visualTop:{x:cx,y:atVisualTop,element:describeElement(pointAtVisual)}
+      },
+      scrollRestoration:view.history?.scrollRestoration ?? 'unknown',
+      docClientHeight:root.documentElement?.clientHeight ?? 0,
+      docScrollHeight:root.documentElement?.scrollHeight ?? 0,
+      bodyScrollHeight:root.body?.scrollHeight ?? 0,
       cssPosition: headerStyle.position,
       cssTop: headerStyle.top,
       computedTranslate: headerStyle.translate,
@@ -120,6 +167,11 @@ export function installStickyViewportDiagnostics(root = document, view = window)
       'visualViewport.pageTop: ' + state.visualPageTop + 'px\n' +
       'header relative to visual viewport: ' + state.visualRelativeTop + 'px\n' +
       'DOM at screen top: ' + state.domAtTop + '\n' +
+      'document/paint diagnosis: ' + state.topDiagnosis + '\n' +
+      'root/announcement/header tops: ' +
+      [state.rectangles.html?.top,state.rectangles.body?.top,
+       state.rectangles.app?.top,state.rectangles.announcement?.top,
+       state.rectangles.siteHeader?.top].join(' / ') + 'px\n' +
       'safe-area top: ' + state.safeAreaTop + 'px\n' +
       'scrollY: ' + state.scrollY + 'px\n' +
       'viewport height: ' + state.visualHeight + ' / ' + state.layoutHeight + 'px\n' +
