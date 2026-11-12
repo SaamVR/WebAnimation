@@ -134,6 +134,14 @@ async function drag(page,selector,x,y){
  await pick(page,'printSize','A4');await put(page,id+'-back.png');
  await page.getByRole('button',{name:'View front',exact:true}).click();
  await page.locator('.cc-worktable-garment-surface[data-side="front"]').waitFor({timeout:30000});
+ // The 400ms natural garment turn completes after the surface swaps.
+ // Require the actual saved A4 frame geometry, not merely the side DOM.
+ await page.waitForFunction(({x,y})=>{
+  const g=document.querySelector('.cc-worktable-paper-guide').getBoundingClientRect();
+  const st=document.querySelector('.cc-worktable-stage').getBoundingClientRect();
+  return Math.abs(g.x-st.x-x)<2&&Math.abs(g.y-st.y-y)<2;
+ },{x:front.clip.x,y:front.clip.y},{timeout:10000});
+ await settle(page);
  const restored=await SNAP(page);
  verify(id+' front A4 frame & art state restored',same(front.clip.x,restored.clip.x)&&same(front.clip.y,restored.clip.y)&&within(restored.art,restored.clip),{front,restored});
  verify(id+' unchanged invoice pricing',restored.price==='৳650',{price:restored.price});
