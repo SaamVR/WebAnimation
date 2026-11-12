@@ -47,6 +47,26 @@ export function finishInkProgress(progress,elapsedMs,durationMs,initialVelocity=
  const h01=-2*u**3+3*u**2;
  return clamp(h00*from+h10*tangent*durationMs+h01,from,1);
 }
+// Short outbound document handoffs formerly used a cubic Hermite peak that
+// advanced the roller ~29% of the viewport in one 90ms WebKit sample.
+// Preserve EXACT start/end progress, destination and prescribed milliseconds,
+// but use a velocity-matched, near-linear middle with 5.5% easing ramps.
+// This is a measured jitter correction, not a new loading-duration policy.
+export function smoothHandoffProgress(start,end,elapsedMs,durationMs,velocity=0){
+ const lo=clamp(start,0,1),hi=clamp(end,lo,1);
+ if(hi<=lo)return lo;
+ const duration=Math.max(1,durationMs);
+ const u=clamp(elapsedMs/duration,0,1);
+ const ramp=.055;
+ const a=clamp(velocity*duration/(hi-lo),0,1);
+ const middle=(1-ramp*a/2)/(1-ramp);
+ let fraction;
+ if(u<ramp)fraction=a*u+(middle-a)*u*u/(2*ramp);
+ else if(u<=1-ramp)fraction=ramp*(a+middle)/2+middle*(u-ramp);
+ else fraction=1-middle*(1-u)*(1-u)/(2*ramp);
+ return clamp(lo+(hi-lo)*fraction,lo,hi);
+}
+
 export function getReviewDelayMs(destination){
  try{
   const url=new URL(destination,'https://chapchitra.invalid');
