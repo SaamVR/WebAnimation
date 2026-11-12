@@ -27,12 +27,12 @@ jobs:
         with:
           node-version: '22'
       - name: Install pinned browser QA runtime (isolated only)
-        working-directory: animation-prototypes/chapchitra/c05/icon01/V3
+        working-directory: animation-prototypes/chapchitra/c05/icon01/V4
         run: |
           npm init -y
           npm install --no-save playwright@1.56.1 pngjs@7.0.0
       - name: Install Chromium + WebKit and Linux browser dependencies
-        working-directory: animation-prototypes/chapchitra/c05/icon01/V3
+        working-directory: animation-prototypes/chapchitra/c05/icon01/V4
         run: npx playwright install --with-deps chromium webkit
       - name: Serve isolated C05 review asset directory
         run: |
