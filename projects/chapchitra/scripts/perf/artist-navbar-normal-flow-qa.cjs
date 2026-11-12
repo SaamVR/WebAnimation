@@ -123,10 +123,17 @@ async function run(browser,engine,width,height){
    await page.goto(origin+'/about/?navdebug=1',{waitUntil:'load'});
    await page.goBack({waitUntil:'load'});
    await page.locator('#siteHeader').waitFor();
+   // A BFCache reactivation may return the DOM before the opt-in debug
+   // module has hydrated. Never count missing geometry as zero offset.
+   await page.waitForFunction(()=>!!window.__ccNavViewport?.measure,
+    null,{timeout:14000});
    const history=await measure(page);
    topStripGeometry.push({engine,route,stage:'back-forward',geometry:history.navdebug});
-   check(engine+' shop browser history header keeps normal document origin',
-    Math.abs(history.navdebug?.rectangles?.app?.top||0)<2,{history});
+   check(engine+' shop browser history restores measurable DOM origin',
+    !!history.navdebug?.rectangles?.app &&
+    !!history.navdebug?.rectangles?.announcement &&
+    Math.abs(history.navdebug.rectangles.app.top)<2 &&
+    Math.abs(history.navdebug.rectangles.announcement.top)<2,{history});
    await page.screenshot({path:path.join(out,engine+'-shop-navdebug-history-return.png')});
   }
   await page.close();
