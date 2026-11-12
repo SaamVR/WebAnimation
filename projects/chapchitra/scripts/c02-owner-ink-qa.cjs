@@ -200,7 +200,7 @@ async function viewportScenario(page,device,width,height){
 async function compare(page,device){
  await page.goto(origin+'/c02-review/asset-compare/',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.querySelector('#after image')?.getAttribute('href')
-  ==='/assets/c02/Ink_swipe_1.png');
+  ==='/assets/c02/ink-unified.webp');
  await page.waitForFunction(()=>document.querySelector('#after image')?.getBBox().width>0);
  for(const progress of [380,700]){
   await page.locator('#progress').evaluate((el,value)=>{
@@ -211,11 +211,15 @@ async function compare(page,device){
    const img=document.querySelector('#after image');
    return {progress:document.getElementById('progress').value,
     source:img?.getAttribute('href'),width:Number(img?.getAttribute('width')),
-    height:Number(img?.getAttribute('height')),beforeLength:before?.getAttribute('d')?.length};
+    height:Number(img?.getAttribute('height')),
+    imageX:Number(img?.getAttribute('x')),
+    extraRect:!!document.querySelector('#after rect'),
+    beforeLength:before?.getAttribute('d')?.length};
   });
   record(device,'side-by-side at '+progress/10+'%',rect.progress===String(progress)
-   &&rect.source==='/assets/c02/Ink_swipe_1.png'&&
-   Math.abs(rect.width/rect.height-2048/1152)<.00002,rect);
+   &&rect.source==='/assets/c02/ink-unified.webp'&&
+   Math.abs(rect.width/rect.height-8192/1152)<.00002&&
+   !rect.extraRect&&Number.isFinite(rect.imageX),rect);
   await page.screenshot({path:path.join(output,device+'-compare-'+progress/10+'pct.png'),fullPage:true});
  }
 }
