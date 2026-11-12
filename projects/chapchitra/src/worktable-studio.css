@@ -821,7 +821,16 @@
  .cc-worktable.cc-mobile-editing .cc-worktable-stage .cc-worktable-frame-handle:not([hidden]){
   display:grid;
  }
- .cc-worktable.cc-mobile-editing .cc-worktable-stage .cc-worktable-art-tools{transform:scale(.7);transform-origin:left top}
+ /* The existing toolbar uses stage coordinates. At 1.65× zoom its desktop
+    placement can lie outside the portrait viewport; anchor ONLY its mobile
+    display near the lower torso, keeping all original tool handlers. */
+ .cc-worktable.cc-mobile-editing .cc-worktable-stage .cc-worktable-art-tools{
+  left:calc(50% - 74px)!important;top:68%!important;
+  transform:scale(.67);transform-origin:center top;
+ }
+ .cc-worktable.cc-mobile-editing .cc-worktable-stage .cc-worktable-frame-handle:not([hidden]){
+  transform:translate(-50%,-50%) scale(.65);
+ }
  .cc-worktable.cc-mobile-editing .cc-mobile-category-nav{pointer-events:none;opacity:0;visibility:hidden}
  .cc-worktable.cc-mobile-editing .cc-mobile-popup{display:none!important}
  .cc-worktable.cc-mobile-editing .cc-worktable-view-row{visibility:hidden;pointer-events:none}
