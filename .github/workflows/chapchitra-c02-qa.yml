@@ -28,7 +28,8 @@ jobs:
         run: |
           npm ci --no-audit --no-fund
           npm run build
-          node --test tests/c02-ink-sweep.test.mjs tests/c02-grit-edge.test.mjs tests/c02-owner-ink-asset.test.mjs
+          node --test tests/c02-ink-sweep.test.mjs tests/c02-grit-edge.test.mjs tests/c02-owner-ink-asset.test.mjs tests/c02-white-backing.test.mjs
+          test -f dist/assets/c02/texture-composed.svg
           test -f dist/assets/c02/Ink_swipe_1.png
           test -f dist/assets/c02/roller-original.svg
           test -f dist/assets/c02/roller-prepared.svg
