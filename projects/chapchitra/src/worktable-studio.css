@@ -692,7 +692,7 @@
  }
  .cc-worktable-stage > .cc-worktable-worker{display:block}
  .cc-worktable-stage > .cc-worktable-garment{display:block}
- .cc-worktable.is-hydrating .cc-worktable-stage > .cc-worktable-garment{
+ .cc-worktable.is-hydrating .cc-worktable-stage > .cc-worktable-layer.cc-worktable-garment:not(.cc-worktable-preview):not(.cc-worktable-upload-svg-layer){
   opacity:1!important;
  }
  .cc-worktable-view-row{bottom:-10%;z-index:10}
