@@ -116,7 +116,7 @@ export function mountMobileArtistEdit({
    if(group==='size')return path.startsWith('Size/');
    if(group==='printSize')return path.startsWith('Print size/');
    return path.startsWith('Upload image notebook/');
-  }).filter(([path])=>!path.includes('title_2.png')&&!path.includes('title_3.png'));
+  }); // Retain ALL approved sign layers, including separate lettering/brush marks.
   // Use complete illustrations rather than rebuilding art from typography:
   // each source is an individual transparent WebP layer, not a flatten.
   const box=group==='garment'?[60,316,555,654]:
