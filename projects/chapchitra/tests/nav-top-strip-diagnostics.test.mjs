@@ -29,6 +29,12 @@ test('layout and native toolbar instrumentation is read-only and complete',async
   assert.ok(file.includes(label),'required probe '+label);
  }
  assert.match(file,/if \(!new URLSearchParams/);
+ assert.match(file,/tintButton\.addEventListener\('click'/);
+ assert.match(file,/restoreBackground\(\)/);
+ assert.match(file,/initialHtmlBackground/);
+ assert.match(file,/initialBodyBackground/);
+ assert.match(file,/browserEdgeColorProbeActive:tintProbeActive/);
+ assert.match(file,/const state = capture\(\)/);
  assert.doesNotMatch(file,/scrollTo\(|scrollBy\(|style\.top\s*=|style\.transform\s*=/);
  assert.match(css,/body\{margin:0;/);
  assert.match(css,/#app\{overflow:visible\}/);
