@@ -75,6 +75,9 @@ function makeOverlay(doc,win,edgeStyle='grit'){
  const defs=doc.createElementNS(NS,'defs');svg.prepend(defs);
  const gritMask=doc.createElementNS(NS,'mask');
  gritMask.id='c02-grit-contact-mask';
+ // Luminance is essential: black brush marks must punch alpha holes,
+ // not become opaque black alpha-mask areas in WebKit.
+ gritMask.style.maskType='luminance';
  gritMask.setAttribute('maskUnits','userSpaceOnUse');
  gritMask.setAttribute('maskContentUnits','userSpaceOnUse');
  gritMask.setAttribute('x','-100');gritMask.setAttribute('y','-100');
