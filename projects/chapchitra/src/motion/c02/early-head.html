@@ -5,11 +5,13 @@ html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;ba
 /* Match the actual owner PNG on the very FIRST incoming frame, before the
    independent module boots. No procedural wipe flashes on PNG navigation. */
 html.c02-pending.c02-asset-arrival::before{clip-path:none;
-inset:var(--c02-asset-top,0px) auto auto 0;
+inset:calc(var(--c02-viewport-top,0px) + var(--c02-asset-top,0px)) auto auto var(--c02-viewport-left,0px);
 width:var(--c02-asset-fill,0px);height:var(--c02-asset-height,0px);
 background:transparent url('/assets/c02/ink-interior-loop.webp') right top /
 var(--c02-asset-loop-width,0px) var(--c02-asset-height,0px) repeat-x}
-html.c02-pending.c02-asset-arrival::after{content:"";position:fixed;inset:0;z-index:2147482901;
+html.c02-pending.c02-asset-arrival::after{content:"";position:fixed;
+inset:var(--c02-viewport-top,0px) auto auto var(--c02-viewport-left,0px);
+width:var(--c02-viewport-width,100vw);height:var(--c02-viewport-height,100vh);
 background-image:url('/assets/c02/Ink_swipe_1.png');background-repeat:no-repeat;
 background-size:var(--c02-asset-width,0px) var(--c02-asset-height,0px);
 background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-events:auto}
@@ -36,19 +38,29 @@ background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-e
     return (-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*organic+offset)/10;
    }
    if(ticket.edgeStyle==='asset'){
-    var scale=innerHeight*1.06/1152;
+    var vv=window.visualViewport;
+    var vw=vv&&vv.width>0?vv.width:innerWidth;
+    var vh=vv&&vv.height>0?vv.height:innerHeight;
+    var scale=vh*1.06/1152;
     var rightContact=(-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*(
      104*Math.sin(Math.PI*470/1000*2.35+.32)+
      48*Math.sin(Math.PI*470/1000*4.15+1.15)+
-     19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*innerWidth/1000;
+     19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*vw/1000;
     var left=rightContact-1689*scale;
     var root=document.documentElement;
-    root.style.setProperty('--c02-asset-fill',Math.min(innerWidth,Math.max(0,left))+'px');
+    root.style.setProperty('--c02-viewport-left',(vv?.offsetLeft||0)+'px');
+    root.style.setProperty('--c02-viewport-top',(vv?.offsetTop||0)+'px');
+    root.style.setProperty('--c02-viewport-width',vw+'px');
+    root.style.setProperty('--c02-viewport-height',vh+'px');
+    var base=Math.min(vw,Math.max(0,left));
+    var t=Math.max(0,Math.min(1,(p-.78)/.22));
+    var extent=base+(vw-base)*t*t*(3-2*t);
+    root.style.setProperty('--c02-asset-fill',extent+'px');
     root.style.setProperty('--c02-asset-loop-width',2320*scale+'px');
     root.style.setProperty('--c02-asset-width',2048*scale+'px');
     root.style.setProperty('--c02-asset-height',1152*scale+'px');
     root.style.setProperty('--c02-asset-left',left+'px');
-    root.style.setProperty('--c02-asset-top',((innerHeight-1152*scale)/2)+'px');
+    root.style.setProperty('--c02-asset-top',((vh-1152*scale)/2)+'px');
     root.classList.add('c02-asset-arrival');
    }else{
     var points=['0% 0%'];
