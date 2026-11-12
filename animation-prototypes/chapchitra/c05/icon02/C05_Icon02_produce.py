@@ -129,7 +129,7 @@ def shape_mask(name):
 
 
 def vector_layer(name,source,idx):
-    if etree.QName(source).localname=='path':
+    if etree.QName(source).localname in ('path','circle'):
         shapes=[P['element_group'](source,0)]
     else:shapes=P['extract_group'](source)
     if name=='Circle':
