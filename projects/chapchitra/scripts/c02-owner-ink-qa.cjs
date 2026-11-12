@@ -1,4 +1,4 @@
-// C02 original owner PNG: full-stroke browser comparison + real navigation QA.
+// C02 original owner SVG: visible vector surface + real navigation QA.
 // Viewports are simulated; physical iPad Safari remains an owner review gate.
 const {chromium,webkit}=require('playwright');
 const fs=require('node:fs'),path=require('node:path');
@@ -14,7 +14,8 @@ function record(device,name,passed,data){
 }
 async function step(page,device,delay){
  await page.goto(origin+'/c02-review/?edge=asset',{waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2');
+ await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2'&&
+  document.documentElement.dataset.c02AssetReady==='true');
  const started=Date.now();
  await page.locator('a[href="/c02-review/slow/?delay='+delay+'"]').click({noWaitAfter:true});
  let observed=false,texturedInterior=false;
@@ -30,7 +31,7 @@ async function step(page,device,delay){
    const roller=o?.querySelector('.c02-loader__roller img');
    const layer=o?.querySelector('.c02-loader__ink-asset-layer');
    const viewport=window.visualViewport;
-   const scale=(viewport?.height||innerHeight)*1.06/1152;
+   const scale=(viewport?.height||innerHeight)*1.5/1152;
    const data={
     p:Number(o?.dataset.progress),inkType:o?.dataset.inkAsset,
     source:img?.getAttribute('src'),originalSize:[img?.naturalWidth,img?.naturalHeight],
@@ -38,7 +39,7 @@ async function step(page,device,delay){
     style:img?getComputedStyle(img).display:null,
     width:img?parseFloat(img.style.width):0,height:img?parseFloat(img.style.height):0,
     contact:Number(o?.dataset.inkContactX),viewport:innerWidth,
-    sourceStartX:Number(o?.dataset.inkContactX)-1689*scale,
+    sourceStartX:Number(o?.dataset.inkContactX)-8096*scale,
     layers:layer?.children.length,
     svgVisible:o?getComputedStyle(o.querySelector('svg.c02-loader__surface')).visibility:null,
     layerDisplay:layer?getComputedStyle(layer).display:null,
@@ -46,26 +47,26 @@ async function step(page,device,delay){
    };
    return data;
   }).catch(()=>({}));
-  if(state.inkType==='original-quilt-unified'&&state.p>.05&&state.p<=1&&
+  if(state.inkType==='owner-vector-svg'&&state.p>.05&&state.p<=1&&
    state.originalSize?.[0]===8192&&state.originalSize?.[1]===1152){
    if(!observed){
     observed=true;
-    record(device,delay+'ms single unified original-source bitmap',
-     state.source==='/assets/c02/ink-unified.webp'&&
+    record(device,delay+'ms one original hand-illustrated vector image',
+     state.source==='/assets/c02/texture.svg'&&
      state.originalSize[0]===8192&&state.originalSize[1]===1152&&
      state.roller==='/assets/c02/roller-original.svg'&&state.layers===1&&
      state.svgVisible==='hidden',state);
-    record(device,delay+'ms full composite aspect ratio',
+    record(device,delay+'ms exact SVG aspect ratio',
      Math.abs(state.width/state.height-8192/1152)<.00002,state);
     record(device,delay+'ms moving contact',
      Number.isFinite(state.contact)&&state.contact>-state.viewport,state);
-    record(device,delay+'ms no mirrored tile layer or runtime overlap',
+    record(device,delay+'ms no runtime texture tiles or overlapping images',
      state.layers===1&&state.layerDisplay==='block'&&
      !state.backgroundRepeat?.includes('repeat-x'),state);
     if(delay>=5000&&!requireInterior)
      await page.screenshot({path:path.join(output,device+'-5s-original-png-roller.png')});
    }
-   if(requireInterior&&!texturedInterior&&state.sourceStartX>260){
+   if(requireInterior&&!texturedInterior&&state.contact>state.viewport*.78){
     texturedInterior=true;
     const screenshot=await page.screenshot({path:path.join(output,
      'ultrawide-5s-unified-texture.png')});
@@ -74,7 +75,7 @@ async function step(page,device,delay){
      left:10,top:125,width:430,height:330
     }).stats();
     const rgbDeviation=sampled.channels.slice(0,3).map(c=>c.stdev);
-    record(device,'ultrawide composite visibly retains source-pigment variance',
+    record(device,'ultrawide SVG retains original pigment variance',
      Math.max(...rgbDeviation)>.25,
      {sourceStartX:state.sourceStartX,rgbDeviation});
    }
@@ -118,9 +119,9 @@ async function step(page,device,delay){
     viewportHeight:vp?.height||innerHeight,
     clip:layer?.style.clipPath};
   });
-  record(device,'5s reveal retains textured original raster without SVG switch',
-   reveal.phase==='reveal'&&reveal.asset==='original-quilt-unified'&&
-   reveal.source==='/assets/c02/ink-unified.webp'&&
+  record(device,'5s reveal retains original SVG without renderer switch',
+   reveal.phase==='reveal'&&reveal.asset==='owner-vector-svg'&&
+   reveal.source==='/assets/c02/texture.svg'&&
    reveal.layers===1&&reveal.natural[0]===8192&&
    reveal.layerDisplay==='block'&&reveal.svgVisibility==='hidden',reveal);
   await page.screenshot({path:path.join(output,device+'-5s-textured-reveal.png')});
@@ -144,11 +145,12 @@ async function step(page,device,delay){
 // same visualViewport rectangle. This cannot emulate physical toolbar chrome.
 async function viewportScenario(page,device,width,height){
  await page.goto(origin+'/c02-review/?edge=asset',{waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2');
+ await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2'&&
+  document.documentElement.dataset.c02AssetReady==='true');
  await page.locator('a[href="/c02-review/slow/?delay=5000"]').click({noWaitAfter:true});
  await page.waitForFunction(()=>{
   const o=document.getElementById('c02-loader');
-  return o?.dataset.inkAsset==='original-quilt-unified'&&
+  return o?.dataset.inkAsset==='owner-vector-svg'&&
    Number(o.dataset.progress)>.10;
  },null,{timeout:6500});
  const read=()=>page.evaluate(()=>{
@@ -177,7 +179,7 @@ async function viewportScenario(page,device,width,height){
  },null,{timeout:3500});
  const resized=await read();
  record(device,'visual-viewport changed without ink clipping',
-  resized.asset==='original-quilt-unified'&&resized.phase==='cover'&&
+  resized.asset==='owner-vector-svg'&&resized.phase==='cover'&&
   Math.abs(resized.outer.height-resized.viewport.height)<2&&
   Math.abs(resized.outer.width-resized.viewport.width)<2&&
   Math.abs(resized.outer.x-resized.viewport.x)<2&&
@@ -200,7 +202,7 @@ async function viewportScenario(page,device,width,height){
 async function compare(page,device){
  await page.goto(origin+'/c02-review/asset-compare/',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.querySelector('#after image')?.getAttribute('href')
-  ==='/assets/c02/ink-unified.webp');
+  ==='/assets/c02/texture.svg');
  await page.waitForFunction(()=>document.querySelector('#after image')?.getBBox().width>0);
  for(const progress of [380,700]){
   await page.locator('#progress').evaluate((el,value)=>{
@@ -217,7 +219,7 @@ async function compare(page,device){
     beforeLength:before?.getAttribute('d')?.length};
   });
   record(device,'side-by-side at '+progress/10+'%',rect.progress===String(progress)
-   &&rect.source==='/assets/c02/ink-unified.webp'&&
+   &&rect.source==='/assets/c02/texture.svg'&&
    Math.abs(rect.width/rect.height-8192/1152)<.00002&&
    !rect.extraRect&&Number.isFinite(rect.imageX),rect);
   await page.screenshot({path:path.join(output,device+'-compare-'+progress/10+'pct.png'),fullPage:true});
