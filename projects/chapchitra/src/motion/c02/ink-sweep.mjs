@@ -335,7 +335,11 @@ export function installC02PageTransitions(win=window,doc=document){
   // Warm and decode SVG once before eligible clicks. No arbitrary buffer.
   const inkImg=new win.Image();inkImg.decoding='async';
   inkImg.src=C02_INK_ASSET.path;
-  inkImg.decode().then(()=>{inkPreloaded=true;},()=>{inkPreloadFailed=true;});
+  inkImg.decode().then(()=>{
+   inkPreloaded=true;doc.documentElement.dataset.c02AssetReady='true';
+  },()=>{
+   inkPreloadFailed=true;doc.documentElement.dataset.c02AssetReady='error';
+  });
  }
  let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null,
   drive=null,commitTimer=0,navigationCommitted=false,
