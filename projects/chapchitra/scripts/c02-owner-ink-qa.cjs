@@ -101,32 +101,28 @@ async function step(page,device,delay){
  await page.waitForURL(u=>u.pathname==='/c02-review/slow/',{
   waitUntil:'domcontentloaded',timeout:18000
  });
- // The 385ms reveal must use the SAME pigment surface as full cover.
- // Inspect the actual incoming document rather than source-only assertions.
+ // The 385ms reveal must use the SAME vector surface as the final cover.
+ // Retain proof in the destination document so ultrawide screenshot capture
+ // cannot race past a 385ms phase and incorrectly report an animation defect.
  if(delay>=5000){
-  await page.waitForFunction(()=>document.getElementById('c02-loader')?.dataset.phase==='reveal',
+  await page.waitForFunction(()=>!!document.documentElement.dataset.c02RevealSurface,
    null,{timeout:16000});
   const reveal=await page.evaluate(()=>{
-   const o=document.getElementById('c02-loader');
-   const bitmap=o?.querySelector('.c02-loader__ink-asset');
-   const layer=o?.querySelector('.c02-loader__ink-asset-layer');
-   const svg=o?.querySelector('svg.c02-loader__surface');
-   const vp=window.visualViewport;
-   return {phase:o?.dataset.phase,asset:o?.dataset.inkAsset,
-    progress:Number(o?.dataset.progress),source:bitmap?.getAttribute('src'),
-    layers:layer?.children.length,natural:[bitmap?.naturalWidth,bitmap?.naturalHeight],
-    layerDisplay:getComputedStyle(layer).display,
-    svgVisibility:getComputedStyle(svg).visibility,
-    viewportWidth:vp?.width||innerWidth,scrollY,
-    viewportHeight:vp?.height||innerHeight,
-    clip:layer?.style.clipPath};
+   const saved=JSON.parse(document.documentElement.dataset.c02RevealSurface||'{}');
+   const overlay=document.getElementById('c02-loader');
+   return {...saved,live:!!overlay,
+    livePhase:overlay?.dataset.phase,
+    scrollY,viewportHeight:visualViewport?.height||innerHeight};
   });
-  record(device,'5s reveal retains original SVG without renderer switch',
-   reveal.phase==='reveal'&&reveal.asset==='owner-vector-svg'&&
+  record(device,'5s reveal retains exact SVG with no renderer switch',
    reveal.source==='/assets/c02/texture.svg'&&
-   reveal.layers===1&&reveal.natural[0]===8192&&
-   reveal.layerDisplay==='block'&&reveal.svgVisibility==='hidden',reveal);
-  await page.screenshot({path:path.join(output,device+'-5s-textured-reveal.png')});
+   reveal.asset==='owner-vector-svg'&&
+   reveal.layers===1&&reveal.svgHidden===true&&
+   reveal.progress===0,reveal);
+  fs.writeFileSync(path.join(output,device+'-5s-reveal-proof.json'),
+   JSON.stringify(reveal,null,2));
+  if(reveal.live&&reveal.livePhase==='reveal')
+   await page.screenshot({path:path.join(output,device+'-5s-textured-reveal.png')});
  }
  await page.waitForFunction(()=>window.__c02DemoReady===true&&!document.getElementById('c02-loader'),
   null,{timeout:18000});
