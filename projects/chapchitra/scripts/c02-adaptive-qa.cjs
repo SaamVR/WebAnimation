@@ -28,12 +28,16 @@ async function captureInit(context){
    try{
     const list=JSON.parse(sessionStorage.getItem(key)||'[]');
     const r=o.querySelector('.c02-loader__roller');
+    const rect=r?.getBoundingClientRect();
+    const vp=window.visualViewport;
     list.push({t:Date.now(),p,
      state:document.documentElement.dataset.c02State,
-     path:location.pathname,
-     rollerLeft:parseFloat(r?.style.left||'0'),
+     path:location.pathname,inkAsset:o.dataset.inkAsset,
+     inkContactX:Number(o.dataset.inkContactX),
+     rollerCenterX:rect?(rect.left+rect.width/2):null,
+     rollerTransform:r?.style.transform||'',
      rollerSize:parseFloat(r?getComputedStyle(r).width:'0'),
-     viewport:innerWidth,
+     viewport:vp?.width||innerWidth,
      visible:r?getComputedStyle(r).display==='block':false
     });
     sessionStorage.setItem(key,JSON.stringify(list.slice(-650)));
@@ -69,6 +73,28 @@ function evaluateSamples(label,report,durationMs){
  const increasing=samples.reduce((n,s,i)=>n+(i>0&&s.p>samples[i-1].p+0.00005?1:0),0);
  check(label+' movement throughout pending',increasing>=Math.max(4,Math.floor(durationMs/350)),
   {increasing,points:samples.length});
+ // Compare actual rendered roller coordinates against the bitmap contact,
+ // not obsolete left: CSS coordinates. This catches the owner's post-handoff
+ // roller jump even if progress p remains mathematically monotonic.
+ const contacts=samples.filter(s=>Number.isFinite(s.inkContactX)&&
+  Number.isFinite(s.rollerCenterX));
+ check(label+' original quilt never switches renderer',
+  samples.every(s=>s.inkAsset==='original-quilt-unified'),{
+   distinct:[...new Set(samples.map(s=>s.inkAsset))]});
+ const offsets=contacts.map(s=>s.rollerCenterX-s.inkContactX);
+ const span=offsets.length?Math.max(...offsets)-Math.min(...offsets):Infinity;
+ check(label+' roller keeps physical bitmap contact offset',
+  contacts.length>=5&&span<9,{n:contacts.length,offsetSpanPx:span});
+ const jumps=[];
+ for(let i=1;i<contacts.length;i++){
+  const prev=contacts[i-1],next=contacts[i];
+  if(next.t-prev.t<=320&&next.viewport===prev.viewport)
+   jumps.push(Math.abs(next.inkContactX-prev.inkContactX)/
+    Math.max(1,next.viewport));
+ }
+ const maxJump=jumps.length?Math.max(...jumps):0;
+ check(label+' no abrupt roller-contact jumps at document handoff',
+  maxJump<.24,{maxViewportFraction:maxJump,n:jumps.length});
  const monotonic=samples.every((s,i)=>!i||s.p+0.028>=samples[i-1].p);
  check(label+' no discontinuous rollback',monotonic,
   {min:samples.reduce((v,s)=>Math.min(v,s.p),1)});
