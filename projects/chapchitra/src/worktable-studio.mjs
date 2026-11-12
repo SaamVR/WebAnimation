@@ -348,15 +348,20 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  if(!uploadVisual)throw new Error('Illustrated upload SVG was not mounted');
  let garmentImg=addImage(ALL.garment.regular,'cc-worktable-garment');
  const tint=document.createElement('div'); tint.className='cc-worktable-tint'; stage.append(tint);
+ // One atomic stage-relative print rectangle owns BOTH its guide and clip.
+ // Independent percentage rectangles can lag by a paint frame on WebKit/
+ // Chromium reduced-motion changes. Their shared parent removes that race.
+ const printFrame=document.createElement('div');printFrame.className='cc-worktable-print-frame';
+ stage.append(printFrame);
  const guideVisual=document.createElement('div');
  guideVisual.className='cc-worktable-paper-guide';
- guideVisual.setAttribute('aria-hidden','true');stage.append(guideVisual);
- // Defensive hard clip follows the actual print frame; geometry also clamps
- // rotated image bounds BEFORE any clip can hide misplaced print pixels.
+ guideVisual.setAttribute('aria-hidden','true');printFrame.append(guideVisual);
+ // Hard clipping is a secondary defense: placementGeometry constrains the
+ // complete rotated artwork before it reaches this print-area layer.
  const printClip=document.createElement('div');printClip.className='cc-worktable-print-clip';
  const print=document.createElement('div');print.className='cc-worktable-print';
  const artImg=document.createElement('img');artImg.alt='Your uploaded artwork preview';artImg.draggable=false;
- print.append(artImg);printClip.append(print);stage.append(printClip);
+ print.append(artImg);printClip.append(print);printFrame.append(printClip);
  const frameHandle=document.createElement('button');
  frameHandle.type='button';frameHandle.className='cc-worktable-frame-handle';
  frameHandle.setAttribute('aria-label','Move A4 print frame within safe A3 printing area');
@@ -496,12 +501,10 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   if(current.printSize==='A4'){
    editor.frameX=paper.frameX;editor.frameY=paper.frameY;
   }
-  guideVisual.style.left=percent(paper.x,2048);guideVisual.style.top=percent(paper.y,1152);
-  guideVisual.style.width=percent(paper.width,2048);guideVisual.style.height=percent(paper.height,1152);
+  printFrame.style.left=percent(paper.x,2048);printFrame.style.top=percent(paper.y,1152);
+  printFrame.style.width=percent(paper.width,2048);printFrame.style.height=percent(paper.height,1152);
   guideVisual.classList.toggle('is-visible',current.printSize==='A4'||guideVisible||editor.selected);
   guideVisual.dataset.preset=current.printSize;
-  printClip.style.left=percent(paper.x,2048);printClip.style.top=percent(paper.y,1152);
-  printClip.style.width=percent(paper.width,2048);printClip.style.height=percent(paper.height,1152);
   frameHandle.hidden=current.printSize!=='A4';
   frameHandle.style.left=percent(paper.x+paper.width,2048);
   frameHandle.style.top=percent(paper.y,1152);

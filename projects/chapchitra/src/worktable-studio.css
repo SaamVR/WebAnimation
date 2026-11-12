@@ -115,13 +115,14 @@
 .cc-worktable-tint{display:none!important;position:absolute;pointer-events:none;mix-blend-mode:multiply;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;opacity:0;transition:opacity .19s ease}
 .cc-worktable-tint.is-colored{opacity:.74}
 .cc-worktable-garment-surface{position:absolute;display:block;pointer-events:none;object-fit:fill}
-.cc-worktable-print-clip{position:absolute;z-index:8;overflow:hidden;pointer-events:none;contain:layout paint}
+.cc-worktable-print-frame{position:absolute;z-index:8;pointer-events:none}
+.cc-worktable-print-clip{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;pointer-events:none}
 .cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:normal;transform-origin:center center}
 .cc-worktable-print.has-art{display:block}
 .cc-worktable-print>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;mix-blend-mode:normal;filter:none}
 .cc-worktable-print::after{content:none}
 /* Print-size reference: independent of the uploaded image or its rotation. */
-.cc-worktable-paper-guide{position:absolute;z-index:7;pointer-events:none;opacity:0;
+.cc-worktable-paper-guide{position:absolute;inset:0;width:100%;height:100%;z-index:7;pointer-events:none;opacity:0;
  background:transparent;border:1px solid rgb(195 199 198 / .52);
  transition:opacity .22s ease}
 .cc-worktable-paper-guide.is-visible{opacity:1}
