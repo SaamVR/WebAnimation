@@ -10,6 +10,13 @@
  * registration or printing geometry to position the tag.
  * Text percentages are local to the PNG (no price numbers rasterized).
  * Mobile x/y are pixel offsets from the centered below-stage fallback area.
+ *
+ * ONLY the two-line HTML typography rotates. The illustrated PNG's
+ * existing position/size/rotation are approved and MUST remain unchanged.
+ * The paper's upper/lower edges rise ~2.5 degrees toward the right,
+ * hence the restrained -2.5 degree print angle (adjust here if needed).
+ * Font sizes and gap use container-query width units (cqw), so the text
+ * scales together with the tag on desktop, tablet and mobile.
  */
 export const WORKTABLE_PRICE_TAG=Object.freeze({
  assetPath:'/assets/worktable/price-tag/price-tag.png',
@@ -18,5 +25,11 @@ export const WORKTABLE_PRICE_TAG=Object.freeze({
  tablet:Object.freeze({x:1475,y:30,width:330}),
  mobile:Object.freeze({x:0,y:0,width:330,displayWidth:235}),
  rotation:0,
- text:Object.freeze({xPercent:63,yPercent:51,fontSizeCqw:11.5,align:'center'}),
+ text:Object.freeze({
+  xPercent:63,yPercent:52,rotationDeg:-2.5,align:'center',
+  labelFontSizeCqw:5.2,amountFontSizeCqw:12.2,lineGapCqw:0.75,
+  labelLetterSpacingEm:0.12,amountLetterSpacingEm:0,
+  labelFontWeight:600,amountFontWeight:700,
+  labelLineHeight:1,amountLineHeight:1.12,
+ }),
 });
