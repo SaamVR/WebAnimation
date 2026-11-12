@@ -135,12 +135,36 @@ async function step(page,device,delay){
   ready:Number(document.documentElement.dataset.c02ReadyAt),
   rollerDone:Number(document.documentElement.dataset.c02RollerEndAt),
   revealed:Number(document.documentElement.dataset.c02RevealEndAt),
-  remaining:window.__c02RemainingWaitMs
+  remaining:window.__c02RemainingWaitMs,
+  handoff:document.documentElement.dataset.c02Handoff,
+  firstPaint:JSON.parse(document.documentElement.dataset.c02FirstPaintDelta||'{}'),
+  scrollX,scrollY,
+  visualViewport:{
+   x:window.visualViewport?.offsetLeft||0,y:window.visualViewport?.offsetTop||0,
+   width:window.visualViewport?.width||innerWidth,
+   height:window.visualViewport?.height||innerHeight
+  },
+  pageLayout:{
+   scrollWidth:document.documentElement.scrollWidth,
+   clientWidth:document.documentElement.clientWidth,
+   scrollHeight:document.documentElement.scrollHeight
+  }
  }));
  record(device,delay+'ms one-click destination reveal',
   finished.phase==='complete'&&finished.ready>0&&
   finished.rollerDone>=finished.ready&&finished.revealed>=finished.rollerDone,
   {elapsedMs:Date.now()-started,...finished});
+ record(device,delay+'ms prepaint-to-SVG first frame stays aligned',
+  finished.handoff==='matched-first-frame'&&
+  Number.isFinite(finished.firstPaint.x)&&finished.firstPaint.x<1&&
+  Number.isFinite(finished.firstPaint.y)&&finished.firstPaint.y<1,
+  {handoff:finished.handoff,alignment:finished.firstPaint,
+   viewport:finished.visualViewport});
+ record(device,delay+'ms destination layout and scroll remain intact',
+  finished.scrollY===0&&finished.scrollX===0&&
+  finished.pageLayout.clientWidth>0&&finished.pageLayout.scrollWidth>0,
+  {scroll:[finished.scrollX,finished.scrollY],layout:finished.pageLayout});
+
 }
 // Real compositor check: grow/shrink the iPad viewport DURING an active
 // partial printed cover, then verify the mask, roller and raster use the
