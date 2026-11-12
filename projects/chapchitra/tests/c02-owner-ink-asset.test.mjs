@@ -36,4 +36,9 @@ test('C02 cover may use original full transparent image while its reveal is unch
  assert.match(runtime,/overlay\.animate\('reveal',C02_MOTION\.revealMs,cleanup\)/);
  assert.match(runtime,/inkEdgeX\(p,470,27\)\*win\.innerWidth\/1000/);
  assert.match(runtime,/scaleX\(-1\) rotate\(90deg\)/);
+ const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
+ assert.match(early,/c02-asset-arrival::after/);
+ assert.match(early,/background-image:url\('\/assets\/c02\/Ink_swipe_1\.png'\)/);
+ assert.match(early,/ticket\.edgeStyle==='asset'/);
+ assert.match(early,/rightContact-1689\*scale/);
 });
