@@ -707,7 +707,7 @@
     dynamically-updated instance of the approved paper illustration. */
  .cc-worktable-frame.cc-mobile-frame-ready > .cc-worktable-price-tag-mobile{
   position:absolute;display:block;z-index:8;
-  left:70%;top:6%;width:32%;max-width:none;margin:0;
+  left:67.5%;top:4.5%;width:32%;max-width:none;margin:0;
   transform:translateX(-50%) rotate(var(--cc-tag-rotation));
  }
  .cc-worktable-price-tag-stage{display:none}
