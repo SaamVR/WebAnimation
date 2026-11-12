@@ -11,7 +11,8 @@ inset:var(--c02-viewport-top,0px) auto auto var(--c02-viewport-left,0px);
 width:var(--c02-viewport-width,100vw);height:var(--c02-viewport-height,100vh);
 background-image:url('/assets/c02/texture.svg');background-repeat:no-repeat;
 background-size:var(--c02-asset-width,0px) var(--c02-asset-height,0px);
-background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-events:auto}
+background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-events:auto;
+z-index:2147483001}
 /* Cross-document native View Transitions are deliberately not auto-enabled:
    Chromium can suspend the outgoing animated document while snapshotting,
    stranding an ink overlay. The one-use native-navigation fallback is the
@@ -35,25 +36,36 @@ background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-e
     return (-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*organic+offset)/10;
    }
    if(ticket.edgeStyle==='asset'){
-    var vv=window.visualViewport;
-    var vw=vv&&vv.width>0?vv.width:innerWidth;
-    var vh=vv&&vv.height>0?vv.height:innerHeight;
-    var scale=vh*1.5/1152;
-    var rightContact=(-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*(
-     104*Math.sin(Math.PI*470/1000*2.35+.32)+
-     48*Math.sin(Math.PI*470/1000*4.15+1.15)+
-     19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*vw/1000;
-    var left=rightContact-8096*scale;
-    var root=document.documentElement;
-    root.style.setProperty('--c02-viewport-left',(vv?.offsetLeft||0)+'px');
-    root.style.setProperty('--c02-viewport-top',(vv?.offsetTop||0)+'px');
-    root.style.setProperty('--c02-viewport-width',vw+'px');
-    root.style.setProperty('--c02-viewport-height',vh+'px');
-    root.style.setProperty('--c02-asset-width',8192*scale+'px');
-    root.style.setProperty('--c02-asset-height',1152*scale+'px');
-    root.style.setProperty('--c02-asset-left',left+'px');
-    root.style.setProperty('--c02-asset-top',((vh-1152*scale)/2)+'px');
+    // Keep prepaint on the *same visual viewport* as the eventual overlay.
+    // An iPad toolbar may change size/offset while the new document parses.
+    function positionPrepaint(){
+     if(!document.documentElement.classList.contains('c02-pending'))return;
+     var vv=window.visualViewport;
+     var vw=vv&&vv.width>0?vv.width:innerWidth;
+     var vh=vv&&vv.height>0?vv.height:innerHeight;
+     var scale=vh*1.5/1152;
+     var rightContact=(-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*(
+      104*Math.sin(Math.PI*470/1000*2.35+.32)+
+      48*Math.sin(Math.PI*470/1000*4.15+1.15)+
+      19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*vw/1000;
+     var root=document.documentElement;
+     root.style.setProperty('--c02-viewport-left',(vv?.offsetLeft||0)+'px');
+     root.style.setProperty('--c02-viewport-top',(vv?.offsetTop||0)+'px');
+     root.style.setProperty('--c02-viewport-width',vw+'px');
+     root.style.setProperty('--c02-viewport-height',vh+'px');
+     root.style.setProperty('--c02-asset-width',8192*scale+'px');
+     root.style.setProperty('--c02-asset-height',1152*scale+'px');
+     root.style.setProperty('--c02-asset-left',(rightContact-8096*scale)+'px');
+     root.style.setProperty('--c02-asset-top',((vh-1152*scale)/2)+'px');
+    }
+    root=document.documentElement;
     root.classList.add('c02-asset-arrival');
+    positionPrepaint();
+    if(window.visualViewport){
+     window.visualViewport.addEventListener('resize',positionPrepaint,{passive:true});
+     window.visualViewport.addEventListener('scroll',positionPrepaint,{passive:true});
+    }
+    window.addEventListener('resize',positionPrepaint,{passive:true});
    }else{
     var points=['0% 0%'];
     for(var i=0;i<=8;i++)points.push(edge(i*125,0)+'% '+(i*12.5)+'%');
