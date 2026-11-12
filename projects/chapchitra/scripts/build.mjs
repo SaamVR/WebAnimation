@@ -48,8 +48,8 @@ const {default:sharp}=await import('sharp');
 const composed=await generateUnifiedInk(inkAssetBytes);
 const derivedPath=resolve(output,'assets/c02/ink-unified.webp');
 await writeFile(derivedPath,composed.webp);
-const expected=UNIFIED_INK.width*UNIFIED_INK.height*4;
-if(composed.rgba.length!==expected||composed.provenance.length<75)
+const expectedRgbaBytes=UNIFIED_INK.width*UNIFIED_INK.height*4;
+if(composed.rgba.length!==expectedRgbaBytes||composed.provenance.length<75)
  throw Error('C02 quilt geometry or source-patch diversity invalid');
 if(new Set(composed.provenance.map(p=>p.source.join(','))).size<65)
  throw Error('C02 source-patch selection repeats too predictably');
