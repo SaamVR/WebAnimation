@@ -40,6 +40,31 @@ if(!inkAssetBytes.subarray(0,8).equals(
  inkAssetBytes.readUInt32BE(20)!==1152)
  throw Error('C02 Ink_swipe_1.png is not the original 2048x1152 PNG');
 console.log('C02 owner ink original checksum verified',inkAssetSHA);
+// C02: derive a seamless loop from the checksum-pinned ORIGINAL PNG's
+// densely printed interior. Alternating normal/reflected samples make each
+// boundary pixel-exact, without repeating its distinctive distressed edge.
+const {default:sharp}=await import('sharp');
+const {C02_INK_ASSET}=await import('../src/motion/c02/ink-asset.mjs');
+const interior=C02_INK_ASSET.interior;
+if(interior.cropStart!==0||interior.cropWidth*2!==interior.loopWidth||
+ interior.cropWidth>=1450)
+ throw Error('C02 loop dimensions could repeat the unique right edge');
+const interiorCrop=await sharp(inkAssetBytes).extract({
+ left:interior.cropStart,top:0,width:interior.cropWidth,
+ height:C02_INK_ASSET.height
+}).png().toBuffer();
+const reflectedCrop=await sharp(interiorCrop).flop().png().toBuffer();
+const interiorLoop=await sharp({create:{
+ width:interior.loopWidth,height:C02_INK_ASSET.height,channels:4,
+ background:{r:0,g:0,b:0,alpha:0}
+}}).composite([
+ {input:interiorCrop,top:0,left:0},
+ {input:reflectedCrop,top:0,left:interior.cropWidth}
+]).webp({lossless:true,effort:4}).toBuffer();
+await writeFile(resolve(output,'assets/c02/ink-interior-loop.webp'),interiorLoop);
+console.log('C02 seamless original-PNG interior generated:',
+ interiorLoop.length+' bytes',interior.loopWidth+'x'+C02_INK_ASSET.height);
+
 // Only the cover rendering changes: roller, adaptive progress and reveal
 // runtime modules remain exactly as approved.
 // Prepaint cover must be installed in the HTML head, before deferred app.mjs.
