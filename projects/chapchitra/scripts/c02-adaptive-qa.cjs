@@ -30,7 +30,8 @@ async function captureInit(context){
     const r=o.querySelector('.c02-loader__roller');
     const rect=r?.getBoundingClientRect();
     const vp=window.visualViewport;
-    list.push({t:Date.now(),p,
+    list.push({t:Date.now(),perf:performance.now(),p,scrollY,
+     visualTop:vp?.offsetTop||0,visualHeight:vp?.height||innerHeight,
      state:document.documentElement.dataset.c02State,
      path:location.pathname,inkAsset:o.dataset.inkAsset,
      inkContactX:Number(o.dataset.inkContactX),
@@ -48,7 +49,8 @@ async function captureInit(context){
 }
 async function ready(page,label){
  await page.goto(ORIGIN+'/c02-review/',{waitUntil:'domcontentloaded',timeout:20000});
- await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2',
+ await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2'&&
+  document.documentElement.dataset.c02AssetReady==='true',
   null,{timeout:15000});
  await page.evaluate(({key,start})=>{
   sessionStorage.removeItem(key);sessionStorage.setItem(start,String(Date.now()));
@@ -79,7 +81,7 @@ function evaluateSamples(label,report,durationMs){
  const contacts=samples.filter(s=>Number.isFinite(s.inkContactX)&&
   Number.isFinite(s.rollerCenterX));
  check(label+' original quilt never switches renderer',
-  samples.every(s=>s.inkAsset==='original-quilt-unified'),{
+  samples.every(s=>s.inkAsset==='owner-vector-svg'),{
    distinct:[...new Set(samples.map(s=>s.inkAsset))]});
  const offsets=contacts.map(s=>s.rollerCenterX-s.inkContactX);
  const span=offsets.length?Math.max(...offsets)-Math.min(...offsets):Infinity;
@@ -148,7 +150,8 @@ async function demo(page,device,delay){
 }
 async function navigation(page,device,route,back){
  await page.goto(ORIGIN+(back?'/artists-edit/':'/'),{waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2',
+ await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2'&&
+  document.documentElement.dataset.c02AssetReady==='true',
   null,{timeout:16000});
  await page.evaluate(({key,start})=>{
   sessionStorage.removeItem(key);sessionStorage.setItem(start,String(Date.now()));
