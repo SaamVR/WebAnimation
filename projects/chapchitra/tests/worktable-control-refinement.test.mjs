@@ -34,7 +34,7 @@ test('Existing frame handle pointer drag/keyboard logic stays connected',()=>{
 test('Front/back reuses exact approved compact renderer, never a new faux pill',()=>{
  assert.match(studio,/import \{ sketchButton \} from '\.\/handdrawn-buttons\.mjs'/);
  assert.match(studio,/sketchButton\(\{label:'View back',variant:'compact',[\s\S]*?tone:'beige',className:'cc-worktable-view-button'/);
- assert.match(compact,/compact-button-\+'\+color\+'\.svg/);
+ assert.ok(compact.includes("compact-button-'+color+'.svg"));
  assert.match(studio,/stage\.append\(viewRow\)/);
  assert.match(studio,/viewButton\.querySelectorAll\('\.cc-sketch-label,\.cc-sketch-label-ink'\)/);
  assert.match(studio,/viewButton\.querySelectorAll\('\.cc-worktable-view-label'\)/);
