@@ -118,6 +118,15 @@ const img=()=>sharp({create:{width:760,height:920,channels:4,background:{r:31,g:
    await page.locator('.cc-mobile-zoom-done').click();
    const after=await page.locator('.cc-worktable-print-frame').evaluate(el=>({left:el.style.left,top:el.style.top,width:el.style.width,height:el.style.height}));
    verify(id+' Done preserves print coordinates',JSON.stringify(before)===JSON.stringify(after),{before,after});
+   // Browser style recalculation following mobile zoom is asynchronous in
+   // WebKit and under CPU contention. Wait for the next computed-visible frame
+   // rather than reporting a false regression in an immediate isVisible().
+   await page.waitForFunction(()=>{
+    const n=document.querySelector('.cc-mobile-category-nav');
+    if(!n)return false;
+    const style=getComputedStyle(n);
+    return style.visibility==='visible'&&style.opacity==='1'&&style.display!=='none';
+   },null,{timeout:2500});
    verify(id+' Done restores five-button navigation',await nav.isVisible());
    const button=page.locator('.cc-worktable-view-button');
    await button.click();
