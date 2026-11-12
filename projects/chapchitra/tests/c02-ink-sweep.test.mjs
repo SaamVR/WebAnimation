@@ -145,3 +145,28 @@ test('early incoming cover, cross-document transition and failure escape are pre
  assert.match(runtime,/inkEdgeX\(p,470,27\)/);
  assert.doesNotMatch(runtime,/p>\.065|p<\.92|roller\.style\.opacity=String/);
 });
+
+test('partial document handoff preserves 420ms pacing without roller velocity spike',async()=>{
+ const {smoothHandoffProgress}=await import('../src/motion/c02/adaptive-progress.mjs');
+ for(const start of [0,.015,.25,.42]){
+  const end=.68,duration=420;
+  const speed=.00015;
+  assert.equal(smoothHandoffProgress(start,end,0,duration,speed),start);
+  assert.equal(smoothHandoffProgress(start,end,duration,duration,speed),end);
+  let prior=-1;
+  for(let t=0;t<=duration;t+=10){
+   const p=smoothHandoffProgress(start,end,t,duration,speed);
+   assert.ok(p>=prior&&p<=end,'handoff monotone at '+t);
+   prior=p;
+  }
+ }
+ const edge=p=>inkEdgeX(p,470,27)/1000;
+ let maxViewportDelta=0;
+ for(let t=0;t<=330;t+=10){
+  const from=smoothHandoffProgress(.015,.68,t,420,.00015);
+  const to=smoothHandoffProgress(.015,.68,t+90,420,.00015);
+  maxViewportDelta=Math.max(maxViewportDelta,edge(to)-edge(from));
+ }
+ assert.ok(maxViewportDelta<.24,
+  '90ms normalized roller travel bounded without changing 420ms end time');
+});
