@@ -147,7 +147,29 @@ async function demo(page,device,delay){
  if(during.count===1)
   check(name+' visible mid-load',during.progress>0&&during.progress<.99,during);
  await page.screenshot({path:path.join(DIR,name+'-mid-loading.png')});
- await page.waitForURL(u=>u.pathname==='/c02-review/slow/',{timeout:28000});
+ try{
+  await page.waitForURL(u=>u.pathname==='/c02-review/slow/',
+   {waitUntil:'domcontentloaded',timeout:28000});
+ }catch(error){
+  const stuck=await page.evaluate(()=>{
+   const o=document.querySelector('#c02-loader');
+   const layer=o?.querySelector('.c02-loader__ink-asset-layer');
+   const img=layer?.querySelector('img');
+   const r=o?.getBoundingClientRect(),v=visualViewport;
+   return {url:location.href,state:document.documentElement.dataset.c02State,
+    progress:o?.dataset.progress,phase:o?.dataset.phase,
+    proof:o?.dataset.c02FullCoverage,assetError:o?.dataset.assetError,
+    imageLoaded:img?.complete,natural:[img?.naturalWidth,img?.naturalHeight],
+    layerStyle:layer?{bg:getComputedStyle(layer).backgroundColor,
+     display:getComputedStyle(layer).display,clip:getComputedStyle(layer).clipPath}:null,
+    overlayRect:r?{top:r.top,left:r.left,width:r.width,height:r.height}:null,
+    viewport:v?{top:v.offsetTop,left:v.offsetLeft,width:v.width,height:v.height}:null
+   };
+  }).catch(e=>({inspectionError:String(e)}));
+  await page.screenshot({path:path.join(DIR,name+'-commit-timeout.png')}).catch(()=>{});
+  throw Error(name+' failed to commit after full-coverage gate '+
+   JSON.stringify(stuck)+'; '+String(error));
+ }
  await page.waitForFunction(()=>window.__c02DemoReady===true,null,{timeout:18000});
  await page.waitForFunction(()=>!document.getElementById('c02-loader'),null,{timeout:18000});
  const report=await resultFrom(page);
