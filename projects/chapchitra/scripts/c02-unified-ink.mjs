@@ -72,8 +72,8 @@ export async function quiltInkRGBA(originalBytes){
    const k=accRow+x;
    if(weights[k]<0.001)throw Error('C02 uncovered quilt pixel '+x+','+y);
    const sampledAlpha=acc[k]/weights[k];
-   const inkStrength=.28+.40*smooth((x-(cfg.tail-1500))/1500);
-   const blendedAlpha=Math.max(180,Math.min(255,
+   const inkStrength=.72+.22*smooth((x-(cfg.tail-1500))/1500);
+   const blendedAlpha=Math.max(155,Math.min(255,
     Math.round(255-(255-sampledAlpha)*inkStrength)));
    let a=blendedAlpha;
    if(x>=cfg.tail){
