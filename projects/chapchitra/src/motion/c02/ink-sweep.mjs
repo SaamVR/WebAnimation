@@ -297,7 +297,11 @@ export function installC02PageTransitions(win=window,doc=document){
  doc.documentElement.dataset.c02Installed='v2';
  const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
  // Warm the 2KB exact-source SVG so the first visible ink-edge frame has a roller.
- if(!reduced.matches){const image=new win.Image();image.src='/assets/c02/roller-original.svg';}
+ if(!reduced.matches){
+  const rollerImg=new win.Image();rollerImg.src='/assets/c02/roller-original.svg';
+  // Prewarm the owner's original PNG without holding navigation for decode.
+  const inkImg=new win.Image();inkImg.src=C02_INK_ASSET.path;
+ }
  let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null,
   drive=null,commitTimer=0,navigationCommitted=false;
  const state=(phase)=>{
