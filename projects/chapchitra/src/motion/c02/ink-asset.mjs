@@ -1,7 +1,7 @@
 import {inkEdgeX} from './ink-shapes.mjs';
 // CHAPCHITRA C02 — preserve the owner's COMPLETE transparent PNG ink stroke.
-// Only cover-phase visual placement uses this file. No animation timeline,
-// navigation readiness, roller geometry, or reveal paths are changed.
+// The exact PNG remains immutable; the unified visual compositor is derived
+// at build time without changing approved choreography.
 export const C02_INK_ASSET=Object.freeze({
  path:'/assets/c02/Ink_swipe_1.png',
  width:2048,
@@ -10,9 +10,15 @@ export const C02_INK_ASSET=Object.freeze({
  // Blank transparent padding x=1689..2048 MUST NOT anchor the roller.
  paintedRight:1689,
  press:'#293D2D',
- // Reflect only dense interior pigment; never duplicate the leading brush edge.
- interior:Object.freeze({path:'/assets/c02/ink-interior-loop.webp',
-  cropStart:0,cropWidth:1160,loopWidth:2320})
+ // One build-derived bitmap; no runtime fragments or repeated background.
+ composite:Object.freeze({path:'/assets/c02/ink-unified.webp',
+  width:8192,height:1152,tail:6144,sourceBlend:256})
+});
+export const UNIFIED_INK=Object.freeze({
+ width:8192,height:1152,tail:6144,feather:86,
+ cellWidth:336,cellHeight:288,blendToOriginal:256,
+ sampleRightLimit:1150,seed:0xC0222026,
+ path:C02_INK_ASSET.composite.path
 });
 const finite=(value,fallback=0)=>Number.isFinite(Number(value))?Number(value):fallback;
 export function c02InkAssetPlacement({edgeX,viewportWidth,viewportHeight}){
@@ -25,12 +31,9 @@ export function c02InkAssetPlacement({edgeX,viewportWidth,viewportHeight}){
  const paintedExtent=C02_INK_ASSET.paintedRight*scale;
  const left=finite(edgeX)-paintedExtent;
  const top=(height-renderHeight)/2;
- const renderedWidth=C02_INK_ASSET.width*scale;
- // Repeat only real pigment to the LEFT. Its reflected rightmost column
- // exactly matches the original PNG's first column; no solid backing required.
- const interiorFillWidth=Math.min(width,Math.max(0,left));
- return {scale,left,top,renderedWidth,renderHeight,paintedExtent,
-  interiorFillWidth,interiorLoopWidth:C02_INK_ASSET.interior.loopWidth*scale,
+ const renderedWidth=C02_INK_ASSET.composite.width*scale;
+ const compositeLeft=left-C02_INK_ASSET.composite.tail*scale;
+ return {scale,left,compositeLeft,top,renderedWidth,renderHeight,paintedExtent,
   contactX:left+paintedExtent,paintedRight:C02_INK_ASSET.paintedRight};
 }
 
@@ -45,16 +48,6 @@ export function c02InkVisualViewport(win){
   left:Number.isFinite(visual?.offsetLeft)?visual.offsetLeft:0,
   top:Number.isFinite(visual?.offsetTop)?visual.offsetTop:0
  };
-}
-// During the last part of the roller pass, smoothly fill remaining transparent
-// bristle pits with the SAME source-derived interior pigment. Full cover and
-// reveal then retain exactly the same textured bitmap on all aspect ratios.
-export function c02InkInteriorCoverage(placement,width,progress){
- const visibleWidth=Math.max(1,width);
- const base=Math.min(visibleWidth,Math.max(0,placement.interiorFillWidth));
- const t=Math.max(0,Math.min(1,(progress-.78)/.22));
- const eased=t*t*(3-2*t);
- return base+(visibleWidth-base)*eased;
 }
 // Clip one unchanged, source-derived texture during reveal; never substitute
 // a procedural flat-green SVG. Keep the approved organic reveal contour.
