@@ -1,4 +1,4 @@
-name: C05 Icon 01 V3 native Lottie browser QA
+name: C05 Icon 01 V4 native Lottie browser QA
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - feature/chapchitra-c05-icon01-storybook-lottie-20261112
     paths:
       - animation-prototypes/chapchitra/c05/icon01/V3/**
+      - animation-prototypes/chapchitra/c05/icon01/V4/**
       - .github/workflows/c05-icon01-v3-native-lottie-qa.yml
   workflow_dispatch:
 
@@ -33,17 +34,17 @@ jobs:
       - name: Install Chromium + WebKit and Linux browser dependencies
         working-directory: animation-prototypes/chapchitra/c05/icon01/V3
         run: npx playwright install --with-deps chromium webkit
-      - name: Serve isolated V3 asset directory
+      - name: Serve isolated C05 review asset directory
         run: |
           python3 -m http.server 8123 --bind 127.0.0.1 > /tmp/c05-v3-http.log 2>&1 &
           sleep 2
       - name: Verify genuine Lottie playback, responsive layouts, and reduced motion
-        run: node animation-prototypes/chapchitra/c05/icon01/V3/browser_qa.mjs
+        run: node animation-prototypes/chapchitra/c05/icon01/V4/browser_qa_v4.mjs
       - name: Upload non-sensitive visual QA frames
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: c05-icon01-v3-browser-evidence
-          path: c05-v3-browser-evidence/
+          name: c05-icon01-v4-browser-evidence
+          path: c05-v4-browser-evidence/
           if-no-files-found: ignore
           retention-days: 7
