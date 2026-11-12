@@ -3,6 +3,9 @@ import {inkEdgeX} from './ink-shapes.mjs';
 // No raster generated, CSS background repetitions or path animation.
 export const C02_INK_ASSET=Object.freeze({
  path:'/assets/c02/texture.svg',
+ // Build-derived single SVG: exact owner paths + tightly inset Gallery White
+ // backing path underneath. One decoded source across cover/load/reveal.
+ composedPath:'/assets/c02/texture-composed.svg',
  width:8192,height:1152,
  // Measured at SVG y≈540: the last painted source pixels reach x≈8095.
  // Align roller contact to the *visible pigment*, not transparent SVG padding.
