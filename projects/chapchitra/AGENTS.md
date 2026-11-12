@@ -1,5 +1,17 @@
 # CHAPCHITRA Development Guardrails
 
+## STRICT LANES — DO NOT DUPLICATE FEATURE DEVELOPMENT (2026-11-12)
+
+**The Artist's Edit chat is the serial staging integrator, NOT the animation developer.** A new developer MUST identify its assigned lane, read the unified staging runbook, and not take over another lane's scope.
+
+- **Artist's Edit/Main Website** exclusively develops worktable, garments, artwork editing, print guides, pricing/invoice and general site UI. It may review Animation PRs **after a ready-for-integration handoff** for merge compatibility, routing, tests, conflicts and shared staging regression ONLY. It must not code, redesign, debug, re-plan or independently solve C02/GSAP/Lottie internals.
+- **Animation Integration** exclusively develops and corrects C02 ink-swipe and other C-series SVG/GSAP/Lottie website motion. It submits PRs, SHAs and QA evidence; it does not take over Artist's Edit functions or directly push the shared staging integration branch.
+- **Making Lottie** exclusively produces standalone C05 icon prototypes, individually approved by owner before handoff to Animation Integration. Integrator does not publish unfinished individual Lottie prototypes.
+- **Serial staging integrator** merges ready, reviewed contributions one at a time into the *verified* shared branch and tests the combined website. If a cross-route QA test exposes a C02 bug, report it to Animation Integration; do NOT implement a rival fix. If a merge conflict occurs inside an animation-owned file, return it to Animation for a corrected PR.
+- **No constant animation status review** by Artist's Edit while animation is in progress. Keep working on own features until a ready-for-integration handoff arrives.
+- **Cross-lane source changes** require explicit assignment and file ownership handoff; split tasks rather than having two agents edit the same code.
+- All approved changes ultimately appear at the **same permanent CHAPCHITRA staging URL**. Existing one-site staging and owner approval gates remain mandatory.
+
 ## Latest owner directive — unified staging and development handoff (2026-11-12)
 
 **Read this section first and read [UNIFIED_STAGING_WORKFLOW.md](docs/UNIFIED_STAGING_WORKFLOW.md) before starting any CHAPCHITRA task.** Applies to all human and AI developers, including new chats, when working on this repository.

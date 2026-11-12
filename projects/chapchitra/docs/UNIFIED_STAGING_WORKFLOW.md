@@ -4,6 +4,25 @@
 **Applies to:** all existing/new CHAPCHITRA developers, automation agents, reviewers and external contractors in `SaamVR/WebAnimation`.  
 **Related rules:** repository `AGENTS.md`, `projects/chapchitra/AGENTS.md`.
 
+## Strict exclusive development responsibilities (2026-11-12 owner clarification)
+
+**Coordination does not equal shared implementation responsibility.** Before taking any task, identify one exclusive feature lane.
+
+| Lane | Writes/implements | May inspect but MUST NOT implement |
+| --- | --- | --- |
+| **Artist's Edit / Main Website** | Garments/worktable, artwork editing, print guides, A3/A4 pricing, invoice, general UI | C02 ink texture, roller, adaptive GSAP timing, animation internals |
+| **Animation Integration** | C02 transition and all approved C-series SVG/GSAP/Lottie integration, motion-specific performance and bug fixes | Artist's Edit garment editor, manual pricing or general UI internals |
+| **Making Lottie** | Individually reviewed C05 prototype/source Lottie assets | Site integration prior to owner approval |
+| **Serial Integration Owner (Artist's Edit coordinator)** | PR readiness/merge coordination, combined branch build/QA, *existing* staging service redeployment | Re-implementing or independently re-planning features owned by other lanes |
+
+**Integration trigger:** Animation Integration signals `READY FOR INTEGRATION` with PR URL, immutable commit SHA, changed paths, exact tests, and current owner-approval status. Only then does the serial coordinator inspect the PR for integration purposes. Unready animation work does **not** block regular Artist's Edit development.
+
+**Permitted integration checks:** PR ancestry/diff, ownership and merge conflicts, shared exports/contracts, whether page routes navigate together, C02 cross-page smoke tests, responsive/accessibility regressions, readiness of staging deploy. **Not permitted:** rewriting C02 motion, producing rival timing/texture solutions, developing a separate C02 branch, or assigning Artist's Edit time to ongoing C02 creative work.
+
+**Failed integration:** If the failure concerns animation behavior or animation-owned code, send exact reproduction to the Animation lane and await its PR fix. If it concerns Artist's Edit behavior/code, Artist's Edit fixes it. For shared interfaces, agree on a single file owner before any edit. No competing implementation and no silent ownership transfer.
+
+**One stable URL** remains the destination for successfully integrated features; isolated technical previews are optional diagnostics, not replacements.
+
 ## One website, one persistent review address
 
 The **Artist's Edit** and **Animation Integration** lanes build **one CHAPCHITRA website**. The owner reviews their *combined integrated work* at **one stable staging URL**, redeployed in place. The canonical URL must be confirmed from the hosting service and recorded here by the serial integrator; do not invent one.
