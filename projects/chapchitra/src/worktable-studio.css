@@ -115,7 +115,8 @@
 .cc-worktable-tint{display:none!important;position:absolute;pointer-events:none;mix-blend-mode:multiply;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;opacity:0;transition:opacity .19s ease}
 .cc-worktable-tint.is-colored{opacity:.74}
 .cc-worktable-garment-surface{position:absolute;display:block;pointer-events:none;object-fit:fill}
-.cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:normal}
+.cc-worktable-print-clip{position:absolute;z-index:8;overflow:hidden;pointer-events:none;contain:layout paint}
+.cc-worktable-print{position:absolute;display:none;z-index:auto;pointer-events:none;mix-blend-mode:normal;transform-origin:center center}
 .cc-worktable-print.has-art{display:block}
 .cc-worktable-print>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;mix-blend-mode:normal;filter:none}
 .cc-worktable-print::after{content:none}
@@ -640,3 +641,21 @@
 .cc-worktable-invoice dl{margin:0}
 .cc-worktable-invoice dl>div{padding:7px 0}
 .cc-worktable-invoice dl .cc-worktable-price-grand{padding-top:12px}
+
+/* A4 movement: one accessible touch handle anchored to the movable print
+   rectangle. It cannot affect the A3 torso boundary or garment artwork. */
+.cc-worktable-frame-handle{
+ position:absolute;z-index:10;width:44px;height:44px;padding:0;
+ transform:translate(-50%,-50%);border:0;border-radius:50%;
+ color:var(--cc-page);background:var(--cc-press);
+ outline:2px solid rgb(255 249 236 / .95);outline-offset:-4px;
+ box-shadow:0 1px 4px rgb(16 22 17 / .3);
+ display:grid;place-items:center;cursor:grab;
+ font:700 20px/1 var(--sans);touch-action:none;user-select:none;
+}
+.cc-worktable-frame-handle[hidden]{display:none!important}
+.cc-worktable-frame-handle:active{cursor:grabbing}
+.cc-worktable-frame-handle:focus-visible{outline:3px solid var(--cc-accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){
+ .cc-worktable-frame-handle{transition:none!important}
+}
