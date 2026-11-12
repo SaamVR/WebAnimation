@@ -13,10 +13,10 @@ test('C02 uses exactly the submitted 8192×1152 SVG, with all 727 paths intact',
  assert.equal(createHash('sha256').update(original).digest('hex'),
   C02_INK_ASSET.sourceSHA256);
  const text=original.toString('utf8');
- assert.equal((text.match(/<path\\b/g)||[]).length,727);
+ assert.equal((text.match(/<path\b/g)||[]).length,727);
  assert.match(text,/viewBox="0 0 8192 1152"/);
  assert.match(text,/\.st0\{fill:#293D2D;\}/);
- assert.doesNotMatch(text,/<image\\b|<script\\b|<foreignObject\\b/);
+ assert.doesNotMatch(text,/<image\b|<script\b|<foreignObject\b/);
  assert.equal(C02_INK_ASSET.path,'/assets/c02/texture.svg');
  assert.equal(C02_INK_ASSET.width,8192);
  assert.equal(C02_INK_ASSET.height,1152);
