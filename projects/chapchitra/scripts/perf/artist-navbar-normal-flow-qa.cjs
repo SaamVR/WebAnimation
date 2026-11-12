@@ -123,17 +123,27 @@ async function run(browser,engine,width,height){
    await page.goto(origin+'/about/?navdebug=1',{waitUntil:'load'});
    await page.goBack({waitUntil:'load'});
    await page.locator('#siteHeader').waitFor();
-   // A BFCache reactivation may return the DOM before the opt-in debug
-   // module has hydrated. Never count missing geometry as zero offset.
-   await page.waitForFunction(()=>!!window.__ccNavViewport?.measure,
-    null,{timeout:14000});
+   // BFCache navigation can complete before opt-in panel bootstrap.
+   // Measure actual boxes independently; missing diagnostics are not 0px.
    const history=await measure(page);
-   topStripGeometry.push({engine,route,stage:'back-forward',geometry:history.navdebug});
-   check(engine+' shop browser history restores measurable DOM origin',
-    !!history.navdebug?.rectangles?.app &&
-    !!history.navdebug?.rectangles?.announcement &&
-    Math.abs(history.navdebug.rectangles.app.top)<2 &&
-    Math.abs(history.navdebug.rectangles.announcement.top)<2,{history});
+   const historyDom=await page.evaluate(()=>{
+    const app=document.getElementById('app'),a=document.querySelector('.announcement');
+    const html=document.documentElement,body=document.body;
+    return {url:location.href,app:app?.getBoundingClientRect().top,
+     announcement:a?.getBoundingClientRect().top,
+     html:html?.getBoundingClientRect().top,
+     body:body?.getBoundingClientRect().top,
+     hit:document.elementFromPoint(innerWidth/2,2)?.closest('.announcement')!==null,
+     scrollY,navdebugLoaded:!!window.__ccNavViewport?.measure};
+   });
+   topStripGeometry.push({engine,route,stage:'back-forward',
+    geometry:history.navdebug,domFallback:historyDom});
+   check(engine+' shop browser history restores measured DOM origin',
+    historyDom.url.includes('/shop/')&&
+    [historyDom.app,historyDom.announcement,historyDom.body].every(v=>
+     typeof v==='number'&&Number.isFinite(v)&&Math.abs(v)<2)&&
+    historyDom.scrollY===0&&historyDom.hit,
+    {historyDom,diagnostic:history.navdebug});
    await page.screenshot({path:path.join(out,engine+'-shop-navdebug-history-return.png')});
   }
   await page.close();
