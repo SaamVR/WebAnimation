@@ -1,0 +1,124 @@
+name: CHAPCHITRA C02 original roller ink-swipe acceptance
+on:
+  push:
+    branches:
+      - feature/chapchitra-c02-ink-sweep-20261111
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-c02-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: chapchitra-c02-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  source-integrity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Restore exact source and run full Linux regression suite
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+          node --test tests/c02-ink-sweep.test.mjs tests/c02-grit-edge.test.mjs tests/c02-owner-ink-asset.test.mjs tests/c02-white-backing.test.mjs
+          test -f dist/assets/c02/texture-composed.svg
+          test -f dist/assets/c02/Ink_swipe_1.png
+          test -f dist/assets/c02/roller-original.svg
+          test -f dist/assets/c02/roller-prepared.svg
+          test -f dist/artists-edit/index.html
+  browser-matrix:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Install dependencies and build preserved multipage source
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          node scripts/build.mjs
+      - name: Install browser and system dependencies
+        working-directory: projects/chapchitra
+        run: npx playwright install --with-deps ${{ matrix.engine }}
+      - name: Start isolated static preview
+        working-directory: projects/chapchitra
+        run: |
+          PORT=4272 npm run preview > /tmp/c02-preview.log 2>&1 &
+          for i in {1..40}; do
+            if curl -fsS http://127.0.0.1:4272/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/c02-preview.log
+          exit 1
+      - name: Verify desktop, tablet and mobile plus slow load, Back/Forward and reduced motion
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-browser-qa-v2.cjs
+      - name: Verify continuously moving adaptive ink, 1/3/5/8s journeys and real routes
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-adaptive-qa.cjs
+      - name: Verify owner's full PNG, alpha alignment, visual comparison and 1s/5s navigation
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-owner-ink-qa.cjs
+      - name: Upload exact PNG 38/70 percent side-by-side frames and real 1s/5s navigation recordings
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: chapchitra-c02-owner-png-${{ matrix.engine }}
+          path: projects/chapchitra/docs/c02-owner-ink-evidence/${{ matrix.engine }}/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Compare original and Grit Roller brush edges at identical progress in real browsers
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-grit-edge-qa.cjs
+      - name: Upload original vs Grit Roller synchronized visual comparisons and video
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: chapchitra-c02-grit-edge-${{ matrix.engine }}
+          path: projects/chapchitra/docs/c02-grit-edge-evidence/${{ matrix.engine }}/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload adaptive progress traces, timestamps, frames and full-speed WebM journeys
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: chapchitra-c02-adaptive-${{ matrix.engine }}
+          path: projects/chapchitra/docs/c02-adaptive-evidence/${{ matrix.engine }}/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Retain original browser recordings and screenshots (not physical iPad)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: chapchitra-c02-${{ matrix.engine }}-owner-review
+          path: projects/chapchitra/docs/c02-evidence-v2/${{ matrix.engine }}-all/
+          if-no-files-found: warn
+          retention-days: 30

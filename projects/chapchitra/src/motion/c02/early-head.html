@@ -1,0 +1,99 @@
+<!-- CHAPCHITRA C02: same atomically decoded vector (owner's unchanged
+     green paths above a build-derived inset white silhouette) for first paint,
+     cover, loading and reveal. Geometry and choreography unchanged. -->
+<link rel="preload" as="image" type="image/svg+xml" href="/assets/c02/texture-composed.svg" fetchpriority="high">
+<style id="c02-prepaint">
+html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;background:#293D2D;pointer-events:auto;clip-path:var(--c02-prepaint-clip,polygon(0 0,65% 0,70% 50%,65% 100%,0 100%))}
+/* Match the owner's complete vector image on the FIRST incoming frame.
+   No PNG, synthetic fill, or procedural-paint switch on native navigation. */
+html.c02-pending.c02-asset-arrival::before{content:none}
+html.c02-pending.c02-asset-arrival::after{content:"";position:fixed;
+inset:var(--c02-viewport-top,0px) auto auto var(--c02-viewport-left,0px);
+width:var(--c02-viewport-width,100vw);height:var(--c02-viewport-height,100vh);
+background-image:url('/assets/c02/texture-composed.svg');background-repeat:no-repeat;
+background-size:var(--c02-asset-width,0px) var(--c02-asset-height,0px);
+background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-events:auto;
+z-index:2147483001}
+/* Only at fully painted 100% coverage: match the live Gallery White
+   seal UNDER the same composed SVG background. No advancing white panel. */
+html.c02-pending.c02-asset-arrival.c02-full-cover::after{
+background-color:#F6F7F5}
+/* Cross-document native View Transitions are deliberately not auto-enabled:
+   Chromium can suspend the outgoing animated document while snapshotting,
+   stranding an ink overlay. The one-use native-navigation fallback is the
+   release-safe progressive enhancement until cross-browser QA proves otherwise. */
+</style>
+<script id="c02-early">(function(){
+ try{
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var key='chapchitra-c02-arrival-v2';
+  var ticket=JSON.parse(window.sessionStorage.getItem(key)||'null');
+  var age=Date.now()-ticket?.created;
+  if(ticket&&ticket.to===location.pathname+location.search&&age>=0&&age<45000){
+   document.documentElement.classList.add('c02-pending');
+   // Native navigation begins only at completed, visually verified
+   // coverage. Preserve progress=1 from the outgoing document rather than
+   // exposing the destination through a synthetic .985 opening.
+   var p=Math.max(.015,Math.min(1,Number(ticket.progress)||.015));
+   document.documentElement.dataset.c02PrepaintProgress=String(p);
+   if(p>=1)document.documentElement.classList.add('c02-full-cover');
+   function edge(y,offset){
+    var organic=104*Math.sin(Math.PI*y/1000*2.35+.32)
+     +48*Math.sin(Math.PI*y/1000*4.15+1.15)
+     +19*Math.sin(Math.PI*y/1000*7.1-.7);
+    return (-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*organic+offset)/10;
+   }
+   if(ticket.edgeStyle==='asset'){
+    // Keep prepaint on the *same visual viewport* as the eventual overlay.
+    // An iPad toolbar may change size/offset while the new document parses.
+    function positionPrepaint(){
+     if(!document.documentElement.classList.contains('c02-pending'))return;
+     var vv=window.visualViewport;
+     var vw=vv&&vv.width>0?vv.width:innerWidth;
+     var vh=vv&&vv.height>0?vv.height:innerHeight;
+     var scale=vh*1.5/1152;
+     var rightContact=(-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*(
+      104*Math.sin(Math.PI*470/1000*2.35+.32)+
+      48*Math.sin(Math.PI*470/1000*4.15+1.15)+
+      19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*vw/1000;
+     var root=document.documentElement;
+     root.style.setProperty('--c02-viewport-left',(vv?.offsetLeft||0)+'px');
+     root.style.setProperty('--c02-viewport-top',(vv?.offsetTop||0)+'px');
+     root.style.setProperty('--c02-viewport-width',vw+'px');
+     root.style.setProperty('--c02-viewport-height',vh+'px');
+     root.style.setProperty('--c02-asset-width',8192*scale+'px');
+     root.style.setProperty('--c02-asset-height',1152*scale+'px');
+     root.style.setProperty('--c02-asset-left',(rightContact-8096*scale)+'px');
+     root.style.setProperty('--c02-asset-top',((vh-1152*scale)/2)+'px');
+    }
+    var root=document.documentElement;
+    root.classList.add('c02-asset-arrival');
+    positionPrepaint();
+    if(window.visualViewport){
+     window.visualViewport.addEventListener('resize',positionPrepaint,{passive:true});
+     window.visualViewport.addEventListener('scroll',positionPrepaint,{passive:true});
+    }
+    window.addEventListener('resize',positionPrepaint,{passive:true});
+   }else{
+    var points=['0% 0%'];
+    for(var i=0;i<=8;i++)points.push(edge(i*125,0)+'% '+(i*12.5)+'%');
+    points.push('0% 100%');
+    document.documentElement.style.setProperty('--c02-prepaint-clip',
+     'polygon('+points.join(',')+')');
+   }
+   // Failure-only guard if the application JavaScript cannot initialize.
+   window.setTimeout(function(){
+    document.documentElement.classList.remove('c02-pending');
+   },18000);
+  }
+ }catch(e){document.documentElement.classList.remove('c02-pending')}
+})();
+</script>
+<!-- Install C02 independently of app.mjs so a delayed/failed app boot cannot
+     strand the incoming ink. Repeated app/review installs are idempotent. -->
+<script type="module" id="c02-independent-bootstrap">
+import { installC02PageTransitions } from '/motion/c02/ink-sweep.mjs';
+const install = () => installC02PageTransitions(window, document);
+if (document.body) install();
+else document.addEventListener('DOMContentLoaded', install, { once: true });
+</script>
