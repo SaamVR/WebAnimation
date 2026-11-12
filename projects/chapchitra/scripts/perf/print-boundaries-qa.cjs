@@ -35,6 +35,9 @@ const SNAP=async p=>p.evaluate(()=>{
 const within=(inner,outer,pad=2)=>inner.x>=outer.x-pad&&inner.y>=outer.y-pad&&inner.right<=outer.right+pad&&inner.bottom<=outer.bottom+pad;
 const same=(a,b,eps=2)=>Math.abs(a-b)<=eps;
 async function drag(page,selector,x,y){
+ // Print-size buttons are below the desk: restore the actual drag handle
+ // to the visible viewport before issuing unassisted pointer coordinates.
+ await page.locator(selector).scrollIntoViewIfNeeded();
  const b=await point(page,selector);
  await page.mouse.move(b.x+b.width/2,b.y+b.height/2);
  await page.mouse.down();
@@ -70,11 +73,15 @@ async function drag(page,selector,x,y){
    same(a4.guide.x,a4.clip.x,.5)&&same(a4.guide.y,a4.clip.y,.5)&&
    same(a4.guide.width,a4.clip.width,.5)&&same(a4.guide.height,a4.clip.height,.5));
   // Four corners of the bounding A3 (overshoot by 1000px; actual clamp must hold).
-  for(const [x,y] of [[-1000,-1000],[10000,-1000],[-1000,10000],[10000,10000]]){
-   await drag(page,'.cc-worktable-frame-handle',x,y);
+  for(const [sx,sy] of [[-1,-1],[1,-1],[-1,1],[1,1]]){
+   await drag(page,'.cc-worktable-frame-handle',sx<0?8:w-8,sy<0?8:h-8);
    const moved=await SNAP(page);
    verify(id+' '+garment+' A4 clamped to A3',within(moved.clip,a3.clip,2),{moved:moved.clip,a3:a3.clip});
    verify(id+' '+garment+' A4 rigid dimension',same(moved.clip.width,a4.clip.width)&&same(moved.clip.height,a4.clip.height),moved.clip);
+   verify(id+' '+garment+' A4 actually reaches selected corner',
+    same(moved.clip.x,sx<0?a3.clip.x:a3.clip.right-moved.clip.width,2)&&
+    same(moved.clip.y,sy<0?a3.clip.y:a3.clip.bottom-moved.clip.height,2),
+    {corner:[sx,sy],actual:moved.clip,safe:a3.clip});
   }
  }
  // Real upload and pixel bounds, including rotation/scaling/movement.
@@ -114,6 +121,7 @@ async function drag(page,selector,x,y){
  await settle(page);
  const guideBefore=await SNAP(page);
  // Drag target is a real viewport pointer coordinate; SNAP is stage-relative.
+ await page.locator('.cc-worktable-frame-handle').scrollIntoViewIfNeeded();
  const handleBox=await point(page,'.cc-worktable-frame-handle');
  await drag(page,'.cc-worktable-frame-handle',
   handleBox.x+handleBox.width/2+100,handleBox.y+handleBox.height/2+70);
