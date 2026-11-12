@@ -4,6 +4,7 @@ import {C02_PAGES,C02_PATHS,C02_MOTION,INK_PALETTE,isC02Eligible,
  easeInk,inkPath,inkEdgePath,inkEdgeX} from './ink-shapes.mjs';
 import {C02_ADAPTIVE,pendingInkProgress,finishDuration,
  finishInkProgress,getReviewDelayMs} from './adaptive-progress.mjs';
+import {gritEdgePaths} from './grit-edge.mjs';
 export {C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible};
 const KEY='chapchitra-c02-arrival-v2',TTL=45000,FAILSAFE_MS=26000;
 const NS='http://www.w3.org/2000/svg';
@@ -37,14 +38,14 @@ function ticketFor(win){
   return t?.to===win.location.pathname+win.location.search&&age>=0&&age<TTL?t:null;
  }catch{return null}
 }
-function storeTicket(win,url,{progress=0,startedAt=Date.now(),demoMs=0}={}){
+function storeTicket(win,url,{progress=0,startedAt=Date.now(),demoMs=0,edgeStyle='grit'}={}){
  try{win.sessionStorage.setItem(KEY,JSON.stringify({
   to:url.pathname+url.search,created:Date.now(),
-  progress:Math.max(0,Math.min(.985,progress)),startedAt,demoMs
+  progress:Math.max(0,Math.min(.985,progress)),startedAt,demoMs,edgeStyle
  }))}catch{}
 }
 function clearTicket(win){try{win.sessionStorage.removeItem(KEY)}catch{}}
-function makeOverlay(doc,win){
+function makeOverlay(doc,win,edgeStyle='grit'){
  doc.getElementById('c02-loader')?.remove();
  if(!doc.getElementById('c02-style')){
   const s=doc.createElement('style');s.id='c02-style';s.textContent=CSS;doc.head.append(s);
@@ -65,6 +66,27 @@ function makeOverlay(doc,win){
   svg.append(el);return el;
  }
  const forest=path(INK_PALETTE.forest),ink=path(INK_PALETTE.press);
+ // Apply a small alpha-depletion brush band across BOTH existing paint
+ // layers so dry bristle openings reveal the real page, not the forest paint.
+ // The paths, body fill, approved outer contact alignment and motion are
+ // otherwise identical to the original variant.
+ const paint=doc.createElementNS(NS,'g');
+ svg.insertBefore(paint,forest);paint.append(forest,ink);
+ const defs=doc.createElementNS(NS,'defs');svg.prepend(defs);
+ const gritMask=doc.createElementNS(NS,'mask');
+ gritMask.id='c02-grit-contact-mask';
+ gritMask.setAttribute('maskUnits','userSpaceOnUse');
+ gritMask.setAttribute('maskContentUnits','userSpaceOnUse');
+ gritMask.setAttribute('x','-100');gritMask.setAttribute('y','-100');
+ gritMask.setAttribute('width','1200');gritMask.setAttribute('height','1200');
+ const white=doc.createElementNS(NS,'rect');
+ for(const [k,v] of Object.entries({x:'-100',y:'-100',width:'1200',
+   height:'1200',fill:'white'}))white.setAttribute(k,v);
+ const dry=doc.createElementNS(NS,'path');dry.setAttribute('fill','black');
+ gritMask.append(white,dry);defs.append(gritMask);
+ const deposits=doc.createElementNS(NS,'path');
+ deposits.setAttribute('fill',INK_PALETTE.press);
+ svg.append(deposits);
  const outline=path(INK_PALETTE.terra,true);
  const roller=doc.createElement('div');roller.className='c02-loader__roller';
  roller.setAttribute('aria-hidden','true');
@@ -83,6 +105,18 @@ function makeOverlay(doc,win){
   const isFull=(mode==='cover'&&p===1)||(mode==='reveal'&&p===0);
   const isEmpty=(mode==='cover'&&p===0)||(mode==='reveal'&&p===1);
   outline.setAttribute('d',isFull||isEmpty?'':inkEdgePath(p));
+  // Identical progress, easing, roller contact and main inkPath in both
+  // variants. Only the moving cover edge gains dry pigment breaks.
+  const gritty=edgeStyle==='grit'&&mode==='cover'&&p>0&&p<1;
+  if(gritty){
+   const texture=gritEdgePaths(p);
+   dry.setAttribute('d',texture.dry);
+   deposits.setAttribute('d',texture.deposits);
+   paint.setAttribute('mask','url(#c02-grit-contact-mask)');
+  }else{
+   paint.removeAttribute('mask');
+   deposits.setAttribute('d','');
+  }
   // The unmodified colored cylinder starts at y=48.7199 in its SVG viewBox.
   // Align that real contact edge to the advancing OUTER forest ink contour;
   // the long graphite handle then extends to the unpainted RIGHT.
@@ -263,8 +297,12 @@ export function installC02PageTransitions(win=window,doc=document){
   }catch{return Promise.resolve(false)}
  }
  const ticket=ticketFor(win);
+ const reviewPath=win.location.pathname.startsWith('/c02-review/');
+ const edgeStyle=ticket?.edgeStyle==='original'?'original':
+  reviewPath&&new URLSearchParams(win.location.search).get('edge')==='original'
+   ?'original':'grit';
  if(ticket&&!reduced.matches){
-  overlay=makeOverlay(doc,win);
+  overlay=makeOverlay(doc,win,edgeStyle);
   // Preserve the partial, unpainted opening across the document handoff.
   // No green full-viewport prepaint and no stationary loading phase.
   const p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
@@ -321,7 +359,7 @@ export function installC02PageTransitions(win=window,doc=document){
   leaving=true;
   const startedAt=Date.now(),demoMs=getReviewDelayMs(target.href);
   try{
-   overlay=makeOverlay(doc,win);
+   overlay=makeOverlay(doc,win,edgeStyle);
    doc.documentElement.dataset.c02Busy='true';
    state('covering');
    drive=overlay.driveAdaptive({
@@ -330,7 +368,7 @@ export function installC02PageTransitions(win=window,doc=document){
      // The old page remains alive while the browser commits a native
      // navigation. Carry the latest progress to the destination document.
      if(navigationCommitted)storeTicket(win,target,{
-      progress:p,startedAt,demoMs
+      progress:p,startedAt,demoMs,edgeStyle
      });
     }
    });
@@ -338,7 +376,7 @@ export function installC02PageTransitions(win=window,doc=document){
     if(!leaving||navigationCommitted)return;
     navigationCommitted=true;
     state('waiting');
-    storeTicket(win,target,{progress:drive?.progress()||.68,startedAt,demoMs});
+    storeTicket(win,target,{progress:drive?.progress()||.68,startedAt,demoMs,edgeStyle});
     try{win.location.assign(target.href)}
     catch{clearTicket(win);cleanup()}
    };
