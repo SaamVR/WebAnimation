@@ -116,4 +116,23 @@ async function run(browser,engine,width,height){
  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(result,null,2)+'\n');
  console.log(JSON.stringify({passed:result.passed,failed:result.failed,errors,responses,failures:checks.filter(x=>!x.passed)},null,2));
  if(result.failed||errors.length||responses.length)process.exitCode=2;
+ // Once the portrait Artist's Edit feature is present, the same existing
+ // Chromium/WebKit staging runner must verify its actual compiled bundle.
+ // The project-local script retains screenshots under shared-stage-mobile,
+ // which the already configured shared CI artifact uploader collects.
+ const mobileQA=path.join(__dirname,'mobile-artist-qa.cjs');
+ if(fs.existsSync(mobileQA)){
+  const {spawnSync}=require('node:child_process');
+  const outMobile=path.resolve('perf-results/shared-stage-mobile');
+  const child=spawnSync(process.execPath,[mobileQA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,CC_QA_ROOT:origin,CC_QA_OUT:outMobile,
+    CC_MOBILE_QA_OVERRIDE_FILES:'0'},
+   encoding:'utf8',stdio:'inherit',timeout:9*60*1000,
+  });
+  if(child.error||child.status!==0){
+   console.error('Portrait Artist mobile QA failed',child.error?.message||child.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});

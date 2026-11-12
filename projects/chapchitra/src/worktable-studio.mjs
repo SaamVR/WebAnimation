@@ -6,6 +6,7 @@ import { paperGuide, placementGeometry, printScaleLabel, resolutionGuidance } fr
 import { createSideRecords, storeSide, loadSide, disposeSideRecords } from './worktable-two-sided-state.mjs';
 import { calculateArtistPrice, buildArtistCustomization, formatArtistBDT } from './worktable-pricing.mjs';
 import { WORKTABLE_PRICE_TAG } from './worktable-price-tag-config.mjs';
+import { mountMobileArtistEdit } from './worktable-mobile.mjs';
 
 // Immutable 4000×2250 artwork is registered on the same 2048×1152 stage.
 // Cropped WebP browser variants retain original alpha coordinates and source SHA256.
@@ -96,6 +97,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  let artBitmap=null;
  const editor={x:0,y:0,frameX:0,frameY:0,adjustment:0,rotation:0,selected:false,mode:'move'};
  let dragging=null;
+ let mobileUI=null;
  const body=document.createElement('div');
  body.className='cc-worktable is-loading is-hydrating';
  body.innerHTML=`<div class="cc-worktable-header"><p class="cc-eyebrow">FROM THE STUDIO · CHAPCHITRA</p><h1>Artist’s Edit</h1><p>Bring a print idea to the worktable. Your design remains on this device.</p></div>
@@ -355,6 +357,13 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  }
  if(!uploadVisual)throw new Error('Illustrated upload SVG was not mounted');
  let garmentImg=addImage(ALL.garment.regular,'cc-worktable-garment');
+ // The desktop 16:9 assembled preview is intentionally absent on portrait
+ // phones. Start the approved transparent shirt request immediately instead
+ // of waiting for all optional workstation layers to hydrate.
+ if(window.matchMedia('(max-width: 600px)').matches){
+  attachAsset(garmentImg,ALL.garment.regular);
+  garmentImg.fetchPriority='high';
+ }
  const tint=document.createElement('div'); tint.className='cc-worktable-tint'; stage.append(tint);
  // One atomic stage-relative print rectangle owns BOTH its guide and clip.
  // Independent percentage rectangles can lag by a paint frame on WebKit/
@@ -949,6 +958,11 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const artworkPointers=new Map();
  const dragStart=e=>{
   if(!artURL)return;
+  // A first finger tap is an explicit request to open the presentation-only
+  // torso zoom. It is not the beginning of a drag: no coordinates are changed.
+  if(mobileUI?.isMobile()&&!mobileUI.isZoomed()){
+   e.preventDefault();mobileUI.enterZoom();return;
+  }
   e.preventDefault();
   if(!editor.selected)selectEditor('move');
   if(editor.mode!=='move'&&editor.mode!=='resize')return;
@@ -966,7 +980,11 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   dragLayer.classList.add('is-dragging');indicatePlacement(true);
  };
  dragLayer.addEventListener('pointerdown',dragStart);
- dragLayer.addEventListener('click',()=>{if(artURL&&!editor.selected)selectEditor('move')});
+ dragLayer.addEventListener('click',()=>{
+  if(!artURL)return;
+  if(mobileUI?.isMobile()&&!mobileUI.isZoomed()){mobileUI.enterZoom();return}
+  if(!editor.selected)selectEditor('move');
+ });
  dragLayer.addEventListener('pointermove',e=>{
   if(!artworkPointers.has(e.pointerId)||!dragging)return;
   artworkPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
@@ -1075,15 +1093,31 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const onOutsidePointer=e=>{
   if(!editor.selected)return;
   const t=e.target;
+  if(mobileUI?.isZoomed()&&t.closest?.('.cc-mobile-zoom-done'))return;
   if(print.contains(t)||tools.contains(t)||
    [...cornerHandles.values()].some(h=>h===t||h.contains(t)))return;
   hideEditor();
  };
  document.addEventListener('pointerdown',onOutsidePointer,true);
+ // Only a separate mobile presentation shell is added. The original stage,
+ // placementGeometry and pointer coordinate conversions are left unchanged.
+ mobileUI=mountMobileArtistEdit({
+  body,stage,frame:stage.parentElement,manifest,layers,
+  sourceURL:variantURL,sourceInfo,
+  artworkZone:root.querySelector('.cc-worktable-artwork-zone'),
+  update,file,uploadVisual,
+  selectArtwork:()=>selectEditor('move'),
+  refreshPlacement:()=>printPosition(),
+  getState:()=>current,
+ });
+ stage.addEventListener('transitionend',event=>{
+  if(event.propertyName==='transform'&&mobileUI?.isMobile())printPosition();
+ });
  const unload=()=>{
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
   if(guideTimer!==null)clearTimeout(guideTimer);
   document.removeEventListener('pointerdown',onOutsidePointer,true);
+  mobileUI?.destroy();
   saveActiveSide();
   disposeSideRecords(sideRecords,url=>URL.revokeObjectURL(url));
   artURL=null;artBitmap=null;
@@ -1152,6 +1186,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   saveActiveSide();disposeSideRecords(sideRecords,url=>URL.revokeObjectURL(url));
   artURL=null;artBitmap=null;
   if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
+  mobileUI?.destroy();
   uploadObserver?.disconnect();document.removeEventListener('visibilitychange',syncUploadMotion);
   window.removeEventListener('pagehide',unload);root.replaceChildren();
  }};

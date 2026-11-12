@@ -657,3 +657,196 @@
 @media(prefers-reduced-motion:reduce){
  .cc-worktable-frame-handle{transition:none!important}
 }
+
+/* PHONE-ONLY 9:16 ILLUSTRATED ARTIST'S EDIT.
+ * The source stage continues using its approved 2048×1152 coordinates.
+ * Only its presentation is uniformly scaled inside the portrait frame. */
+@media(max-width:600px){
+ .cc-worktable{padding-bottom:2.5rem}
+ .cc-worktable-header{display:none}
+ .cc-worktable-frame.cc-mobile-frame-ready{
+  width:100%;position:relative;aspect-ratio:9/16;overflow:hidden;
+  border:2px solid var(--color-gallery-white,#f6f7f5);
+  border-radius:0 0 17px 17px;
+  background-color:var(--color-walnut,#6e523f);
+  background-image:var(--cc-mobile-wood);
+  background-repeat:no-repeat;background-size:auto 100%;
+  background-position:center center;
+  isolation:isolate;
+ }
+ .cc-mobile-decorations{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+ .cc-mobile-decor{position:absolute;overflow:hidden;pointer-events:none;filter:drop-shadow(0 1px 2px rgb(29 20 14 / .3));}
+ .cc-mobile-decor img{display:block;max-width:none!important;pointer-events:none;}
+ .cc-worktable-stage{
+  width:128%;height:auto;aspect-ratio:16/9;
+  position:absolute;top:16.7%;left:-14%;z-index:4;
+  background:transparent;overflow:visible;isolation:isolate;
+  touch-action:pan-y;transform:none;transform-origin:50% 42%;
+  transition:transform .35s cubic-bezier(.2,.8,.25,1),top .35s cubic-bezier(.2,.8,.25,1);
+ }
+ /* The baked desktop preview and oversized paper/paint/size controls MUST
+    disappear on mobile. Each illustrated popup uses independent ORIGINAL
+    source layers; the garment and workers remain in the live editor plane. */
+ .cc-worktable-stage > :is(.cc-worktable-desk,.cc-worktable-preview,.cc-worktable-prop,.cc-worktable-upload-svg-layer,.cc-worktable-hit){
+  display:none!important;
+ }
+ .cc-worktable-stage > .cc-worktable-worker{display:block}
+ .cc-worktable-stage > .cc-worktable-garment{display:block}
+ .cc-worktable.is-hydrating .cc-worktable-stage > .cc-worktable-layer.cc-worktable-garment:not(.cc-worktable-preview):not(.cc-worktable-upload-svg-layer){
+  opacity:1!important;
+ }
+ .cc-worktable-view-row{bottom:-10%;z-index:10}
+ .cc-worktable-view-button.cc-sketch.cc-compact-artwork{
+  width:136px;min-width:136px;height:54px;min-height:54px;
+  font-size:12.5px;
+ }
+ .cc-worktable-stage .cc-worktable-frame-handle{display:none}
+ .cc-worktable.is-loading .cc-worktable-stage .cc-worktable-loading{
+  font-size:10px;background:transparent;color:var(--color-gallery-white,#f6f7f5);
+ }
+ /* No duplicate price engine; the mobile paper tag is the existing
+    dynamically-updated instance of the approved paper illustration. */
+ .cc-worktable-frame.cc-mobile-frame-ready > .cc-worktable-price-tag-mobile{
+  position:absolute;display:block;z-index:8;
+  left:70%;top:6%;width:32%;max-width:none;margin:0;
+  transform:translateX(-50%) rotate(var(--cc-tag-rotation));
+ }
+ .cc-worktable-price-tag-stage{display:none}
+ .cc-worktable-frame.cc-mobile-frame-ready .cc-mobile-popup{
+  display:block;position:absolute;z-index:30;
+  bottom:12.7%;left:50%;transform:translateX(-50%);
+  width:min(94%,258px);max-height:46%;overflow:visible;
+  border:0;background:transparent;pointer-events:auto;
+ }
+ .cc-worktable-frame.cc-mobile-frame-ready .cc-mobile-popup[hidden]{display:none!important}
+ .cc-mobile-popup[data-group="color"]{width:min(90%,202px)!important}
+ .cc-mobile-popup[data-group="size"]{width:min(94%,312px)!important}
+ .cc-mobile-popup[data-group="printSize"]{width:min(88%,190px)!important}
+ .cc-mobile-popup[data-group="upload"]{width:min(94%,338px)!important}
+ .cc-mobile-popup[data-group="upload"] .cc-mobile-popup-art{
+  display:grid;grid-template-columns:minmax(0,.77fr) minmax(0,1fr);
+  align-items:center;justify-content:center;gap:8px;
+ }
+ .cc-mobile-popup[data-group="upload"] .cc-mobile-popup-illustration{
+  width:100%;max-height:175px;
+ }
+ .cc-mobile-popup[data-group="upload"] .cc-mobile-popup-artwork-controls{
+  width:100%;max-height:175px;
+ }
+ .cc-mobile-popup-art{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+ .cc-mobile-popup-illustration{position:relative;width:100%;height:auto;flex:none;pointer-events:none}
+ .cc-mobile-illustrated-piece{position:absolute;display:block;object-fit:fill;pointer-events:none;user-select:none}
+ .cc-mobile-popup-upload-art{position:absolute;display:block;pointer-events:none}
+ .cc-mobile-popup-upload-art svg{display:block;width:100%;height:100%}
+ .cc-mobile-popup-option{
+  position:absolute;min-width:44px;min-height:44px;width:44px;height:44px;
+  transform:translate(-50%,-50%);
+  background:transparent;border:0;border-radius:10px;
+  padding:0;cursor:pointer;pointer-events:auto;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+ }
+ .cc-mobile-popup-option:focus-visible{outline:3px solid var(--color-gallery-white,#f6f7f5);outline-offset:2px}
+ .cc-mobile-popup-option[aria-pressed="true"]:focus-visible{box-shadow:0 0 0 4px var(--color-press-green,#293d2d)}
+ .cc-mobile-popup-close{
+  position:absolute;right:-8px;top:-13px;min-width:44px;min-height:44px;
+  display:grid;place-items:center;background:var(--color-press-green,#293d2d);
+  color:var(--color-gallery-white,#f6f7f5);border:2px solid var(--color-gallery-white,#f6f7f5);
+  border-radius:50%;padding:0;font:600 25px/1 var(--sans);
+  cursor:pointer;
+ }
+ .cc-mobile-popup-artwork-controls{
+  position:relative;width:min(94vw,330px);max-height:22svh;overflow:auto;
+  border:1px solid var(--color-warm-beige,#d8cec2);
+  border-radius:13px;padding:10px;
+  background:var(--color-gallery-white,#f6f7f5);
+  box-shadow:0 8px 15px rgb(27 21 14 / .23);
+ }
+ .cc-mobile-popup-artwork-controls .cc-worktable-artwork-zone{
+  display:block!important;position:static!important;background:transparent;
+  width:100%;padding:0;border:0;
+ }
+ .cc-mobile-popup-artwork-controls .cc-worktable-artwork-intro{display:none}
+ .cc-mobile-popup-artwork-controls .cc-worktable-upload-row{display:flex;flex-direction:column;gap:8px}
+ .cc-mobile-popup-artwork-controls .cc-worktable-upload-group{width:100%}
+ .cc-mobile-popup-artwork-controls .cc-worktable-secondary-actions{width:100%}
+ .cc-mobile-popup-artwork-controls .cc-worktable-quality{font-size:11px}
+ .cc-mobile-category-nav{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(2px,1.3vw,9px);
+  align-items:center;justify-items:center;
+  position:sticky;bottom:calc(4px + env(safe-area-inset-bottom,0px));
+  z-index:60;width:100%;padding:0 5px;
+  margin-top:clamp(-84px,-18vw,-60px);
+  background:transparent;
+ }
+ .cc-mobile-category-button{
+  width:clamp(54px,16.2vw,76px);height:clamp(54px,16.2vw,76px);min-width:44px;min-height:44px;
+  background:var(--color-press-green,#293d2d);
+  border:2px solid transparent;border-radius:50%;
+  color:var(--color-gallery-white,#f6f7f5);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;padding:5px 1px 3px;
+  font:600 clamp(8.5px,2.65vw,12px)/1.12 'Hind Siliguri',var(--sans);
+  cursor:pointer;touch-action:manipulation;
+  box-shadow:0 1px 3px rgb(18 25 16 / .4);
+  -webkit-tap-highlight-color:transparent;
+  transition:box-shadow .15s ease,background .15s ease,transform .15s ease;
+ }
+ .cc-mobile-category-button svg{width:clamp(20px,6vw,30px);height:clamp(20px,6vw,30px);flex:none}
+ .cc-mobile-category-button span{display:block;white-space:nowrap}
+ .cc-mobile-category-button:is(:hover,:active,:focus-visible,.is-active){
+  outline:2px solid var(--color-gallery-white,#f6f7f5);
+  outline-offset:1px;
+  box-shadow:0 0 0 4px rgb(246 247 245 / .36),
+   inset 0 2px 5px rgb(246 247 245 / .24),0 0 13px 4px rgb(246 247 245 / .5);
+  background:var(--color-press-green,#293d2d);
+ }
+ .cc-mobile-category-button:active{transform:scale(.97)}
+ .cc-worktable-palette{margin-top:10px}
+ .cc-worktable-palette :is(.cc-worktable-panel-intro,.cc-worktable-rail){display:none}
+ .cc-worktable-palette > .cc-worktable-artwork-zone{display:none}
+ .cc-worktable-palette > .cc-worktable-hint{display:none}
+ .cc-mobile-zoom-done{
+  display:grid;place-items:center;position:absolute;right:10px;top:10px;
+  z-index:70;min-width:74px;min-height:44px;padding:5px 14px;
+  border-radius:22px;border:2px solid var(--color-gallery-white,#f6f7f5);
+  background:var(--color-press-green,#293d2d);color:var(--color-gallery-white,#f6f7f5);
+  font:700 14px/1 var(--sans);cursor:pointer;
+ }
+ .cc-mobile-zoom-done[hidden]{display:none!important}
+ .cc-worktable.cc-mobile-editing .cc-worktable-stage{
+  transform:scale(1.65);
+  top:21%;
+  transition:transform .35s cubic-bezier(.2,.8,.25,1),top .35s cubic-bezier(.2,.8,.25,1);
+ }
+ .cc-worktable.cc-mobile-editing .cc-worktable-stage .cc-worktable-frame-handle:not([hidden]){
+  display:grid;
+ }
+ /* The existing toolbar uses stage coordinates. At 1.65× zoom its desktop
+    placement can lie outside the portrait viewport; anchor ONLY its mobile
+    display near the lower torso, keeping all original tool handlers. */
+ .cc-worktable.cc-mobile-editing .cc-worktable-stage .cc-worktable-art-tools{
+  left:calc(50% - 74px)!important;top:68%!important;
+  transform:scale(.67);transform-origin:center top;
+ }
+ .cc-worktable.cc-mobile-editing .cc-worktable-stage .cc-worktable-frame-handle:not([hidden]){
+  transform:translate(-50%,-50%) scale(.65);
+ }
+ .cc-worktable.cc-mobile-editing .cc-mobile-category-nav{pointer-events:none;opacity:0;visibility:hidden}
+ .cc-worktable.cc-mobile-editing .cc-mobile-popup{display:none!important}
+ .cc-worktable.cc-mobile-editing .cc-worktable-view-row{visibility:hidden;pointer-events:none}
+ .cc-worktable.cc-mobile-editing .cc-worktable-stage{touch-action:none}
+ .cc-worktable-frame.cc-mobile-frame-ready{outline-offset:-2px}
+}
+@media(max-width:365px){
+ .cc-mobile-category-nav{gap:2px;padding:0 2px}
+ .cc-mobile-category-button{width:54px;height:54px;font-size:8.5px}
+ .cc-mobile-category-button svg{width:21px;height:21px}
+ .cc-worktable-frame.cc-mobile-frame-ready .cc-mobile-popup{bottom:16%}
+}
+@media(max-width:600px) and (prefers-reduced-motion:reduce){
+ .cc-worktable.cc-mobile-editing .cc-worktable-stage,
+ .cc-worktable-stage,.cc-mobile-category-button{transition:none!important}
+}
+@media(min-width:601px){
+ .cc-mobile-decorations,.cc-mobile-category-nav,.cc-mobile-popup,.cc-mobile-zoom-done{display:none!important}
+}

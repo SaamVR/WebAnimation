@@ -5,7 +5,23 @@ fs.mkdirSync(dir,{recursive:true});
 const checks=[],errors=[],http=[];
 const record=(name,ok,detail)=>{checks.push({name,pass:!!ok,detail});if(!ok)console.error('FAILED',name,JSON.stringify(detail))};
 const png=sharp({create:{width:400,height:550,channels:4,background:{r:243,g:70,b:26,alpha:1}}}).png().toBuffer();
-const sel=(p,k,v)=>p.locator('.cc-worktable-choice[data-group="'+k+'"][data-value="'+v+'"]').click();
+// The approved phone UI hides the legacy below-stage choice rail: exercise the
+// same reducer through its actual illustrated five-category popup instead.
+const mobile=p=>p.evaluate(()=>matchMedia('(max-width:600px)').matches);
+const sel=async(p,k,v)=>{
+ if(await mobile(p)){
+  const item=p.locator('.cc-mobile-category-button[data-mobile-group="'+k+'"]');
+  await item.click();
+  await p.locator('.cc-mobile-popup-option[data-group="'+k+'"][data-value="'+v+'"]').click();
+  await p.keyboard.press('Escape');
+ }else{
+  await p.locator('.cc-worktable-choice[data-group="'+k+'"][data-value="'+v+'"]').click();
+ }
+};
+const removeArtwork=async p=>{
+ if(await mobile(p))await p.locator('.cc-mobile-category-button[data-mobile-group="upload"]').click();
+ await p.locator('#worktableRemoveArt').click();
+};
 const total=async(p,w)=>{await p.waitForFunction(t=>document.querySelector('#worktablePriceTotal')?.textContent.trim()===t,w,{timeout:15000});record('Total '+w,(await p.locator('#worktablePriceTotal').textContent()).trim()===w)};
 const upload=async(p,name)=>p.locator('#worktableFile').setInputFiles({name,mimeType:'image/png',buffer:await png});
 const turn=async(p,target)=>{await p.getByRole('button',{name:target==='back'?'View back':'View front'}).click();await p.waitForFunction(side=>document.querySelector('.cc-worktable-garment-surface')?.dataset.side===side,target,{timeout:25000})};
@@ -52,7 +68,7 @@ async function open(p){
    record(id+' removal',await p.locator('[data-artist-bag-row]').count()===0);
    await p.close();
    p=await ctx.newPage();await open(p);await turn(p,'back');await upload(p,'back-only.png');
-   await total(p,'৳550');await p.locator('#worktableRemoveArt').click();await total(p,'৳450');
+   await total(p,'৳550');await removeArtwork(p);await total(p,'৳450');
    await turn(p,'front');await total(p,'৳450');await p.close();await ctx.close();
   }
  }finally{await chrome.close();await webkitBrowser.close()}
