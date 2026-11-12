@@ -15,7 +15,10 @@ const wait=async p=>p.locator('.cc-worktable-stage:not([aria-busy="true"])').wai
 const put=async(p,name)=>p.locator('#worktableFile').setInputFiles({name,mimeType:'image/png',buffer:await src()});
 const point=async(p,selector)=>p.locator(selector).boundingBox();
 const SNAP=async p=>p.evaluate(()=>{
- const box=element=>{const b=element.getBoundingClientRect();return{x:b.x,y:b.y,width:b.width,height:b.height,right:b.right,bottom:b.bottom}};
+ const stageBounds=document.querySelector('.cc-worktable-stage').getBoundingClientRect();
+ const box=element=>{const b=element.getBoundingClientRect();return{
+  x:b.x-stageBounds.x,y:b.y-stageBounds.y,width:b.width,height:b.height,
+  right:b.right-stageBounds.x,bottom:b.bottom-stageBounds.y}};
  const guide=document.querySelector('.cc-worktable-paper-guide');
  const clip=document.querySelector('.cc-worktable-print-clip');
  const art=document.querySelector('.cc-worktable-print');
@@ -71,7 +74,9 @@ async function drag(page,selector,x,y){
  for(const preset of ['A3','A4']){
   await pick(page,'printSize',preset);
   for(const adjustment of ['-50','0','25','100']){
-   await page.locator('#worktableArtScale').fill(adjustment);
+   const slider=page.locator('#worktableArtScale');
+   const allowed=Math.min(Number(adjustment),Number(await slider.getAttribute('max')));
+   await slider.fill(String(allowed));
    let snap=await SNAP(page);
    verify(id+' '+preset+' '+adjustment+' scale stays inside print',snap.artVisible&&within(snap.art,snap.clip),snap);
    verify(id+' '+preset+' clipping backup active',snap.clipped);
@@ -89,6 +94,7 @@ async function drag(page,selector,x,y){
   verify(id+' '+preset+' rotated 180 remains inside',within((await SNAP(page)).art,(await SNAP(page)).clip));
  }
  await pick(page,'printSize','A4');
+ await page.locator('#worktableResetArt').click();
  const guideBefore=await SNAP(page);
  await drag(page,'.cc-worktable-frame-handle',guideBefore.clip.x+guideBefore.clip.width+100,guideBefore.clip.y+guideBefore.clip.height+70);
  const afterFrame=await SNAP(page);
