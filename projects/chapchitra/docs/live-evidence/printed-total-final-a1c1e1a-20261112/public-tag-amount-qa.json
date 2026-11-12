@@ -1,0 +1,4042 @@
+{
+  "url": "https://chapchitra-artist-tag-final-review.onrender.com",
+  "checks": [
+    {
+      "name": "desktop baseline both price tags and invoice ৳450",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3914282332251082,
+          "right": 0.7783747068903318,
+          "top": 0.44949617549143944,
+          "bottom": 0.8710578333069119
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.4442812883937064,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop baseline no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop baseline press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3914282332251082,
+          "right": 0.7783747068903318,
+          "top": 0.44949617549143944,
+          "bottom": 0.8710578333069119
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.4442812883937064,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop baseline amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop baseline printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3914282332251082,
+        "right": 0.7783747068903318,
+        "top": 0.44949617549143944,
+        "bottom": 0.8710578333069119
+      }
+    },
+    {
+      "name": "desktop baseline asset and permanent invoice",
+      "pass": true,
+      "detail": {
+        "img": true,
+        "invoice": true,
+        "font": true
+      }
+    },
+    {
+      "name": "desktop baseline non-interactive and collision free",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3914282332251082,
+          "right": 0.7783747068903318,
+          "top": 0.44949617549143944,
+          "bottom": 0.8710578333069119
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.4442812883937064,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop regular both price tags and invoice ৳450",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3914282332251082,
+          "right": 0.7783747068903318,
+          "top": 0.44949617549143944,
+          "bottom": 0.8710578333069119
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop regular no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop regular press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3914282332251082,
+          "right": 0.7783747068903318,
+          "top": 0.44949617549143944,
+          "bottom": 0.8710578333069119
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop regular amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop regular printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3914282332251082,
+        "right": 0.7783747068903318,
+        "top": 0.44949617549143944,
+        "bottom": 0.8710578333069119
+      }
+    },
+    {
+      "name": "desktop dropShoulder both price tags and invoice ৳550",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳550",
+        "tagTotals": [
+          "৳550",
+          "৳550"
+        ],
+        "invoice": "৳550",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3953209550865801,
+          "right": 0.77448198502886,
+          "top": 0.4498695852488903,
+          "bottom": 0.870684423549461
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop dropShoulder no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop dropShoulder press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳550",
+        "tagTotals": [
+          "৳550",
+          "৳550"
+        ],
+        "invoice": "৳550",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3953209550865801,
+          "right": 0.77448198502886,
+          "top": 0.4498695852488903,
+          "bottom": 0.870684423549461
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop dropShoulder amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop dropShoulder printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3953209550865801,
+        "right": 0.77448198502886,
+        "top": 0.4498695852488903,
+        "bottom": 0.870684423549461
+      }
+    },
+    {
+      "name": "desktop fullSleeve both price tags and invoice ৳650",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳650",
+        "tagTotals": [
+          "৳650",
+          "৳650"
+        ],
+        "invoice": "৳650",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3915003832972583,
+          "right": 0.7782304067460317,
+          "top": 0.44950979906467975,
+          "bottom": 0.8710510215202917
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop fullSleeve no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop fullSleeve press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳650",
+        "tagTotals": [
+          "৳650",
+          "৳650"
+        ],
+        "invoice": "৳650",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3915003832972583,
+          "right": 0.7782304067460317,
+          "top": 0.44950979906467975,
+          "bottom": 0.8710510215202917
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop fullSleeve amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop fullSleeve printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3915003832972583,
+        "right": 0.7782304067460317,
+        "top": 0.44950979906467975,
+        "bottom": 0.8710510215202917
+      }
+    },
+    {
+      "name": "desktop hoodie both price tags and invoice ৳850",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3893381358225108,
+          "right": 0.7804648042929293,
+          "top": 0.44929553741280914,
+          "bottom": 0.8712584713855421
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop hoodie no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop hoodie press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3893381358225108,
+          "right": 0.7804648042929293,
+          "top": 0.44929553741280914,
+          "bottom": 0.8712584713855421
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop hoodie amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop hoodie printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3893381358225108,
+        "right": 0.7804648042929293,
+        "top": 0.44929553741280914,
+        "bottom": 0.8712584713855421
+      }
+    },
+    {
+      "name": "desktop A3 without art both price tags and invoice ৳850",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3893381358225108,
+          "right": 0.7804648042929293,
+          "top": 0.44929553741280914,
+          "bottom": 0.8712584713855421
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop A3 without art no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop A3 without art press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3893381358225108,
+          "right": 0.7804648042929293,
+          "top": 0.44929553741280914,
+          "bottom": 0.8712584713855421
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop A3 without art amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop A3 without art printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3893381358225108,
+        "right": 0.7804648042929293,
+        "top": 0.44929553741280914,
+        "bottom": 0.8712584713855421
+      }
+    },
+    {
+      "name": "desktop A3 front both price tags and invoice ৳1,050",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.32799704635642135,
+          "right": 0.8418064574314574,
+          "top": 0.4434113922796449,
+          "bottom": 0.8771429261453709
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop A3 front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop A3 front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.32799704635642135,
+          "right": 0.8418064574314574,
+          "top": 0.4434113922796449,
+          "bottom": 0.8771429261453709
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop A3 front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop A3 front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.32799704635642135,
+        "right": 0.8418064574314574,
+        "top": 0.4434113922796449,
+        "bottom": 0.8771429261453709
+      }
+    },
+    {
+      "name": "desktop back view preserving front both price tags and invoice ৳1,050",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.32799704635642135,
+          "right": 0.8418064574314574,
+          "top": 0.4434113922796449,
+          "bottom": 0.8771429261453709
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop back view preserving front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop back view preserving front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.32799704635642135,
+          "right": 0.8418064574314574,
+          "top": 0.4434113922796449,
+          "bottom": 0.8771429261453709
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop back view preserving front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop back view preserving front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.32799704635642135,
+        "right": 0.8418064574314574,
+        "top": 0.4434113922796449,
+        "bottom": 0.8771429261453709
+      }
+    },
+    {
+      "name": "desktop dual A3 max both price tags and invoice ৳1,250",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3337634154040404,
+          "right": 0.8360395247113998,
+          "top": 0.4439643855025365,
+          "bottom": 0.8765896232958148
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop dual A3 max no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop dual A3 max press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3337634154040404,
+          "right": 0.8360395247113998,
+          "top": 0.4439643855025365,
+          "bottom": 0.8765896232958148
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop dual A3 max amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop dual A3 max printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3337634154040404,
+        "right": 0.8360395247113998,
+        "top": 0.4439643855025365,
+        "bottom": 0.8765896232958148
+      }
+    },
+    {
+      "name": "desktop dual A3 max asset and permanent invoice",
+      "pass": true,
+      "detail": {
+        "img": true,
+        "invoice": true,
+        "font": true
+      }
+    },
+    {
+      "name": "desktop dual A3 max non-interactive and collision free",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3337634154040404,
+          "right": 0.8360395247113998,
+          "top": 0.4439643855025365,
+          "bottom": 0.8765896232958148
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop A3/A4 mixed both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443593299062049,
+          "right": 0.8254436102092352,
+          "top": 0.4449805802155992,
+          "bottom": 0.8755734285827521
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop A3/A4 mixed no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop A3/A4 mixed press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443593299062049,
+          "right": 0.8254436102092352,
+          "top": 0.4449805802155992,
+          "bottom": 0.8755734285827521
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop A3/A4 mixed amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop A3/A4 mixed printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3443593299062049,
+        "right": 0.8254436102092352,
+        "top": 0.4449805802155992,
+        "bottom": 0.8755734285827521
+      }
+    },
+    {
+      "name": "desktop restore front both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443593299062049,
+          "right": 0.8254436102092352,
+          "top": 0.4449805802155992,
+          "bottom": 0.8755734285827521
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop restore front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop restore front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443593299062049,
+          "right": 0.8254436102092352,
+          "top": 0.4449805802155992,
+          "bottom": 0.8755734285827521
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop restore front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop restore front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3443593299062049,
+        "right": 0.8254436102092352,
+        "top": 0.4449805802155992,
+        "bottom": 0.8755734285827521
+      }
+    },
+    {
+      "name": "desktop size/color neutral both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443593299062049,
+          "right": 0.8254436102092352,
+          "top": 0.4449805802155992,
+          "bottom": 0.8755734285827521
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop size/color neutral no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "desktop size/color neutral press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 33.5672,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443593299062049,
+          "right": 0.8254436102092352,
+          "top": 0.4449805802155992,
+          "bottom": 0.8755734285827521
+        },
+        "textBoxRel": {
+          "left": 0.23160905934343434,
+          "right": 0.9383765106421357,
+          "top": 0.44428144320703866,
+          "bottom": 0.8854585694752695
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop size/color neutral amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop size/color neutral printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3443593299062049,
+        "right": 0.8254436102092352,
+        "top": 0.4449805802155992,
+        "bottom": 0.8755734285827521
+      }
+    },
+    {
+      "name": "tablet-webkit baseline both price tags and invoice ৳450",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39165016351744186,
+          "right": 0.778784066133721,
+          "top": 0.44977714214997444,
+          "bottom": 0.8782328360532703
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit baseline no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit baseline press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39165016351744186,
+          "right": 0.778784066133721,
+          "top": 0.44977714214997444,
+          "bottom": 0.8782328360532703
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit baseline amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit baseline printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.39165016351744186,
+        "right": 0.778784066133721,
+        "top": 0.44977714214997444,
+        "bottom": 0.8782328360532703
+      }
+    },
+    {
+      "name": "tablet-webkit baseline asset and permanent invoice",
+      "pass": true,
+      "detail": {
+        "img": true,
+        "invoice": true,
+        "font": true
+      }
+    },
+    {
+      "name": "tablet-webkit baseline non-interactive and collision free",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39165016351744186,
+          "right": 0.778784066133721,
+          "top": 0.44977714214997444,
+          "bottom": 0.8782328360532703
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit regular both price tags and invoice ৳450",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39165016351744186,
+          "right": 0.778784066133721,
+          "top": 0.44977714214997444,
+          "bottom": 0.8782328360532703
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit regular no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit regular press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39165016351744186,
+          "right": 0.778784066133721,
+          "top": 0.44977714214997444,
+          "bottom": 0.8782328360532703
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit regular amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit regular printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.39165016351744186,
+        "right": 0.778784066133721,
+        "top": 0.44977714214997444,
+        "bottom": 0.8782328360532703
+      }
+    },
+    {
+      "name": "tablet-webkit dropShoulder both price tags and invoice ৳550",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳550",
+        "tagTotals": [
+          "৳550",
+          "৳550"
+        ],
+        "invoice": "৳550",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39554414970930235,
+          "right": 0.7748900799418604,
+          "top": 0.45015065110820135,
+          "bottom": 0.8778593270950434
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit dropShoulder no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit dropShoulder press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳550",
+        "tagTotals": [
+          "৳550",
+          "৳550"
+        ],
+        "invoice": "৳550",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39554414970930235,
+          "right": 0.7748900799418604,
+          "top": 0.45015065110820135,
+          "bottom": 0.8778593270950434
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit dropShoulder amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit dropShoulder printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.39554414970930235,
+        "right": 0.7748900799418604,
+        "top": 0.45015065110820135,
+        "bottom": 0.8778593270950434
+      }
+    },
+    {
+      "name": "tablet-webkit fullSleeve both price tags and invoice ৳650",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳650",
+        "tagTotals": [
+          "৳650",
+          "৳650"
+        ],
+        "invoice": "৳650",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3917637172965116,
+          "right": 0.7786705123546511,
+          "top": 0.4497881203691875,
+          "bottom": 0.8782218578340573
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": true,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit fullSleeve no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit fullSleeve press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳650",
+        "tagTotals": [
+          "৳650",
+          "৳650"
+        ],
+        "invoice": "৳650",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3917637172965116,
+          "right": 0.7786705123546511,
+          "top": 0.4497881203691875,
+          "bottom": 0.8782218578340573
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": true,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit fullSleeve amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit fullSleeve printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3917637172965116,
+        "right": 0.7786705123546511,
+        "top": 0.4497881203691875,
+        "bottom": 0.8782218578340573
+      }
+    },
+    {
+      "name": "tablet-webkit hoodie both price tags and invoice ৳850",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.38957076671511626,
+          "right": 0.7808634629360465,
+          "top": 0.4495777876692642,
+          "bottom": 0.8784321905339806
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit hoodie no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit hoodie press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.38957076671511626,
+          "right": 0.7808634629360465,
+          "top": 0.4495777876692642,
+          "bottom": 0.8784321905339806
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit hoodie amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit hoodie printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.38957076671511626,
+        "right": 0.7808634629360465,
+        "top": 0.4495777876692642,
+        "bottom": 0.8784321905339806
+      }
+    },
+    {
+      "name": "tablet-webkit A3 without art both price tags and invoice ৳850",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.38957076671511626,
+          "right": 0.7808634629360465,
+          "top": 0.4495777876692642,
+          "bottom": 0.8784321905339806
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit A3 without art no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit A3 without art press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.38957076671511626,
+          "right": 0.7808634629360465,
+          "top": 0.4495777876692642,
+          "bottom": 0.8784321905339806
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit A3 without art amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit A3 without art printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.38957076671511626,
+        "right": 0.7808634629360465,
+        "top": 0.4495777876692642,
+        "bottom": 0.8784321905339806
+      }
+    },
+    {
+      "name": "tablet-webkit A3 front both price tags and invoice ৳1,050",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.32818949854651164,
+          "right": 0.8422447311046511,
+          "top": 0.4436892205863567,
+          "bottom": 0.8843207576168881
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit A3 front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit A3 front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.32818949854651164,
+          "right": 0.8422447311046511,
+          "top": 0.4436892205863567,
+          "bottom": 0.8843207576168881
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit A3 front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit A3 front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.32818949854651164,
+        "right": 0.8422447311046511,
+        "top": 0.4436892205863567,
+        "bottom": 0.8843207576168881
+      }
+    },
+    {
+      "name": "tablet-webkit back view preserving front both price tags and invoice ৳1,050",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.32818949854651164,
+          "right": 0.8422447311046511,
+          "top": 0.4436892205863567,
+          "bottom": 0.8843207576168881
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit back view preserving front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit back view preserving front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.32818949854651164,
+          "right": 0.8422447311046511,
+          "top": 0.4436892205863567,
+          "bottom": 0.8843207576168881
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit back view preserving front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit back view preserving front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.32818949854651164,
+        "right": 0.8422447311046511,
+        "top": 0.4436892205863567,
+        "bottom": 0.8843207576168881
+      }
+    },
+    {
+      "name": "tablet-webkit dual A3 max both price tags and invoice ৳1,250",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.33397392805232556,
+          "right": 0.8364603015988372,
+          "top": 0.4442441196665815,
+          "bottom": 0.8837658585366632
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit dual A3 max no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit dual A3 max press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.33397392805232556,
+          "right": 0.8364603015988372,
+          "top": 0.4442441196665815,
+          "bottom": 0.8837658585366632
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit dual A3 max amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit dual A3 max printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.33397392805232556,
+        "right": 0.8364603015988372,
+        "top": 0.4442441196665815,
+        "bottom": 0.8837658585366632
+      }
+    },
+    {
+      "name": "tablet-webkit dual A3 max asset and permanent invoice",
+      "pass": true,
+      "detail": {
+        "img": true,
+        "invoice": true,
+        "font": true
+      }
+    },
+    {
+      "name": "tablet-webkit dual A3 max non-interactive and collision free",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.33397392805232556,
+          "right": 0.8364603015988372,
+          "top": 0.4442441196665815,
+          "bottom": 0.8837658585366632
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit A3/A4 mixed both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3445594113372093,
+          "right": 0.8258748183139535,
+          "top": 0.4452596049437915,
+          "bottom": 0.8827503732594533
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.4433623690597854,
+          "bottom": 0.8846483576584058
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit A3/A4 mixed no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit A3/A4 mixed press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3445594113372093,
+          "right": 0.8258748183139535,
+          "top": 0.4452596049437915,
+          "bottom": 0.8827503732594533
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.4433623690597854,
+          "bottom": 0.8846483576584058
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit A3/A4 mixed amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit A3/A4 mixed printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3445594113372093,
+        "right": 0.8258748183139535,
+        "top": 0.4452596049437915,
+        "bottom": 0.8827503732594533
+      }
+    },
+    {
+      "name": "tablet-webkit restore front both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3445594113372093,
+          "right": 0.8258748183139535,
+          "top": 0.4452596049437915,
+          "bottom": 0.8827503732594533
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit restore front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit restore front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3445594113372093,
+          "right": 0.8258748183139535,
+          "top": 0.4452596049437915,
+          "bottom": 0.8827503732594533
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit restore front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit restore front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3445594113372093,
+        "right": 0.8258748183139535,
+        "top": 0.4452596049437915,
+        "bottom": 0.8827503732594533
+      }
+    },
+    {
+      "name": "tablet-webkit size/color neutral both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3445594113372093,
+          "right": 0.8258748183139535,
+          "top": 0.4452596049437915,
+          "bottom": 0.8827503732594533
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit size/color neutral no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "tablet-webkit size/color neutral press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, Noto Serif Bengali, serif",
+        "weight": "700",
+        "size": 20.828125,
+        "tilt": -2.499978380499002,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3445594113372093,
+          "right": 0.8258748183139535,
+          "top": 0.4452596049437915,
+          "bottom": 0.8827503732594533
+        },
+        "textBoxRel": {
+          "left": 0.23183230377906977,
+          "right": 0.938601925872093,
+          "top": 0.44336211955480326,
+          "bottom": 0.8846481081534237
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, 0, 0)",
+        "collidesGarment": false,
+        "mobileBelow": false,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet-webkit size/color neutral amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.499978380499002,
+        "outer": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "tablet-webkit size/color neutral printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3445594113372093,
+        "right": 0.8258748183139535,
+        "top": 0.4452596049437915,
+        "bottom": 0.8827503732594533
+      }
+    },
+    {
+      "name": "mobile baseline both price tags and invoice ৳450",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39142326192652926,
+          "right": 0.7783262861535905,
+          "top": 0.4502188527209642,
+          "bottom": 0.869586034514244
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile baseline no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile baseline press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39142326192652926,
+          "right": 0.7783262861535905,
+          "top": 0.4502188527209642,
+          "bottom": 0.869586034514244
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile baseline amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile baseline printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.39142326192652926,
+        "right": 0.7783262861535905,
+        "top": 0.4502188527209642,
+        "bottom": 0.869586034514244
+      }
+    },
+    {
+      "name": "mobile baseline asset and permanent invoice",
+      "pass": true,
+      "detail": {
+        "img": true,
+        "invoice": true,
+        "font": true
+      }
+    },
+    {
+      "name": "mobile baseline non-interactive and collision free",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39142326192652926,
+          "right": 0.7783262861535905,
+          "top": 0.4502188527209642,
+          "bottom": 0.869586034514244
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile regular both price tags and invoice ৳450",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39142326192652926,
+          "right": 0.7783262861535905,
+          "top": 0.4502188527209642,
+          "bottom": 0.869586034514244
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile regular no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile regular press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳450",
+        "tagTotals": [
+          "৳450",
+          "৳450"
+        ],
+        "invoice": "৳450",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.39142326192652926,
+          "right": 0.7783262861535905,
+          "top": 0.4502188527209642,
+          "bottom": 0.869586034514244
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile regular amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile regular printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.39142326192652926,
+        "right": 0.7783262861535905,
+        "top": 0.4502188527209642,
+        "bottom": 0.869586034514244
+      }
+    },
+    {
+      "name": "mobile dropShoulder both price tags and invoice ৳550",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳550",
+        "tagTotals": [
+          "৳550",
+          "৳550"
+        ],
+        "invoice": "৳550",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3952759438372673,
+          "right": 0.7744071798121676,
+          "top": 0.45059464024835644,
+          "bottom": 0.8692165243791088
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile dropShoulder no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile dropShoulder press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳550",
+        "tagTotals": [
+          "৳550",
+          "৳550"
+        ],
+        "invoice": "৳550",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3952759438372673,
+          "right": 0.7744071798121676,
+          "top": 0.45059464024835644,
+          "bottom": 0.8692165243791088
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile dropShoulder amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile dropShoulder printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3952759438372673,
+        "right": 0.7744071798121676,
+        "top": 0.45059464024835644,
+        "bottom": 0.8692165243791088
+      }
+    },
+    {
+      "name": "mobile fullSleeve both price tags and invoice ৳650",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳650",
+        "tagTotals": [
+          "৳650",
+          "৳650"
+        ],
+        "invoice": "৳650",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3914896863572141,
+          "right": 0.7781935671542554,
+          "top": 0.4502316928414901,
+          "bottom": 0.8695797571219869
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile fullSleeve no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile fullSleeve press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳650",
+        "tagTotals": [
+          "৳650",
+          "৳650"
+        ],
+        "invoice": "৳650",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3914896863572141,
+          "right": 0.7781935671542554,
+          "top": 0.4502316928414901,
+          "bottom": 0.8695797571219869
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile fullSleeve amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile fullSleeve printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3914896863572141,
+        "right": 0.7781935671542554,
+        "top": 0.4502316928414901,
+        "bottom": 0.8695797571219869
+      }
+    },
+    {
+      "name": "mobile hoodie both price tags and invoice ৳850",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.38929761521359707,
+          "right": 0.7803856382978723,
+          "top": 0.45002111486486485,
+          "bottom": 0.8697900497626004
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile hoodie no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile hoodie press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.38929761521359707,
+          "right": 0.7803856382978723,
+          "top": 0.45002111486486485,
+          "bottom": 0.8697900497626004
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile hoodie amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile hoodie printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.38929761521359707,
+        "right": 0.7803856382978723,
+        "top": 0.45002111486486485,
+        "bottom": 0.8697900497626004
+      }
+    },
+    {
+      "name": "mobile A3 without art both price tags and invoice ৳850",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.38929761521359707,
+          "right": 0.7803856382978723,
+          "top": 0.45002111486486485,
+          "bottom": 0.8697900497626004
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile A3 without art no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile A3 without art press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳850",
+        "tagTotals": [
+          "৳850",
+          "৳850"
+        ],
+        "invoice": "৳850",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.38929761521359707,
+          "right": 0.7803856382978723,
+          "top": 0.45002111486486485,
+          "bottom": 0.8697900497626004
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile A3 without art amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile A3 without art printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.38929761521359707,
+        "right": 0.7803856382978723,
+        "top": 0.45002111486486485,
+        "bottom": 0.8697900497626004
+      }
+    },
+    {
+      "name": "mobile A3 front both price tags and invoice ৳1,050",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3279199478474069,
+          "right": 0.8417632407330452,
+          "top": 0.4441332062636961,
+          "bottom": 0.8756782436997809
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile A3 front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile A3 front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3279199478474069,
+          "right": 0.8417632407330452,
+          "top": 0.4441332062636961,
+          "bottom": 0.8756782436997809
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile A3 front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile A3 front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3279199478474069,
+        "right": 0.8417632407330452,
+        "top": 0.4441332062636961,
+        "bottom": 0.8756782436997809
+      }
+    },
+    {
+      "name": "mobile back view preserving front both price tags and invoice ৳1,050",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3279199478474069,
+          "right": 0.8417632407330452,
+          "top": 0.4441332062636961,
+          "bottom": 0.8756782436997809
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile back view preserving front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile back view preserving front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,050",
+        "tagTotals": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "invoice": "৳1,050",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3279199478474069,
+          "right": 0.8417632407330452,
+          "top": 0.4441332062636961,
+          "bottom": 0.8756782436997809
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile back view preserving front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile back view preserving front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3279199478474069,
+        "right": 0.8417632407330452,
+        "top": 0.4441332062636961,
+        "bottom": 0.8756782436997809
+      }
+    },
+    {
+      "name": "mobile dual A3 max both price tags and invoice ৳1,250",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.33369893824800534,
+          "right": 0.8359842503324468,
+          "top": 0.44468761413440466,
+          "bottom": 0.8751238358290723
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile dual A3 max no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile dual A3 max press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.33369893824800534,
+          "right": 0.8359842503324468,
+          "top": 0.44468761413440466,
+          "bottom": 0.8751238358290723
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile dual A3 max amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile dual A3 max printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.33369893824800534,
+        "right": 0.8359842503324468,
+        "top": 0.44468761413440466,
+        "bottom": 0.8751238358290723
+      }
+    },
+    {
+      "name": "mobile dual A3 max asset and permanent invoice",
+      "pass": true,
+      "detail": {
+        "img": true,
+        "invoice": true,
+        "font": true
+      }
+    },
+    {
+      "name": "mobile dual A3 max non-interactive and collision free",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,250",
+        "tagTotals": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "invoice": "৳1,250",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.33369893824800534,
+          "right": 0.8359842503324468,
+          "top": 0.44468761413440466,
+          "bottom": 0.8751238358290723
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile A3/A4 mixed both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443271718126662,
+          "right": 0.8254224411984707,
+          "top": 0.4457008423119065,
+          "bottom": 0.8741040449233016
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile A3/A4 mixed no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile A3/A4 mixed press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443271718126662,
+          "right": 0.8254224411984707,
+          "top": 0.4457008423119065,
+          "bottom": 0.8741040449233016
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile A3/A4 mixed amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile A3/A4 mixed printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3443271718126662,
+        "right": 0.8254224411984707,
+        "top": 0.4457008423119065,
+        "bottom": 0.8741040449233016
+      }
+    },
+    {
+      "name": "mobile restore front both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443271718126662,
+          "right": 0.8254224411984707,
+          "top": 0.4457008423119065,
+          "bottom": 0.8741040449233016
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile restore front no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile restore front press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443271718126662,
+          "right": 0.8254224411984707,
+          "top": 0.4457008423119065,
+          "bottom": 0.8741040449233016
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile restore front amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile restore front printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3443271718126662,
+        "right": 0.8254224411984707,
+        "top": 0.4457008423119065,
+        "bottom": 0.8741040449233016
+      }
+    },
+    {
+      "name": "mobile size/color neutral both price tags and invoice ৳1,150",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443271718126662,
+          "right": 0.8254224411984707,
+          "top": 0.4457008423119065,
+          "bottom": 0.8741040449233016
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile size/color neutral no duplicate HTML title",
+      "pass": true,
+      "detail": {
+        "title": 0,
+        "child": 1
+      }
+    },
+    {
+      "name": "mobile size/color neutral press-green serif amount",
+      "pass": true,
+      "detail": {
+        "titleTextCount": 0,
+        "childCount": 1,
+        "amountText": "৳1,150",
+        "tagTotals": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "invoice": "৳1,150",
+        "invoiceVisible": true,
+        "font": "Georgia, \"Noto Serif Bengali\", serif",
+        "weight": "700",
+        "size": 36.425,
+        "tilt": -2.500001277003086,
+        "fontReady": true,
+        "textRel": {
+          "left": 0.3443271718126662,
+          "right": 0.8254224411984707,
+          "top": 0.4457008423119065,
+          "bottom": 0.8741040449233016
+        },
+        "textBoxRel": {
+          "left": 0.23158842046210107,
+          "right": 0.9383583880485372,
+          "top": 0.4442085349707816,
+          "bottom": 0.8855211947589481
+        },
+        "amountOverflow": false,
+        "imgLoaded": true,
+        "tagPointer": "none",
+        "tagOuterMatrix": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "collidesGarment": false,
+        "mobileBelow": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile size/color neutral amount tilt only",
+      "pass": true,
+      "detail": {
+        "tilt": -2.500001277003086,
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile size/color neutral printed text fits",
+      "pass": true,
+      "detail": {
+        "left": 0.3443271718126662,
+        "right": 0.8254224411984707,
+        "top": 0.4457008423119065,
+        "bottom": 0.8741040449233016
+      }
+    }
+  ],
+  "passed": 192,
+  "failed": 0,
+  "errors": [],
+  "failedHTTP": [],
+  "physicalIPad": "Not tested — desktop WebKit viewport"
+}
