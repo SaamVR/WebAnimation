@@ -113,7 +113,10 @@ async function drag(page,selector,x,y){
  await page.locator('#worktableResetArt').click();
  await settle(page);
  const guideBefore=await SNAP(page);
- await drag(page,'.cc-worktable-frame-handle',guideBefore.clip.x+guideBefore.clip.width+100,guideBefore.clip.y+guideBefore.clip.height+70);
+ // Drag target is a real viewport pointer coordinate; SNAP is stage-relative.
+ const handleBox=await point(page,'.cc-worktable-frame-handle');
+ await drag(page,'.cc-worktable-frame-handle',
+  handleBox.x+handleBox.width/2+100,handleBox.y+handleBox.height/2+70);
  const afterFrame=await SNAP(page);
  verify(id+' A4 moved frame carries artwork',within(afterFrame.art,afterFrame.clip)&&(!same(afterFrame.clip.x,guideBefore.clip.x)||!same(afterFrame.clip.y,guideBefore.clip.y)),{before:guideBefore,after:afterFrame});
  await page.screenshot({path:path.join(folder,id+'-a4-frame.png'),animations:'disabled'});
