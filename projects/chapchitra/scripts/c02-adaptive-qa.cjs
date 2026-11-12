@@ -221,6 +221,9 @@ async function run(device,width,height){
    // Shop (Gallery White) -> Journal and Journal -> About.
    await navigation(realPage,device,'/journal/',false,'/shop/');
    await navigation(realPage,device,'/about/',false,'/journal/');
+   // Revisit a previously fetched destination in the same browser context:
+   // this reproduces the owner's too-fast cached/native navigation.
+   await navigation(realPage,device,'/journal/',false,'/shop/');
    await realPage.emulateMedia({reducedMotion:'reduce'});
    await realPage.goto(ORIGIN+'/c02-review/');
    await realPage.locator('a[href="/shop/"]').click({noWaitAfter:true});
