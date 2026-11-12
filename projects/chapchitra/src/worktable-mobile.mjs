@@ -22,10 +22,10 @@ const cropData=[
  // Named, independent clipped crops of the ORIGINAL approved desk artwork.
  // The broad soft masks only blend background pixels; objects are not redrawn.
  {id:'plant',source:[8,8,292,360],left:3,top:3,width:34,mask:'ellipse(49% 49% at 50% 50%)'},
- {id:'brushes',source:[1020,69,145,194],left:43,top:12,width:15,mask:'ellipse(48% 49% at 50% 50%)'},
- {id:'lamp',source:[366,66,183,208],left:73,top:18,width:24,mask:'ellipse(48% 49% at 50% 50%)'},
- {id:'pencil',source:[348,623,152,72],left:5,top:29,width:23,mask:'ellipse(49% 43% at 50% 50%)'},
- {id:'swatch',source:[328,686,177,166],left:5,top:65,width:25,mask:'ellipse(48% 47% at 50% 50%)'},
+ {id:'brushes',source:[1020,69,145,194],left:40.5,top:12,width:15,mask:'ellipse(48% 49% at 50% 50%)'},
+ {id:'lamp',source:[366,66,183,208],left:71.5,top:18,width:24,flipX:true,mask:'ellipse(48% 49% at 50% 50%)'},
+ {id:'pencil',source:[348,623,152,72],left:5,top:27,width:23,mask:'ellipse(49% 43% at 50% 50%)'},
+ {id:'swatch',source:[328,686,177,166],left:5,top:62,width:25,mask:'ellipse(48% 47% at 50% 50%)'},
  {id:'ink',source:[1013,728,159,124],left:80,top:53,width:18,mask:'ellipse(48% 46% at 50% 50%)'},
 ];
 
@@ -48,6 +48,9 @@ export function mountMobileArtistEdit({
   el.style.left=item.left+'%';el.style.top=item.top+'%';
   el.style.width=item.width+'%';
   el.style.aspectRatio=w+' / '+h;
+  // Only the original lamp crop is mirrored: its light must face inwards.
+  // Registration stays on this independently positioned illustration layer.
+  if(item.flipX)el.style.transform='scaleX(-1)';
   // Feather the boundary between the source backdrop crop and stretched
   // portrait wood. Hard ellipse clipping made obvious circular wood patches.
   // The ornament remains an independent, original-image crop, never redrawn.
