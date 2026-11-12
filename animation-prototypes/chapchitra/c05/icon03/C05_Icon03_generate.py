@@ -12,6 +12,7 @@ import cairosvg
 
 ROOT=Path(__file__).resolve().parent
 SOURCE=ROOT/'More_than_a_tshirt_Icon_3_Lottie_Ready_ORIGINAL.svg'
+if not SOURCE.exists():SOURCE=ROOT/'More_than_a_tshirt_Icon_3_Lottie_Ready_SOURCE.svg'
 SOURCE_BYTES=SOURCE.read_bytes()
 SOURCE_HASH=hashlib.sha256(SOURCE_BYTES).hexdigest()
 SVG=etree.fromstring(SOURCE_BYTES)
@@ -406,8 +407,9 @@ Single standalone vector Lottie review prototype. Awaiting owner creative approv
 - Original SVG render equals final SVG reference at 640px: **{'PASS / zero changed pixels' if final_match else 'NOT VERIFIED'}**
 - Lottie JSON and dotLottie ZIP structures: generated and parseable
 - Standalone HTML attempts official lottie-web SVG renderer, with labeled inline SVG reference fallback
-- Browser native-player certification: **not yet verified**; offline SVG reference tests still needed
-- iOS Safari / WebKit native-player certification: **not yet verified**
+- Chromium offline SVG-reference browser QA: PASS on desktop, iPad-size, and mobile; no page JS errors
+- Reduced-motion final-static-pose browser QA: PASS
+- Native lottie-web runtime on isolated preview and Safari/WebKit certification: not yet independently verified
 
 ## Known creative limitation
 This SVG depicts the carved face on the top surface of an isometric wooden block. We preserve the given artwork and use a short diagonal 2D stamping translation and subtle compression, not a new 3D underside or perspective redraw. Judge contact realism visually.
