@@ -99,8 +99,8 @@ export function installStickyViewportDiagnostics(root = document, view = window)
     const rectangles = Object.fromEntries(
       Object.entries(nodes).map(([name,element])=>[name,boxOf(element)])
     );
-    const atVisualTop = Math.min((view.innerHeight ?? 2)-1,
-      Math.max(2,Math.floor((viewportOffset=>viewportOffset ?? 0)(view.visualViewport?.offsetTop)+2)));
+    const atVisualTop = Math.min(Math.max(2,(view.innerHeight ?? 3)-1),
+      Math.max(2,Math.floor((view.visualViewport?.offsetTop ?? 0)+2)));
     const announceTop = rectangles.announcement?.top ?? NaN;
     const pointAtTop = root.elementFromPoint(cx,cy);
     const pointAtVisual = root.elementFromPoint(cx,atVisualTop);
