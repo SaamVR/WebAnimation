@@ -35,7 +35,7 @@ test('only owner-marked independent mobile decorative placements change',()=>{
 });
 
 test('phone Total price tag moves left and up without changing approved size or rotation',()=>{
- assert.match(styles,/left:67\\.5%;top:4\\.5%;width:32%;max-width:none;margin:0;/);
- assert.match(styles,/transform:translateX\\(-50%\\) rotate\\(var\\(--cc-tag-rotation\\)\\)/);
- assert.match(styles,/\\.cc-worktable-frame\\.cc-mobile-frame-ready > \\.cc-worktable-price-tag-mobile/);
+ assert.ok(styles.includes('left:67.5%;top:4.5%;width:32%;max-width:none;margin:0;'));
+ assert.ok(styles.includes('transform:translateX(-50%) rotate(var(--cc-tag-rotation));'));
+ assert.ok(styles.includes('.cc-worktable-frame.cc-mobile-frame-ready > .cc-worktable-price-tag-mobile'));
 });
