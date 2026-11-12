@@ -227,7 +227,7 @@ async function viewportScenario(page,device,width,height){
 async function compare(page,device){
  await page.goto(origin+'/c02-review/asset-compare/',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.querySelector('#after image')?.getAttribute('href')
-  ==='/assets/c02/texture.svg');
+  ==='/assets/c02/texture-composed.svg');
  await page.waitForFunction(()=>document.querySelector('#after image')?.getBBox().width>0);
  for(const progress of [380,700]){
   await page.locator('#progress').evaluate((el,value)=>{
@@ -244,9 +244,23 @@ async function compare(page,device){
     beforeLength:before?.getAttribute('d')?.length};
   });
   record(device,'side-by-side at '+progress/10+'%',rect.progress===String(progress)
-   &&rect.source==='/assets/c02/texture.svg'&&
+   &&rect.source==='/assets/c02/texture-composed.svg'&&
    Math.abs(rect.width/rect.height-8192/1152)<.00002&&
    !rect.extraRect&&Number.isFinite(rect.imageX),rect);
+  // Different page colors must not bleed through the white-backed holes.
+  // The same source and progress are used, only the review-stage backdrop
+  // changes. This is not a rewrite of the owner's animation choreography.
+  const palettes=[['gallery-white','#F6F7F5'],['terracotta','#8A503B'],
+   ['press-green','#293D2D'],['deep-forest','#172419']];
+  for(const [name,color] of palettes){
+   await page.locator('#backdrop').selectOption(color);
+   const observed=await page.locator('#after').evaluate(el=>getComputedStyle(el).backgroundColor);
+   const rgb=color.match(/[0-9a-f]{2}/gi).map(v=>parseInt(v,16));
+   record(device,'composed ink over '+name+' at '+progress/10+'%',
+    observed==='rgb('+rgb.join(', ')+')',{observed,color,source:rect.source});
+   if(device==='ipad'||device==='desktop')
+    await page.screenshot({path:path.join(output,device+'-'+name+'-ink-'+progress/10+'pct.png')});
+  }
   await page.screenshot({path:path.join(output,device+'-compare-'+progress/10+'pct.png'),fullPage:true});
  }
 }
