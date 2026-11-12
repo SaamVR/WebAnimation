@@ -412,6 +412,17 @@ export function installC02PageTransitions(win=window,doc=document){
      // Same exact saved p and same viewport geometry on BOTH layers.
      // Removing prepaint and starting RAF occur in one rendering task.
      overlay.render(p,'cover');
+     const firstImg=overlay.overlay.querySelector('.c02-loader__ink-asset');
+     const position=/translate3d\(([-\\d.]+)px,([-\\d.]+)px,0\)/
+      .exec(firstImg?.style.transform||'');
+     const prepaintX=parseFloat(doc.documentElement.style.getPropertyValue('--c02-asset-left'));
+     const prepaintY=parseFloat(doc.documentElement.style.getPropertyValue('--c02-asset-top'));
+     const differenceX=position?Math.abs(Number(position[1])-prepaintX):NaN;
+     const differenceY=position?Math.abs(Number(position[2])-prepaintY):NaN;
+     doc.documentElement.dataset.c02FirstPaintDelta=JSON.stringify({
+      x:differenceX,y:differenceY,progress:p,
+      viewport:overlay.overlay.dataset.viewport
+     });
      doc.documentElement.classList.remove('c02-pending');
      drive=overlay.driveAdaptive({
       initial:p,startedAt:ticket.startedAt||Date.now(),
