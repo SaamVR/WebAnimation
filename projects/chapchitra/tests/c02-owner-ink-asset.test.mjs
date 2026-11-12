@@ -2,22 +2,49 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {C02_INK_ASSET,UNIFIED_INK,c02InkAssetPlacement,
- c02InkVisualViewport,c02InkRevealClip} from '../src/motion/c02/ink-asset.mjs';
+import sharp from 'sharp';
+import {C02_INK_ASSET,c02InkAssetPlacement,c02InkVisualViewport,
+ c02InkRevealClip} from '../src/motion/c02/ink-asset.mjs';
 import {inkEdgeX} from '../src/motion/c02/ink-shapes.mjs';
-import {generateUnifiedInk} from '../scripts/c02-unified-ink.mjs';
-test('owner original PNG SHA, contact point and composite geometry are immutable',async()=>{
- const original=await readFile(new URL('../src/assets/c02/Ink_swipe_1.png',import.meta.url));
+
+test('C02 uses exactly the submitted 8192×1152 SVG, with all 727 paths intact',async()=>{
+ const original=await readFile(new URL('../src/assets/c02/texture.svg',import.meta.url));
+ assert.equal(original.length,1863170);
  assert.equal(createHash('sha256').update(original).digest('hex'),
-  '44ad9ce947981a02b161c0987bb49aad7ef29310f7e0205e1896f94a5d353336');
- assert.equal(C02_INK_ASSET.path,'/assets/c02/Ink_swipe_1.png');
- assert.equal(C02_INK_ASSET.paintedRight,1689);
+  C02_INK_ASSET.sourceSHA256);
+ const text=original.toString('utf8');
+ assert.equal((text.match(/<path\\b/g)||[]).length,727);
+ assert.match(text,/viewBox="0 0 8192 1152"/);
+ assert.match(text,/\.st0\{fill:#293D2D;\}/);
+ assert.doesNotMatch(text,/<image\\b|<script\\b|<foreignObject\\b/);
+ assert.equal(C02_INK_ASSET.path,'/assets/c02/texture.svg');
+ assert.equal(C02_INK_ASSET.width,8192);
+ assert.equal(C02_INK_ASSET.height,1152);
  assert.equal(C02_INK_ASSET.press,'#293D2D');
- assert.equal(C02_INK_ASSET.composite.path,'/assets/c02/ink-unified.webp');
- assert.equal(C02_INK_ASSET.composite.width,8192);
- assert.equal(C02_INK_ASSET.composite.tail,6144);
- assert.equal(UNIFIED_INK.seed,0xC0222026);
- assert.equal(UNIFIED_INK.tail+2048,UNIFIED_INK.width);
+});
+
+test('vertical bleed covers painted body even with naturally transparent original margins',async()=>{
+ assert.equal(C02_INK_ASSET.verticalCover,1.5);
+ const svg=await readFile(new URL('../src/assets/c02/texture.svg',import.meta.url));
+ const {data,info}=await sharp(svg).resize({width:1024}).ensureAlpha()
+  .raw().toBuffer({resolveWithObject:true});
+ assert.equal(info.height,144);
+ const opacity=(row,x0,x1)=>{
+  let sum=0;
+  for(let x=x0;x<x1;x++)sum+=data[(row*info.width+x)*4+3];
+  return sum/(x1-x0);
+ };
+ // The user's illustration contains transparent outer bands. Verify the
+ // scaled viewport boundary samples are within the dense painted interior.
+ for(const y of [24,72,120]){
+  assert.ok(opacity(y,8,850)>200,'painted body coverage at source row '+y);
+ }
+ assert.ok(opacity(0,8,850)<5,'unmodified art retains original transparent top');
+ assert.ok(opacity(143,8,850)<20,'unmodified art retains original bottom');
+});
+
+test('roller remains aligned to the original SVG mid-row contact at every viewport',()=>{
+ assert.equal(C02_INK_ASSET.paintedRight,8096);
  for(const [width,height] of [[390,844],[834,1112],[1280,800],
   [1920,1080],[3440,900]]){
   for(const p of [.01,.25,.5,.75,.95,1]){
@@ -25,59 +52,43 @@ test('owner original PNG SHA, contact point and composite geometry are immutable
    const place=c02InkAssetPlacement({edgeX:edge,
     viewportWidth:width,viewportHeight:height});
    assert.ok(Math.abs(place.contactX-edge)<1e-7);
-   assert.ok(Math.abs(place.compositeLeft+
-    UNIFIED_INK.tail*place.scale-place.left)<1e-7);
    assert.ok(Math.abs(place.renderedWidth/place.renderHeight-8192/1152)<1e-9);
-   assert.equal(place.renderHeight,height*1.06);
+   assert.equal(place.renderHeight,height*1.5);
+   assert.equal(place.top,-height*.25);
+   assert.ok(Number.isFinite(place.left));
   }
  }
 });
-test('original brush edge is byte-exact and old mirrored band never repeats',async()=>{
- const original=await readFile(new URL('../src/assets/c02/Ink_swipe_1.png',import.meta.url));
- const {rgba,source,webp,provenance}=await generateUnifiedInk(original);
- assert.ok(webp.length>250000 && webp.length<2500000);
- assert.ok(provenance.length>75);
- assert.ok(new Set(provenance.map(v=>v.source.join(','))).size>65);
- for(let y=0;y<1152;y++){
-  const sourceOffset=y*2048*4+UNIFIED_INK.blendToOriginal*4;
-  const destOffset=y*8192*4+(UNIFIED_INK.tail+UNIFIED_INK.blendToOriginal)*4;
-  assert.ok(rgba.subarray(destOffset,destOffset+4*(2048-UNIFIED_INK.blendToOriginal))
-   .equals(source.subarray(sourceOffset,sourceOffset+4*(2048-UNIFIED_INK.blendToOriginal))));
- }
- let mismatched=0,sampled=0;
- for(let y=7;y<1152;y+=7)for(let x=10;x<3450;x+=7){
-  if(Math.abs(rgba[(y*8192+x)*4+3]-rgba[(y*8192+x+2320)*4+3])>=2)
-   mismatched++;
-  sampled++;
- }
- assert.ok(mismatched/sampled>.045,'reject legacy mirrored 2320px texture period');
-});
-test('runtime has one bitmap and no left-fill or CSS repeat, including reveal',async()=>{
+
+test('C02 has exactly one vector surface through cover/full/loading/reveal',async()=>{
  const runtime=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
  const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
  const build=await readFile(new URL('../scripts/build.mjs',import.meta.url),'utf8');
- assert.match(runtime,/inkAssetImg\.src=C02_INK_ASSET\.composite\.path/);
+ const review=await readFile(new URL('../src/c02-review/asset-compare/index.html',import.meta.url),'utf8');
+ assert.match(runtime,/inkAssetImg\.src=C02_INK_ASSET\.path/);
  assert.match(runtime,/inkAssetLayer\.append\(inkAssetImg\)/);
  assert.match(runtime,/const surfaceP=mode==='reveal'\?1:p/);
  assert.match(runtime,/c02InkRevealClip\(p,viewport\.width,viewport\.height\)/);
  assert.match(runtime,/inkAssetImg\.style\.transform='translate3d\('/);
- assert.match(runtime,/placement\.compositeLeft/);
+ assert.match(runtime,/placement\.left/);
+ assert.match(runtime,/overlay\.dataset\.inkAsset='owner-vector-svg'/);
  assert.match(runtime,/roller\.style\.transform='translate3d\('/);
- assert.match(runtime,/if\(!rasterSurface\)/);
- assert.match(runtime,/svg\.style\.visibility=rasterSurface\?'hidden':'visible'/);
- assert.match(runtime,/overlay\.animate\('reveal',C02_MOTION\.revealMs,cleanup\)/);
  assert.match(runtime,/Promise\.all\(\[awaitShell\(win,doc\),overlay\.assetsReady\]\)/);
- assert.doesNotMatch(runtime,/inkAssetFill|inkAssetLayer\.append\(inkAssetFill/);
- assert.doesNotMatch(runtime,/background-repeat:repeat-x|\.interior\.path|pngCover/);
- assert.match(early,/background-image:url\('\/assets\/c02\/ink-unified\.webp'\)/);
- assert.match(early,/content:none/);
- assert.match(early,/rightContact-\(1689\+6144\)\*scale/);
- assert.doesNotMatch(early,/ink-interior-loop\.webp|--c02-asset-fill|repeat-x/);
- assert.match(build,/generateUnifiedInk/);
- assert.match(build,/anti-repeat nonmatching pigment fraction/);
- assert.doesNotMatch(build,/\.flop\(\)/);
+ assert.match(runtime,/win\.location\.assign\(target\.href\)/);
+ assert.doesNotMatch(runtime,/inkAssetFill|background-repeat:repeat-x|ink-unified\.webp/);
+ assert.match(early,/background-image:url\('\/assets\/c02\/texture\.svg'\)/);
+ assert.match(early,/href="\/assets\/c02\/texture\.svg"/);
+ assert.match(early,/rightContact-8096\*scale/);
+ assert.match(early,/var scale=vh\*1\.5\/1152/);
+ assert.doesNotMatch(early,/ink-interior-loop|ink-unified|Ink_swipe_1\.png/);
+ assert.match(build,/C02 exact hand-illustrated SVG source verified/);
+ assert.match(build,/inkSVGHash!==C02_INK_ASSET\.sourceSHA256/);
+ assert.doesNotMatch(build,/generateUnifiedInk|\.webp\(\{lossless:true/);
+ assert.match(review,/C02_INK_ASSET\.path/);
+ assert.doesNotMatch(review,/C02_INK_ASSET\.composite/);
 });
-test('iPad visual viewport and clip remain relative to visible browser rectangle',()=>{
+
+test('iPad toolbar changes and reveal masks retain viewport geometry',()=>{
  const win={innerWidth:834,innerHeight:1112,
   visualViewport:{width:834,height:1020,offsetLeft:0,offsetTop:42}};
  assert.deepEqual(c02InkVisualViewport(win),{width:834,height:1020,left:0,top:42});
