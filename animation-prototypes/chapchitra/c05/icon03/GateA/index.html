@@ -1,4 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CHAPCHITRA C05 Icon 03 — Gate A Physical Motion Proof</title><style>:root{color-scheme:light;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#24382a;background:#f6f7f5}*{box-sizing:border-box}body{margin:0;padding:clamp(14px,3vw,34px)}main{max-width:1100px;margin:0 auto}h1{font-size:clamp(1.25rem,2.6vw,2rem);margin:0 0 .35rem}p{line-height:1.5}header p{margin-top:4px;color:#526253}.eyebrow{letter-spacing:.13em;text-transform:uppercase;font-weight:750;font-size:.73rem;color:#8a503b}.review{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(220px,.7fr);gap:22px;margin-top:18px}.stage,.controls{border:1px solid #dae0d8;border-radius:18px;background:white;padding:clamp(12px,2vw,25px);box-shadow:0 8px 24px #132c1b08}.stage svg{display:block;max-width:512px;width:100%;height:auto;margin:0 auto}.controls h2{margin:0 0 .8rem;font-size:1.08rem}.controls .group{display:flex;flex-wrap:wrap;gap:8px}button{background:#293d2d;color:#fff;border:0;border-radius:9px;padding:11px 17px;font:inherit;cursor:pointer;min-height:44px}button:hover{background:#1a281d}button.secondary{background:#f6f7f5;color:#293d2d;border:1px solid #abb7ac}button:focus-visible,input:focus-visible{outline:3px solid #8a503b;outline-offset:3px}input[type=range]{width:100%;accent-color:#8a503b;margin:18px 0 5px}small{color:#607061;display:block;margin-top:10px}dl{margin:18px 0 0}dt{font-size:.8rem;color:#536253}dd{margin:0 0 12px;font-weight:650}footer{margin-top:20px;color:#596d5c;font-size:.9rem}.checkpoint{margin-top:20px;padding:12px 16px;border-left:3px solid #8a503b;background:#f0f1ec;border-radius:0 9px 9px 0}.checkpoint p{margin:2px 0}.callout{font-size:.85rem;padding:9px 11px;background:#f4f7f3;border-radius:9px;margin-top:14px}@media(max-width:760px){.review{grid-template-columns:1fr}.controls{order:2}}
+#c05-stage #Wood_block{display:none}#c05-stage #Print_over_cloth{visibility:hidden}
 </style></head><body>
 <main><header><div class="eyebrow">CHAPCHITRA · C05 Icon 03 · Gate A</div><h1>Hand block printing: contact, edge lift, reveal</h1><p>Physical-motion proof only. The floral-face transition and final return belong to Gate B, after this action is approved.</p></header>
 <div class="review"><div class="stage" id="c05-stage"><?xml version="1.0" encoding="utf-8"?>
@@ -1765,6 +1766,7 @@
   reverse.setAttribute('display','inline');
   // Set the print to full opacity permanently. Only its spatial reveal mask moves.
   flower.style.opacity = '1';
+  flower.style.visibility = 'visible';
   const NS = 'http://www.w3.org/2000/svg';
   const defs = document.createElementNS(NS,'defs');
   const clip = document.createElementNS(NS,'clipPath');
@@ -1817,7 +1819,7 @@
       .to(state,{reveal:.22,duration:.30,ease:'sine.inOut'},0.50)
       .to(state,{reveal:.62,duration:.45,ease:'sine.inOut'},0.80)
       .to(state,{reveal:1,duration:.43,ease:'sine.out'},1.25)
-      .to({}, {duration:.29},2.06);
+      .to(state,{tx:-13,duration:.29,ease:'none'},2.06);
     timeline.pause(0);
   } else { referenceAt(0); }
 
@@ -1827,7 +1829,7 @@
   const scrub = document.querySelector('#scrub');
   const clock = document.querySelector('#clock');
   const engine = document.querySelector('#engine-status');
-  if(engine) engine.textContent=usingGSAP?'GSAP timeline active · 3.15.0': 'Offline SVG reference mode (GSAP unavailable)';
+  if(engine) engine.textContent=usingGSAP?'GSAP timeline active · 3.15.1': 'Offline SVG reference mode (GSAP unavailable)';
   let fallbackTime=0, fallbackRAF=0, fallbackLast=0;
   function updateClock(t){
     if(clock)clock.textContent=`${t.toFixed(2)} / ${DURATION.toFixed(2)} s`;
