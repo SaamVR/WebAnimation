@@ -94,7 +94,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  deposits.setAttribute('fill',INK_PALETTE.press);
  svg.append(deposits);
  const outline=path(INK_PALETTE.terra,true);
- // One original-source unified bitmap; no overlapping runtime layers.
+ // One immutable owner-authored SVG image, moved by its CSS container only.
  const inkAssetLayer=doc.createElement('div');
  inkAssetLayer.className='c02-loader__ink-asset-layer';
  inkAssetLayer.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;display:none;';
@@ -104,11 +104,11 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  inkAssetImg.decoding='async';inkAssetImg.loading='eager';
  inkAssetImg.style.cssText='position:absolute;left:0;top:0;max-width:none;'+
   'object-fit:fill;pointer-events:none;will-change:transform;';
- inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='unified-ink';},{once:true});
- inkAssetImg.src=C02_INK_ASSET.composite.path;
+ inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='owner-svg';},{once:true});
+ inkAssetImg.src=C02_INK_ASSET.path;
  const assetsReady=edgeStyle==='asset'
-  ?inkAssetImg.decode().catch(()=>{overlay.dataset.assetError='decode';})
-  :Promise.resolve();
+  ?inkAssetImg.decode().then(()=>true,()=>{overlay.dataset.assetError='decode';return false;})
+  :Promise.resolve(true);
  inkAssetLayer.append(inkAssetImg);
  const roller=doc.createElement('div');roller.className='c02-loader__roller';
  roller.setAttribute('aria-hidden','true');
@@ -134,12 +134,13 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    overlay.style.height=viewport.height+'px';
    overlay.dataset.viewport=JSON.stringify(viewport);
   }
-  // Build-derived original-source bitmap is a single permanent paint layer
-  // for cover, waiting, full coverage and reveal. Hidden procedural SVG
-  // paths are not recomputed every 120Hz frame on iPad.
+  // A single decoded vector image remains active through the entire transition.
+  // Never reconstruct source paths, mirror, replace or tile at phase changes.
   const rasterSurface=edgeStyle==='asset';
-  inkAssetLayer.style.display=rasterSurface?'block':'none';
-  svg.style.visibility=rasterSurface?'hidden':'visible';
+  const layerDisplay=rasterSurface?'block':'none';
+  const legacyDisplay=rasterSurface?'hidden':'visible';
+  if(inkAssetLayer.style.display!==layerDisplay)inkAssetLayer.style.display=layerDisplay;
+  if(svg.style.visibility!==legacyDisplay)svg.style.visibility=legacyDisplay;
   if(rasterSurface){
    // At reveal p=0, retain the exact final cover transform.
    const surfaceP=mode==='reveal'?1:p;
@@ -152,12 +153,12 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     inkAssetImg.style.width=placement.renderedWidth+'px';
     inkAssetImg.style.height=placement.renderHeight+'px';
    }
-   inkAssetImg.style.transform='translate3d('+placement.compositeLeft+'px,'+
+   inkAssetImg.style.transform='translate3d('+placement.left+'px,'+
     placement.top+'px,0)';
    const clip=mode==='reveal'?c02InkRevealClip(p,viewport.width,viewport.height)
     :p===0?'inset(0 100% 0 0)':'none';
    if(inkAssetLayer.style.clipPath!==clip)inkAssetLayer.style.clipPath=clip;
-   overlay.dataset.inkAsset='original-quilt-unified';
+   overlay.dataset.inkAsset='owner-vector-svg';
    overlay.dataset.inkContactX=String(placement.contactX);
   }else{
    overlay.dataset.inkAsset='procedural-legacy-review';
@@ -325,16 +326,20 @@ function awaitShell(win,doc){
 }
 export function installC02PageTransitions(win=window,doc=document){
  if(!doc.body||doc.documentElement.dataset.c02Installed==='v2')return;
+ let inkPreloaded=false,inkPreloadFailed=false;
  doc.documentElement.dataset.c02Installed='v2';
  const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
  // Warm the 2KB exact-source SVG so the first visible ink-edge frame has a roller.
  if(!reduced.matches){
   const rollerImg=new win.Image();rollerImg.src='/assets/c02/roller-original.svg';
-  // Prewarm the complete unified image; do not load separate paint tiles.
-  const inkImg=new win.Image();inkImg.src=C02_INK_ASSET.composite.path;
+  // Warm and decode SVG once before eligible clicks. No arbitrary buffer.
+  const inkImg=new win.Image();inkImg.decoding='async';
+  inkImg.src=C02_INK_ASSET.path;
+  inkImg.decode().then(()=>{inkPreloaded=true;},()=>{inkPreloadFailed=true;});
  }
  let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null,
-  drive=null,commitTimer=0,navigationCommitted=false;
+  drive=null,commitTimer=0,navigationCommitted=false,
+  pendingTarget=null,pendingStartedAt=0,pendingDemoMs=0;
  const state=(phase)=>{
   doc.documentElement.dataset.c02State=phase;
   if(overlay?.overlay)overlay.overlay.dataset.c02State=phase;
@@ -381,8 +386,13 @@ export function installC02PageTransitions(win=window,doc=document){
   const p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
   // Keep matching initial PNG prepaint until the incoming images decode.
   // This prevents a white or procedural flash during WebKit MPA handoff.
-  void overlay.assetsReady.then(()=>{
-   if(overlay)doc.documentElement.classList.remove('c02-pending');
+  void overlay.assetsReady.then(ok=>{
+   if(!overlay)return;
+   if(!ok){cleanup();return;}
+   // Release prepaint on a paint boundary, not an arbitrary timeout.
+   win.requestAnimationFrame(()=>{
+    if(overlay)doc.documentElement.classList.remove('c02-pending');
+   });
   });
   if(ticket.demoMs)win.__c02DemoStartedAt=ticket.startedAt;
   doc.documentElement.dataset.c02StartedAt=String(ticket.startedAt||Date.now());
@@ -391,8 +401,9 @@ export function installC02PageTransitions(win=window,doc=document){
    initial:p,startedAt:ticket.startedAt||Date.now(),knownMs:ticket.demoMs||0
   });
   incomingGuard=win.setTimeout(cleanup,18000);
-  Promise.all([awaitShell(win,doc),overlay.assetsReady]).then(()=>{
+  Promise.all([awaitShell(win,doc),overlay.assetsReady]).then(([,ok])=>{
    if(!overlay||!drive)return;
+   if(!ok){cleanup();return;}
    doc.documentElement.dataset.c02ReadyAt=String(Date.now());
    state('finishing');
    drive.finishTo(1,()=>{
@@ -410,6 +421,10 @@ export function installC02PageTransitions(win=window,doc=document){
  win.addEventListener('pageshow',e=>{if(e.persisted)cleanup()});
  win.addEventListener('pagehide',()=>{
   win.clearTimeout(watchdog);win.clearTimeout(commitTimer);
+  if(navigationCommitted&&pendingTarget&&drive){
+   storeTicket(win,pendingTarget,{progress:drive.progress(),
+    startedAt:pendingStartedAt,demoMs:pendingDemoMs,edgeStyle});
+  }
   drive?.stop();drive=null;
   prefetchAbort?.abort();prefetchAbort=null;
  });
@@ -433,8 +448,14 @@ export function installC02PageTransitions(win=window,doc=document){
    disabled:link.getAttribute('aria-disabled')==='true'
   })||reduced.matches)return;
   event.preventDefault();if(leaving||overlay)return;
+  // No animation-induced buffering. If a cold SVG has not decoded, use native
+  // navigation rather than exposing a blank animated image.
+  if(edgeStyle==='asset'&&!inkPreloaded){
+   win.location.assign(target.href);return;
+  }
   leaving=true;
   const startedAt=Date.now(),demoMs=getReviewDelayMs(target.href);
+  pendingTarget=target;pendingStartedAt=startedAt;pendingDemoMs=demoMs;
   try{
    overlay=makeOverlay(doc,win,edgeStyle);
    doc.documentElement.dataset.c02Busy='true';
