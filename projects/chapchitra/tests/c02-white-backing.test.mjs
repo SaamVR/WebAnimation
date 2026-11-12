@@ -44,7 +44,9 @@ test('actual delivered color is invariant over Gallery White/Terracotta/Press/De
  let whiteHoles=0,greenUnchanged=0;
  for(let i=0;i<a.length;i+=4){
   const oldAlpha=a[i+3],newAlpha=b[i+3];
-  if(oldAlpha<=3&&newAlpha>=250){
+  // Exact transparent samples must be pure Gallery White; partially
+  // antialiased green pixels correctly blend with the white underprint.
+  if(oldAlpha===0&&newAlpha===255){
    whiteHoles++;
    assert.ok(Math.abs(b[i]-246)<=2&&Math.abs(b[i+1]-247)<=2&&
     Math.abs(b[i+2]-245)<=2,'hole must expose Gallery White');
