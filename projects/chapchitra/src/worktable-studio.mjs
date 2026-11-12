@@ -357,6 +357,13 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  }
  if(!uploadVisual)throw new Error('Illustrated upload SVG was not mounted');
  let garmentImg=addImage(ALL.garment.regular,'cc-worktable-garment');
+ // The desktop 16:9 assembled preview is intentionally absent on portrait
+ // phones. Start the approved transparent shirt request immediately instead
+ // of waiting for all optional workstation layers to hydrate.
+ if(window.matchMedia('(max-width: 600px)').matches){
+  attachAsset(garmentImg,ALL.garment.regular);
+  garmentImg.fetchPriority='high';
+ }
  const tint=document.createElement('div'); tint.className='cc-worktable-tint'; stage.append(tint);
  // One atomic stage-relative print rectangle owns BOTH its guide and clip.
  // Independent percentage rectangles can lag by a paint frame on WebKit/
