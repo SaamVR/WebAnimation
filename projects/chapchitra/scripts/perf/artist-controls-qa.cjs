@@ -13,6 +13,9 @@ const checks=[],errors=[],httpErrors=[];
 const verify=(name,condition,detail)=>{checks.push({name,pass:!!condition});if(!condition)console.error('FAIL',name,detail);};
 const close=(a,b,epsilon=2)=>Math.abs(a-b)<=epsilon;
 const within=(inner,outer,pad=2)=>inner.left>=outer.left-pad&&inner.top>=outer.top-pad&&inner.right<=outer.right+pad&&inner.bottom<=outer.bottom+pad;
+const withinStage=(inner,outer,innerStage,outerStage,pad=2)=>within(
+ {left:inner.left-innerStage.left,top:inner.top-innerStage.top,right:inner.right-innerStage.left,bottom:inner.bottom-innerStage.top},
+ {left:outer.left-outerStage.left,top:outer.top-outerStage.top,right:outer.right-outerStage.left,bottom:outer.bottom-outerStage.top},pad);
 const capture=async(page)=>page.evaluate(()=>{
  const el=sel=>document.querySelector(sel);
  const box=sel=>{const r=el(sel).getBoundingClientRect();return {x:r.x,y:r.y,left:r.left,top:r.top,right:r.right,bottom:r.bottom,width:r.width,height:r.height}};
@@ -58,7 +61,7 @@ const drag=async(page,locator,dx,dy)=>{
    verify(id+' new A4 inline four-arrow path',start.moveSvg&&start.movePath?.startsWith('M12 3v18M3 12h18'),start);
    verify(id+' A4 move uses press green + gallery white',start.moveBackground==='rgb(41, 61, 45)'&&start.moveColor==='rgb(246, 247, 245)',start);
    verify(id+' A4 handle exact 44px',close(start.move.width,44,.1)&&close(start.move.height,44,.1),start.move);
-   verify(id+' A4 initially inside A3',within(start.guide,a3.guide),{a3:a3.guide,a4:start.guide});
+   verify(id+' A4 initially inside A3',withinStage(start.guide,a3.guide,start.stage,a3.stage),{a3:a3.guide,a4:start.guide});
    verify(id+' both text and icon readable',start.label.width>=35&&start.label.height>=12&&within(start.label,start.button,6),start);
    verify(id+' text uses Hind Siliguri',start.font.toLowerCase().includes('hind siliguri'),start.font);
    if(id!=='mobile')verify(id+' requested 16–17px label',start.fontSize>=15.9&&start.fontSize<=17,start.fontSize);
@@ -66,7 +69,7 @@ const drag=async(page,locator,dx,dy)=>{
    await drag(page,page.locator('.cc-worktable-frame-handle'),-28,24);
    const moved=await capture(page);
    verify(id+' A4 frame drag moves without changing size',(!close(start.guide.x,moved.guide.x,.8)||!close(start.guide.y,moved.guide.y,.8))&&close(start.guide.width,moved.guide.width,.5)&&close(start.guide.height,moved.guide.height,.5),{start:start.guide,moved:moved.guide});
-   verify(id+' A4 remains inside A3',within(moved.guide,a3.guide),{a3:a3.guide,moved:moved.guide});
+   verify(id+' A4 remains inside A3',withinStage(moved.guide,a3.guide,moved.stage,a3.stage),{a3:a3.guide,moved:moved.guide});
    await page.locator('#worktableFile').setInputFiles({name:'cc-control-regression.png',mimeType:'image/png',buffer:await image()});
    await page.locator('.cc-worktable-print.has-art').waitFor();
    await page.locator('.cc-worktable-stage').screenshot({path:path.join(out,id+'-front.png'),animations:'disabled'});
