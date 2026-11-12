@@ -70,19 +70,19 @@ if(loopInfo.width!==interior.loopWidth||loopInfo.height!==C02_INK_ASSET.height||
  loopInfo.channels!==4)throw Error('C02 interior loop format invalid');
 const pixel=(x,y)=>Array.from(loopRGBA.subarray(
  (y*loopInfo.width+x)*4,(y*loopInfo.width+x+1)*4));
-let variedPixels=0;let lastPixel=null;
 for(const y of [37,173,311,577,823,1079]){
  const equals=(a,b)=>a.every((v,i)=>v===b[i]);
  if(!equals(pixel(0,y),pixel(interior.loopWidth-1,y))||
   !equals(pixel(interior.cropWidth-1,y),pixel(interior.cropWidth,y)))
   throw Error('C02 interior mirrored seam does not match at y='+y);
- for(let x=20;x<interior.cropWidth;x+=47){
-  const sample=pixel(x,y).join(',');
-  if(lastPixel!==null&&sample!==lastPixel)variedPixels++;
-  lastPixel=sample;
- }
 }
-if(variedPixels<30)throw Error('C02 pigment strip lost its natural variation');
+// Inspect ALL interior pixels, not sparse points that can miss genuine
+// low-frequency bristle holes in the owner's nearly opaque brush body.
+const cropStats=await sharp(interiorCrop).stats();
+const alphaDeviation=cropStats.channels[3]?.stdev??0;
+if(alphaDeviation<3)
+ throw Error('C02 pigment strip lost its authentic alpha variation');
+console.log('C02 original interior alpha deviation:',alphaDeviation.toFixed(3));
 console.log('C02 seamless original-PNG interior generated:',
  interiorLoop.length+' bytes',interior.loopWidth+'x'+C02_INK_ASSET.height);
 
