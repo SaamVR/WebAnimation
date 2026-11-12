@@ -148,15 +148,15 @@ async function demo(page,device,delay){
  console.log('CASE',JSON.stringify(entry));
  await page.screenshot({path:path.join(DIR,name+'-ready.png')});
 }
-async function navigation(page,device,route,back){
- await page.goto(ORIGIN+(back?'/artists-edit/':'/'),{waitUntil:'domcontentloaded'});
+async function navigation(page,device,route,back,from){
+ await page.goto(ORIGIN+(from||(back?'/artists-edit/':'/')),{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2'&&
   document.documentElement.dataset.c02AssetReady==='true',
   null,{timeout:16000});
  await page.evaluate(({key,start})=>{
   sessionStorage.removeItem(key);sessionStorage.setItem(start,String(Date.now()));
  },{key:SAMPLES,start:START});
- const src=back?'/artists-edit/':'/';
+ const src=from||(back?'/artists-edit/':'/');
  await page.evaluate(href=>{
   const link=document.createElement('a');link.href=href;link.textContent='C02 native navigation QA';
   link.id='c02-adaptive-real-link';document.body.append(link);link.click();
@@ -192,6 +192,10 @@ async function run(device,width,height){
   try{
    await navigation(realPage,device,'/artists-edit/',false);
    await navigation(realPage,device,'/',true);
+   // Preserve real native multipage path coverage with the white underprint:
+   // Shop (Gallery White) -> Journal and Journal -> About.
+   await navigation(realPage,device,'/journal/',false,'/shop/');
+   await navigation(realPage,device,'/about/',false,'/journal/');
    await realPage.emulateMedia({reducedMotion:'reduce'});
    await realPage.goto(ORIGIN+'/c02-review/');
    await realPage.locator('a[href="/shop/"]').click({noWaitAfter:true});
