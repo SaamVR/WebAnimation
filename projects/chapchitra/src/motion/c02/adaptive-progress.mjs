@@ -20,9 +20,13 @@ export function pendingInkProgress(elapsedMs,{cap=C02_ADAPTIVE.cap,knownMs=0}={}
   if(t<=knownMs)return shaped;
   return cap+(0.012)*(1-Math.exp(-(t-knownMs)/3600));
  }
- // In real navigation the ETA is unknowable. The continuously positive
- // derivative keeps the roller moving without racing to a false 100%.
- return cap*(1-Math.exp(-t/3300));
+ // In real navigation the ETA is unknowable. A bounded ease plus a
+ // positive linear floor gives perceptible advance even at 8-25 seconds.
+ // No invented percentage or parked 90-95% state while the request is pending.
+ const horizon=C02_ADAPTIVE.maxWaitMs;
+ const natural=.63*(1-Math.exp(-t/2500));
+ const floor=.37*Math.min(t/horizon,1);
+ return cap*(natural+floor);
 }
 export function finishDuration(progress,loadingAgeMs=0){
  const remaining=1-clamp(progress,0,1);
