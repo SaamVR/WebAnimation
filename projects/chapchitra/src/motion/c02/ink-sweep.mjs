@@ -106,7 +106,8 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  inkAssetImg.className='c02-loader__ink-asset';
  inkAssetImg.alt='';inkAssetImg.draggable=false;
  inkAssetImg.decoding='async';inkAssetImg.loading='eager';
- inkAssetImg.style.cssText='position:absolute;max-width:none;object-fit:fill;pointer-events:none;';
+ inkAssetImg.style.cssText='position:absolute;left:0;top:0;max-width:none;'+
+  'object-fit:fill;pointer-events:none;will-change:transform;';
  inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='original-png';},{once:true});
  inkAssetImg.src=C02_INK_ASSET.path;
  // Decode source artwork for handoff readiness; never switch to procedural
@@ -165,8 +166,10 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     placement.renderHeight+'px';
    inkAssetImg.style.width=placement.renderedWidth+'px';
    inkAssetImg.style.height=placement.renderHeight+'px';
-   inkAssetImg.style.left=placement.left+'px';
-   inkAssetImg.style.top=placement.top+'px';
+   // Move the large original raster on the compositor rather than laying
+   // out a 2048px image on every 120 Hz tablet animation frame.
+   inkAssetImg.style.transform='translate3d('+placement.left+'px,'+
+    placement.top+'px,0)';
    inkAssetLayer.style.clipPath=mode==='reveal'
     ?c02InkRevealClip(p,viewport.width,viewport.height)
     :p===0?'inset(0 100% 0 0)':'none';
