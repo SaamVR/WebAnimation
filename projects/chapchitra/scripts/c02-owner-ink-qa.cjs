@@ -18,8 +18,9 @@ async function step(page,device,delay){
  const started=Date.now();
  await page.locator('a[href="/c02-review/slow/?delay='+delay+'"]').click({noWaitAfter:true});
  let observed=false,texturedInterior=false;
- const deadline=Date.now()+Math.min(delay,1800);
- while(Date.now()<deadline&&!observed){
+ const requireInterior=device==='ultrawide'&&delay>=5000;
+ const deadline=Date.now()+(requireInterior?delay+1200:Math.min(delay,1800));
+ while(Date.now()<deadline&&(!observed||(requireInterior&&!texturedInterior))){
   const state=await page.evaluate(()=>{
    const o=document.getElementById('c02-loader');
    const img=o?.querySelector('.c02-loader__ink-asset');
@@ -42,30 +43,34 @@ async function step(page,device,delay){
    return data;
   }).catch(()=>({}));
   if(state.inkType==='original-png'&&state.p>.05&&state.p<.99){
-   observed=true;
-   record(device,delay+'ms exact source',state.source==='/assets/c02/Ink_swipe_1.png'
-    &&state.originalSize[0]===2048&&state.originalSize[1]===1152
-    &&state.roller==='/assets/c02/roller-original.svg',state);
-   record(device,delay+'ms aspect ratio',Math.abs(state.width/state.height-2048/1152)<.00002,state);
-   record(device,delay+'ms moving contact',Number.isFinite(state.contact)&&state.contact>-state.viewport,state);
-   record(device,delay+'ms authentic repeated pigment layer',
-    state.fillImage?.includes('ink-interior-loop.webp')&&
-    state.fillRepeat==='repeat-x'&&state.fillPosition?.startsWith('100%')&&
-    ['rgba(0, 0, 0, 0)','transparent'].includes(state.fillColor),state);
-   if(device==='ultrawide'&&delay>=5000&&state.fillWidth>260){
+   if(!observed){
+    observed=true;
+    record(device,delay+'ms exact source',state.source==='/assets/c02/Ink_swipe_1.png'
+     &&state.originalSize[0]===2048&&state.originalSize[1]===1152
+     &&state.roller==='/assets/c02/roller-original.svg',state);
+    record(device,delay+'ms aspect ratio',
+     Math.abs(state.width/state.height-2048/1152)<.00002,state);
+    record(device,delay+'ms moving contact',
+     Number.isFinite(state.contact)&&state.contact>-state.viewport,state);
+    record(device,delay+'ms authentic repeated pigment layer',
+     state.fillImage?.includes('ink-interior-loop.webp')&&
+     state.fillRepeat==='repeat-x'&&state.fillPosition?.startsWith('100%')&&
+     ['rgba(0, 0, 0, 0)','transparent'].includes(state.fillColor),state);
+    if(delay>=5000&&!requireInterior)
+     await page.screenshot({path:path.join(output,device+'-5s-original-png-roller.png')});
+   }
+   if(requireInterior&&state.fillWidth>260){
     texturedInterior=true;
     const screenshot=await page.screenshot({path:path.join(output,
-      'ultrawide-5s-texture-extension.png')});
+     'ultrawide-5s-texture-extension.png')});
     const sharp=require('sharp');
     const sampled=await sharp(screenshot).extract({
-      left:40,top:240,width:180,height:180
+     left:40,top:240,width:180,height:180
     }).stats();
-    // A truly flat Press Green rectangle has zero per-channel deviation.
     const rgbDeviation=sampled.channels.slice(0,3).map(c=>c.stdev);
     record(device,'ultrawide visibly textured region',Math.max(...rgbDeviation)>0.6,
      {fillWidth:state.fillWidth,rgbDeviation});
-   }else if(delay>=5000)
-    await page.screenshot({path:path.join(output,device+'-5s-original-png-roller.png')});
+   }else if(requireInterior)await page.waitForTimeout(65);
   }else await page.waitForTimeout(45);
  }
  if(delay>=5000)record(device,'5s visibly textured cover',observed,{delay,observed});
