@@ -105,6 +105,30 @@ async function run(browser,engine,width,height){
    await page.screenshot({path:path.join(out,engine+'-'+route+'-navdebug-scrolled.png')});
    if(scrolled.scrollY>initial.headerTop+8)check(engine+' '+route+' still sticks at top',Math.abs(scrolled.headerTop)<2,{scrolled});
   }
+  if(route==='shop'){
+   // Emulate shrinking and returning iPad browser toolbar, not physical chrome.
+   await page.setViewportSize({width,height:Math.max(500,height-90)});
+   await page.waitForTimeout(100);
+   const shorter=await measure(page);
+   topStripGeometry.push({engine,route,stage:'shorter-viewport',geometry:shorter.navdebug});
+   await page.setViewportSize({width,height});
+   await page.waitForTimeout(110);
+   await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+   const restored=await measure(page);
+   topStripGeometry.push({engine,route,stage:'restored-viewport',geometry:restored.navdebug});
+   check(engine+' shop resize restores DOM announcement flush to top',
+    Math.abs(restored.navdebug?.rectangles?.announcement?.top||0)<2 &&
+    Math.abs(restored.navdebug?.rectangles?.app?.top||0)<2,{restored});
+   await page.screenshot({path:path.join(out,engine+'-shop-navdebug-viewport-return.png')});
+   await page.goto(origin+'/about/?navdebug=1',{waitUntil:'load'});
+   await page.goBack({waitUntil:'load'});
+   await page.locator('#siteHeader').waitFor();
+   const history=await measure(page);
+   topStripGeometry.push({engine,route,stage:'back-forward',geometry:history.navdebug});
+   check(engine+' shop browser history header keeps normal document origin',
+    Math.abs(history.navdebug?.rectangles?.app?.top||0)<2,{history});
+   await page.screenshot({path:path.join(out,engine+'-shop-navdebug-history-return.png')});
+  }
   await page.close();
   if(engine==='webkit-ipad'&&route==='artists-edit'){
    // The video is finalized as the page closes.
