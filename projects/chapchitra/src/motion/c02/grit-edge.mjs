@@ -19,6 +19,8 @@ const marks=Object.freeze(Array.from({length:108},(_,i)=>Object.freeze({
  depth:1.5+rnd(i,5)*17,
  height:.65+Math.pow(rnd(i,2),1.7)*4.9,
  tilt:(rnd(i,6)-.5)*2.4,
+ // Only selected irregular bristles actually interrupt the outer silhouette.
+ tooth:rnd(i,11)>.64,
  deposit:rnd(i,8)>.73
 })));
 /**
@@ -35,6 +37,13 @@ export function gritEdgePaths(progress){
   const x=inkEdgeX(p,m.y,27);
   // Tapered longitudinal bristle gaps, *behind* the moving contact edge.
   dry.push(bristle(x-m.depth,m.y,m.length,m.height,m.tilt));
+  if(m.tooth){
+   // Break through the contact contour with a tiny irregular nibble.
+   // The brush silhouette, not the underlying organic base curve, frays.
+   const tip=1.5+4.5*rnd(Math.round(m.y),13);
+   dry.push(bristle(x+tip,m.y+m.tilt*.3,
+    2.5+m.length*.42,m.height*.85,m.tilt*.6));
+  }
   if(m.deposit){
    const forward=3+2.5*rnd(Math.round(m.y),9);
    // Deposits remain fine, irregular pigment trails rather than splashes.
