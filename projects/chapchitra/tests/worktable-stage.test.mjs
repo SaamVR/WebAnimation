@@ -111,7 +111,8 @@ test('Artist route opens directly on the approved worktable without stale planne
   readFile(resolve(root,'docs/ARTISTS_EDIT_WORKTABLE_ASSET_HANDOFF.md'),'utf8')
  ]);
  assert.match(app,/function artistsEdit\(\)/);
- assert.match(app,/id="artistEditTitle"/);
+ assert.doesNotMatch(app,/id="artistEditTitle"|route-head--artist-edit/);
+ assert.match(await readFile(resolve(root,'src/worktable-studio.mjs'),'utf8'),/class="cc-worktable-sr-only">Artist's Edit<\/h1>/);
  assert.doesNotMatch(app,/id="customForm"/);
  assert.doesNotMatch(app,/worktable-stage\.mjs/);
  assert.doesNotMatch(css,/\.worktable-stage/);
