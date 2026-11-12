@@ -134,7 +134,7 @@ function makeOverlay(doc,win){
  }
  function driveAdaptive({startedAt=Date.now(),initial=0,knownMs=0,onProgress}={}){
   let p=Math.max(0,Math.min(.985,initial));
-  let raf=0,last=win.performance.now(),stopped=false,completing=null;
+  let raf=0,last=win.performance.now(),stopped=false,completing=null,finishGuard=0;
   const cap=C02_ADAPTIVE.cap;
   function tick(now){
    if(stopped)return;
@@ -147,7 +147,7 @@ function makeOverlay(doc,win){
      c.velocity/c.end);
     p=Math.max(p,Math.min(c.end,ratio*c.end));
     if(elapsed>=c.duration){
-     p=c.end;completing=null;
+     p=c.end;completing=null;win.clearTimeout(finishGuard);
      render(p,'cover');onProgress?.(p);
      c.done();
     }
@@ -181,8 +181,16 @@ function makeOverlay(doc,win){
     const velocity=Math.min((p-initial)/Math.max(1,Date.now()-startedAt),
      Math.max(.00005,(target-p)/d));
     completing={start,end:target,at:now,duration:d,velocity,done};
+    // Failure-only safeguard for a frozen RAF during WebKit/MPA handoff.
+    win.clearTimeout(finishGuard);
+    finishGuard=win.setTimeout(()=>{
+     if(stopped||!completing)return;
+     const c=completing;completing=null;p=c.end;
+     render(p,'cover');onProgress?.(p);c.done();
+    },d+1200);
    },
-   stop(){stopped=true;win.cancelAnimationFrame(raf);completing=null;}
+   stop(){stopped=true;win.cancelAnimationFrame(raf);
+    win.clearTimeout(finishGuard);completing=null;}
   };
  }
  return {overlay,render,animate,driveAdaptive,destroy};
