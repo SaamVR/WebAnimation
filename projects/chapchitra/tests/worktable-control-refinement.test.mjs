@@ -33,7 +33,7 @@ test('Existing frame handle pointer drag/keyboard logic stays connected',()=>{
 
 test('Front/back reuses exact approved compact renderer, never a new faux pill',()=>{
  assert.match(studio,/import \{ sketchButton \} from '\.\/handdrawn-buttons\.mjs'/);
- assert.match(studio,/sketchButton\(\{label:'View back',variant:'compact',[\s\S]*?tone:'beige',className:'cc-worktable-view-button'/);
+ assert.match(studio,/sketchButton\(\{label:'View back',variant:'compact',[\s\S]*?tone:'terracotta',className:'cc-worktable-view-button'/);
  assert.ok(compact.includes("compact-button-'+color+'.svg"));
  assert.match(studio,/stage\.append\(viewRow\)/);
  assert.match(studio,/viewButton\.querySelectorAll\('\.cc-sketch-label,\.cc-sketch-label-ink'\)/);
@@ -41,6 +41,10 @@ test('Front/back reuses exact approved compact renderer, never a new faux pill',
  assert.match(studio,/viewButton\.setAttribute\('aria-label',view==='front'\?'View back':'View front'\)/);
  assert.match(css,/font-family:'Hind Siliguri'/);
  assert.match(css,/font-size:16\.5px/);
+ assert.match(css,/\.cc-worktable-view-button\.cc-sketch\.cc-compact-artwork \.cc-compact-art\{[\s\S]*?transform:scale\(\.8\)/);
+ assert.match(css,/\.cc-worktable-view-button\.cc-sketch\.cc-compact-artwork \.cc-sketch-copy\{[\s\S]*?scale\(\.8\)/);
+ assert.match(css,/\.cc-worktable-view-row\{\s*position:absolute;left:50%;bottom:0;/);
+ assert.doesNotMatch(css,/\.cc-worktable-view-row\{bottom:\.8%\}/);
  assert.match(css,/\.cc-worktable-view-button\.cc-sketch\.cc-compact-artwork\{/);
  assert.doesNotMatch(css,/\.cc-worktable-view-button::before/);
  assert.doesNotMatch(css,/clip:rect\(0 0 0 0\)/);
@@ -48,7 +52,7 @@ test('Front/back reuses exact approved compact renderer, never a new faux pill',
 
 test('Compact view control retains fully native target, responsive text and reduced motion',()=>{
  assert.match(css,/\.cc-worktable-view-button\{[\s\S]*?min-height:44px;pointer-events:auto/);
- assert.match(css,/\.cc-worktable-view-row\{\s*position:absolute;left:50%;bottom:2\.3%;z-index:8/);
+ assert.match(css,/\.cc-worktable-view-row\{\s*position:absolute;left:50%;bottom:0;z-index:8/);
  assert.match(css,/@media\(min-width:601px\) and \(max-width:1050px\)/);
  assert.match(css,/@media\(max-width:600px\)/);
  assert.match(css,/\.cc-worktable-view-label\{white-space:nowrap\}/);

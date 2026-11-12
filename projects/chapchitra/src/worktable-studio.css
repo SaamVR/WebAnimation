@@ -443,7 +443,7 @@
 /* Keep the approved in-desk registration; only the button's visual skin
    changes to the original Compact SVG (face, border, ink and shadow). */
 .cc-worktable-view-row{
- position:absolute;left:50%;bottom:2.3%;z-index:8;
+ position:absolute;left:50%;bottom:0;z-index:8;
  transform:translateX(-50%);
  display:flex;justify-content:center;align-items:center;
  width:max-content;margin:0;padding:0;border:0;background:transparent;
@@ -460,7 +460,16 @@
  font-size:16.5px;font-weight:600;letter-spacing:0;
  -webkit-tap-highlight-color:transparent;
 }
+/* The native button keeps its original accessible >=44px hit box. Only the
+   approved Compact SVG face/shadow and the label/icon scale to 80%.
+   Moving its row down in the existing desk strip avoids the garment hem. */
+.cc-worktable-view-button.cc-sketch.cc-compact-artwork .cc-compact-art{
+ transform:scale(.8);transform-origin:50% 50%;
+}
 .cc-worktable-view-button.cc-sketch.cc-compact-artwork .cc-sketch-copy{
+ transform:translate(-50%,-50%) translateY(var(--cc-press-depth)) scale(.8);
+ transform-origin:50% 50%;
+}
  width:calc(100% - 22px);max-width:calc(100% - 22px);
  line-height:1.12;
 }
@@ -481,10 +490,10 @@
  65%{opacity:1;transform:scaleX(1.015)}
  100%{opacity:1;transform:scaleX(1)}
 }
-@media(max-width:1380px){
- .cc-worktable-view-row{bottom:.8%}
-}
 @media(min-width:601px) and (max-width:1050px){
+ /* The tighter iPad desk strip needs the smaller artwork at its lower edge,
+    without touching the existing garment or changing stage geometry. */
+ .cc-worktable-view-row{bottom:-2.1%}
  .cc-worktable-view-button.cc-sketch.cc-compact-artwork{
   width:150px;min-width:150px;height:60px;min-height:60px;
   font-size:16px;

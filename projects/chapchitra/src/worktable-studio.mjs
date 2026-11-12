@@ -170,7 +170,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  // face, edge and shadow; the native button and flip click handler are retained.
  const viewTemplate=document.createElement('template');
  viewTemplate.innerHTML=sketchButton({label:'View back',variant:'compact',
-  tone:'beige',className:'cc-worktable-view-button'});
+  tone:'terracotta',className:'cc-worktable-view-button'});
  const viewButton=viewTemplate.content.firstElementChild;
  viewButton.setAttribute('aria-label','View back');
  for(const label of viewButton.querySelectorAll('.cc-sketch-label,.cc-sketch-label-ink')){

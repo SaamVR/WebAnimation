@@ -22,7 +22,9 @@ const capture=async(page)=>page.evaluate(()=>{
  const button=el('.cc-worktable-view-button'),arrow=el('.cc-worktable-frame-handle'),label=el('.cc-worktable-view-label');
  return {stage:box('.cc-worktable-stage'),guide:box('.cc-worktable-paper-guide'),
   move:box('.cc-worktable-frame-handle'),button:box('.cc-worktable-view-button'),
-  label:box('.cc-worktable-view-label'),viewText:button.getAttribute('aria-label'),text:label.textContent,
+  label:box('.cc-worktable-view-label'),visual:box('.cc-worktable-view-button .cc-compact-svg'),viewText:button.getAttribute('aria-label'),text:label.textContent,
+  terracotta:button.classList.contains('cc-sketch--terracotta'),
+  faceFill:getComputedStyle(button.querySelector('[id="BUTTON_FACE"] path.st8')||button.querySelector('[id="BUTTON_FACE"]')).fill,
   compactState:button.dataset.compact,font:getComputedStyle(button).fontFamily,
   fontSize:parseFloat(getComputedStyle(button).fontSize),moveColor:getComputedStyle(arrow).color,
   moveBackground:getComputedStyle(arrow).backgroundColor,
@@ -66,6 +68,18 @@ const drag=async(page,locator,dx,dy)=>{
    verify(id+' text uses Hind Siliguri',start.font.toLowerCase().includes('hind siliguri'),start.font);
    if(id!=='mobile')verify(id+' requested 16–17px label',start.fontSize>=15.9&&start.fontSize<=17,start.fontSize);
    verify(id+' button has 44px+ native hit height',start.button.height>=44,start.button);
+   verify(id+' exact approved Terracotta Compact variant',start.terracotta&&start.faceFill==='rgb(138, 80, 59)',{terracotta:start.terracotta,faceFill:start.faceFill});
+   verify(id+' visible Compact SVG is 80% in both dimensions',
+    close(start.visual.width,start.button.width*.8,1.4)&&close(start.visual.height,start.button.height*.8,1.4),
+    {button:start.button,visible:start.visual});
+   verify(id+' compact artwork horizontally centered under shirt',
+    close((start.visual.left+start.visual.right)/2,(start.stage.left+start.stage.right)/2,2),
+    {button:start.visual,stage:start.stage});
+   verify(id+' visible button remains inside wooden stage',
+    /* The approved SVG artboard has transparent shadow/edge margins; the
+       screenshot is separately reviewed for actual painted-pixel clipping. */
+    start.visual.bottom<=start.stage.bottom+5&&start.visual.top>=start.stage.top,
+    {button:start.visual,stage:start.stage});
    await drag(page,page.locator('.cc-worktable-frame-handle'),-28,24);
    const moved=await capture(page);
    verify(id+' A4 frame drag moves without changing size',(!close(start.guide.x,moved.guide.x,.8)||!close(start.guide.y,moved.guide.y,.8))&&close(start.guide.width,moved.guide.width,.5)&&close(start.guide.height,moved.guide.height,.5),{start:start.guide,moved:moved.guide});
