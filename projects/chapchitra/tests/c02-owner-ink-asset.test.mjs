@@ -18,6 +18,7 @@ test('C02 uses exactly the submitted 8192×1152 SVG, with all 727 paths intact',
  assert.match(text,/\.st0\{fill:#293D2D;\}/);
  assert.doesNotMatch(text,/<image\b|<script\b|<foreignObject\b/);
  assert.equal(C02_INK_ASSET.path,'/assets/c02/texture.svg');
+ assert.equal(C02_INK_ASSET.composedPath,'/assets/c02/texture-composed.svg');
  assert.equal(C02_INK_ASSET.width,8192);
  assert.equal(C02_INK_ASSET.height,1152);
  assert.equal(C02_INK_ASSET.press,'#293D2D');
@@ -65,7 +66,8 @@ test('C02 has exactly one vector surface through cover/full/loading/reveal',asyn
  const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
  const build=await readFile(new URL('../scripts/build.mjs',import.meta.url),'utf8');
  const review=await readFile(new URL('../src/c02-review/asset-compare/index.html',import.meta.url),'utf8');
- assert.match(runtime,/inkAssetImg\.src=C02_INK_ASSET\.path/);
+ assert.match(runtime,/inkAssetImg\.src=C02_INK_ASSET\.composedPath/);
+ assert.match(runtime,/inkImg\.src=C02_INK_ASSET\.composedPath/);
  assert.match(runtime,/inkAssetLayer\.append\(inkAssetImg\)/);
  assert.match(runtime,/const surfaceP=mode==='reveal'\?1:p/);
  assert.match(runtime,/c02InkRevealClip\(p,viewport\.width,viewport\.height\)/);
@@ -85,13 +87,16 @@ test('C02 has exactly one vector surface through cover/full/loading/reveal',asyn
  assert.match(early,/z-index:2147483001/);
  assert.match(runtime,/win\.location\.assign\(target\.href\)/);
  assert.doesNotMatch(runtime,/inkAssetFill|background-repeat:repeat-x|ink-unified\.webp/);
- assert.match(early,/background-image:url\('\/assets\/c02\/texture\.svg'\)/);
- assert.match(early,/href="\/assets\/c02\/texture\.svg"/);
+ assert.match(early,/background-image:url\('\/assets\/c02\/texture-composed\.svg'\)/);
+ assert.match(early,/href="\/assets\/c02\/texture-composed\.svg"/);
  assert.match(early,/rightContact-8096\*scale/);
  assert.match(early,/var scale=vh\*1\.5\/1152/);
  assert.doesNotMatch(early,/ink-interior-loop|ink-unified|Ink_swipe_1\.png/);
  assert.match(build,/C02 exact hand-illustrated SVG source verified/);
  assert.match(build,/inkSVGHash!==C02_INK_ASSET\.sourceSHA256/);
+ assert.match(build,/whiteInkBacking\(inkVectorBytes\)/);
+ assert.match(build,/C02 single-svg white ink underprint/);
+ assert.match(runtime,/dataset\.inkBacking='gallery-white-source-envelope'/);
  assert.doesNotMatch(build,/generateUnifiedInk|\.webp\(\{lossless:true/);
  assert.match(review,/C02_INK_ASSET\.path/);
  assert.doesNotMatch(review,/C02_INK_ASSET\.composite/);
