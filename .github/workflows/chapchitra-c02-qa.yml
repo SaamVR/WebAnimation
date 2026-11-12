@@ -28,7 +28,8 @@ jobs:
         run: |
           npm ci --no-audit --no-fund
           npm run build
-          node --test tests/c02-ink-sweep.test.mjs
+          node --test tests/c02-ink-sweep.test.mjs tests/c02-grit-edge.test.mjs tests/c02-owner-ink-asset.test.mjs
+          test -f dist/assets/c02/Ink_swipe_1.png
           test -f dist/assets/c02/roller-original.svg
           test -f dist/assets/c02/roller-prepared.svg
           test -f dist/artists-edit/index.html
@@ -76,6 +77,20 @@ jobs:
           C02_QA_ORIGIN: http://127.0.0.1:4272
           C02_QA_ENGINE: ${{ matrix.engine }}
         run: node scripts/c02-adaptive-qa.cjs
+      - name: Verify owner's full PNG, alpha alignment, visual comparison and 1s/5s navigation
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-owner-ink-qa.cjs
+      - name: Upload exact PNG 38/70 percent side-by-side frames and real 1s/5s navigation recordings
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: chapchitra-c02-owner-png-${{ matrix.engine }}
+          path: projects/chapchitra/docs/c02-owner-ink-evidence/${{ matrix.engine }}/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Compare original and Grit Roller brush edges at identical progress in real browsers
         working-directory: projects/chapchitra
         env:
