@@ -2,12 +2,8 @@
 // Every sample originates in the checksum-pinned owner PNG's dense interior.
 import sharp from 'sharp';
 
-export const UNIFIED_INK=Object.freeze({
- width:8192,height:1152,tail:6144,feather:86,
- cellWidth:336,cellHeight:288,blendToOriginal:256,
- sampleRightLimit:1150,seed:0xC0222026,
- path:'/assets/c02/ink-unified.webp'
-});
+import {UNIFIED_INK} from '../src/motion/c02/ink-asset.mjs';
+export {UNIFIED_INK};
 const clamp01=x=>Math.max(0,Math.min(1,x));
 const smooth=t=>{const x=clamp01(t);return x*x*(3-2*x);};
 function seededRandom(seed){
