@@ -42,7 +42,8 @@ The key physical experiment is on [existing C02 Shop diagnostic](https://chapchi
 1. With the strip visible, tap **Capture and copy iPad measurements** and save/paste the JSON.
 2. Tap **Test browser-edge color**, observe whether the strip itself changes from white to Terracotta while the announcement stays fixed; capture a screenshot.
 3. Tap again to restore, and repeat after Chrome toolbar collapse/expand and a navigation.
-4. Compare the physical screenshot to DOM `elementFromPoint` and layout origin:
+4. The Shop filter URL synchronization may remove `?navdebug=1` after navigation. If the panel disappears following Back/Forward, reopen the exact diagnostic URL above; do not interpret a missing panel as a layout fix.
+5. Compare the physical screenshot to DOM `elementFromPoint` and layout origin:
    - If physical white strip is outside the DOM and responds to background color, it is a browser-selected root surface/tint region; do not invent a page margin.
    - If it is outside the DOM and does not respond, the native Chrome UI owns it; no reliable DOM CSS can remove it.
    - If `.announcement.top` becomes positive while `scrollY=0` **inside DOM**, diagnose the exact ancestor and repair that verified layout defect.
