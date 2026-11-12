@@ -51,7 +51,7 @@ async function run(engine,device){
    const overlay=document.getElementById('c02-loader');
    return {installed:document.documentElement.dataset.c02Installed,
     count:document.querySelectorAll('#c02-loader').length,
-    src:overlay?.querySelector('img')?.getAttribute('src')};
+    src:overlay?.querySelector('.c02-loader__roller img')?.getAttribute('src')};
   },device==='mobile');
   check(name,'owner roller source',activated.src==='/assets/c02/roller-original.svg',
    JSON.stringify(activated));
