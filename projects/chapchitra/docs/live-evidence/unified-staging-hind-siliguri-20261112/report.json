@@ -1,0 +1,521 @@
+{
+  "url": "https://chapchitra-webanimation.onrender.com",
+  "sourceSHA": "d028f75235801220b329ac0bda2fbbed55baf94d",
+  "checks": [
+    {
+      "label": "desktop: / HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "desktop: / navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "desktop: / no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "desktop: /shop/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "desktop: /shop/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "desktop: /shop/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "desktop: /journal/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "desktop: /journal/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "desktop: /journal/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "desktop: /about/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "desktop: /about/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "desktop: /about/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "desktop: /artists-edit/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "desktop: /artists-edit/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "static"
+      }
+    },
+    {
+      "label": "desktop: /artists-edit/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "desktop: Hind Siliguri font",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "desktop: bold 700",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "desktop: printed Total PNG only",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "desktop: tag does not intercept input",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "desktop: BDT baseline",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "desktop: dynamic price synced",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "desktop: back preserves total",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "ipad-webkit: / HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "ipad-webkit: / navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "ipad-webkit: / no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "ipad-webkit: /shop/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "ipad-webkit: /shop/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "ipad-webkit: /shop/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "ipad-webkit: /journal/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "ipad-webkit: /journal/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "ipad-webkit: /journal/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "ipad-webkit: /about/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "ipad-webkit: /about/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "ipad-webkit: /about/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "ipad-webkit: /artists-edit/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "ipad-webkit: /artists-edit/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "static"
+      }
+    },
+    {
+      "label": "ipad-webkit: /artists-edit/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "ipad-webkit: Hind Siliguri font",
+      "ok": true,
+      "detail": {
+        "family": "Hind Siliguri, Noto Serif Bengali, sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "ipad-webkit: bold 700",
+      "ok": true,
+      "detail": {
+        "family": "Hind Siliguri, Noto Serif Bengali, sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "ipad-webkit: printed Total PNG only",
+      "ok": true,
+      "detail": {
+        "family": "Hind Siliguri, Noto Serif Bengali, sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "ipad-webkit: tag does not intercept input",
+      "ok": true,
+      "detail": {
+        "family": "Hind Siliguri, Noto Serif Bengali, sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "ipad-webkit: BDT baseline",
+      "ok": true,
+      "detail": {
+        "family": "Hind Siliguri, Noto Serif Bengali, sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "ipad-webkit: dynamic price synced",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "ipad-webkit: back preserves total",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "mobile: / HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "mobile: / navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "mobile: / no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "mobile: /shop/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "mobile: /shop/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "mobile: /shop/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "mobile: /journal/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "mobile: /journal/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "mobile: /journal/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "mobile: /about/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "mobile: /about/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "sticky"
+      }
+    },
+    {
+      "label": "mobile: /about/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "mobile: /artists-edit/ HTTP 200",
+      "ok": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "label": "mobile: /artists-edit/ navbar",
+      "ok": true,
+      "detail": {
+        "pos": "static"
+      }
+    },
+    {
+      "label": "mobile: /artists-edit/ no overflow",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "mobile: Hind Siliguri font",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "mobile: bold 700",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "mobile: printed Total PNG only",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "mobile: tag does not intercept input",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "mobile: BDT baseline",
+      "ok": true,
+      "detail": {
+        "family": "\"Hind Siliguri\", \"Noto Serif Bengali\", sans-serif",
+        "weight": "700",
+        "amount": "৳450",
+        "loaded": true,
+        "duplicate": 0,
+        "png": true,
+        "pointer": "none"
+      }
+    },
+    {
+      "label": "mobile: dynamic price synced",
+      "ok": true,
+      "detail": {}
+    },
+    {
+      "label": "mobile: back preserves total",
+      "ok": true,
+      "detail": {}
+    }
+  ],
+  "passed": 66,
+  "failed": 0,
+  "errors": [],
+  "http": [],
+  "physicalIPadTested": false
+}
