@@ -5,7 +5,8 @@ import {C02_PAGES,C02_PATHS,C02_MOTION,INK_PALETTE,isC02Eligible,
 import {C02_ADAPTIVE,pendingInkProgress,finishDuration,
  finishInkProgress,getReviewDelayMs} from './adaptive-progress.mjs';
 import {gritEdgePaths} from './grit-edge.mjs';
-import {C02_INK_ASSET,c02InkAssetPlacement} from './ink-asset.mjs';
+import {C02_INK_ASSET,c02InkAssetPlacement,c02InkVisualViewport,
+ c02InkInteriorCoverage,c02InkRevealClip} from './ink-asset.mjs';
 export {C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible};
 const KEY='chapchitra-c02-arrival-v2',TTL=45000,FAILSAFE_MS=26000;
 const NS='http://www.w3.org/2000/svg';
@@ -17,7 +18,7 @@ const ROLLER_CYLINDER_CONTACT_Y=48.7199;
 const ROLLER_VIEWBOX_CENTER=850;
 const ROLLER_CONTACT_OVERLAP_PX=2;
 const CSS=[
- '.c02-loader{position:fixed;inset:0;z-index:2147483000;overflow:hidden;',
+ '.c02-loader{position:fixed;inset:auto;z-index:2147483000;overflow:hidden;',
  'pointer-events:auto;isolation:isolate;touch-action:none;overscroll-behavior:contain}',
  '.c02-loader__surface{width:100%;height:100%;display:block;overflow:hidden}',
  '.c02-loader__roller{position:absolute;width:clamp(318px,33vw,450px);',
@@ -106,13 +107,16 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  inkAssetImg.alt='';inkAssetImg.draggable=false;
  inkAssetImg.decoding='async';inkAssetImg.loading='eager';
  inkAssetImg.style.cssText='position:absolute;max-width:none;object-fit:fill;pointer-events:none;';
- let pngFailed=false;
- inkAssetImg.addEventListener('error',()=>{pngFailed=true;},{once:true});
+ inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='original-png';},{once:true});
  inkAssetImg.src=C02_INK_ASSET.path;
  // Decode the generated, lossless interior before opting into PNG cover.
  // If either raster fails, use the existing procedural fallback without gaps.
  const interiorProbe=new win.Image();
  interiorProbe.decoding='async';interiorProbe.src=C02_INK_ASSET.interior.path;
+ interiorProbe.addEventListener('error',()=>{overlay.dataset.assetError='interior-pigment';},{once:true});
+ const assetsReady=edgeStyle==='asset'?Promise.all([
+  inkAssetImg.decode(),interiorProbe.decode()
+ ]).catch(()=>{overlay.dataset.assetError='decode';}):Promise.resolve();
  inkAssetLayer.append(inkAssetFill,inkAssetImg);
  const roller=doc.createElement('div');roller.className='c02-loader__roller';
  roller.setAttribute('aria-hidden','true');
@@ -126,22 +130,29 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   const p=Math.min(1,Math.max(0,progress));
   overlay.dataset.phase=mode;
   overlay.dataset.progress=String(p); // QA-readable contact alignment, not user UI
+  const viewport=c02InkVisualViewport(win);
+  overlay.style.left=viewport.left+'px';
+  overlay.style.top=viewport.top+'px';
+  overlay.style.width=viewport.width+'px';
+  overlay.style.height=viewport.height+'px';
+  overlay.dataset.viewport=JSON.stringify(viewport);
   forest.setAttribute('d',inkPath(p,{mode,offset:27}));
   ink.setAttribute('d',inkPath(p,{mode}));
-  // Never expose a blank layer while decoding a cold PNG. Once decoded,
-  // use the complete owner's raster without any synthetic replacement.
-  const pngReady=!pngFailed&&inkAssetImg.complete&&inkAssetImg.naturalWidth===2048
-   &&inkAssetImg.naturalHeight===1152&&interiorProbe.complete
-   &&interiorProbe.naturalWidth===C02_INK_ASSET.interior.loopWidth
-   &&interiorProbe.naturalHeight===C02_INK_ASSET.height;
-  const pngCover=edgeStyle==='asset'&&mode==='cover'&&p>0&&p<1&&pngReady;
-  inkAssetLayer.style.display=pngCover?'block':'none';
-  svg.style.visibility=pngCover?'hidden':'visible';
-  if(pngCover){
-   const x=inkEdgeX(p,470,27)*win.innerWidth/1000;
-   const placement=c02InkAssetPlacement({edgeX:x,viewportWidth:win.innerWidth,
-    viewportHeight:win.innerHeight});
-   inkAssetFill.style.width=placement.interiorFillWidth+'px';
+  // The exact SAME original PNG + lossless derived interior stays mounted
+  // through partial cover, full cover and organic reveal. No asset/procedural
+  // renderer swap at p=1, or on cold decode/handoff between HTML documents.
+  const rasterSurface=edgeStyle==='asset';
+  inkAssetLayer.style.display=rasterSurface?'block':'none';
+  svg.style.visibility=rasterSurface?'hidden':'visible';
+  if(rasterSurface){
+   // Reveal clips the already printed p=1 surface; it does not move or
+   // rebuild the pigment image or introduce procedural SVG green.
+   const surfaceP=mode==='reveal'?1:p;
+   const x=inkEdgeX(surfaceP,470,27)*viewport.width/1000;
+   const placement=c02InkAssetPlacement({edgeX:x,
+    viewportWidth:viewport.width,viewportHeight:viewport.height});
+   const fillWidth=c02InkInteriorCoverage(placement,viewport.width,surfaceP);
+   inkAssetFill.style.width=fillWidth+'px';
    inkAssetFill.style.top=placement.top+'px';
    inkAssetFill.style.height=placement.renderHeight+'px';
    inkAssetFill.style.backgroundSize=placement.interiorLoopWidth+'px '+
@@ -150,10 +161,14 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    inkAssetImg.style.height=placement.renderHeight+'px';
    inkAssetImg.style.left=placement.left+'px';
    inkAssetImg.style.top=placement.top+'px';
-   overlay.dataset.inkAsset='original-png';
+   inkAssetLayer.style.clipPath=mode==='reveal'
+    ?c02InkRevealClip(p,viewport.width,viewport.height)
+    :p===0?'inset(0 100% 0 0)':'none';
+   overlay.dataset.inkAsset='original-png-continuous';
    overlay.dataset.inkContactX=String(placement.contactX);
+   overlay.dataset.inkFillWidth=String(fillWidth);
   }else{
-   overlay.dataset.inkAsset=edgeStyle==='asset'?'png-fallback':'procedural';
+   overlay.dataset.inkAsset='procedural-legacy-review';
   }
   const isFull=(mode==='cover'&&p===1)||(mode==='reveal'&&p===0);
   const isEmpty=(mode==='cover'&&p===0)||(mode==='reveal'&&p===1);
@@ -174,8 +189,8 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   // Align that real contact edge to the advancing OUTER forest ink contour;
   // the long graphite handle then extends to the unpainted RIGHT.
   if(mode==='cover'&&p<1&&!roller.hidden){
-   const size=Math.min(450,Math.max(318,win.innerWidth*.33));
-   const edgeX=inkEdgeX(p,470,27)*win.innerWidth/1000;
+   const size=Math.min(450,Math.max(318,viewport.width*.33));
+   const edgeX=inkEdgeX(p,470,27)*viewport.width/1000;
    const cylinderLeft=(ROLLER_CYLINDER_CONTACT_Y-ROLLER_VIEWBOX_CENTER)
      /ROLLER_VIEWBOX_SIZE*size;
    roller.style.left=(edgeX-cylinderLeft-ROLLER_CONTACT_OVERLAP_PX)+'px';
@@ -280,7 +295,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     win.clearTimeout(finishGuard);completing=null;}
   };
  }
- return {overlay,render,animate,driveAdaptive,destroy};
+ return {overlay,render,animate,driveAdaptive,destroy,assetsReady};
 }
 function awaitShell(win,doc){
  return new Promise(resolve=>{
@@ -365,7 +380,11 @@ export function installC02PageTransitions(win=window,doc=document){
   // Preserve the partial, unpainted opening across the document handoff.
   // No green full-viewport prepaint and no stationary loading phase.
   const p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
-  doc.documentElement.classList.remove('c02-pending');
+  // Keep matching initial PNG prepaint until the incoming images decode.
+  // This prevents a white or procedural flash during WebKit MPA handoff.
+  void overlay.assetsReady.then(()=>{
+   if(overlay)doc.documentElement.classList.remove('c02-pending');
+  });
   if(ticket.demoMs)win.__c02DemoStartedAt=ticket.startedAt;
   doc.documentElement.dataset.c02StartedAt=String(ticket.startedAt||Date.now());
   state('waiting');
@@ -373,7 +392,7 @@ export function installC02PageTransitions(win=window,doc=document){
    initial:p,startedAt:ticket.startedAt||Date.now(),knownMs:ticket.demoMs||0
   });
   incomingGuard=win.setTimeout(cleanup,18000);
-  awaitShell(win,doc).then(()=>{
+  Promise.all([awaitShell(win,doc),overlay.assetsReady]).then(()=>{
    if(!overlay||!drive)return;
    doc.documentElement.dataset.c02ReadyAt=String(Date.now());
    state('finishing');
