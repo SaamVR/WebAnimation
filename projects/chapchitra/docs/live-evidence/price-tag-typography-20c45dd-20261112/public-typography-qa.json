@@ -1,0 +1,3490 @@
+{
+  "origin": "https://chapchitra-artist-tag-type-review.onrender.com",
+  "checks": [
+    {
+      "name": "desktop blank invoice + both tags ৳450",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.29604659385898857,
+          "bottom": 0.42778716634630626
+        },
+        "amountBox": {
+          "left": 0.49278330176767676,
+          "right": 0.769622564935065,
+          "top": 0.42233200895688017,
+          "bottom": 0.7481276875594484
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop blank two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop blank printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop blank amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49278330176767676,
+        "right": 0.769622564935065,
+        "top": 0.42233200895688017,
+        "bottom": 0.7481276875594484
+      }
+    },
+    {
+      "name": "desktop blank label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.29604659385898857,
+        "bottom": 0.42778716634630626
+      }
+    },
+    {
+      "name": "desktop blank image, invoice, interaction and placement",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.29604659385898857,
+          "bottom": 0.42778716634630626
+        },
+        "amountBox": {
+          "left": 0.49278330176767676,
+          "right": 0.769622564935065,
+          "top": 0.42233200895688017,
+          "bottom": 0.7481276875594484
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop blank no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "desktop blank actual Hind Siliguri font loaded",
+      "pass": true,
+      "detail": {
+        "loaded": true
+      }
+    },
+    {
+      "name": "desktop regular invoice + both tags ৳450",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.49278330176767676,
+          "right": 0.769622564935065,
+          "top": 0.42233200895688017,
+          "bottom": 0.7481276875594484
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop regular two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop regular printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop regular amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49278330176767676,
+        "right": 0.769622564935065,
+        "top": 0.42233200895688017,
+        "bottom": 0.7481276875594484
+      }
+    },
+    {
+      "name": "desktop regular label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop dropShoulder invoice + both tags ৳550",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳550",
+        "invoice": "৳550",
+        "bothPrices": [
+          "৳550",
+          "৳550"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.49660330988455986,
+          "right": 0.7658741432178933,
+          "top": 0.42269117588776156,
+          "bottom": 0.7477613992152822
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop dropShoulder two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop dropShoulder printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop dropShoulder amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49660330988455986,
+        "right": 0.7658741432178933,
+        "top": 0.42269117588776156,
+        "bottom": 0.7477613992152822
+      }
+    },
+    {
+      "name": "desktop dropShoulder label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop fullSleeve invoice + both tags ৳650",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳650",
+        "invoice": "৳650",
+        "bothPrices": [
+          "৳650",
+          "৳650"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.49436891233766234,
+          "right": 0.7681091044372295,
+          "top": 0.42247691423589095,
+          "bottom": 0.7479756608671528
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop fullSleeve two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop fullSleeve printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop fullSleeve amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49436891233766234,
+        "right": 0.7681091044372295,
+        "top": 0.42247691423589095,
+        "bottom": 0.7479756608671528
+      }
+    },
+    {
+      "name": "desktop fullSleeve label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop hoodie invoice + both tags ৳850",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳850",
+        "invoice": "৳850",
+        "bothPrices": [
+          "৳850",
+          "৳850"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.4938644255050505,
+          "right": 0.7686135912698413,
+          "top": 0.42242861247622066,
+          "bottom": 0.7480239626268231
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop hoodie two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop hoodie printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop hoodie amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4938644255050505,
+        "right": 0.7686135912698413,
+        "top": 0.42242861247622066,
+        "bottom": 0.7480239626268231
+      }
+    },
+    {
+      "name": "desktop hoodie label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop no art A3 invoice + both tags ৳850",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳850",
+        "invoice": "৳850",
+        "bothPrices": [
+          "৳850",
+          "৳850"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.4938644255050505,
+          "right": 0.7686135912698413,
+          "top": 0.42242861247622066,
+          "bottom": 0.7480239626268231
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop no art A3 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop no art A3 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop no art A3 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4938644255050505,
+        "right": 0.7686135912698413,
+        "top": 0.42242861247622066,
+        "bottom": 0.7480239626268231
+      }
+    },
+    {
+      "name": "desktop no art A3 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop A3 front invoice + both tags ৳1,050",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,050",
+        "invoice": "৳1,050",
+        "bothPrices": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.4526340413059163,
+          "right": 0.8097718253968254,
+          "top": 0.41848025324984145,
+          "bottom": 0.751979443266487
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop A3 front two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop A3 front printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop A3 front amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4526340413059163,
+        "right": 0.8097718253968254,
+        "top": 0.41848025324984145,
+        "bottom": 0.751979443266487
+      }
+    },
+    {
+      "name": "desktop A3 front label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop switch to blank back invoice + both tags ৳1,050",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,050",
+        "invoice": "৳1,050",
+        "bothPrices": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.4526340413059163,
+          "right": 0.8097718253968254,
+          "top": 0.41848025324984145,
+          "bottom": 0.751979443266487
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop switch to blank back two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop switch to blank back printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop switch to blank back amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4526340413059163,
+        "right": 0.8097718253968254,
+        "top": 0.41848025324984145,
+        "bottom": 0.751979443266487
+      }
+    },
+    {
+      "name": "desktop switch to blank back label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop max two-sided A3 invoice + both tags ৳1,250",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,250",
+        "invoice": "৳1,250",
+        "bothPrices": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.45544507575757576,
+          "right": 0.8069607909451659,
+          "top": 0.4187502477013316,
+          "bottom": 0.7517097584416614
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop max two-sided A3 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop max two-sided A3 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop max two-sided A3 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.45544507575757576,
+        "right": 0.8069607909451659,
+        "top": 0.4187502477013316,
+        "bottom": 0.7517097584416614
+      }
+    },
+    {
+      "name": "desktop max two-sided A3 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop max two-sided A3 image, invoice, interaction and placement",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,250",
+        "invoice": "৳1,250",
+        "bothPrices": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.45544507575757576,
+          "right": 0.8069607909451659,
+          "top": 0.4187502477013316,
+          "bottom": 0.7517097584416614
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop max two-sided A3 no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "desktop max two-sided A3 actual Hind Siliguri font loaded",
+      "pass": true,
+      "detail": {
+        "loaded": true
+      }
+    },
+    {
+      "name": "desktop amount width + bbox not clipped for ৳1,250",
+      "pass": true,
+      "detail": {
+        "left": 0.45544507575757576,
+        "right": 0.8069607909451659,
+        "top": 0.4187502477013316,
+        "bottom": 0.7517097584416614
+      }
+    },
+    {
+      "name": "desktop mixed A3/A4 invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.4627970553751804,
+          "right": 0.7996082476551226,
+          "top": 0.4194555772431833,
+          "bottom": 0.7510044288998098
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop mixed A3/A4 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop mixed A3/A4 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop mixed A3/A4 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4627970553751804,
+        "right": 0.7996082476551226,
+        "top": 0.4194555772431833,
+        "bottom": 0.7510044288998098
+      }
+    },
+    {
+      "name": "desktop mixed A3/A4 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop front back preservation invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.4627970553751804,
+          "right": 0.7996082476551226,
+          "top": 0.4194555772431833,
+          "bottom": 0.7510044288998098
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop front back preservation two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop front back preservation printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop front back preservation amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4627970553751804,
+        "right": 0.7996082476551226,
+        "top": 0.4194555772431833,
+        "bottom": 0.7510044288998098
+      }
+    },
+    {
+      "name": "desktop front back preservation label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "desktop size color neutral invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 11.2612,
+        "amountSize": 26.4206,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.5341596771284272,
+          "right": 0.719371167027417,
+          "top": 0.2960464390456563,
+          "bottom": 0.427787011532974
+        },
+        "amountBox": {
+          "left": 0.4627970553751804,
+          "right": 0.7996082476551226,
+          "top": 0.4194555772431833,
+          "bottom": 0.7510044288998098
+        },
+        "tagWidth": 216.5625,
+        "tagHeight": 98.5625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "desktop size color neutral two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          11.2612,
+          26.4206
+        ]
+      }
+    },
+    {
+      "name": "desktop size color neutral printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -71.4609, -21.2266)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "desktop size color neutral amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4627970553751804,
+        "right": 0.7996082476551226,
+        "top": 0.4194555772431833,
+        "bottom": 0.7510044288998098
+      }
+    },
+    {
+      "name": "desktop size color neutral label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5341596771284272,
+        "right": 0.719371167027417,
+        "top": 0.2960464390456563,
+        "bottom": 0.427787011532974
+      }
+    },
+    {
+      "name": "ipad-webkit blank invoice + both tags ৳450",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4935356104651163,
+          "right": 0.7703947129360466,
+          "top": 0.42084803749361266,
+          "bottom": 0.7465001936158662
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit blank two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit blank printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit blank amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4935356104651163,
+        "right": 0.7703947129360466,
+        "top": 0.42084803749361266,
+        "bottom": 0.7465001936158662
+      }
+    },
+    {
+      "name": "ipad-webkit blank label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit blank image, invoice, interaction and placement",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4935356104651163,
+          "right": 0.7703947129360466,
+          "top": 0.42084803749361266,
+          "bottom": 0.7465001936158662
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit blank no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit blank actual Hind Siliguri font loaded",
+      "pass": true,
+      "detail": {
+        "loaded": true
+      }
+    },
+    {
+      "name": "ipad-webkit regular invoice + both tags ৳450",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4935356104651163,
+          "right": 0.7703947129360466,
+          "top": 0.42084803749361266,
+          "bottom": 0.7465001936158662
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit regular two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit regular printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit regular amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4935356104651163,
+        "right": 0.7703947129360466,
+        "top": 0.42084803749361266,
+        "bottom": 0.7465001936158662
+      }
+    },
+    {
+      "name": "ipad-webkit regular label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit dropShoulder invoice + both tags ৳550",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳550",
+        "invoice": "৳550",
+        "bothPrices": [
+          "৳550",
+          "৳550"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4972529069767442,
+          "right": 0.7665611373546511,
+          "top": 0.4212158078372509,
+          "bottom": 0.7461436509964231
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit dropShoulder two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit dropShoulder printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit dropShoulder amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4972529069767442,
+        "right": 0.7665611373546511,
+        "top": 0.4212158078372509,
+        "bottom": 0.7461436509964231
+      }
+    },
+    {
+      "name": "ipad-webkit dropShoulder label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit fullSleeve invoice + both tags ৳650",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳650",
+        "invoice": "৳650",
+        "bothPrices": [
+          "৳650",
+          "৳650"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4950454215116279,
+          "right": 0.7688844476744187,
+          "top": 0.42099275038323963,
+          "bottom": 0.746355231221257
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": true,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit fullSleeve two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit fullSleeve printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit fullSleeve amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4950454215116279,
+        "right": 0.7688844476744187,
+        "top": 0.42099275038323963,
+        "bottom": 0.746355231221257
+      }
+    },
+    {
+      "name": "ipad-webkit fullSleeve label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit hoodie invoice + both tags ৳850",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳850",
+        "invoice": "৳850",
+        "bothPrices": [
+          "৳850",
+          "৳850"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.49458075944767443,
+          "right": 0.7693491097383721,
+          "top": 0.4209483384964231,
+          "bottom": 0.7463998926130557
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit hoodie two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit hoodie printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit hoodie amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49458075944767443,
+        "right": 0.7693491097383721,
+        "top": 0.4209483384964231,
+        "bottom": 0.7463998926130557
+      }
+    },
+    {
+      "name": "ipad-webkit hoodie label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit no art A3 invoice + both tags ৳850",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳850",
+        "invoice": "৳850",
+        "bothPrices": [
+          "৳850",
+          "৳850"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.49458075944767443,
+          "right": 0.7693491097383721,
+          "top": 0.4209483384964231,
+          "bottom": 0.7463998926130557
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit no art A3 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit no art A3 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit no art A3 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49458075944767443,
+        "right": 0.7693491097383721,
+        "top": 0.4209483384964231,
+        "bottom": 0.7463998926130557
+      }
+    },
+    {
+      "name": "ipad-webkit no art A3 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit A3 front invoice + both tags ৳1,050",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,050",
+        "invoice": "৳1,050",
+        "bothPrices": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.45334120639534886,
+          "right": 0.8104728379360465,
+          "top": 0.4170031657192131,
+          "bottom": 0.750356293114461
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit A3 front two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit A3 front printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit A3 front amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.45334120639534886,
+        "right": 0.8104728379360465,
+        "top": 0.4170031657192131,
+        "bottom": 0.750356293114461
+      }
+    },
+    {
+      "name": "ipad-webkit A3 front label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit switch to blank back invoice + both tags ৳1,050",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,050",
+        "invoice": "৳1,050",
+        "bothPrices": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.45334120639534886,
+          "right": 0.8104728379360465,
+          "top": 0.4170031657192131,
+          "bottom": 0.750356293114461
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit switch to blank back two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit switch to blank back printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit switch to blank back amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.45334120639534886,
+        "right": 0.8104728379360465,
+        "top": 0.4170031657192131,
+        "bottom": 0.750356293114461
+      }
+    },
+    {
+      "name": "ipad-webkit switch to blank back label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit max two-sided A3 invoice + both tags ৳1,250",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,250",
+        "invoice": "৳1,250",
+        "bothPrices": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4561291787790698,
+          "right": 0.8076848655523255,
+          "top": 0.41727063506004086,
+          "bottom": 0.7500888237736331
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit max two-sided A3 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit max two-sided A3 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit max two-sided A3 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4561291787790698,
+        "right": 0.8076848655523255,
+        "top": 0.41727063506004086,
+        "bottom": 0.7500888237736331
+      }
+    },
+    {
+      "name": "ipad-webkit max two-sided A3 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit max two-sided A3 image, invoice, interaction and placement",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,250",
+        "invoice": "৳1,250",
+        "bothPrices": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4561291787790698,
+          "right": 0.8076848655523255,
+          "top": 0.41727063506004086,
+          "bottom": 0.7500888237736331
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit max two-sided A3 no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit max two-sided A3 actual Hind Siliguri font loaded",
+      "pass": true,
+      "detail": {
+        "loaded": true
+      }
+    },
+    {
+      "name": "ipad-webkit amount width + bbox not clipped for ৳1,250",
+      "pass": true,
+      "detail": {
+        "left": 0.4561291787790698,
+        "right": 0.8076848655523255,
+        "top": 0.4172701360500766,
+        "bottom": 0.7500883247636689
+      }
+    },
+    {
+      "name": "ipad-webkit mixed A3/A4 invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.2946394353602453,
+          "bottom": 0.4262887431336229
+        },
+        "amountBox": {
+          "left": 0.4635637718023256,
+          "right": 0.8003660973837209,
+          "top": 0.41797274207971385,
+          "bottom": 0.7493754890297649
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit mixed A3/A4 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit mixed A3/A4 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit mixed A3/A4 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4635637718023256,
+        "right": 0.8003660973837209,
+        "top": 0.41797274207971385,
+        "bottom": 0.7493754890297649
+      }
+    },
+    {
+      "name": "ipad-webkit mixed A3/A4 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.2946394353602453,
+        "bottom": 0.4262887431336229
+      }
+    },
+    {
+      "name": "ipad-webkit front back preservation invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4635637718023256,
+          "right": 0.8003660973837209,
+          "top": 0.41797274207971385,
+          "bottom": 0.7493754890297649
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit front back preservation two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit front back preservation printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit front back preservation amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4635637718023256,
+        "right": 0.8003660973837209,
+        "top": 0.41797274207971385,
+        "bottom": 0.7493754890297649
+      }
+    },
+    {
+      "name": "ipad-webkit front back preservation label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "ipad-webkit size color neutral invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 6.9875,
+        "amountSize": 16.393749,
+        "angle": -2.499978380499002,
+        "labelBox": {
+          "left": 0.5348551053779069,
+          "right": 0.7200876635174419,
+          "top": 0.29463893635028104,
+          "bottom": 0.4262882441236587
+        },
+        "amountBox": {
+          "left": 0.4635637718023256,
+          "right": 0.8003660973837209,
+          "top": 0.41797274207971385,
+          "bottom": 0.7493754890297649
+        },
+        "tagWidth": 134.375,
+        "tagHeight": 61.15625,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": false,
+        "groupMatrix": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "tagMatrix": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    },
+    {
+      "name": "ipad-webkit size color neutral two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "Hind Siliguri, Hind Siliguri, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          6.9875,
+          16.393749
+        ]
+      }
+    },
+    {
+      "name": "ipad-webkit size color neutral printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.043619, 0.043619, 0.999048, -44.34375, -13.164063)",
+        "outer": "matrix(1, 0, 0, 1, 0, 0)",
+        "angle": -2.499978380499002
+      }
+    },
+    {
+      "name": "ipad-webkit size color neutral amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4635637718023256,
+        "right": 0.8003660973837209,
+        "top": 0.41797274207971385,
+        "bottom": 0.7493754890297649
+      }
+    },
+    {
+      "name": "ipad-webkit size color neutral label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.5348551053779069,
+        "right": 0.7200876635174419,
+        "top": 0.29463893635028104,
+        "bottom": 0.4262882441236587
+      }
+    },
+    {
+      "name": "mobile blank invoice + both tags ৳450",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.49286031520113033,
+          "right": 0.769705784574468,
+          "top": 0.4222225392622352,
+          "bottom": 0.748142747899927
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile blank two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile blank printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile blank amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49286031520113033,
+        "right": 0.769705784574468,
+        "top": 0.4222225392622352,
+        "bottom": 0.748142747899927
+      }
+    },
+    {
+      "name": "mobile blank label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile blank image, invoice, interaction and placement",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.49286031520113033,
+          "right": 0.769705784574468,
+          "top": 0.4222225392622352,
+          "bottom": 0.748142747899927
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile blank no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "mobile blank actual Hind Siliguri font loaded",
+      "pass": true,
+      "detail": {
+        "loaded": true
+      }
+    },
+    {
+      "name": "mobile regular invoice + both tags ৳450",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳450",
+        "invoice": "৳450",
+        "bothPrices": [
+          "৳450",
+          "৳450"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.49286031520113033,
+          "right": 0.769705784574468,
+          "top": 0.4222225392622352,
+          "bottom": 0.748142747899927
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile regular two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile regular printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile regular amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49286031520113033,
+        "right": 0.769705784574468,
+        "top": 0.4222225392622352,
+        "bottom": 0.748142747899927
+      }
+    },
+    {
+      "name": "mobile regular label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile dropShoulder invoice + both tags ৳550",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳550",
+        "invoice": "৳550",
+        "bothPrices": [
+          "৳550",
+          "৳550"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.4966466376122008,
+          "right": 0.7659195270944149,
+          "top": 0.4225857720051132,
+          "bottom": 0.747779515157049
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile dropShoulder two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile dropShoulder printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile dropShoulder amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.4966466376122008,
+        "right": 0.7659195270944149,
+        "top": 0.4225857720051132,
+        "bottom": 0.747779515157049
+      }
+    },
+    {
+      "name": "mobile dropShoulder label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile fullSleeve invoice + both tags ৳650",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳650",
+        "invoice": "৳650",
+        "bothPrices": [
+          "৳650",
+          "৳650"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.49438814203789894,
+          "right": 0.768178087599734,
+          "top": 0.42236891663623083,
+          "bottom": 0.7479960851899197
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile fullSleeve two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile fullSleeve printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile fullSleeve amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49438814203789894,
+        "right": 0.768178087599734,
+        "top": 0.42236891663623083,
+        "bottom": 0.7479960851899197
+      }
+    },
+    {
+      "name": "mobile fullSleeve label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile hoodie invoice + both tags ৳850",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳850",
+        "invoice": "৳850",
+        "bothPrices": [
+          "৳850",
+          "৳850"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.49392317102310507,
+          "right": 0.7686429936835106,
+          "top": 0.4223244042184076,
+          "bottom": 0.7480408829437546
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile hoodie two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile hoodie printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile hoodie amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49392317102310507,
+        "right": 0.7686429936835106,
+        "top": 0.4223244042184076,
+        "bottom": 0.7480408829437546
+      }
+    },
+    {
+      "name": "mobile hoodie label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile no art A3 invoice + both tags ৳850",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳850",
+        "invoice": "৳850",
+        "bothPrices": [
+          "৳850",
+          "৳850"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.49392317102310507,
+          "right": 0.7686429936835106,
+          "top": 0.4223244042184076,
+          "bottom": 0.7480408829437546
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile no art A3 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile no art A3 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile no art A3 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.49392317102310507,
+        "right": 0.7686429936835106,
+        "top": 0.4223244042184076,
+        "bottom": 0.7480408829437546
+      }
+    },
+    {
+      "name": "mobile no art A3 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile A3 front invoice + both tags ৳1,050",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,050",
+        "invoice": "৳1,050",
+        "bothPrices": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.45267256067154255,
+          "right": 0.8098271796043883,
+          "top": 0.4183733564645727,
+          "bottom": 0.7519979227538349
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile A3 front two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile A3 front printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile A3 front amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.45267256067154255,
+        "right": 0.8098271796043883,
+        "top": 0.4183733564645727,
+        "bottom": 0.7519979227538349
+      }
+    },
+    {
+      "name": "mobile A3 front label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile switch to blank back invoice + both tags ৳1,050",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,050",
+        "invoice": "৳1,050",
+        "bothPrices": [
+          "৳1,050",
+          "৳1,050"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.45267256067154255,
+          "right": 0.8098271796043883,
+          "top": 0.4183733564645727,
+          "bottom": 0.7519979227538349
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile switch to blank back two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile switch to blank back printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile switch to blank back amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.45267256067154255,
+        "right": 0.8098271796043883,
+        "top": 0.4183733564645727,
+        "bottom": 0.7519979227538349
+      }
+    },
+    {
+      "name": "mobile switch to blank back label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile max two-sided A3 invoice + both tags ৳1,250",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,250",
+        "invoice": "৳1,250",
+        "bothPrices": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.455528876122008,
+          "right": 0.8070372236535904,
+          "top": 0.4186410016435354,
+          "bottom": 0.7517240001826151
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile max two-sided A3 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile max two-sided A3 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile max two-sided A3 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.455528876122008,
+        "right": 0.8070372236535904,
+        "top": 0.4186410016435354,
+        "bottom": 0.7517240001826151
+      }
+    },
+    {
+      "name": "mobile max two-sided A3 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile max two-sided A3 image, invoice, interaction and placement",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,250",
+        "invoice": "৳1,250",
+        "bothPrices": [
+          "৳1,250",
+          "৳1,250"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.455528876122008,
+          "right": 0.8070372236535904,
+          "top": 0.4186410016435354,
+          "bottom": 0.7517240001826151
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile max two-sided A3 no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "mobile max two-sided A3 actual Hind Siliguri font loaded",
+      "pass": true,
+      "detail": {
+        "loaded": true
+      }
+    },
+    {
+      "name": "mobile amount width + bbox not clipped for ৳1,250",
+      "pass": true,
+      "detail": {
+        "left": 0.455528876122008,
+        "right": 0.8070372236535904,
+        "top": 0.41864043097151205,
+        "bottom": 0.7517234295105917
+      }
+    },
+    {
+      "name": "mobile mixed A3/A4 invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.46290218272107714,
+          "right": 0.7996640469165559,
+          "top": 0.4193483496165084,
+          "bottom": 0.7510166522096421
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile mixed A3/A4 two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile mixed A3/A4 printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile mixed A3/A4 amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.46290218272107714,
+        "right": 0.7996640469165559,
+        "top": 0.4193483496165084,
+        "bottom": 0.7510166522096421
+      }
+    },
+    {
+      "name": "mobile mixed A3/A4 label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile front back preservation invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.46290218272107714,
+          "right": 0.7996640469165559,
+          "top": 0.4193483496165084,
+          "bottom": 0.7510166522096421
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile front back preservation two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile front back preservation printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile front back preservation amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.46290218272107714,
+        "right": 0.7996640469165559,
+        "top": 0.4193483496165084,
+        "bottom": 0.7510166522096421
+      }
+    },
+    {
+      "name": "mobile front back preservation label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    },
+    {
+      "name": "mobile size color neutral invoice + both tags ৳1,150",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "amount": "৳1,150",
+        "invoice": "৳1,150",
+        "bothPrices": [
+          "৳1,150",
+          "৳1,150"
+        ],
+        "nameFont": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "labelWeight": "600",
+        "amountWeight": "700",
+        "labelSize": 12.22,
+        "amountSize": 28.67,
+        "angle": -2.500001277003086,
+        "labelBox": {
+          "left": 0.534241631690492,
+          "right": 0.7194470344705785,
+          "top": 0.29595907140248356,
+          "bottom": 0.4276439234842951
+        },
+        "amountBox": {
+          "left": 0.46290218272107714,
+          "right": 0.7996640469165559,
+          "top": 0.4193483496165084,
+          "bottom": 0.7510166522096421
+        },
+        "tagWidth": 235,
+        "tagHeight": 106.953125,
+        "totalInvoiceVisible": true,
+        "fontLoaded": true,
+        "artLoaded": true,
+        "nonInteractive": true,
+        "overlapsGarment": false,
+        "stageTagPosition": "absolute",
+        "mobileBelow": true,
+        "groupMatrix": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "tagMatrix": "matrix(1, 0, 0, 1, -117.5, 0)"
+      }
+    },
+    {
+      "name": "mobile size color neutral two-line printed label and correct typography",
+      "pass": true,
+      "detail": {
+        "label": "TOTAL",
+        "font": "\"Hind Siliguri\", \"Hind Siliguri\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weights": [
+          "600",
+          "700"
+        ],
+        "sizes": [
+          12.22,
+          28.67
+        ]
+      }
+    },
+    {
+      "name": "mobile size color neutral printed tilt -2.5deg with no PNG rotation",
+      "pass": true,
+      "detail": {
+        "group": "matrix(0.999048, -0.0436194, 0.0436194, 0.999048, -77.5469, -23.0391)",
+        "outer": "matrix(1, 0, 0, 1, -117.5, 0)",
+        "angle": -2.500001277003086
+      }
+    },
+    {
+      "name": "mobile size color neutral amount visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.46290218272107714,
+        "right": 0.7996640469165559,
+        "top": 0.4193483496165084,
+        "bottom": 0.7510166522096421
+      }
+    },
+    {
+      "name": "mobile size color neutral label visibly inside paper",
+      "pass": true,
+      "detail": {
+        "left": 0.534241631690492,
+        "right": 0.7194470344705785,
+        "top": 0.29595907140248356,
+        "bottom": 0.4276439234842951
+      }
+    }
+  ],
+  "pass": 201,
+  "fail": 0,
+  "errors": [],
+  "requests": [],
+  "physicalIPad": "NOT tested — automated desktop WebKit viewport only"
+}
