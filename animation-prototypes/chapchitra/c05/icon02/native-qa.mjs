@@ -8,7 +8,7 @@ const root=process.cwd(), base='/animation-prototypes/chapchitra/c05/icon02/';
 const server=http.createServer(async(req,res)=>{
  try{
   const urlPath=decodeURIComponent(new URL(req.url,'http://127.0.0.1').pathname);
-  const full=path.resolve(root+'.'+urlPath);
+  const full=path.resolve(root,'.'+urlPath);
   if(!full.startsWith(root))throw new Error('invalid path');
   const data=await readFile(full);res.setHeader('Content-Type',full.endsWith('.js')?'text/javascript':full.endsWith('.json')?'application/json':full.endsWith('.svg')?'image/svg+xml':'text/html');res.end(data);
  }catch(e){res.statusCode=404;res.end('not found')}
