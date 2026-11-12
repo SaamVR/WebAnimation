@@ -9,6 +9,7 @@ import {C02_INK_ASSET,c02InkAssetPlacement,c02InkVisualViewport,
  c02InkRevealClip} from './ink-asset.mjs';
 export {C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible};
 const KEY='chapchitra-c02-arrival-v2',TTL=45000,FAILSAFE_MS=26000;
+const COVER_PROOF_KEY='chapchitra-c02-full-coverage-v1';
 const NS='http://www.w3.org/2000/svg';
 // Contact edge comes from the ORIGINAL cylinder's Chromium/WebKit SVG getBBox():
 // y=48.7199, height=273.2201 in the untouched 1700x1700 Illustrator viewBox.
@@ -44,7 +45,7 @@ function ticketFor(win){
 function storeTicket(win,url,{progress=0,startedAt=Date.now(),demoMs=0,edgeStyle='asset'}={}){
  try{win.sessionStorage.setItem(KEY,JSON.stringify({
   to:url.pathname+url.search,created:Date.now(),
-  progress:Math.max(0,Math.min(.985,progress)),startedAt,demoMs,edgeStyle
+  progress:Math.max(0,Math.min(1,progress)),startedAt,demoMs,edgeStyle
  }))}catch{}
 }
 function clearTicket(win){try{win.sessionStorage.removeItem(KEY)}catch{}}
@@ -246,7 +247,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   };
  }
  function driveAdaptive({startedAt=Date.now(),initial=0,knownMs=0,onProgress}={}){
-  let p=Math.max(0,Math.min(.985,initial));
+  let p=Math.max(0,Math.min(1,initial));
   let raf=0,last=win.performance.now(),stopped=false,completing=null,finishGuard=0;
   const cap=C02_ADAPTIVE.cap;
   function tick(now){
@@ -290,6 +291,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     if(stopped||completing)return;
     const target=Math.max(p,Math.min(1,end));
     const now=win.performance.now(),start=p;
+    if(target>=.999&&p>=.999){render(1,'cover');done();return;}
     const fullSweep=target>=.999;
     let d=fullSweep?finishDuration(start,Date.now()-startedAt):
      Math.round(Math.max(240,Math.min(700,(target-start)*1000)));
@@ -401,9 +403,11 @@ export function installC02PageTransitions(win=window,doc=document){
    ?requestedEdge:'asset';
  if(ticket&&!reduced.matches){
   overlay=makeOverlay(doc,win,edgeStyle);
-  // Preserve the partial, unpainted opening across the document handoff.
-  // No green full-viewport prepaint and no stationary loading phase.
-  const p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
+  // Hold the exact full-cover image painted before native navigation.
+  const p=Math.max(.015,Math.min(1,Number(ticket.progress)||.015));
+  doc.documentElement.dataset.c02IncomingProgress=String(p);
+  try{doc.documentElement.dataset.c02CoverCommit=
+   win.sessionStorage.getItem(COVER_PROOF_KEY)||'';}catch{}
   // First paint is native CSS with the exact saved SVG transform.
   // Do not advance a second, independently moving image underneath it:
   // that caused random jumps when WebKit decoded the 1.8 MB vector slowly.
@@ -465,6 +469,7 @@ export function installC02PageTransitions(win=window,doc=document){
     doc.documentElement.dataset.c02RollerEndAt=String(Date.now());
     drive?.stop();drive=null;
     if(!overlay)return;
+    doc.documentElement.dataset.c02RevealStartAt=String(Date.now());
     state('revealing');
     overlay.animate('reveal',C02_MOTION.revealMs,cleanup);
    });
