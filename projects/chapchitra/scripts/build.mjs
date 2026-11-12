@@ -60,7 +60,7 @@ if(vectorDelivery.split('</style>').length!==2)
  throw Error('C02 owner SVG style insertion point changed');
 const composedDelivery=vectorDelivery.replace('</style>','</style>\n'+whitePath);
 if(!composedDelivery.includes(whitePath)||
- (composedDelivery.match(/<path\\b/g)||[]).length!==728||
+ (composedDelivery.match(/<path\b/g)||[]).length!==728||
  !composedDelivery.includes('#293D2D'))
  throw Error('C02 combined underprint validation failed');
 await writeFile(resolve(output,'assets/c02/texture-composed.svg'),composedDelivery,'utf8');
