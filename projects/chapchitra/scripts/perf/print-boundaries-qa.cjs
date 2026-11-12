@@ -122,6 +122,7 @@ async function drag(page,selector,x,y){
  const guideBefore=await SNAP(page);
  // Drag target is a real viewport pointer coordinate; SNAP is stage-relative.
  await page.locator('.cc-worktable-frame-handle').scrollIntoViewIfNeeded();
+ await page.locator('.cc-worktable-frame-handle').scrollIntoViewIfNeeded();
  const handleBox=await point(page,'.cc-worktable-frame-handle');
  await drag(page,'.cc-worktable-frame-handle',
   handleBox.x+handleBox.width/2+100,handleBox.y+handleBox.height/2+70);
