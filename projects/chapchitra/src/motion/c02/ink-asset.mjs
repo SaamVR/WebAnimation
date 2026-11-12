@@ -1,39 +1,30 @@
 import {inkEdgeX} from './ink-shapes.mjs';
-// CHAPCHITRA C02 — preserve the owner's COMPLETE transparent PNG ink stroke.
-// The exact PNG remains immutable; the unified visual compositor is derived
-// at build time without changing approved choreography.
+// CHAPCHITRA C02 — single author-supplied 8192x1152 vector ink surface.
+// No raster generated, CSS background repetitions or path animation.
 export const C02_INK_ASSET=Object.freeze({
- path:'/assets/c02/Ink_swipe_1.png',
- width:2048,
- height:1152,
- // Actual positive-alpha extent measured directly from original source.
- // Blank transparent padding x=1689..2048 MUST NOT anchor the roller.
- paintedRight:1689,
+ path:'/assets/c02/texture.svg',
+ width:8192,height:1152,
+ // Measured at SVG y≈540: the last painted source pixels reach x≈8095.
+ // Align roller contact to the *visible pigment*, not transparent SVG padding.
+ paintedRight:8096,
  press:'#293D2D',
- // One build-derived bitmap; no runtime fragments or repeated background.
- composite:Object.freeze({path:'/assets/c02/ink-unified.webp',
-  width:8192,height:1152,tail:6144,sourceBlend:256})
-});
-export const UNIFIED_INK=Object.freeze({
- width:8192,height:1152,tail:6144,feather:52,
- cellWidth:336,cellHeight:288,blendToOriginal:256,
- sampleRightLimit:1150,seed:0xC0222026,
- path:C02_INK_ASSET.composite.path
+ // Source has a distressed band at SVG y≈154..1005, with intentionally
+ // transparent margins at its top/bottom. 1.5x vertical cover scales that
+ // original artwork beyond both viewport edges without stretching paths.
+ verticalCover:1.5,
+ sourceSHA256:'455b6dd824cc1fe4a2f1c1234af345df529db8ce69d9c60c54304c3ccae02ec5'
 });
 const finite=(value,fallback=0)=>Number.isFinite(Number(value))?Number(value):fallback;
 export function c02InkAssetPlacement({edgeX,viewportWidth,viewportHeight}){
  const width=Math.max(1,finite(viewportWidth,1));
  const height=Math.max(1,finite(viewportHeight,1));
- // Single UNIFORM image scale. The 6% vertical overscan avoids horizontal
- // stripes from transparent padding across changing viewport heights.
- const renderHeight=height*1.06;
+ const renderHeight=height*C02_INK_ASSET.verticalCover;
  const scale=renderHeight/C02_INK_ASSET.height;
  const paintedExtent=C02_INK_ASSET.paintedRight*scale;
  const left=finite(edgeX)-paintedExtent;
  const top=(height-renderHeight)/2;
- const renderedWidth=C02_INK_ASSET.composite.width*scale;
- const compositeLeft=left-C02_INK_ASSET.composite.tail*scale;
- return {scale,left,compositeLeft,top,renderedWidth,renderHeight,paintedExtent,
+ const renderedWidth=C02_INK_ASSET.width*scale;
+ return {scale,left,top,renderedWidth,renderHeight,paintedExtent,
   contactX:left+paintedExtent,paintedRight:C02_INK_ASSET.paintedRight};
 }
 
