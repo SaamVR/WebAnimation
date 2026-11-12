@@ -33,4 +33,4 @@ Book base, circle and right page stay stationary. All original path fills and de
 - **Official lottie-web rendering in Chromium and Safari/WebKit remains unverified** in this sandbox; do not claim production certification.
 - Independent Vercel review project deployed READY: https://chapchitra-c05-icon01-standalone-review-8msedc14d-samvrc.vercel.app/ (deployment dpl_DA2dtzHnLmtggdDXmG87ctK2PuJW). This new review project is separate from existing CHAPCHITRA sites; live DOM playback and public reachability still require direct browser verification.
 
-**Awaiting owner visual approval.**
+**Awaiting owner visual approval.**\n\n## Latest revision (2026-11-12): V3 right-page choreography\n\n**Active creative review candidate:** [V3 source, native Lottie JSON and browser preview](./V3/README.md).\n\nLive isolated review: https://chapchitra-c05-icon01-v3-review-20261112.onrender.com/\n\nV2 is retained as a **rejected rollback reference**. No site integration or approval to start Icon 02. Official native Lottie renderer QA and WebKit/Safari playback are still open.\n
