@@ -27,7 +27,10 @@ test('new PNG owns printed Total; HTML contains only one rotated dynamic amount'
  assert.match(css,/rotate\(var\(--cc-tag-type-angle\)\)/);
  assert.equal(c.text.rotationDeg,-2.5);
  assert.equal(c.text.fontWeight,700);
- assert.match(c.text.fontFamily,/Noto Serif Bengali/);
+ assert.ok(c.text.fontFamily.startsWith('Georgia'),'Bold editorial numerals must use the selected serif');
+ assert.match(c.text.fontFamily,/Noto Serif Bengali/,'Taka glyph must have a Bengali-capable fallback');
+ assert.equal(c.text.xPercent,58.5);
+ assert.equal(c.text.yPercent,66.5);
  assert.ok(c.text.fontSizeCqw>=15 && c.text.fontSizeCqw<=17);
  assert.equal(c.text.align,'center');
 });

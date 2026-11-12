@@ -15,8 +15,9 @@
  * HTML contains ONLY the live amount. It is positioned under the
  * already-printed "Total" and angled to follow the paper's edge.
  * Never rotate or reposition the PNG: image layout is owner-approved.
- * Font uses the site's existing Noto Serif Bengali family for
- * reliable taka rendering and a bold editorial serif appearance.
+ * Use Georgia Bold's editorial numerals, visually closer to the owner's
+ * printed "Total", with the already-loaded Noto Serif Bengali as fallback
+ * for the Bengali taka glyph. No new external font asset is required.
  * Amount size uses container-query width units for responsive scale.
  */
 export const WORKTABLE_PRICE_TAG=Object.freeze({
@@ -27,10 +28,10 @@ export const WORKTABLE_PRICE_TAG=Object.freeze({
  mobile:Object.freeze({x:0,y:0,width:330,displayWidth:235}),
  rotation:0,
  text:Object.freeze({
-  xPercent:63,yPercent:72,
+  xPercent:58.5,yPercent:66.5,
   rotationDeg:-2.5,
-  fontSizeCqw:16,
-  fontFamily:'"Noto Serif Bengali",Georgia,serif',
+  fontSizeCqw:15.5,
+  fontFamily:'Georgia,"Noto Serif Bengali",serif',
   fontWeight:700,
   widthPercent:70,
   letterSpacingEm:-0.025,
