@@ -69,7 +69,7 @@ test('owner roller is exactly 300 percent of prior dimensions with the same cont
  assert.equal(11*3,33);
  assert.match(src,/width:clamp\(318px,33vw,450px\)/);
  assert.match(src,/height:clamp\(318px,33vw,450px\)/);
- assert.match(src,/const size=Math\.min\(450,Math\.max\(318,win\.innerWidth\*\.33\)\)/);
+ assert.match(src,/const size=Math\.min\(450,Math\.max\(318,viewport\.width\*\.33\)\)/);
  assert.match(src,/edgeX-cylinderLeft-ROLLER_CONTACT_OVERLAP_PX/);
  assert.match(src,/scaleX\(-1\) rotate\(90deg\)/);
  assert.doesNotMatch(src,/clamp\(106px,11vw,150px\)/);
