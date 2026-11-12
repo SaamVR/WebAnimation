@@ -26,6 +26,22 @@ if(originalSVG.split('<g id="Layer_2">').length!==2||
  throw Error('CHAPCHITRA C02 original roller layers are not as approved');
 const rollerPrepared=originalSVG.replace('<g id="Layer_2">','<g id="ROLLER_FRAME">');
 await writeFile(resolve(output,'assets/c02/roller-prepared.svg'),rollerPrepared,'utf8');
+// C02 owner's exact original full-color transparent raster, never a
+// regenerated/noise approximation. Fail closed when the source is absent;
+// a successful deployment must never present a blank cover-phase PNG.
+const inkAssetPath=resolve(src,'assets/c02/Ink_swipe_1.png');
+const inkAssetBytes=await readFile(inkAssetPath);
+const inkAssetSHA=createHash('sha256').update(inkAssetBytes).digest('hex');
+if(inkAssetSHA!=='44ad9ce947981a02b161c0987bb49aad7ef29310f7e0205e1896f94a5d353336')
+ throw Error('C02 owner original Ink_swipe_1.png is absent or modified: exact SHA256 required');
+if(!inkAssetBytes.subarray(0,8).equals(
+ Buffer.from([137,80,78,71,13,10,26,10]))||
+ inkAssetBytes.readUInt32BE(16)!==2048||
+ inkAssetBytes.readUInt32BE(20)!==1152)
+ throw Error('C02 Ink_swipe_1.png is not the original 2048x1152 PNG');
+console.log('C02 owner ink original checksum verified',inkAssetSHA);
+// Only the cover rendering changes: roller, adaptive progress and reveal
+// runtime modules remain exactly as approved.
 // Prepaint cover must be installed in the HTML head, before deferred app.mjs.
 // Keep all existing route controllers and cached Artist's Edit release paths intact.
 const earlyC02=await readFile(resolve(src,'motion/c02/early-head.html'),'utf8');
