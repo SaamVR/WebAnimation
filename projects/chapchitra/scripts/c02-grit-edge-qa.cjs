@@ -90,7 +90,7 @@ async function navigation(page,device,edge){
   const o=document.querySelector('#c02-loader');
   const g=o?.querySelector('svg > g');
   return {p:Number(o?.dataset.progress),mask:g?.getAttribute('mask'),
-   image:o?.querySelector('img')?.getAttribute('src'),
+   image:o?.querySelector('.c02-loader__roller img')?.getAttribute('src'),
    rollerWidth:o?.querySelector('.c02-loader__roller')?
     getComputedStyle(o.querySelector('.c02-loader__roller')).width:null,
    outlines:o?.querySelectorAll('svg path[stroke]').length};
