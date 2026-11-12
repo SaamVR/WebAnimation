@@ -112,7 +112,8 @@ test('manifest is validated without stale-cache reuse and never silently falls b
  assert.match(app,/MANIFEST_VALIDATION_FAILED/);
  assert.match(app,/WORKTABLE_RENDER_FAILED/);
  assert.match(app,/previous\.style\.display='none'/);
- assert.match(app,/id="artistEditTitle"/);
+ assert.doesNotMatch(app,/id="artistEditTitle"|route-head--artist-edit/);
+ assert.match(await load('src/worktable-studio.mjs'),/class="cc-worktable-sr-only">Artist's Edit<\/h1>/);
  assert.match(app,/Illustrated worktable unavailable/);
  await assert.rejects(load('src/assets/worktable/manifest.json'),/ENOENT/,'asset manifest is intentionally not yet deployed');
 });
