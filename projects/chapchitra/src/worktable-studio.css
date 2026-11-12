@@ -2,10 +2,12 @@
 .cc-worktable,.cc-worktable *{box-sizing:border-box}
 
 .cc-worktable{width:100%;padding-bottom:4rem}
-.cc-worktable-header{width:min(100% - 40px,1440px);margin:0 auto;padding:26px 0 18px;text-align:left}
-.cc-worktable-header h1{font:500 clamp(28px,4vw,44px)/1.13 Georgia,serif;margin:0 0 8px}
-.cc-worktable-header p{font-size:13px;margin:0;color:#50584f}
-.cc-worktable-header .cc-eyebrow{font:700 10px/1.1 system-ui,sans-serif;letter-spacing:.17em;color:var(--cc-accent);margin-bottom:10px}
+/* One semantic page heading, with no visual footprint above the approved desk. */
+.cc-worktable-sr-only{
+ position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+ overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);
+ white-space:nowrap;border:0;
+}
 .cc-worktable-frame{width:min(100%,1540px);margin-inline:auto;overflow:hidden;background:#6e523f}
 .cc-worktable-stage{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;isolation:isolate;background:#826b54;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .cc-worktable-layer{position:absolute;display:block;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-select:none;will-change:auto}
@@ -381,8 +383,6 @@
  .cc-worktable-upload-row{grid-template-columns:minmax(215px,1.3fr) minmax(160px,.95fr) minmax(195px,1.1fr)}
 }
 @media(max-width:600px){
- .cc-worktable-header{padding:18px 0 12px}
- .cc-worktable-header h1{font-size:29px}
  .cc-worktable-frame{width:100%}
  .cc-worktable-hit:not([data-group="upload"]){display:none}
  .cc-worktable-stage{touch-action:pan-y}
@@ -663,7 +663,6 @@
  * Only its presentation is uniformly scaled inside the portrait frame. */
 @media(max-width:600px){
  .cc-worktable{padding-bottom:2.5rem}
- .cc-worktable-header{display:none}
  .cc-worktable-frame.cc-mobile-frame-ready{
   width:100%;position:relative;aspect-ratio:9/16;overflow:hidden;
   border:2px solid var(--color-gallery-white,#f6f7f5);
@@ -708,7 +707,7 @@
     dynamically-updated instance of the approved paper illustration. */
  .cc-worktable-frame.cc-mobile-frame-ready > .cc-worktable-price-tag-mobile{
   position:absolute;display:block;z-index:8;
-  left:70%;top:6%;width:32%;max-width:none;margin:0;
+  left:67.5%;top:4.5%;width:32%;max-width:none;margin:0;
   transform:translateX(-50%) rotate(var(--cc-tag-rotation));
  }
  .cc-worktable-price-tag-stage{display:none}

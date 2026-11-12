@@ -3,13 +3,13 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const load=n=>readFileSync(new URL(n,import.meta.url),'utf8');
 const app=load('../src/app.mjs'),styles=load('../src/styles.css'),src=load('../src/worktable-studio.mjs');
-test('Artist page keeps a compact semantic heading and no visible build metadata',()=>{
+test('Artist page has one hidden semantic title, no route heading or build metadata',()=>{
  const route=app.match(/function artistsEdit\(\)\{[\s\S]*?\n \}/)?.[0]||'';
- assert.match(route,/route-head--artist-edit/);
- assert.match(route,/<h1 id="artistEditTitle">Artist’s Edit<\/h1>/);
- assert.doesNotMatch(route,/pageTop|CUSTOM PRINTING|Plan a custom print concept/);
+ assert.doesNotMatch(route,/route-head--artist-edit|<h1|pageTop|CUSTOM PRINTING|Plan a custom print concept/);
+ assert.match(route,/class="customize-layout" hidden aria-hidden="true"/);
  assert.doesNotMatch(app,/visibleBuild|Review build: /);
- assert.match(styles,/\.route-head--artist-edit\{/);
+ assert.doesNotMatch(styles,/\.route-head--artist-edit\{/);
+ assert.match(src,/class="cc-worktable-sr-only">Artist's Edit<\/h1>/);
 });
 test('simplified controls retain keyboard-compatible tools and Print tips',()=>{
  for(const id of ['worktableArtworkHeading','worktableUploadArt','worktableArtScale','worktableScaleOutput',

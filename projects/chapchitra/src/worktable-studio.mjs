@@ -100,7 +100,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  let mobileUI=null;
  const body=document.createElement('div');
  body.className='cc-worktable is-loading is-hydrating';
- body.innerHTML=`<div class="cc-worktable-header"><p class="cc-eyebrow">FROM THE STUDIO · CHAPCHITRA</p><h1>Artist’s Edit</h1><p>Bring a print idea to the worktable. Your design remains on this device.</p></div>
+ body.innerHTML=`<h1 class="cc-worktable-sr-only">Artist's Edit</h1>
   <div class="cc-worktable-frame"><div class="cc-worktable-stage" id="artistWorktable" role="group" aria-busy="true" aria-label="Interactive print studio: select garment, size, color, artwork and paper size"><p class="cc-worktable-loading" role="status">Preparing your original studio artwork…</p></div></div>
   <section class="cc-worktable-palette" aria-labelledby="worktableCustomizeHeading">
     <header class="cc-worktable-panel-intro">
@@ -161,7 +161,6 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
     <p class="cc-worktable-live" role="status" id="worktableMessage" aria-live="polite"></p>
   </section>
   <input id="worktableFile" type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Choose local design image">`;
- if(embedded)body.querySelector('.cc-worktable-header')?.remove();
  root.replaceChildren(body);
  const stage=root.querySelector('.cc-worktable-stage');
  // The accessible turn button belongs INSIDE the wooden stage, centered

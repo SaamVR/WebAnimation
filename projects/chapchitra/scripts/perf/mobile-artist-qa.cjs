@@ -143,4 +143,20 @@ const img=()=>sharp({create:{width:760,height:920,channels:4,background:{r:31,g:
  fs.writeFileSync(path.join(output,'report.json'),JSON.stringify(report,null,2)+'\n');
  console.log(JSON.stringify({passed:report.passed,failed:report.failed,errors:report.errors,failedResponses:report.failedResponses,screenshots:report.screenshots},null,2));
  if(report.failed||report.errors.length||report.failedResponses.length)process.exitCode=2;
+ // The unified staging workflow already executes this script in the same
+ // built-site Chromium/WebKit gate. Include direct entry/navigation/history
+ // screenshots without editing repo-root governance or animation ownership.
+ if(fs.existsSync(path.join(__dirname,'artist-direct-entry-qa.cjs'))){
+  const {spawnSync}=require('node:child_process');
+  const direct=spawnSync(process.execPath,[path.join(__dirname,'artist-direct-entry-qa.cjs')],{
+   cwd:path.resolve(__dirname,'../..'),stdio:'inherit',timeout:12*60*1000,
+   env:{...process.env,CC_QA_ROOT:root,
+    CC_QA_OUT:path.resolve('perf-results/shared-stage-direct-entry'),
+    CC_DIRECT_QA_BEFORE:'0',CC_DIRECT_QA_OVERRIDE_FILES:'0'}
+  });
+  if(direct.error||direct.status!==0){
+   console.error('Artist direct-entry regression failed:',direct.error?.message||direct.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e);process.exitCode=3});
