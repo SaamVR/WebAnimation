@@ -26,64 +26,39 @@ if(originalSVG.split('<g id="Layer_2">').length!==2||
  throw Error('CHAPCHITRA C02 original roller layers are not as approved');
 const rollerPrepared=originalSVG.replace('<g id="Layer_2">','<g id="ROLLER_FRAME">');
 await writeFile(resolve(output,'assets/c02/roller-prepared.svg'),rollerPrepared,'utf8');
-// C02 owner's exact original full-color transparent raster, never a
-// regenerated/noise approximation. Fail closed when the source is absent;
-// a successful deployment must never present a blank cover-phase PNG.
-const inkAssetPath=resolve(src,'assets/c02/Ink_swipe_1.png');
-const inkAssetBytes=await readFile(inkAssetPath);
-const inkAssetSHA=createHash('sha256').update(inkAssetBytes).digest('hex');
-if(inkAssetSHA!=='44ad9ce947981a02b161c0987bb49aad7ef29310f7e0205e1896f94a5d353336')
- throw Error('C02 owner original Ink_swipe_1.png is absent or modified: exact SHA256 required');
-if(!inkAssetBytes.subarray(0,8).equals(
- Buffer.from([137,80,78,71,13,10,26,10]))||
- inkAssetBytes.readUInt32BE(16)!==2048||
- inkAssetBytes.readUInt32BE(20)!==1152)
- throw Error('C02 Ink_swipe_1.png is not the original 2048x1152 PNG');
-console.log('C02 owner ink original checksum verified',inkAssetSHA);
-// C02: one composited bitmap, not a reflected/repeating runtime tile.
-// The right-hand source and its original transparent leading edge are exact;
-// irregular authentic source-interior samples are feathered at build time.
-const {generateUnifiedInk,UNIFIED_INK}=await import('./c02-unified-ink.mjs');
-const {default:sharp}=await import('sharp');
-const composed=await generateUnifiedInk(inkAssetBytes);
-const derivedPath=resolve(output,'assets/c02/ink-unified.webp');
-await writeFile(derivedPath,composed.webp);
-const expectedRgbaBytes=UNIFIED_INK.width*UNIFIED_INK.height*4;
-if(composed.rgba.length!==expectedRgbaBytes||composed.provenance.length<75)
- throw Error('C02 quilt geometry or source-patch diversity invalid');
-if(new Set(composed.provenance.map(p=>p.source.join(','))).size<65)
- throw Error('C02 source-patch selection repeats too predictably');
-// Verify the source's unique leading-edge pixels and alpha byte-for-byte.
-const originalStride=2048*4,derivedStride=UNIFIED_INK.width*4;
-for(let y=0;y<UNIFIED_INK.height;y++){
- const sourceStart=y*originalStride+UNIFIED_INK.blendToOriginal*4;
- const derivedStart=y*derivedStride+
-  (UNIFIED_INK.tail+UNIFIED_INK.blendToOriginal)*4;
- if(!composed.rgba.subarray(derivedStart,derivedStart+
-  originalStride-UNIFIED_INK.blendToOriginal*4).equals(
-  composed.source.subarray(sourceStart,sourceStart+
-   originalStride-UNIFIED_INK.blendToOriginal*4)))
-  throw Error('C02 original interior/leading edge modified at row '+y);
-}
-const derivedSHA=createHash('sha256').update(composed.webp).digest('hex');
-console.log('C02 unified original-source quilt built',{
- width:UNIFIED_INK.width,height:UNIFIED_INK.height,
- sourcePatches:composed.provenance.length,
- losslessWebpBytes:composed.webp.length,sha256:derivedSHA
+// C02 — only the exact owner-authored vector may supply the visible ink.
+// No rasterization, original-PNG extensions, tiling, mirroring or quilting.
+const {C02_INK_ASSET}=await import('../src/motion/c02/ink-asset.mjs');
+const inkSVGPath=resolve(src,'assets/c02/texture.svg');
+const inkVectorBytes=await readFile(inkSVGPath);
+const inkSVGHash=createHash('sha256').update(inkVectorBytes).digest('hex');
+if(inkSVGHash!==C02_INK_ASSET.sourceSHA256)
+ throw Error('C02 owner vector source changed or is absent');
+const inkSource=inkVectorBytes.toString('utf8');
+if(!inkSource.includes('viewBox="0 0 8192 1152"')||
+ (inkSource.match(/<path\\b/g)||[]).length!==727||
+ !inkSource.includes('.st0{fill:#293D2D;}')||
+ /<image\\b|<foreignObject\\b|<script\\b/i.test(inkSource))
+ throw Error('C02 original vector geometry/color or safety checks failed');
+// Strip Adobe Illustrator's *unused namespace declaration* only.
+// Preserve every d attribute, CSS class, group, fill and source path.
+// Store original unchanged in src; serve a smaller metadata-free SVG.
+const vectorDelivery=inkSource.replace(
+ ' xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/"','')
+ .replace('<style type="text/css">','<style>');
+if((vectorDelivery.match(/<path\\b/g)||[]).length!==727||
+ vectorDelivery.match(/\\sd="/g)?.length!==inkSource.match(/\\sd="/g)?.length)
+ throw Error('C02 vector-delivery optimization altered paths');
+await writeFile(resolve(output,'assets/c02/texture.svg'),vectorDelivery,'utf8');
+console.log('C02 exact hand-illustrated SVG source verified',{
+ sha256:inkSVGHash,paths:727,
+ originalBytes:inkVectorBytes.length,deliveryBytes:Buffer.byteLength(vectorDelivery)
 });
-// Build-time anti-repeat visual QA: deliberately test the original 2320px
-// mirror period. Exact equal seam pixels were never proof of unique texture.
-let changed=0,count=0;
-for(let y=7;y<UNIFIED_INK.height;y+=7)for(let x=10;x<3450;x+=7){
- const a=composed.rgba[(y*UNIFIED_INK.width+x)*4+3];
- const b=composed.rgba[(y*UNIFIED_INK.width+x+2320)*4+3];
- if(Math.abs(a-b)>=2)changed++;
- count++;
-}
-if(changed/count<.045)
- throw Error('C02 texture visually repetitive at obsolete 2320px period');
-console.log('C02 anti-repeat nonmatching pigment fraction',
- (changed/count).toFixed(4));
+// The old PNG source remains in version history for provenance, but is no
+// longer a deployable C02 asset. Avoid shipping two competing ink surfaces.
+await rm(resolve(output,'assets/c02/Ink_swipe_1.png'),{force:true});
+await rm(resolve(output,'assets/c02/ink-unified.webp'),{force:true});
+
 // The original roller and adaptive progress/reveal timing remain immutable.
 // Prepaint cover must be installed in the HTML head, before deferred app.mjs.
 // Keep all existing route controllers and cached Artist's Edit release paths intact.
