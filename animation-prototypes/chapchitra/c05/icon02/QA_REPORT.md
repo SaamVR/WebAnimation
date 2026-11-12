@@ -10,7 +10,10 @@
 - Motion: directional masked reveals, independent small offsets and rotations, minimal bobs/sways, stationary architectural elements.
 - Reduced-motion review state displays the original static SVG.
 - Preview HTML loads official lottie-web 5.12.2 when reachable; otherwise displays a **clearly labeled GIF fallback**.
-- Native Lottie render and Safari/WebKit certification: **not established by the exported SVG motion reference**. Must validate actual lottie-web playback in Chromium + WebKit before release.
+- Native Lottie renderer: **PASS**, official lottie-web@5.12.2 on Chromium 141 and WebKit 26, native SVG output on desktop.
+- Final frame vs source SVG screenshot changed fraction over RGB diff 44: Chromium 0.00003814697 (0.003815%) and WebKit 0.00001144409 (0.001144%). Zero browser JS errors.
+- Browser run: https://github.com/SaamVR/WebAnimation/actions/runs/43265075640 . Screen-capture evidence in workflow artifacts.
+- Mobile/iPad real device acceptance remains outstanding; the native browser tests cover Chromium and WebKit desktop engines.
 - Creative approval: PENDING. Do not integrate into site or start C05 Icon 03.
 
 ## Limitations
