@@ -1,0 +1,33 @@
+name: C05 Icon 02 Native Lottie QA (isolated)
+on:
+  push:
+    branches:
+      - feature/chapchitra-c05-icon02-rooted-in-bengal-20261112
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Install reviewed native browser testing dependencies
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.56.1 lottie-web@5.12.2 pngjs@7.0.0
+          npx playwright install --with-deps chromium webkit
+      - name: Verify native Lottie in Chromium and WebKit
+        run: node animation-prototypes/chapchitra/c05/icon02/native-qa.mjs
+      - name: Upload reference screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: c05-icon02-native-lottie-screenshots
+          path: native-qa-artifacts/*.png
+          if-no-files-found: warn
+          retention-days: 7
