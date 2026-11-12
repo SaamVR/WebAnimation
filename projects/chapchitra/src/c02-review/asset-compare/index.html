@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>CHAPCHITRA C02 — Original Ink Swipe PNG Review</title>
+<title>CHAPCHITRA C02 — Unified Original-Source Ink Review</title>
 <style>
 :root{font-family:system-ui,-apple-system,sans-serif;background:#f5f1ea;color:#263c2e}
 body{margin:0}header,main,footer{max-width:1240px;padding:24px;margin:auto}
@@ -21,10 +21,12 @@ output{font-variant-numeric:tabular-nums}a{color:#293D2D}
 @media(prefers-reduced-motion:reduce){button[data-play]{display:none}}
 </style></head><body>
 <header><a href="/c02-review/">← C02 review</a>
-<h1>Current procedural grit vs. owner's original ink PNG</h1>
+<h1>Procedural reference vs. unified original-source composite</h1>
 <p><strong>Both panels receive the exact same progress values.</strong>
-The right-hand stroke uses the full transparent source PNG, not a cropped, repeated or stretched edge.
-Press Green fills only the necessary strip left of the raster sheet.
+The right-hand stroke uses one lossless, build-derived 8192px bitmap with the
+owner's exact original leading-edge pixels. Its interior is constructed from
+irregular feathered samples of the owner's unmodified Ink_swipe_1.png.
+No runtime mirror, overlapping tile or solid-green fill is used.
 This is an isolated artistic comparison; production adaptive loading is unchanged.</p></header>
 <main>
 <div class="compare">
@@ -32,10 +34,11 @@ This is an isolated artistic comparison; production adaptive loading is unchange
 <svg id="before" viewBox="0 0 1000 1000" preserveAspectRatio="none"
 aria-label="Current SVG grit roller ink edge"></svg>
 <p>Previous irregular edge generated from SVG bristles.</p></section>
-<section class="panel"><h2>After · actual Ink_swipe_1.png</h2>
+<section class="panel"><h2>After · unified original-source ink</h2>
 <svg id="after" viewBox="0 0 1000 1000" preserveAspectRatio="none"
-aria-label="Original transparent PNG ink swipe with distressed contact edge"></svg>
-<p>Original full-body texture, naturally distressed edge and preserved transparent paint gaps.</p></section>
+aria-label="Single unified ink composite with the original distressed right contact edge"></svg>
+<p>Source-derived irregular interior, seamless single-surface compositing,
+and the exact original distressed contact edge. Original master is unchanged.</p></section>
 </div>
 <div class="controls">
 <button id="replay" data-play type="button">Replay identical 5-second pacing</button>
@@ -43,7 +46,8 @@ aria-label="Original transparent PNG ink swipe with distressed contact edge"></s
 <input type="range" id="progress" min="0" max="760" step="1" value="380">
 <output id="readout">38.0%</output>
 </div>
-<p><a href="/c02-review/?edge=grit">Test previous procedural edge during navigation</a> ·
+<p><a href="/assets/c02/Ink_swipe_1.png">View immutable original PNG</a> ·
+<a href="/c02-review/?edge=grit">Test previous procedural edge during navigation</a> ·
 <a href="/c02-review/?edge=asset">Test original PNG edge during navigation</a></p>
 </main>
 <footer>Creative approval pending. Both modes retain the same roller SVG and reveal.</footer>
@@ -72,9 +76,8 @@ const deposits=el('path',{fill:INK_PALETTE.press},before);
 const outline=el('path',{stroke:INK_PALETTE.terra,fill:'none','stroke-opacity':'.5',
  'stroke-width':'3.6'},before);
 const after=document.getElementById('after');
-const flat=el('rect',{x:0,y:0,height:1000,width:0,fill:INK_PALETTE.press},after);
-const image=el('image',{href:C02_INK_ASSET.path,
- 'preserveAspectRatio':'none',width:2048,height:1152},after);
+const image=el('image',{href:C02_INK_ASSET.composite.path,
+ 'preserveAspectRatio':'none',width:8192,height:1152},after);
 function draw(p){
  const v=Math.min(.76,Math.max(0,p));
  forest.setAttribute('d',inkPath(v,{offset:27}));
@@ -84,8 +87,7 @@ function draw(p){
  deposits.setAttribute('d',marks.deposits);
  const x=inkEdgeX(v,470,27);
  const place=c02InkAssetPlacement({edgeX:x,viewportWidth:1000,viewportHeight:1000});
- flat.setAttribute('width',place.solidFillWidth);
- image.setAttribute('x',place.left);image.setAttribute('y',place.top);
+ image.setAttribute('x',place.compositeLeft);image.setAttribute('y',place.top);
  image.setAttribute('width',place.renderedWidth);
  image.setAttribute('height',place.renderHeight);
  document.getElementById('progress').value=Math.round(v*1000);
