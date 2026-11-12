@@ -12,18 +12,29 @@ import cairosvg
 
 ROOT=Path(__file__).resolve().parent
 MASTER=ROOT/'More_than_a_tshirt_Icon_1_named_ORIGINAL.svg'
+if not MASTER.exists(): MASTER=ROOT/'More_than_a_tshirt_Icon_1_named_SVG_TEXT.svg'
 LEGACY=ROOT/'C05_V4_BASELINE_LOTTIE.json'
 STATES_FILE=ROOT/'C05_V4_BASELINE_STATES.json'
 FPS=30; LAST=150; W=H=512
 SVG_NS='http://www.w3.org/2000/svg'; NS={'s':SVG_NS}
 SOURCE_BYTES=MASTER.read_bytes(); SOURCE_HASH=hashlib.sha256(SOURCE_BYTES).hexdigest()
 SVG=etree.fromstring(SOURCE_BYTES)
-V4DATA=json.loads(LEGACY.read_text())
-V4STATES=json.loads(STATES_FILE.read_text())
+if LEGACY.exists() and STATES_FILE.exists():
+    V4DATA=json.loads(LEGACY.read_text());V4STATES=json.loads(STATES_FILE.read_text())
+else:
+    # GitHub branch fallback: V4 review HTML embeds the authoritative baselines.
+    prior=ROOT.parent/'V4'/'CHAPCHITRA_C05_Icon01_V4_ISOLATED_PREVIEW.html'
+    html_source=prior.read_text()
+    def embedded(name):
+        m=re.search(r'<script[^>]*id="'+name+r'"[^>]*>(.*?)</script>',html_source,re.S)
+        if not m:raise RuntimeError('Missing V4 embedded baseline '+name)
+        return json.loads(m.group(1))
+    V4DATA=embedded('data');V4STATES=embedded('states')
 assert len(V4STATES)==151 and V4DATA['fr']==30 and V4DATA['op']==151
 
 # Reuse V3's existing SVG-to-vector-Lottie parser without executing its production module.
 PARSER_PATH=ROOT/'C05_V3_EXISTING_VECTOR_PARSER.py'
+if not PARSER_PATH.exists(): PARSER_PATH=ROOT.parent/'V3'/'C05_Icon01_V3_editable.py'
 raw=PARSER_PATH.read_text()
 mod=ast.parse(raw)
 needed={'rv','static','kf','path_parse','circle_path','rv2','element_group','extract_group','keyshapes','trans'}
