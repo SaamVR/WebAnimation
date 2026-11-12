@@ -55,6 +55,36 @@ async function run(browser,engine,width,height){
     {boxes:{html:root.html,body:root.body,app:root.app,announcement:root.announcement},
      point:initial.navdebug?.samplePoints});
   }
+  if(route==='shop'&&engine==='webkit-ipad'){
+   const pageRoot=initial.navdebug?.rectangles;
+   const colorsBefore=await page.evaluate(()=>({
+    html:document.documentElement.style.backgroundColor,
+    body:document.body.style.backgroundColor
+   }));
+   await page.getByRole('button',{name:'Test browser-edge color'}).click();
+   const tinted=await measure(page);
+   topStripGeometry.push({engine,route,stage:'temporary-tint-probe',geometry:tinted.navdebug});
+   const colorsOn=await page.evaluate(()=>({
+    html:document.documentElement.style.backgroundColor,
+    body:document.body.style.backgroundColor
+   }));
+   await page.screenshot({path:path.join(out,'webkit-ipad-shop-navdebug-tint-probe.png')});
+   check('webkit-ipad edge tint probe never changes document geometry',
+    colorsOn.html==='rgb(138, 80, 59)'&&colorsOn.body===colorsOn.html&&
+    Math.abs((tinted.navdebug?.rectangles?.announcement?.top??999)-
+     (pageRoot?.announcement?.top??0))<1&&
+    Math.abs((tinted.navdebug?.rectangles?.siteHeader?.top??999)-
+     (pageRoot?.siteHeader?.top??0))<1,
+    {colorsOn,header:[pageRoot?.siteHeader?.top,tinted.navdebug?.rectangles?.siteHeader?.top]});
+   await page.getByRole('button',{name:'Test browser-edge color'}).click();
+   const colorsOff=await page.evaluate(()=>({
+    html:document.documentElement.style.backgroundColor,
+    body:document.body.style.backgroundColor
+   }));
+   check('webkit-ipad edge tint probe restores original backgrounds',
+    colorsOff.html===colorsBefore.html&&colorsOff.body===colorsBefore.body,
+    {colorsBefore,colorsOff});
+  }
   check(engine+' '+route+' page identity',initial.route===route,{got:initial.route});
   check(engine+' '+route+' navbar in normal header flow initially',
    Math.abs(initial.mainTop-initial.headerBottom)<2 && initial.headerHeight>40,{initial});
