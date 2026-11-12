@@ -35,6 +35,7 @@ async function step(page,device,delay){
    const data={
     p:Number(o?.dataset.progress),inkType:o?.dataset.inkAsset,
     source:img?.getAttribute('src'),originalSize:[img?.naturalWidth,img?.naturalHeight],
+    backing:o?.dataset.inkBacking,
     roller:roller?.getAttribute('src'),natural:[roller?.naturalWidth,roller?.naturalHeight],
     style:img?getComputedStyle(img).display:null,
     width:img?parseFloat(img.style.width):0,height:img?parseFloat(img.style.height):0,
@@ -52,9 +53,10 @@ async function step(page,device,delay){
    if(!observed){
     observed=true;
     record(device,delay+'ms one original hand-illustrated vector image',
-     state.source==='/assets/c02/texture.svg'&&
+     state.source==='/assets/c02/texture-composed.svg'&&
      state.originalSize[0]===8192&&state.originalSize[1]===1152&&
-     state.roller==='/assets/c02/roller-original.svg'&&state.layers===1&&
+     state.roller==='/assets/c02/roller-original.svg'&&
+      state.backing==='gallery-white-source-envelope'&&state.layers===1&&
      state.svgVisible==='hidden',state);
     record(device,delay+'ms exact SVG aspect ratio',
      Math.abs(state.width/state.height-8192/1152)<.00002,state);
@@ -115,7 +117,8 @@ async function step(page,device,delay){
     scrollY,viewportHeight:visualViewport?.height||innerHeight};
   });
   record(device,'5s reveal retains exact SVG with no renderer switch',
-   reveal.source==='/assets/c02/texture.svg'&&
+   reveal.source==='/assets/c02/texture-composed.svg'&&
+   reveal.backing==='gallery-white-source-envelope'&&
    reveal.asset==='owner-vector-svg'&&
    reveal.layers===1&&reveal.svgHidden===true&&
    reveal.progress===0,reveal);
