@@ -42,7 +42,7 @@ async function step(page,device,delay){
    };
    return data;
   }).catch(()=>({}));
-  if(state.inkType==='original-png'&&state.p>.05&&state.p<.99){
+  if(state.inkType==='original-png-continuous'&&state.p>.05&&state.p<.99){
    if(!observed){
     observed=true;
     record(device,delay+'ms exact source',state.source==='/assets/c02/Ink_swipe_1.png'
