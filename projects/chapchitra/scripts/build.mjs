@@ -50,6 +50,21 @@ if((vectorDelivery.match(/<path\b/g)||[]).length!==727||
  vectorDelivery.match(/\sd="/g)?.length!==inkSource.match(/\sd="/g)?.length)
  throw Error('C02 vector-delivery optimization altered paths');
 await writeFile(resolve(output,'assets/c02/texture.svg'),vectorDelivery,'utf8');
+// One atomically decoded green-over-white visual surface: insert the
+// derived backing BEFORE all 727 owner-drawn paths, leaving source bytes
+// unchanged. This prevents asynchronous white-only frames across documents.
+const {whiteInkBacking}=await import('./c02-white-backing.mjs');
+const underprint=await whiteInkBacking(inkVectorBytes);
+const whitePath='<path id="c02-white-backing" fill="#F6F7F5" d="'+underprint.path+'"/>';
+if(vectorDelivery.split('</style>').length!==2)
+ throw Error('C02 owner SVG style insertion point changed');
+const composedDelivery=vectorDelivery.replace('</style>','</style>\n'+whitePath);
+if(!composedDelivery.includes(whitePath)||
+ (composedDelivery.match(/<path\\b/g)||[]).length!==728||
+ !composedDelivery.includes('#293D2D'))
+ throw Error('C02 combined underprint validation failed');
+await writeFile(resolve(output,'assets/c02/texture-composed.svg'),composedDelivery,'utf8');
+console.log('C02 single-svg white ink underprint:',underprint.stats);
 console.log('C02 exact hand-illustrated SVG source verified',{
  sha256:inkSVGHash,paths:727,
  originalBytes:inkVectorBytes.length,deliveryBytes:Buffer.byteLength(vectorDelivery)
