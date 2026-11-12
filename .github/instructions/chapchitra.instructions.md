@@ -18,3 +18,12 @@ Before coding, read:
 **Scope boundary:** Only work inside `projects/chapchitra/` unless the owner explicitly authorizes governance/deployment changes. Never change THREADS, EcomCMS, `site/`, or unrelated demos.
 
 **Report each run:** actual changes, source PR/commit, integrated-versus-pending status, shared staging URL and verified SHA, tests, blockers, and next task. Do not call a proposed or unverified deployment "live".
+
+
+## Exclusive lanes: integration review is not permission to implement features
+
+- **Artist's Edit/Main Website** implements worktable, garment editing, pricing and UI, and coordinates serial integration when receiving a ready animation PR; it **must not modify, design, troubleshoot or independently plan C02/GSAP/Lottie internals**.
+- **Animation Integration** implements and debugs C02 and other animation-owned files; it **must not implement Artist's Edit pricing or worktable features**.
+- **Making Lottie** produces independent C05 assets one by one; handoff only after owner approval.
+- The serial integrator may inspect ready animation PRs, merge conflicts, shared route contracts and combined-site regressions. Send animation defects to Animation lane; never make a parallel implementation. Do not monitor unfinished animation work instead of continuing Artist's Edit.
+- New developers must declare an exclusive lane and consult `projects/chapchitra/docs/UNIFIED_STAGING_WORKFLOW.md` before making edits. Shared files require assigned ownership and handoff.
