@@ -101,12 +101,12 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  inkAssetFill.style.cssText='position:absolute;top:0;bottom:0;left:0;background:#293D2D;width:0;';
  const inkAssetImg=doc.createElement('img');
  inkAssetImg.className='c02-loader__ink-asset';
- inkAssetImg.src=C02_INK_ASSET.path;
  inkAssetImg.alt='';inkAssetImg.draggable=false;
  inkAssetImg.decoding='async';inkAssetImg.loading='eager';
  inkAssetImg.style.cssText='position:absolute;max-width:none;object-fit:fill;pointer-events:none;';
  let pngFailed=false;
  inkAssetImg.addEventListener('error',()=>{pngFailed=true;},{once:true});
+ inkAssetImg.src=C02_INK_ASSET.path;
  inkAssetLayer.append(inkAssetFill,inkAssetImg);
  const roller=doc.createElement('div');roller.className='c02-loader__roller';
  roller.setAttribute('aria-hidden','true');
@@ -122,7 +122,11 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   overlay.dataset.progress=String(p); // QA-readable contact alignment, not user UI
   forest.setAttribute('d',inkPath(p,{mode,offset:27}));
   ink.setAttribute('d',inkPath(p,{mode}));
-  const pngCover=edgeStyle==='asset'&&mode==='cover'&&p>0&&p<1&&!pngFailed;
+  // Never expose a blank layer while decoding a cold PNG. Once decoded,
+  // use the complete owner's raster without any synthetic replacement.
+  const pngReady=!pngFailed&&inkAssetImg.complete&&inkAssetImg.naturalWidth===2048
+   &&inkAssetImg.naturalHeight===1152;
+  const pngCover=edgeStyle==='asset'&&mode==='cover'&&p>0&&p<1&&pngReady;
   inkAssetLayer.style.display=pngCover?'block':'none';
   svg.style.visibility=pngCover?'hidden':'visible';
   if(pngCover){
