@@ -27,9 +27,11 @@ z-index:2147483001}
   var age=Date.now()-ticket?.created;
   if(ticket&&ticket.to===location.pathname+location.search&&age>=0&&age<45000){
    document.documentElement.classList.add('c02-pending');
-   // Preserve a partly printed organic edge while the incoming document
-   // parses; a solid-green prepaint is explicitly prohibited.
-   var p=Math.max(.015,Math.min(.985,Number(ticket.progress)||.015));
+   // Native navigation begins only at completed, visually verified
+   // coverage. Preserve progress=1 from the outgoing document rather than
+   // exposing the destination through a synthetic .985 opening.
+   var p=Math.max(.015,Math.min(1,Number(ticket.progress)||.015));
+   document.documentElement.dataset.c02PrepaintProgress=String(p);
    function edge(y,offset){
     var organic=104*Math.sin(Math.PI*y/1000*2.35+.32)
      +48*Math.sin(Math.PI*y/1000*4.15+1.15)
