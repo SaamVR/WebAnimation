@@ -1,4 +1,20 @@
 # CHAPCHITRA Development Guardrails
+
+## Latest owner directive — unified staging and development handoff (2026-11-12)
+
+**Read this section first and read [UNIFIED_STAGING_WORKFLOW.md](docs/UNIFIED_STAGING_WORKFLOW.md) before starting any CHAPCHITRA task.** Applies to all human and AI developers, including new chats, when working on this repository.
+
+1. **ONE CHAPCHITRA website; ONE permanent staging/review URL.** The Artist's Edit/main website and animation integration lanes both contribute to the same staging site. Do not proliferate new long-lived Render/Vercel sites or change the owner-facing URL for every refinement. Use ephemeral previews only for isolated technical QA.
+2. **Parallel authoring, serial integration.** Artist's Edit owns its feature branch/files; Animation owns C-series integration branches/files; no shared-branch concurrent pushes. One Integration Owner (currently coordinated by Artist's Edit) alone integrates PRs into the designated staging branch, resolves conflicts, runs tests, and triggers/validates one staging deployment.
+3. **Verify, do not assume.** At task start inspect live branches, PRs, changed file lists, deployment settings, and confirmed staging URL. `deploy/chapchitra-render-review` is an existing candidate staging branch; don't force it to be authoritative without checking the hosting configuration. Do not claim an integrated site is updated until the deployed commit is verified.
+4. **Review and release gates.** Integration to staging is not publication to production. Require smoke/regression/visual checks and owner approval before production merge or release. Do not silently auto-approve artwork. Standalone C05 Lottie prototypes remain isolated until the owner approves each one, and then move to the Animation integration lane.
+5. **Protect unrelated projects.** Leave THREADS, `site/`, EcomCMS, repo-root deployment and other apps untouched. Never create new deployment services, modify production configuration or rewire hosting without explicit authorization.
+6. **End every completed development run** with implemented files, PR/commit SHAs, integration status, **same staging link**, tests/visual evidence, outstanding blockers, and the next task. If work is feature-only, say "awaiting serial staging integration" rather than presenting an isolated preview as the shared site.
+
+**Precedence:** The latest explicit owner approval and authoritative animation register supersede dated V3/C01–C04 planning-status statements below where they conflict; do not restart already approved assets or repurpose animation IDs. Older project and palette preservation rules still apply unless explicitly superseded.
+
+---
+
 Follow the repository-root `AGENTS.md` as binding policy.
 
 This is a standalone creative portfolio demo. Its **12-color palette (2026-11-06) and existing HTML-derived layout** are owner-specified; it is not an operational commercial storefront.
