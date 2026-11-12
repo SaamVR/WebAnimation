@@ -161,6 +161,16 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    const clip=mode==='reveal'?c02InkRevealClip(p,viewport.width,viewport.height)
     :p===0?'inset(0 100% 0 0)':'none';
    if(inkAssetLayer.style.clipPath!==clip)inkAssetLayer.style.clipPath=clip;
+   // The owner SVG's far-edge open bristle channels remain transparent at p=1
+   // on tall/narrow screens. Seal ONLY the already-completed surface with the
+   // approved Gallery White pigment. The existing source-derived backing is
+   // unchanged, and this color is inside the SAME reveal-clipped image layer.
+   // The seal is transparent during all moving/partial cover frames.
+   const sealed=mode==='reveal'||(mode==='cover'&&p>=1);
+   const backing=sealed?'#F6F7F5':'transparent';
+   if(inkAssetLayer.style.backgroundColor!==backing)
+    inkAssetLayer.style.backgroundColor=backing;
+   overlay.dataset.c02CoverSealed=sealed?'true':'false';
    overlay.dataset.inkAsset='owner-vector-svg';
    overlay.dataset.inkBacking='gallery-white-source-envelope';
    overlay.dataset.inkContactX=String(placement.contactX);
@@ -336,12 +346,15 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   const style=win.getComputedStyle(inkAssetLayer);
   const complete=Number(overlay.dataset.progress)>=1&&
    overlay.dataset.phase==='cover';
+  const whiteSeal=edgeStyle!=='asset'||(
+   overlay.dataset.c02CoverSealed==='true'&&
+   style.backgroundColor==='rgb(246, 247, 245)');
   const covered=complete&&frameFits&&(edgeStyle==='asset'
-   ?ready&&imageSpans&&style.display==='block'&&
+   ?ready&&imageSpans&&whiteSeal&&style.display==='block'&&
     style.clipPath==='none'&&minPigmentEdge>=viewport.width+2
    :inkPath(1,{mode:'cover'}).includes('H 1002 V 1002'));
   const proof={covered,progress:Number(overlay.dataset.progress),
-   imageReady:ready,frameFits,imageSpans,clip:style.clipPath,
+   imageReady:ready,frameFits,imageSpans,whiteSeal,clip:style.clipPath,
    minPigmentEdgePx:minPigmentEdge,
    viewport,bounds:{left:bounds.left,top:bounds.top,
     width:bounds.width,height:bounds.height}};
