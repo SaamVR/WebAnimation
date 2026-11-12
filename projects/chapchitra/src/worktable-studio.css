@@ -440,8 +440,8 @@
 }
 
 
-/* View-switch affordance belongs to the desk composition, not a footer.
-   2.3% bottom registration matches the annotated wooden space below the hem. */
+/* Keep the approved in-desk registration; only the button's visual skin
+   changes to the original Compact SVG (face, border, ink and shadow). */
 .cc-worktable-view-row{
  position:absolute;left:50%;bottom:2.3%;z-index:8;
  transform:translateX(-50%);
@@ -450,79 +450,59 @@
  pointer-events:none;
 }
 .cc-worktable-view-button{
- display:inline-flex;align-items:center;justify-content:center;gap:9px;
- min-width:144px;min-height:44px;padding:7px 18px;pointer-events:auto;
- border:1px solid var(--color-press-green);border-radius:25px;
- background:var(--color-gallery-white);color:var(--color-press-green);
- font:600 12px/1.4 var(--sans);letter-spacing:.01em;cursor:pointer;
- transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease;
+ min-height:44px;pointer-events:auto;
 }
-.cc-worktable-view-button:hover{
- background:var(--color-silver-mist);box-shadow:0 3px 9px rgb(23 36 25 / .10);
+/* Styling is scoped to this single reusable approved SVG button.
+   Its original compact face and ink animation are not reconstructed. */
+.cc-worktable-view-button.cc-sketch.cc-compact-artwork{
+ width:164px;min-width:164px;height:64px;min-height:64px;
+ font-family:'Hind Siliguri',var(--sans,system-ui,sans-serif);
+ font-size:16.5px;font-weight:600;letter-spacing:0;
+ -webkit-tap-highlight-color:transparent;
 }
-.cc-worktable-view-button:active{transform:translateY(1px)}
-.cc-worktable-view-button:focus-visible{
- outline:2px solid var(--color-terracotta);outline-offset:3px;
+.cc-worktable-view-button.cc-sketch.cc-compact-artwork .cc-sketch-copy{
+ width:calc(100% - 22px);max-width:calc(100% - 22px);
+ line-height:1.12;
 }
+.cc-worktable-view-button .cc-sketch-label,
+.cc-worktable-view-button .cc-sketch-label-ink{
+ display:inline-flex;align-items:center;justify-content:center;gap:7px;
+ font-family:inherit;font-weight:600;line-height:1.12;
+}
+.cc-worktable-view-glyph{
+ display:inline-flex;align-items:center;justify-content:center;
+ font:500 20px/1 Georgia,serif;flex:none;
+}
+.cc-worktable-view-label{white-space:nowrap}
 .cc-worktable-view-button:disabled{opacity:.6;cursor:progress}
-.cc-worktable-view-glyph{font:500 22px/1 Georgia,serif;transform:translateY(-1px)}
 .cc-worktable-turn-in{animation:cc-worktable-turn-in .4s cubic-bezier(.19,.65,.35,1) both}
 @keyframes cc-worktable-turn-in{
  0%{opacity:.65;transform:scaleX(.91)}
  65%{opacity:1;transform:scaleX(1.015)}
  100%{opacity:1;transform:scaleX(1)}
 }
-@media(prefers-reduced-motion:reduce){
- .cc-worktable-view-button{transition:none!important}
- .cc-worktable-turn-in{animation:none!important}
-}
-
-/* Keep the 44px touch target and center registration on small screens, too. */
-@media(max-width:600px){
- .cc-worktable-view-row{bottom:0.5%}
- .cc-worktable-view-button{min-width:112px;padding:5px 10px;font-size:11px;gap:5px}
- .cc-worktable-view-glyph{font-size:18px}
-}
-
-/* Responsive view control: the HIT area stays 44px while only the visual
-   surface shrinks to fit the naturally smaller wooden strip. This avoids
-   painting a full-size pill over the garment hem on narrow stages. */
 @media(max-width:1380px){
  .cc-worktable-view-row{bottom:.8%}
 }
 @media(min-width:601px) and (max-width:1050px){
- .cc-worktable-view-button{
-  position:relative;min-height:44px;border:0;background:transparent;
-  box-shadow:none;isolation:isolate;
+ .cc-worktable-view-button.cc-sketch.cc-compact-artwork{
+  width:150px;min-width:150px;height:60px;min-height:60px;
+  font-size:16px;
  }
- .cc-worktable-view-button::before{
-  content:"";position:absolute;inset:auto 0 0;height:30px;
-  border:1px solid var(--color-press-green);
-  border-radius:25px;background:var(--color-gallery-white);
-  z-index:-1;
- }
- .cc-worktable-view-button > span{position:relative;transform:translateY(7px)}
- .cc-worktable-view-button:hover{background:transparent;box-shadow:none}
+ .cc-worktable-view-glyph{font-size:19px}
 }
 @media(max-width:600px){
  .cc-worktable-view-row{bottom:0}
- .cc-worktable-view-button{
-  position:relative;min-width:44px;width:44px;min-height:44px;height:44px;
-  padding:0;border:0;background:transparent;box-shadow:none;
+ .cc-worktable-view-button.cc-sketch.cc-compact-artwork{
+  width:136px;min-width:136px;height:54px;min-height:54px;
+  font-size:12.5px;
  }
- .cc-worktable-view-button:hover{background:transparent;box-shadow:none}
- .cc-worktable-view-button:active{transform:none}
- .cc-worktable-view-glyph{
-  position:absolute;left:12px;bottom:0;
-  display:grid;place-items:center;width:20px;height:16px;
-  border:1px solid var(--color-press-green);border-radius:12px;
-  background:var(--color-gallery-white);font-size:14px;
-  transform:none;
- }
- .cc-worktable-view-label{
-  position:absolute;width:1px;height:1px;overflow:hidden;
-  clip:rect(0 0 0 0);white-space:nowrap;
- }
+ .cc-worktable-view-button .cc-sketch-label,
+ .cc-worktable-view-button .cc-sketch-label-ink{gap:5px}
+ .cc-worktable-view-glyph{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){
+ .cc-worktable-turn-in{animation:none!important}
 }
 
 /* CHAPCHITRA Artist's Edit: compact, unobtrusive placeholder estimate.
@@ -643,20 +623,28 @@
 .cc-worktable-invoice dl>div{padding:7px 0}
 .cc-worktable-invoice dl .cc-worktable-price-grand{padding-top:12px}
 
-/* A4 movement: one accessible touch handle anchored to the movable print
-   rectangle. It cannot affect the A3 torso boundary or garment artwork. */
+/* A4 move: identical 44px diameter, green/cream treatment and depth as
+   the active artwork transform tool; no platform-provided emoji or blue glyph. */
 .cc-worktable-frame-handle{
  position:absolute;z-index:10;width:44px;height:44px;padding:0;
- transform:translate(-50%,-50%);border:0;border-radius:50%;
- color:var(--cc-page);background:var(--cc-press);
- outline:2px solid rgb(255 249 236 / .95);outline-offset:-4px;
- box-shadow:0 1px 4px rgb(16 22 17 / .3);
+ transform:translate(-50%,-50%);
+ border:1px solid var(--color-press-green,#293d2d);border-radius:50%;
+ color:var(--color-gallery-white,#f6f7f5);
+ background:var(--color-press-green,#293d2d);
+ box-shadow:1px 2px 4px rgb(16 22 17 / .25);
  display:grid;place-items:center;cursor:grab;
- font:700 20px/1 var(--sans);touch-action:none;user-select:none;
+ touch-action:none;user-select:none;-webkit-user-select:none;
+ -webkit-tap-highlight-color:transparent;
+}
+.cc-worktable-frame-move-icon{
+ display:block;width:24px;height:24px;flex:none;
+ color:inherit;pointer-events:none;
 }
 .cc-worktable-frame-handle[hidden]{display:none!important}
 .cc-worktable-frame-handle:active{cursor:grabbing}
-.cc-worktable-frame-handle:focus-visible{outline:3px solid var(--cc-accent);outline-offset:2px}
+.cc-worktable-frame-handle:focus-visible{
+ outline:2px solid var(--color-gallery-white,#f6f7f5);outline-offset:3px;
+}
 @media(prefers-reduced-motion:reduce){
  .cc-worktable-frame-handle{transition:none!important}
 }

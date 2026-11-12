@@ -1,4 +1,5 @@
 import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableReducer } from './worktable-stage.mjs';
+import { sketchButton } from './handdrawn-buttons.mjs';
 import { UPLOAD_ARTWORK_SVG } from './worktable-upload-icon.mjs';
 import { FABRIC_PIGMENTS, applyFabricPigmentToRGBA } from './worktable-fabric-pigments.mjs';
 import { paperGuide, placementGeometry, printScaleLabel, resolutionGuidance } from './worktable-print-placement.mjs';
@@ -165,10 +166,17 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  // below the hem in the free lower desk area; no artificial cream footer.
  const viewRow=document.createElement('div');
  viewRow.className='cc-worktable-view-row';
- const viewButton=document.createElement('button');
- viewButton.type='button';viewButton.className='cc-worktable-view-button';
+ // The existing approved 164×64 Compact SVG supplies the exact handmade
+ // face, edge and shadow; the native button and flip click handler are retained.
+ const viewTemplate=document.createElement('template');
+ viewTemplate.innerHTML=sketchButton({label:'View back',variant:'compact',
+  tone:'beige',className:'cc-worktable-view-button'});
+ const viewButton=viewTemplate.content.firstElementChild;
  viewButton.setAttribute('aria-label','View back');
- viewButton.innerHTML='<span aria-hidden="true" class="cc-worktable-view-glyph">↻</span><span class="cc-worktable-view-label">View back</span>';
+ for(const label of viewButton.querySelectorAll('.cc-sketch-label,.cc-sketch-label-ink')){
+  label.innerHTML='<span aria-hidden="true" class="cc-worktable-view-glyph">↻</span>'+
+   '<span class="cc-worktable-view-label">View back</span>';
+ }
  viewRow.append(viewButton);
  stage.append(viewRow);
  // Illustrated price-tag artwork is independently registered to the wooden desk.
@@ -366,7 +374,12 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  frameHandle.type='button';frameHandle.className='cc-worktable-frame-handle';
  frameHandle.setAttribute('aria-label','Move A4 print frame within safe A3 printing area');
  frameHandle.title='Drag to reposition the A4 print frame';
- frameHandle.textContent='↕';frameHandle.hidden=true;
+ // An SVG eliminates platform emoji/blue-glyph substitution. Pointer capture,
+ // draggable frame offsets and their A3-safe constraints are unchanged.
+ frameHandle.innerHTML='<svg class="cc-worktable-frame-move-icon" viewBox="0 0 24 24" width="24" height="24" '+
+  'fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" '+
+  'aria-hidden="true" focusable="false"><path d="M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg>';
+ frameHandle.hidden=true;
  stage.append(frameHandle);
  const artBounds=document.createElement('div');artBounds.className='cc-worktable-art-bounds';
  artBounds.setAttribute('aria-hidden','true');stage.append(artBounds);
@@ -809,7 +822,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    const switched=await queueGarmentVisual();
    if(!switched)throw new Error('Could not prepare the requested garment view');
    restoreActiveSide();
-   viewButton.querySelector('.cc-worktable-view-label').textContent=view==='front'?'View back':'View front';
+   for(const label of viewButton.querySelectorAll('.cc-worktable-view-label'))
+    label.textContent=view==='front'?'View back':'View front';
    viewButton.setAttribute('aria-label',view==='front'?'View back':'View front');
    announce(view==='front'?'Front of garment shown.':'Back of garment shown.');
   }catch(error){
