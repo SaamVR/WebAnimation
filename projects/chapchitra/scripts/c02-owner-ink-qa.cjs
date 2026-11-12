@@ -17,20 +17,27 @@ async function step(page,device,delay){
  await page.waitForFunction(()=>document.documentElement.dataset.c02Installed==='v2');
  const started=Date.now();
  await page.locator('a[href="/c02-review/slow/?delay='+delay+'"]').click({noWaitAfter:true});
- let observed=false;
+ let observed=false,texturedInterior=false;
  const deadline=Date.now()+Math.min(delay,1800);
  while(Date.now()<deadline&&!observed){
   const state=await page.evaluate(()=>{
    const o=document.getElementById('c02-loader');
    const img=o?.querySelector('.c02-loader__ink-asset');
    const roller=o?.querySelector('.c02-loader__roller img');
+   const fill=o?.querySelector('.c02-loader__ink-asset-interior');
+   const fillStyle=fill?getComputedStyle(fill):null;
    const data={
     p:Number(o?.dataset.progress),inkType:o?.dataset.inkAsset,
     source:img?.getAttribute('src'),originalSize:[img?.naturalWidth,img?.naturalHeight],
     roller:roller?.getAttribute('src'),natural:[roller?.naturalWidth,roller?.naturalHeight],
     style:img?getComputedStyle(img).display:null,
     width:img?parseFloat(img.style.width):0,height:img?parseFloat(img.style.height):0,
-    contact:Number(o?.dataset.inkContactX),viewport:innerWidth
+    contact:Number(o?.dataset.inkContactX),viewport:innerWidth,
+    fillWidth:fill?parseFloat(fill.style.width):0,
+    fillImage:fillStyle?.backgroundImage,
+    fillRepeat:fillStyle?.backgroundRepeat,
+    fillPosition:fillStyle?.backgroundPosition,
+    fillColor:fillStyle?.backgroundColor
    };
    return data;
   }).catch(()=>({}));
@@ -41,11 +48,30 @@ async function step(page,device,delay){
     &&state.roller==='/assets/c02/roller-original.svg',state);
    record(device,delay+'ms aspect ratio',Math.abs(state.width/state.height-2048/1152)<.00002,state);
    record(device,delay+'ms moving contact',Number.isFinite(state.contact)&&state.contact>-state.viewport,state);
-   if(delay>=5000)
+   record(device,delay+'ms authentic repeated pigment layer',
+    state.fillImage?.includes('ink-interior-loop.webp')&&
+    state.fillRepeat==='repeat-x'&&state.fillPosition?.startsWith('100%')&&
+    ['rgba(0, 0, 0, 0)','transparent'].includes(state.fillColor),state);
+   if(device==='ultrawide'&&delay>=5000&&state.fillWidth>260){
+    texturedInterior=true;
+    const screenshot=await page.screenshot({path:path.join(output,
+      'ultrawide-5s-texture-extension.png')});
+    const sharp=require('sharp');
+    const sampled=await sharp(screenshot).extract({
+      left:40,top:240,width:180,height:180
+    }).stats();
+    // A truly flat Press Green rectangle has zero per-channel deviation.
+    const rgbDeviation=sampled.channels.slice(0,3).map(c=>c.stdev);
+    record(device,'ultrawide visibly textured region',Math.max(...rgbDeviation)>0.6,
+     {fillWidth:state.fillWidth,rgbDeviation});
+   }else if(delay>=5000)
     await page.screenshot({path:path.join(output,device+'-5s-original-png-roller.png')});
   }else await page.waitForTimeout(45);
  }
  if(delay>=5000)record(device,'5s visibly textured cover',observed,{delay,observed});
+ if(device==='ultrawide'&&delay>=5000)
+  record(device,'5s extended pigment coverage',texturedInterior,
+   {delay,texturedInterior});
  await page.waitForURL(u=>u.pathname==='/c02-review/slow/',{timeout:18000});
  await page.waitForFunction(()=>window.__c02DemoReady===true&&!document.getElementById('c02-loader'),
   null,{timeout:18000});
@@ -87,7 +113,8 @@ async function main(){
  const devices=process.env.C02_QA_DEVICE
   ?[[process.env.C02_QA_DEVICE,process.env.C02_QA_DEVICE==='desktop'?1280:834,
     process.env.C02_QA_DEVICE==='desktop'?800:1112]]
-  :engineName==='webkit'?[['ipad',834,1112],['mobile',390,844]]:[['desktop',1280,800],['mobile',390,844]];
+  :engineName==='webkit'?[['ipad',834,1112],['mobile',390,844]]
+ :[['desktop',1280,800],['mobile',390,844],['ultrawide',3440,900]];
  for(const [device,width,height] of devices){
   const browser=await engine.launch(engineName==='chromium'&&process.platform==='win32'
    ?{channel:'chrome',headless:true}:{headless:true});
