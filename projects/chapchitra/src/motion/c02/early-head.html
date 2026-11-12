@@ -14,6 +14,10 @@ background-image:url('/assets/c02/texture-composed.svg');background-repeat:no-re
 background-size:var(--c02-asset-width,0px) var(--c02-asset-height,0px);
 background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-events:auto;
 z-index:2147483001}
+/* Only at fully painted 100% coverage: match the live Gallery White
+   seal UNDER the same composed SVG background. No advancing white panel. */
+html.c02-pending.c02-asset-arrival.c02-full-cover::after{
+background-color:#F6F7F5}
 /* Cross-document native View Transitions are deliberately not auto-enabled:
    Chromium can suspend the outgoing animated document while snapshotting,
    stranding an ink overlay. The one-use native-navigation fallback is the
@@ -32,6 +36,7 @@ z-index:2147483001}
    // exposing the destination through a synthetic .985 opening.
    var p=Math.max(.015,Math.min(1,Number(ticket.progress)||.015));
    document.documentElement.dataset.c02PrepaintProgress=String(p);
+   if(p>=1)document.documentElement.classList.add('c02-full-cover');
    function edge(y,offset){
     var organic=104*Math.sin(Math.PI*y/1000*2.35+.32)
      +48*Math.sin(Math.PI*y/1000*4.15+1.15)
