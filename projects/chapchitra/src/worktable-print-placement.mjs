@@ -33,7 +33,10 @@ export function paperGuide(garment='regular',preset='A4',{frameX=0,frameY=0}={})
  const a3=printableRegion(garment);
  if(!PAPER_REFERENCES[preset])throw new RangeError('Unknown print reference');
  if(preset==='A3')return {...a3,region:a3,preset,frameX:0,frameY:0};
- const width=a3.width/Math.SQRT2,height=a3.height/Math.SQRT2;
+ // A3 and A4 use slightly different rounded ISO dimensions. Keep A4's
+ // exact ratio while maintaining half the A3 design-space area.
+ const ratio=PAPER_REFERENCES.A4.widthIn/PAPER_REFERENCES.A4.heightIn;
+ const height=Math.sqrt(a3.width*a3.height/(2*ratio)),width=height*ratio;
  const homeX=a3.x+(a3.width-width)/2,homeY=a3.y;
  const x=clamp(homeX+finite(frameX),a3.x,a3.x+a3.width-width);
  const y=clamp(homeY+finite(frameY),a3.y,a3.y+a3.height-height);
