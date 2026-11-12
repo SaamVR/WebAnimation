@@ -175,3 +175,31 @@ test('short simulated handoff stays one-click and avoids WebKit roller velocity 
  assert.match(runtime,/demoMs<=1000\?40:/);
  assert.match(runtime,/d=Math\.min\(600,Math\.max\(560,d\)\)/);
 });
+
+test('native page commit is gated by actual complete ink geometry and a paint boundary',async()=>{
+ const runtime=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
+ const prepaint=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
+ assert.match(runtime,/drive\.finishTo\(1,\(\)=>\{/);
+ assert.doesNotMatch(runtime,/drive\.finishTo\(Math\.max\(current\+\.012,\.68\),navigate\)/);
+ assert.match(runtime,/fullCoverage\(\)/);
+ assert.match(runtime,/inkAssetImg\.naturalWidth===C02_INK_ASSET\.width/);
+ assert.match(runtime,/inkAssetImg\.naturalHeight===C02_INK_ASSET\.height/);
+ assert.match(runtime,/frameFits&&\(edgeStyle==='asset'/);
+ assert.match(runtime,/whiteSeal&&style\.display==='block'/);
+ assert.match(runtime,/style\.clipPath==='none'/);
+ assert.match(runtime,/coverPaintRaf=win\.requestAnimationFrame\(validate\)/);
+ assert.match(runtime,/if\(!leaving\|\|navigationCommitted\|\|!proof\?\.covered\)return/);
+ assert.match(runtime,/storeTicket\(win,target,\{progress:1,startedAt,demoMs,edgeStyle\}\)/);
+ assert.match(runtime,/Math\.min\(1,progress\)/);
+ assert.match(runtime,/Math\.min\(1,Number\(ticket\.progress\)\|\|\.015\)/);
+ assert.match(runtime,/Math\.min\(1,initial\)/);
+ assert.match(runtime,/dataset\.c02IncomingProgress=String\(p\)/);
+ assert.match(runtime,/dataset\.c02RevealStartAt=String\(Date\.now\(\)\)/);
+ assert.match(prepaint,/Math\.min\(1,Number\(ticket\.progress\)\|\|\.015\)/);
+ assert.match(prepaint,/dataset\.c02PrepaintProgress=String\(p\)/);
+ assert.match(prepaint,/c02-full-cover::after/);
+ assert.match(prepaint,/background-color:#F6F7F5/);
+ assert.match(runtime,/inkAssetLayer\.style\.clipPath=clip/);
+ assert.match(runtime,/const sealed=mode==='reveal'\|\|\(mode==='cover'&&p>=1\)/);
+ assert.match(runtime,/const backing=sealed\?'#F6F7F5':'transparent'/);
+});
