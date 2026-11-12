@@ -22,9 +22,9 @@ const cropData=[
  // Named, independent clipped crops of the ORIGINAL approved desk artwork.
  // The broad soft masks only blend background pixels; objects are not redrawn.
  {id:'plant',source:[8,8,292,360],left:3,top:3,width:34,mask:'ellipse(49% 49% at 50% 50%)'},
- {id:'brushes',source:[1020,69,145,194],left:40.5,top:12,width:15,mask:'ellipse(48% 49% at 50% 50%)'},
- {id:'lamp',source:[366,66,183,208],left:71.5,top:18,width:24,flipX:true,mask:'ellipse(48% 49% at 50% 50%)'},
- {id:'pencil',source:[348,623,152,72],left:5,top:27,width:23,mask:'ellipse(49% 43% at 50% 50%)'},
+ {id:'brushes',source:[1020,69,145,194],left:38.5,top:12,width:15.75,mask:'ellipse(48% 49% at 50% 50%)'},
+ {id:'lamp',source:[366,66,183,208],left:74,top:16.5,width:24,flipX:true,mask:'ellipse(48% 49% at 50% 50%)'},
+ {id:'pencil',source:[348,623,152,72],left:5,top:25.5,width:23,mask:'ellipse(49% 43% at 50% 50%)'},
  {id:'swatch',source:[328,686,177,166],left:5,top:62,width:25,mask:'ellipse(48% 47% at 50% 50%)'},
  {id:'ink',source:[1013,728,159,124],left:80,top:53,width:18,mask:'ellipse(48% 46% at 50% 50%)'},
 ];
