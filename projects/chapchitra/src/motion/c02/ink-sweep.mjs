@@ -109,6 +109,10 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  let pngFailed=false;
  inkAssetImg.addEventListener('error',()=>{pngFailed=true;},{once:true});
  inkAssetImg.src=C02_INK_ASSET.path;
+ // Decode the generated, lossless interior before opting into PNG cover.
+ // If either raster fails, use the existing procedural fallback without gaps.
+ const interiorProbe=new win.Image();
+ interiorProbe.decoding='async';interiorProbe.src=C02_INK_ASSET.interior.path;
  inkAssetLayer.append(inkAssetFill,inkAssetImg);
  const roller=doc.createElement('div');roller.className='c02-loader__roller';
  roller.setAttribute('aria-hidden','true');
@@ -127,7 +131,9 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   // Never expose a blank layer while decoding a cold PNG. Once decoded,
   // use the complete owner's raster without any synthetic replacement.
   const pngReady=!pngFailed&&inkAssetImg.complete&&inkAssetImg.naturalWidth===2048
-   &&inkAssetImg.naturalHeight===1152;
+   &&inkAssetImg.naturalHeight===1152&&interiorProbe.complete
+   &&interiorProbe.naturalWidth===C02_INK_ASSET.interior.loopWidth
+   &&interiorProbe.naturalHeight===C02_INK_ASSET.height;
   const pngCover=edgeStyle==='asset'&&mode==='cover'&&p>0&&p<1&&pngReady;
   inkAssetLayer.style.display=pngCover?'block':'none';
   svg.style.visibility=pngCover?'hidden':'visible';
