@@ -131,6 +131,10 @@ async function step(page,device,delay){
   null,{timeout:18000});
  const finished=await page.evaluate(()=>({
   phase:document.documentElement.dataset.c02State,
+  cover:JSON.parse(sessionStorage.getItem('chapchitra-c02-full-coverage-v1')||'null'),
+  prepaintProgress:Number(document.documentElement.dataset.c02PrepaintProgress),
+  incomingProgress:Number(document.documentElement.dataset.c02IncomingProgress),
+  revealStartedAt:Number(document.documentElement.dataset.c02RevealStartAt||0),
   ready:Number(document.documentElement.dataset.c02ReadyAt),
   rollerDone:Number(document.documentElement.dataset.c02RollerEndAt),
   revealed:Number(document.documentElement.dataset.c02RevealEndAt),
@@ -153,6 +157,17 @@ async function step(page,device,delay){
   finished.phase==='complete'&&finished.ready>0&&
   finished.rollerDone>=finished.ready&&finished.revealed>=finished.rollerDone,
   {elapsedMs:Date.now()-started,...finished});
+ record(device,delay+'ms commits only after genuine full-cover gate',
+  finished.cover?.covered===true&&finished.cover.progress===1&&
+  finished.cover.imageReady===true&&finished.cover.frameFits===true&&
+  finished.cover.imageSpans===true&&finished.cover.whiteSeal===true&&
+  finished.cover.clip==='none'&&
+  finished.prepaintProgress===1&&finished.incomingProgress===1&&
+  finished.cover.committedAt<=finished.ready&&
+  finished.revealStartedAt>=finished.ready,
+  {cover:finished.cover,prepaint:finished.prepaintProgress,
+   incoming:finished.incomingProgress,ready:finished.ready,
+   revealStart:finished.revealStartedAt});
  record(device,delay+'ms prepaint-to-SVG first frame stays aligned',
   finished.handoff==='matched-first-frame'&&
   Number.isFinite(finished.firstPaint.x)&&finished.firstPaint.x<1&&
