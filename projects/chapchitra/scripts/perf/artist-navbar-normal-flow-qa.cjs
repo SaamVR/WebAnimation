@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path');
 const origin=process.env.CC_QA_ROOT||'http://127.0.0.1:4483';
 const out=path.resolve(process.env.CC_QA_OUT||'perf-results/artist-navbar-static-qa');
 fs.mkdirSync(out,{recursive:true});
-const checks=[],errors=[],responses=[];
+const checks=[],errors=[],responses=[],topStripGeometry=[];
 const check=(label,passed,details={})=>{
  const result={label,passed:!!passed,...details};checks.push(result);
  if(!passed)console.error('FAILED',label,JSON.stringify(details));
@@ -15,7 +15,8 @@ async function measure(page){
   const announcement=document.querySelector('#app > .announcement');
   const h=header.getBoundingClientRect(),m=main.getBoundingClientRect(),a=announcement.getBoundingClientRect();
   const element=document.elementFromPoint(innerWidth/2,3);
-  return {route:document.body.dataset.page,scrollY:scrollY,headerTop:h.top,
+  const navdebug=window.__ccNavViewport?.measure?.()||null;
+  return {navdebug,route:document.body.dataset.page,scrollY:scrollY,headerTop:h.top,
    headerBottom:h.bottom,headerHeight:h.height,mainTop:m.top,
    announcementTop:a.top,announcementBottom:a.bottom,
    headerPosition:getComputedStyle(header).position,
@@ -37,10 +38,23 @@ async function run(browser,engine,width,height){
   page.on('pageerror',e=>errors.push({engine,route,message:e.message}));
   page.on('response',r=>{if(r.status()>=400&&r.url().startsWith(origin))responses.push({engine,route,status:r.status(),url:r.url()})});
   const url=route==='home'?'/':route==='artists-edit'?'/artists-edit/':'/'+(route==='about'?'about':route)+'/';
-  await page.goto(origin+url,{waitUntil:'load',timeout:60000});
+  await page.goto(origin+url+'?navdebug=1',{waitUntil:'load',timeout:60000});
   await page.locator('#siteHeader').waitFor({timeout:30000});
   if(route==='artists-edit') await page.locator('.cc-worktable-stage:not([aria-busy="true"])').waitFor({timeout:90000});
   const initial=await measure(page);
+  const root=initial.navdebug?.rectangles;
+  topStripGeometry.push({engine,route,stage:'direct',geometry:initial.navdebug});
+  await page.screenshot({path:path.join(out,engine+'-'+route+'-navdebug-direct.png')});
+  check(engine+' '+route+' navdebug full geometry exists',!!root?.html&&!!root?.body&&
+   !!root?.app&&!!root?.announcement&&!!root?.siteHeader&&!!root?.main,
+   {available:Object.keys(root||{})});
+  if(root){
+   check(engine+' '+route+' no document gap above announcement at scrollY=0',
+    Math.abs(root.announcement.top)<2&&Math.abs(root.app.top)<2&&
+    Math.abs(root.body.top)<2&&initial.scrollY===0,
+    {boxes:{html:root.html,body:root.body,app:root.app,announcement:root.announcement},
+     point:initial.navdebug?.samplePoints});
+  }
   check(engine+' '+route+' page identity',initial.route===route,{got:initial.route});
   check(engine+' '+route+' navbar in normal header flow initially',
    Math.abs(initial.mainTop-initial.headerBottom)<2 && initial.headerHeight>40,{initial});
@@ -87,6 +101,8 @@ async function run(browser,engine,width,height){
    await page.evaluate(()=>scrollTo({top:Math.min(350,Math.max(0,document.documentElement.scrollHeight-innerHeight)),behavior:'instant'}));
    await page.waitForTimeout(120);
    const scrolled=await measure(page);
+   topStripGeometry.push({engine,route,stage:'scrolled',geometry:scrolled.navdebug});
+   await page.screenshot({path:path.join(out,engine+'-'+route+'-navdebug-scrolled.png')});
    if(scrolled.scrollY>initial.headerTop+8)check(engine+' '+route+' still sticks at top',Math.abs(scrolled.headerTop)<2,{scrolled});
   }
   await page.close();
@@ -111,6 +127,7 @@ async function run(browser,engine,width,height){
   await run(chrome,'chromium-mobile',390,844);
  }finally{await chrome.close();await wk.close()}
  const result={origin,source:'Desktop Chromium and WebKit iPad emulation; NOT a physical iPad',
+  topStripGeometry,
   checks,passed:checks.filter(x=>x.passed).length,failed:checks.filter(x=>!x.passed).length,
   errors,responses,physicalIPadStatus:'UNVERIFIED'};
  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(result,null,2)+'\n');
