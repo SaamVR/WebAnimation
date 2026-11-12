@@ -161,7 +161,6 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
     <p class="cc-worktable-live" role="status" id="worktableMessage" aria-live="polite"></p>
   </section>
   <input id="worktableFile" type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Choose local design image">`;
- if(embedded)body.querySelector('.cc-worktable-header')?.remove();
  root.replaceChildren(body);
  const stage=root.querySelector('.cc-worktable-stage');
  // The accessible turn button belongs INSIDE the wooden stage, centered
