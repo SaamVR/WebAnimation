@@ -27,7 +27,7 @@ test('new PNG owns printed Total; HTML contains only one rotated dynamic amount'
  assert.match(css,/rotate\(var\(--cc-tag-type-angle\)\)/);
  assert.equal(c.text.rotationDeg,-2.5);
  assert.equal(c.text.fontWeight,700);
- assert.ok(c.text.fontFamily.startsWith('Georgia'),'Bold editorial numerals must use the selected serif');
+ assert.ok(c.text.fontFamily.startsWith('"Hind Siliguri"'),'Owner-approved amount font must be Hind Siliguri');
  assert.match(c.text.fontFamily,/Noto Serif Bengali/,'Taka glyph must have a Bengali-capable fallback');
  assert.equal(c.text.xPercent,58.5);
  assert.equal(c.text.yPercent,66.5);

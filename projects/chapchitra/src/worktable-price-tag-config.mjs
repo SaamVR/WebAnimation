@@ -15,9 +15,9 @@
  * HTML contains ONLY the live amount. It is positioned under the
  * already-printed "Total" and angled to follow the paper's edge.
  * Never rotate or reposition the PNG: image layout is owner-approved.
- * Use Georgia Bold's editorial numerals, visually closer to the owner's
- * printed "Total", with the already-loaded Noto Serif Bengali as fallback
- * for the Bengali taka glyph. No new external font asset is required.
+ * Owner's final font choice: Hind Siliguri 700 for the dynamic amount.
+ * Keep the printed "Total" on the original PNG, with Noto Serif Bengali
+ * fallback for the taka glyph; no new external font asset is required.
  * Amount size uses container-query width units for responsive scale.
  */
 export const WORKTABLE_PRICE_TAG=Object.freeze({
@@ -31,7 +31,7 @@ export const WORKTABLE_PRICE_TAG=Object.freeze({
   xPercent:58.5,yPercent:66.5,
   rotationDeg:-2.5,
   fontSizeCqw:15.5,
-  fontFamily:'Georgia,"Noto Serif Bengali",serif',
+  fontFamily:'"Hind Siliguri","Noto Serif Bengali",sans-serif',
   fontWeight:700,
   widthPercent:70,
   letterSpacingEm:-0.025,
