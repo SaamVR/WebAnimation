@@ -36,9 +36,9 @@ if(inkSVGHash!==C02_INK_ASSET.sourceSHA256)
  throw Error('C02 owner vector source changed or is absent');
 const inkSource=inkVectorBytes.toString('utf8');
 if(!inkSource.includes('viewBox="0 0 8192 1152"')||
- (inkSource.match(/<path\\b/g)||[]).length!==727||
+ (inkSource.match(/<path\b/g)||[]).length!==727||
  !inkSource.includes('.st0{fill:#293D2D;}')||
- /<image\\b|<foreignObject\\b|<script\\b/i.test(inkSource))
+ /<image\b|<foreignObject\b|<script\b/i.test(inkSource))
  throw Error('C02 original vector geometry/color or safety checks failed');
 // Strip Adobe Illustrator's *unused namespace declaration* only.
 // Preserve every d attribute, CSS class, group, fill and source path.
@@ -46,8 +46,8 @@ if(!inkSource.includes('viewBox="0 0 8192 1152"')||
 const vectorDelivery=inkSource.replace(
  ' xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/"','')
  .replace('<style type="text/css">','<style>');
-if((vectorDelivery.match(/<path\\b/g)||[]).length!==727||
- vectorDelivery.match(/\\sd="/g)?.length!==inkSource.match(/\\sd="/g)?.length)
+if((vectorDelivery.match(/<path\b/g)||[]).length!==727||
+ vectorDelivery.match(/\sd="/g)?.length!==inkSource.match(/\sd="/g)?.length)
  throw Error('C02 vector-delivery optimization altered paths');
 await writeFile(resolve(output,'assets/c02/texture.svg'),vectorDelivery,'utf8');
 console.log('C02 exact hand-illustrated SVG source verified',{
