@@ -160,6 +160,15 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    if(inkAssetLayer.style.clipPath!==clip)inkAssetLayer.style.clipPath=clip;
    overlay.dataset.inkAsset='owner-vector-svg';
    overlay.dataset.inkContactX=String(placement.contactX);
+   // Retain one proof of the actual reveal surface after the overlay is
+   // removed. Ultrawide screenshots can miss the 385ms reveal entirely.
+   if(mode==='reveal'&&!doc.documentElement.dataset.c02RevealSurface){
+    doc.documentElement.dataset.c02RevealSurface=JSON.stringify({
+     source:inkAssetImg.getAttribute('src'),asset:overlay.dataset.inkAsset,
+     layers:inkAssetLayer.children.length,svgHidden:svg.style.visibility==='hidden',
+     progress:p,contact:placement.contactX
+    });
+   }
   }else{
    overlay.dataset.inkAsset='procedural-legacy-review';
   }
