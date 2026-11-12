@@ -76,6 +76,20 @@ jobs:
           C02_QA_ORIGIN: http://127.0.0.1:4272
           C02_QA_ENGINE: ${{ matrix.engine }}
         run: node scripts/c02-adaptive-qa.cjs
+      - name: Compare original and Grit Roller brush edges at identical progress in real browsers
+        working-directory: projects/chapchitra
+        env:
+          C02_QA_ORIGIN: http://127.0.0.1:4272
+          C02_QA_ENGINE: ${{ matrix.engine }}
+        run: node scripts/c02-grit-edge-qa.cjs
+      - name: Upload original vs Grit Roller synchronized visual comparisons and video
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: chapchitra-c02-grit-edge-${{ matrix.engine }}
+          path: projects/chapchitra/docs/c02-grit-edge-evidence/${{ matrix.engine }}/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Upload adaptive progress traces, timestamps, frames and full-speed WebM journeys
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
