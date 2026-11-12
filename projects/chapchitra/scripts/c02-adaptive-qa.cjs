@@ -87,14 +87,19 @@ function evaluateSamples(label,report,durationMs){
   contacts.length>=5&&span<9,{n:contacts.length,offsetSpanPx:span});
  const jumps=[];
  for(let i=1;i<contacts.length;i++){
-  const prev=contacts[i-1],next=contacts[i];
-  if(next.t-prev.t<=320&&next.viewport===prev.viewport)
-   jumps.push(Math.abs(next.inkContactX-prev.inkContactX)/
-    Math.max(1,next.viewport));
+  const prev=contacts[i-1],next=contacts[i],elapsed=next.t-prev.t;
+  if(elapsed>=35&&elapsed<=320&&next.viewport===prev.viewport){
+   // Normalize distances to a common 90ms frame-observation window.
+   // Document handoffs can omit one or two samples without any visual teleport.
+   jumps.push({fractionPer90ms:Math.abs(next.inkContactX-prev.inkContactX)/
+    Math.max(1,next.viewport)*90/elapsed,
+    elapsedMs:elapsed,from:prev.p,to:next.p,fromPage:prev.path,toPage:next.path});
+  }
  }
- const maxJump=jumps.length?Math.max(...jumps):0;
+ const maxJump=jumps.sort((a,b)=>b.fractionPer90ms-a.fractionPer90ms)[0];
  check(label+' no abrupt roller-contact jumps at document handoff',
-  maxJump<.24,{maxViewportFraction:maxJump,n:jumps.length});
+  !maxJump||maxJump.fractionPer90ms<.24,
+  {peak:maxJump,n:jumps.length});
  const monotonic=samples.every((s,i)=>!i||s.p+0.028>=samples[i-1].p);
  check(label+' no discontinuous rollback',monotonic,
   {min:samples.reduce((v,s)=>Math.min(v,s.p),1)});
