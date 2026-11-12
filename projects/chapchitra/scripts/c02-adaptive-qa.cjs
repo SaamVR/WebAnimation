@@ -60,6 +60,10 @@ async function resultFrom(page){
  return page.evaluate(({key,start})=>({
   samples:JSON.parse(sessionStorage.getItem(key)||'[]'),
   startedAt:Number(sessionStorage.getItem(start)||0),
+  fullCoverProof:JSON.parse(sessionStorage.getItem('chapchitra-c02-full-coverage-v1')||'null'),
+  incomingProgress:Number(document.documentElement.dataset.c02IncomingProgress),
+  prepaintProgress:Number(document.documentElement.dataset.c02PrepaintProgress),
+  revealStartedAt:Number(document.documentElement.dataset.c02RevealStartAt||0),
   destinationReadyAt:Number(document.documentElement.dataset.c02ReadyAt||0),
   rollerEndAt:Number(document.documentElement.dataset.c02RollerEndAt||0),
   revealEndAt:Number(document.documentElement.dataset.c02RevealEndAt||0),
@@ -105,13 +109,24 @@ function evaluateSamples(label,report,durationMs){
  const monotonic=samples.every((s,i)=>!i||s.p+0.028>=samples[i-1].p);
  check(label+' no discontinuous rollback',monotonic,
   {min:samples.reduce((v,s)=>Math.min(v,s.p),1)});
- const before=samples.filter(s=>s.t<report.destinationReadyAt);
- check(label+' never fully green before ready',
-  before.every(s=>s.p<.999),{lastBefore:before.at(-1)?.p});
+ const proof=report.fullCoverProof;
+ check(label+' commit requires full visual ink coverage',
+  proof?.covered===true&&proof.progress===1&&proof.frameFits===true&&
+  proof.imageReady===true&&proof.imageSpans===true&&
+  proof.whiteSeal===true&&proof.clip==='none'&&
+  proof.minPigmentEdgePx>=proof.viewport.width+2&&
+  proof.committedAt>=report.startedAt&&
+  proof.committedAt<=report.destinationReadyAt,
+  {proof,destinationReadyAt:report.destinationReadyAt});
+ check(label+' incoming prepaint preserves full cover',
+  report.incomingProgress===1&&report.prepaintProgress===1,
+  {prepaint:report.prepaintProgress,incoming:report.incomingProgress});
  check(label+' time sequence',report.startedAt>0&&
   report.destinationReadyAt>=report.startedAt &&
   report.rollerEndAt>=report.destinationReadyAt &&
-  report.revealEndAt>=report.rollerEndAt,report);
+  report.revealEndAt>=report.rollerEndAt&&
+  report.revealStartedAt>=report.destinationReadyAt&&
+  report.revealEndAt>=report.revealStartedAt,report);
  check(label+' final overlay removed',report.overlay===0&&report.state==='complete');
  return {increasing,points:samples.length};
 }
@@ -142,6 +157,9 @@ async function demo(page,device,delay){
  const summary=evaluateSamples(name,report,delay);
  const entry={name,delay,total,...summary,
   startedAt:report.startedAt,destinationReadyAt:report.destinationReadyAt,
+  fullCoverProof:report.fullCoverProof,
+  incomingProgress:report.incomingProgress,prepaintProgress:report.prepaintProgress,
+  revealStartedAt:report.revealStartedAt,
   rollerEndAt:report.rollerEndAt,revealEndAt:report.revealEndAt,
   sampleHighlights:report.samples.filter((_,i)=>i%7===0).slice(0,30)};
  results.push({engine:KIND,label:name+' evidence',status:'pass',...entry});
@@ -165,6 +183,13 @@ async function navigation(page,device,route,back,from){
  await page.waitForFunction(()=>!document.querySelector('#c02-loader'),null,{timeout:22000});
  const report=await resultFrom(page),name=KIND+'-'+device+'-'+src+'->'+route;
  check(name+' destination ready',report.page===route);
+ check(name+' real route full-cover commit and incoming first paint',
+  report.fullCoverProof?.covered===true&&
+  report.fullCoverProof.progress===1&&report.fullCoverProof.whiteSeal===true&&
+  report.incomingProgress===1&&report.prepaintProgress===1&&
+  report.fullCoverProof.committedAt<=report.destinationReadyAt,
+  {source:src,to:route,proof:report.fullCoverProof,
+   incoming:report.incomingProgress,prepaint:report.prepaintProgress});
  check(name+' after reveal correct',report.overlay===0&&report.state==='complete');
  check(name+' real load readiness',route!=='/artists-edit/'||
   await page.evaluate(()=>document.body.dataset.worktableStatus==='ready'));
