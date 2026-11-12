@@ -44,7 +44,7 @@ test('C02 cover may use original full transparent image while its reveal is unch
  assert.match(runtime,/background-repeat:repeat-x;background-position:right top/);
  assert.match(runtime,/inkAssetFill\.style\.backgroundSize=placement\.interiorLoopWidth/);
  assert.doesNotMatch(runtime,/background:#293D2D;width:0/);
- assert.match(runtime,/svg\.style\.visibility=pngCover\?'hidden':'visible'/);
+ assert.match(runtime,/svg\.style\.visibility=rasterSurface\?'hidden':'visible'/);
  assert.match(runtime,/overlay\.animate\('reveal',C02_MOTION\.revealMs,cleanup\)/);
  assert.match(runtime,/inkEdgeX\(surfaceP,470,27\)\*viewport\.width\/1000/);
  assert.match(runtime,/scaleX\(-1\) rotate\(90deg\)/);
