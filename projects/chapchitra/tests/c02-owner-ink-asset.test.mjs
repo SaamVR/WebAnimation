@@ -98,7 +98,7 @@ test('C02 has exactly one vector surface through cover/full/loading/reveal',asyn
  assert.match(build,/C02 single-svg white ink underprint/);
  assert.match(runtime,/dataset\.inkBacking='gallery-white-source-envelope'/);
  assert.doesNotMatch(build,/generateUnifiedInk|\.webp\(\{lossless:true/);
- assert.match(review,/C02_INK_ASSET\.path/);
+ assert.match(review,/C02_INK_ASSET\.composedPath/);
  assert.doesNotMatch(review,/C02_INK_ASSET\.composite/);
 });
 
