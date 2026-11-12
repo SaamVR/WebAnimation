@@ -2,6 +2,13 @@
      The JS engine remains the authoritative animation on all browsers. -->
 <style id="c02-prepaint">
 html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;background:#293D2D;pointer-events:auto;clip-path:var(--c02-prepaint-clip,polygon(0 0,65% 0,70% 50%,65% 100%,0 100%))}
+/* Match the actual owner PNG on the very FIRST incoming frame, before the
+   independent module boots. No procedural wipe flashes on PNG navigation. */
+html.c02-pending.c02-asset-arrival::before{clip-path:none;inset:0 auto 0 0;width:var(--c02-asset-fill,0px)}
+html.c02-pending.c02-asset-arrival::after{content:"";position:fixed;inset:0;z-index:2147482901;
+background-image:url('/assets/c02/Ink_swipe_1.png');background-repeat:no-repeat;
+background-size:var(--c02-asset-width,0px) var(--c02-asset-height,0px);
+background-position:var(--c02-asset-left,0px) var(--c02-asset-top,0px);pointer-events:auto}
 /* Cross-document native View Transitions are deliberately not auto-enabled:
    Chromium can suspend the outgoing animated document while snapshotting,
    stranding an ink overlay. The one-use native-navigation fallback is the
@@ -24,11 +31,27 @@ html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;ba
      +19*Math.sin(Math.PI*y/1000*7.1-.7);
     return (-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*organic+offset)/10;
    }
-   var points=['0% 0%'];
-   for(var i=0;i<=8;i++)points.push(edge(i*125,0)+'% '+(i*12.5)+'%');
-   points.push('0% 100%');
-   document.documentElement.style.setProperty('--c02-prepaint-clip',
-    'polygon('+points.join(',')+')');
+   if(ticket.edgeStyle==='asset'){
+    var scale=innerHeight*1.06/1152;
+    var rightContact=(-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*(
+     104*Math.sin(Math.PI*470/1000*2.35+.32)+
+     48*Math.sin(Math.PI*470/1000*4.15+1.15)+
+     19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*innerWidth/1000;
+    var left=rightContact-1689*scale;
+    var root=document.documentElement;
+    root.style.setProperty('--c02-asset-fill',Math.min(innerWidth,Math.max(0,left+3))+'px');
+    root.style.setProperty('--c02-asset-width',2048*scale+'px');
+    root.style.setProperty('--c02-asset-height',1152*scale+'px');
+    root.style.setProperty('--c02-asset-left',left+'px');
+    root.style.setProperty('--c02-asset-top',((innerHeight-1152*scale)/2)+'px');
+    root.classList.add('c02-asset-arrival');
+   }else{
+    var points=['0% 0%'];
+    for(var i=0;i<=8;i++)points.push(edge(i*125,0)+'% '+(i*12.5)+'%');
+    points.push('0% 100%');
+    document.documentElement.style.setProperty('--c02-prepaint-clip',
+     'polygon('+points.join(',')+')');
+   }
    // Failure-only guard if the application JavaScript cannot initialize.
    window.setTimeout(function(){
     document.documentElement.classList.remove('c02-pending');
