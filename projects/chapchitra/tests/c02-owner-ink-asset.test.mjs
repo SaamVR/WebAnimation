@@ -73,7 +73,15 @@ test('C02 has exactly one vector surface through cover/full/loading/reveal',asyn
  assert.match(runtime,/placement\.left/);
  assert.match(runtime,/overlay\.dataset\.inkAsset='owner-vector-svg'/);
  assert.match(runtime,/roller\.style\.transform='translate3d\('/);
- assert.match(runtime,/Promise\.all\(\[awaitShell\(win,doc\),overlay\.assetsReady\]\)/);
+ assert.match(runtime,/Promise\.all\(\[awaitShell\(win,doc\),incomingPaintReady\]\)/);
+ assert.match(runtime,/overlay\.render\(p,'cover'\)/);
+ assert.match(runtime,/const incomingPaintReady=overlay\.assetsReady\.then/);
+ assert.match(runtime,/doc\.documentElement\.dataset\.c02Handoff='matched-first-frame'/);
+ assert.match(runtime,/doc\.documentElement\.dataset\.c02FirstPaintDelta=/);
+ assert.match(runtime,/win\.setTimeout\(expose,150\)/);
+ assert.match(early,/visualViewport\.addEventListener\('resize',positionPrepaint/);
+ assert.match(early,/visualViewport\.addEventListener\('scroll',positionPrepaint/);
+ assert.match(early,/z-index:2147483001/);
  assert.match(runtime,/win\.location\.assign\(target\.href\)/);
  assert.doesNotMatch(runtime,/inkAssetFill|background-repeat:repeat-x|ink-unified\.webp/);
  assert.match(early,/background-image:url\('\/assets\/c02\/texture\.svg'\)/);
