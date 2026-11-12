@@ -15,7 +15,7 @@ export const C02_INK_ASSET=Object.freeze({
   width:8192,height:1152,tail:6144,sourceBlend:256})
 });
 export const UNIFIED_INK=Object.freeze({
- width:8192,height:1152,tail:6144,feather:86,
+ width:8192,height:1152,tail:6144,feather:52,
  cellWidth:336,cellHeight:288,blendToOriginal:256,
  sampleRightLimit:1150,seed:0xC0222026,
  path:C02_INK_ASSET.composite.path
