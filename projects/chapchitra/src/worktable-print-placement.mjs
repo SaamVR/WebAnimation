@@ -34,7 +34,7 @@ export function paperGuide(garment='regular',preset='A4',{frameX=0,frameY=0}={})
  if(!PAPER_REFERENCES[preset])throw new RangeError('Unknown print reference');
  if(preset==='A3')return {...a3,region:a3,preset,frameX:0,frameY:0};
  const width=a3.width/Math.SQRT2,height=a3.height/Math.SQRT2;
- const homeX=a3.x+(a3.width-width)/2,homeY=a3.y+(a3.height-height)/2;
+ const homeX=a3.x+(a3.width-width)/2,homeY=a3.y;
  const x=clamp(homeX+finite(frameX),a3.x,a3.x+a3.width-width);
  const y=clamp(homeY+finite(frameY),a3.y,a3.y+a3.height-height);
  return {x,y,width,height,region:a3,preset,frameX:x-homeX,frameY:y-homeY};

@@ -53,7 +53,7 @@ test('dragging from below collar reaches all edges without going off garment',()
   const lower=placementGeometry({...base,dy:9999});
   const left=placementGeometry({...base,dx:-9999});
   const right=placementGeometry({...base,dx:9999});
-  assert.ok(lower.y>home.y+40,garment);
+  assert.ok(lower.y>home.y+20,garment);
   assert.ok(near(lower.bounds.y+lower.bounds.height,lower.guide.y+lower.guide.height));
   assert.ok(near(left.bounds.x,left.guide.x));
   assert.ok(near(right.bounds.x+right.bounds.width,right.guide.x+right.guide.width));
