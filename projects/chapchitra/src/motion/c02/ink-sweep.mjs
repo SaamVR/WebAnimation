@@ -413,12 +413,13 @@ export function installC02PageTransitions(win=window,doc=document){
      // Removing prepaint and starting RAF occur in one rendering task.
      overlay.render(p,'cover');
      const firstImg=overlay.overlay.querySelector('.c02-loader__ink-asset');
-     const position=/translate3d\(([-\d.]+)px,([-\d.]+)px,0\)/
-      .exec(firstImg?.style.transform||'');
+     // CSSOM normalizes translate3d() to spaces and 0px across engines.
+     // DOMMatrix reads the *actual* browser transform, not fragile text.
+     const position=new win.DOMMatrixReadOnly(firstImg?.style.transform||'none');
      const prepaintX=parseFloat(doc.documentElement.style.getPropertyValue('--c02-asset-left'));
      const prepaintY=parseFloat(doc.documentElement.style.getPropertyValue('--c02-asset-top'));
-     const differenceX=position?Math.abs(Number(position[1])-prepaintX):NaN;
-     const differenceY=position?Math.abs(Number(position[2])-prepaintY):NaN;
+     const differenceX=Math.abs(position.m41-prepaintX);
+     const differenceY=Math.abs(position.m42-prepaintY);
      doc.documentElement.dataset.c02FirstPaintDelta=JSON.stringify({
       x:differenceX,y:differenceY,progress:p,
       viewport:overlay.overlay.dataset.viewport,
