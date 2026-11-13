@@ -1,0 +1,35 @@
+name: Fiverr Retake Approved CHAPCHITRA Source
+on:
+  push:
+    branches: [media/fiverr-gig-video-source-20261113]
+    paths: [.github/workflows/fiverr-chapchitra-retake-assets-20261113.yml]
+permissions: {contents: read}
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: integration/chapchitra-artist-approved-freeze-20261113
+          sparse-checkout: |
+            projects/chapchitra/browser-assets
+            projects/chapchitra/src
+            projects/chapchitra/scripts
+            projects/chapchitra/package.json
+            projects/chapchitra/vercel.json
+          sparse-checkout-cone-mode: true
+      - name: Verify worktable asset bundle
+        run: |
+          ls -la projects/chapchitra/browser-assets/worktable/ | head
+          du -sh projects/chapchitra/src projects/chapchitra/browser-assets projects/chapchitra/scripts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chapchitra-approved-edit-retake-source
+          path: |
+            projects/chapchitra/src/
+            projects/chapchitra/browser-assets/
+            projects/chapchitra/scripts/
+            projects/chapchitra/package.json
+          retention-days: 7
+          compression-level: 6
