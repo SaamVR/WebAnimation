@@ -154,4 +154,21 @@ async function run(browser,engine,width,height){
    process.exitCode=2;
   }
  }
+
+ // Offline loading benchmark: records cold and warm Artist's Edit lifecycles
+ // on the same Chromium/WebKit runner. Never calls a hosted endpoint.
+ const artistLoadQA=path.join(__dirname,'artist-load-qa.cjs');
+ if(fs.existsSync(artistLoadQA)){
+  const {spawnSync}=require('node:child_process');
+  const child=spawnSync(process.execPath,[artistLoadQA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,CC_ARTIST_LOAD_ROOT:origin,
+    CC_ARTIST_LOAD_OUT:path.resolve('perf-results/shared-stage-artist-load')},
+   encoding:'utf8',stdio:'inherit',timeout:10*60*1000,
+  });
+  if(child.error||child.status!==0){
+   console.error('Artist loading benchmark failed',child.error?.message||child.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});
