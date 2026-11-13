@@ -36,6 +36,9 @@ async function run(device){
    const footer=page.locator('.site-footer');
    await footer.waitFor({state:'visible',timeout:30000});
    await footer.scrollIntoViewIfNeeded();
+   await footer.locator('.footer-identity .logo-word--footer img').evaluate(async img=>{
+    if(typeof img.decode==='function')try{await img.decode()}catch{}
+   });
    const details=await page.evaluate(()=>{
     const footer=document.querySelector('.site-footer');
     const grid=footer?.querySelector('.footer-grid');
