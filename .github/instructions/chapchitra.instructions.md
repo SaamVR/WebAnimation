@@ -2,6 +2,11 @@
 applyTo: "projects/chapchitra/**"
 ---
 
+## NO AUTOMATIC DEPLOYED PREVIEWS — Owner directive 2026-11-13
+
+**Mandatory:** No hosted previews or deployments per change, PR or test. Static changes -> local/CI screenshot; GSAP/SVG -> recorded local animation and optional self-contained HTML; Lottie -> local player + .lottie/JSON and recording; multi-page tests -> local/CI browser evidence. Do **not** deploy to Vercel/Render/Netlify unless the owner explicitly asks for a deployed website preview. Approval, "continue", "fix" and "review" are not deployment requests. When authorized, serial integration owner batches a single deploy to the **existing** verified shared staging service/URL. Do not create new preview services or independent sites. Check hosting auto-deploy triggers before pushing to a deploy-linked branch. Read `projects/chapchitra/docs/NO_AUTOMATIC_PREVIEWS_POLICY.md`. Routine report: `Deployment: NONE — per no-automatic-preview policy`.
+
+
 # CHAPCHITRA — mandatory contributor instructions
 
 Before coding, read:
