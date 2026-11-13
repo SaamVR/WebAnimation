@@ -1,0 +1,58 @@
+name: Research Fiverr Public Gig Video Presentation
+on:
+  push:
+    paths:
+      - .github/workflows/fiverr-video-study-20261113.yml
+    branches:
+      - media/fiverr-gig-video-source-20261113
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Sample publicly accessible gig videos for private editorial study
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import urllib.request,urllib.parse,subprocess,json,re,os
+          out=Path('review_frames');out.mkdir(exist_ok=True)
+          sources={
+            'alan':'https://fiverr-res.cloudinary.com/video/upload/f_auto,q_auto,so_1.129314,t_medium5/v1/video-attachments/gig/videos/379eedaab26043f45e46823fc4018fdf-1763988328996/Lottie_%20Rive_%20interactive%20animation%20for%20website%20ui%20ux.png',
+            'anna':'https://fiverr-res.cloudinary.com/video/upload/f_auto,q_auto,so_4.244006,t_medium5/v1/video-attachments/gig/videos/028601dfad4e5e98ae9bbe92c425b9d9-1785711134170/LOTTIES%20SHOWREEL%202026.png',
+            'arigato':'https://fiverr-res.cloudinary.com/video/upload/f_auto,q_auto,so_1.744333,t_medium5/v1/video-attachments/gig/videos/b9bca00c9c7b634a7162856cf6448071-1771711120984/Arigato_Reel%20Lotties_2026_In.png',
+            'stanislav':'https://fiverr-res.cloudinary.com/video/upload/f_auto,q_auto,so_0.0,t_medium5/v1/video-attachments/gig/videos/ca15ca293fc5f48f7479ca25835eb836-1793122037849/lottie%20aniamtion_%20lottie_%20svg%20animation_%20web%20aniamtion_%20splash%20screen.png',
+            'timir':'https://fiverr-res.cloudinary.com/video/upload/f_auto,q_auto,so_0.0,t_medium5/v1/video-attachments/gig/videos/232de9e9a6086ec1974aeacfbc15365a-1794166274129/Rive%20gig%20video.png',
+            'motiondhaka':'https://fiverr-res.cloudinary.com/video/upload/f_auto,q_auto,so_74.907575,t_medium5/ednkvfpq2j7qjsyi0ehu.png'
+          }
+          results=[]
+          for name,thumbnail in sources.items():
+            video=re.sub(r'/video/upload/[^/]+/', '/video/upload/f_mp4,q_auto/',thumbnail)
+            video=video[:-4]+'.mp4'
+            dst=out/(name+'.mp4')
+            try:
+              req=urllib.request.Request(video,headers={'User-Agent':'Mozilla/5.0'})
+              with urllib.request.urlopen(req,timeout=18) as r: dst.write_bytes(r.read(25_000_000))
+              probe=subprocess.run(['ffprobe','-v','error','-show_entries','format=duration,size','-of','json',str(dst)],capture_output=True,text=True,timeout=15)
+              info=json.loads(probe.stdout)['format']
+              dur=float(info['duration'])
+              for i in range(6):
+                ts=dur*(0.06+.16*i)
+                subprocess.run(['ffmpeg','-y','-loglevel','error','-ss',str(ts),'-i',str(dst),'-vf','scale=320:180:force_original_aspect_ratio=decrease,pad=320:180:(ow-iw)/2:(oh-ih)/2','-frames:v','1',str(out/(name+'_'+str(i)+'.jpg'))],timeout=10,check=True)
+              results.append({'seller':name,'status':'sampled','duration':dur,'size':dst.stat().st_size,'video_url':video})
+              print(name,'sampled',dur,'seconds')
+            except Exception as e:
+              results.append({'seller':name,'status':'unavailable','reason':str(e)[:250]})
+              print(name,'unavailable',str(e)[:180])
+            dst.unlink(missing_ok=True)
+          (out/'results.json').write_text(json.dumps(results,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiverr-public-gig-video-review-frames
+          path: review_frames/
+          if-no-files-found: error
+          retention-days: 1
