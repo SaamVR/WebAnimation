@@ -1,4 +1,4 @@
-/* C03 standalone Product Detail flight overlay: no changes to site layout. */
+/* C03 site-wide catalog flight overlay: no changes to site layout. */
 .c03-flight-layer{
  position:fixed;inset:0;z-index:10000;overflow:visible;
  pointer-events:none;background:transparent;isolation:isolate;

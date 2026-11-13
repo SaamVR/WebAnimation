@@ -1,8 +1,9 @@
-# CHAPCHITRA C03 — Product Fly-to-Bag (prototype, creative review pending)
+# CHAPCHITRA C03 — Product Fly-to-Bag (approved choreography, site-wide activation)
 
 C03 **replaces the proposed Brass Bell concept**. It is not a notification
-feature and changes no notification controls. Implementation is restricted
-to the **/product/** successful Add-to-Bag visual feedback.
+feature and changes no notification controls. Activation now covers every
+successful catalog Add-to-Bag click on Home, Shop, filtered Shop, Product Detail,
+Related Products, Favorites, and dynamically rendered product cards.
 
 Visual reference: the owner's approved THREADS T02 V3 trajectory, single
 monotonic shrink, original cutout retained on the page, basket catch and
@@ -12,8 +13,9 @@ counter pulse, from read-only
 - The existing CHAPCHITRA session-bag event handler commits the quantity
   synchronously. Only successful increments invoke C03; failures/99 limit
   retain their existing error/status behavior and skip motion.
-- A duplicate of the *existing* `.detail-art .shirt-svg` (or displayed image)
-  is drawn above the page with a transparent, pointer-inert overlay. No beige
+- A duplicate of the clicked card's `.product-visual .shirt-svg`, or Product
+  Detail's `.detail-art .shirt-svg` (or displayed image), is drawn above the
+  page with a transparent, pointer-inert overlay. No beige
   product card or background rectangle is included, and the original stays
   still. The clone starts from the lower-right artwork quadrant.
 - Self-hosted GSAP tween uses a native SVG quadratic Bézier path whose
@@ -38,6 +40,7 @@ Scope: `src/app.mjs` (one visual hook),
 No CHAPCHITRA staging integration, C02, C05, Artist's Edit, checkout,
 THREADS or notification changes are authorized.
 
-**Creative status:** NEW PROTOTYPE / OWNER REVIEW REQUIRED.
+**Creative status:** Original C03 choreography APPROVED. Site-wide activation
+passes local regression QA and has owner creative approval for staging integration.
 
 **Deployment: NONE — per no-automatic-preview policy.**

@@ -1,5 +1,5 @@
 /**
- * CHAPCHITRA C03 — owner-authorized Product Detail fly-to-bag prototype.
+ * CHAPCHITRA C03 — approved Product Fly-to-Bag, site-wide catalog activation.
  *
  * Source motion contract: approved THREADS T02 V3 at
  * release/threads-demo-complete-20261026:site/threads/t02-fly-cart.mjs
@@ -87,9 +87,23 @@ function installLifecycle(){
   .addEventListener?.('change',cancelC03);
 }
 export function warmC03(){
- if(document.body.dataset.page!=='product')return Promise.resolve(null);
  ensureCSS();installLifecycle();
  return getGSAP();
+}
+// Resolve the illustration from the exact clicked product, never a global
+// first-card selector. Filtered, related and favorites cards share this markup.
+export function resolveC03ProductSource(button,productId){
+ if(!button?.isConnected||!productId||button.dataset.addToBag!==productId)return null;
+ const card=button.closest('.product-card[data-product-id]');
+ if(card){
+  if(card.dataset.productId!==productId)return null;
+  return card.querySelector('.product-visual .shirt-svg, .product-visual img');
+ }
+ // Product Detail has a distinct source outside its related-products cards.
+ if(button.classList.contains('detail-add-button')&&button.closest('.detail-layout')){
+  return document.querySelector('.detail-layout .detail-art .shirt-svg, .detail-layout .detail-art img');
+ }
+ return null;
 }
 function makeCutout(source,rect,geometry){
  const layer=document.createElement('div');layer.className='c03-flight-layer';
@@ -111,12 +125,12 @@ function makeCutout(source,rect,geometry){
  svg.append(path);layer.append(cloneBox,svg);document.body.append(layer);
  return {layer,cloneBox,path};
 }
-export async function playC03({button}={}){
+export async function playC03({button,productId}={}){
  // Invalidate any older in-flight proxy; repeated successful cart changes are
  // already committed synchronously by app.mjs before this visual hook.
  cancelC03();
  const version=serial;
- if(document.body.dataset.page!=='product'||prefersReduced()||!button?.isConnected)return false;
+ if(prefersReduced()||!button?.isConnected)return false;
  ensureCSS();installLifecycle();
  const gs=await getGSAP();
  if(!gs||version!==serial||!button.isConnected||document.hidden||prefersReduced())return false;
@@ -124,7 +138,7 @@ export async function playC03({button}={}){
  // this, its delayed scroll event could immediately cancel a new timeline.
  await framesSettled();
  if(version!==serial||!button.isConnected)return false;
- const source=document.querySelector('.detail-art .shirt-svg, .detail-art img');
+ const source=resolveC03ProductSource(button,productId);
  const bagLink=document.querySelector('.site-header .bag-link');
  const badge=bagLink?.querySelector('.bag-count');
  const icon=bagLink?.querySelector('svg');
