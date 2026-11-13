@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Independent CHAPCHITRA V3 preview",
   "scripts": {
+    "prebuild": "node scripts/ensure-build-deps.mjs",
     "build": "npm run check && node scripts/build.mjs",
     "check": "node --check src/app.mjs && node --check src/catalog.mjs && node --check src/components.mjs && node --test tests/*.test.mjs",
     "preview": "node scripts/preview.mjs",
