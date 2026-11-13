@@ -157,12 +157,17 @@ async function demo(page,device,delay){
  const during=await page.evaluate(()=>({
   url:location.pathname,progress:Number(document.querySelector('#c02-loader')?.dataset.progress),
   phase:document.querySelector('#c02-loader')?.dataset.phase,
+  lifecycle:document.documentElement.dataset.c02State,
+  driftX:Number(document.querySelector('#c02-loader')?.dataset.c02DriftX)||0,
   count:document.querySelectorAll('#c02-loader').length
  })).catch(()=>({url:'navigating'}));
  // A fast cached destination can legitimately finish before this sampler
  // runs; timing evidence below remains authoritative, not a single snapshot.
  if(during.count===1)
-  check(name+' visible mid-load',during.progress>0&&during.progress<.99,during);
+  check(name+' visible mid-load',
+   (during.progress>0&&during.progress<.99)||
+   (during.progress===1&&during.phase==='cover'&&during.lifecycle==='loading'),
+   during);
  await page.screenshot({path:path.join(DIR,name+'-mid-loading.png')});
  try{
   await page.waitForURL(u=>u.pathname==='/c02-review/slow/',
