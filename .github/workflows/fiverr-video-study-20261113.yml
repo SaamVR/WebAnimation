@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Install FFmpeg for six-frame presentation studies
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Sample publicly accessible gig videos for private editorial study
         shell: bash
         run: |
