@@ -154,14 +154,32 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    c02DriftFrame(driftPhase,driftLimit).x;
   drawDrift();
  }
+ let driftViewportListeners=false;
+ function repaintDriftViewport(){
+  // Browser chrome can resize the visual viewport while the page is covered.
+  // Recompute geometry ONLY on viewport events, not on every motion frame.
+  if(driftRunning)render(1,'cover');
+ }
  function stopDrift(){
   driftRunning=false;win.cancelAnimationFrame(driftRaf);driftRaf=0;driftTime=0;
+  if(driftViewportListeners){
+   win.removeEventListener('resize',repaintDriftViewport);
+   win.visualViewport?.removeEventListener('resize',repaintDriftViewport);
+   win.visualViewport?.removeEventListener('scroll',repaintDriftViewport);
+   driftViewportListeners=false;
+  }
   overlay.dataset.c02DriftRunning='false';
  }
  function startDrift(snapshot){
   if(snapshot)restoreDrift(snapshot);
   if(driftRunning)return;
   driftRunning=true;driftTime=0;overlay.dataset.c02DriftRunning='true';
+  if(!driftViewportListeners){
+   win.addEventListener('resize',repaintDriftViewport,{passive:true});
+   win.visualViewport?.addEventListener('resize',repaintDriftViewport,{passive:true});
+   win.visualViewport?.addEventListener('scroll',repaintDriftViewport,{passive:true});
+   driftViewportListeners=true;
+  }
   const frame=now=>{
    if(!driftRunning)return;
    const dt=driftTime?now-driftTime:0;driftTime=now;
@@ -613,6 +631,7 @@ export function installC02PageTransitions(win=window,doc=document){
     startedAt:pendingStartedAt,demoMs:pendingDemoMs,edgeStyle,
     drift:overlay.driftSnapshot()});
   }
+  overlay?.stopDrift();
   drive?.stop();drive=null;
   prefetchAbort?.abort();prefetchAbort=null;
  });
