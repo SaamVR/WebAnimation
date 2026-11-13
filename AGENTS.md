@@ -1,5 +1,16 @@
 # WebAnimation — Repository Boundary Rules
 
+## CHAPCHITRA — deployment previews only on explicit owner request (2026-11-13)
+
+**Mandatory for all Interactive Animation / CHAPCHITRA development chats and coding agents:** do not create or trigger Vercel, Render or other hosted previews for every tweak, PR, branch, fix, Lottie export, test or iteration. The owner explicitly requests a deployed/hosted website preview before a deployment may occur; merely saying "continue", "fix", "review", or approving an asset is **not** deployment authorization.
+
+**Default evidence:** static edits → local/CI screenshots; SVG/GSAP/CSS/JS animation → MP4/WebM/GIF recording, frame comparison and optional self-contained **local** HTML; Lottie → JSON/.lottie/source, offline/local player and recording; integration tests → local/authorized GitHub Actions runner + artifacts. No new deployment URL is required or permitted for routine work.
+
+The **serial integration owner** coordinates a single batched update to the **existing verified shared CHAPCHITRA staging service and stable URL** **only upon the owner's explicit deployed-preview request** and after readiness/QA. Production release requires separate explicit approval. Do not create new permanent sites, automatically enable per-PR previews, or push to auto-deploy branches for routine QA. Verify the host-level Git hooks; written rules do **not** suppress automatic Vercel/Render builds by themselves.
+
+Read the full canonical policy at `projects/chapchitra/docs/NO_AUTOMATIC_PREVIEWS_POLICY.md` on the CHAPCHITRA governance/working branch. This newer rule overrides all older "preview per iteration" conventions. Report `Deployment: NONE — per no-automatic-preview policy` when no authorized hosting action was taken.
+
+
 This is a shared Git repository containing **independent** demos, not one coupled website.
 
 ## Hard boundaries
