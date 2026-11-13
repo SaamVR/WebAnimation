@@ -243,6 +243,44 @@ async function navigation(page,device,route,back,from){
  console.log('REAL',JSON.stringify({name,started:report.startedAt,
   ready:report.destinationReadyAt,rollerEnd:report.rollerEndAt,revealEnd:report.revealEndAt}));
 }
+// Real navigation-request latency, independent of the /slow/ DOM simulator.
+// This exercises browser document replacement while the old page is ink-covered.
+async function slowNetwork(page,device){
+ const name=KIND+'-'+device+'-native-4s-network';
+ await ready(page,name);
+ let delayed=0;
+ await page.route('**/journal/',async route=>{
+  if(route.request().isNavigationRequest()){
+   delayed++;
+   await new Promise(resolve=>setTimeout(resolve,4000));
+  }
+  await route.continue();
+ });
+ const began=Date.now();
+ await page.evaluate(()=>{
+  const a=document.createElement('a');
+  a.href='/journal/';a.textContent='C02 network throttle';
+  document.body.append(a);a.click();
+ });
+ await page.waitForURL(u=>u.pathname==='/journal/',
+  {waitUntil:'domcontentloaded',timeout:30000});
+ await page.waitForFunction(()=>!document.getElementById('c02-loader'),
+  null,{timeout:20000});
+ const report=await resultFrom(page);
+ check(name+' slow native request observed',delayed===1,{delayed});
+ check(name+' delayed request did not bypass full ink cover',
+  report.fullCoverProof?.covered===true&&
+  report.fullCoverProof?.progress===1&&
+  report.fullCoverProof?.whiteSeal===true&&
+  report.prepaintProgress===1&&report.incomingProgress===1&&
+  report.fullCoverProof?.committedAt<=report.destinationReadyAt,
+  {proof:report.fullCoverProof,prepaint:report.prepaintProgress,
+   incoming:report.incomingProgress});
+ check(name+' full native cycle finished',Date.now()-began>=4000&&
+  report.state==='complete'&&report.overlay===0);
+ await page.screenshot({path:path.join(DIR,name+'-after-reveal.png')});
+ await page.unroute('**/journal/');
+}
 async function run(device,width,height){
  const browser=await engine.launch(KIND==='chromium'&&process.platform==='win32'
   ?{headless:true,channel:'chrome'}:{headless:true});
@@ -268,6 +306,7 @@ async function run(device,width,height){
    // Revisit a previously fetched destination in the same browser context:
    // this reproduces the owner's too-fast cached/native navigation.
    await navigation(realPage,device,'/journal/',false,'/shop/');
+   await slowNetwork(realPage,device);
    await realPage.emulateMedia({reducedMotion:'reduce'});
    await realPage.goto(ORIGIN+'/c02-review/');
    await realPage.locator('a[href="/shop/"]').click({noWaitAfter:true});
