@@ -1,0 +1,92 @@
+import { chromium } from 'playwright';
+import fs from 'node:fs';
+import path from 'node:path';
+const root=process.cwd(),dir=path.resolve(root,'retake_evidence');
+fs.mkdirSync(dir,{recursive:true});
+const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--disable-background-timer-throttling']});
+const details={provenance:'Retakes from owner-approved THREADS release and CHAPCHITRA integration source',shots:{}};
+async function shoot(name,base,route,steps,viewport={width:1440,height:900}){
+ const errors=[];const t=Date.now();
+ const ctx=await browser.newContext({viewport,deviceScaleFactor:1,recordVideo:{dir, size:viewport},reducedMotion:'no-preference'});
+ const page=await ctx.newPage();
+ page.on('pageerror',e=>errors.push(String(e).slice(0,300)));
+ page.on('response',r=>{if(r.status()>=400&&new URL(r.url()).hostname==='127.0.0.1')errors.push(r.status()+' '+r.url().slice(0,120));});
+ try{
+  await page.goto(base+route,{waitUntil:'domcontentloaded',timeout:25000});
+  await page.waitForTimeout(1100);
+  await steps(page,(label)=>{(details.shots[name]??={}).marks??=[];details.shots[name].marks.push({label,seconds:+((Date.now()-t)/1000).toFixed(2)});});
+  await page.screenshot({path:path.join(dir,name+'-final.png'),animations:'disabled',timeout:18000});
+  details.shots[name]={...details.shots[name],url:route,viewport,pageURL:page.url(),pageErrors:errors.slice(0,15),elapsed:+((Date.now()-t)/1000).toFixed(2),title:await page.title()};
+ }catch(e){details.shots[name]={...details.shots[name],error:String(e).slice(0,650),pageErrors:errors.slice(0,15),url:page.url()};}
+ const video=await page.video().path();
+ await ctx.close();
+ fs.renameSync(video,path.join(dir,name+'.webm'));
+ console.log(name,JSON.stringify(details.shots[name]));
+}
+const threads='http://127.0.0.1:8711',chap='http://127.0.0.1:8712';
+await shoot('cart',threads,'/product/?id=bag-03',async(page,mark)=>{
+ await page.locator('#detail-add').waitFor({timeout:10000});
+ await page.evaluate(async()=>{window.scrollTo(0,0);await Promise.all([...document.images].filter(i=>i.getBoundingClientRect().top<innerHeight).map(i=>i.decode().catch(()=>{})))});
+ await page.waitForTimeout(650);
+ mark('before_click');
+ await page.locator('#detail-add').evaluate(el=>el.click());
+ mark('clicked_cart');
+ await page.waitForTimeout(4200);
+ mark('end');
+});
+await shoot('search',threads,'/search/',async(page,mark)=>{
+ await page.locator('#results-grid .store-product-card').first().waitFor({timeout:10000});
+ await page.locator('#catalog-search').fill('backpack');
+ await page.evaluate(()=>{document.activeElement?.blur();window.scrollTo({top:355,left:0,behavior:'instant'})});
+ await page.waitForTimeout(600);
+ mark('before_submit');
+ await page.locator('#catalog-search-form').evaluate(el=>el.requestSubmit());
+ mark('submitted_search');
+ await page.waitForTimeout(4700);
+ mark('end');
+});
+await shoot('checkout',threads,'/checkout/',async(page,mark)=>{
+ await page.evaluate(()=>localStorage.setItem('threads.demo.cart.v1',JSON.stringify([{id:'bag-03',color:'color-0',size:'One Size',quantity:1}])));
+ await page.reload({waitUntil:'domcontentloaded'});
+ await page.locator('#checkout-form').waitFor({timeout:10000});
+ const data={name:'Portfolio Demo',email:'demo@example.test',phone:'01700000000',city:'Dhaka',address:'Studio Preview Street 1'};
+ for(const [name,val] of Object.entries(data))await page.locator('#checkout-form [name="'+name+'"]').fill(val);
+ await page.locator('#continue-to-card').click();
+ await page.locator('#checkout-card-step').waitFor({state:'visible'});
+ const card={demoCardholder:'Portfolio Demo',demoCardNumber:'SAMPLE-CARD',demoCardExpiry:'12/30',demoCardCvv:'000'};
+ for(const [name,val] of Object.entries(card))await page.locator('#checkout-card-form [name="'+name+'"]').fill(val);
+ await page.evaluate(()=>{document.activeElement?.blur();window.scrollTo({top:0,left:0,behavior:'instant'})});
+ await page.waitForTimeout(700);
+ mark('prepared_no_form_scroll');
+ await page.locator('#proceed-payment').evaluate(el=>el.click());
+ mark('clicked_payment');
+ await page.waitForTimeout(5100);
+ mark('payment_end');
+});
+await shoot('customization',chap,'/artists-edit/',async(page,mark)=>{
+ await page.waitForFunction(()=>document.body.dataset.worktableStatus==='ready',{timeout:45000});
+ await page.locator('#artistWorktable').waitFor();
+ await page.evaluate(async()=>{window.scrollTo({top:90,left:0,behavior:'instant'});await Promise.all([...document.images].filter(x=>x.getBoundingClientRect().top<innerHeight).map(i=>i.decode().catch(()=>{})))});
+ await page.waitForTimeout(900);
+ const controls=await page.locator('#artistWorktable button[data-group][data-value]').evaluateAll(bs=>bs.map(b=>b.dataset.group+':'+b.dataset.value));
+ console.log('CUSTOMIZATION_CONTROLS',JSON.stringify(controls));
+ mark('blank_tshirt');
+ const art=path.resolve(root,'chapchitra/projects/chapchitra/src/assets/chapchitra-symbol.webp');
+ await page.locator('#worktableFile').setInputFiles(art);
+ await page.waitForTimeout(1500);
+ mark('artwork_uploaded');
+ await page.locator('#artistWorktable button[data-group="color"][data-value="yellow"]').evaluate(el=>el.click());
+ await page.waitForTimeout(1500);
+ mark('color_yellow');
+ await page.locator('#worktableArtScale').evaluate(el=>{el.value='24';el.dispatchEvent(new Event('input',{bubbles:true}))});
+ await page.waitForTimeout(1300);
+ mark('resized_artwork');
+ await page.locator('#artistWorktable button[data-group="garment"][data-value="dropShoulder"]').evaluate(el=>el.click());
+ await page.waitForTimeout(1700);
+ mark('garment_changed');
+ await page.locator('#artistWorktable button[data-group="color"][data-value="white"]').evaluate(el=>el.click());
+ await page.waitForTimeout(1200);
+ mark('finished_style');
+},{width:1600,height:1000});
+await browser.close();
+fs.writeFileSync(path.join(dir,'capture_manifest.json'),JSON.stringify(details,null,2));
