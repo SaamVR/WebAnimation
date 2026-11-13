@@ -26,6 +26,7 @@ async function shoot(name,base,route,steps,viewport={width:1440,height:900}){
 const threads='http://127.0.0.1:8711',chap='http://127.0.0.1:8712';
 await shoot('cart',threads,'/product/?id=bag-03',async(page,mark)=>{
  await page.locator('#detail-add').waitFor({timeout:10000});
+ await page.addStyleTag({content:'body{background:#f7f8f6!important;overflow-x:hidden!important} #site-shell{transform:translateY(132px) scale(.84)!important;transform-origin:center top!important}'});
  await page.evaluate(async()=>{window.scrollTo(0,0);await Promise.all([...document.images].filter(i=>i.getBoundingClientRect().top<innerHeight).map(i=>i.decode().catch(()=>{})))});
  await page.waitForTimeout(650);
  mark('before_click');
