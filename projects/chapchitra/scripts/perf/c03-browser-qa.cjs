@@ -6,7 +6,7 @@ const fs=require('node:fs'),path=require('node:path');
 const root=(process.env.C03_QA_ROOT||'http://127.0.0.1:4276').replace(/\/$/,'');
 const out=path.resolve(process.env.C03_QA_OUT||'perf-results/c03-product-fly-bag');
 fs.mkdirSync(out,{recursive:true});
-const report={root,checks:[],errors:[],failedResponses:[],screenshots:[],videos:[],metrics:[]};
+const report={root,checks:[],errors:[],warnings:[],failedResponses:[],screenshots:[],videos:[],metrics:[]};
 const check=(name,yes,detail)=>{
  report.checks.push({name,pass:!!yes});
  if(!yes)console.error('FAIL',name,JSON.stringify(detail||{}).slice(0,900));
@@ -55,7 +55,14 @@ async function normalTest(config){
   isMobile:width<=600,hasTouch:width<=600,deviceScaleFactor:1,
   recordVideo:video?{dir:out,size:{width,height}}:undefined});
  const page=await context.newPage(),err=[],bad=[];
- page.on('pageerror',e=>err.push(e.message));
+ page.on('pageerror',e=>{
+  // The exact WebKit ResizeObserver loop message is a nonfatal browser
+  // scheduling warning (no content exception, network error or crash).
+  // Preserve it for audit without masking any other pageerror.
+  if(e.message==='ResizeObserver loop completed with undelivered notifications.')
+   report.warnings.push({id,message:e.message});
+  else err.push(e.message);
+ });
  page.on('response',r=>{if(r.status()>=400&&r.url().startsWith(root))bad.push({status:r.status(),url:r.url()})});
  const recording=video?page.video():null;
  try{
@@ -137,10 +144,26 @@ async function normalTest(config){
   await button.click();
   await page.locator('[data-c03-flight]').waitFor({state:'attached',timeout:6000});
   await page.waitForTimeout(100);
-  await page.setViewportSize({width:width-1,height});
-  await page.waitForTimeout(150);
+  // Safari/WebKit may quantize a 1px test viewport delta and dispatch no
+  // native resize event. Require a measurable real resize across engines.
+  const beforeResize=await page.evaluate(()=>{
+   window.__c03NativeResizeEvents=0;
+   window.addEventListener('resize',()=>{window.__c03NativeResizeEvents++});
+   return innerWidth;
+  });
+  const resizedWidth=width>700?width-48:Math.max(300,width-32);
+  await page.setViewportSize({width:resizedWidth,height});
+  await page.waitForTimeout(260);
   const resized=await state(page);
-  check(id+' resize cancels safely',resized.overlayCount===0&&resized.count===5,resized);
+  const resizedViewport=await page.evaluate(()=>({
+   width:innerWidth,events:window.__c03NativeResizeEvents
+  }));
+  check(id+' real viewport resize observed',
+   Math.abs(resizedViewport.width-beforeResize)>=16&&resizedViewport.events>=1,
+   {beforeResize,resizedViewport});
+  check(id+' resize cancels safely',
+   resized.overlayCount===0&&resized.count===5,
+   {overlayCount:resized.overlayCount,count:resized.count,beforeResize,resizedViewport});
 
   // Assert the established 99-per-product limit; no C03 for a rejected add.
   const productId=await button.getAttribute('data-add-to-bag');
@@ -192,7 +215,7 @@ async function reducedMotion(){
  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');
  console.log('C03_QA_SUMMARY',JSON.stringify({
   passed:report.passed,failed:report.failed,errors:report.errors,
-  failedResponses:report.failedResponses,screenshots:report.screenshots,videos:report.videos
+  failedResponses:report.failedResponses,warnings:report.warnings,screenshots:report.screenshots,videos:report.videos
  },null,2));
  if(report.failed||report.errors.length||report.failedResponses.length)process.exitCode=2;
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});
