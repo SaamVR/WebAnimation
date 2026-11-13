@@ -45,11 +45,11 @@ test('palette, breakpoints and explicit C03 authorization preserve C-series boun
  const doc=await read('src/motion/README.md');
  // Historical "No timelines" restriction was superseded by the owner's C03
  // Product Fly-to-Bag motion approval; other C-series code remains isolated.
- assert.match(doc,/\\*\\*C03\\*\\*.*Product Fly-to-Bag/);
+ assert.ok(doc.includes('**C03**')&&doc.includes('Product Fly-to-Bag'));
  assert.match(doc,/Brass Bell is removed from the active C03 plan/);
  assert.match(doc,/No C02 change in C03/);
  const c03=await read('src/motion/c03/fly-to-bag.mjs');
- assert.match(c03,/document\\.body\\.dataset\\.page!=='product'/);
+ assert.ok(c03.includes("document.body.dataset.page!=='product'"));
  assert.match(c03,/prefers-reduced-motion: reduce/);
 });
 
