@@ -83,7 +83,7 @@ test('C02 auto-reveal is independently bootstrapped and never waits on RAF for r
  assert.doesNotMatch(runtime,/\.finally\(\(\)=>win\.requestAnimationFrame\(\(\)=>resolve\(\)\)\)/);
  assert.match(runtime,/Promise\.race\(\[fonts,new Promise\(r=>win\.setTimeout\(r,250\)\)\]\)/);
  assert.match(runtime,/\.then\(resolve,resolve\)/);
- for(const phase of ['idle','covering','waiting','revealing','complete'])
+ for(const phase of ['idle','covering','loading','revealing','complete'])
   assert.ok(runtime.includes("state('"+phase+"')"),'lifecycle state: '+phase);
  assert.match(runtime,/incomingGuard=win\.setTimeout\(cleanup,18000\)/);
  assert.match(runtime,/warmDestination\(target\)/);
@@ -181,7 +181,7 @@ test('native page commit is gated by actual complete ink geometry and a paint bo
  assert.match(runtime,/style\.clipPath==='none'/);
  assert.match(runtime,/coverPaintRaf=win\.requestAnimationFrame\(validate\)/);
  assert.match(runtime,/if\(!leaving\|\|navigationCommitted\|\|!proof\?\.covered\)return/);
- assert.match(runtime,/storeTicket\(win,target,\{progress:1,startedAt,demoMs,edgeStyle\}\)/);
+ assert.match(runtime,/storeTicket\(win,target,\{progress:1,startedAt,demoMs,edgeStyle,/);
  assert.match(runtime,/Math\.min\(1,progress\)/);
  assert.match(runtime,/Math\.min\(1,Number\(ticket\.progress\)\|\|\.015\)/);
  assert.match(runtime,/Math\.min\(1,initial\)/);

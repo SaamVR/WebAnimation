@@ -36,6 +36,7 @@ background-color:#F6F7F5}
    // exposing the destination through a synthetic .985 opening.
    var p=Math.max(.015,Math.min(1,Number(ticket.progress)||.015));
    document.documentElement.dataset.c02PrepaintProgress=String(p);
+   document.documentElement.dataset.c02Phase='LOADING';
    if(p>=1)document.documentElement.classList.add('c02-full-cover');
    function edge(y,offset){
     var organic=104*Math.sin(Math.PI*y/1000*2.35+.32)
@@ -52,7 +53,8 @@ background-color:#F6F7F5}
      var vw=vv&&vv.width>0?vv.width:innerWidth;
      var vh=vv&&vv.height>0?vv.height:innerHeight;
      var scale=vh*1.5/1152;
-     var rightContact=(-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*(
+     var driftX=Number(ticket.drift?.x)||0;
+    var rightContact=(-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*(
       104*Math.sin(Math.PI*470/1000*2.35+.32)+
       48*Math.sin(Math.PI*470/1000*4.15+1.15)+
       19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*vw/1000;
@@ -63,7 +65,8 @@ background-color:#F6F7F5}
      root.style.setProperty('--c02-viewport-height',vh+'px');
      root.style.setProperty('--c02-asset-width',8192*scale+'px');
      root.style.setProperty('--c02-asset-height',1152*scale+'px');
-     root.style.setProperty('--c02-asset-left',(rightContact-8096*scale)+'px');
+     root.style.setProperty('--c02-asset-left',(rightContact-8096*scale+driftX)+'px');
+     root.dataset.c02PrepaintDriftX=String(driftX);
      root.style.setProperty('--c02-asset-top',((vh-1152*scale)/2)+'px');
     }
     var root=document.documentElement;

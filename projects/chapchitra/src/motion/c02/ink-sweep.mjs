@@ -5,6 +5,7 @@ import {C02_PAGES,C02_PATHS,C02_MOTION,INK_PALETTE,isC02Eligible,
 import {C02_ADAPTIVE,pendingInkProgress,finishDuration,
  finishInkProgress,smoothHandoffProgress,getReviewDelayMs} from './adaptive-progress.mjs';
 import {gritEdgePaths} from './grit-edge.mjs';
+import {c02DriftAmplitude,c02DriftPhase,c02DriftAdvance,c02DriftFrame} from './loading-drift.mjs';
 import {C02_INK_ASSET,c02InkAssetPlacement,c02InkVisualViewport,
  c02InkRevealClip} from './ink-asset.mjs';
 export {C02_PAGES,C02_PATHS,C02_MOTION,isC02Eligible};
@@ -42,10 +43,12 @@ function ticketFor(win){
   return t?.to===win.location.pathname+win.location.search&&age>=0&&age<TTL?t:null;
  }catch{return null}
 }
-function storeTicket(win,url,{progress=0,startedAt=Date.now(),demoMs=0,edgeStyle='asset'}={}){
+function storeTicket(win,url,{progress=0,startedAt=Date.now(),demoMs=0,edgeStyle='asset',drift=null}={}){
  try{win.sessionStorage.setItem(KEY,JSON.stringify({
   to:url.pathname+url.search,created:Date.now(),
-  progress:Math.max(0,Math.min(1,progress)),startedAt,demoMs,edgeStyle
+  progress:Math.max(0,Math.min(1,progress)),startedAt,demoMs,edgeStyle,
+  drift:drift&&Number.isFinite(drift.x)?{
+   phase:c02DriftPhase(drift.phase),x:drift.x,direction:drift.direction}:null
  }))}catch{}
 }
 function clearTicket(win){try{win.sessionStorage.removeItem(KEY)}catch{}}
@@ -121,6 +124,56 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  img.addEventListener('error',()=>{roller.hidden=true},{once:true});
  roller.append(img);overlay.append(svg,inkAssetLayer,roller);doc.body.append(overlay);
  let stopAnimation=null,viewportKey='',rasterSizeKey='';
+ let driftPhase=0,driftX=0,driftRunning=false,driftRaf=0,driftTime=0;
+ let driftBase=null,driftLimit=0,driftViewportWidth=0;
+ function driftSnapshot(){
+  return {phase:driftPhase,x:driftX,
+   direction:Math.cos(driftPhase)>=0?1:-1};
+ }
+ function drawDrift(){
+  if(!driftBase)return;
+  inkAssetImg.style.transform='translate3d('+
+   (driftBase.left+driftX)+'px,'+driftBase.top+'px,0)';
+  overlay.dataset.c02DriftX=String(driftX);
+  overlay.dataset.c02DriftPhase=String(driftPhase);
+  overlay.dataset.c02DriftDirection=String(driftSnapshot().direction);
+ }
+ function driftLimitForViewport(viewport){
+  // Only recomputed for a viewport change, never at every RAF tick.
+  const edge=Math.min(...Array.from({length:33},(_,i)=>
+   inkEdgeX(1,i*1000/32,27)))*viewport.width/1000;
+  return c02DriftAmplitude(viewport.width,edge);
+ }
+ function restoreDrift(snapshot={}){
+  driftPhase=c02DriftPhase(snapshot.phase);
+  const view=c02InkVisualViewport(win);
+  driftLimit=driftLimitForViewport(view);driftViewportWidth=view.width;
+  const value=Number(snapshot.x);
+  driftX=Number.isFinite(value)?
+   Math.max(-driftLimit,Math.min(driftLimit,value)):
+   c02DriftFrame(driftPhase,driftLimit).x;
+  drawDrift();
+ }
+ function stopDrift(){
+  driftRunning=false;win.cancelAnimationFrame(driftRaf);driftRaf=0;driftTime=0;
+  overlay.dataset.c02DriftRunning='false';
+ }
+ function startDrift(snapshot){
+  if(snapshot)restoreDrift(snapshot);
+  if(driftRunning)return;
+  driftRunning=true;driftTime=0;overlay.dataset.c02DriftRunning='true';
+  const frame=now=>{
+   if(!driftRunning)return;
+   const dt=driftTime?now-driftTime:0;driftTime=now;
+   if(doc.visibilityState!=='hidden'){
+    driftPhase=c02DriftAdvance(driftPhase,dt);
+    driftX=c02DriftFrame(driftPhase,driftLimit).x;
+    drawDrift();
+   }
+   driftRaf=win.requestAnimationFrame(frame);
+  };
+  driftRaf=win.requestAnimationFrame(frame);
+ }
  function render(progress,mode='cover'){
   const p=Math.min(1,Math.max(0,progress));
   overlay.dataset.phase=mode;
@@ -136,6 +189,8 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    overlay.style.width=viewport.width+'px';
    overlay.style.height=viewport.height+'px';
    overlay.dataset.viewport=JSON.stringify(viewport);
+   driftLimit=driftLimitForViewport(viewport);driftViewportWidth=viewport.width;
+   driftX=Math.max(-driftLimit,Math.min(driftLimit,driftX));
   }
   // A single decoded vector image remains active through the entire transition.
   // Never reconstruct source paths, mirror, replace or tile at phase changes.
@@ -156,8 +211,8 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     inkAssetImg.style.width=placement.renderedWidth+'px';
     inkAssetImg.style.height=placement.renderHeight+'px';
    }
-   inkAssetImg.style.transform='translate3d('+placement.left+'px,'+
-    placement.top+'px,0)';
+   driftBase={left:placement.left,top:placement.top};
+   drawDrift();
    const clip=mode==='reveal'?c02InkRevealClip(p,viewport.width,viewport.height)
     :p===0?'inset(0 100% 0 0)':'none';
    if(inkAssetLayer.style.clipPath!==clip)inkAssetLayer.style.clipPath=clip;
@@ -224,6 +279,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    ?String(1-(p-.88)/.12*.13):'1';
  }
  function destroy(){
+  stopDrift();
   if(stopAnimation)stopAnimation();
   overlay.remove();doc.documentElement.classList.remove('c02-pending');
  }
@@ -282,7 +338,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
     let target=pendingInkProgress(Date.now()-startedAt,{cap,knownMs});
     // Navigation may remain in the outgoing document while HTML arrives.
     // Never park the roller at the prefetch handoff position.
-    if(doc.documentElement.dataset.c02State==='waiting')
+    if(doc.documentElement.dataset.c02State==='loading')
      target=Math.max(target,Math.min(.975,p+dt*.000065));
     // Cap each frame's movement on tab activation; never visually jump
     // several hundred pixels after a background/suspended WebKit frame.
@@ -337,7 +393,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   // moving contact envelope across the full height, not just a progress
   // number or the right-hand edge of a transparent <img> rectangle.
   const minPigmentEdge=Math.min(...Array.from({length:33},(_,i)=>
-   inkEdgeX(1,i*1000/32,27)))*viewport.width/1000;
+   inkEdgeX(1,i*1000/32,27)))*viewport.width/1000+driftX;
   const ready=inkAssetImg.complete&&
    inkAssetImg.naturalWidth===C02_INK_ASSET.width&&
    inkAssetImg.naturalHeight===C02_INK_ASSET.height;
@@ -367,7 +423,8 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   overlay.dataset.c02FullCoverage=JSON.stringify(proof);
   return proof;
  }
- return {overlay,render,animate,driveAdaptive,destroy,assetsReady,fullCoverage};
+ return {overlay,render,animate,driveAdaptive,destroy,assetsReady,fullCoverage,
+  restoreDrift,startDrift,stopDrift,driftSnapshot};
 }
 function awaitShell(win,doc){
  return new Promise(resolve=>{
@@ -417,7 +474,13 @@ export function installC02PageTransitions(win=window,doc=document){
   pendingTarget=null,pendingStartedAt=0,pendingDemoMs=0;
  const state=(phase)=>{
   doc.documentElement.dataset.c02State=phase;
-  if(overlay?.overlay)overlay.overlay.dataset.c02State=phase;
+  const phases={covering:'COVERING',loading:'LOADING',
+   revealing:'REVEALING',complete:'COMPLETE'};
+  if(phases[phase])doc.documentElement.dataset.c02Phase=phases[phase];
+  if(overlay?.overlay){
+   overlay.overlay.dataset.c02State=phase;
+   if(phases[phase])overlay.overlay.dataset.c02Phase=phases[phase];
+  }
  };
  state('idle');
  function cleanup(){
@@ -456,6 +519,7 @@ export function installC02PageTransitions(win=window,doc=document){
    ?requestedEdge:'asset';
  if(ticket&&!reduced.matches){
   overlay=makeOverlay(doc,win,edgeStyle);
+  overlay.restoreDrift(ticket.drift||{});
   // Hold the exact full-cover image painted before native navigation.
   const p=Math.max(.015,Math.min(1,Number(ticket.progress)||.015));
   doc.documentElement.dataset.c02IncomingProgress=String(p);
@@ -468,7 +532,7 @@ export function installC02PageTransitions(win=window,doc=document){
   overlay.render(p,'cover');
   if(ticket.demoMs)win.__c02DemoStartedAt=ticket.startedAt;
   doc.documentElement.dataset.c02StartedAt=String(ticket.startedAt||Date.now());
-  state('waiting');
+  state('loading');
   incomingGuard=win.setTimeout(cleanup,18000);
   const incomingPaintReady=overlay.assetsReady.then(ok=>{
    if(!overlay)return false;
@@ -500,7 +564,8 @@ export function installC02PageTransitions(win=window,doc=document){
       originalTicketProgress:ticket.progress
      });
      doc.documentElement.classList.remove('c02-pending');
-     drive=overlay.driveAdaptive({
+     if(p>=1)overlay.startDrift(); // Only after stationary prepaint is gone.
+     else drive=overlay.driveAdaptive({
       initial:p,startedAt:ticket.startedAt||Date.now(),
       knownMs:ticket.demoMs||0
      });
@@ -515,9 +580,18 @@ export function installC02PageTransitions(win=window,doc=document){
   Promise.all([awaitShell(win,doc),incomingPaintReady]).then(([,ok])=>{
    if(!overlay)return;
    if(!ok){cleanup();return;}
-   if(!drive)return;
+   if(!drive&&p<1)return;
    doc.documentElement.dataset.c02ReadyAt=String(Date.now());
-   state('finishing');
+   // Preserve the drift offset through the first reveal frame; no snap-to-zero.
+   overlay.stopDrift();
+   if(p>=1){
+    doc.documentElement.dataset.c02RollerEndAt=String(Date.now());
+    doc.documentElement.dataset.c02RevealStartAt=String(Date.now());
+    state('revealing');
+    overlay.animate('reveal',C02_MOTION.revealMs,cleanup);
+    return;
+   }
+   state('loading');
    drive.finishTo(1,()=>{
     doc.documentElement.dataset.c02RollerEndAt=String(Date.now());
     drive?.stop();drive=null;
@@ -534,9 +608,10 @@ export function installC02PageTransitions(win=window,doc=document){
  win.addEventListener('pageshow',e=>{if(e.persisted)cleanup()});
  win.addEventListener('pagehide',()=>{
   win.clearTimeout(watchdog);win.clearTimeout(commitTimer);
-  if(navigationCommitted&&pendingTarget&&drive){
-   storeTicket(win,pendingTarget,{progress:drive.progress(),
-    startedAt:pendingStartedAt,demoMs:pendingDemoMs,edgeStyle});
+  if(navigationCommitted&&pendingTarget&&overlay){
+   storeTicket(win,pendingTarget,{progress:1,
+    startedAt:pendingStartedAt,demoMs:pendingDemoMs,edgeStyle,
+    drift:overlay.driftSnapshot()});
   }
   drive?.stop();drive=null;
   prefetchAbort?.abort();prefetchAbort=null;
@@ -579,7 +654,8 @@ export function installC02PageTransitions(win=window,doc=document){
      // The old page remains alive while the browser commits a native
      // navigation. Carry the latest progress to the destination document.
      if(navigationCommitted)storeTicket(win,target,{
-      progress:p,startedAt,demoMs,edgeStyle
+      progress:p,startedAt,demoMs,edgeStyle,
+      drift:overlay?.driftSnapshot()
      });
     }
    });
@@ -587,7 +663,9 @@ export function installC02PageTransitions(win=window,doc=document){
    const navigate=proof=>{
     if(!leaving||navigationCommitted||!proof?.covered)return;
     navigationCommitted=true;
-    state('waiting');
+    // Begin the loading state on the verified fully painted outgoing frame.
+    if(edgeStyle==='asset')overlay.startDrift();
+    state('loading');
     const committedAt=Date.now();
     try{win.sessionStorage.setItem(COVER_PROOF_KEY,JSON.stringify({
      ...proof,committedAt,startedAt,from:win.location.pathname,
@@ -595,7 +673,8 @@ export function installC02PageTransitions(win=window,doc=document){
     }));}catch{}
     doc.documentElement.dataset.c02NavigationCommitProgress='1';
     doc.documentElement.dataset.c02NavigationCommitAt=String(committedAt);
-    storeTicket(win,target,{progress:1,startedAt,demoMs,edgeStyle});
+    storeTicket(win,target,{progress:1,startedAt,demoMs,edgeStyle,
+     drift:overlay.driftSnapshot()});
     try{win.location.assign(target.href)}
     catch{clearTicket(win);cleanup()}
    };
@@ -639,21 +718,19 @@ export function installC02PageTransitions(win=window,doc=document){
    // 1/3/5/8-second scripted examples estimate duration only here,
    // never on normal pages. They pace the shared roller/ink controller.
    if(demoMs){
-    commitTimer=win.setTimeout(commit,demoMs<=1000?40:Math.max(0,demoMs-1050));
+    commitTimer=win.setTimeout(commit,demoMs<=1000?40:200);
    }else{
+    // Begin the genuine HTML GET on click, but don't make the roller wait
+    // for the body response before finishing the full-width sweep.
     warmDestination(target).then(ok=>{
-     if(!leaving||navigationCommitted)return;
-     if(ok)commit();
-     else{
-      // A failed HTML fetch is a real failure signal, not "95% loaded".
-      // Immediately remove the blocking ink and allow native navigation
-      // to succeed or display the browser's own error/retry UI.
+     if(!ok&&!navigationCommitted&&!committing&&leaving){
       clearTicket(win);cleanup();
       try{win.location.assign(target.href)}catch{}
      }
     });
-    // Extremely slow/streaming HTML: never hold the visitor indefinitely.
-    win.setTimeout(commit,Math.min(12000,FAILSAFE_MS-3500));
+    // A flowing cover is not a buffer: finishing runs bounded velocity
+    // across the remaining original roller path, then commits natively.
+    commitTimer=win.setTimeout(commit,200);
    }
    watchdog=win.setTimeout(()=>{clearTicket(win);cleanup()},FAILSAFE_MS);
   }catch{cleanup();win.location.assign(target.href)}

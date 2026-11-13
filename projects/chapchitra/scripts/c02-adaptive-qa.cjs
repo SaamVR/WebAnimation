@@ -39,7 +39,10 @@ async function captureInit(context){
      rollerTransform:r?.style.transform||'',
      rollerSize:parseFloat(r?getComputedStyle(r).width:'0'),
      viewport:vp?.width||innerWidth,
-     visible:r?getComputedStyle(r).display==='block':false
+     visible:r?getComputedStyle(r).display==='block':false,
+     driftX:Number(o.dataset.c02DriftX)||0,
+     driftDirection:Number(o.dataset.c02DriftDirection)||1,
+     motionPhase:document.documentElement.dataset.c02Phase
     });
     sessionStorage.setItem(key,JSON.stringify(list.slice(-650)));
    }catch{}
@@ -77,8 +80,22 @@ function evaluateSamples(label,report,durationMs){
  const samples=report.samples.filter(x=>x.visible&&x.p<1);
  check(label+' roller recorded',samples.length>4,{n:samples.length});
  const increasing=samples.reduce((n,s,i)=>n+(i>0&&s.p>samples[i-1].p+0.00005?1:0),0);
- check(label+' movement throughout pending',increasing>=Math.max(4,Math.floor(durationMs/350)),
+ check(label+' movement through full-cover sweep',increasing>=Math.max(4,Math.floor(Math.min(durationMs,2000)/350)),
   {increasing,points:samples.length});
+ const loading=report.samples.filter(x=>x.motionPhase==='LOADING'&&x.p>=1);
+ if(durationMs>=3000){
+  check(label+' textured loading samples',loading.length>=3,
+   {n:loading.length,phases:[...new Set(report.samples.map(x=>x.motionPhase))]});
+  const spread=Math.max(...loading.map(x=>x.driftX))-
+   Math.min(...loading.map(x=>x.driftX));
+  check(label+' continuously displaced covered ink',spread>2,
+   {spread,loading:loading.length});
+  if(durationMs>=8000){
+   const directions=new Set(loading.map(x=>x.driftDirection));
+   check(label+' gentle drift reverses without resetting source',
+    directions.has(-1)&&directions.has(1),{directions:[...directions]});
+  }
+ }
  // Compare actual rendered roller coordinates against the bitmap contact,
  // not obsolete left: CSS coordinates. This catches the owner's post-handoff
  // roller jump even if progress p remains mathematically monotonic.
