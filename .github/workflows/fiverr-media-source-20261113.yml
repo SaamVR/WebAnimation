@@ -1,0 +1,65 @@
+name: Fiverr Media Source Collection
+on:
+  push:
+    branches:
+      - media/fiverr-gig-video-source-20261113
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout Threads approved release
+        uses: actions/checkout@v4
+        with:
+          ref: release/threads-demo-complete-20261026
+          path: material/threads
+          fetch-depth: 1
+          sparse-checkout: |
+            docs/evidence/threads/t01-camera/deployed
+            docs/evidence/threads/t01
+            docs/evidence/threads/t02-v3-final/deployed
+            docs/evidence/threads/t04-final/deployed
+            docs/evidence/threads/t04-sticky-checkout/deployed
+            site/threads
+          sparse-checkout-cone-mode: true
+      - name: Checkout CHAPCHITRA integration
+        uses: actions/checkout@v4
+        with:
+          ref: integration/chapchitra-artist-approved-freeze-20261113
+          path: material/chapchitra
+          fetch-depth: 1
+          sparse-checkout: |
+            projects/chapchitra/docs/c01-evidence
+            projects/chapchitra/docs/c08-evidence
+            projects/chapchitra/docs/performance-evidence/print-guides-tools
+            projects/chapchitra/docs/performance-evidence/artwork-placement-20261108
+            projects/chapchitra/docs/compact-final-evidence
+            projects/chapchitra/src/assets/c01
+            projects/chapchitra/src/assets/c08
+            projects/chapchitra/src/motion/c01/vendor
+          sparse-checkout-cone-mode: true
+      - name: Checkout Creative Motion Lab
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: material/lab
+          fetch-depth: 1
+          sparse-checkout: |
+            site
+          sparse-checkout-cone-mode: true
+      - name: Report files and sizes
+        run: |
+          find material -type f | sed -n '1,160p'
+          du -sh material/*
+          echo "Media files:"; find material -type f \( -iname '*.mp4' -o -iname '*.webm' -o -iname '*.json' -o -iname '*.lottie' \) | wc -l
+      - name: Bundle source material
+        uses: actions/upload-artifact@v4
+        with:
+          name: webanimation-fiverr-original-assets-20261113
+          path: material/
+          retention-days: 14
+          compression-level: 6
+          if-no-files-found: error
