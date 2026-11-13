@@ -2128,3 +2128,93 @@ body[data-page="artists-edit"] #app > .site-header {
 @media(max-width:600px){
  .cc-artist-bag-mark{min-height:82px;padding:6px;font-size:9px}
 }
+
+/* CHAPCHITRA — owner-approved footer navigation refresh (2026-11-13).
+   Four deliberate areas; original wordmark, olive, typography and strip stay
+   intact. No placeholder illustration, extra brand colors or fake links. */
+.site-footer{
+ padding:clamp(38px,4vw,58px) 0 22px;
+ background:var(--olive);
+ color:var(--cream);
+}
+.site-footer .footer-grid{
+ display:grid;
+ grid-template-columns:minmax(0,1.65fr) minmax(0,.88fr) minmax(0,1fr) minmax(0,1.25fr);
+ column-gap:clamp(20px,2.7vw,54px);
+ row-gap:26px;
+ align-items:start;
+}
+.site-footer .footer-identity{min-width:0}
+.site-footer .footer-identity p{
+ margin:20px 0 16px;
+ font-size:clamp(11px,.88vw,13px);
+ line-height:1.5;
+ letter-spacing:.14em;
+ color:var(--cream);
+}
+.site-footer .footer-socials{
+ display:flex;
+ align-items:center;
+ flex-wrap:wrap;
+ gap:12px;
+}
+.site-footer .footer-social-entry{
+ display:inline-grid;
+ place-items:center;
+ flex:0 0 auto;
+ width:40px;
+ height:40px;
+ border:1px solid color-mix(in srgb,var(--cream) 35%,transparent);
+ border-radius:50%;
+ color:var(--cream);
+}
+.site-footer .footer-social-entry svg{width:22px;height:22px;display:block}
+.site-footer .footer-social-entry[href]:hover,
+.site-footer .footer-social-entry[href]:focus-visible{
+ border-color:var(--cream);
+ outline-offset:3px;
+ background:color-mix(in srgb,var(--cream) 9%,transparent);
+}
+.site-footer .footer-social-unlinked{cursor:default}
+.site-footer .footer-column{align-items:flex-start;gap:12px;min-width:0}
+.site-footer .footer-column h2{
+ margin:0 0 12px;
+ font:600 14px/1.5 var(--sans);
+ color:var(--cream);
+}
+.site-footer .footer-column a,
+.site-footer .footer-help-pending{
+ font:400 clamp(13px,1vw,15px)/1.5 var(--sans);
+ color:var(--cream);
+ text-decoration:none;
+}
+.site-footer .footer-column a:hover{text-decoration:underline;text-underline-offset:4px}
+.site-footer .footer-column a:focus-visible{outline:2px solid var(--cream);outline-offset:4px}
+.site-footer .footer-help-pending{opacity:.84;cursor:default}
+.site-footer .footer-illustration-space{
+ min-width:0;
+ min-height:190px;
+ /* Intentionally blank: no artwork or placeholder border. */
+}
+.site-footer .footer-bottom{
+ margin-top:clamp(27px,3vw,40px);
+ padding-top:16px;
+}
+@media(max-width:1070px){
+ .site-footer .footer-grid{
+  grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,1fr);
+  gap:26px;
+ }
+ .site-footer .footer-illustration-space{grid-column:1/-1;min-height:0}
+}
+@media(max-width:690px){
+ .site-footer .footer-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(16px,5vw,28px);
+  row-gap:29px;
+ }
+ .site-footer .footer-identity{grid-column:1/-1}
+ .site-footer .footer-illustration-space{grid-column:1/-1;min-height:0}
+ .site-footer .footer-social-entry{width:40px;height:40px}
+ .site-footer .footer-bottom{margin-top:30px}
+}
