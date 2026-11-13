@@ -1,5 +1,14 @@
 # WebAnimation — Repository Boundary Rules
 
+## CHAPCHITRA — NO AUTOMATIC DEPLOYED PREVIEWS (OWNER DIRECTIVE 2026-11-13)
+
+**Binding rule:** No Vercel, Render or other hosted preview/deployment per tweak, branch, PR or animation revision. A user saying "continue", "fix", "review" or approving an asset does not authorize a deploy. Static work: screenshot/QA artifact. GSAP/SVG motion: local MP4/WebM/GIF + optional self-contained local HTML. Lottie: local/offline Lottie player, JSON/.lottie and recording. Functional tests: local / GitHub Actions Chromium/WebKit evidence. **No new preview website URL by default.**
+
+A hosted website preview is permitted **only on the owner's explicit request** and only as a batched update to the **existing verified shared staging URL** by the serial integration owner. Production requires separate explicit permission. Check and suppress host auto-build/PR preview triggers; written rules do not stop external webhooks. If a merge would trigger a deployment, defer it until the owner authorizes or the trigger is safely disabled. Preserve exclusive ownership of Artist's Edit, Animation Integration and standalone C05. Report `Deployment: NONE — per no-automatic-preview policy` on routine runs.
+
+**Full rule:** [NO_AUTOMATIC_PREVIEWS_POLICY.md](projects/chapchitra/docs/NO_AUTOMATIC_PREVIEWS_POLICY.md) on CHAPCHITRA branches. This newer rule supersedes any older instruction to deploy on each change.
+
+
 This is a shared Git repository containing **independent** demos, not one coupled website.
 
 ## Hard boundaries
