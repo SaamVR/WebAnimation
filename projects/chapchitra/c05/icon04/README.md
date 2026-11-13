@@ -13,6 +13,7 @@ This folder belongs to the standalone Making Lottie lane; it is **not imported b
 - refine_icon04_soft_bounce.py: reproducible V2-to-V3 motion-only source refiner. Execute python3 refine_icon04_soft_bounce.py in this directory.
 - ICON04_V3_LOCAL_REVIEW.html: local standalone Lottie-web player; keep lottie.min.js in the same folder.
 - lottie.min.js, LOTTIE_WEB_LICENSE.md: unmodified MIT-licensed Lottie-web v5.12.2 review runtime and required license.
+- capture_icon04.py: local Playwright/Chromium recorder for native Lottie-web review, screenshot contact frames and WebM.
 
 ## One top-shirt movement
 
@@ -30,6 +31,8 @@ No X drift, no opacity change, no geometry deformation, no matte/mask, no loopin
 ## Local review (no hosted preview)
 
 Download this folder from the feature branch and open ICON04_V3_LOCAL_REVIEW.html in a local browser. The player uses bundled **native Lottie-web** and supports replay, pause, and per-frame scrubbing. The circle is a static **review-only** background guide; it does not clip the animation.
+
+To capture an actual real-browser clip locally, install Playwright and Chromium (`python -m pip install playwright` and `python -m playwright install chromium`), then execute `python capture_icon04.py` from this folder. It writes `local-evidence/ICON04_V3_REVIEW.webm` and frame screenshots locally. This has not been executed in the present environment; no recording is being represented as completed.
 
 **QA distinction:** Exact native JSON source comparisons and keyframe invariants have been checked in this session. A native Lottie-web runtime is bundled, but independent end-to-end browser playback and a real recording from this final V3 file still require a visual capture run. Do not call them passed until a recording and browser evidence exist.
 
