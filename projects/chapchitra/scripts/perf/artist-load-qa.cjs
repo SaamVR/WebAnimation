@@ -28,7 +28,8 @@ async function timedLoad(page,entry,kind,iteration){
   shell=await page.evaluate(()=>performance.now());
   await page.locator('.cc-worktable-stage:not([aria-busy])').waitFor({timeout:80000});
   firstVisible=await page.evaluate(()=>performance.now());
-  await page.locator('#worktableUploadArt').waitFor({state:'visible',timeout:20000});
+  await page.locator(entry.mobile?'.cc-mobile-category-button[data-mobile-group="upload"]':'#worktableUploadArt')
+   .waitFor({state:'visible',timeout:20000});
   interactive=await page.evaluate(()=>performance.now());
   try{
    await page.waitForFunction(()=>{
