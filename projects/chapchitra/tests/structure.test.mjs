@@ -49,7 +49,9 @@ test('palette, breakpoints and explicit C03 authorization preserve C-series boun
  assert.match(doc,/Brass Bell is removed from the active C03 plan/);
  assert.match(doc,/No C02 change in C03/);
  const c03=await read('src/motion/c03/fly-to-bag.mjs');
- assert.ok(c03.includes("document.body.dataset.page!=='product'"));
+ assert.match(c03,/resolveC03ProductSource\(button,productId\)/);
+ assert.match(c03,/card\.dataset\.productId!==productId/);
+ assert.doesNotMatch(c03,/document\.body\.dataset\.page!=='product'/);
  assert.match(c03,/prefers-reduced-motion: reduce/);
 });
 

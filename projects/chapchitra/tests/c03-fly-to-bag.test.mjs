@@ -38,18 +38,22 @@ test('one continuous monotonic shrink to actual basket aperture',()=>{
  }
  assert.equal(prev,1);
 });
-test('only Product Detail successful add triggers motion; existing mutation owns quantity',()=>{
- assert.match(app,/const c03Ready=route==='product'/);
- assert.match(app,/if\(route==='product'&&count>previous\)/);
+test('all successful catalog adds use the exact clicked illustration with unchanged motion',()=>{
+ assert.match(app,/function loadC03\(\)/);
+ assert.match(app,/if\(count>previous\)/);
+ assert.match(app,/playC03\(\{button:add,productId:item\.id\}\)/);
  assert.match(app,/setDemoBagQty\(item\.id,previous\+1\)/);
+ assert.match(flight,/button\.closest\('\.product-card\[data-product-id\]'\)/);
+ assert.match(flight,/card\.dataset\.productId!==productId/);
+ assert.match(flight,/\.product-visual \.shirt-svg, \.product-visual img/);
+ assert.match(flight,/\.detail-layout \.detail-art \.shirt-svg/);
  assert.match(flight,/source\.cloneNode\(true\)/);
- assert.match(flight,/\.detail-art \.shirt-svg, \.detail-art img/);
  assert.match(flight,/\.site-header \.bag-link/);
+ assert.doesNotMatch(flight,/document\.body\.dataset\.page!=='product'/);
  assert.doesNotMatch(flight,/setDemoBagQty|sessionStorage\.setItem|\.click\(\)/);
  assert.match(css,/pointer-events:none/);
- assert.doesNotMatch(css,/background:var\(--fog\)|background:var\(--beige\)/);
  assert.match(flight,/prefers-reduced-motion: reduce/);
  assert.match(flight,/pagehide',cancelC03/);
  assert.match(flight,/cameraScroll\(scrollY\+before\.top-clearance/);
- assert.match(flight,/gs\.timeline\(/);
+ assert.match(flight,/duration:\.91,ease:'power2\.inOut'/);
 });

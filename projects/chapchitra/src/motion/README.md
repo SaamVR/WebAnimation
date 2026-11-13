@@ -8,7 +8,7 @@ The Artist's Edit remains feature-frozen.
 | --- | --- |
 | C01 | Approved connected illustrated benefits (preserve existing integration). |
 | C02 | Ink sweep / grit roller and adaptive transition, independently owned by Animation Development. No C02 change in C03. |
-| **C03** | **Product Fly-to-Bag** — new GSAP/SVG prototype for successful `/product/` Add to Bag actions; references approved THREADS T02. **Creative approval pending**. |
+| **C03** | **Product Fly-to-Bag** — approved flight preserved; owner-approved site-wide catalog Add-to-Bag activation for shared staging integration. |
 | C04 | No additional design or implementation authorized by this C03 request. |
 | C05 | Individual standalone Lottie/service-icon workflow; no automatic integration. |
 | C08 | Existing owner-approved Wordmark Reprint; preserve implementation. |
