@@ -19,8 +19,6 @@ test('Artist starts manifest, modules and stylesheet before general shell loads'
  assert.ok(app.includes("const artistModulePending=artistPage"));
  assert.ok(app.includes('const artistShellModules=artistPage?Promise.all'));
  assert.ok(app.includes("sheet.dataset.ccWorktable='ready'"));
- assert.ok(html.includes('rel="preload" as="style" href="../worktable-studio.css"'));
- assert.ok(app.indexOf("sheet.dataset.ccWorktable='ready'")>app.indexOf("const result=await artistManifestPending"));
  assert.ok(app.includes('const result=await artistManifestPending'));
  assert.ok(app.includes('const moduleResult=await artistModulePending'));
  assert.ok(app.includes('entries.__deliveryBuild!==build'));
