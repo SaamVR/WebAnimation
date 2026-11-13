@@ -154,4 +154,21 @@ async function run(browser,engine,width,height){
    process.exitCode=2;
   }
  }
+
+ // Verify the isolated footer design against actual compiled site pages in
+ // desktop Chromium, iPad WebKit and mobile WebKit. No hosted deployment.
+ const footerQA=path.join(__dirname,'footer-redesign-qa.cjs');
+ if(fs.existsSync(footerQA)){
+  const {spawnSync}=require('node:child_process');
+  const child=spawnSync(process.execPath,[footerQA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,CC_FOOTER_QA_ROOT:origin,
+    CC_FOOTER_QA_OUT:path.resolve('perf-results/shared-stage-footer')},
+   encoding:'utf8',stdio:'inherit',timeout:8*60*1000,
+  });
+  if(child.error||child.status!==0){
+   console.error('Footer responsive browser QA failed',child.error?.message||child.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});
