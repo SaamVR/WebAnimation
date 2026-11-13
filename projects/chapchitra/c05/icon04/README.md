@@ -1,6 +1,6 @@
 # CHAPCHITRA C05 — Icon 04 / Onto What You Wear
 
-**Status:** V3 SOFT BOUNCE — owner visual review pending. **DO NOT INTEGRATE OR DEPLOY.**
+**Status:** V3 SOFT BOUNCE — **CREATIVE APPROVED by owner on 2026-11-13**. **DO NOT INTEGRATE OR DEPLOY** until a separate integration instruction.
 
 This folder belongs to the standalone Making Lottie lane; it is **not imported by the CHAPCHITRA site**. Icons 01–03 and the main site are untouched.
 
@@ -36,6 +36,6 @@ To capture an actual real-browser clip locally, install Playwright and Chromium 
 
 **QA distinction:** Exact native JSON source comparisons and keyframe invariants have been checked in this session. A native Lottie-web runtime is bundled, but independent end-to-end browser playback and a real recording from this final V3 file still require a visual capture run. Do not call them passed until a recording and browser evidence exist.
 
-**Approvals:** Icons 01–03 previously owner-approved; Icon 04 V3 **awaiting owner visual approval**. After approval, hand off paths/formats/SHAs/playback instructions to Animation Integration (not to staging directly).
+**Approvals:** Icons 01–03 previously owner-approved; Icon 04 V3 **CREATIVE APPROVED on 2026-11-13**. After approval, hand off paths/formats/SHAs/playback instructions to Animation Integration (not to staging directly).
 
 **Deployment: NONE — per no-automatic-preview policy.**
