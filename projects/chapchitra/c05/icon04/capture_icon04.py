@@ -48,7 +48,7 @@ def main():
           .stage,#animation,#animation svg{overflow:visible!important}
           main>h1,main>.sub,main>.controls,main>.status,main>p{display:none!important}
         """)
-        page.locator("#replay").click()
+        page.evaluate("document.getElementById('replay').click()")
         # Record the actual SVG rendering in Chromium at natural speed.
         page.wait_for_timeout(2300)
         page.screenshot(path=str(OUT/"ICON04_V3_FINAL.png"))
