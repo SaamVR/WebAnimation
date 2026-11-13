@@ -108,7 +108,8 @@ test('manifest is validated without stale-cache reuse and never silently falls b
  assert.match(app,/if\(artworkReady\)\{/);
  assert.match(app,/mountWorktable\(pending/);
  assert.doesNotMatch(app,/if\(!artworkReady\)\{/);
- assert.match(app,/cache:'no-store'/);
+ assert.match(app,/cache:\/\^\\\/releases/);
+ assert.match(app,/\?'default':'no-store'/);
  assert.match(app,/MANIFEST_VALIDATION_FAILED/);
  assert.match(app,/WORKTABLE_RENDER_FAILED/);
  assert.match(app,/previous\.style\.display='none'/);
@@ -127,7 +128,8 @@ test('complete compiled first frame reveals before independent bounded decoded l
  assert.match(stage,/aria-busy="true"/);
  assert.match(stage,/visualImages\.push\(img\)/);
  assert.doesNotMatch(stage,/await Promise\.all\(visualImages\.map/);
- assert.match(stage,/await preview\.decode\(\)/);
+ assert.match(stage,/if\(!mobileFirstFrame\)\{/);
+ assert.match(stage,/await \(mobileFirstFrame\?garmentImg:preview\)\.decode\(\)/);
  assert.match(stage,/await Promise\.all\(\[worker\(\),worker\(\)\]\)/);
  assert.match(stage,/void hydrate\(\)/);
  assert.match(stage,/body\.classList\.remove\('is-hydrating'\)/);
@@ -265,7 +267,9 @@ test('release build stages immutable versioned JavaScript manifest and review UR
  ])assert.match(src,requirement);
  const app=await load('src/app.mjs');
  assert.match(app,/entries\.__deliveryBuild!==build/);
- assert.match(app,/const response=await fetch\(manifestURL,\{cache:'no-store'\}\)/);
+ assert.match(app,/fetch\(artistManifestURL,\{/);
+ assert.match(app,/\?'default':'no-store'/);
+ assert.match(app,/const result=await artistManifestPending/);
  assert.doesNotMatch(app,/cache:'force-cache'/);
  assert.match(app,/previous\.hidden=true/);
  assert.match(app,/data.*review/i);
