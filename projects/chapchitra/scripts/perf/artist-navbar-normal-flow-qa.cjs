@@ -135,4 +135,23 @@ async function run(browser,engine,width,height){
    process.exitCode=2;
   }
  }
+ // C03 Product Fly-to-Bag: run the dedicated, fully local Chromium/WebKit
+ // animation-matrix QA on the same installed CI Playwright runner. This is
+ // conditional on the authorized C03 feature existing in the compiled site.
+ // It neither calls a hosted URL nor modifies any existing app test logic.
+ const c03QA=path.join(__dirname,'c03-browser-qa.cjs');
+ if(fs.existsSync(c03QA)){
+  const {spawnSync}=require('node:child_process');
+  const child=spawnSync(process.execPath,[c03QA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,C03_QA_ROOT:origin,
+    C03_QA_OUT:path.resolve('perf-results/shared-stage-c03'),
+    C03_CHROMIUM_PATH:chromium.executablePath()},
+   encoding:'utf8',stdio:'inherit',timeout:12*60*1000,
+  });
+  if(child.error||child.status!==0){
+   console.error('C03 dedicated GSAP flight QA failed',child.error?.message||child.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});

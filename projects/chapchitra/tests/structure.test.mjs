@@ -37,13 +37,20 @@ test('static street has distinct future SVG motion slots',async()=>{
  assert.match(street,/id="rickshaw-wheel-slot"/);
  assert.match(street,/id="tea-steam-slot"/);
 });
-test('provisional graphite palette, responsive breakpoints and C01-C04 isolation',async()=>{
+test('palette, breakpoints and explicit C03 authorization preserve C-series boundaries',async()=>{
  const css=await read('src/styles.css');
  assert.match(css,/#232323/);
  assert.match(css,/@media\(max-width:/);
  assert.match(css,/prefers-reduced-motion/);
  const doc=await read('src/motion/README.md');
- assert.match(doc,/No timelines/);
+ // Historical "No timelines" restriction was superseded by the owner's C03
+ // Product Fly-to-Bag motion approval; other C-series code remains isolated.
+ assert.ok(doc.includes('**C03**')&&doc.includes('Product Fly-to-Bag'));
+ assert.match(doc,/Brass Bell is removed from the active C03 plan/);
+ assert.match(doc,/No C02 change in C03/);
+ const c03=await read('src/motion/c03/fly-to-bag.mjs');
+ assert.ok(c03.includes("document.body.dataset.page!=='product'"));
+ assert.match(c03,/prefers-reduced-motion: reduce/);
 });
 
 test('favorite state bootstraps before product detail rendering',async()=>{

@@ -317,6 +317,11 @@ async function boot(){
  }
  // Session-only sample bag: accurate quantity state, immediate button feedback, and no commerce.
  const clickResetTimers=new WeakMap();
+ // C03 is visual-only and restricted to Product Detail. Warm the local
+ // self-hosted GSAP runtime before the first add when possible.
+ const c03Ready=route==='product'
+  ? import('/motion/c03/fly-to-bag.mjs').then(mod=>{void mod.warmC03();return mod}).catch(()=>null)
+  : null;
  function persistDemoBag(){
   try{sessionStorage.setItem(demoBagKey,JSON.stringify([...demoBag.entries()]))}catch{}
  }
@@ -401,6 +406,11 @@ async function boot(){
    const previous=demoBag.get(item.id)||0;
    setDemoBagQty(item.id,previous+1);
    const count=demoBag.get(item.id);
+   // Only a real, successful Product Detail bag increment starts C03.
+   // The animation never calls setDemoBagQty or synthesizes another click.
+   if(route==='product'&&count>previous){
+    void c03Ready?.then(mod=>mod?.playC03({button:add})).catch(()=>{});
+   }
    const labels=add.querySelectorAll('.cc-sketch-label,.cc-sketch-label-ink');
    if(labels.length){
     const old=clickResetTimers.get(add);if(old)clearTimeout(old);

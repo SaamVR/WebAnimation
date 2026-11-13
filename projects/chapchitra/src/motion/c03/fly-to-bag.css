@@ -1,0 +1,26 @@
+/* C03 standalone Product Detail flight overlay: no changes to site layout. */
+.c03-flight-layer{
+ position:fixed;inset:0;z-index:10000;overflow:visible;
+ pointer-events:none;background:transparent;isolation:isolate;
+}
+.c03-flight-cutout{
+ position:absolute;left:0;top:0;display:block;overflow:visible;
+ pointer-events:none;background:none!important;border:0!important;
+ margin:0!important;padding:0!important;transform-origin:50% 50%;
+ will-change:transform,opacity;
+}
+.c03-flight-cutout > svg,
+.c03-flight-cutout > img{
+ display:block!important;width:100%!important;height:100%!important;
+ max-width:none!important;max-height:none!important;min-width:0!important;
+ min-height:0!important;object-fit:contain!important;
+ margin:0!important;padding:0!important;border:0!important;
+ background:none!important;box-shadow:none!important;
+}
+.c03-flight-path{
+ position:absolute;left:0;top:0;width:1px;height:1px;
+ overflow:visible;opacity:0;pointer-events:none;
+}
+@media(prefers-reduced-motion:reduce){
+ .c03-flight-layer{display:none!important}
+}
