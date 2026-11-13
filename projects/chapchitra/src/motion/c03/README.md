@@ -18,7 +18,10 @@ counter pulse, from read-only
   still. The clone starts from the lower-right artwork quadrant.
 - Self-hosted GSAP tween uses a native SVG quadratic Bézier path whose
   source, destination and control are derived from live DOM rectangles and
-  the existing header. Flight is **.91s**, beginning at **.12s**, with one
+  the existing header. When a narrow phone scrolls the Add button into view
+  but moves the product above the viewport, an approved T02-style short
+  camera reveal brings the source into view and restores the preflight scroll
+  position after the catch. Flight is **.91s**, beginning at **.12s**, with one
   continuously shrinking scale. Bag impact starts at **1.03s**. The current
   CHAPCHITRA bag SVG has no wheels; it receives a restrained rebound, and
   its existing count receives a pulse. No wheel artwork was invented.

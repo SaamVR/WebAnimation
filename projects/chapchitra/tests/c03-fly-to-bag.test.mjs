@@ -50,5 +50,6 @@ test('only Product Detail successful add triggers motion; existing mutation owns
  assert.doesNotMatch(css,/background:var\(--fog\)|background:var\(--beige\)/);
  assert.match(flight,/prefers-reduced-motion: reduce/);
  assert.match(flight,/pagehide',cancelC03/);
+ assert.match(flight,/cameraScroll\(scrollY\+before\.top-clearance/);
  assert.match(flight,/gs\.timeline\(/);
 });
