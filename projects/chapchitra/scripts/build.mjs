@@ -128,6 +128,11 @@ let reviewHTML=sourceHTML
  .replaceAll('../worktable-studio.css','/releases/'+release+'/worktable-studio.css')
  .replaceAll('../styles.css','/releases/'+release+'/styles.css')
  .replaceAll('../app.mjs','/releases/'+release+'/app.mjs');
+// Fetch the release-pinned manifest while its renderer modules are loading.
+// Crossorigin=anonymous matches the later same-origin fetch credentials.
+const manifestPreload='<link rel="preload" as="fetch" type="application/json" crossorigin="anonymous" href="/releases/'+release+'/manifest.json">';
+if(!reviewHTML.includes('<link rel="modulepreload"'))throw Error('Artist module-preload insertion point missing');
+reviewHTML=reviewHTML.replace('<link rel="modulepreload"',manifestPreload+'<link rel="modulepreload"');
 const direct='/artists-edit/review/'+release+'/';
 reviewHTML=reviewHTML.replace('<body data-page="artists-edit">',
  '<body data-page="artists-edit" data-review-build="'+release+
