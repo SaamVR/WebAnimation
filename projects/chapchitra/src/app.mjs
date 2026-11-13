@@ -1,15 +1,42 @@
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
 import { ARTIST_CART_STORAGE_KEY, ARTIST_CART_MAX_ITEMS, priceArtistCustomization, readArtistDemoBag, formatArtistBDT } from './worktable-pricing.mjs';
 async function boot(){
- const {shirtSilhouette,printSilhouette}=await import('./components.mjs');
- const {sketchButton}=await import('./handdrawn-buttons.mjs');
- const {installPolaroidOutlines}=await import('./polaroid-outline.mjs');
+ // Artist route critical path begins concurrently with all site shell modules.
+ // SHA-pinned manifests may be cached; unknown manifest paths cannot.
+ const artistPage=document.body.dataset.page==='artists-edit';
+ const artistManifestURL=document.body.dataset.reviewManifest||'/assets/worktable/manifest.json';
+ const artistManifestPending=artistPage
+  ? fetch(artistManifestURL,{
+     cache:/^\/releases\/[0-9a-f]{40}\/manifest\.json$/.test(artistManifestURL)?'default':'no-store'
+    }).then(response=>{
+     if(!response.ok)throw Error('HTTP '+response.status+' at worktable manifest');
+     return response.json();
+    }).then(entries=>({entries}),error=>({error}))
+  : null;
+ const artistModulePending=artistPage
+  ? import('./worktable-studio.mjs').then(mod=>({mod}),error=>({error}))
+  : null;
+ if(artistPage && !document.querySelector('link[data-cc-worktable]')){
+  const sheet=document.createElement('link');
+  sheet.rel='stylesheet';
+  sheet.href=document.body.dataset.reviewStudioCss||'/worktable-studio.css';
+  sheet.dataset.ccWorktable='ready';
+  document.head.append(sheet);
+ }
+ const artistShellModules=artistPage?Promise.all([
+  import('./components.mjs'),import('./handdrawn-buttons.mjs'),
+  import('./polaroid-outline.mjs'),import('./catalog.mjs')
+ ]):null;
+ const early=artistShellModules?await artistShellModules:null;
+ const {shirtSilhouette,printSilhouette}=early?early[0]:await import('./components.mjs');
+ const {sketchButton}=early?early[1]:await import('./handdrawn-buttons.mjs');
+ const {installPolaroidOutlines}=early?early[2]:await import('./polaroid-outline.mjs');
  installPolaroidOutlines(document);
  // Attach the dedicated sketch skin after the approved storefront stylesheet.
  if(!document.querySelector('link[data-chapchitra-buttons]')){
   const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/button-system.css';sheet.dataset.chapchitraButtons='';document.head.append(sheet);
  }
- const {catalog,articlePreviews,PAGE_SIZE_HOME,PAGE_SIZE_SHOP}=await import('./catalog.mjs');
+ const {catalog,articlePreviews,PAGE_SIZE_HOME,PAGE_SIZE_SHOP}=early?early[3]:await import('./catalog.mjs');
  // Price sorting becomes available only after every catalog item has a real finite
  // numeric price. The current demo catalog contains null prices.
  const shopHasVerifiedPrices=catalog.length>0&&catalog.every(item=>
@@ -150,8 +177,33 @@ async function boot(){
  function story(){
   return '<section id="story" class="story-section" aria-labelledby="storyTitle"><div class="wrap story-top"><div><p class="eyebrow">05 / THE STORY</p><h2 id="storyTitle">People. Places. <em>Prints.</em></h2></div><div class="story-summary"><p>CHAPCHITRA brings printmaking, illustration and everyday apparel into one evolving creative conversation. The full studio history and identity artwork will be added with approved brand copy.</p>'+sketchButton({label:'Read Our Story',variant:'compact',tone:'terracotta',href:'/about/'})+'</div></div><a class="street-link" href="/about/#street-story" aria-label="Learn more about the street-scene inspiration"><img src="/assets/street-bengal.svg" alt="Provisional line illustration of a Bangladeshi street with a tea stall, shops and a rickshaw."><span class="street-note">Bangladesh street illustration study · Explore the story ↗</span></a></section>';
  }
+ // Owner must provide exact CHAPCHITRA profile URLs before these become links.
+ // Empty URLs render accessible, non-interactive artwork rather than fake destinations.
+ const footerSocialProfiles=[
+  ['Instagram', '', '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="5.4"/><circle cx="12" cy="12" r="4.15"/><circle cx="17.65" cy="6.45" r="1.05" fill="currentColor" stroke="none"/></svg>'],
+  ['Facebook', '', '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor"><path d="M13.97 21.5v-8.2h2.8l.42-3.24h-3.22V7.99c0-.94.27-1.58 1.61-1.58h1.72V3.52a23.24 23.24 0 0 0-2.52-.13c-2.5 0-4.21 1.52-4.21 4.31v2.36H7.75v3.24h2.82v8.2h3.4Z"/></svg>'],
+  ['TikTok', '', '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor"><path d="M15.68 2.4h3.04c.23 2.16 1.5 3.48 3.28 3.64v3.13a9.46 9.46 0 0 1-3.27-.93v6.17c0 4.46-2.91 7.09-6.59 7.09a6.37 6.37 0 0 1-6.55-6.42c0-3.89 3.39-6.77 7.5-6.25v3.34a3.26 3.26 0 1 0 2.59 3.19V2.4Z"/></svg>']
+ ];
+ function footerSocials(){
+  return '<div class="footer-socials" role="group" aria-label="CHAPCHITRA social platforms">'+
+   footerSocialProfiles.map(([name,url,icon])=>url
+    ? '<a class="footer-social-entry" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="CHAPCHITRA on '+name+'">'+icon+'</a>'
+    : '<span class="footer-social-entry footer-social-unlinked" role="img" aria-label="'+name+' profile link unavailable">'+icon+'</span>'
+   ).join('')+'</div>';
+ }
  function footer(){
-  return '<footer class="site-footer" id="footer"><div class="wrap footer-grid"><div class="footer-identity"><a class="logo-word logo-word--footer" href="/" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark-cream-terra.webp" width="1400" height="316" alt="" aria-hidden="true" loading="lazy" decoding="async"></a><p>PEOPLE · PLACES · PRINTS</p><small>Art-led print and apparel demo. Pricing and sample imagery remain provisional.</small></div><div class="footer-column"><h2>Shop</h2><a href="/shop/">All Samples</a>'+categories.map(c=>'<a href="/shop/?category='+c.id+'">'+c.title+'</a>').join('')+'</div><div class="footer-column"><h2>Discover</h2><a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></div><div class="footer-column"><h2>Help</h2><a href="/account/">Account</a><a href="/bag/">Shopping Bag</a><a href="/checkout/">Checkout Preview</a><a href="/favorites/">Favorites</a></div><div class="footer-newsletter"><h2>Join the print studio</h2><p>Community emails are not yet connected to a mailing list.</p><form id="newsletterForm"><label for="newsletterEmail">Email address</label><div class="newsletter-row"><input id="newsletterEmail" name="email" type="email" autocomplete="email" placeholder="Your email address" required>'+sketchButton({label:'Join',variant:'compact',tone:'terracotta',className:'cc-sketch--inline',type:'submit'})+'</div><small id="newsletterMessage" aria-live="polite">Valid email required. No information will be transmitted.</small></form></div></div><div class="wrap footer-bottom"><span>© 2026 CHAPCHITRA · V3 architectural prototype</span><span>No orders, payments or subscriptions are processed.</span></div></footer>';
+  const discover=[['Artist’s Edit','/artists-edit/'],['Journal','/journal/'],['About Us','/about/']];
+  // Support, Terms and Contact have no implemented destinations. Render text
+  // only; never send visitors to 404s, demo checkout, or invented URLs.
+  const help=['Support','Terms & Conditions','Contact Us'];
+  return '<footer class="site-footer" id="footer"><div class="wrap footer-grid">'+
+   '<div class="footer-identity"><a class="logo-word logo-word--footer" href="/" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark-cream-terra.webp" width="1400" height="316" alt="" aria-hidden="true" loading="lazy" decoding="async"></a><p>PEOPLE · PLACES · PRINTS</p>'+footerSocials()+'</div>'+
+   '<nav class="footer-column footer-nav-discover" aria-labelledby="footerDiscover"><h2 id="footerDiscover">Discover</h2>'+
+   discover.map(([title,href])=>'<a href="'+href+'">'+title+'</a>').join('')+'</nav>'+
+   '<div class="footer-column footer-nav-help" aria-labelledby="footerHelp"><h2 id="footerHelp">Help</h2>'+
+   help.map(label=>'<span class="footer-help-pending" aria-label="'+label+' page not yet available">'+label+'</span>').join('')+'</div>'+
+   '<div class="footer-illustration-space" aria-hidden="true"></div></div>'+
+   '<div class="wrap footer-bottom"><span>© 2026 CHAPCHITRA · V3 architectural prototype</span><span>No orders, payments or subscriptions are processed.</span></div></footer>';
  }
  function home(){return hero()+benefits()+categoriesSection()+collection()+banners()+featured()+values()+story()}
  const pageTop=(kicker,title,desc)=>'<section class="route-head wrap"><p class="eyebrow">'+kicker+'</p><h1>'+title+'</h1><p>'+desc+'</p></section>';
@@ -292,8 +344,6 @@ async function boot(){
   }
  });
  // Proper email validation, but never a simulated successful submission.
- const newsletter=$('#newsletterForm');
- newsletter.addEventListener('submit',e=>{e.preventDefault();const input=$('#newsletterEmail');if(!input.checkValidity()){input.reportValidity();return;}$('#newsletterMessage').textContent='Preview only: your email was not submitted or stored. Mailing-list integration is pending.';});
  let renderHomeCollection=()=>{},renderShop=()=>{},renderFavoriteGrid=()=>{};
  function isFavoriteNow(id){return favoritesState.has(id)}
  // Favorites loaded before page rendering and refreshed only on user intent.
@@ -749,15 +799,15 @@ async function boot(){
    console.error('CHAPCHITRA ARTIST EDIT '+code+' (build '+build+'):',error);
    window.__chapchitraArtistDiagnostic={status:'error',code,build,manifest:document.body.dataset.reviewManifest||null};
   };
-  const manifestURL=document.body.dataset.reviewManifest||'/assets/worktable/manifest.json';
+  const manifestURL=artistManifestURL;
   let artworkReady=false;
   let artworkManifest=null;
   try{
-   // Safari and iOS Chrome share WebKit cache storage. Avoid force-cache:
-   // a stale original PNG manifest must not suppress the new worktable.
-   const response=await fetch(manifestURL,{cache:'no-store'});
-   if(!response.ok)throw Error('HTTP '+response.status+' at worktable manifest');
-   const entries=await response.json();
+   // Revision-stamped /releases/<sha>/ manifests are immutable per build.
+   // Keep __deliveryBuild checks; unversioned paths still bypass HTTP cache.
+   const result=await artistManifestPending;
+   if(result.error)throw result.error;
+   const entries=result.entries;
    if(!entries||typeof entries!=='object')throw Error('Manifest is not a JSON object');
    if(build!=='unversioned'&&entries.__deliveryBuild!==build){
     throw Error('Received artifact build '+String(entries.__deliveryBuild||'legacy')+'; expected '+build);
@@ -779,14 +829,11 @@ async function boot(){
   }
   if(artworkReady){
    try{
-    const {mountWorktable}=await import('./worktable-studio.mjs');
+    const moduleResult=await artistModulePending;
+    if(moduleResult.error)throw moduleResult.error;
+    const {mountWorktable}=moduleResult.mod;
     const pending=document.createElement('section');
     pending.className='cc-worktable-mount';
-    const sheet=document.createElement('link');
-    sheet.rel='stylesheet';
-    sheet.href=document.body.dataset.reviewStudioCss||'/worktable-studio.css';
-    sheet.dataset.ccWorktable='ready';
-    document.head.append(sheet);
     previous.replaceWith(pending);
     await mountWorktable(pending,{manifestData:artworkManifest,embedded:true});
     panel.remove();

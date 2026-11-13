@@ -359,9 +359,10 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  // The desktop 16:9 assembled preview is intentionally absent on portrait
  // phones. Start the approved transparent shirt request immediately instead
  // of waiting for all optional workstation layers to hydrate.
- if(window.matchMedia('(max-width: 600px)').matches){
-  attachAsset(garmentImg,ALL.garment.regular);
+ const mobileFirstFrame=window.matchMedia('(max-width: 600px)').matches;
+ if(mobileFirstFrame){
   garmentImg.fetchPriority='high';
+  attachAsset(garmentImg,ALL.garment.regular);
  }
  const tint=document.createElement('div'); tint.className='cc-worktable-tint'; stage.append(tint);
  // One atomic stage-relative print rectangle owns BOTH its guide and clip.
@@ -1126,15 +1127,20 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  announce('Preparing the illustrated worktable…');
  // A single real composition, assembled ONLY from the original layered files,
  // lets the complete worktable appear without waiting for 39 image decodes.
- preview=document.createElement('img');
- preview.className='cc-worktable-layer cc-worktable-preview';
- preview.alt='';preview.setAttribute('aria-hidden','true');
- preview.decoding='async';preview.loading='eager';preview.fetchPriority='high';
- preview.sizes='(max-width: 1540px) 100vw, 1540px';
- preview.srcset=sourceSet(manifest.__initialScene.variants);
- preview.src=variantURL(manifest.__initialScene.variants[1]);
- preview.dataset.garment='regular';
- stage.append(preview);
+ // The desktop composition is invisible on approved portrait layouts.
+ // Phones render the real, preloaded garment plus their existing wood decor.
+ // Avoid transferring/decoding the hidden 16:9 assembled desktop preview.
+ if(!mobileFirstFrame){
+  preview=document.createElement('img');
+  preview.className='cc-worktable-layer cc-worktable-preview';
+  preview.alt='';preview.setAttribute('aria-hidden','true');
+  preview.decoding='async';preview.loading='eager';preview.fetchPriority='high';
+  preview.sizes='(max-width: 1540px) 100vw, 1540px';
+  preview.srcset=sourceSet(manifest.__initialScene.variants);
+  preview.src=variantURL(manifest.__initialScene.variants[1]);
+  preview.dataset.garment='regular';
+  stage.append(preview);
+ }
  let previewSucceeded=false;
  const loadOne=async img=>{
   const path=img===garmentImg?ALL.garment.regular:img.dataset.source;
@@ -1168,8 +1174,8 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   await finishHydration();
  };
  try{
-  await preview.decode();
-  previewSucceeded=true;
+  await (mobileFirstFrame?garmentImg:preview).decode();
+  previewSucceeded=!mobileFirstFrame;
   await new Promise(resolve=>requestAnimationFrame(resolve));
   body.classList.remove('is-loading');
   stage.removeAttribute('aria-busy');
@@ -1177,10 +1183,15 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   announce('Worktable ready. Optional individual layers are being prepared.');
  }catch(error){
   console.error('Worktable first-frame image failed',error);
-  preview.remove();
-  throw new Error('The complete stage preview could not decode on this browser: '+String(error?.message||error));
+  preview?.remove();
+  throw new Error('The first worktable image could not decode on this browser: '+String(error?.message||error));
  }
- void hydrate();
+ // First paint and existing input listeners win over optional fine-layer
+ // network/decodes. A bounded idle timeout avoids starving iOS Safari.
+ const startHydration=()=>{if(body.isConnected)void hydrate()};
+ if(typeof window.requestIdleCallback==='function')
+  window.requestIdleCallback(startHydration,{timeout:250});
+ else setTimeout(startHydration,60);
  return {getState:()=>({...current,view}),getPricing:()=>calculateArtistPrice(selectionForPricing()),getOrderData:()=>buildArtistCustomization(selectionForPricing()),getPlacement:()=>({...editor,scale:1+editor.adjustment/100}),destroy:()=>{
   saveActiveSide();disposeSideRecords(sideRecords,url=>URL.revokeObjectURL(url));
   artURL=null;artBitmap=null;

@@ -20,7 +20,7 @@ test('eleven homepage units and functional UX controller contracts',async()=>{
  assert.match(app,/mouseenter/);
  assert.match(app,/touchend/);
  assert.match(app,/mediaReduced\.matches/);
- assert.match(app,/newsletterMessage/);
+ assert.doesNotMatch(app,/newsletterForm|newsletterMessage/);
  assert.match(app,/const bellRendered=false/);
  assert.doesNotMatch(app,/gsap\.|ScrollTrigger|stripe|EcomCMS|\/threads\//i);
 });
@@ -334,7 +334,7 @@ test('compact sketch actions retain native submit semantics and working filter s
  assert.match(markup,/<button type="submit"/);
  const app=await read('src/app.mjs');
  assert.match(app,/label:'Search',variant:'compact',tone:'forest'/);
- assert.match(app,/label:'Join',variant:'compact',tone:'terracotta'/);
+ assert.doesNotMatch(app,/label:'Join',variant:'compact',tone:'terracotta'/);
  assert.match(app,/id="clearFilters"/);
  assert.match(app,/class="shop-clear-filters"/);
  assert.match(app,/addEventListener\('submit'/);
