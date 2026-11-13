@@ -1,15 +1,42 @@
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
 import { ARTIST_CART_STORAGE_KEY, ARTIST_CART_MAX_ITEMS, priceArtistCustomization, readArtistDemoBag, formatArtistBDT } from './worktable-pricing.mjs';
 async function boot(){
- const {shirtSilhouette,printSilhouette}=await import('./components.mjs');
- const {sketchButton}=await import('./handdrawn-buttons.mjs');
- const {installPolaroidOutlines}=await import('./polaroid-outline.mjs');
+ // Artist route critical path begins concurrently with all site shell modules.
+ // SHA-pinned manifests may be cached; unknown manifest paths cannot.
+ const artistPage=document.body.dataset.page==='artists-edit';
+ const artistManifestURL=document.body.dataset.reviewManifest||'/assets/worktable/manifest.json';
+ const artistManifestPending=artistPage
+  ? fetch(artistManifestURL,{
+     cache:/^\/releases\/[0-9a-f]{40}\/manifest\.json$/.test(artistManifestURL)?'default':'no-store'
+    }).then(response=>{
+     if(!response.ok)throw Error('HTTP '+response.status+' at worktable manifest');
+     return response.json();
+    }).then(entries=>({entries}),error=>({error}))
+  : null;
+ const artistModulePending=artistPage
+  ? import('./worktable-studio.mjs').then(mod=>({mod}),error=>({error}))
+  : null;
+ if(artistPage && !document.querySelector('link[data-cc-worktable]')){
+  const sheet=document.createElement('link');
+  sheet.rel='stylesheet';
+  sheet.href=document.body.dataset.reviewStudioCss||'/worktable-studio.css';
+  sheet.dataset.ccWorktable='ready';
+  document.head.append(sheet);
+ }
+ const artistShellModules=artistPage?Promise.all([
+  import('./components.mjs'),import('./handdrawn-buttons.mjs'),
+  import('./polaroid-outline.mjs'),import('./catalog.mjs')
+ ]):null;
+ const early=artistShellModules?await artistShellModules:null;
+ const {shirtSilhouette,printSilhouette}=early?early[0]:await import('./components.mjs');
+ const {sketchButton}=early?early[1]:await import('./handdrawn-buttons.mjs');
+ const {installPolaroidOutlines}=early?early[2]:await import('./polaroid-outline.mjs');
  installPolaroidOutlines(document);
  // Attach the dedicated sketch skin after the approved storefront stylesheet.
  if(!document.querySelector('link[data-chapchitra-buttons]')){
   const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/button-system.css';sheet.dataset.chapchitraButtons='';document.head.append(sheet);
  }
- const {catalog,articlePreviews,PAGE_SIZE_HOME,PAGE_SIZE_SHOP}=await import('./catalog.mjs');
+ const {catalog,articlePreviews,PAGE_SIZE_HOME,PAGE_SIZE_SHOP}=early?early[3]:await import('./catalog.mjs');
  // Price sorting becomes available only after every catalog item has a real finite
  // numeric price. The current demo catalog contains null prices.
  const shopHasVerifiedPrices=catalog.length>0&&catalog.every(item=>
@@ -749,15 +776,15 @@ async function boot(){
    console.error('CHAPCHITRA ARTIST EDIT '+code+' (build '+build+'):',error);
    window.__chapchitraArtistDiagnostic={status:'error',code,build,manifest:document.body.dataset.reviewManifest||null};
   };
-  const manifestURL=document.body.dataset.reviewManifest||'/assets/worktable/manifest.json';
+  const manifestURL=artistManifestURL;
   let artworkReady=false;
   let artworkManifest=null;
   try{
-   // Safari and iOS Chrome share WebKit cache storage. Avoid force-cache:
-   // a stale original PNG manifest must not suppress the new worktable.
-   const response=await fetch(manifestURL,{cache:'no-store'});
-   if(!response.ok)throw Error('HTTP '+response.status+' at worktable manifest');
-   const entries=await response.json();
+   // Revision-stamped /releases/<sha>/ manifests are immutable per build.
+   // Keep __deliveryBuild checks; unversioned paths still bypass HTTP cache.
+   const result=await artistManifestPending;
+   if(result.error)throw result.error;
+   const entries=result.entries;
    if(!entries||typeof entries!=='object')throw Error('Manifest is not a JSON object');
    if(build!=='unversioned'&&entries.__deliveryBuild!==build){
     throw Error('Received artifact build '+String(entries.__deliveryBuild||'legacy')+'; expected '+build);
@@ -779,14 +806,11 @@ async function boot(){
   }
   if(artworkReady){
    try{
-    const {mountWorktable}=await import('./worktable-studio.mjs');
+    const moduleResult=await artistModulePending;
+    if(moduleResult.error)throw moduleResult.error;
+    const {mountWorktable}=moduleResult.mod;
     const pending=document.createElement('section');
     pending.className='cc-worktable-mount';
-    const sheet=document.createElement('link');
-    sheet.rel='stylesheet';
-    sheet.href=document.body.dataset.reviewStudioCss||'/worktable-studio.css';
-    sheet.dataset.ccWorktable='ready';
-    document.head.append(sheet);
     previous.replaceWith(pending);
     await mountWorktable(pending,{manifestData:artworkManifest,embedded:true});
     panel.remove();
