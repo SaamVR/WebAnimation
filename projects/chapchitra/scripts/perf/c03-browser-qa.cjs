@@ -98,18 +98,40 @@ async function normalTest(config){
   const rapid=await state(page);
   check(id+' double-click exactly +2 bag items',rapid.count===3,rapid);
   check(id+' at most one clone during rapid add',rapid.overlayCount<=1,rapid.overlayCount);
+  // An interrupted animation disappears before the replacement is attached.
+  // Waiting for "detached" immediately may observe this *temporary gap*,
+  // incorrectly failing when the new flight appears one frame later.
+  await page.waitForTimeout(640);
+  const replacement=await state(page);
+  check(id+' replacement flight starts after rapid add',
+   replacement.overlayCount===1,{overlayCount:replacement.overlayCount,count:replacement.count});
   await page.locator('[data-c03-flight]').waitFor({state:'detached',timeout:8000});
   await page.waitForTimeout(120);
-  check(id+' rapid click cleanup',(await state(page)).overlayCount===0);
+  const rapidSettled=await state(page);
+  check(id+' rapid click cleanup',
+   rapidSettled.overlayCount===0&&rapidSettled.count===3,
+   {overlayCount:rapidSettled.overlayCount,count:rapidSettled.count});
 
   // Scroll during flight cancels overlay; mutation is never undone.
   await button.click();
   await page.locator('[data-c03-flight]').waitFor({state:'attached',timeout:6000});
   await page.waitForTimeout(120);
-  await page.evaluate(()=>window.scrollBy(0,75));
-  await page.waitForTimeout(140);
+  // iPad/WebKit may already be at the bottom after clicking Add. Choose a
+  // reachable opposite direction so a real scroll event is guaranteed.
+  const gesture=await page.evaluate(()=>{
+   const before=window.scrollY;
+   const max=Math.max(0,document.documentElement.scrollHeight-innerHeight);
+   const target=before>max-100?Math.max(0,before-130):Math.min(max,before+130);
+   window.scrollTo({left:0,top:target,behavior:'instant'});
+   return {before,target,max};
+  });
+  await page.waitForTimeout(220);
   const interrupted=await state(page);
-  check(id+' scroll cancels safely',interrupted.overlayCount===0&&interrupted.count===4,interrupted);
+  check(id+' scroll produces actual viewport movement',
+   Math.abs(interrupted.scrollY-gesture.before)>5,
+   {gesture,scrollY:interrupted.scrollY});
+  check(id+' scroll cancels safely',interrupted.overlayCount===0&&interrupted.count===4,
+   {overlayCount:interrupted.overlayCount,count:interrupted.count,scrollY:interrupted.scrollY,gesture});
   // The scene remains functional after an interrupted sequence.
   await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
   await button.click();
