@@ -1,0 +1,23 @@
+name: Fiverr Chapchitra Missing C08 Runtime
+on:
+  push:
+    branches: [media/fiverr-gig-video-source-20261113]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  fetch-verified-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: integration/chapchitra-artist-approved-freeze-20261113
+          path: approved
+          sparse-checkout: |
+            projects/chapchitra/src/motion/c08
+          sparse-checkout-cone-mode: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chapchitra-c08-original-runtime
+          path: approved/projects/chapchitra/src/motion/c08/
+          retention-days: 14
+          if-no-files-found: error
