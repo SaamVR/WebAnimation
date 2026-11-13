@@ -1,0 +1,74 @@
+name: Fiverr V6 Live Interaction Retakes
+on:
+  push:
+    branches: [media/fiverr-gig-video-source-20261113]
+    paths:
+      - .github/workflows/fiverr-v6-real-retakes-20261113.yml
+      - tools/fiverr-retake-captures-20261113.mjs
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: media/fiverr-gig-video-source-20261113
+          sparse-checkout: |
+            tools/fiverr-retake-captures-20261113.mjs
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          ref: release/threads-demo-complete-20261026
+          path: threads
+          sparse-checkout: |
+            site/threads
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          ref: integration/chapchitra-artist-approved-freeze-20261113
+          path: chapchitra
+          sparse-checkout: |
+            projects/chapchitra/src
+            projects/chapchitra/browser-assets
+          sparse-checkout-cone-mode: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build isolated faithful Artist's Edit review copy
+        run: |
+          mkdir -p chapchitra-retake/assets
+          cp -a chapchitra/projects/chapchitra/src/. chapchitra-retake/
+          cp -a chapchitra/projects/chapchitra/browser-assets/. chapchitra-retake/assets/
+          test -f chapchitra-retake/assets/worktable/manifest.json
+          test -f chapchitra-retake/assets/worktable/variants/preview/assembled-regular-svg3ea32afb.w1536.webp
+          du -sh chapchitra-retake threads/site/threads
+      - name: Install real browser recording runtime
+        run: |
+          npm install --no-audit --no-fund playwright@1.61.1
+          npx playwright install --with-deps chromium
+      - name: Start isolated local review servers
+        run: |
+          nohup python3 -m http.server 8711 -d threads/site/threads --bind 127.0.0.1 >/tmp/threads_portfolio.log 2>&1 &
+          nohup python3 -m http.server 8712 -d chapchitra-retake --bind 127.0.0.1 >/tmp/chapchitra_portfolio.log 2>&1 &
+          sleep 3
+          curl --fail --silent --show-error http://127.0.0.1:8711/product/?id=bag-03 >/dev/null
+          curl --fail --silent --show-error http://127.0.0.1:8712/artists-edit/ >/dev/null
+      - name: Record four real user-interaction retakes
+        run: node tools/fiverr-retake-captures-20261113.mjs
+      - name: Print source performance and screenshot counts
+        if: always()
+        run: |
+          ls -lah retake_evidence || true
+          cat retake_evidence/capture_manifest.json || true
+          tail -30 /tmp/threads_portfolio.log || true
+          tail -30 /tmp/chapchitra_portfolio.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fiverr-v6-real-interaction-retakes
+          path: retake_evidence/
+          retention-days: 7
+          compression-level: 3
+          if-no-files-found: warn
