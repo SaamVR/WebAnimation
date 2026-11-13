@@ -16,13 +16,9 @@ async function boot(){
  const artistModulePending=artistPage
   ? import('./worktable-studio.mjs').then(mod=>({mod}),error=>({error}))
   : null;
- if(artistPage && !document.querySelector('link[data-cc-worktable]')){
-  const sheet=document.createElement('link');
-  sheet.rel='stylesheet';
-  sheet.href=document.body.dataset.reviewStudioCss||'/worktable-studio.css';
-  sheet.dataset.ccWorktable='ready';
-  document.head.append(sheet);
- }
+ // The entry HTML already preloads the stylesheet in parallel. Applying it
+ // here would block the initial editorial paint on iPad. Attach after the
+ // manifest gate, immediately before mounting the worktable instead.
  const artistShellModules=artistPage?Promise.all([
   import('./components.mjs'),import('./handdrawn-buttons.mjs'),
   import('./polaroid-outline.mjs'),import('./catalog.mjs')
@@ -811,6 +807,11 @@ async function boot(){
     const {mountWorktable}=moduleResult.mod;
     const pending=document.createElement('section');
     pending.className='cc-worktable-mount';
+    const sheet=document.createElement('link');
+    sheet.rel='stylesheet';
+    sheet.href=document.body.dataset.reviewStudioCss||'/worktable-studio.css';
+    sheet.dataset.ccWorktable='ready';
+    document.head.append(sheet);
     previous.replaceWith(pending);
     await mountWorktable(pending,{manifestData:artworkManifest,embedded:true});
     panel.remove();
