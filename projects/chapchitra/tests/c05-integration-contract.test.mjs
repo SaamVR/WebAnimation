@@ -45,6 +45,10 @@ test('C05 browser gate runs true native Lottie, GSAP, iPad WebKit, mobile and re
  assert.match(capture,/icon03ExactDuration/);
  assert.match(capture,/instances\.some\(s=>!s\.native\)/);
  assert.match(capture,/dataset\.c05Cycles/);
+ assert.match(capture,/new URL\('\/shop\/',url\)/);
+ assert.match(capture,/page\.goBack\(/);
+ assert.match(capture,/page\.reload\(/);
+ assert.match(capture,/historyQA\.backResumed/);
  assert.match(capture,/s\.cycles<3/);
  assert.match(capture,/refuses remote\/hosted URL/);
 });
