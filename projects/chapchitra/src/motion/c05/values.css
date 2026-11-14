@@ -1,0 +1,56 @@
+/* C05 only: no changes to C01, C02, C03, C08, worktable or shared navigation. */
+#values[data-c05-values="true"] .values-grid{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:clamp(12px,1.7vw,24px);align-items:start
+}
+#values[data-c05-values="true"] .value-card{min-width:0;text-align:center}
+#values[data-c05-values="true"] .value-art{
+ display:grid;place-items:center;position:relative;overflow:visible;
+ height:auto;aspect-ratio:1;border:0;border-radius:0;background:transparent!important
+}
+#values[data-c05-values="true"] .c05-value-player,
+#values[data-c05-values="true"] .c05-value-poster{
+ width:100%;height:100%;inset:0;position:absolute;object-fit:contain
+}
+#values[data-c05-values="true"] .c05-value-player{z-index:2;pointer-events:none}
+#values[data-c05-values="true"] .c05-value-poster{z-index:1;opacity:1}
+#values[data-c05-values="true"] .c05-loaded .c05-value-poster{opacity:0;visibility:hidden}
+#values[data-c05-values="true"] .c05-value-player svg{display:block;width:100%;height:100%;overflow:visible}
+/* Icon 04's source has 3 shirts but NO green circle; the original review
+   treats its Press Green circle as a stationary 512-unit guide. */
+#values[data-c05-values="true"] [data-c05-icon="04"]::before{
+ content:"";position:absolute;z-index:0;inset:2.5%;border-radius:50%;
+ background:var(--press,#293D2D);pointer-events:none
+}
+#values[data-c05-values="true"] .value-card h3{
+ font-size:clamp(18px,1.5vw,22px);line-height:1.3;font-weight:600;
+ margin:clamp(12px,1.4vw,20px) 0 8px
+}
+#values[data-c05-values="true"] .value-card p{
+ font-size:clamp(13px,1vw,15px);line-height:1.55;color:var(--mut,#526253);
+ margin:0 auto;max-width:34ch;text-wrap:pretty
+}
+@media(max-width:900px){
+ #values[data-c05-values="true"] .values-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 22px}
+}
+@media(max-width:480px){
+ #values[data-c05-values="true"] .values-grid{grid-template-columns:minmax(0,1fr);gap:30px}
+ #values[data-c05-values="true"] .value-card{max-width:340px;margin-inline:auto;width:100%}
+ #values[data-c05-values="true"] .value-card .value-art{max-width:290px;margin-inline:auto}
+ #values[data-c05-values="true"] .value-card h3{font-size:20px}
+ #values[data-c05-values="true"] .value-card p{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){
+ #values[data-c05-values="true"] .c05-value-player{animation:none!important;transition:none!important}
+}
+
+/* Never show Icon 04's final-pose poster before its original drop-in motion;
+   otherwise the first shirt would flash away and re-enter on playback. */
+#values[data-c05-values="true"] [data-c05-icon="04"] .c05-value-poster{opacity:0;visibility:hidden}
+#values[data-c05-values="true"] [data-c05-icon="04"][data-c05-state="error"] .c05-value-poster,
+#values[data-c05-values="true"] [data-c05-icon="04"][data-c05-state="reduced"] .c05-value-poster{opacity:1;visibility:visible}
+
+/* The approved closing's original SVG never flashes an extra second face. */
+#values[data-c05-values="true"] #c05-stage #Wood_block{display:none}
+#values[data-c05-values="true"] #c05-stage #Print_over_cloth{visibility:hidden}
+#values[data-c05-values="true"] #c05-stage [hidden]{display:none!important}

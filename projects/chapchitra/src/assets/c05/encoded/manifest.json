@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "format": "c05-original-gzip-base64-shards",
+  "notes": "Lossless immutable final user-supplied assets; assemble by joining base64 ASCII shards then gunzip. Exact originals materialized into dist during build.",
+  "assets": [
+    {
+      "filename": "icon01-final.json",
+      "sha256": "221856b3a58bfd493622b40d2149d0c43fb76a85f73e3704f30695f9aee57838",
+      "bytes": 5867171,
+      "gitBlobSHA1": "64902e723557746c3855a2090914e42a733b9fd8",
+      "parts": [
+        "icon01-final.json.part00.b64",
+        "icon01-final.json.part01.b64",
+        "icon01-final.json.part02.b64",
+        "icon01-final.json.part03.b64",
+        "icon01-final.json.part04.b64",
+        "icon01-final.json.part05.b64",
+        "icon01-final.json.part06.b64",
+        "icon01-final.json.part07.b64",
+        "icon01-final.json.part08.b64",
+        "icon01-final.json.part09.b64",
+        "icon01-final.json.part10.b64"
+      ],
+      "storage": "lossless-gzip-shards"
+    },
+    {
+      "filename": "icon01-poster.svg",
+      "sha256": "1b30ab4c011e34f68a4cb3feb83016fa36f2163667018b4c1bbf10ccbaf0759b",
+      "bytes": 399555,
+      "gitBlobSHA1": "e93df0421f6d34b837cfeded5f82e1e4a29688b6",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon02-final.json",
+      "sha256": "4ec10d8fbfa288e761f248f53d4ce2c4f777bae27beb4b07afcf73e356ca40d7",
+      "bytes": 443579,
+      "gitBlobSHA1": "90a7b02777e7b9d2736cb4425ba565572677c75e",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon02-poster.svg",
+      "sha256": "bff0bd066c34e4c2793e55c9aa36b11b3e5ad4579c9d55d317df2dc523914935",
+      "bytes": 291236,
+      "gitBlobSHA1": "4e767fe810b3934476eedb61027818b249fcdaf0",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon03-approved-closing.mjs",
+      "sha256": "9ad4c7fd272cb498cd0de72bbdcf84b7434739362bca1b8a0d3426451b32ef45",
+      "bytes": 8677,
+      "gitBlobSHA1": "7b0dada22ceb0c6bfef456f0ab59157abc46eb06",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon03-approved-motion.mjs",
+      "sha256": "21b58cc097e8ac020fc8fa1ede35d673ac7d232f833068419a0eb4d5fda33325",
+      "bytes": 3831,
+      "gitBlobSHA1": "2166d4f380bf76740850b0b9e1472c6d68f3ef0e",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon03-final.svg",
+      "sha256": "e22c5547c398bc44ad5049273a16037e4de79166e38c89c55c9a706951bfdd37",
+      "bytes": 182873,
+      "gitBlobSHA1": "712e7e1071926c05035bc5cf7195fcbfcf99366b",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon03-poster.svg",
+      "sha256": "dfc252279bbabba3d658da8cfca0bfb14608bcb143bce50084585da651557bda",
+      "bytes": 184882,
+      "gitBlobSHA1": "bf50bbc5cf9fc458f60a30b846cd99acb4ffd1b7",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon03-refined-opening.mjs",
+      "sha256": "af710370e09d04096133468bccf269469c69f33a61ba077d44e8f97fc018ca41",
+      "bytes": 8630,
+      "gitBlobSHA1": "12491240ac3e97a3e25b0bf19ce4a49f246072bc",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon04-final.json",
+      "sha256": "4198e09a9a6c5e5ce43f3e69d8c5a5fca740d0d70abcbc20d0c869b5f14e7131",
+      "bytes": 385190,
+      "gitBlobSHA1": "6652196e4063954b2f541224f1280ef2f6a6bf90",
+      "storage": "raw-immutable-Git-blob"
+    },
+    {
+      "filename": "icon04-poster.svg",
+      "sha256": "3812011e80d88c1b4698a57062a731a5ccd1b94d13157482feb17c345e5c49e8",
+      "bytes": 933762,
+      "gitBlobSHA1": "efe6576d16870a6229a4ce27fb5cbc8dc4757ff8",
+      "storage": "raw-immutable-Git-blob"
+    }
+  ]
+}
