@@ -1,0 +1,62 @@
+name: Real Estate Editorial Photo Scout
+on:
+  push:
+    branches: [media/fiverr-gig-video-source-20261113]
+    paths: [.github/workflows/real-estate-photo-scout-20261114.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Retrieve separately licensed Unsplash-free source images
+        run: |
+          mkdir -p photos
+          cat > /tmp/photos.py <<'PY'
+          import re,html,json,requests,time,os
+          sources={
+            'pool_hero':'https://unsplash.com/photos/a-modern-house-with-a-swimming-pool-and-green-lawn-ylzGfY-xzBY',
+            'wood_villa':'https://unsplash.com/photos/modern-house-with-a-pool-and-lush-greenery-b-Mcph4LZIk',
+            'white_exterior':'https://unsplash.com/photos/modern-white-house-with-dark-accents-and-fence-YCEJqQeEsYA',
+            'warm_interior':'https://unsplash.com/photos/modern-living-room-and-kitchen-with-natural-wood-accents-Hnec2oEbbxk',
+            'gallery_interior':'https://unsplash.com/photos/a-bright-modern-living-room-with-a-sofa-and-armchair-S5VtKjf4tcM',
+            'architectural_detail':'https://unsplash.com/photos/modern-concrete-and-wood-house-with-trees-F-slnkFvcag'
+          }
+          out={}
+          for name,link in sources.items():
+            row={'page':link}
+            try:
+              p=requests.get(link,headers={'User-Agent':'Mozilla/5.0 (compatible; portfolio-video-audit/1.0)'},timeout=24)
+              row['page_status']=p.status_code
+              htmltxt=p.text
+              match=re.search(r'<meta[^>]*property=["\\\']og:image["\\\'][^>]*content=["\\\']([^"\\\']+)',htmltxt)
+              if not match:
+                match=re.search(r'<meta[^>]*content=["\\\']([^"\\\']+)["\\\'][^>]*property=["\\\']og:image',htmltxt)
+              if not match:
+                match=re.search(r'https://images\\.unsplash\\.com/photo-[A-Za-z0-9-]+',htmltxt)
+              if not match:raise Exception('No accessible photo source in public HTML')
+              img=html.unescape(match.group(1) if match.lastindex else match.group(0)).replace('&amp;','&')
+              if not img.startswith('https://images.unsplash.com/'):
+                m=re.search(r'https://images\\.unsplash\\.com/photo-[A-Za-z0-9-]+',img)
+                if m:img=m.group(0)
+              if not img.startswith('https://images.unsplash.com/'):raise Exception('unexpected source domain '+img[:120])
+              img=img.split('?')[0]+'?auto=format&fit=crop&w=2000&q=84'
+              r=requests.get(img,timeout=40,headers={'User-Agent':'Mozilla/5.0'})
+              r.raise_for_status()
+              if not r.headers.get('content-type','').startswith('image/'):raise Exception('not image')
+              ext='webp' if 'webp' in r.headers.get('content-type','') else 'jpg'
+              open('photos/'+name+'.'+ext,'wb').write(r.content)
+              row.update({'asset':'photos/'+name+'.'+ext,'source_url':img,'bytes':len(r.content),'status':'downloaded'})
+            except Exception as e:row.update({'status':'unavailable','reason':str(e)[:260]})
+            out[name]=row;print(name,row.get('status'),row.get('reason',''))
+          open('photos/PROVENANCE.json','w').write(json.dumps(out,indent=2))
+          if sum(v['status']=='downloaded' for v in out.values())<3:raise SystemExit('At least three license-verified image sources required')
+          PY
+          python /tmp/photos.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: real-estate-unsplash-photo-proof
+          path: photos/
+          retention-days: 7
+          if-no-files-found: error
