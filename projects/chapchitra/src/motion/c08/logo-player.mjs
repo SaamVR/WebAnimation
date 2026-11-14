@@ -80,7 +80,7 @@ function ensureC08Stylesheet() {
   document.head.appendChild(link);
 }
 
-export function mountC08({navbar,heroImage=null,heroStage=null,onHeroHolding=()=>{}}={}) {
+export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark',onHeroHolding=()=>{}}={}) {
   if(navbar||heroImage)ensureC08Stylesheet();
   const nav={ready:false,playing:false,loadRequested:false,completed:0,loaded:false,hovered:false,armed:true,instance:null};
   const hero={ready:false,playing:false,completed:0,autoplay:0,instance:null,failed:false,stage:null,trigger:null};
@@ -203,7 +203,7 @@ export function mountC08({navbar,heroImage=null,heroStage=null,onHeroHolding=()=
       if(heroPreparing||hero.ready||REDUCED.matches)return;
       heroPreparing=true;
       try{
-        hero.instance=await loadAnimation(slot,HERO);
+        hero.instance=await loadAnimation(slot,heroVariant==='paper'?SOURCE:HERO);
         hero.ready=true;
         hero.instance.addEventListener('complete',finish);
         if(REDUCED.matches){onHeroHolding(false);return}
