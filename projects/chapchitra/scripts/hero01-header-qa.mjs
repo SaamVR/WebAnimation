@@ -29,6 +29,7 @@ function validate(snapshot){
  assert.ok(snapshot.logoOriginal,'Original full illustrated lockup must be displayed');
  assert.equal(snapshot.state,'special','Only Hero 01 at page top has special header');
  assert.ok(snapshot.textBelowTear,'Hero copy must be clear of torn-paper edge');
+ assert.ok(snapshot.canvasBottom>=snapshot.controlBottom-2,'Solid forest hero must extend behind its slider controls');
  assert.ok(snapshot.horizontalOverflow<=1,'No horizontal overflow');
 }
 async function sample(page){
@@ -54,6 +55,8 @@ async function sample(page){
    logoOriginal:!!paper?.querySelector('img.hero-brand-lockup[src="/assets/chapchitra-full.webp"]'),
    textBelowTear:!!(edgeRect&&copyRect&&copyRect.top>=edgeRect.bottom-2),
    horizontalOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth),
+   canvasBottom:cover?.getBoundingClientRect().bottom??0,
+   controlBottom:hero?.querySelector('.hero-controls')?.getBoundingClientRect().bottom??0,
    logoAnimation:window.__chapchitraC08?.hero||null,
    fullLinkHidden:document.querySelector('#siteHeader .logo-word--image')?.getAttribute('aria-hidden')==='true'
   };
