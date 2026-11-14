@@ -2360,3 +2360,15 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 @media(prefers-reduced-motion:reduce){
   #app > .site-header .logo-word.logo-word--image{transition:none!important}
 }
+
+/* The responsive hero track is taller than its content, and legacy mobile
+   rules size slides intrinsically. Stretch ONLY active Hero 01 to the whole
+   track so its forest canvas continues behind the five slider controls. */
+#hero:has(.hero-cover:not([hidden])) .hero-slide.hero-cover{
+  height:100%;
+  min-height:100%;
+}
+#hero:has(.hero-cover:not([hidden])) .hero-cover-inner{
+  height:100%;
+  min-height:0;
+}
