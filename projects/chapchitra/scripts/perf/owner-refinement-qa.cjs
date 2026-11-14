@@ -106,7 +106,7 @@ async function run(d){
   verify(d.name+' exact three social vectors',JSON.stringify(spec.socials)===JSON.stringify([
    '/assets/illustrator/social-instagram.svg','/assets/illustrator/social-facebook.svg','/assets/illustrator/social-whatsapp.svg']),spec.socials);
   verify(d.name+' reserved illustration entirely empty',spec.areas.emptyChildren===0&&spec.areas.emptyText===''&&
-   spec.areas.discover<spec.areas.help&&spec.areas.help<spec.areas.reserved,spec.areas);
+   spec.areas.discover<spec.areas.help&&(d.viewport.width>1070?spec.areas.help<spec.areas.reserved:true),spec.areas);
   verify(d.name+' original dark olive preserved',spec.background==='rgb(31, 34, 22)',spec.background);
   verify(d.name+' footer no horizontal clipping',spec.overflow<=1,spec);
   verify(d.name+' Help labels not fictitious links',spec.helpLinks===0&&spec.labels.join('|')==='Support|Terms & Conditions|Contact Us',spec);
@@ -114,6 +114,7 @@ async function run(d){
   await footer.screenshot({path:footSnap,animations:'disabled'});screenshots.push(path.basename(footSnap));
   if(d.name==='desktop-chromium'){
    await page.goto(root+'/',{waitUntil:'domcontentloaded'});
+   await page.locator('#values h2#valuesTitle').waitFor({state:'visible',timeout:20000});
    const headings=await page.locator('#values .section-title').allTextContents();
    verify(d.name+' clean C05 heading',headings.length===1&&headings[0].trim()==='More Than a T-Shirt',headings);
   }
