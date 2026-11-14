@@ -53,19 +53,20 @@ for(const test of cases){
  for(const icon of ['01','02','03','04']){
   const stage=page.locator('#values [data-c05-icon="'+icon+'"]');
   await stage.scrollIntoViewIfNeeded();
-  await page.waitForFunction(n=>
-   document.querySelector('#values [data-c05-icon="'+n+'"]')?.dataset.c05State==='complete',
-   icon,{timeout:17000});
+  // Real continuous playback must finish the complete original animation twice.
+  await page.waitForFunction(n=>{
+   const stage=document.querySelector('#values [data-c05-icon="'+n+'"]');
+   return Number(stage?.dataset.c05Cycles||0)>=2;
+  },icon,{timeout:33000});
  }
 
- // Four original motions may not have the same duration. Wait for completed/paused/reduced.
- try{await page.waitForFunction(()=>{
+ // Prior cards may pause when out of viewport; never demand terminal state.
+ await page.waitForFunction(()=>{
   const stages=[...document.querySelectorAll('#values [data-c05-icon]')];
-  return stages.length===4&&stages.every(n=>
-   ['complete','reduced'].includes(n.dataset.c05State));
- },null,{timeout:17000});}catch{}
+  return stages.length===4&&stages.every(n=>Number(n.dataset.c05Cycles||0)>=2);
+ },null,{timeout:33000});
  const states=await page.locator('#values').evaluate(root=>root.c05QA?.states||[]);
- const timeline=states.map(({icon,state,error,frame})=>({icon,state,error,frame}));
+ const timeline=states.map(({icon,state,error,frame,cycles})=>({icon,state,error,frame,cycles}));
  await page.screenshot({path:resolve(folder,`c05-${test.label}-final.png`),fullPage:true});
  // Inspect the real native player, not a placeholder or original static icon.
  const runtime=await page.locator('#values').evaluate(root=>({
@@ -84,7 +85,7 @@ for(const test of cases){
  const record={engine:test.engine,viewport:test.label,states:timeline,errors,responses,instances,runtime};
  observations.push(record);
  await ctx.close();await browser.close();
- if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.state!=='complete')||
+ if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.cycles<2||!['playing','paused'].includes(s.state))||
     !runtime.rootQA||!runtime.lottieRuntime||!runtime.gsapRuntime||
     !runtime.icon03UsesGSAP||!runtime.icon03ExactDuration||
     instances.length!==4||instances.some(s=>!s.native))
