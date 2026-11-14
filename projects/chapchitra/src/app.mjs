@@ -170,9 +170,14 @@ async function boot(){
    '<p id="featuredHint" class="sr-only">Select side cards or swipe to change print · Sample imagery and prices are pending</p></div></section>';
  }
  function values(){
-  const items=[['01','Stories You Can Wear','An illustrated canvas for everyday storytelling.'],['02','Rooted in Bengal','A place for local culture and creative observation.'],['03','Made Through Print','Marks, materials and the studio process.'],['04','Wear It Your Way','Find a silhouette or customize your own.']];
-  return '<section id="values" class="section-pad wrap" aria-labelledby="valuesTitle">'+titleBlock('04 / OUR POINT OF VIEW','Four ideas. One studio.','Large independent artwork slots prepared for future C01 SVG animation components.')+
-   '<div class="values-grid">'+items.map(([num,title,desc],i)=>'<article class="value-card" data-motion-slot="C01-'+num+'"><div class="value-art" aria-label="Temporary illustration frame for '+title+'"><span class="value-num">'+num+'</span><div class="value-print-motif motif-'+i+'"><span></span><span></span></div><small>Illustration pending</small></div><h3>'+title+'</h3><p>'+desc+'</p></article>').join('')+'</div></section>';
+  const items=[["01","Stories You Can Wear","Wear a story, not just a T-shirt. Art that feels personal, expressive, and unmistakably you."],["02","Rooted in Bengal","Inspired by the colours, culture, and everyday creative energy of Bengal."],["03","Anything but Ordinary","Original prints with personality, thoughtful details, and a style that refuses to blend in."],["04","Onto What You Wear","Find your favourite fit, add your own touch, and make it entirely yours."]];
+  return '<section id="values" data-c05-values="true" class="section-pad wrap" aria-labelledby="valuesTitle">'+
+   '<div class="section-title"><div><p class="eyebrow">04 / OUR POINT OF VIEW</p><h2 id="valuesTitle">More Than a T-Shirt</h2></div></div>'+
+   '<div class="values-grid">'+items.map(([num,title,desc])=>
+    '<article class="value-card" data-motion-slot="C05-'+num+'"><div class="value-art" role="img" data-c05-icon="'+num+'" aria-label="'+esc(title)+' animated illustration">'+
+    '<img class="c05-value-poster" src="/assets/c05/icon'+num+'-poster.svg" width="512" height="512" loading="lazy" decoding="async" alt="" aria-hidden="true">'+
+    '<div class="c05-value-player" aria-hidden="true"></div></div><h3>'+esc(title)+'</h3><p>'+esc(desc)+'</p></article>').join('')+
+   '</div></section>';
  }
  function story(){
   return '<section id="story" class="story-section" aria-labelledby="storyTitle"><div class="wrap story-top"><div><p class="eyebrow">05 / THE STORY</p><h2 id="storyTitle">People. Places. <em>Prints.</em></h2></div><div class="story-summary"><p>CHAPCHITRA brings printmaking, illustration and everyday apparel into one evolving creative conversation. The full studio history and identity artwork will be added with approved brand copy.</p>'+sketchButton({label:'Read Our Story',variant:'compact',tone:'terracotta',href:'/about/'})+'</div></div><a class="street-link" href="/about/#street-story" aria-label="Learn more about the street-scene inspiration"><img src="/assets/street-bengal.svg" alt="Provisional line illustration of a Bangladeshi street with a tea stall, shops and a rickshaw."><span class="street-note">Bangladesh street illustration study · Explore the story ↗</span></a></section>';
@@ -496,6 +501,10 @@ async function boot(){
 
  // Hero rotation, exactly one timer. Keyboard focus and pointer hover pause.
  if(route==='home'){
+  const c05Root=$('#values[data-c05-values="true"]');
+  if(c05Root)import('/motion/c05/values.mjs')
+   .then(({mountC05Values})=>mountC05Values(c05Root))
+   .catch(error=>console.warn('C05 original artwork fallback retained:',error));
   const c01Stage=$('#benefits .c01-stage');
   const c01Initialized=c01Stage
    ? import('./motion/c01/connected-benefits.mjs')

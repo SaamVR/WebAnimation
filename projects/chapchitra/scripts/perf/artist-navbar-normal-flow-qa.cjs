@@ -187,4 +187,21 @@ async function run(browser,engine,width,height){
    process.exitCode=2;
   }
  }
+
+ // C05 approved four-illustration integration: local-only native Lottie,
+ // Icon03 actual GSAP and WebKit playback; preserve all animation-owned files.
+ const c05QA=path.resolve(__dirname,'../c05-capture-values.mjs');
+ if(fs.existsSync(c05QA)){
+  const {spawnSync}=require('node:child_process');
+  const child=spawnSync(process.execPath,[c05QA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,C05_LOCAL_URL:origin,
+    C05_EVIDENCE_FOLDER:path.resolve('perf-results/shared-stage-c05')},
+   encoding:'utf8',stdio:'inherit',timeout:10*60*1000
+  });
+  if(child.error||child.status!==0){
+   console.error('C05 integrated native GSAP/Lottie browser QA failed',child.error?.message||child.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});

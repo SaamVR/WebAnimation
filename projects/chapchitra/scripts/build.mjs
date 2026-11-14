@@ -13,6 +13,9 @@ console.log('CHAPCHITRA four back garments verified:',backAssets);
 await rm(output,{recursive:true,force:true});
 await mkdir(output,{recursive:true});
 await cp(src,output,{recursive:true});
+// C05: materialize only the exact, checksum-verified owner-final art (V7/V1/GSAP/V3).
+const {materializeC05Assets}=await import('./materialize-c05-assets.mjs');
+await materializeC05Assets({src,output});
 // C02: preserve the owner's Illustrator roller master byte-for-byte.
 // The derived playback copy changes ONLY the second group's name.
 const rollerBytes=await readFile(resolve(src,'assets/c02/roller-original.svg'));
