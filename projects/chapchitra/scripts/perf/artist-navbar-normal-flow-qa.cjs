@@ -204,4 +204,20 @@ async function run(browser,engine,width,height){
    process.exitCode=2;
   }
  }
+
+ // Original Illustrator art and live demo-bag counts: local browser-only QA.
+ const ownerQA=path.resolve(__dirname,'owner-refinement-qa.cjs');
+ if(fs.existsSync(ownerQA)){
+  const {spawnSync}=require('node:child_process');
+  const result=spawnSync(process.execPath,[ownerQA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,CC_OWNER_QA_ROOT:origin,
+    CC_OWNER_QA_OUT:path.resolve('perf-results/shared-stage-owner-refinement')},
+   encoding:'utf8',stdio:'inherit',timeout:8*60*1000
+  });
+  if(result.error||result.status!==0){
+   console.error('Owner Illustrator/stamped bag integrated browser QA failed',
+    result.error?.message||result.status);process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});
