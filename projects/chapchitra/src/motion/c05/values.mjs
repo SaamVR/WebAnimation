@@ -66,7 +66,7 @@ function loadLottie(win,doc,slot){
    finished=true;
    player.pause();player.goToAndStop(0,true);
    resolve({
-    play:()=>player.play(),pause:()=>player.pause(),
+    play:()=>player.play(),restart:()=>player.goToAndPlay(0,true),pause:()=>player.pause(),
     toFinal:()=>player.goToAndStop(Math.max(0,data.op-data.ip-1),true),
     onComplete:fn=>player.addEventListener('complete',fn),
     destroy:()=>player.destroy(),
@@ -109,14 +109,14 @@ async function loadApprovedGSAP(win,doc,slot){
  const factory=await import('./icon03-approved-motion.mjs');
  if(typeof factory.mountC05Icon03!=='function')throw Error('C05 final Icon 03 mounting contract unavailable');
  const motion=await factory.mountC05Icon03({stage:slot.querySelector('.c05-value-player'),win,doc});
- if(!motion||!['play','pause','toFinal','destroy','onComplete'].every(k=>typeof motion[k]==='function'))
+ if(!motion||!['play','restart','pause','toFinal','destroy','onComplete'].every(k=>typeof motion[k]==='function'))
   throw Error('C05 final Icon 03 playback contract incomplete');
  return motion;
 }
 
-/** One-shot viewport playback, pause/resume on visibility, static final for reduced motion.
- * No timers or RAFs are introduced by this integration. All clocks remain
- * owned by the Lottie or GSAP animation sources.
+/** Infinite complete-cycle playback while each card is visible; no extra clocks.
+ * Pause offscreen and when the tab is hidden; reduced motion shows final art.
+ * Repeat uses only original Lottie frame zero / approved GSAP 6.43s seek(0).
  */
 export function mountC05Values(root,{win=window,doc=document}={}){
  if(!root||root.dataset.c05Mounted==='true')return {mounted:false,destroy(){}};
@@ -127,7 +127,7 @@ export function mountC05Values(root,{win=window,doc=document}={}){
  const slots=[...root.querySelectorAll('[data-c05-icon]')];
  if(slots.length!==4||slots.map(x=>x.dataset.c05Icon).join(',')!=='01,02,03,04')
   throw Error('C05 missing original four icon slots');
- const states=new Map(slots.map(slot=>[slot,{visible:false,loading:null,instance:null,done:false,disposed:false}]));
+ const states=new Map(slots.map(slot=>[slot,{visible:false,loading:null,instance:null,done:false,cycles:0,disposed:false}]));
  let destroyed=false;
  function status(slot,value){slot.dataset.c05State=value}
  async function prepare(slot){
@@ -144,7 +144,12 @@ export function mountC05Values(root,{win=window,doc=document}={}){
     if(poster)poster.setAttribute('aria-hidden','true');
     instance.onComplete?.(()=>{
      if(s.disposed||destroyed)return;
-     s.done=true;status(slot,'complete');
+     // Each completed cycle includes Icon 03's full owner-approved closing.
+     s.cycles++;slot.dataset.c05Cycles=String(s.cycles);s.done=true;
+     if(media.matches){s.instance.pause();s.instance.toFinal();status(slot,'reduced')}
+     else if(s.visible&&!doc.hidden){
+      s.done=false;s.instance.restart();status(slot,'playing');
+     }else status(slot,'paused');
     });
     reflect(slot);
    }).catch(error=>{
@@ -164,11 +169,11 @@ export function mountC05Values(root,{win=window,doc=document}={}){
   }
   if(!s.visible||doc.hidden){
    s.instance?.pause();
-   if(!s.done)status(slot,'paused');
+   status(slot,'paused');
    return;
   }
   if(!s.instance){void prepare(slot);return}
-  if(s.done){status(slot,'complete');return}
+  if(s.done){s.done=false;s.instance.restart();status(slot,'playing');return}
   status(slot,'playing');
   s.instance.play();
  }
@@ -197,6 +202,7 @@ export function mountC05Values(root,{win=window,doc=document}={}){
   },{rootMargin:'320px 0px 320px 0px',threshold:0})
   :null;
  for(const slot of slots){
+  slot.dataset.c05Cycles='0';
   status(slot,media.matches?'reduced':'idle');
   preloader?.observe(slot);
   if(observer)observer.observe(slot);
@@ -207,7 +213,7 @@ export function mountC05Values(root,{win=window,doc=document}={}){
   for(const slot of slots){
    if(!media.matches&&states.get(slot)?.instance){
     const s=states.get(slot);
-    // An already displayed reduced-motion end-frame is terminal; no artificial replay.
+    // Exiting reduced motion restarts from the approved first frame when visible.
     s.done=true;
    }
    reflect(slot);
@@ -228,7 +234,8 @@ export function mountC05Values(root,{win=window,doc=document}={}){
  // Read-only deterministic QA diagnostics, no extra playback clock.
  root.c05QA={
   get states(){return slots.map(slot=>({icon:slot.dataset.c05Icon,state:slot.dataset.c05State,
-   error:slot.dataset.c05Error||null,frame:states.get(slot)?.instance?.frame?.()??null}))},
+   error:slot.dataset.c05Error||null,frame:states.get(slot)?.instance?.frame?.()??null,
+   cycles:states.get(slot)?.cycles??0}))},
   get reduced(){return media.matches},destroy
  };
  return {mounted:true,destroy};
