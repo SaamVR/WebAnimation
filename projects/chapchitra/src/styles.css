@@ -2264,3 +2264,99 @@ body[data-page="artists-edit"] #app > .site-header {
  #app .bag-count .cc-bag-stamps img{width:18px;height:18px}
  #app .bag-count .cc-bag-stamps img+img{margin-left:-3px}
 }
+
+/* CHAPCHITRA Hero 01: paper-cut editorial header. Navigation stays one sticky
+   semantic header; original full badge/wordmark and tear are distinct layers.
+   #1C241D is the owner's explicit, Hero-01-only color exception (2026-11-15). */
+#app > .site-header .logo-word.logo-word--image{
+  transition:opacity .22s ease,visibility .22s ease;
+}
+body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-word.logo-word--image{
+  opacity:0;visibility:hidden;pointer-events:none;
+}
+#hero{
+  --hero01-paper-depth:clamp(242px,23vw,330px);
+  --hero01-tear-height:clamp(72px,7.5vw,108px);
+}
+#hero .hero-cover{
+  background:#1C241D;
+  color:var(--color-gallery-white);
+}
+#hero:has(.hero-cover:not([hidden])) .hero-track{
+  height:clamp(718px,79vh,850px);
+  min-height:718px;
+}
+#hero .hero-cover .hero-cover-inner{
+  justify-content:flex-start;
+  align-items:center;
+  padding-top:calc(var(--hero01-paper-depth) + var(--hero01-tear-height) + 18px);
+  padding-bottom:94px;
+  gap:5px;
+}
+#hero .hero-cover .hero-cover-inner .eyebrow{
+  margin:0 0 5px;
+}
+#hero .hero-cover .hero-cover-inner h1{
+  margin:3px 0 7px;
+}
+#hero .hero-cover .hero-cover-inner>p:not(.eyebrow){
+  margin:0 0 13px;
+}
+#hero .hero01-paper-panel{
+  position:absolute;top:0;left:0;right:0;
+  height:var(--hero01-paper-depth);
+  background:var(--color-gallery-white);
+  z-index:4;
+  display:flex;align-items:center;justify-content:center;
+  overflow:visible;isolation:isolate;
+  pointer-events:none;
+}
+#hero .hero01-full-logo{
+  position:relative;z-index:2;
+  display:block;
+  flex:0 0 auto;
+  width:clamp(228px,23vw,306px);
+  max-width:calc(100% - 36px);
+  line-height:0;
+  pointer-events:auto;
+}
+#hero .hero01-full-logo>img.hero-brand-lockup{
+  display:block;width:100%;height:auto;
+  max-width:100%;
+  object-fit:contain;
+}
+#hero .hero01-paper-edge{
+  position:absolute;
+  display:block;
+  left:0;right:0;top:calc(100% - 1px);
+  width:100%;height:var(--hero01-tear-height);
+  overflow:visible;
+  pointer-events:none;
+  shape-rendering:geometricPrecision;
+}
+#hero .hero01-paper-edge .hero01-paper-cut{
+  fill:var(--color-gallery-white);
+}
+#hero .hero01-paper-edge .hero01-paper-fibers{
+  fill:none;stroke:var(--color-gallery-white);
+  stroke-linecap:round;stroke-linejoin:round;
+  stroke-width:1.8;
+}
+@media(max-width:740px){
+  #hero{--hero01-paper-depth:250px;--hero01-tear-height:78px}
+  #hero .hero01-full-logo{width:clamp(202px,59vw,246px)}
+  #hero:has(.hero-cover:not([hidden])) .hero-track{height:780px;min-height:780px}
+  #hero .hero-cover .hero-cover-inner{
+    padding-top:calc(var(--hero01-paper-depth) + var(--hero01-tear-height) + 20px);
+    padding-bottom:86px;
+  }
+  #hero .hero-cover .hero-cover-inner h1{font-size:clamp(26px,7vw,34px)}
+}
+@media(max-width:365px){
+  #hero{--hero01-paper-depth:235px;--hero01-tear-height:70px}
+  #hero:has(.hero-cover:not([hidden])) .hero-track{height:748px;min-height:748px}
+  #hero .hero-cover .hero-cover-inner{padding-bottom:74px}
+}
+@media(prefers-reduced-motion:reduce){
+  #app > .site-header .logo-word.logo-word--image{transition:none!important}
+}
