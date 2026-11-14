@@ -109,6 +109,7 @@ for(const t of profiles){
  await page.screenshot({path:resolve(out,t.name+'-return.png')});
  // Standard header must be untouched on every other page.
  await page.goto(new URL('/shop/',origin).href,{waitUntil:'domcontentloaded',timeout:30000});
+ await page.locator('#siteHeader .nav-center>a').first().waitFor({state:'attached',timeout:20000});
  const other=await page.evaluate(()=>({
   mode:document.querySelector('#siteHeader')?.dataset.hero01Mode||'standard',
   paper:document.querySelector('.hero01-paper-panel')!==null,
