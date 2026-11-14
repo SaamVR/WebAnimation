@@ -31,7 +31,7 @@ test('footer uses original Instagram/Facebook/WhatsApp, never TikTok or invented
  assert.match(css,/\.site-footer \.footer-grid/);
  assert.match(css,/minmax\(0,1\.1fr\)/);
 });
-test('navbar and favorites use owner's outlined/filled original icon assets',()=>{
+test('navbar and favorites use the original outlined and filled icon artwork',()=>{
  for(const asset of ['nav-search.svg','nav-account.svg','nav-bag.svg','nav-favorites-filled.svg','nav-favorites-outline.svg'])
   assert.ok(original.assets.some(x=>x.filename===asset),'missing source '+asset);
  assert.match(app,/navArt\('search'\)/);
