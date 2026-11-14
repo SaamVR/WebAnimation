@@ -60,6 +60,12 @@ async function boot(){
   support:'<path d="M3 12a9 9 0 1 1 18 0M3 12v5a2 2 0 0 0 2 2h2v-7H3Zm18 0v7h-4v-7h4ZM17 20c-1 1-3 2-6 2"/>'
  }[type]||'');
  const svg=(name)=>'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+icon(name)+'</svg>';
+ // Exact cropped Illustrator vectors; preserve the owner-supplied path geometry.
+ const artRoot='/assets/illustrator/';
+ const navArt=name=>'<img class="cc-nav-art" src="'+artRoot+'nav-'+name+'.svg" alt="" aria-hidden="true" draggable="false">';
+ const favoriteArt=liked=>'<img class="cc-favorite-art" data-favorite-art src="'+artRoot+'nav-favorites-'+(liked?'filled':'outline')+'.svg" alt="" aria-hidden="true" draggable="false">';
+ const stampedBagCount=count=>'<span class="sr-only">'+count+'</span><span class="cc-bag-stamps" aria-hidden="true">'+
+  [...String(count)].map(d=>'<img src="'+artRoot+'stamp-'+d+'.svg" alt="" draggable="false">').join('')+'</span>';
  const categories=[
   {id:'regular-tees',title:'Regular Tees',desc:'A classic everyday canvas'},
   {id:'drop-shoulder',title:'Drop Shoulder',desc:'An easy, relaxed silhouette'},
@@ -80,10 +86,10 @@ async function boot(){
    '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+ 
    '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
    '<div class="nav-actions">'+
-   '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+svg('search')+'</button>'+
-   '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites">'+svg('heart')+'</a>'+
-   '<a class="nav-icon nav-optional-action" href="/account/" aria-label="Account">'+svg('account')+'</a>'+
-   '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+svg('bag')+'<span class="bag-count">'+demoBagCount()+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
+   '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+navArt('search')+'</button>'+
+   '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites"'+(route==='favorites'?' aria-current="page"':'')+'>'+navArt(route==='favorites'?'favorites-filled':'favorites-outline')+'</a>'+
+   '<a class="nav-icon nav-optional-action" href="/account/" aria-label="Account">'+navArt('account')+'</a>'+
+   '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+navArt('bag')+'<span class="bag-count">'+stampedBagCount(demoBagCount())+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
    '</div></div>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
@@ -101,7 +107,7 @@ async function boot(){
   ];
   return '<section id="hero" class="hero-carousel" aria-label="Five-slide editorial hero"><div class="hero-track">'+slides.map((s,i)=>{
    if(i===0)return '<article class="hero-slide hero-cover '+(i===0?'is-active':'')+'" data-slide="'+i+'" '+(i===0?'':'hidden')+'><img class="hero-background" src="/assets/hero-paper.svg" alt="Abstract green ink and paper placeholder background"><div class="hero-shade"></div><div class="wrap hero-cover-inner"><p class="eyebrow on-dark">'+s.eyebrow+'</p><img class="hero-brand-lockup" src="/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp" width="1250" height="1052" alt="CHAPCHITRA textile symbol and custom wordmark" decoding="async" fetchpriority="high"><div id="c08HeroStage" class="c08-hero-stage"></div><h1>'+s.title+'</h1><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'beige',href:s.href})+'</div></article>';
-   return '<article class="hero-slide hero-split" data-slide="'+i+'" hidden><div class="wrap hero-split-inner"><div class="hero-slide-copy"><p class="eyebrow">'+s.eyebrow+'</p><h2>'+s.title+'</h2><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'forest',href:s.href})+'</div><div class="hero-visual hero-visual-'+i+'">'+(i===2?printSilhouette(i):i===4?'<div class="paper-editorial"><span>JOURNAL / STORY 01</span><strong>Notes from<br>the studio.</strong><span>Draft illustration</span></div>':shirtSilhouette(i))+'<span class="hero-placeholder">IMAGE / ART PENDING</span></div></div></article>'
+   return '<article class="hero-slide hero-split" data-slide="'+i+'" hidden><div class="wrap hero-split-inner"><div class="hero-slide-copy">'+(s.eyebrow&&!/^\d{2}\s*\//.test(s.eyebrow)?'<p class="eyebrow">'+s.eyebrow+'</p>':'')+'<h2>'+s.title+'</h2><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'forest',href:s.href})+'</div><div class="hero-visual hero-visual-'+i+'">'+(i===2?printSilhouette(i):i===4?'<div class="paper-editorial"><span>JOURNAL / STORY 01</span><strong>Notes from<br>the studio.</strong><span>Draft illustration</span></div>':shirtSilhouette(i))+'<span class="hero-placeholder">IMAGE / ART PENDING</span></div></div></article>'
   }).join('')+'</div><div class="hero-controls wrap"><div class="hero-dots" role="group" aria-label="Choose hero slide">'+slides.map((s,i)=>'<button class="hero-dot'+(i===0?' active':'')+'" type="button" data-slide-to="'+i+'" aria-label="Show slide '+(i+1)+': '+esc(s.title)+'" aria-pressed="'+(i===0?'true':'false')+'"></button>').join('')+'</div><span class="hero-count" id="heroCount">01 / 05</span></div></section>';
  }
  function benefits(){
@@ -115,7 +121,7 @@ async function boot(){
   return '<section id="benefits" class="benefit-section" aria-labelledby="benefitsTitle"><h2 class="sr-only" id="benefitsTitle">Service benefits</h2><div class="wrap c01-stage" data-c01><svg class="c01-connectors" aria-hidden="true" focusable="false"></svg><div class="c01-steps">'+items.map(([label,poster])=>
    '<article class="c01-step"><div class="c01-icon-shell" aria-hidden="true"><div class="c01-icon"><img class="c01-poster" src="/assets/c01/posters/'+poster+'" width="512" height="512" alt="" decoding="async"><div class="c01-lottie" aria-hidden="true"></div></div></div><div class="c01-copy"><h3>'+esc(label)+'</h3></div></article>').join('')+'</div></div></section>';
  }
- function titleBlock(label,title,desc){return '<div class="section-title"><div><p class="eyebrow">'+label+'</p><h2>'+title+'</h2></div><p>'+desc+'</p></div>'}
+ function titleBlock(label,title,desc){return '<div class="section-title"><div>'+(/^\d{2}\s*\//.test(label)?'':'<p class="eyebrow">'+label+'</p>')+'<h2>'+title+'</h2></div><p>'+desc+'</p></div>'}
  function categoriesSection(){
   return '<section id="categories" class="section-pad wrap" aria-labelledby="categoriesTitle">'+titleBlock('01 / SHOP BY FIT','Shop by category','Wearable art in familiar silhouettes, awaiting the final product catalogue.')+
   '<div class="category-grid">'+categories.map((cat,i)=>'<article class="category-card"><div class="category-image">'+shirtSilhouette(i)+'<span class="proof-tag">Sample silhouette</span></div><div class="category-copy"><h3>'+cat.title+'</h3><p>'+cat.desc+'</p><div class="filter-chips" aria-label="'+cat.title+' filters"><a href="'+linkFiltered(cat.id,'')+'">All</a><a href="'+linkFiltered(cat.id,'men')+'">Men</a><a href="'+linkFiltered(cat.id,'women')+'">Women</a></div></div></article>').join('')+'</div></section>';
@@ -131,7 +137,7 @@ async function boot(){
      shirtSilhouette(item.visual)+'<span class="proof-tag">DEMO / NO STOCK</span></a></div>'+
     '<div class="product-meta polaroid-caption"><div class="polaroid-caption-head">'+
      '<a class="polaroid-name" href="/product/?id='+item.id+'"><strong>'+esc(item.name)+'</strong></a>'+
-     '<button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+svg('heart')+'</button>'+
+     '<button type="button" class="favorite-toggle'+(liked?' liked':'')+'" data-favorite="'+item.id+'" aria-pressed="'+liked+'" aria-label="'+(liked?'Remove':'Add')+' '+esc(item.name)+' '+(liked?'from':'to')+' favorites">'+favoriteArt(liked)+'</button>'+
     '</div><span class="polaroid-fit">'+esc(item.fit)+'</span>'+
     '<div class="product-price"><small>'+esc(item.subtitle)+'</small><b>Tk —</b></div></div>'+
    '</div>'+
@@ -172,7 +178,7 @@ async function boot(){
  function values(){
   const items=[["01","Stories You Can Wear","Wear a story, not just a T-shirt. Art that feels personal, expressive, and unmistakably you."],["02","Rooted in Bengal","Inspired by the colours, culture, and everyday creative energy of Bengal."],["03","Anything but Ordinary","Original prints with personality, thoughtful details, and a style that refuses to blend in."],["04","Onto What You Wear","Find your favourite fit, add your own touch, and make it entirely yours."]];
   return '<section id="values" data-c05-values="true" class="section-pad wrap" aria-labelledby="valuesTitle">'+
-   '<div class="section-title"><div><p class="eyebrow">04 / OUR POINT OF VIEW</p><h2 id="valuesTitle">More Than a T-Shirt</h2></div></div>'+
+   '<div class="section-title"><div><h2 id="valuesTitle">More Than a T-Shirt</h2></div></div>'+
    '<div class="values-grid">'+items.map(([num,title,desc])=>
     '<article class="value-card" data-motion-slot="C05-'+num+'"><div class="value-art" role="img" data-c05-icon="'+num+'" aria-label="'+esc(title)+' animated illustration">'+
     '<img class="c05-value-poster" src="/assets/c05/icon'+num+'-poster.svg" width="512" height="512" loading="lazy" decoding="async" alt="" aria-hidden="true">'+
@@ -180,14 +186,14 @@ async function boot(){
    '</div></section>';
  }
  function story(){
-  return '<section id="story" class="story-section" aria-labelledby="storyTitle"><div class="wrap story-top"><div><p class="eyebrow">05 / THE STORY</p><h2 id="storyTitle">People. Places. <em>Prints.</em></h2></div><div class="story-summary"><p>CHAPCHITRA brings printmaking, illustration and everyday apparel into one evolving creative conversation. The full studio history and identity artwork will be added with approved brand copy.</p>'+sketchButton({label:'Read Our Story',variant:'compact',tone:'terracotta',href:'/about/'})+'</div></div><a class="street-link" href="/about/#street-story" aria-label="Learn more about the street-scene inspiration"><img src="/assets/street-bengal.svg" alt="Provisional line illustration of a Bangladeshi street with a tea stall, shops and a rickshaw."><span class="street-note">Bangladesh street illustration study · Explore the story ↗</span></a></section>';
+  return '<section id="story" class="story-section" aria-labelledby="storyTitle"><div class="wrap story-top"><div><h2 id="storyTitle">People. Places. <em>Prints.</em></h2></div><div class="story-summary"><p>CHAPCHITRA brings printmaking, illustration and everyday apparel into one evolving creative conversation. The full studio history and identity artwork will be added with approved brand copy.</p>'+sketchButton({label:'Read Our Story',variant:'compact',tone:'terracotta',href:'/about/'})+'</div></div><a class="street-link" href="/about/#street-story" aria-label="Learn more about the street-scene inspiration"><img src="/assets/street-bengal.svg" alt="Provisional line illustration of a Bangladeshi street with a tea stall, shops and a rickshaw."><span class="street-note">Bangladesh street illustration study · Explore the story ↗</span></a></section>';
  }
  // Owner must provide exact CHAPCHITRA profile URLs before these become links.
  // Empty URLs render accessible, non-interactive artwork rather than fake destinations.
  const footerSocialProfiles=[
-  ['Instagram', '', '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="5.4"/><circle cx="12" cy="12" r="4.15"/><circle cx="17.65" cy="6.45" r="1.05" fill="currentColor" stroke="none"/></svg>'],
-  ['Facebook', '', '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor"><path d="M13.97 21.5v-8.2h2.8l.42-3.24h-3.22V7.99c0-.94.27-1.58 1.61-1.58h1.72V3.52a23.24 23.24 0 0 0-2.52-.13c-2.5 0-4.21 1.52-4.21 4.31v2.36H7.75v3.24h2.82v8.2h3.4Z"/></svg>'],
-  ['TikTok', '', '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor"><path d="M15.68 2.4h3.04c.23 2.16 1.5 3.48 3.28 3.64v3.13a9.46 9.46 0 0 1-3.27-.93v6.17c0 4.46-2.91 7.09-6.59 7.09a6.37 6.37 0 0 1-6.55-6.42c0-3.89 3.39-6.77 7.5-6.25v3.34a3.26 3.26 0 1 0 2.59 3.19V2.4Z"/></svg>']
+  ['Instagram', '', '<img src="/assets/illustrator/social-instagram.svg" alt="" aria-hidden="true" draggable="false">'],
+  ['Facebook', '', '<img src="/assets/illustrator/social-facebook.svg" alt="" aria-hidden="true" draggable="false">'],
+  ['WhatsApp', '', '<img src="/assets/illustrator/social-whatsapp.svg" alt="" aria-hidden="true" draggable="false">']
  ];
  function footerSocials(){
   return '<div class="footer-socials" role="group" aria-label="CHAPCHITRA social platforms">'+
@@ -360,6 +366,8 @@ async function boot(){
   $$('[data-favorite]').filter(btn=>btn.dataset.favorite===id).forEach(btn=>{
    btn.classList.toggle('liked',liked);
    btn.setAttribute('aria-pressed',String(liked));
+   const heartArt=btn.querySelector('[data-favorite-art]');
+   if(heartArt)heartArt.src=artRoot+'nav-favorites-'+(liked?'filled':'outline')+'.svg';
    if(btn.classList.contains('favorite-toggle')){
     const label=catalog.find(p=>p.id===id)?.name||'sample';
     btn.setAttribute('aria-label',(liked?'Remove ':'Add ')+label+(liked?' from':' to')+' favorites');
@@ -384,7 +392,7 @@ async function boot(){
  }
  function updateBagCounter(){
   const count=demoBagCount(),link=$('.bag-link');
-  link.querySelector('.bag-count').textContent=String(count);
+  link.querySelector('.bag-count').innerHTML=stampedBagCount(count);
   link.setAttribute('aria-label','Demo shopping bag, '+count+' item'+(count===1?'':'s'));
  }
  function setDemoBagQty(id,qty){

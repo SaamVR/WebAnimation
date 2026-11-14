@@ -1,0 +1,136 @@
+{
+  "source": "Owner Illustrator original SVG, 2026-11-14. Zero redraw/raster/recolor. Cropped viewBox only.",
+  "sha256": {
+    "social": "bbd60d55d71de0aafe77843f6756c550d0d9d2ac589717ba2563ef2907f06e00",
+    "nav": "0ff7068cae4a7d67acab3d0695fd9dd3386a23a646a9cc63606d7cfb9a355984",
+    "stamp": "d17c777fba746d9606dfaf611b1a843ef0b2ab5000289b9bda6a20fb6b960361"
+  },
+  "assets": [
+    {
+      "filename": "social-instagram.svg",
+      "sourceGroup": "Instagram",
+      "viewBox": "33 31 446 451",
+      "pathCount": 3,
+      "ownerPalette": ".st0{fill:#E4E3DE;}"
+    },
+    {
+      "filename": "social-facebook.svg",
+      "sourceGroup": "Facebook",
+      "viewBox": "685 20 478 471",
+      "pathCount": 2,
+      "ownerPalette": ".st0{fill:#E4E3DE;}"
+    },
+    {
+      "filename": "social-whatsapp.svg",
+      "sourceGroup": "Whatsapp",
+      "viewBox": "1326 26 474 460",
+      "pathCount": 2,
+      "ownerPalette": ".st0{fill:#E4E3DE;}"
+    },
+    {
+      "filename": "nav-bag.svg",
+      "sourceGroup": "Bag_x5F_Icon",
+      "viewBox": "3433 21 396 471",
+      "pathCount": 2,
+      "ownerPalette": ".st0{fill:#293D2D;}.st1{fill:#8A503B;}"
+    },
+    {
+      "filename": "nav-account.svg",
+      "sourceGroup": "Account_x5F_Icon",
+      "viewBox": "2329 52 388 445",
+      "pathCount": 5,
+      "ownerPalette": ".st0{fill:#293D2D;}.st1{fill:#8A503B;}"
+    },
+    {
+      "filename": "nav-favorites-filled.svg",
+      "sourceGroup": "Favourite_x5F_Icon_x5F_Fill",
+      "viewBox": "1188 86 387 357",
+      "pathCount": 15,
+      "ownerPalette": ".st0{fill:#293D2D;}.st1{fill:#8A503B;}"
+    },
+    {
+      "filename": "nav-favorites-outline.svg",
+      "sourceGroup": "Favourite_x5F_Icon_x5F_Outline",
+      "viewBox": "1148 39 482 435",
+      "pathCount": 2,
+      "ownerPalette": ".st0{fill:#293D2D;}.st1{fill:#8A503B;}"
+    },
+    {
+      "filename": "nav-search.svg",
+      "sourceGroup": "Search_x5F_Icon",
+      "viewBox": "34 40 444 431",
+      "pathCount": 2,
+      "ownerPalette": ".st0{fill:#293D2D;}.st1{fill:#8A503B;}"
+    },
+    {
+      "filename": "stamp-0.svg",
+      "sourceGroup": "_x30_",
+      "viewBox": "763 414 362 366",
+      "pathCount": 9,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-1.svg",
+      "sourceGroup": "_x31_",
+      "viewBox": "-762 -7 360 364",
+      "pathCount": 18,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-2.svg",
+      "sourceGroup": "_x32_",
+      "viewBox": "-386 -8 357 366",
+      "pathCount": 13,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-3.svg",
+      "sourceGroup": "_x33_",
+      "viewBox": "-5 -10 360 370",
+      "pathCount": 17,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-4.svg",
+      "sourceGroup": "_x34_",
+      "viewBox": "369 -7 360 364",
+      "pathCount": 12,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-5.svg",
+      "sourceGroup": "_x35_",
+      "viewBox": "763 -12 362 374",
+      "pathCount": 11,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-6.svg",
+      "sourceGroup": "_x36_",
+      "viewBox": "-763 414 362 365",
+      "pathCount": 9,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-7.svg",
+      "sourceGroup": "_x37_",
+      "viewBox": "-389 414 362 366",
+      "pathCount": 19,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-8.svg",
+      "sourceGroup": "_x38_",
+      "viewBox": "-5 414 360 366",
+      "pathCount": 19,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    },
+    {
+      "filename": "stamp-9.svg",
+      "sourceGroup": "_x39_",
+      "viewBox": "368 415 363 364",
+      "pathCount": 16,
+      "ownerPalette": ".st0{fill:#F6F7F5;}"
+    }
+  ]
+}

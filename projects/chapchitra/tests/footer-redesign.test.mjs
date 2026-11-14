@@ -22,12 +22,12 @@ test('Discover has only the three actual routes; Help labels never invent links'
  assert.doesNotMatch(footer,/href="\/(?:support|terms|contact|bag|account|checkout|favorites|shop)\//);
  assert.doesNotMatch(footer,/<h2>Shop<\/h2>|All Samples|Regular Tees|Drop Shoulder|Tie-Dye/);
 });
-test('social icons are accessible and no imaginary profile destination or WhatsApp',()=>{
+test('social icons are accessible and no imaginary profile destination or TikTok',()=>{
  const socials=source.split('const footerSocialProfiles=[')[1]?.split(' ];')[0];
  assert.ok(socials);
- for(const name of ['Instagram','Facebook','TikTok'])assert.match(socials,new RegExp("\\['"+name+"', '',"));
- assert.equal((socials.match(/<svg /g)||[]).length,3);
- assert.doesNotMatch(socials,/WhatsApp|https?:\/\//i);
+ for(const name of ['Instagram','Facebook','WhatsApp'])assert.match(socials,new RegExp("\\['"+name+"', '',"));
+ assert.equal((socials.match(/<img /g)||[]).length,3);
+ assert.doesNotMatch(socials,/TikTok|https?:\/\//i);
  assert.match(source,/footer-social-unlinked/);
  assert.match(source,/profile link unavailable/);
  assert.match(source,/rel="noopener noreferrer"/);
@@ -39,7 +39,7 @@ test('illustration is structurally empty; newsletter and demo copy removed',()=>
  assert.doesNotMatch(source,/newsletter\.addEventListener/);
 });
 test('four-area CSS grid and responsive reflow preserve approved dark olive',()=>{
- assert.match(css,/\.site-footer\s*\.footer-grid\{\s*display:grid;\s*grid-template-columns:minmax\(0,1\.65fr\)/);
+ assert.match(css,/#app \.site-footer \.footer-grid\{\s*grid-template-columns:minmax\(0,1\.1fr\)/);
  assert.match(css,/\.site-footer\{\s*padding:clamp\(38px,4vw,58px\) 0 22px;\s*background:var\(--olive\)/);
  assert.match(css,/@media\(max-width:1070px\)/);
  assert.match(css,/@media\(max-width:690px\)/);

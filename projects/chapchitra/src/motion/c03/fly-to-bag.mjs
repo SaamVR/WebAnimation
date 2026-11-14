@@ -141,7 +141,7 @@ export async function playC03({button,productId}={}){
  const source=resolveC03ProductSource(button,productId);
  const bagLink=document.querySelector('.site-header .bag-link');
  const badge=bagLink?.querySelector('.bag-count');
- const icon=bagLink?.querySelector('svg');
+ const icon=bagLink?.querySelector('.cc-nav-art, svg');
  if(!source||!bagLink||!badge||!icon)return false;
  const originalScroll=scrollY;
  const before=source.getBoundingClientRect();

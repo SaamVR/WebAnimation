@@ -56,7 +56,7 @@ async function run(device){
      help:[...help?.querySelectorAll('.footer-help-pending')||[]].map(x=>x.textContent),
      helpHeading:help?.querySelector('h2')?.textContent,
      helpAnchors:help?.querySelectorAll('a').length,
-     socials:social.map(x=>({tag:x.tagName,name:x.getAttribute('aria-label'),svg:x.querySelectorAll('svg').length,href:x.getAttribute('href')})),
+     socials:social.map(x=>({tag:x.tagName,name:x.getAttribute('aria-label'),images:x.querySelectorAll('img').length,image:x.querySelector('img')?.getAttribute('src'),href:x.getAttribute('href')})),
      footerCopy:footer?.textContent||'',
      emptyChildren:empty?.childElementCount,emptyText:empty?.textContent,
      emptyBorder:empty?getComputedStyle(empty).borderWidth:null,
@@ -71,7 +71,10 @@ async function run(device){
    assert(label,route,'tagline',details.tagline==='PEOPLE · PLACES · PRINTS');
    assert(label,route,'three Discover routes',JSON.stringify(details.discover.map(x=>x.url))===JSON.stringify(['/artists-edit/','/journal/','/about/'])&&details.discoverHeading==='Discover',details.discover);
    assert(label,route,'Help labels not fabricated links',JSON.stringify(details.help)===JSON.stringify(['Support','Terms & Conditions','Contact Us'])&&details.helpAnchors===0&&details.helpHeading==='Help',details.help);
-   assert(label,route,'three accessible socials without unverified destination',details.socials.length===3&&details.socials.every(x=>x.tag==='SPAN'&&x.svg===1&&x.href===null&&x.name?.includes('profile link unavailable')),details.socials);
+   assert(label,route,'three accessible socials without unverified destination',details.socials.length===3&&details.socials.every(x=>x.tag==='SPAN'&&x.images===1&&x.href===null&&x.name?.includes('profile link unavailable')),details.socials);
+   assert(label,route,'original social vector identity',
+    JSON.stringify(details.socials.map(x=>x.image))===JSON.stringify(['/assets/illustrator/social-instagram.svg','/assets/illustrator/social-facebook.svg','/assets/illustrator/social-whatsapp.svg']),
+    details.socials);
    assert(label,route,'no demo/shop/newsletter copy',!/(Art-led print and apparel demo|Pricing and sample imagery remain provisional|Join the print studio|All Samples|Shopping Bag|Checkout Preview|Favorites)/.test(details.footerCopy));
    assert(label,route,'four grid areas',details.parts===4);
    assert(label,route,'responsive CSS columns',details.gridColumns===device.cols,details.gridColumns);
