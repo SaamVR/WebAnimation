@@ -2218,3 +2218,49 @@ body[data-page="artists-edit"] #app > .site-header {
  .site-footer .footer-social-entry{width:40px;height:40px}
  .site-footer .footer-bottom{margin-top:30px}
 }
+
+/* Artist-supplied exact SVG silhouettes and proportional 0–9 ink stamps. */
+#app .nav-icon .cc-nav-art{display:block;width:22px;height:25px;object-fit:contain;flex:none}
+#app .nav-icon.bag-link .cc-nav-art{width:23px;height:28px}
+#app .favorite-toggle .cc-favorite-art{display:block;width:22px;height:22px;object-fit:contain}
+#app .bag-count{
+ position:absolute;top:-4px;right:-8px;display:inline-flex;align-items:center;justify-content:center;
+ min-width:20px;width:auto;height:20px;padding:0;background:transparent;
+ border-radius:0;overflow:visible;line-height:1;font-size:0;color:inherit;
+}
+#app .bag-count .cc-bag-stamps{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+#app .bag-count .cc-bag-stamps img{display:block;width:21px;height:21px;object-fit:contain;flex:0 0 auto}
+#app .bag-count .cc-bag-stamps img+img{margin-left:-3px}
+#app .nav-icon.bag-link{overflow:visible}
+
+/* Match owner's green-marked Discover/Help anchors; reserve right art panel. */
+#app .site-footer .footer-grid{
+ grid-template-columns:minmax(0,1.1fr) minmax(0,.52fr) minmax(0,.95fr) minmax(0,2.55fr);
+ column-gap:clamp(16px,1.6vw,30px);align-items:start;
+}
+#app .site-footer .footer-nav-discover,#app .site-footer .footer-nav-help{padding-top:12px}
+#app .site-footer .footer-social-entry{
+ width:44px;height:44px;border:0;border-radius:0;background:transparent;
+ transition:opacity .18s ease,transform .18s ease;
+}
+#app .site-footer .footer-social-entry img{display:block;width:40px;height:40px;object-fit:contain}
+#app .site-footer .footer-social-entry[href]:hover,#app .site-footer .footer-social-entry[href]:focus-visible{
+ background:transparent;opacity:.82;transform:translateY(-2px);
+}
+#app .site-footer .footer-illustration-space{min-height:190px;min-width:0;border:0;background:transparent}
+@media(max-width:1070px){
+ #app .site-footer .footer-grid{
+  grid-template-columns:minmax(0,1.25fr) minmax(0,.72fr) minmax(0,.9fr);gap:24px;
+ }
+ #app .site-footer .footer-illustration-space{grid-column:1/-1;min-height:0}
+}
+@media(max-width:690px){
+ #app .site-footer .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+ #app .site-footer .footer-identity{grid-column:1/-1}
+ #app .site-footer .footer-illustration-space{grid-column:1/-1;min-height:0}
+ #app .nav-icon .cc-nav-art{width:19px;height:22px}
+ #app .nav-icon.bag-link .cc-nav-art{width:20px;height:23px}
+ #app .bag-count{top:-5px;right:-7px}
+ #app .bag-count .cc-bag-stamps img{width:18px;height:18px}
+ #app .bag-count .cc-bag-stamps img+img{margin-left:-3px}
+}
