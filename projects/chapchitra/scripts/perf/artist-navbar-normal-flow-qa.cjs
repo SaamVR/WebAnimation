@@ -220,4 +220,21 @@ async function run(browser,engine,width,height){
     result.error?.message||result.status);process.exitCode=2;
   }
  }
+ // Hero 01 editorial header: isolated local Chromium/WebKit layout,
+ // original C08 playback, scroll/slide switching, accessibility and recordings.
+ // Never navigates a hosted URL or creates a deployment.
+ const hero01QA=path.resolve(__dirname,'../hero01-header-qa.mjs');
+ if(fs.existsSync(hero01QA)){
+  const {spawnSync}=require('node:child_process');
+  const child=spawnSync(process.execPath,[hero01QA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,CC_HERO01_QA_ROOT:origin,
+    CC_HERO01_QA_OUT:path.resolve('perf-results/shared-stage-hero01')},
+   encoding:'utf8',stdio:'inherit',timeout:8*60*1000,
+  });
+  if(child.error||child.status!==0){
+   console.error('Hero 01 isolated paper-header browser QA failed',child.error?.message||child.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});
