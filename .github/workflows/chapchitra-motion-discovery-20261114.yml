@@ -1,0 +1,75 @@
+name: CHAPCHITRA Motion Discovery Evidence Bundle
+on:
+  push:
+    branches: [media/fiverr-gig-video-source-20261113]
+    paths: [.github/workflows/chapchitra-motion-discovery-20261114.yml]
+permissions: {contents: read}
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: integration/chapchitra-artist-approved-freeze-20261113
+          path: evidence/site
+          sparse-checkout: |
+            projects/chapchitra/docs/c01-evidence
+            projects/chapchitra/docs/c08-evidence
+            projects/chapchitra/docs/compact-final-evidence
+            projects/chapchitra/docs/performance-evidence/print-guides-tools
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/chapchitra-c05-icon01-storybook-lottie-20261112
+          path: evidence/c05-01
+          sparse-checkout: |
+            animation-prototypes/chapchitra/c05/icon01/V4
+            animation-prototypes/chapchitra/c05/icon01/V6
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/chapchitra-c05-icon02-rooted-in-bengal-20261112
+          path: evidence/c05-02
+          sparse-checkout: |
+            animation-prototypes/chapchitra/c05/icon02
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/chapchitra-c05-icon03-hand-block-printing-20261112
+          path: evidence/c05-03
+          sparse-checkout: |
+            animation-prototypes/chapchitra/c05/icon03
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/chapchitra-c05-icon04-soft-bounce-20261113
+          path: evidence/c05-04
+          sparse-checkout: |
+            projects/chapchitra/c05/icon04
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/chapchitra-c02-ink-sweep-20261111
+          path: evidence/c02
+          sparse-checkout: |
+            projects/chapchitra/docs/qa/c02-roller-20261112
+          sparse-checkout-cone-mode: true
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/chapchitra-c03-sitewide-20261113
+          path: evidence/c03
+          sparse-checkout: |
+            projects/chapchitra/docs/evidence/c03
+          sparse-checkout-cone-mode: true
+      - name: Verify available review sources
+        run: |
+          find evidence -type f \( -name '*.webm' -o -name '*.mp4' -o -name '*.json' -o -name '*.lottie' -o -name '*.gif' \) | grep -v '/.git/' | sed -n '1,100p'
+          du -sh evidence/* | sort -h
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chapchitra-unseen-motion-art-review-20261114
+          path: evidence/
+          retention-days: 7
+          compression-level: 5
+          if-no-files-found: error
