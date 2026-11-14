@@ -109,9 +109,39 @@ async function loadApprovedGSAP(win,doc,slot){
  const factory=await import('./icon03-approved-motion.mjs');
  if(typeof factory.mountC05Icon03!=='function')throw Error('C05 final Icon 03 mounting contract unavailable');
  const motion=await factory.mountC05Icon03({stage:slot.querySelector('.c05-value-player'),win,doc});
- if(!motion||!['play','restart','pause','toFinal','destroy','onComplete'].every(k=>typeof motion[k]==='function'))
+ if(!motion||!['play','pause','toFinal','destroy','seekForQA','statusForQA','duration','frame'].every(k=>typeof motion[k]==='function'))
   throw Error('C05 final Icon 03 playback contract incomplete');
- return motion;
+ // Icon 03 is checksum-frozen. Observe its existing native 6.43s playhead
+ // only while playing; restart through its public seek/play integration API.
+ // No source keyframes, SVG groups, sequence durations or easing change.
+ const callbacks=new Set();let monitorId=0,watching=false,notified=false;
+ function stopWatch(){
+  watching=false;
+  if(monitorId){win.cancelAnimationFrame(monitorId);monitorId=0}
+ }
+ function watch(){
+  if(!watching)return;
+  if(motion.statusForQA().time>=motion.duration()-.0001){
+   stopWatch();
+   if(!notified){notified=true;callbacks.forEach(fn=>fn())}
+   return;
+  }
+  monitorId=win.requestAnimationFrame(watch);
+ }
+ function startWatch(){
+  if(watching)return;
+  watching=true;monitorId=win.requestAnimationFrame(watch);
+ }
+ return {
+  play(){motion.play();startWatch()},
+  restart(){stopWatch();motion.seekForQA(0);notified=false;motion.play();startWatch()},
+  pause(){stopWatch();motion.pause()},
+  toFinal(){stopWatch();motion.toFinal()},
+  onComplete(fn){if(typeof fn==='function')callbacks.add(fn)},
+  frame:()=>motion.frame(),
+  duration:()=>motion.duration(),
+  destroy(){stopWatch();motion.destroy()}
+ };
 }
 
 /** Infinite complete-cycle playback while each card is visible; no extra clocks.
