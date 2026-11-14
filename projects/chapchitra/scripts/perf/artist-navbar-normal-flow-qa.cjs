@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path');
 const origin=process.env.CC_QA_ROOT||'http://127.0.0.1:4483';
 const out=path.resolve(process.env.CC_QA_OUT||'perf-results/artist-navbar-static-qa');
 fs.mkdirSync(out,{recursive:true});
-const checks=[],errors=[],responses=[];
+const checks=[],errors=[],responses=[],topStripGeometry=[];
 const check=(label,passed,details={})=>{
  const result={label,passed:!!passed,...details};checks.push(result);
  if(!passed)console.error('FAILED',label,JSON.stringify(details));
@@ -15,7 +15,8 @@ async function measure(page){
   const announcement=document.querySelector('#app > .announcement');
   const h=header.getBoundingClientRect(),m=main.getBoundingClientRect(),a=announcement.getBoundingClientRect();
   const element=document.elementFromPoint(innerWidth/2,3);
-  return {route:document.body.dataset.page,scrollY:scrollY,headerTop:h.top,
+  const navdebug=window.__ccNavViewport?.measure?.()||null;
+  return {navdebug,route:document.body.dataset.page,scrollY:scrollY,headerTop:h.top,
    headerBottom:h.bottom,headerHeight:h.height,mainTop:m.top,
    announcementTop:a.top,announcementBottom:a.bottom,
    headerPosition:getComputedStyle(header).position,
@@ -37,10 +38,53 @@ async function run(browser,engine,width,height){
   page.on('pageerror',e=>errors.push({engine,route,message:e.message}));
   page.on('response',r=>{if(r.status()>=400&&r.url().startsWith(origin))responses.push({engine,route,status:r.status(),url:r.url()})});
   const url=route==='home'?'/':route==='artists-edit'?'/artists-edit/':'/'+(route==='about'?'about':route)+'/';
-  await page.goto(origin+url,{waitUntil:'load',timeout:60000});
+  await page.goto(origin+url+'?navdebug=1',{waitUntil:'load',timeout:60000});
   await page.locator('#siteHeader').waitFor({timeout:30000});
   if(route==='artists-edit') await page.locator('.cc-worktable-stage:not([aria-busy="true"])').waitFor({timeout:90000});
   const initial=await measure(page);
+  const root=initial.navdebug?.rectangles;
+  topStripGeometry.push({engine,route,stage:'direct',geometry:initial.navdebug});
+  await page.screenshot({path:path.join(out,engine+'-'+route+'-navdebug-direct.png')});
+  check(engine+' '+route+' navdebug full geometry exists',!!root?.html&&!!root?.body&&
+   !!root?.app&&!!root?.announcement&&!!root?.siteHeader&&!!root?.main,
+   {available:Object.keys(root||{})});
+  if(root){
+   check(engine+' '+route+' no document gap above announcement at scrollY=0',
+    Math.abs(root.announcement.top)<2&&Math.abs(root.app.top)<2&&
+    Math.abs(root.body.top)<2&&initial.scrollY===0,
+    {boxes:{html:root.html,body:root.body,app:root.app,announcement:root.announcement},
+     point:initial.navdebug?.samplePoints});
+  }
+  if(route==='shop'&&engine==='webkit-ipad'){
+   const pageRoot=initial.navdebug?.rectangles;
+   const colorsBefore=await page.evaluate(()=>({
+    html:document.documentElement.style.backgroundColor,
+    body:document.body.style.backgroundColor
+   }));
+   await page.getByRole('button',{name:'Test browser-edge color'}).click();
+   const tinted=await measure(page);
+   topStripGeometry.push({engine,route,stage:'temporary-tint-probe',geometry:tinted.navdebug});
+   const colorsOn=await page.evaluate(()=>({
+    html:document.documentElement.style.backgroundColor,
+    body:document.body.style.backgroundColor
+   }));
+   await page.screenshot({path:path.join(out,'webkit-ipad-shop-navdebug-tint-probe.png')});
+   check('webkit-ipad edge tint probe never changes document geometry',
+    colorsOn.html==='rgb(138, 80, 59)'&&colorsOn.body===colorsOn.html&&
+    Math.abs((tinted.navdebug?.rectangles?.announcement?.top??999)-
+     (pageRoot?.announcement?.top??0))<1&&
+    Math.abs((tinted.navdebug?.rectangles?.siteHeader?.top??999)-
+     (pageRoot?.siteHeader?.top??0))<1,
+    {colorsOn,header:[pageRoot?.siteHeader?.top,tinted.navdebug?.rectangles?.siteHeader?.top]});
+   await page.getByRole('button',{name:'Test browser-edge color'}).click();
+   const colorsOff=await page.evaluate(()=>({
+    html:document.documentElement.style.backgroundColor,
+    body:document.body.style.backgroundColor
+   }));
+   check('webkit-ipad edge tint probe restores original backgrounds',
+    colorsOff.html===colorsBefore.html&&colorsOff.body===colorsBefore.body,
+    {colorsBefore,colorsOff});
+  }
   check(engine+' '+route+' page identity',initial.route===route,{got:initial.route});
   check(engine+' '+route+' navbar in normal header flow initially',
    Math.abs(initial.mainTop-initial.headerBottom)<2 && initial.headerHeight>40,{initial});
@@ -87,7 +131,50 @@ async function run(browser,engine,width,height){
    await page.evaluate(()=>scrollTo({top:Math.min(350,Math.max(0,document.documentElement.scrollHeight-innerHeight)),behavior:'instant'}));
    await page.waitForTimeout(120);
    const scrolled=await measure(page);
+   topStripGeometry.push({engine,route,stage:'scrolled',geometry:scrolled.navdebug});
+   await page.screenshot({path:path.join(out,engine+'-'+route+'-navdebug-scrolled.png')});
    if(scrolled.scrollY>initial.headerTop+8)check(engine+' '+route+' still sticks at top',Math.abs(scrolled.headerTop)<2,{scrolled});
+  }
+  if(route==='shop'){
+   // Emulate shrinking and returning iPad browser toolbar, not physical chrome.
+   await page.setViewportSize({width,height:Math.max(500,height-90)});
+   await page.waitForTimeout(100);
+   const shorter=await measure(page);
+   topStripGeometry.push({engine,route,stage:'shorter-viewport',geometry:shorter.navdebug});
+   await page.setViewportSize({width,height});
+   await page.waitForTimeout(110);
+   await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+   const restored=await measure(page);
+   topStripGeometry.push({engine,route,stage:'restored-viewport',geometry:restored.navdebug});
+   check(engine+' shop resize restores DOM announcement flush to top',
+    Math.abs(restored.navdebug?.rectangles?.announcement?.top||0)<2 &&
+    Math.abs(restored.navdebug?.rectangles?.app?.top||0)<2,{restored});
+   await page.screenshot({path:path.join(out,engine+'-shop-navdebug-viewport-return.png')});
+   await page.goto(origin+'/about/?navdebug=1',{waitUntil:'load'});
+   await page.goBack({waitUntil:'load'});
+   await page.locator('#siteHeader').waitFor();
+   // BFCache navigation can complete before opt-in panel bootstrap.
+   // Measure actual boxes independently; missing diagnostics are not 0px.
+   const history=await measure(page);
+   const historyDom=await page.evaluate(()=>{
+    const app=document.getElementById('app'),a=document.querySelector('.announcement');
+    const html=document.documentElement,body=document.body;
+    return {url:location.href,app:app?.getBoundingClientRect().top,
+     announcement:a?.getBoundingClientRect().top,
+     html:html?.getBoundingClientRect().top,
+     body:body?.getBoundingClientRect().top,
+     hit:document.elementFromPoint(innerWidth/2,2)?.closest('.announcement')!==null,
+     scrollY,navdebugLoaded:!!window.__ccNavViewport?.measure};
+   });
+   topStripGeometry.push({engine,route,stage:'back-forward',
+    geometry:history.navdebug,domFallback:historyDom});
+   check(engine+' shop browser history restores measured DOM origin',
+    historyDom.url.includes('/shop/')&&
+    [historyDom.app,historyDom.announcement,historyDom.body].every(v=>
+     typeof v==='number'&&Number.isFinite(v)&&Math.abs(v)<2)&&
+    historyDom.scrollY===0&&historyDom.hit,
+    {historyDom,diagnostic:history.navdebug});
+   await page.screenshot({path:path.join(out,engine+'-shop-navdebug-history-return.png')});
   }
   await page.close();
   if(engine==='webkit-ipad'&&route==='artists-edit'){
@@ -111,6 +198,7 @@ async function run(browser,engine,width,height){
   await run(chrome,'chromium-mobile',390,844);
  }finally{await chrome.close();await wk.close()}
  const result={origin,source:'Desktop Chromium and WebKit iPad emulation; NOT a physical iPad',
+  topStripGeometry,
   checks,passed:checks.filter(x=>x.passed).length,failed:checks.filter(x=>!x.passed).length,
   errors,responses,physicalIPadStatus:'UNVERIFIED'};
  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(result,null,2)+'\n');
