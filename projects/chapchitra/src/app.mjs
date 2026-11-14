@@ -79,7 +79,7 @@ async function boot(){
   // The approved wordmark is cropped directly from the supplied transparent logo.
   // Keep the image centered by the existing three-column grid; never substitute
   // a font approximation for the original custom lettering.
-  return '<header class="site-header" id="siteHeader"><div class="header-line wrap">'+
+  return '<header class="site-header" id="siteHeader"'+(route==='home'?' data-hero01-mode="special"':'')+'><div class="header-line wrap">'+
    '<div class="nav-left">'+
    '<nav class="nav-center" aria-label="Main navigation"><a href="/shop/">Shop</a>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
@@ -97,6 +97,18 @@ async function boot(){
  }
  const paperVisual=(i)=>'<div class="art-plate art-plate-'+(i%3)+'">'+(i%2===0?shirtSilhouette(i):printSilhouette(i))+'<span class="plate-disclaimer">Illustration placeholder</span></div>';
  const linkFiltered=(category,audience)=>'/shop/?category='+encodeURIComponent(category)+(audience?'&audience='+audience:'');
+ // A single authored organic diagonal edge: irregular cuts and individual
+ // loose fibers, not a repeated texture or a generic CSS clip polygon.
+ function hero01Paper(){
+  return '<div class="hero01-paper-panel" id="hero01PaperPanel">'+
+   '<div class="hero01-full-logo" aria-label="CHAPCHITRA original illustrated clothing badge and custom lettering">'+
+    '<img class="hero-brand-lockup" src="/assets/chapchitra-full.webp" width="1250" height="1052" alt="CHAPCHITRA illustrated clothing badge and original custom wordmark" decoding="async" fetchpriority="high">'+
+    '<div class="c08-hero-stage" id="c08HeroStage"></div></div>'+
+   '<svg class="hero01-paper-edge" viewBox="0 0 1440 126" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+
+    '<path class="hero01-paper-cut" d="M0 0H1440V101 L1428 100 L1417 96 L1404 102 L1391 100 L1379 106 L1369 99 L1354 101 L1342 96 L1331 99 L1316 91 L1303 94 L1290 90 L1277 94 L1260 88 L1246 92 L1234 85 L1218 89 L1205 84 L1191 86 L1175 81 L1160 85 L1144 78 L1130 83 L1115 77 L1102 80 L1088 75 L1076 80 L1061 74 L1046 78 L1031 71 L1018 75 L1002 71 L987 76 L970 70 L957 73 L943 68 L926 74 L910 67 L895 70 L881 65 L863 69 L848 62 L833 67 L818 61 L806 66 L790 61 L775 64 L762 59 L749 65 L731 60 L717 62 L703 57 L690 62 L677 54 L664 60 L649 54 L635 58 L622 52 L608 57 L596 50 L581 55 L567 50 L552 54 L539 47 L523 52 L510 46 L494 50 L481 44 L465 48 L451 42 L437 46 L423 40 L410 44 L393 38 L379 43 L364 39 L350 41 L338 35 L323 39 L309 34 L293 36 L279 31 L266 35 L251 28 L237 33 L221 27 L207 31 L193 25 L180 29 L163 24 L149 28 L137 22 L121 25 L107 19 L93 23 L79 17 L64 22 L52 17 L39 21 L27 16 L13 22 L0 18 Z"/>'+
+    '<g class="hero01-paper-fibers"><path d="M39 21 Q44 28 41 33"/><path d="M113 23 L119 30"/><path d="M181 30 Q187 34 185 38"/><path d="M268 35 L273 42"/><path d="M339 37 Q346 45 341 48"/><path d="M421 42 L427 49"/><path d="M509 46 Q516 54 510 58"/><path d="M600 52 L604 59"/><path d="M671 56 Q678 63 673 67"/><path d="M750 62 L755 69"/><path d="M830 64 Q836 72 828 73"/><path d="M912 69 L917 77"/><path d="M989 75 Q998 81 991 87"/><path d="M1062 75 L1066 83"/><path d="M1130 83 Q1137 89 1131 92"/><path d="M1191 85 L1195 92"/><path d="M1261 89 Q1266 99 1257 100"/><path d="M1331 97 L1338 106"/><path d="M1382 104 Q1386 110 1381 115"/><path d="M1424 98 L1430 105"/></g>'+
+   '</svg></div>';
+ }
  function hero(){
   const slides=[
    {title:'Art you can wear.',eyebrow:'PEOPLE · PLACES · PRINTS',copy:'A home for art, illustration and printmaking. Collection imagery is being prepared.',cta:'Discover the studio',href:'/about/'},
@@ -106,7 +118,7 @@ async function boot(){
    {title:'From the Journal',eyebrow:'05 / TODAY’S STORY',copy:'Read the studio notebook. Original articles and photography will be supplied later.',cta:'Open featured story',href:'/journal/story/?slug=prints-and-people'}
   ];
   return '<section id="hero" class="hero-carousel" aria-label="Five-slide editorial hero"><div class="hero-track">'+slides.map((s,i)=>{
-   if(i===0)return '<article class="hero-slide hero-cover '+(i===0?'is-active':'')+'" data-slide="'+i+'" '+(i===0?'':'hidden')+'><img class="hero-background" src="/assets/hero-paper.svg" alt="Abstract green ink and paper placeholder background"><div class="hero-shade"></div><div class="wrap hero-cover-inner"><p class="eyebrow on-dark">'+s.eyebrow+'</p><img class="hero-brand-lockup" src="/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp" width="1250" height="1052" alt="CHAPCHITRA textile symbol and custom wordmark" decoding="async" fetchpriority="high"><div id="c08HeroStage" class="c08-hero-stage"></div><h1>'+s.title+'</h1><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'beige',href:s.href})+'</div></article>';
+   if(i===0)return '<article class="hero-slide hero-cover is-active" data-slide="0">'+hero01Paper()+'<div class="wrap hero-cover-inner"><p class="eyebrow on-dark">'+s.eyebrow+'</p><h1>'+s.title+'</h1><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'beige',href:s.href})+'</div></article>';
    return '<article class="hero-slide hero-split" data-slide="'+i+'" hidden><div class="wrap hero-split-inner"><div class="hero-slide-copy">'+(s.eyebrow&&!/^\d{2}\s*\//.test(s.eyebrow)?'<p class="eyebrow">'+s.eyebrow+'</p>':'')+'<h2>'+s.title+'</h2><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'forest',href:s.href})+'</div><div class="hero-visual hero-visual-'+i+'">'+(i===2?printSilhouette(i):i===4?'<div class="paper-editorial"><span>JOURNAL / STORY 01</span><strong>Notes from<br>the studio.</strong><span>Draft illustration</span></div>':shirtSilhouette(i))+'<span class="hero-placeholder">IMAGE / ART PENDING</span></div></div></article>'
   }).join('')+'</div><div class="hero-controls wrap"><div class="hero-dots" role="group" aria-label="Choose hero slide">'+slides.map((s,i)=>'<button class="hero-dot'+(i===0?' active':'')+'" type="button" data-slide-to="'+i+'" aria-label="Show slide '+(i+1)+': '+esc(s.title)+'" aria-pressed="'+(i===0?'true':'false')+'"></button>').join('')+'</div><span class="hero-count" id="heroCount">01 / 05</span></div></section>';
  }
@@ -521,13 +533,36 @@ async function boot(){
    : Promise.resolve();
   const heroRoot=$('#hero'),slides=$$('.hero-slide',heroRoot),dots=$$('.hero-dot',heroRoot);
   let active=0,timer=null,hovered=false,focused=false,touchX=null;
+  // One sticky navbar, never a duplicate. Only its centered logo presentation
+  // changes; the original links, mobile drawer and Illustrator icons stay live.
+  const headerRoot=$('#siteHeader'),navIdentity=headerRoot.querySelector('.logo-word--image');
+  let headerModeInitialized=false,headerRAF=0;
+  function syncHero01Header(){
+   const special=active===0&&(window.scrollY||document.documentElement.scrollTop||0)<=12;
+   const mode=special?'special':'standard';
+   if(headerModeInitialized&&headerRoot.dataset.hero01Mode===mode)return;
+   headerModeInitialized=true;headerRoot.dataset.hero01Mode=mode;
+   heroRoot.dataset.hero01Mode=mode;
+   if(special){
+    navIdentity.setAttribute('aria-hidden','true');navIdentity.tabIndex=-1;
+   }else{
+    navIdentity.removeAttribute('aria-hidden');navIdentity.removeAttribute('tabindex');
+   }
+  }
+  function onHeroHeaderScroll(){
+   if(headerRAF)return;
+   headerRAF=requestAnimationFrame(()=>{headerRAF=0;syncHero01Header()});
+  }
+  window.addEventListener('scroll',onHeroHeaderScroll,{passive:true});
+  window.addEventListener('pageshow',syncHero01Header);
+  syncHero01Header();
   // Keep Slide 1 visible through the complete initial C08 4-second wordmark
   // sequence. Start the unchanged 4-second carousel interval only afterward.
   let heroLogoHolding=!mediaReduced.matches;
   function pauseHero(){if(timer!==null){clearInterval(timer);timer=null}}
   function canPlay(){return !heroLogoHolding&&!mediaReduced.matches&&!hovered&&!focused&&!document.hidden}
   function scheduleHero(){pauseHero();if(canPlay())timer=setInterval(()=>changeHero((active+1)%slides.length,false),4000)}
-  function changeHero(index,manual){active=(index+slides.length)%slides.length;slides.forEach((s,i)=>{s.hidden=i!==active;s.classList.toggle('is-active',i===active)});dots.forEach((d,i)=>{d.classList.toggle('active',i===active);d.setAttribute('aria-pressed',String(i===active))});$('#heroCount').textContent=String(active+1).padStart(2,'0')+' / 05';if(manual)scheduleHero()}
+  function changeHero(index,manual){active=(index+slides.length)%slides.length;slides.forEach((s,i)=>{s.hidden=i!==active;s.classList.toggle('is-active',i===active)});dots.forEach((d,i)=>{d.classList.toggle('active',i===active);d.setAttribute('aria-pressed',String(i===active))});$('#heroCount').textContent=String(active+1).padStart(2,'0')+' / 05';syncHero01Header();if(manual)scheduleHero()}
   dots.forEach(dot=>dot.addEventListener('click',()=>changeHero(Number(dot.dataset.slideTo),true)));
   heroRoot.addEventListener('mouseenter',()=>{hovered=true;pauseHero()});
   heroRoot.addEventListener('mouseleave',()=>{hovered=false;scheduleHero()});
@@ -547,6 +582,7 @@ async function boot(){
       navbar:$('.logo-word--image'),
       heroImage:$('.hero-brand-lockup'),
       heroStage:$('#c08HeroStage'),
+      heroVariant:'paper',
       onHeroHolding:hold=>{heroLogoHolding=hold;if(hold)pauseHero();else scheduleHero()}
     })
   ).catch(error=>{
