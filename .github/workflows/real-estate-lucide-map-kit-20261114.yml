@@ -1,0 +1,31 @@
+name: Real Estate Lucide SVG Map Kit
+on:
+  push:
+    branches: [media/fiverr-gig-video-source-20261113]
+    paths: [.github/workflows/real-estate-lucide-map-kit-20261114.yml]
+permissions: {contents: read}
+jobs:
+  kit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: lucide-icons/lucide
+          ref: main
+          sparse-checkout: |
+            icons
+            LICENSE
+          sparse-checkout-cone-mode: false
+      - name: Select coherent real estate SVG icon subset
+        run: |
+          mkdir -p export/icons
+          for name in house trees coffee map-pin calendar-days heart building-2 route school check check-check; do cp "icons/$name.svg" export/icons/; done
+          cp LICENSE export/LUCIDE_LICENSE.txt
+          find export -type f -printf '%p %s bytes\n'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: real-estate-lucide-map-icons
+          path: export/
+          retention-days: 7
+          if-no-files-found: error
