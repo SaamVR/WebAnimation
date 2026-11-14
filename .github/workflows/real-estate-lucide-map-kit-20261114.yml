@@ -20,7 +20,7 @@ jobs:
       - name: Select coherent real estate SVG icon subset
         run: |
           mkdir -p export/icons
-          for name in house trees coffee map-pin calendar-days heart building-2 route school check check-check; do cp "icons/$name.svg" export/icons/; done
+          for name in house trees coffee map-pin calendar-days heart route school check check-check; do if [ -f "icons/$name.svg" ]; then cp "icons/$name.svg" export/icons/; fi; done
           cp LICENSE export/LUCIDE_LICENSE.txt
           find export -type f -printf '%p %s bytes\n'
       - uses: actions/upload-artifact@v4
