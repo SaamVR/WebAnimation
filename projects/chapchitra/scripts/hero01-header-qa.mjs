@@ -58,7 +58,8 @@ async function sample(page){
    canvasBottom:cover?.getBoundingClientRect().bottom??0,
    controlBottom:hero?.querySelector('.hero-controls')?.getBoundingClientRect().bottom??0,
    logoAnimation:window.__chapchitraC08?.hero||null,
-   fullLinkHidden:document.querySelector('#siteHeader .logo-word--image')?.getAttribute('aria-hidden')==='true'
+   fullLinkHidden:document.querySelector('#siteHeader .logo-word--image')?.getAttribute('aria-hidden')==='true',
+   heroLogoInert:document.querySelector('#hero .hero01-full-logo')?.inert??null
   };
  });
 }
@@ -94,6 +95,8 @@ for(const t of profiles){
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
  const scrolled=await sample(page);
  assert.equal(scrolled.fullLinkHidden,false,'Standard navbar logo accessible on scroll');
+ assert.equal(scrolled.heroLogoInert,true,'No duplicate or focusable logo below sticky navbar');
+ await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)<.05,{},{timeout:2000});
  await page.screenshot({path:resolve(out,t.name+'-scrolled.png')});
  await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
@@ -109,6 +112,7 @@ for(const t of profiles){
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  const returned=await sample(page);
  assert.equal(returned.slide,'0');
+ assert.equal(returned.heroLogoInert,false,'Large original logo regains accessibility at top');
  await page.screenshot({path:resolve(out,t.name+'-return.png')});
  // Standard header must be untouched on every other page.
  await page.goto(new URL('/shop/',origin).href,{waitUntil:'domcontentloaded',timeout:30000});
