@@ -2345,7 +2345,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 @media(max-width:740px){
   #hero{--hero01-paper-depth:250px;--hero01-tear-height:78px}
   #hero .hero01-full-logo{width:clamp(202px,59vw,246px)}
-  #hero:has(.hero-cover:not([hidden])) .hero-track{height:780px;min-height:780px}
+  #hero:has(.hero-cover:not([hidden])) .hero-track{height:720px;min-height:720px}
   #hero .hero-cover .hero-cover-inner{
     padding-top:calc(var(--hero01-paper-depth) + var(--hero01-tear-height) + 20px);
     padding-bottom:86px;
@@ -2354,7 +2354,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(max-width:365px){
   #hero{--hero01-paper-depth:235px;--hero01-tear-height:70px}
-  #hero:has(.hero-cover:not([hidden])) .hero-track{height:748px;min-height:748px}
+  #hero:has(.hero-cover:not([hidden])) .hero-track{height:710px;min-height:710px}
   #hero .hero-cover .hero-cover-inner{padding-bottom:74px}
 }
 @media(prefers-reduced-motion:reduce){
