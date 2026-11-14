@@ -56,15 +56,13 @@ for(const test of cases){
   // Real continuous playback must finish the complete original animation three times.
   await page.waitForFunction(n=>{
    const stage=document.querySelector('#values [data-c05-icon="'+n+'"]');
-   return Number(stage?.dataset.c05Cycles||0)>=2;
+   return Number(stage?.dataset.c05Cycles||0)>=3;
   },icon,{timeout:33000});
  }
 
- // Prior cards may pause when out of viewport; never demand terminal state.
- await page.waitForFunction(()=>{
-  const stages=[...document.querySelectorAll('#values [data-c05-icon]')];
-  return stages.length===4&&stages.every(n=>Number(n.dataset.c05Cycles||0)>=3);
- },null,{timeout:33000});
+ // Each offscreen card is intentionally paused; requiring its next cycle
+ // after scrolling away creates a false timeout on single-column mobile.
+ // All four have already completed at least three cycles while in view.
  const states=await page.locator('#values').evaluate(root=>root.c05QA?.states||[]);
  const timeline=states.map(({icon,state,error,frame,cycles})=>({icon,state,error,frame,cycles}));
  await page.screenshot({path:resolve(folder,`c05-${test.label}-final.png`),fullPage:true});
