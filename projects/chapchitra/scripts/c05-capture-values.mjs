@@ -82,13 +82,31 @@ for(const test of cases){
   rootQA:!!root.c05QA
  }));
  const instances=runtime.instances;
- const record={engine:test.engine,viewport:test.label,states:timeline,errors,responses,instances,runtime};
+ // A native timeline must genuinely pause offscreen and resume in view.
+ // Compare its playhead, rather than accepting a CSS-only hidden poster.
+ const watched=page.locator('#values [data-c05-icon="02"]');
+ await watched.scrollIntoViewIfNeeded();
+ await page.waitForTimeout(180);
+ await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+ await page.waitForTimeout(280);
+ const paused1=await page.locator('#values').evaluate(r=>r.c05QA?.states.find(s=>s.icon==='02'));
+ await page.waitForTimeout(340);
+ const paused2=await page.locator('#values').evaluate(r=>r.c05QA?.states.find(s=>s.icon==='02'));
+ const offscreenFrozen=paused1?.state==='paused'&&paused2?.state==='paused'&&
+  Math.abs(Number(paused2.frame)-Number(paused1.frame))<=.25;
+ await watched.scrollIntoViewIfNeeded();
+ await page.waitForTimeout(300);
+ const resumed=await page.locator('#values').evaluate(r=>r.c05QA?.states.find(s=>s.icon==='02'));
+ const resumedMotion=resumed?.state==='playing'&&
+  (resumed.frame!==paused2.frame||resumed.cycles>paused2.cycles);
+ const record={engine:test.engine,viewport:test.label,states:timeline,errors,responses,instances,runtime,
+  visibilityQA:{offscreenFrozen,resumedMotion,paused1,paused2,resumed}};
  observations.push(record);
  await ctx.close();await browser.close();
  if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.cycles<2||!['playing','paused'].includes(s.state))||
     !runtime.rootQA||!runtime.lottieRuntime||!runtime.gsapRuntime||
     !runtime.icon03UsesGSAP||!runtime.icon03ExactDuration||
-    instances.length!==4||instances.some(s=>!s.native))
+    instances.length!==4||instances.some(s=>!s.native)||!offscreenFrozen||!resumedMotion)
   throw Error(`${test.label} C05 native Lottie / original GSAP playback did not complete: ${JSON.stringify(record)}`);
 }
 // Additional reduced-motion check: no moving playhead.
