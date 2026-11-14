@@ -535,7 +535,8 @@ async function boot(){
   let active=0,timer=null,hovered=false,focused=false,touchX=null;
   // One sticky navbar, never a duplicate. Only its centered logo presentation
   // changes; the original links, mobile drawer and Illustrator icons stay live.
-  const headerRoot=$('#siteHeader'),navIdentity=headerRoot.querySelector('.logo-word--image');
+  const headerRoot=$('#siteHeader'),navIdentity=headerRoot.querySelector('.logo-word--image'),
+   heroIdentity=heroRoot.querySelector('.hero01-full-logo');
   let headerModeInitialized=false,headerRAF=0;
   function syncHero01Header(){
    const special=active===0&&(window.scrollY||document.documentElement.scrollTop||0)<=12;
@@ -543,6 +544,9 @@ async function boot(){
    if(headerModeInitialized&&headerRoot.dataset.hero01Mode===mode)return;
    headerModeInitialized=true;headerRoot.dataset.hero01Mode=mode;
    heroRoot.dataset.hero01Mode=mode;
+   // When the standard centered wordmark returns, prevent a second visible
+   // or focusable hero logo/replay button below the sticky header.
+   heroIdentity.inert=!special;
    if(special){
     navIdentity.setAttribute('aria-hidden','true');navIdentity.tabIndex=-1;
    }else{
