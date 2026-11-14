@@ -1,0 +1,48 @@
+name: Real Estate SVG CC0 Art Scout
+on:
+  push:
+    branches: [media/fiverr-gig-video-source-20261113]
+    paths: [.github/workflows/real-estate-svg-scout-20261114.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  art:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: CaptExcellent/kits-library-assets
+          ref: main
+          sparse-checkout: |
+            kits/city-kit
+            kits/interior-kit
+            LICENSE.md
+            README.md
+          sparse-checkout-cone-mode: false
+      - name: Select CC0 architectural and interior vectors
+        run: |
+          mkdir -p export/city export/interior
+          cp kits/city-kit/Building\ *.svg export/city/
+          cp kits/city-kit/Planter.svg export/city/
+          cp kits/city-kit/Garden\ Island.svg export/city/
+          cp kits/city-kit/Street\ tiles\ city.svg export/city/
+          cp kits/city-kit/ParkBench-Wood-H-M-Yellow700.svg export/city/
+          cp kits/city-kit/Road\ Wide\ Horizontal.svg export/city/
+          cp kits/interior-kit/Couch\ left.svg export/interior/
+          cp kits/interior-kit/Couch\ right.svg export/interior/
+          cp kits/interior-kit/Plant\ pots.svg export/interior/
+          cp kits/interior-kit/Lamp\ Table.svg export/interior/
+          cp kits/interior-kit/Bookshelf-Wood-V-M-Brown600.svg export/interior/
+          cp kits/interior-kit/ArmchairFront-Textile-V-M-Teal500.svg export/interior/
+          cp kits/interior-kit/DoubleBedRoundPillow-Textile-V-M-Teal600.svg export/interior/
+          cp kits/interior-kit/RoundTable-Wood-V-M-Brown700.svg export/interior/
+          cp LICENSE.md export/CC0_LICENSE.md
+          cp README.md export/PROVENANCE.md
+          find export -type f -printf '%p (%s bytes)\n' | sort
+      - uses: actions/upload-artifact@v4
+        with:
+          name: real-estate-cc0-illustration-source
+          path: export/
+          retention-days: 7
+          if-no-files-found: error
