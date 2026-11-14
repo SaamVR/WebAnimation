@@ -25,7 +25,9 @@ test('C05 lazy local native Lottie + original GSAP, no new runtime or CDN',()=>{
  assert.match(loader,/restart:\(\)=>player\.goToAndPlay\(0,true\)/);
  assert.match(loader,/s\.instance\.restart\(\)/);
  assert.match(loader,/slot\.dataset\.c05Cycles=String\(s\.cycles\)/);
- assert.match(motion,/original\.seek\(0\);complete=false/);
+ assert.match(loader,/motion\.seekForQA\(0\)/);
+ assert.match(loader,/motion\.statusForQA\(\)\.time/);
+ assert.doesNotMatch(motion,/restart\(\)\{/);
  assert.match(loader,/factory\.mountC05Icon03/);
  assert.match(motion,/icon03-approved-closing\.mjs/);
  assert.match(motion,/icon03-refined-opening\.mjs/);
