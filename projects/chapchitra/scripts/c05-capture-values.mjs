@@ -68,13 +68,27 @@ for(const test of cases){
  const timeline=states.map(({icon,state,error,frame})=>({icon,state,error,frame}));
  await page.screenshot({path:resolve(folder,`c05-${test.label}-final.png`),fullPage:true});
  // Inspect the real native player, not a placeholder or original static icon.
- const instances=await page.locator('#values').evaluate(root=>[...root.querySelectorAll('[data-c05-icon]')]
-  .map(s=>({icon:s.dataset.c05Icon,native:!!s.querySelector('.c05-value-player svg'),staticVisible:getComputedStyle(s.querySelector('.c05-value-poster')).visibility!=='hidden'})));
- const record={engine:test.engine,viewport:test.label,states:timeline,errors,responses,instances};
+ const runtime=await page.locator('#values').evaluate(root=>({
+  instances:[...root.querySelectorAll('[data-c05-icon]')].map(s=>({
+   icon:s.dataset.c05Icon,
+   native:!!s.querySelector('.c05-value-player svg'),
+   staticVisible:getComputedStyle(s.querySelector('.c05-value-poster')).visibility!=='hidden'
+  })),
+  icon03UsesGSAP:window.C05Complete?.status?.()?.gsap===true,
+  icon03ExactDuration:window.C05Complete?.duration===6.43,
+  lottieRuntime:typeof window.lottie?.loadAnimation==='function',
+  gsapRuntime:typeof window.gsap?.timeline==='function',
+  rootQA:!!root.c05QA
+ }));
+ const instances=runtime.instances;
+ const record={engine:test.engine,viewport:test.label,states:timeline,errors,responses,instances,runtime};
  observations.push(record);
  await ctx.close();await browser.close();
- if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.state!=='complete'))
-  throw Error(`${test.label} C05 playback did not complete: ${JSON.stringify(record)}`);
+ if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.state!=='complete')||
+    !runtime.rootQA||!runtime.lottieRuntime||!runtime.gsapRuntime||
+    !runtime.icon03UsesGSAP||!runtime.icon03ExactDuration||
+    instances.length!==4||instances.some(s=>!s.native))
+  throw Error(`${test.label} C05 native Lottie / original GSAP playback did not complete: ${JSON.stringify(record)}`);
 }
 // Additional reduced-motion check: no moving playhead.
 const browser=await webkit.launch({headless:true});
