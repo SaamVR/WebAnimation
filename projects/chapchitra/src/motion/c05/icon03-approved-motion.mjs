@@ -51,6 +51,13 @@ export async function mountC05Icon03({stage,win=window,doc=document}){
   }
   return {
    play(){if(disposed)return;original.play();stopMonitor();raf=win.requestAnimationFrame(monitor)},
+   restart(){
+    if(disposed)return;
+    // The owner-approved 2.18s opening and 4.25s closing are replayed
+    // unchanged; only the integration bridge resets its end monitor.
+    stopMonitor();original.pause();original.seek(0);complete=false;
+    original.play();raf=win.requestAnimationFrame(monitor);
+   },
    pause(){stopMonitor();original.pause()},
    toFinal(){stopMonitor();original.pause();original.seek(original.duration)},
    onComplete(callback){if(typeof callback==='function')callbacks.add(callback)},
