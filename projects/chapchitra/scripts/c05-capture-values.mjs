@@ -53,7 +53,7 @@ for(const test of cases){
  for(const icon of ['01','02','03','04']){
   const stage=page.locator('#values [data-c05-icon="'+icon+'"]');
   await stage.scrollIntoViewIfNeeded();
-  // Real continuous playback must finish the complete original animation twice.
+  // Real continuous playback must finish the complete original animation three times.
   await page.waitForFunction(n=>{
    const stage=document.querySelector('#values [data-c05-icon="'+n+'"]');
    return Number(stage?.dataset.c05Cycles||0)>=2;
@@ -63,7 +63,7 @@ for(const test of cases){
  // Prior cards may pause when out of viewport; never demand terminal state.
  await page.waitForFunction(()=>{
   const stages=[...document.querySelectorAll('#values [data-c05-icon]')];
-  return stages.length===4&&stages.every(n=>Number(n.dataset.c05Cycles||0)>=2);
+  return stages.length===4&&stages.every(n=>Number(n.dataset.c05Cycles||0)>=3);
  },null,{timeout:33000});
  const states=await page.locator('#values').evaluate(root=>root.c05QA?.states||[]);
  const timeline=states.map(({icon,state,error,frame,cycles})=>({icon,state,error,frame,cycles}));
@@ -103,7 +103,7 @@ for(const test of cases){
   visibilityQA:{offscreenFrozen,resumedMotion,paused1,paused2,resumed}};
  observations.push(record);
  await ctx.close();await browser.close();
- if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.cycles<2||!['playing','paused'].includes(s.state))||
+ if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.cycles<3||!['playing','paused'].includes(s.state))||
     !runtime.rootQA||!runtime.lottieRuntime||!runtime.gsapRuntime||
     !runtime.icon03UsesGSAP||!runtime.icon03ExactDuration||
     instances.length!==4||instances.some(s=>!s.native)||!offscreenFrozen||!resumedMotion)
