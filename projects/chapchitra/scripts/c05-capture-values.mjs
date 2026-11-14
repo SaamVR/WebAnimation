@@ -95,10 +95,17 @@ for(const test of cases){
  const offscreenFrozen=paused1?.state==='paused'&&paused2?.state==='paused'&&
   Math.abs(Number(paused2.frame)-Number(paused1.frame))<=.25;
  await watched.scrollIntoViewIfNeeded();
- await page.waitForTimeout(300);
+ // A fixed 300ms sleep can misreport WebKit's next resumed RAF as stalled.
+ // Require actual playhead advancement within a bounded interval instead.
+ let resumedMotion=false;
+ try{
+  await page.waitForFunction(({frame,cycles})=>{
+   const s=document.querySelector('#values')?.c05QA?.states.find(v=>v.icon==='02');
+   return s?.state==='playing'&&(s.frame!==frame||s.cycles>cycles);
+  },{frame:paused2.frame,cycles:paused2.cycles},{timeout:3500});
+  resumedMotion=true;
+ }catch{/* The retained final assertion reports a genuinely stalled player. */}
  const resumed=await page.locator('#values').evaluate(r=>r.c05QA?.states.find(s=>s.icon==='02'));
- const resumedMotion=resumed?.state==='playing'&&
-  (resumed.frame!==paused2.frame||resumed.cycles>paused2.cycles);
  const record={engine:test.engine,viewport:test.label,states:timeline,errors,responses,instances,runtime,
   visibilityQA:{offscreenFrozen,resumedMotion,paused1,paused2,resumed}};
  observations.push(record);
