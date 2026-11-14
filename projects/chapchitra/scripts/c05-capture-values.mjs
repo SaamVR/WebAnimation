@@ -104,14 +104,48 @@ for(const test of cases){
   resumedMotion=true;
  }catch{/* The retained final assertion reports a genuinely stalled player. */}
  const resumed=await page.locator('#values').evaluate(r=>r.c05QA?.states.find(s=>s.icon==='02'));
+ // Exercise the real navigation lifecycle, including bfcache if the engine
+ // chooses to restore the original document rather than doing a new load.
+ await page.evaluate(()=>{
+  window.__c05HistoryMark=Date.now();
+  window.__c05HistoryShows=[];
+  window.addEventListener('pageshow',event=>window.__c05HistoryShows.push(event.persisted));
+ });
+ await page.goto(new URL('/shop/',url).href,{waitUntil:'domcontentloaded',timeout:25000});
+ await page.goBack({waitUntil:'domcontentloaded',timeout:25000});
+ const backSlot=page.locator('#values [data-c05-icon="03"]');
+ await backSlot.waitFor({state:'attached',timeout:25000});
+ await backSlot.evaluate(node=>node.scrollIntoView({block:'center',behavior:'instant'}));
+ const historyAtStart=await backSlot.evaluate(node=>Number(node.dataset.c05Cycles||0));
+ await page.waitForFunction(start=>{
+  const node=document.querySelector('#values [data-c05-icon="03"]');
+  return node?.dataset.c05State==='playing'&&Number(node.dataset.c05Cycles||0)>start;
+ },historyAtStart,{timeout:25000});
+ const history=await page.evaluate(()=>({
+  restoredOriginalDocument:!!window.__c05HistoryMark,
+  persistedShows:window.__c05HistoryShows||[],
+  mounted:document.querySelector('#values')?.dataset.c05Mounted,
+  cycles:Number(document.querySelector('#values [data-c05-icon="03"]')?.dataset.c05Cycles||0)
+ }));
+ // Warm reload through the same browser context must also reinitialize playback.
+ await page.reload({waitUntil:'domcontentloaded',timeout:25000});
+ await backSlot.waitFor({state:'attached',timeout:25000});
+ await backSlot.evaluate(node=>node.scrollIntoView({block:'center',behavior:'instant'}));
+ await page.waitForFunction(()=>{
+  const node=document.querySelector('#values [data-c05-icon="03"]');
+  return node?.dataset.c05State==='playing'&&Number(node.dataset.c05Cycles||0)>=1;
+ },null,{timeout:25000});
+ const afterWarmReload=await backSlot.evaluate(node=>Number(node.dataset.c05Cycles||0));
+ const historyQA={history,historyAtStart,afterWarmReload,backResumed:history.cycles>historyAtStart};
  const record={engine:test.engine,viewport:test.label,states:timeline,errors,responses,instances,runtime,
-  visibilityQA:{offscreenFrozen,resumedMotion,paused1,paused2,resumed}};
+  visibilityQA:{offscreenFrozen,resumedMotion,paused1,paused2,resumed},historyQA};
  observations.push(record);
  await ctx.close();await browser.close();
  if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.cycles<3||!['playing','paused'].includes(s.state))||
     !runtime.rootQA||!runtime.lottieRuntime||!runtime.gsapRuntime||
     !runtime.icon03UsesGSAP||!runtime.icon03ExactDuration||
-    instances.length!==4||instances.some(s=>!s.native)||!offscreenFrozen||!resumedMotion)
+    instances.length!==4||instances.some(s=>!s.native)||!offscreenFrozen||!resumedMotion||
+    !historyQA.backResumed||historyQA.afterWarmReload<1)
   throw Error(`${test.label} C05 native Lottie / original GSAP playback did not complete: ${JSON.stringify(record)}`);
 }
 // Additional reduced-motion check: no moving playhead.
