@@ -85,6 +85,8 @@ for(const t of profiles){
  await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseenter')));
  const initial=await sample(page);
  validate(initial);
+ if(t.width<=365)assert.ok(initial.controlBottom<=t.height+1,
+  'Narrow-screen Hero 01 slider controls must be visible in the initial viewport');
  await page.screenshot({path:resolve(out,t.name+'-special.png')});
  await page.waitForFunction(()=>window.__chapchitraC08?.hero?.completed>=1,null,{timeout:22000});
  const afterC08=await sample(page);
