@@ -179,8 +179,8 @@ for(const t of profiles){
  assert.equal(slide02.navWordmark.loaded,true,'Hero 02 compact wordmark decoded');
  assert.ok(await page.locator('#hero .hero-slide[data-slide="1"]').isVisible());
  await page.screenshot({path:resolve(out,t.name+'-slide02.png')});
- await page.locator('#hero [data-slide-to="4"]').evaluate(node=>node.click());
- assert.equal((await sample(page)).state,'standard','Hero 05 must use normal navbar');
+ // Capture the owner's exact requested continuous sequence:
+ // Hero 01 -> Hero 02 -> Hero 01, with no intervening slide.
  await page.locator('#hero [data-slide-to="0"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95,
@@ -190,6 +190,15 @@ for(const t of profiles){
  assert.equal(returned.heroLogoInert,false,'Large original logo regains accessibility at top');
  assert.equal(returned.navWordmark.visible,false,'Hero 01 restores large-only logo presentation');
  await page.screenshot({path:resolve(out,t.name+'-return.png')});
+ // Additionally check the same standard compact wordmark for Hero 05,
+ // then return to the special Hero 01 state before leaving for Shop.
+ await page.locator('#hero [data-slide-to="4"]').evaluate(node=>node.click());
+ await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
+ const slide05=await sample(page);
+ assert.equal(slide05.slide,'4');
+ assert.equal(slide05.navWordmark.visible,true,'Hero 05 must restore visible compact navbar logo');
+ await page.locator('#hero [data-slide-to="0"]').evaluate(node=>node.click());
+ await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  // Exercise the REAL Home -> Shop navbar interaction (not page.goto).
  // Desktop/tablet uses the existing Shop link; mobile uses the unchanged menu.
  // Preserve cross-document C02 navigation and wait for the new document.
