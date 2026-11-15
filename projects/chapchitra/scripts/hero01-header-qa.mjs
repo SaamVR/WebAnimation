@@ -30,6 +30,7 @@ function validate(snapshot){
  assert.ok(snapshot.vFilledAtCenter&&snapshot.vEmptyBelow&&snapshot.vOutsideLeft&&snapshot.vOutsideRight,
   'One white SVG must render a downward V with dark space outside both slopes');
  assert.ok(snapshot.logoClearsTip,'Full logo must clear tip with at least 22px of paper');
+ assert.ok(snapshot.logoEdgeClearance,'Both outer wordmark letters must have >=12px of white paper below them');
  assert.equal(snapshot.copyAlignment,'left','Hero 01 text must align left');
  assert.ok(snapshot.ctaLeftAligned,'Hero 01 CTA must align with copy');
  assert.ok(snapshot.ctaBelowText,'CTA must remain beneath the copy');
@@ -84,6 +85,11 @@ async function sample(page){
    vOutsideLeft:!filled(25,210)&&filled(25,120),
    vOutsideRight:!filled(1415,210)&&filled(1415,120),
    logoClearsTip:!!(logoRect&&logoRect.bottom<=tipScreenY-22),
+   logoEdgeClearance:!!(logoRect&&edgeRect&&paperPath&&
+    [0.09,0.91].every(fraction=>paperPath.isPointInFill(new DOMPoint(
+      (logoRect.left+logoRect.width*fraction-edgeRect.left)*1440/edgeRect.width,
+      (logoRect.bottom+12-edgeRect.top)*440/edgeRect.height
+    )))),
    copyBelowTip:!!(copyRect&&copyRect.top>=tipScreenY+12),
    tipScreenY,
    copyTop:copyRect?.top,
