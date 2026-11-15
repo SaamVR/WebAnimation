@@ -70,7 +70,7 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
  assert.match(browser,/snapshot\.vTipY-snapshot\.leftEdgeY>=230/);
  assert.match(browser,/snapshot\.vOutsideLeft&&snapshot\.vOutsideRight/);
  assert.match(browser,/snapshot\.logoClearsTip/);
- assert.match(css,/margin-top:-7px/);
+ assert.match(css,/margin-top:-12px/);
  assert.match(browser,/scrolled\.navWordmark\.visible,true/);
  assert.match(browser,/slide02\.navWordmark\.visible,true/);
  assert.match(browser,/other\.wordmark\.src/);
@@ -98,7 +98,14 @@ test('visual evidence waits for real full logo decode and completed C02 cover/re
 test('complete original identity scales exactly 90%, is raised as one unit, and C08 overlay follows',()=>{
  assert.match(css,/width:clamp\(205\.2px,20\.7vw,275\.4px\)/);
  assert.match(css,/width:clamp\(181\.8px,53\.1vw,221\.4px\)/);
- assert.match(css,/margin-top:-7px/);
+ assert.match(css,/margin-top:-12px/);
+ assert.match(css,/--hero01-paper-height:306px/);
+ assert.match(css,/--hero01-copy-top:295px/);
+ assert.match(css,/--hero01-paper-height:315px/);
+ assert.match(css,/--hero01-paper-height:275px/);
+ assert.match(css,/--hero01-paper-height:250px/);
+ assert.match(browser,/ratio>=\.44&&ratio<=\.45/);
+ assert.match(browser,/leftShoulderScreenY<=220/);
  assert.match(browser,/snapshot\.logoUniform90/);
  assert.match(browser,/snapshot\.logoImageMatchesBox/);
  assert.match(browser,/snapshot\.logoRaised/);

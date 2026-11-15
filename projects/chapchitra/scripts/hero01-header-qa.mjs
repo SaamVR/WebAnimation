@@ -29,6 +29,16 @@ function validate(snapshot){
   'Both torn slopes descend toward the single central tip');
  assert.ok(snapshot.vFilledAtCenter&&snapshot.vEmptyBelow&&snapshot.vOutsideLeft&&snapshot.vOutsideRight,
   'One white SVG must render a downward V with dark space outside both slopes');
+ // Measure the owner's desktop target in rendered viewport pixels, never merely in SVG units.
+ if(snapshot.viewportWidth===1440&&snapshot.viewportHeight===900){
+  const ratio=snapshot.tipScreenY/snapshot.viewportHeight;
+  assert.ok(ratio>=.44&&ratio<=.45,
+   'Initial V tip must be 44–45% down the visible desktop viewport: '+ratio);
+  assert.ok(snapshot.leftShoulderScreenY<=220&&snapshot.rightShoulderScreenY<=220,
+   'Both torn shoulders must rise with the shallower V');
+  assert.ok(snapshot.tipScreenY-Math.max(snapshot.leftShoulderScreenY,snapshot.rightShoulderScreenY)>=180,
+   'The shallower V must retain expressive diagonal depth');
+ }
  assert.ok(snapshot.logoClearsTip,'Full logo must clear tip with at least 22px of paper');
  assert.ok(snapshot.logoEdgeClearance,'Both outer wordmark letters must have >=12px of white paper below them');
  assert.equal(snapshot.copyAlignment,'left','Hero 01 text must align left');
@@ -83,6 +93,10 @@ async function sample(page){
    paperBackground:paper&&getComputedStyle(paper).backgroundColor,
    paperPathFill:paperPath&&getComputedStyle(paperPath).fill,
    headerBottomBorder:getComputedStyle(document.querySelector('#siteHeader')).borderBottomWidth,
+   viewportWidth:innerWidth,viewportHeight:innerHeight,
+   paperHeight:edgeRect?.height,
+   leftShoulderScreenY:(edgeRect?.top||0)+leftEdgeY*(edgeRect?.height||0)/440,
+   rightShoulderScreenY:(edgeRect?.top||0)+rightEdgeY*(edgeRect?.height||0)/440,
    leftEdgeY,rightEdgeY,vTipY,
    vFilledAtCenter:filled(721,419),vEmptyBelow:!filled(721,446),
    vOutsideLeft:!filled(25,210)&&filled(25,120),

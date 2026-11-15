@@ -2292,8 +2292,10 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   visibility:visible;opacity:1;
 }
 #hero{
-  --hero01-paper-height:440px;
-  --hero01-copy-top:355px;
+  /* Preserve the approved continuous handmade SVG; shorten only its
+     rendered height. Desktop 1440x900 scroll-top apex is 44–45vh. */
+  --hero01-paper-height:306px;
+  --hero01-copy-top:295px;
 }
 #hero .hero-cover{
   background:#1C241D;
@@ -2366,7 +2368,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   flex:0 0 auto;
   width:clamp(205.2px,20.7vw,275.4px); /* 90% of original wrapper at every desktop width */
   max-width:calc(100% - 36px);
-  margin-top:-7px; /* lift entire resized identity ~10px, clear sticky nav */
+  margin-top:-12px; /* raise the complete unchanged 90% lockup */
   line-height:0;
   pointer-events:auto;
 }
@@ -2375,14 +2377,14 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   max-width:100%;object-fit:contain;
 }
 @media(max-width:950px){
-  #hero{--hero01-paper-height:390px;--hero01-copy-top:325px}
-  #hero .hero01-full-logo{margin-top:-5px}
+  #hero{--hero01-paper-height:315px;--hero01-copy-top:300px}
+  #hero .hero01-full-logo{margin-top:-9px}
 }
 @media(max-width:740px){
-  #hero{--hero01-paper-height:340px;--hero01-copy-top:370px}
+  #hero{--hero01-paper-height:275px;--hero01-copy-top:302px}
   #hero .hero01-full-logo{
     width:clamp(181.8px,53.1vw,221.4px); /* exactly 90% on mobile; C08 stage follows image size */
-    margin-top:0; /* small-screen lift without touching sticky navbar */
+    margin-top:-4px; /* small-screen lift of complete lockup */
   }
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:720px;min-height:720px;
@@ -2394,8 +2396,8 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   #hero .hero-cover .hero-cover-inner h1{font-size:clamp(26px,7vw,34px)}
 }
 @media(max-width:365px){
-  #hero{--hero01-paper-height:312px;--hero01-copy-top:338px}
-  #hero .hero01-full-logo{margin-top:1px}
+  #hero{--hero01-paper-height:250px;--hero01-copy-top:277px}
+  #hero .hero01-full-logo{margin-top:-3px}
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:622px;min-height:622px;
   }
