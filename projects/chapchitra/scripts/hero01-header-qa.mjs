@@ -84,6 +84,9 @@ async function sample(page){
    vOutsideLeft:!filled(25,210)&&filled(25,120),
    vOutsideRight:!filled(1415,210)&&filled(1415,120),
    logoClearsTip:!!(logoRect&&logoRect.bottom<=tipScreenY-22),
+   copyBelowTip:!!(copyRect&&copyRect.top>=tipScreenY+12),
+   tipScreenY,
+   copyTop:copyRect?.top,
    logoTopMargin:logo&&getComputedStyle(logo).marginTop,
    copyAlignment:eyebrow&&getComputedStyle(eyebrow.parentElement).textAlign,
    ctaLeftAligned:!!(cta&&eyebrow&&Math.abs(cta.getBoundingClientRect().left-eyebrow.getBoundingClientRect().left)<3),
@@ -142,6 +145,8 @@ for(const t of profiles){
  assert.equal(initial.navWordmark.visible,false,'Compact wordmark hidden only for Hero 01 at top');
  assert.equal(initial.fullLinkHidden,true,'Compact logo removed from special header accessibility tree');
  assert.equal(initial.heroLogoInert,false);
+ if(t.width<=740)assert.equal(initial.copyBelowTip,true,
+  'Mobile/narrow V tip must NOT overlap the eyebrow, heading or editorial copy');
  if(t.width>=1080)assert.ok(Number.parseFloat(initial.logoTopMargin)<=4,
   'Original full logo must be raised approximately 25px');
  if(t.width<=365)assert.ok(initial.controlBottom<=t.height+1,
