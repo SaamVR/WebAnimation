@@ -32,11 +32,13 @@ test('original Illustrator navigation paths, dimensions and framing stay exact',
 
 test('filled heart retains the exact original 2 outline paths with terracotta underneath',()=>{
  const outline=read(folder+'nav-favorites-outline.svg');
- const selected=read(folder+'nav-favorites-filled.svg');
+ const selected=read(folder+'nav-favorites-selected.svg');
  const edge=paths(outline),s=paths(selected);
  assert.equal(viewBox(selected),viewBox(outline));
  assert.equal(s.length,edge.length+1);
  assert.deepEqual(s.slice(1),edge,'same visible Illustrator outline, unchanged in both states');
+ const preserved=read(folder+'nav-favorites-filled.svg');
+ assert.equal(paths(preserved).length,15,'approved original filled artwork remains archived intact');
  assert.equal(s[0],edge[0].slice(0,edge[0].search(/[zZ]/)+1),'interior is derived from original closed outer contour');
  assert.match(selected,/<path class="cc-favorite-interior"[^>]*fill="#8A503B"/);
  assert.ok(selected.indexOf('cc-favorite-interior')<selected.indexOf('Favourite_x5F_Icon_x5F_Outline'),'terracotta sits behind the dark outline');
@@ -49,7 +51,7 @@ test('product favorite storage, state and accessible labels remain wired without
  assert.match(app,/localStorage\.setItem\('chapchitra-v3-sample-favorites'/);
  assert.match(app,/btn\.setAttribute\('aria-pressed',String\(liked\)\)/);
  assert.match(app,/btn\.setAttribute\('aria-label',\(liked\?'Remove '/);
- assert.match(app,/heartArt\.src=artRoot\+'nav-favorites-'\+\(liked\?'filled':'outline'\)\+'\.svg'/);
+ assert.match(app,/heartArt\.src=artRoot\+'nav-favorites-'\+\(liked\?'selected':'outline'\)\+'\.svg'/);
  assert.match(app,/document\.addEventListener\('click',e=>\{const btn=e\.target\.closest\('\[data-favorite\]'\)/);
  assert.match(read('src/styles.css'),/#app \.favorite-toggle\.liked svg\{fill:var\(--color-terracotta\)\}/);
  assert.match(read('src/styles.css'),/#app \.nav-icon\{color:#1C241D\}/);
@@ -57,7 +59,7 @@ test('product favorite storage, state and accessible labels remain wired without
 
 test('dedicated UI QA exercises desktop/mobile initial, selected, deselected, persistence and keyboard',()=>{
  const qa=read('scripts/navbar-favorites-qa.mjs');
- for(const code of ['desktop-chromium','mobile-chromium','aria-pressed','localStorage','press(\'Space\')','nav-favorites-filled.svg','screenshot','color','#1C241D','#8A503B'])
+ for(const code of ['desktop-chromium','mobile-chromium','aria-pressed','localStorage','press(\'Space\')','nav-favorites-selected.svg','screenshot','color','#1C241D','#8A503B'])
   assert.ok(qa.includes(code),'QA coverage: '+code);
  const wf=read('../../.github/workflows/chapchitra-shared-staging.yml');
  assert.match(wf,/Navbar and favorites exact-state browser QA/);

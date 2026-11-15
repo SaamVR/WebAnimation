@@ -41,7 +41,7 @@ try{
     return new DOMParser().parseFromString(await response.text(),'image/svg+xml');
    };
    const outline=await load('nav-favorites-outline.svg');
-   const filled=await load('nav-favorites-filled.svg');
+   const filled=await load('nav-favorites-selected.svg');
    const paths=doc=>[...doc.querySelectorAll('path')].map(p=>p.getAttribute('d'));
    const a=paths(outline),b=paths(filled);
    const color=doc=>doc.querySelector('style')?.textContent||'';
@@ -78,7 +78,7 @@ try{
    assert.equal(info.selectedFill,'#8A503B','Terracotta only inside selected icon');
    assert.equal(info.outlineTransparent,true,'Default heart interior is transparent');
    assert.equal(info.pressed,String(selected),'aria-pressed state matches favorite');
-   assert.ok(info.favoriteSrc?.endsWith(selected?'nav-favorites-filled.svg':'nav-favorites-outline.svg'),'Correct state asset');
+   assert.ok(info.favoriteSrc?.endsWith(selected?'nav-favorites-selected.svg':'nav-favorites-outline.svg'),'Correct state asset');
    assert.equal(info.iconColor,'rgb(28, 36, 29)','Navbar fallback icon color is Dark Forest');
    assert.ok(info.navbarIcons.length===4&&info.navbarIcons.every(x=>x.loaded&&x.w>0&&x.h>0),'Existing navbar icons keep visible dimensions');
    assert.ok(info.horizontalOverflow<=1,'No horizontal scroll');
@@ -115,7 +115,7 @@ try{
   await page.goto(origin+'/favorites/',{waitUntil:'domcontentloaded'});
   const activeNav=page.locator('.nav-actions a[href="/favorites/"] img.cc-nav-art');
   await activeNav.waitFor();
-  assert.ok((await activeNav.getAttribute('src')).endsWith('nav-favorites-filled.svg'),'Favorites nav uses outlined selected asset');
+  assert.ok((await activeNav.getAttribute('src')).endsWith('nav-favorites-selected.svg'),'Favorites nav uses outlined selected asset');
   assert.ok((await page.locator('.nav-actions a[href="/favorites/"]').getAttribute('aria-current'))==='page','Active nav accessible');
   assert.deepEqual(errors,[],'No browser errors');
   summary.push({profile:profile.name,viewport:[profile.width,profile.height],passed:true,

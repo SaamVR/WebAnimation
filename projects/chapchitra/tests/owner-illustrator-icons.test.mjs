@@ -31,13 +31,18 @@ test('footer uses original Instagram/Facebook/WhatsApp, never TikTok or invented
  assert.match(css,/\.site-footer \.footer-grid/);
  assert.match(css,/minmax\(0,1\.1fr\)/);
 });
-test('navbar and favorites use the original outlined and filled icon artwork',()=>{
+test('navbar keeps original Illustrator assets and the new selected heart retains its outline',()=>{
  for(const asset of ['nav-search.svg','nav-account.svg','nav-bag.svg','nav-favorites-filled.svg','nav-favorites-outline.svg'])
   assert.ok(original.assets.some(x=>x.filename===asset),'missing source '+asset);
  assert.match(app,/navArt\('search'\)/);
  assert.match(app,/navArt\('account'\)/);
  assert.match(app,/navArt\('bag'\)/);
- assert.match(app,/favorites-filled/);
+ assert.match(app,/favorites-selected/);
+ const selected=read('src/assets/illustrator/nav-favorites-selected.svg');
+ const outline=read('src/assets/illustrator/nav-favorites-outline.svg');
+ const shapes=svg=>[...svg.matchAll(/<path\b[^>]*\bd="([^"]+)"/g)].map(m=>m[1]);
+ assert.deepEqual(shapes(selected).slice(1),shapes(outline),'selected heart must retain exactly the original outline paths');
+ assert.equal((read('src/assets/illustrator/nav-favorites-filled.svg').match(/<path\b/g)||[]).length,15,'owner original filled asset preserved');
  assert.match(app,/favorites-outline/);
  assert.match(app,/favoriteArt\(liked\)/);
  assert.match(app,/heartArt\.src/);
