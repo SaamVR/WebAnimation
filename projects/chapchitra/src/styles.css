@@ -2384,11 +2384,11 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
  #hero .hero01-full-logo{transition:none!important}
 }
 
-/* WebKit first-paint safeguard: force a local compositing surface for the
-   tall Hero 01 paper/forest composition. Unlike transform/will-change, this
-   does NOT establish a transformed containing block or shift sticky nav.
-   Confirmed to prevent the 0,0 dark raster tile in iPad WebKit QA. */
-#hero:has(.hero-cover:not([hidden])){
+/* WebKit first-paint safeguard. Apply to the Hero root unconditionally:
+   a :has(active-slide) selector only matches after carousel hydration, too
+   late to prevent a stale 0,0 dark tile in WebKit's first composition.
+   Backface visibility avoids transform's fixed-containing-block side effects. */
+#hero{
   -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
 }
