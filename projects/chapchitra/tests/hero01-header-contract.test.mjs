@@ -66,8 +66,23 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
  assert.match(css,/\[data-hero01-mode="special"\]\s*\{[\s\S]*?border-bottom:0/);
  assert.match(css,/#hero \.hero-cover \.hero-cover-inner\s*\{[\s\S]*?align-items:flex-start;[\s\S]*?text-align:left/);
  assert.match(css,/#hero \.hero-cover \.hero-cover-inner>a\s*\{[\s\S]*?align-self:flex-start/);
- assert.match(browser,/snapshot\.tornDiagonal>=125/);
+ assert.match(browser,/snapshot\.vTipY>=425/);
+ assert.match(browser,/snapshot\.vTipY-snapshot\.leftEdgeY>=230/);
+ assert.match(browser,/snapshot\.vOutsideLeft&&snapshot\.vOutsideRight/);
+ assert.match(browser,/snapshot\.logoClearsTip/);
+ assert.match(css,/margin-top:3px/);
+ assert.match(browser,/scrolled\.navWordmark\.visible,true/);
+ assert.match(browser,/slide02\.navWordmark\.visible,true/);
+ assert.match(browser,/other\.wordmark\.src/);
  assert.match(browser,/snapshot\.headerBottomBorder/);
  assert.match(browser,/snapshot\.logoCentered/);
  assert.match(browser,/snapshot\.ctaLeftAligned/);
+});
+ 
+test('C08 compact navbar returns to real original static wordmark after hover while still hovered',()=>{
+ assert.match(c08,/nav\.instance\.addEventListener\('complete'/);
+ assert.match(c08,/nav\.instance\.goToAndStop\(DURATION_FRAMES-1,true\);[\s\S]*?showStatic\(\)/);
+ assert.match(browser,/C08 completed hover must restore compact image/);
+ assert.match(browser,/C08 must rearm, replay and restore original logo/);
+ assert.match(css,/:not\(\[data-hero01-mode="special"\]\)/);
 });
