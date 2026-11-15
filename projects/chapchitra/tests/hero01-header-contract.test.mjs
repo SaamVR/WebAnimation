@@ -10,7 +10,7 @@ const browser=read('scripts/hero01-header-qa.mjs'),gate=read('scripts/perf/artis
 test('Hero01 uses original illustrated badge, distinct responsive tear, and no placeholder image',()=>{
  assert.match(app,/hero01-paper-panel/);
  assert.match(app,/hero01-paper-edge/);
- assert.match(app,/hero01-paper-fibers/);
+ assert.doesNotMatch(app,/hero01-paper-fibers/);
  assert.match(app,/\/assets\/chapchitra-full\.webp/);
  assert.match(app,/id="c08HeroStage"/);
  assert.doesNotMatch(app,/<img class="hero-background" src="\/assets\/hero-paper\.svg"/);
@@ -61,6 +61,12 @@ test('local browser acceptance tests verify actual header states and motion',()=
 test('single SVG diagonal is the entire paper panel, navbar seam is removed, hero is left aligned',()=>{
  assert.match(app,/viewBox="0 0 1440 440"/);
  assert.match(app,/hero01-paper-cut/);
+ const paper=app.slice(app.indexOf('function hero01Paper(){'),app.indexOf('function hero(){'));
+ assert.equal((paper.match(/<path /g)||[]).length,1,'single flat white filled SVG path only');
+ assert.doesNotMatch(paper,/<g |<mask|<filter|<pattern|<clipPath|hero01-paper-fibers/);
+ assert.match(paper,/M0 0 H1440 V164 /);
+ assert.match(paper,/721 436\.31/);
+ assert.match(paper,/0 169 Z/);
  assert.match(css,/#hero \.hero01-paper-panel\s*\{[\s\S]*?background:transparent/);
  assert.match(css,/#hero \.hero01-paper-edge\s*\{[\s\S]*?position:absolute;inset:0/);
  assert.match(css,/\[data-hero01-mode="special"\]\s*\{[\s\S]*?border-bottom:0/);
