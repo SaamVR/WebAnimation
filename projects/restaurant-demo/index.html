@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#153F31">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta name="description" content="ZESTRY Kitchen & Coffee: a colorful, interactive restaurant experience featuring real food photography and original vector animation.">
+  <title>ZESTRY — Kitchen & Coffee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600,0,1;9..144,700,0,1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="demo-strip"><span class="spark">✳</span> Restaurant concept demo · Menu prices, orders and bookings are simulated <span class="spark">✳</span></div>
+  <header class="site-header" id="top">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Zestry home"><span class="brand-symbol" aria-hidden="true">✳</span><span>ZESTRY<span class="brand-dot">.</span><small>KITCHEN & COFFEE</small></span></a>
+      <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#menu">Our menu</a><a href="#story">Our kitchen</a><a href="#moments">Good moments</a><a href="#reservations">Book a table</a>
+      </div>
+      <button class="cart-link" id="open-cart" type="button" aria-label="Open your order">Your order <span id="cart-count" class="cart-count">0</span><span aria-hidden="true">↗</span></button>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap section" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> ALL DAY. ALL GOOD.</div>
+        <h1 id="hero-title">A little more <em>delicious</em> in your day<span class="period">.</span></h1>
+        <p>Slow mornings, long lunches and spontaneous coffee breaks. Food to look forward to, from the first forkful to the last sip.</p>
+        <div class="button-row"><a class="button button-dark" href="#menu">Explore the menu <span>↗</span></a><a class="button button-light" href="#reservations">Save me a seat <span>↗</span></a></div>
+        <div class="hero-promise"><span class="mini-star">✴</span><span>Bright plates, happy tables, every day.</span></div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-blob" aria-hidden="true"></div>
+        <div class="hero-photo"><img src="assets/photos/pasta.jpg" alt="Freshly prepared pasta plated for a meal" fetchpriority="high" width="900" height="950"></div>
+        <div class="floating-tag tag-top">MADE FOR <b>GOOD DAYS</b> <span>✳</span></div>
+        <div class="hero-lottie-card"><div class="lottie-stage hero-lottie" data-lottie="f01" data-loop="true" aria-label="Animated pasta bowl"></div><span class="motion-tag">F01 · OUR SIGNATURE MOTION</span></div>
+        <div class="floating-tag tag-bottom">Every bite<br><strong>is a little celebration</strong> <span>↗</span></div>
+      </div>
+      <div class="hero-scroll">SCROLL TO DISCOVER <span>↓</span></div>
+    </section>
+    <section class="marquee" aria-label="Our favorites"><div class="marquee-inner"><span>GOOD FOOD</span><b>✳</b><span>FRESH IDEAS</span><b>✳</b><span>BIG FLAVOR</span><b>✳</b><span>GOOD FOOD</span><b>✳</b><span>FRESH IDEAS</span><b>✳</b><span>BIG FLAVOR</span><b>✳</b></div></section>
+    <section class="section wrap menu-section" id="menu" aria-labelledby="menu-heading">
+      <div class="section-heading"><div><span class="section-kicker">01 / FIND YOUR FAVORITE</span><h2 id="menu-heading">Made for every <em>craving.</em></h2><p>From first-coffee mornings to last-bite desserts, there's something worth coming back for.</p></div><button id="open-book-demo" class="text-link" type="button">Try our animated menu <span>↗</span></button></div>
+      <div class="category-pills" id="category-pills" role="group" aria-label="Filter menu items"></div>
+      <div class="menu-grid" id="menu-grid" aria-live="polite"></div>
+      <p class="menu-note">Demo menu with illustrative prices in USD; no orders are sent to a restaurant.</p>
+    </section>
+    <section class="feature feature-coffee section" id="moments" aria-labelledby="coffee-heading">
+      <div class="wrap feature-grid">
+        <div class="coffee-image"><img src="assets/photos/coffee.jpg" alt="Freshly brewed coffee" loading="lazy" width="800" height="900"><div class="photo-sticker">GOOD MORNING<br><strong>STARTS HERE</strong></div></div>
+        <div class="feature-copy"><span class="section-kicker">02 / SLOW DOWN A LITTLE</span><h2 id="coffee-heading">A cup full of <em>good things.</em></h2><p>Whether you're easing into the day or taking five between plans, our coffee corner is always a good idea.</p><div class="feature-divider"></div><div class="feature-motion"><div class="lottie-stage" data-lottie="f03" data-loop="true" aria-label="Animated coffee brewing sequence"><span class="fallback-pill">COFFEE BREWING · F03</span></div><p>Watch coffee come to life in our original vector animation.</p></div><a class="button button-dark" href="#menu" data-category="Drinks">Browse drinks <span>↗</span></a></div>
+      </div>
+    </section>
+    <section class="section wrap kitchen-section" id="story" aria-labelledby="kitchen-heading">
+      <div class="section-heading"><div><span class="section-kicker">03 / THE KITCHEN IS CALLING</span><h2 id="kitchen-heading">A little magic <em>in the making.</em></h2><p>Chop, mix, simmer. A peek at the satisfying movements behind a good meal.</p></div></div>
+      <div class="kitchen-grid">
+        <article class="kitchen-card kitchen-first"><div class="kitchen-motion" data-kitchen="f02"><div class="lottie-stage" data-lottie="f02" data-loop="true"><span class="fallback-pill">CHEF IN ACTION · F02</span></div></div><span class="kitchen-number">01 / MEET THE CHEF</span><h3>Good hands. Great food.</h3><p>The people behind every happy plate.</p></article>
+        <article class="kitchen-card"><div class="kitchen-motion soft-orange"><div class="lottie-stage" data-lottie="f06-1" data-loop="true"><span class="fallback-pill">CHOP · F06-1</span></div></div><span class="kitchen-number">02 / CHOP</span><h3>Fresh from the first cut.</h3><p>Small details make a big difference.</p></article>
+        <article class="kitchen-card"><div class="kitchen-motion soft-blue"><div class="lottie-stage" data-lottie="f06-2" data-loop="true"><span class="fallback-pill">MIX · F06-2</span></div></div><span class="kitchen-number">03 / MIX</span><h3>A little stir goes a long way.</h3><p>Everything in perfect harmony.</p></article>
+        <article class="kitchen-card"><div class="kitchen-motion soft-yellow"><div class="lottie-stage" data-lottie="f06-3" data-loop="true"><span class="fallback-pill">SIMMER · F06-3</span></div></div><span class="kitchen-number">04 / SIMMER</span><h3>Worth the wait.</h3><p>Bringing every ingredient together.</p></article>
+      </div>
+    </section>
+    <section class="special-section section" aria-labelledby="special-heading"><div class="wrap special-grid"><div class="special-copy"><span class="section-kicker">04 / THE ONE YOU CAME FOR</span><h2 id="special-heading">Our kind of <em>comfort food.</em></h2><p>A fork-twirling bowl of basil pesto farfalle, finished with cherry tomatoes and a little extra love.</p><a class="button button-dark" href="#menu" data-category="Mains">Find your favorite <span>↗</span></a><div class="special-mini">✳ <span>Good food has a way of bringing people together.</span></div></div><div class="special-image"><img src="assets/photos/pasta.jpg" alt="Pasta with tomato sauce and herbs" loading="lazy" width="950" height="800"><span class="special-stamp">THE<br>GOOD<br>STUFF ✴</span><div class="lottie-stage special-lottie" data-lottie="f08" data-loop="true"></div></div></div></section>
+    <section class="reservation-section section" id="reservations" aria-labelledby="booking-heading">
+      <div class="wrap reserve-grid">
+        <div class="reserve-copy"><span class="section-kicker">05 / PULL UP A CHAIR</span><h2 id="booking-heading">The table is <em>yours.</em></h2><p>Big catch-ups, first dates, or just because. Make a little room for a good time.</p><div class="reservation-motion lottie-stage" data-lottie="f07" aria-label="Animated table reservation scene"><span class="fallback-pill">TABLE RESERVATION · F07</span></div></div>
+        <form class="reservation-form" id="reservation-form">
+          <h3>Reserve your moment.</h3><p class="form-intro">Pick a table time for this interactive demo.</p>
+          <label for="res-name">Your name</label><input id="res-name" name="name" type="text" autocomplete="given-name" placeholder="First name" maxlength="60" required>
+          <div class="form-row"><div><label for="res-date">Date</label><input id="res-date" name="date" type="date" required></div><div><label for="res-party">People</label><select id="res-party" name="party" required><option value="2">2 guests</option><option value="1">1 guest</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option><option value="7">7 guests</option><option value="8">8 guests</option></select></div></div>
+          <label for="res-time">Preferred time</label><select id="res-time" name="time" required><option value="">Choose a time</option><option>9:00 AM</option><option>10:30 AM</option><option>12:00 PM</option><option>1:30 PM</option><option>5:30 PM</option><option>6:30 PM</option><option>7:30 PM</option><option>8:30 PM</option></select>
+          <button class="button button-orange button-wide" type="submit">Preview reservation <span>↗</span></button><p class="form-footnote">This is a simulated reservation. No table is actually booked or held.</p>
+        </form>
+      </div>
+    </section>
+    <section class="section wrap final-cta" aria-labelledby="closing-heading"><div class="final-image"><img src="assets/photos/restaurant.jpg" alt="Inviting restaurant dining interior" loading="lazy" width="900" height="620"></div><div class="final-copy"><span class="section-kicker">A LITTLE MORE OF THE GOOD STUFF</span><h2 id="closing-heading">Stay for a <em>little longer.</em></h2><p>Something delicious is always around the corner.</p><div class="button-row"><a class="button button-dark" href="#menu">Order a favorite <span>↗</span></a><a class="button button-light" href="#reservations">Book your moment <span>↗</span></a></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-main"><div><a class="brand footer-brand" href="#top"><span class="brand-symbol">✳</span> ZESTRY<span class="brand-dot">.</span></a><p>Freshly made. Happily served.</p></div><div class="footer-links"><a href="#menu">Menu</a><a href="#story">Our kitchen</a><a href="#reservations">Reservations</a><button type="button" id="footer-order">Your order</button></div></div><div class="wrap footer-bottom"><span>© ZESTRY · Fictional restaurant portfolio concept · Not accepting real bookings, payments or orders.</span><a href="CREDITS.md" target="_blank" rel="noopener">Photo credits &amp; usage</a></div></footer>
+  <div id="overlay-backdrop" class="overlay-backdrop" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true"><div class="drawer-head"><div><span class="section-kicker">YOUR LITTLE FEAST</span><h2 id="cart-title">Your order<span class="period">.</span></h2></div><button class="icon-button" type="button" data-close aria-label="Close cart">×</button></div><div id="cart-items" class="cart-items"></div><div class="drawer-bottom"><div class="subtotal"><span>Subtotal</span><strong id="cart-subtotal">$0.00</strong></div><p class="form-footnote">Prices are illustrative; no real payment is taken.</p><button class="button button-orange button-wide" id="checkout-open" type="button">Continue to checkout <span>↗</span></button></div></aside>
+  <section class="app-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" aria-hidden="true"><div class="modal-head"><span class="section-kicker">YOUR ZESTRY ORDER</span><button class="icon-button" data-close aria-label="Close checkout" type="button">×</button></div><div class="modal-content" id="checkout-content"><h2 id="checkout-title">Almost the <em>good part.</em></h2><p>Just a couple of details for a simulated pickup order.</p><form id="checkout-form"><label for="checkout-name">Your name</label><input id="checkout-name" name="name" placeholder="Name for this order" maxlength="60" required><label for="checkout-pickup">Pickup window</label><select id="checkout-pickup" name="pickup"><option>In about 20 minutes</option><option>In about 40 minutes</option><option>In about an hour</option></select><label for="checkout-note">Order note (optional)</label><textarea id="checkout-note" name="note" rows="2" maxlength="180" placeholder="Any kitchen notes?"></textarea><button type="submit" class="button button-orange button-wide">Place demo order <span>↗</span></button></form><p class="form-footnote">Demo only. No payment, restaurant, or delivery service is connected.</p></div></section>
+  <section class="app-modal confirm-modal" id="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-hidden="true"><div class="modal-head"><span class="section-kicker" id="confirm-kicker">ALL SET</span><button class="icon-button" data-close aria-label="Close confirmation" type="button">×</button></div><div class="confirm-animation lottie-stage" id="confirm-lottie"></div><h2 id="confirm-title">Looking <em>delicious.</em></h2><p id="confirm-message"></p><p class="form-footnote">This was a demonstration. No real transaction or reservation was created.</p><button class="button button-dark button-wide" data-close type="button">Back to ZESTRY <span>↗</span></button></section>
+  <section class="book-modal" id="book-modal" role="dialog" aria-modal="true" aria-labelledby="book-title" aria-hidden="true"><div class="modal-head"><div><span class="section-kicker">INTERACTIVE ANIMATION · F05</span><h2 id="book-title">The animated menu</h2></div><button class="icon-button" data-close aria-label="Close animated menu" type="button">×</button></div><div id="book-embed" class="book-embed"></div><p>Explore the illustrated Lottie menu. For ordering and prices, use the accessible menu cards on this page.</p></section>
+  <div class="toast" id="toast" aria-live="polite" role="status"></div>
+</body>
+</html>
