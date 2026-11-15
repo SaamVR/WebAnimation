@@ -157,7 +157,7 @@ for(const t of profiles){
   hasTouch:t.mobile,isMobile:t.mobile,reducedMotion:'no-preference',
   recordVideo:{dir:out,size:{width:t.width,height:t.height}}
  });
- const page=await context.newPage(),errors=[];
+ const page=await context.newPage(),errors=[],reviewTimeline=[];
  page.on('pageerror',error=>errors.push(error.message));
  page.on('response',response=>{if(response.url().includes('/assets/chapchitra-full.webp')&&response.status()>=400)
   errors.push('Full logo HTTP '+response.status())});
@@ -184,12 +184,16 @@ for(const t of profiles){
  if(t.width<=365)assert.ok(initial.controlBottom<=t.height+1,
   'Narrow-screen Hero 01 slider controls must be visible in the initial viewport');
  await page.screenshot({path:resolve(out,t.name+'-special.png')});
+ reviewTimeline.push({event:'01 initial full logo',mode:initial.state,compactVisible:initial.navWordmark.visible,scale90:initial.logoUniform90});
+ await page.waitForTimeout(550);
  await page.waitForFunction(()=>window.__chapchitraC08?.hero?.completed>=1,null,{timeout:22000});
  const afterC08=await sample(page);
  assert.equal(afterC08.logoAnimation.failed,false,'Reuse exact approved C08 timeline');
  assert.equal(afterC08.logoAnimation.autoplay,1,'Original C08 hero autoplay fires once');
  assert.ok(afterC08.logoStageAligned,'Approved C08 Wordmark Reprint overlay must track the uniformly scaled original lockup');
  await page.screenshot({path:resolve(out,t.name+'-logo-complete.png')});
+ reviewTimeline.push({event:'01 C08 complete',completed:afterC08.logoAnimation.completed,c08Aligned:afterC08.logoStageAligned});
+ await page.waitForTimeout(550);
  await page.evaluate(()=>window.scrollTo({top:185,behavior:'instant'}));
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
  await page.waitForFunction(()=>{
@@ -205,8 +209,14 @@ for(const t of profiles){
  assert.equal(scrolled.heroLogoInert,true,'No duplicate or focusable logo below sticky navbar');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)<.05,{},{timeout:2000});
  await page.screenshot({path:resolve(out,t.name+'-scrolled.png')});
+ reviewTimeline.push({event:'scroll down: compact navbar visible',compactVisible:scrolled.navWordmark.visible,heroInert:scrolled.heroLogoInert});
+ await page.waitForTimeout(650);
  await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
+ await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95);
+ await page.screenshot({path:resolve(out,t.name+'-scroll-restored.png')});
+ reviewTimeline.push({event:'scroll top: full logo restored',mode:'special'});
+ await page.waitForTimeout(650);
  await page.locator('#hero [data-slide-to="1"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
  await page.waitForFunction(()=>{
@@ -219,33 +229,36 @@ for(const t of profiles){
  assert.equal(slide02.navWordmark.loaded,true,'Hero 02 compact wordmark decoded');
  assert.ok(await page.locator('#hero .hero-slide[data-slide="1"]').isVisible());
  await page.screenshot({path:resolve(out,t.name+'-slide02.png')});
- // Capture the owner's exact requested continuous sequence:
- // Hero 01 -> Hero 02 -> Hero 01, with no intervening slide.
+ // One continuous recording: Hero 01 -> 02 -> 03 -> 04 -> 05 -> 01.
+ reviewTimeline.push({event:'02 active',compactVisible:slide02.navWordmark.visible});
+ await page.waitForTimeout(650);
+ for(const [target,name] of [[2,'03'],[3,'04'],[4,'05']]){
+  await page.locator('#hero [data-slide-to="'+target+'"]').evaluate(node=>node.click());
+  await page.waitForFunction(index=>document.querySelector('#hero .hero-slide.is-active')?.dataset.slide===String(index),target);
+  await page.waitForFunction(()=>{
+   const el=document.querySelector('#siteHeader .logo-word--image'),img=el?.querySelector('img');
+   return el&&img&&getComputedStyle(el).visibility==='visible'&&
+     Number(getComputedStyle(el).opacity)>.95&&getComputedStyle(img).visibility==='visible';
+  },null,{timeout:3500});
+  const snap=await sample(page);
+  assert.equal(snap.state,'standard','Slides 02–05 must use the ONE standard navbar');
+  assert.equal(snap.navWordmark.visible,true,'Original compact navbar wordmark visible for Hero '+name);
+  assert.equal(snap.heroLogoInert,true,'Full logo must not stay interactive on Hero '+name);
+  reviewTimeline.push({event:name+' active',compactVisible:snap.navWordmark.visible,heroInert:snap.heroLogoInert});
+  await page.screenshot({path:resolve(out,t.name+'-slide'+name+'.png')});
+  await page.waitForTimeout(650);
+ }
  await page.locator('#hero [data-slide-to="0"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95,
   null,{timeout:3500});
  const returned=await sample(page);
  assert.equal(returned.slide,'0');
- assert.equal(returned.heroLogoInert,false,'Large original logo regains accessibility at top');
- assert.equal(returned.navWordmark.visible,false,'Hero 01 restores large-only logo presentation');
+ assert.equal(returned.heroLogoInert,false,'Large logo regains accessibility after Hero 05');
+ assert.equal(returned.navWordmark.visible,false,'Compact navbar logo hidden ONLY on Hero 01 at top');
+ reviewTimeline.push({event:'01 restored after 05',compactVisible:returned.navWordmark.visible,fullLogoInert:returned.heroLogoInert});
  await page.screenshot({path:resolve(out,t.name+'-return.png')});
- // Additionally check the same standard compact wordmark for Hero 05,
- // then return to the special Hero 01 state before leaving for Shop.
- await page.locator('#hero [data-slide-to="4"]').evaluate(node=>node.click());
- await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
- await page.waitForFunction(()=>Number(getComputedStyle(
-  document.querySelector('#siteHeader .logo-word--image')).opacity)>.95,
-  null,{timeout:3500});
- const slide05=await sample(page);
- assert.equal(slide05.slide,'4');
- assert.equal(slide05.navWordmark.visible,true,'Hero 05 must restore visible compact navbar logo');
- await page.locator('#hero [data-slide-to="0"]').evaluate(node=>node.click());
- await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
- await page.waitForFunction(()=>Number(getComputedStyle(
-  document.querySelector('#hero .hero01-full-logo')).opacity)>.95,
-  null,{timeout:3500});
- await page.waitForTimeout(250); // Hold the returned full-logo frame for review.
+ await page.waitForTimeout(750);
  // Exercise the REAL Home -> Shop navbar interaction (not page.goto).
  // Desktop/tablet uses the existing Shop link; mobile uses the unchanged menu.
  // Preserve cross-document C02 navigation and wait for the new document.
