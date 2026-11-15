@@ -2379,7 +2379,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   #hero .hero01-full-logo{margin-top:4px}
 }
 @media(max-width:740px){
-  #hero{--hero01-paper-height:360px;--hero01-copy-top:290px}
+  #hero{--hero01-paper-height:340px;--hero01-copy-top:370px}
   #hero .hero01-full-logo{
     width:clamp(202px,59vw,246px);
     margin-top:6px; /* 14px lift on small screens */
@@ -2394,7 +2394,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   #hero .hero-cover .hero-cover-inner h1{font-size:clamp(26px,7vw,34px)}
 }
 @media(max-width:365px){
-  #hero{--hero01-paper-height:340px;--hero01-copy-top:263px}
+  #hero{--hero01-paper-height:312px;--hero01-copy-top:338px}
   #hero .hero01-full-logo{margin-top:7px}
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:622px;min-height:622px;
