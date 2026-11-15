@@ -2364,9 +2364,9 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   position:relative;z-index:2;
   display:block;
   flex:0 0 auto;
-  width:clamp(228px,23vw,306px);
+  width:clamp(205.2px,20.7vw,275.4px); /* 90% of original wrapper at every desktop width */
   max-width:calc(100% - 36px);
-  margin-top:3px; /* raised ~25px at desktop; full original lockup unchanged */
+  margin-top:-7px; /* lift entire resized identity ~10px, clear sticky nav */
   line-height:0;
   pointer-events:auto;
 }
@@ -2376,13 +2376,13 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(max-width:950px){
   #hero{--hero01-paper-height:390px;--hero01-copy-top:325px}
-  #hero .hero01-full-logo{margin-top:4px}
+  #hero .hero01-full-logo{margin-top:-5px}
 }
 @media(max-width:740px){
   #hero{--hero01-paper-height:340px;--hero01-copy-top:370px}
   #hero .hero01-full-logo{
-    width:clamp(202px,59vw,246px);
-    margin-top:6px; /* 14px lift on small screens */
+    width:clamp(181.8px,53.1vw,221.4px); /* exactly 90% on mobile; C08 stage follows image size */
+    margin-top:0; /* small-screen lift without touching sticky navbar */
   }
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:720px;min-height:720px;
@@ -2395,7 +2395,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(max-width:365px){
   #hero{--hero01-paper-height:312px;--hero01-copy-top:338px}
-  #hero .hero01-full-logo{margin-top:7px}
+  #hero .hero01-full-logo{margin-top:1px}
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:622px;min-height:622px;
   }
