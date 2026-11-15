@@ -190,8 +190,17 @@ for(const t of profiles){
  assert.equal(returned.heroLogoInert,false,'Large original logo regains accessibility at top');
  assert.equal(returned.navWordmark.visible,false,'Hero 01 restores large-only logo presentation');
  await page.screenshot({path:resolve(out,t.name+'-return.png')});
- // Standard header must be untouched on every other page.
- await page.goto(new URL('/shop/',origin).href,{waitUntil:'domcontentloaded',timeout:30000});
+ // Exercise the REAL Home -> Shop navbar interaction (not page.goto).
+ // Desktop/tablet uses the existing Shop link; mobile uses the unchanged menu.
+ // Preserve cross-document C02 navigation and wait for the new document.
+ const shopLink=page.locator('#siteHeader .nav-center>a[href="/shop/"]');
+ if(await shopLink.isVisible())await shopLink.click();
+ else{
+  const menu=page.locator('#menuButton');
+  await menu.click();
+  await page.locator('#mobileNav a[href="/shop/"]').click();
+ }
+ await page.waitForURL(u=>u.pathname==='/shop/',{timeout:30000});
  await page.locator('#siteHeader .nav-center>a').first().waitFor({state:'attached',timeout:20000});
  await page.waitForFunction(()=>{
   const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
