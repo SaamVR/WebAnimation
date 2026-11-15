@@ -194,11 +194,18 @@ for(const t of profiles){
  // then return to the special Hero 01 state before leaving for Shop.
  await page.locator('#hero [data-slide-to="4"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
+ await page.waitForFunction(()=>Number(getComputedStyle(
+  document.querySelector('#siteHeader .logo-word--image')).opacity)>.95,
+  null,{timeout:3500});
  const slide05=await sample(page);
  assert.equal(slide05.slide,'4');
  assert.equal(slide05.navWordmark.visible,true,'Hero 05 must restore visible compact navbar logo');
  await page.locator('#hero [data-slide-to="0"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
+ await page.waitForFunction(()=>Number(getComputedStyle(
+  document.querySelector('#hero .hero01-full-logo')).opacity)>.95,
+  null,{timeout:3500});
+ await page.waitForTimeout(250); // Hold the returned full-logo frame for review.
  // Exercise the REAL Home -> Shop navbar interaction (not page.goto).
  // Desktop/tablet uses the existing Shop link; mobile uses the unchanged menu.
  // Preserve cross-document C02 navigation and wait for the new document.
