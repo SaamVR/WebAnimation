@@ -59,21 +59,26 @@ test('local browser acceptance tests verify actual header states and motion',()=
 });
 
 test('single SVG diagonal is the entire paper panel, navbar seam is removed, hero is left aligned',()=>{
- assert.match(app,/viewBox="0 0 1440 440"/);
+ assert.match(app,/viewBox="0 381 4200 812"/);
  assert.match(app,/hero01-paper-cut/);
  const paper=app.slice(app.indexOf('function hero01Paper(){'),app.indexOf('function hero(){'));
  assert.equal((paper.match(/<path /g)||[]).length,1,'single flat white filled SVG path only');
  assert.doesNotMatch(paper,/<g |<mask|<filter|<pattern|<clipPath|hero01-paper-fibers/);
- assert.match(paper,/M0 0 H1440 V164 /);
- assert.match(paper,/721 436\.31/);
- assert.match(paper,/0 169 Z/);
+ const master=read('assets/hero01/torn_paper_V.svg');
+ const original=master.match(/<path class="st0" d="([\s\S]*?)"\/>/);
+ const installed=app.match(/const HERO01_TORN_PAPER_PATH=String\.raw`([\s\S]*?)`;/);
+ assert.ok(original&&installed,'Original Illustrator path must exist');
+ assert.equal(installed[1],original[1],'All original Illustrator path commands must be byte-for-byte preserved');
+ assert.match(css,/--color-mushroom-gray:#A6A29B/);
+ assert.match(css,/filter:drop-shadow\(0 5px 7px color-mix\(in srgb,var\(--color-mushroom-gray\) 38%,transparent\)\)/);
+ assert.doesNotMatch(css,/#hero \.hero01-paper-edge\s*\{[^}]*box-shadow:/);
  assert.match(css,/#hero \.hero01-paper-panel\s*\{[\s\S]*?background:transparent/);
  assert.match(css,/#hero \.hero01-paper-edge\s*\{[\s\S]*?position:absolute;inset:0/);
  assert.match(css,/\[data-hero01-mode="special"\]\s*\{[\s\S]*?border-bottom:0/);
  assert.match(css,/#hero \.hero-cover \.hero-cover-inner\s*\{[\s\S]*?align-items:flex-start;[\s\S]*?text-align:left/);
  assert.match(css,/#hero \.hero-cover \.hero-cover-inner>a\s*\{[\s\S]*?align-self:flex-start/);
- assert.match(browser,/snapshot\.vTipY>=425/);
- assert.match(browser,/snapshot\.vTipY-snapshot\.leftEdgeY>=230/);
+ assert.match(browser,/snapshot\.vTipY>=1180/);
+ assert.match(browser,/snapshot\.vTipY-snapshot\.leftEdgeY>=450/);
  assert.match(browser,/snapshot\.vOutsideLeft&&snapshot\.vOutsideRight/);
  assert.match(browser,/snapshot\.logoClearsTip/);
  assert.match(css,/margin-top:-7px/);

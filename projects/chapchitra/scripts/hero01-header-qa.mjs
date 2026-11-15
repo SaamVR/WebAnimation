@@ -23,9 +23,11 @@ function validate(snapshot){
  assert.equal(snapshot.coverBackground,'rgb(28, 36, 29)','Hero 01 must be exact solid #1C241D');
  assert.equal(snapshot.paperBackground,'rgba(0, 0, 0, 0)','Single SVG must own the white panel, without a separate box');
  assert.equal(snapshot.paperPathFill,'rgb(246, 247, 245)','Continuous paper silhouette must use Gallery White');
+ assert.match(snapshot.paperFilter,/drop-shadow\(/,'Paper shadow must follow SVG silhouette');
+ assert.equal(snapshot.paperBoxShadow,'none','Do not introduce a rectangular box-shadow');
  assert.equal(snapshot.headerBottomBorder,'0px','Remove divider beneath special Hero 01 navbar');
- assert.ok(snapshot.vTipY>=425,'V tip must point below centered logo');
- assert.ok(snapshot.vTipY-snapshot.leftEdgeY>=230&&snapshot.vTipY-snapshot.rightEdgeY>=230,
+ assert.ok(snapshot.vTipY>=1180&&snapshot.vTipY<=1190,'Original Illustrator V-tip extent must be preserved');
+ assert.ok(snapshot.vTipY-snapshot.leftEdgeY>=450&&snapshot.vTipY-snapshot.rightEdgeY>=450,
   'Both torn slopes descend toward the single central tip');
  assert.ok(snapshot.vFilledAtCenter&&snapshot.vEmptyBelow&&snapshot.vOutsideLeft&&snapshot.vOutsideRight,
   'One white SVG must render a downward V with dark space outside both slopes');
@@ -68,23 +70,30 @@ async function sample(page){
   const edgeRect=tear?.getBoundingClientRect();
   const copyRect=eyebrow?.getBoundingClientRect();
   const paperPath=tear?.querySelector('.hero01-paper-cut');
-  const d=paperPath?.getAttribute('d')||'';
-  const rightEdgeY=Number(d.match(/^M0 0 H1440 V([\d.]+)/)?.[1]||0);
-  const leftEdgeY=Number(d.match(/0 ([\d.]+) Z$/)?.[1]||0);
-  const vTipY=paperPath?paperPath.getBBox().y+paperPath.getBBox().height:0;
-  // Use actual rendered SVG geometry, not a parser that assumes the apex is
-  // encoded using a straight-line command (it is a cubic Bezier endpoint).
+  // Illustrator master is unmodified. Its viewBox is presentation-cropped
+  // to the approved Hero 01 depth; all hit tests operate in native path units.
+  const vb=tear?.viewBox.baseVal;
+  const nativeX=(x)=>(vb?.x||0)+(x-(edgeRect?.left||0))*(vb?.width||1)/(edgeRect?.width||1);
+  const nativeY=(y)=>(vb?.y||0)+(y-(edgeRect?.top||0))*(vb?.height||1)/(edgeRect?.height||1);
+  const screenY=(y)=>(edgeRect?.top||0)+(y-(vb?.y||0))*(edgeRect?.height||0)/(vb?.height||1);
   const filled=(x,y)=>paperPath?.isPointInFill?.(new DOMPoint(x,y))===true;
+  const edgeAt=(x)=>{
+    let lo=vb?.y||0,hi=lo+(vb?.height||1);
+    for(let i=0;i<17;i++){
+      const mid=(lo+hi)/2;
+      if(filled(x,mid))lo=mid;else hi=mid;
+    }
+    return (lo+hi)/2;
+  };
+  const leftEdgeY=edgeAt(5),rightEdgeY=edgeAt(4195);
+  const vTipY=paperPath?paperPath.getBBox().y+paperPath.getBBox().height:0;
   const lastCopy=cover?.querySelector('.hero-cover-inner>p:not(.eyebrow)');
   const cta=cover?.querySelector('.hero-cover-inner>a');
   const logo=paper?.querySelector('.hero01-full-logo');
-  const svgXAtCopy=((copyRect?.left||0)-(edgeRect?.left||0))/(edgeRect?.width||1)*1440;
-  const svgYAtCopy=svgXAtCopy<=720
-   ?leftEdgeY+(vTipY-leftEdgeY)*svgXAtCopy/720
-   :rightEdgeY+(vTipY-rightEdgeY)*(1440-svgXAtCopy)/720;
-  const tearAtCopy=(edgeRect?.top||0)+svgYAtCopy*(edgeRect?.height||0)/440;
+  const svgXAtCopy=nativeX(copyRect?.left||0);
+  const tearAtCopy=screenY(edgeAt(svgXAtCopy));
   const logoRect=logo?.getBoundingClientRect();
-  const tipScreenY=(edgeRect?.top||0)+vTipY*(edgeRect?.height||0)/440;
+  const tipScreenY=screenY(vTipY);
   return {
    route:document.body.dataset.page,
    state:document.querySelector('#siteHeader')?.dataset.hero01Mode,
@@ -92,20 +101,22 @@ async function sample(page){
    coverBackground:cover&&getComputedStyle(cover).backgroundColor,
    paperBackground:paper&&getComputedStyle(paper).backgroundColor,
    paperPathFill:paperPath&&getComputedStyle(paperPath).fill,
+   paperFilter:tear&&getComputedStyle(tear).filter,
+   paperBoxShadow:tear&&getComputedStyle(tear).boxShadow,
    headerBottomBorder:getComputedStyle(document.querySelector('#siteHeader')).borderBottomWidth,
    viewportWidth:innerWidth,viewportHeight:innerHeight,
    paperHeight:edgeRect?.height,
-   leftShoulderScreenY:(edgeRect?.top||0)+leftEdgeY*(edgeRect?.height||0)/440,
-   rightShoulderScreenY:(edgeRect?.top||0)+rightEdgeY*(edgeRect?.height||0)/440,
+   leftShoulderScreenY:screenY(leftEdgeY),
+   rightShoulderScreenY:screenY(rightEdgeY),
    leftEdgeY,rightEdgeY,vTipY,
-   vFilledAtCenter:filled(721,419),vEmptyBelow:!filled(721,446),
-   vOutsideLeft:!filled(25,210)&&filled(25,120),
-   vOutsideRight:!filled(1415,210)&&filled(1415,120),
+   vFilledAtCenter:filled(2074,vTipY-20),vEmptyBelow:!filled(2074,vTipY+15),
+   vOutsideLeft:!filled(5,leftEdgeY+35)&&filled(5,leftEdgeY-35),
+   vOutsideRight:!filled(4195,rightEdgeY+35)&&filled(4195,rightEdgeY-35),
    logoClearsTip:!!(logoRect&&logoRect.bottom<=tipScreenY-22),
    logoEdgeClearance:!!(logoRect&&edgeRect&&paperPath&&
     [0.09,0.91].every(fraction=>paperPath.isPointInFill(new DOMPoint(
-      (logoRect.left+logoRect.width*fraction-edgeRect.left)*1440/edgeRect.width,
-      (logoRect.bottom+12-edgeRect.top)*440/edgeRect.height
+      nativeX(logoRect.left+logoRect.width*fraction),
+      nativeY(logoRect.bottom+12)
     )))),
    copyBelowTip:!!(copyRect&&copyRect.top>=tipScreenY+12),
    tipScreenY,

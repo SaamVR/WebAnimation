@@ -2353,6 +2353,8 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   overflow:visible;
   shape-rendering:geometricPrecision;
   z-index:1;
+  /* Only the actual Illustrator paper silhouette casts this restrained shadow. */
+  filter:drop-shadow(0 5px 7px color-mix(in srgb,var(--color-mushroom-gray) 38%,transparent));
 }
 #hero .hero01-paper-edge .hero01-paper-cut{
   fill:var(--bg);
