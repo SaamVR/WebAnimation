@@ -2384,11 +2384,13 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
  #hero .hero01-full-logo{transition:none!important}
 }
 
-/* WebKit first-paint safeguard. Apply to the Hero root unconditionally:
-   a :has(active-slide) selector only matches after carousel hydration, too
-   late to prevent a stale 0,0 dark tile in WebKit's first composition.
-   Backface visibility avoids transform's fixed-containing-block side effects. */
+/* WebKit first-paint safeguard. The organic inline SVG edge can leave a
+   stale 0,0 dark tile in WebKit unless the whole Hero owns a compositor layer.
+   A CSS-only backface hint was insufficient in the real built browser.
+   The root is not an ancestor of the sticky site navbar; motion keyframes,
+   artwork and DOM layering remain unchanged. */
 #hero{
+  transform:translateZ(0);
   -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
 }
