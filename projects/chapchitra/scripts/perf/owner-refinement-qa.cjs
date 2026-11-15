@@ -44,8 +44,29 @@ async function run(d){
   verify(d.name+' outlined unselected favorite',before.favorite==='/assets/illustrator/nav-favorites-outline.svg'&&before.pressed==='false',before);
   const fav=page.locator('.product-card .favorite-toggle').first();
   await fav.click();
-  const on=await fav.evaluate(el=>({pressed:el.getAttribute('aria-pressed'),src:el.querySelector('img')?.getAttribute('src')}));
-  verify(d.name+' filled selected favorite',on.pressed==='true'&&on.src==='/assets/illustrator/nav-favorites-filled.svg',on);
+  const on=await fav.evaluate(async el=>{
+   const src=el.querySelector('img')?.getAttribute('src');
+   const get=async filename=>{
+    const response=await fetch('/assets/illustrator/'+filename);
+    if(!response.ok)throw Error('Missing favorite vector: '+filename);
+    return new DOMParser().parseFromString(await response.text(),'image/svg+xml');
+   };
+   const outline=await get('nav-favorites-outline.svg');
+   const selected=await get('nav-favorites-selected.svg');
+   const paths=doc=>[...doc.querySelectorAll('path')].map(p=>p.getAttribute('d'));
+   const a=paths(outline),b=paths(selected);
+   return {
+    pressed:el.getAttribute('aria-pressed'),src,
+    originalOutlinePreserved:a.length===2&&b.length===3&&a.every((path,i)=>path===b[i+1]),
+    viewBoxPreserved:outline.documentElement.getAttribute('viewBox')===selected.documentElement.getAttribute('viewBox'),
+    interiorFill:selected.querySelector('.cc-favorite-interior')?.getAttribute('fill'),
+    darkForestOutline:selected.querySelector('style')?.textContent.includes('.st0{fill:#1C241D;}')===true
+   };
+  });
+  verify(d.name+' filled selected favorite',
+   on.pressed==='true'&&on.src==='/assets/illustrator/nav-favorites-selected.svg'&&
+   on.originalOutlinePreserved&&on.viewBoxPreserved&&
+   on.interiorFill==='#8A503B'&&on.darkForestOutline,on);
   await fav.click();
   const off=await fav.evaluate(el=>({pressed:el.getAttribute('aria-pressed'),src:el.querySelector('img')?.getAttribute('src')}));
   verify(d.name+' unselected favorite restores outline',off.pressed==='false'&&off.src==='/assets/illustrator/nav-favorites-outline.svg',off);
