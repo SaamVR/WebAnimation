@@ -143,6 +143,12 @@ for(const t of profiles){
   errors.push('Full logo HTTP '+response.status())});
  await page.goto(origin,{waitUntil:'domcontentloaded',timeout:30000});
  await page.locator('#hero .hero01-paper-panel').waitFor({state:'visible',timeout:20000});
+ // Verify the actual original logo asset, not merely an <img> node. On a
+ // throttled device DOMContentLoaded can precede image decode by several frames.
+ await page.locator('#hero .hero01-full-logo>img.hero-brand-lockup').evaluate(async img=>{
+  await img.decode();
+  if(img.naturalWidth<100)throw Error('Original full illustrated logo failed to decode');
+ });
  // Keep the approved carousel on Hero 01 while the C08 240-frame animation
  // completes, exactly as a real pointer hovering over the hero would.
  await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseenter')));
@@ -230,6 +236,11 @@ for(const t of profiles){
   await page.locator('#mobileNav a[href="/shop/"]').click();
  }
  await page.waitForURL(u=>u.pathname==='/shop/',{timeout:30000});
+ // Record the entire C02 ink transition, but take the Shop *screenshot*
+ // after its owner-approved cover/reveal overlay has actually been destroyed.
+ // A DOM-state screenshot during ink cover cannot prove navbar visibility.
+ await page.waitForFunction(()=>!document.querySelector('#c02-loader')&&
+  !document.documentElement.classList.contains('c02-pending'),null,{timeout:20000});
  await page.locator('#siteHeader .nav-center>a').first().waitFor({state:'attached',timeout:20000});
  await page.waitForFunction(()=>{
   const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
