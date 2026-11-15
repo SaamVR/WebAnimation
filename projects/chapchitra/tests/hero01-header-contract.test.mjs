@@ -86,3 +86,11 @@ test('C08 compact navbar returns to real original static wordmark after hover wh
  assert.match(browser,/C08 must rearm, replay and restore original logo/);
  assert.match(css,/:not\(\[data-hero01-mode="special"\]\)/);
 });
+
+test('visual evidence waits for real full logo decode and completed C02 cover/reveal before Shop screenshot',()=>{
+ assert.match(browser,/await img\.decode\(\)/);
+ assert.match(browser,/original full illustrated logo failed to decode/i);
+ assert.match(browser,/!document\.querySelector\('#c02-loader'\)/);
+ assert.match(browser,/!document\.documentElement\.classList\.contains\('c02-pending'\)/);
+ assert.match(browser,/\{timeout:20000\}\);/);
+});
