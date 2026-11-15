@@ -1,18 +1,10 @@
-# ZESTRY Restaurant Demo — Strict Project Boundaries
+# Restaurant Demo — Local Development Boundary
 
-This directory is a **self-contained restaurant portfolio demo** in `SaamVR/WebAnimation` on a dedicated branch. It is not part of Threads, CHAPCHITRA, Creative Motion Lab, EcomCMS or TingTune.
+This independent demo is restricted to `projects/restaurant-demo/` in `SaamVR/WebAnimation`.
 
-## Scope
-- All restaurant-demo work stays under `projects/restaurant-demo/`. Never edit `site/`, `projects/chapchitra/`, `threads/`, existing root deployment configuration, or other project directories.
-- Dedicated static frontend entry point: `index.html`; CSS/JS/assets are all local to this directory. No shared styles, globals, or build tools.
-- Maintain bright original Food Lottie palette: forest green, tomato orange, saffron yellow, blue and mint accents. Do not introduce CHAPCHITRA branding.
-- Use real licensed food photography (see CREDITS.md); no fictional customer reviews, address, staff identities, or claims presented as real.
-- Checkout and table booking are explicitly simulated. Never collect payment details or transmit reservation/customer data.
-- Import only owner-supplied original Lottie files. Do not recreate or substitute art/motion without approval. Missing exports remain honest visible placeholders.
-- This branch is a review branch, **not** permission to merge into main or to deploy the other projects.
-
-## Acceptance
-- Independently test food filters, add-to-cart/quantity, demo checkout, reservation form, mobile navigation, reduced motion and no horizontal overflow.
-- Browser QA before claiming complete; inspect responsive screenshots and fix geometry.
-- When integrating any animation, preserve its JSON keyframes, frame rate, dimensions and colors. The iframe-based F05 player is kept isolated.
-- Record actual tests, unresolved animation slots and source provenance in README before review.
+- Never edit or import from Threads, Chapchitra, the Creative Motion Lab, EcomCMS or shared repository hosting config.
+- Do not change any original approved Lottie keyframes, SVG artwork, state machine or easing. Treat animations as immutable media assets; integration changes may only change their playback wiring, loading, layout, and accessibility.
+- Keep all demo ordering and reservations simulated; do not imply that submitted data reaches an actual restaurant. Do not add payment processing or real booking services without separate authorization and security review.
+- Use locally bundled, license-documented food photography; prefer a neutral still over a fictitious Lottie.
+- Require browser QA on desktop and mobile, keyboard controls, reduced-motion, image 404s, menu/category/cart/checkout/reservation and individual animation states before declaring the prototype approved.
+- Do not merge the branch into `main` without owner review. If hosting is requested, use a **new isolated service** with `projects/restaurant-demo/` as root.

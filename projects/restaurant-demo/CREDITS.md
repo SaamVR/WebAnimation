@@ -1,12 +1,10 @@
-# ZESTRY — asset sourcing and credits
+# ZESTRY Restaurant Demo — Image sources and usage
 
-The ZESTRY restaurant concept is fictional. All menu titles, descriptions, prices, hours and reservation/order confirmations are illustrative, not statements about a real operating venue.
+Photographs are locally bundled, not hotlinked to third-party servers at runtime. They are illustrative stock photos for a **fictional restaurant brand**. No claim is made that ZESTRY prepared or sells these exact photographed dishes.
 
-## Food photography
+**License:** [Unsplash License](https://unsplash.com/license). The license permits free commercial and noncommercial use without required credit; attribution is appreciated. Images must not be sold as an unmodified photo collection or used to replicate a competing stock-image service. This project uses the photos as part of a designed restaurant website concept.
 
-Photographs are real food/restaurant images sourced from the Unsplash image CDN, downloaded as local JPEGs for consistent playback. Refer to [Unsplash License](https://unsplash.com/license) for usage terms; original creators are credited on individual Unsplash photo listings. The photo IDs and direct source URLs are preserved for provenance below.
-
-| Local file | Source |
+| Local file | Original asset URL |
 | --- | --- |
 | `pasta.jpg` | https://images.unsplash.com/photo-1473093295043-cdd812d0e601 |
 | `burger.jpg` | https://images.unsplash.com/photo-1568901346375-23c9450c58cd |
@@ -18,12 +16,8 @@ Photographs are real food/restaurant images sourced from the Unsplash image CDN,
 | `toast.jpg` | https://images.unsplash.com/photo-1541519227354-08fa5d50c44d |
 | `restaurant.jpg` | https://images.unsplash.com/photo-1517248135467-4c7edcad34c4 |
 
-**Pre-release gate:** Verify creator attribution and image-to-menu matching for every photograph before claiming final approval. No reviews or restaurant staff photographs are invented.
+Photos were fetched directly from the Unsplash public image CDN for inclusion in the restaurant concept. Individual authors have not been independently identified from the image CDN URLs, so no author names are invented. The restaurant photo is venue imagery; it does not represent a ZESTRY location.
 
-## Animation and runtime
+**Lottie and illustration art:** supplied as part of the owner’s independently authored Food & Restaurant Lottie Pack, not sourced from Unsplash. F05 retains its original interactive artwork and page-flip behavior.
 
-The F-series animations are owner's previously produced vector Lottie assets, used here only to demonstrate integration; this demo does not grant third parties redistribution rights to the underlying animation artwork.
-
-`assets/vendor/lottie.min.js` — lottie-web (Airbnb/Bodymovin) v5.12.2, MIT license. Library: https://github.com/airbnb/lottie-web ; license: https://github.com/airbnb/lottie-web/blob/master/LICENSE.md .
-
-Fonts: DM Sans and Fraunces served from Google Fonts with system fallbacks; verify font distribution terms before offline packaging.
+**Notes:** Restaurant menus, prices, business identity and guest data are demonstration-only. Brand availability and trademark clearance for “ZESTRY” have not been established.

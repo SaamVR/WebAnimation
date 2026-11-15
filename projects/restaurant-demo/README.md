@@ -1,66 +1,47 @@
 # ZESTRY — Kitchen & Coffee
 
-**Standalone, fictional restaurant website prototype** for the Food & Restaurant animation pack. The site lives at `projects/restaurant-demo/` on branch `feat/restaurant-lottie-bistro-demo-20261116` in `SaamVR/WebAnimation`.
+A standalone **food-and-restaurant website portfolio prototype** built in `SaamVR/WebAnimation`.
 
-**No unrelated project files are changed.** This is not part of Threads, CHAPCHITRA or the existing Creative Motion Lab deployment.
-
-## The customer experience
-
-The design uses the original Food Pack's bright forest, orange, yellow, blue and green palette, responsive editorial typography, real food photographs and purpose-built placement for original vector animations.
-
-- Homepage, illustrated hero with F01, food menu with nine practical dishes and photos, and category filters.
-- Quantity-adjustable ordering cart with browser-local cart state, sample checkout and animated F04 confirmation.
-- Restaurant table date/party/time form, demonstration-only confirmation, intended F07 motion.
-- Coffee section and kitchen section with F02 and F06 motion cards.
-- Button for F05 standalone interactive menu asset, displayed in an isolated iframe once its original player is supplied.
-- Accessible navigation, mobile menu, Escape-to-close dialogs, keyboard focus controls, lazy-loaded photos and reduced-motion support.
-
-All prices, opening plans, restaurant identity and service actions are **illustrative examples**. This website does not accept actual orders, payments or table bookings.
+- **Branch:** `feat/restaurant-lottie-bistro-demo-20261116`
+- **Path:** `projects/restaurant-demo/`
+- **Production boundary:** No imports, code, CSS, asset paths, or build dependencies from Threads, Chapchitra, Creative Motion Lab, or EcomCMS.
+- **Brand concept:** ZESTRY · Kitchen & Coffee · “Freshly made. Happily served.”
+- **Palette:** Forest `#153F31`, orange `#EF5D32`, yellow `#FFBF39`, sky blue `#65C8E8`, mint `#92D9B0`, clean white.
 
 ## Run locally
 
-Requires Node.js 20+ only; no build step:
-
-```bash
+```sh
 cd projects/restaurant-demo
-node scripts/dev-server.cjs
-# open http://127.0.0.1:8766/
+python3 -m http.server 8195
+# http://localhost:8195
 ```
 
-The Lottie player (bodymovin/lottie-web 5.12.2) is bundled locally in `assets/vendor/`. Google Fonts are optional and have system fallbacks.
+No bundler, production database, API tokens, real payment service or reservation vendor required. Images and the Lottie renderer are stored locally; the optional web fonts have system fallbacks.
 
-## Browser QA
+## Functional journeys
 
-Install Puppeteer in your preferred environment, start the server, then run:
+1. Homepage with hero, real food photos and F01 pasta-vector animation.
+2. Filterable 9-item restaurant menu; prices and names are clearly illustrative.
+3. Food cards with add-to-cart, quantity adjustment, remove, subtotal and a sample pickup checkout.
+4. F05 original **interactive restaurant menu** in a self-contained modal: original menu/page-turn motion retained.
+5. F02 Chef in Action, F06-1 chopping animation and other cooking/coffee modules.
+6. Demo-only table booking with date, time, party size and a confirmation scene.
+7. Accessible keyboard/ESC closing, focus handling, responsive layouts and reduced-motion fallback.
 
-```bash
-npm install --no-save puppeteer
-node scripts/smoke.cjs
-```
+No customer payments or real restaurant reservations are transmitted. The order cart uses localStorage only; form entries are held in the browser UI and never sent to a server.
 
-The script covers desktop menu/filter/cart/demo checkout/reservation/interactive-preview behavior plus 390px mobile navigation and overflow. Screenshots and QA JSON are written to `qa-output/` (ignored by git).
+## Animation inventory
 
-## Animation import status
+See [MOTION_INTEGRATION.md](MOTION_INTEGRATION.md) for the exact verified inventory. Only authentic supplied vector Lottie exports may be called “animated”; static fallback drawings are explicitly marked.
 
-| Role | Source | Integration status |
-| --- | --- | --- |
-| F01 pasta hero | `assets/lottie/f01.json` | Imported original approved vector Lottie |
-| F02 chef | `assets/lottie/f02.json` | Imported final vector Lottie |
-| F03 coffee | `assets/lottie/f03.json` | Waiting for original approved export |
-| F04 order flow | `assets/lottie/f04.json` | Imported final breakfast/order journey Lottie |
-| F05 interactive menu | `assets/lottie/f05-interactive.html` | Self-contained original interactive local QA player imported; official dotLottie-web runtime acceptance and final artwork review remain pending |
-| F06-1 chop | `assets/lottie/f06-1.json` | Imported original vector Lottie |
-| F06-2 mix | `assets/lottie/f06-2.json` | Waiting for approved export |
-| F06-3 simmer | `assets/lottie/f06-3.json` | Waiting for approved export |
-| F07 reservation | `assets/lottie/f07.json` | Waiting for complete verified export (do not use partial copy) |
-| F08 signature dish | `assets/lottie/f08.json` | Concept planned; not produced |
+## Source and photo license
 
-**Do not mark the restaurant demo as motion-complete until the owner supplies/reapproves the pending artifacts and official player QA passes.** All missing animations fall back gracefully without breaking navigation or ordering.
+See [CREDITS.md](CREDITS.md) for each local food photograph's original Unsplash asset URL and the Unsplash License. The stock photography illustrates a fictional restaurant, not a real kitchen or product.
 
-## Content and source integrity
+## Validation and release
 
-The nine food images are downloaded from the public Unsplash image CDN. See `CREDITS.md` for source IDs and credit policy. Photography is not generated, and the food titles, descriptions and prices are example menu content—not claims about an operating business.
+Local browser QA verified 9 menu cards, category filtering, cart, checkout, reservation, original F05 canvas loading, and mobile navigation. All approved source projects remain unchanged. A failed/missing Lottie asset falls back gracefully instead of generating a fictitious substitute. **No production release or main-branch merge is authorized by this milestone.**
 
-## Deployment
+## Integration ownership
 
-Deploy `projects/restaurant-demo` as an independent static site root with its own preview. Do not change root `render.yaml`, `site/`, or CHAPCHITRA/Threads hosting. No deployment has been asserted by this README.
+All edits must remain under `projects/restaurant-demo/`. Do not touch root `render.yaml`, repository workflows, `site/`, `projects/chapchitra/`, Threads release branches or unrelated projects. Keep this as a separate hosted application with its own explicit deployment root if a staging URL is provisioned.

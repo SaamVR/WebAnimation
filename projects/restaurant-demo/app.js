@@ -4,7 +4,7 @@ const DISHES = [
   {id:"pancakes",category:"Breakfast",name:"Brioche Pancake Stack",price:16,desc:"Fluffy griddled pancakes, seasonal berries and warm maple syrup.",tags:"Vegetarian",photo:"pancakes.jpg"},
   {id:"toast",category:"Breakfast",name:"Avocado Morning Toast",price:14,desc:"Sourdough toast, ripe avocado, lemon and chili flakes.",tags:"Vegetarian",photo:"toast.jpg"},
   {id:"salad",category:"Starters",name:"Garden Crunch Salad",price:13,desc:"Crisp greens, ripe tomatoes, cucumber and bright citrus dressing.",tags:"Vegetarian",photo:"salad.jpg"},
-  {id:"pasta",category:"Mains",name:"Basil Pomodoro",price:19,desc:"Twirled pasta in slow-cooked tomato sauce with fresh basil.",tags:"House favorite",photo:"pasta.jpg"},
+  {id:"pasta",category:"Mains",name:"Basil Pesto Farfalle",price:19,desc:"Farfalle tossed with bright basil pesto and sweet cherry tomatoes.",tags:"House favorite",photo:"pasta.jpg"},
   {id:"burger",category:"Mains",name:"The Zestry Smash",price:18,desc:"Beef patty, melty cheese, greens and tangy house sauce.",tags:"Best seller",photo:"burger.jpg"},
   {id:"brunch",category:"Mains",name:"Brunch on Toast",price:17,desc:"Golden toasted bread, savory toppings and fresh greens.",tags:"All-day favorite",photo:"toast.jpg"},
   {id:"cake",category:"Desserts",name:"Strawberry Cloud Cake",price:11,desc:"Soft vanilla sponge, whipped cream and strawberries.",tags:"Something sweet",photo:"cake.jpg"},
@@ -60,9 +60,11 @@ function showConfirmation(kind,message){
   el("confirm-kicker").textContent=kind==="order"?"YOUR ORDER, IN MOTION":"YOUR TABLE, IN MOTION";
   el("confirm-title").innerHTML=kind==="order"?"Something <em>delicious.</em>":"See you at <em>the table.</em>";
   el("confirm-message").textContent=message;
-  const host=el("confirm-lottie");host.innerHTML="";
+  const host=el("confirm-lottie");
+  if(host._lottie){host._lottie.destroy();delete host._lottie;}
+  delete host.dataset.motionStatus;host.classList.remove("static-preview");host.innerHTML="";
   host.setAttribute("data-lottie",kind==="order"?"f04":"f07");
-  openDialog("confirm");loadMotion(host,true);
+  openDialog("confirm");loadMotion(host);
 }
 function setupForms(){
   const date=el("res-date");const today=new Date();const localDay=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);date.min=localDay;date.value=localDay;
@@ -114,7 +116,7 @@ async function loadBookExperience(){
     el("book-browse").addEventListener("click",()=>{closeDialogs();categoryJump("All");});
   }
 }
-const MOTION_FILES={"f01":"f01.json","f02":"f02.json","f03":"f03.json","f04":"f04.json","f06-1":"f06-1.json","f06-2":"f06-2.json","f06-3":"f06-3.json","f07":"f07.json","f08":"f08.json"};
+const MOTION_FILES={"f01":"f01.json","f02":"f02.json","f04":"f04.json","f06-1":"f06-1.json"};
 let loaderPromise=null;
 function getLottieEngine(){
  if(loaderPromise)return loaderPromise;
@@ -123,29 +125,50 @@ function getLottieEngine(){
   const s=document.createElement("script");s.src="assets/vendor/lottie.min.js";s.async=true;s.onload=()=>resolve(window.lottie);s.onerror=()=>reject(Error("Lottie runtime unavailable"));document.head.appendChild(s);
  });return loaderPromise;
 }
-async function loadMotion(host,force=false){
- if(prefersLessMotion&&!force){host.dataset.motionStatus="reduced";return;}
- if(host.dataset.motionStatus==="loaded"||host.dataset.motionStatus==="loading")return;
- const name=host.dataset.lottie,file=MOTION_FILES[name];if(!file)return;
+const STATIC_PREVIEWS={
+ "f01":"assets/photos/pasta.jpg","f02":"assets/photos/restaurant.jpg",
+ "f03":"assets/lottie/f03-coffee.svg","f04":"assets/photos/pancakes.jpg",
+ "f06-1":"assets/lottie/f06-1.svg","f06-2":"assets/lottie/f06-2.svg",
+ "f06-3":"assets/lottie/f06-3.svg","f07":"assets/photos/restaurant.jpg",
+ "f08":"assets/photos/pasta.jpg"
+};
+function showStill(host,name,reduced=false){
+ host.innerHTML="";
+ const src=STATIC_PREVIEWS[name];
+ if(src){const still=document.createElement("img");still.className="lottie-still";still.src=src;still.alt=name.toUpperCase()+" static illustration preview";still.loading="lazy";host.appendChild(still);}
+ const badge=document.createElement("span");badge.className="still-caption";
+ badge.textContent=reduced?"STATIC PREVIEW":name.toUpperCase()+" · ILLUSTRATION PREVIEW";
+ host.appendChild(badge);
+ host.dataset.motionStatus=reduced?"reduced":"fallback";
+ host.classList.add("static-preview");
+}
+async function loadMotion(host){
+ if(["loaded","loading","fallback","reduced"].includes(host.dataset.motionStatus))return;
+ const name=host.dataset.lottie,file=MOTION_FILES[name];
+ if(!file){showStill(host,name,prefersLessMotion);return;}
+ if(prefersLessMotion){showStill(host,name,true);return;}
  host.dataset.motionStatus="loading";
  try{
    const response=await fetch("assets/lottie/"+file,{cache:"force-cache"});
-   if(!response.ok)throw Error("Animation asset not bundled");
+   if(!response.ok)throw Error("Animation file unavailable");
    const data=await response.json();
+   if(!data.layers||!data.op)throw Error("Invalid Lottie content");
    const engine=await getLottieEngine();
-   host.innerHTML="";
+   host.innerHTML="";host.classList.remove("static-preview");
    const anim=engine.loadAnimation({container:host,renderer:"svg",loop:host.dataset.loop==="true",autoplay:true,animationData:data,rendererSettings:{preserveAspectRatio:"xMidYMid meet",progressiveLoad:true}});
    host.dataset.motionStatus="loaded";host._lottie=anim;
  }catch{
-   host.dataset.motionStatus="fallback";
-   if(!host.querySelector(".fallback-pill")){const label=document.createElement("span");label.className="fallback-pill";label.textContent=name.toUpperCase().replace("-"," ")+" · Animation awaiting final asset";host.appendChild(label);}
+   showStill(host,name);
  }
 }
 function setupMotion(){
- if(new URLSearchParams(location.search).has('still'))return;
  const spots=[...document.querySelectorAll(".lottie-stage[data-lottie]")].filter(n=>n.id!=="confirm-lottie");
+ if(new URLSearchParams(location.search).has("still")){spots.forEach(n=>showStill(n,n.dataset.lottie,true));return;}
  if("IntersectionObserver" in window){
- const io=new IntersectionObserver(entries=>{for(const ent of entries)if(ent.isIntersecting){loadMotion(ent.target);io.unobserve(ent.target);}}, {rootMargin:"180px"});
+ const io=new IntersectionObserver(entries=>{for(const ent of entries){
+   if(ent.isIntersecting){loadMotion(ent.target);ent.target._lottie?.play();}
+   else if(ent.target._lottie)ent.target._lottie.pause();
+ }},{rootMargin:"120px"});
  spots.forEach(n=>io.observe(n));
  }else spots.forEach(n=>loadMotion(n));
 }
