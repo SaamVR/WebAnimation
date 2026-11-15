@@ -24,7 +24,12 @@ function validate(snapshot){
  assert.equal(snapshot.paperBackground,'rgba(0, 0, 0, 0)','Single SVG must own the white panel, without a separate box');
  assert.equal(snapshot.paperPathFill,'rgb(246, 247, 245)','Continuous paper silhouette must use Gallery White');
  assert.equal(snapshot.headerBottomBorder,'0px','Remove divider beneath special Hero 01 navbar');
- assert.ok(snapshot.tornDiagonal>=125,'One visibly diagonal paper edge required');
+ assert.ok(snapshot.vTipY>=425,'V tip must point below centered logo');
+ assert.ok(snapshot.vTipY-snapshot.leftEdgeY>=230&&snapshot.vTipY-snapshot.rightEdgeY>=230,
+  'Both torn slopes descend toward the single central tip');
+ assert.ok(snapshot.vFilledAtCenter&&snapshot.vEmptyBelow&&snapshot.vOutsideLeft&&snapshot.vOutsideRight,
+  'One white SVG must render a downward V with dark space outside both slopes');
+ assert.ok(snapshot.logoClearsTip,'Full logo must clear tip with at least 22px of paper');
  assert.equal(snapshot.copyAlignment,'left','Hero 01 text must align left');
  assert.ok(snapshot.ctaLeftAligned,'Hero 01 CTA must align with copy');
  assert.ok(snapshot.ctaBelowText,'CTA must remain beneath the copy');
@@ -51,12 +56,19 @@ async function sample(page){
   const paperPath=tear?.querySelector('.hero01-paper-cut');
   const d=paperPath?.getAttribute('d')||'';
   const rightEdgeY=Number(d.match(/^M0 0 H1440 V([\d.]+)/)?.[1]||0);
-  const leftEdgeY=Number(d.match(/Q20 [\d.]+ 0 ([\d.]+) Z$/)?.[1]||0);
+  const leftEdgeY=Number(d.match(/0 ([\d.]+) Z$/)?.[1]||0);
+  const vTipY=Number(d.match(/L721 ([\d.]+)/)?.[1]||0);
+  const filled=(x,y)=>paperPath?.isPointInFill?.(new DOMPoint(x,y))===true;
   const lastCopy=cover?.querySelector('.hero-cover-inner>p:not(.eyebrow)');
   const cta=cover?.querySelector('.hero-cover-inner>a');
   const logo=paper?.querySelector('.hero01-full-logo');
-  const svgYAtCopy=(leftEdgeY+(rightEdgeY-leftEdgeY)*(copyRect?.left||0)/innerWidth);
+  const svgXAtCopy=((copyRect?.left||0)-(edgeRect?.left||0))/(edgeRect?.width||1)*1440;
+  const svgYAtCopy=svgXAtCopy<=720
+   ?leftEdgeY+(vTipY-leftEdgeY)*svgXAtCopy/720
+   :rightEdgeY+(vTipY-rightEdgeY)*(1440-svgXAtCopy)/720;
   const tearAtCopy=(edgeRect?.top||0)+svgYAtCopy*(edgeRect?.height||0)/440;
+  const logoRect=logo?.getBoundingClientRect();
+  const tipScreenY=(edgeRect?.top||0)+vTipY*(edgeRect?.height||0)/440;
   return {
    route:document.body.dataset.page,
    state:document.querySelector('#siteHeader')?.dataset.hero01Mode,
@@ -65,7 +77,12 @@ async function sample(page){
    paperBackground:paper&&getComputedStyle(paper).backgroundColor,
    paperPathFill:paperPath&&getComputedStyle(paperPath).fill,
    headerBottomBorder:getComputedStyle(document.querySelector('#siteHeader')).borderBottomWidth,
-   tornDiagonal:rightEdgeY-leftEdgeY,
+   leftEdgeY,rightEdgeY,vTipY,
+   vFilledAtCenter:filled(721,419),vEmptyBelow:!filled(721,446),
+   vOutsideLeft:!filled(25,210)&&filled(25,120),
+   vOutsideRight:!filled(1415,210)&&filled(1415,120),
+   logoClearsTip:!!(logoRect&&logoRect.bottom<=tipScreenY-22),
+   logoTopMargin:logo&&getComputedStyle(logo).marginTop,
    copyAlignment:eyebrow&&getComputedStyle(eyebrow.parentElement).textAlign,
    ctaLeftAligned:!!(cta&&eyebrow&&Math.abs(cta.getBoundingClientRect().left-eyebrow.getBoundingClientRect().left)<3),
    ctaBelowText:!!(cta&&lastCopy&&cta.getBoundingClientRect().top>=lastCopy.getBoundingClientRect().bottom-2),
@@ -82,7 +99,19 @@ async function sample(page){
    controlBottom:hero?.querySelector('.hero-controls')?.getBoundingClientRect().bottom??0,
    logoAnimation:window.__chapchitraC08?.hero||null,
    fullLinkHidden:document.querySelector('#siteHeader .logo-word--image')?.getAttribute('aria-hidden')==='true',
-   heroLogoInert:document.querySelector('#hero .hero01-full-logo')?.inert??null
+   heroLogoInert:document.querySelector('#hero .hero01-full-logo')?.inert??null,
+   navWordmark:(()=>{
+    const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
+    if(!link||!img)return {visible:false,loaded:false,reason:'missing'};
+    const outer=getComputedStyle(link),inner=getComputedStyle(img),r=link.getBoundingClientRect();
+    return {visible:outer.visibility==='visible'&&Number(outer.opacity)>.95&&
+       inner.visibility==='visible'&&Number(inner.opacity)>.95&&r.width>70,
+      loaded:img.complete&&img.naturalWidth>100,
+      src:new URL(img.currentSrc||img.src,location.href).pathname,
+      playing:link.classList.contains('c08-navbar-playing'),
+      ariaHidden:link.getAttribute('aria-hidden'),tabIndex:link.tabIndex,
+      width:r.width,opacity:outer.opacity};
+   })()
   };
  });
 }
