@@ -2264,3 +2264,181 @@ body[data-page="artists-edit"] #app > .site-header {
  #app .bag-count .cc-bag-stamps img{width:18px;height:18px}
  #app .bag-count .cc-bag-stamps img+img{margin-left:-3px}
 }
+
+/* CHAPCHITRA Hero 01 editorial paper. One organic filled SVG silhouette,
+   not a square white block plus a second torn overlay. The sticky header,
+   original full badge/wordmark, and paper SVG remain separate elements.
+   #1C241D is explicitly approved for this Hero 01 only. */
+#app > .site-header .logo-word.logo-word--image{
+  transition:opacity .22s ease,visibility .22s ease;
+}
+body[data-page="home"] #app > .site-header[data-hero01-mode="special"]{
+  background:var(--bg);
+  border-bottom:0;
+  box-shadow:none;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-word.logo-word--image{
+  opacity:0;visibility:hidden;pointer-events:none;
+}
+/* Explicitly return the ONE original navbar image/link when no longer
+   looking at Hero 01. The C08 hover-only playing class still controls
+   image/overlay swapping, so its approved animation remains available. */
+#app > .site-header:not([data-hero01-mode="special"]) .logo-word.logo-word--image{
+  opacity:1;visibility:visible;pointer-events:auto;
+}
+#app > .site-header:not([data-hero01-mode="special"]) .logo-word.logo-word--image:not(.c08-navbar-playing)>img{
+  visibility:visible;opacity:1;
+}
+#hero{
+  /* Preserve the approved continuous handmade SVG; shorten only its
+     rendered height. Desktop 1440x900 scroll-top apex is 44–45vh. */
+  --hero01-paper-height:306px;
+  --hero01-copy-top:295px;
+}
+#hero .hero-cover{
+  background:#1C241D;
+  color:var(--bg);
+}
+#hero:has(.hero-cover:not([hidden])) .hero-track{
+  height:clamp(718px,79vh,850px);
+  min-height:718px;
+}
+#hero .hero-cover .hero-cover-inner{
+  justify-content:flex-start;
+  align-items:flex-start;
+  text-align:left;
+  padding-top:var(--hero01-copy-top);
+  padding-bottom:95px;
+  gap:6px;
+}
+#hero .hero-cover .hero-cover-inner .eyebrow{
+  margin:0 0 5px;
+  align-self:flex-start;
+}
+#hero .hero-cover .hero-cover-inner h1{
+  max-width:min(520px,100%);
+  margin:3px 0 7px;
+  text-align:left;
+}
+#hero .hero-cover .hero-cover-inner>p:not(.eyebrow){
+  max-width:min(485px,100%);
+  margin:0 0 13px;
+  text-align:left;
+  align-self:flex-start;
+}
+#hero .hero-cover .hero-cover-inner>a{
+  align-self:flex-start;
+  margin-left:0;
+  margin-right:auto;
+}
+#hero .hero01-paper-panel{
+  position:absolute;
+  top:0;left:0;right:0;
+  height:var(--hero01-paper-height);
+  z-index:4;
+  background:transparent;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  isolation:isolate;
+  pointer-events:none;
+}
+#hero .hero01-paper-edge{
+  position:absolute;inset:0;
+  display:block;
+  width:100%;height:100%;
+  pointer-events:none;
+  overflow:visible;
+  shape-rendering:geometricPrecision;
+  z-index:1;
+  /* The crisp offset silhouette is its own SVG path; no filtering. */
+  filter:none;
+}
+#hero .hero01-paper-edge .hero01-paper-shadow{
+  fill:var(--color-mushroom-gray);
+  stroke:none;
+}
+#hero .hero01-paper-edge .hero01-paper-cut{
+  fill:var(--bg);
+  stroke:none;
+}
+#hero .hero01-full-logo{
+  position:relative;z-index:2;
+  display:block;
+  flex:0 0 auto;
+  width:clamp(205.2px,20.7vw,275.4px); /* 90% of original wrapper at every desktop width */
+  max-width:calc(100% - 36px);
+  margin-top:-7px; /* preserve full approved fringe below the sticky navbar; paper rises instead */
+  line-height:0;
+  pointer-events:auto;
+}
+#hero .hero01-full-logo>img.hero-brand-lockup{
+  display:block;width:100%;height:auto;
+  max-width:100%;object-fit:contain;
+}
+@media(max-width:950px){
+  #hero{--hero01-paper-height:315px;--hero01-copy-top:300px}
+  #hero .hero01-full-logo{margin-top:-5px}
+}
+@media(max-width:740px){
+  #hero{--hero01-paper-height:275px;--hero01-copy-top:302px}
+  #hero .hero01-full-logo{
+    width:clamp(181.8px,53.1vw,221.4px); /* exactly 90% on mobile; C08 stage follows image size */
+    margin-top:0; /* keep the complete original badge clear of mobile navbar */
+  }
+  #hero:has(.hero-cover:not([hidden])) .hero-track{
+    height:720px;min-height:720px;
+  }
+  #hero .hero-cover .hero-cover-inner{
+    padding-bottom:84px;
+    gap:5px;
+  }
+  #hero .hero-cover .hero-cover-inner h1{font-size:clamp(26px,7vw,34px)}
+}
+@media(max-width:365px){
+  #hero{--hero01-paper-height:250px;--hero01-copy-top:277px}
+  #hero .hero01-full-logo{margin-top:1px}
+  #hero:has(.hero-cover:not([hidden])) .hero-track{
+    height:622px;min-height:622px;
+  }
+  #hero .hero-cover .hero-cover-inner{padding-bottom:76px}
+}
+@media(prefers-reduced-motion:reduce){
+  #app > .site-header .logo-word.logo-word--image{transition:none!important}
+}
+
+/* The responsive hero track is taller than its content, and legacy mobile
+   rules size slides intrinsically. Stretch ONLY active Hero 01 to the whole
+   track so its forest canvas continues behind the five slider controls. */
+#hero:has(.hero-cover:not([hidden])) .hero-slide.hero-cover{
+  height:100%;
+  min-height:100%;
+}
+#hero:has(.hero-cover:not([hidden])) .hero-cover-inner{
+  height:100%;
+  min-height:0;
+}
+
+/* Switching back to the standard navbar must not leave two visible logos.
+   Keep the torn-paper background and document flow stable during scrolling. */
+#hero .hero01-full-logo{transition:opacity .2s ease}
+#hero[data-hero01-mode="standard"] .hero01-full-logo{
+  opacity:0;
+  pointer-events:none;
+}
+@media(prefers-reduced-motion:reduce){
+ #hero .hero01-full-logo{transition:none!important}
+}
+
+/* WebKit first-paint safeguard. The organic inline SVG edge can leave a
+   stale 0,0 dark tile in WebKit unless the whole Hero owns a compositor layer.
+   A CSS-only backface hint was insufficient in the real built browser.
+   The root is not an ancestor of the sticky site navbar; motion keyframes,
+   artwork and DOM layering remain unchanged. */
+#hero{
+  transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+}

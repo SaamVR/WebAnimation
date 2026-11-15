@@ -63,9 +63,9 @@ test('dark-surface derived SVG has the same original vector path geometry and ex
  assert.ok(!/#232323|#293D2D|#F6F7F5|#9DC39F/.test(inverse));
  assert.ok(inverse.includes('#E4E3DE')&&inverse.includes('#8A503B'));
 });
-test('original full hero lockup and navbar raster remain the immediate static fallbacks',async()=>{
+test('original full hero lockup on paper and navbar raster remain immediate static fallbacks',async()=>{
  const app=await text('src/app.mjs');
- assert.match(app,/src="\/assets\/chapchitra-full-on-dark-original-patch-cream-terra-wordmark\.webp"/);
+ assert.match(app,/src="\/assets\/chapchitra-full\.webp"/);
  assert.match(app,/class="hero-brand-lockup"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);

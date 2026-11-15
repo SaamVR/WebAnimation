@@ -55,3 +55,21 @@
  #hero .c08-hero-trigger{display:none!important}
  #app > .site-header .logo-word--image>img{visibility:visible!important}
 }
+
+/* Hero 01 places the SAME C08 stage on the full original badge image in
+   the separate white paper panel, never rebuilding the approved timeline. */
+#hero .hero01-full-logo .c08-hero-stage{
+  position:absolute;z-index:3;pointer-events:none;display:block;overflow:visible;
+}
+#hero .hero01-full-logo.c08-hero-shown>img.hero-brand-lockup{
+  clip-path:inset(0 0 26.35% 0);
+}
+#hero .hero01-full-logo.c08-hero-shown .c08-hero-wordmark{
+  visibility:visible;
+}
+#hero .hero01-full-logo .c08-hero-trigger:focus-visible{
+  outline-color:var(--color-press-green);
+}
+@media(prefers-reduced-motion:reduce){
+ #hero .hero01-full-logo>img.hero-brand-lockup{clip-path:none!important}
+}

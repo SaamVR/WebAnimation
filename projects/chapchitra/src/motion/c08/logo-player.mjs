@@ -80,7 +80,7 @@ function ensureC08Stylesheet() {
   document.head.appendChild(link);
 }
 
-export function mountC08({navbar,heroImage=null,heroStage=null,onHeroHolding=()=>{}}={}) {
+export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark',onHeroHolding=()=>{}}={}) {
   if(navbar||heroImage)ensureC08Stylesheet();
   const nav={ready:false,playing:false,loadRequested:false,completed:0,loaded:false,hovered:false,armed:true,instance:null};
   const hero={ready:false,playing:false,completed:0,autoplay:0,instance:null,failed:false,stage:null,trigger:null};
@@ -102,7 +102,11 @@ export function mountC08({navbar,heroImage=null,heroStage=null,onHeroHolding=()=
           nav.playing=false;
           nav.completed++;
           nav.instance.goToAndStop(DURATION_FRAMES-1,true);
-          if(!nav.hovered)showStatic();
+          // The final frame is not a replacement for the approved compact
+          // raster wordmark. Even while the pointer remains hovered, restore
+          // the original static identity when playback completes; a new
+          // pointerleave/enter still rearms the SAME approved C08 sequence.
+          showStatic();
         });
         return nav.instance;
       }catch(error){
@@ -203,7 +207,7 @@ export function mountC08({navbar,heroImage=null,heroStage=null,onHeroHolding=()=
       if(heroPreparing||hero.ready||REDUCED.matches)return;
       heroPreparing=true;
       try{
-        hero.instance=await loadAnimation(slot,HERO);
+        hero.instance=await loadAnimation(slot,heroVariant==='paper'?SOURCE:HERO);
         hero.ready=true;
         hero.instance.addEventListener('complete',finish);
         if(REDUCED.matches){onHeroHolding(false);return}
