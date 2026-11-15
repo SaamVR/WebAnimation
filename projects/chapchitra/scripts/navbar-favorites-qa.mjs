@@ -20,7 +20,8 @@ const browser=await chromium.launch({headless:true});
 try{
  for(const profile of profiles){
   const context=await browser.newContext({viewport:{width:profile.width,height:profile.height},deviceScaleFactor:1,reducedMotion:'reduce'});
-  await context.addInitScript(()=>{localStorage.removeItem('chapchitra-v3-sample-favorites')});
+  // A fresh isolated browser context starts with empty favorites; do not clear
+  // storage on every navigation, since reload persistence is part of this QA.
   const page=await context.newPage();
   const errors=[];
   page.on('pageerror',err=>errors.push(err.message));
