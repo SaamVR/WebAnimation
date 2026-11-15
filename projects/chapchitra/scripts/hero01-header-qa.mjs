@@ -35,6 +35,9 @@ function validate(snapshot){
  assert.ok(snapshot.ctaLeftAligned,'Hero 01 CTA must align with copy');
  assert.ok(snapshot.ctaBelowText,'CTA must remain beneath the copy');
  assert.ok(snapshot.logoCentered,'Full original logo must be horizontally centered in paper');
+ assert.ok(snapshot.logoUniform90,'Original full lockup width must equal exactly 90% of prior responsive width');
+ assert.ok(snapshot.logoImageMatchesBox,'Original patch and wordmark must scale together at native aspect ratio');
+ assert.ok(snapshot.logoRaised,'Entire logo must shift upward, not move patch and wordmark independently');
  assert.equal(snapshot.oldPaperImages,0,'No old placeholder background image');
  assert.equal(snapshot.paperSVGs,1,'One independent organic tear SVG');
  assert.equal(snapshot.navLinks,4,'Preserve four desktop nav links');
@@ -94,6 +97,23 @@ async function sample(page){
    tipScreenY,
    copyTop:copyRect?.top,
    logoTopMargin:logo&&getComputedStyle(logo).marginTop,
+   logoUniform90:!!(logoRect&&Math.abs(logoRect.width-
+    0.9*(innerWidth<=740
+      ?Math.min(246,Math.max(202,innerWidth*0.59))
+      :Math.min(306,Math.max(228,innerWidth*0.23))))<1.2),
+   logoImageMatchesBox:(()=>{
+     const img=logo?.querySelector('img.hero-brand-lockup'),ir=img?.getBoundingClientRect();
+     return !!(logoRect&&ir&&Math.abs(ir.width-logoRect.width)<1.2&&
+       Math.abs(ir.height-ir.width*1052/1250)<2);
+   })(),
+   logoRaised:!!(logo&&Number.parseFloat(getComputedStyle(logo).marginTop)<
+     (innerWidth<=365?7:innerWidth<=740?6:innerWidth<=950?4:3)), 
+   logoStageAligned:(()=>{
+    const imgRect=logo?.querySelector('img.hero-brand-lockup')?.getBoundingClientRect();
+    const stageRect=logo?.querySelector('.c08-hero-stage')?.getBoundingClientRect();
+    return !!(imgRect&&stageRect&&stageRect.width>0&&Math.abs(imgRect.left-stageRect.left)<2&&
+      Math.abs(imgRect.top-stageRect.top)<2&&Math.abs(imgRect.width-stageRect.width)<2);
+   })(),
    copyAlignment:eyebrow&&getComputedStyle(eyebrow.parentElement).textAlign,
    ctaLeftAligned:!!(cta&&eyebrow&&Math.abs(cta.getBoundingClientRect().left-eyebrow.getBoundingClientRect().left)<3),
    ctaBelowText:!!(cta&&lastCopy&&cta.getBoundingClientRect().top>=lastCopy.getBoundingClientRect().bottom-2),
@@ -159,8 +179,8 @@ for(const t of profiles){
  assert.equal(initial.heroLogoInert,false);
  if(t.width<=740)assert.equal(initial.copyBelowTip,true,
   'Mobile/narrow V tip must NOT overlap the eyebrow, heading or editorial copy');
- if(t.width>=1080)assert.ok(Number.parseFloat(initial.logoTopMargin)<=4,
-  'Original full logo must be raised approximately 25px');
+ if(t.width>=1080)assert.ok(Number.parseFloat(initial.logoTopMargin)<0,
+  'Desktop full logo must move upward as one unit with clear sticky-nav separation');
  if(t.width<=365)assert.ok(initial.controlBottom<=t.height+1,
   'Narrow-screen Hero 01 slider controls must be visible in the initial viewport');
  await page.screenshot({path:resolve(out,t.name+'-special.png')});
@@ -168,6 +188,7 @@ for(const t of profiles){
  const afterC08=await sample(page);
  assert.equal(afterC08.logoAnimation.failed,false,'Reuse exact approved C08 timeline');
  assert.equal(afterC08.logoAnimation.autoplay,1,'Original C08 hero autoplay fires once');
+ assert.ok(afterC08.logoStageAligned,'Approved C08 Wordmark Reprint overlay must track the uniformly scaled original lockup');
  await page.screenshot({path:resolve(out,t.name+'-logo-complete.png')});
  await page.evaluate(()=>window.scrollTo({top:185,behavior:'instant'}));
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
