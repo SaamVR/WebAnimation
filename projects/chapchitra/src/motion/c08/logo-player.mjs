@@ -102,7 +102,11 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
           nav.playing=false;
           nav.completed++;
           nav.instance.goToAndStop(DURATION_FRAMES-1,true);
-          if(!nav.hovered)showStatic();
+          // The final frame is not a replacement for the approved compact
+          // raster wordmark. Even while the pointer remains hovered, restore
+          // the original static identity when playback completes; a new
+          // pointerleave/enter still rearms the SAME approved C08 sequence.
+          showStatic();
         });
         return nav.instance;
       }catch(error){
