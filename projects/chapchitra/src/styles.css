@@ -2282,6 +2282,15 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"]{
 body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-word.logo-word--image{
   opacity:0;visibility:hidden;pointer-events:none;
 }
+/* Explicitly return the ONE original navbar image/link when no longer
+   looking at Hero 01. The C08 hover-only playing class still controls
+   image/overlay swapping, so its approved animation remains available. */
+#app > .site-header:not([data-hero01-mode="special"]) .logo-word.logo-word--image{
+  opacity:1;visibility:visible;pointer-events:auto;
+}
+#app > .site-header:not([data-hero01-mode="special"]) .logo-word.logo-word--image:not(.c08-navbar-playing)>img{
+  visibility:visible;opacity:1;
+}
 #hero{
   --hero01-paper-height:440px;
   --hero01-copy-top:355px;
@@ -2357,7 +2366,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   flex:0 0 auto;
   width:clamp(228px,23vw,306px);
   max-width:calc(100% - 36px);
-  margin-top:clamp(18px,2.1vw,28px);
+  margin-top:3px; /* raised ~25px at desktop; full original lockup unchanged */
   line-height:0;
   pointer-events:auto;
 }
@@ -2367,12 +2376,13 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(max-width:950px){
   #hero{--hero01-paper-height:390px;--hero01-copy-top:325px}
+  #hero .hero01-full-logo{margin-top:4px}
 }
 @media(max-width:740px){
   #hero{--hero01-paper-height:360px;--hero01-copy-top:290px}
   #hero .hero01-full-logo{
     width:clamp(202px,59vw,246px);
-    margin-top:20px;
+    margin-top:6px; /* 14px lift on small screens */
   }
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:720px;min-height:720px;
@@ -2385,6 +2395,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(max-width:365px){
   #hero{--hero01-paper-height:340px;--hero01-copy-top:263px}
+  #hero .hero01-full-logo{margin-top:7px}
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:622px;min-height:622px;
   }
