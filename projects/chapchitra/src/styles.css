@@ -2354,7 +2354,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(max-width:365px){
   #hero{--hero01-paper-depth:235px;--hero01-tear-height:70px}
-  #hero:has(.hero-cover:not([hidden])) .hero-track{height:710px;min-height:710px}
+  #hero:has(.hero-cover:not([hidden])) .hero-track{height:622px;min-height:622px}
   #hero .hero-cover .hero-cover-inner{padding-bottom:74px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -2382,4 +2382,13 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(prefers-reduced-motion:reduce){
  #hero .hero01-full-logo{transition:none!important}
+}
+
+/* WebKit first-paint safeguard: force a local compositing surface for the
+   tall Hero 01 paper/forest composition. Unlike transform/will-change, this
+   does NOT establish a transformed containing block or shift sticky nav.
+   Confirmed to prevent the 0,0 dark raster tile in iPad WebKit QA. */
+#hero:has(.hero-cover:not([hidden])){
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
