@@ -67,12 +67,18 @@ test('dedicated UI QA exercises desktop/mobile initial, selected, deselected, pe
  assert.match(wf,/perf-results\/shared-stage-navbar-favorites/);
 });
 
-test('dedicated isolated GitHub Actions QA builds localhost and never deploys',()=>{
- const wf=read('../../.github/workflows/chapchitra-navbar-favorites-qa.yml');
+test('dedicated isolated GitHub Actions job builds localhost, preserves shared workflow gates',()=>{
+ const wf=read('../../.github/workflows/chapchitra-shared-staging.yml');
  assert.match(wf,/workflow_dispatch:/);
+ assert.match(wf,/  navbar-favorites-focused:/);
+ assert.match(wf,/name: Navbar favorites isolated Chromium\/WebKit QA/);
+ assert.match(wf,/startsWith\(github\.ref, 'refs\/heads\/feature\/chapchitra-navbar-favorite-colors-'/);
  assert.match(wf,/npm run check/);
  assert.match(wf,/node scripts\/navbar-favorites-qa\.mjs/);
  assert.match(wf,/playwright install --with-deps chromium webkit/);
  assert.match(wf,/127\.0\.0\.1:4272/);
- assert.doesNotMatch(wf,/\bdeploy\b|\bpublish\b|\bmerge\b/i);
+ assert.match(wf,/chapchitra-navbar-favorites-focused/);
+ assert.match(wf,/  browser-smoke:/,'Do not replace other browser QA');
+ assert.match(wf,/  c02-navigation-gate:/,'Do not replace animation regression gates');
+ assert.doesNotMatch(wf,/wrangler deploy|render deploy|upload-pages-artifact/i);
 });

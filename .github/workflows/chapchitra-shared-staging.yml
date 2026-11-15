@@ -151,3 +151,51 @@ jobs:
             node scripts/c02-browser-qa-v2.cjs
             node scripts/c02-adaptive-qa.cjs
           done
+
+  navbar-favorites-focused:
+    name: Navbar favorites isolated Chromium/WebKit QA
+    if: startsWith(github.ref, 'refs/heads/feature/chapchitra-navbar-favorite-colors-')
+    needs: source-integrity
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - name: Checkout selected feature source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Node.js 22 + npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Native contracts + isolated candidate build
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          npm run check
+          node scripts/build.mjs
+      - name: Install Chromium and WebKit test browsers
+        working-directory: projects/chapchitra
+        run: npx playwright install --with-deps chromium webkit
+      - name: Four-profile navbar and favorite-state browser QA
+        working-directory: projects/chapchitra
+        env:
+          CC_QA_ROOT: http://127.0.0.1:4272
+          CC_QA_OUT: perf-results/navbar-favorites-focused
+        shell: bash
+        run: |
+          set -euo pipefail
+          PORT=4272 npm run preview >/tmp/chapchitra-navbar-favorites-preview.log 2>&1 &
+          for n in $(seq 1 60); do
+            curl -fsS http://127.0.0.1:4272/shop/ >/dev/null && break
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4272/shop/ >/dev/null
+          node scripts/navbar-favorites-qa.mjs
+      - name: Upload exact-HEAD desktop/mobile/iPad screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: chapchitra-navbar-favorites-focused
+          path: projects/chapchitra/perf-results/navbar-favorites-focused/
+          if-no-files-found: error
+          retention-days: 14
