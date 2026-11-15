@@ -70,7 +70,7 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
  assert.match(browser,/snapshot\.vTipY-snapshot\.leftEdgeY>=230/);
  assert.match(browser,/snapshot\.vOutsideLeft&&snapshot\.vOutsideRight/);
  assert.match(browser,/snapshot\.logoClearsTip/);
- assert.match(css,/margin-top:3px/);
+ assert.match(css,/margin-top:-7px/);
  assert.match(browser,/scrolled\.navWordmark\.visible,true/);
  assert.match(browser,/slide02\.navWordmark\.visible,true/);
  assert.match(browser,/other\.wordmark\.src/);
@@ -93,4 +93,25 @@ test('visual evidence waits for real full logo decode and completed C02 cover/re
  assert.match(browser,/!document\.querySelector\('#c02-loader'\)/);
  assert.match(browser,/!document\.documentElement\.classList\.contains\('c02-pending'\)/);
  assert.match(browser,/\{timeout:20000\}\);/);
+});
+
+test('complete original identity scales exactly 90%, is raised as one unit, and C08 overlay follows',()=>{
+ assert.match(css,/width:clamp\(205\.2px,20\.7vw,275\.4px\)/);
+ assert.match(css,/width:clamp\(181\.8px,53\.1vw,221\.4px\)/);
+ assert.match(css,/margin-top:-7px/);
+ assert.match(browser,/snapshot\.logoUniform90/);
+ assert.match(browser,/snapshot\.logoImageMatchesBox/);
+ assert.match(browser,/snapshot\.logoRaised/);
+ assert.match(browser,/afterC08\.logoStageAligned/);
+});
+test('full owner review records every slider, both real C02 routes and logo states',()=>{
+ for(const scene of ["'slide03.png'","'slide04.png'","'slide05.png'","'journal.png'"]) {
+  const name=scene.replace(/'/g,'');
+  assert.ok(browser.includes(name)||browser.includes("slide'+name"));
+ }
+ for(const event of ["'03'","'04'","'05'","'/journal/'","'/shop/'"])assert.ok(browser.includes(event));
+ assert.match(browser,/Home -> Journal via C02/);
+ assert.match(browser,/Home -> Shop via C02/);
+ assert.match(browser,/scroll top: full logo restored/);
+ assert.match(browser,/recordVideo/);
 });
