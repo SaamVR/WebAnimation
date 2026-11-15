@@ -137,6 +137,11 @@ for(const t of profiles){
  await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseenter')));
  const initial=await sample(page);
  validate(initial);
+ assert.equal(initial.navWordmark.visible,false,'Compact wordmark hidden only for Hero 01 at top');
+ assert.equal(initial.fullLinkHidden,true,'Compact logo removed from special header accessibility tree');
+ assert.equal(initial.heroLogoInert,false);
+ if(t.width>=1080)assert.ok(Number.parseFloat(initial.logoTopMargin)<=4,
+  'Original full logo must be raised approximately 25px');
  if(t.width<=365)assert.ok(initial.controlBottom<=t.height+1,
   'Narrow-screen Hero 01 slider controls must be visible in the initial viewport');
  await page.screenshot({path:resolve(out,t.name+'-special.png')});
@@ -147,7 +152,15 @@ for(const t of profiles){
  await page.screenshot({path:resolve(out,t.name+'-logo-complete.png')});
  await page.evaluate(()=>window.scrollTo({top:185,behavior:'instant'}));
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
+ await page.waitForFunction(()=>{
+  const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
+  return link&&img&&getComputedStyle(link).visibility==='visible'&&Number(getComputedStyle(link).opacity)>.95&&
+    img.complete&&img.naturalWidth>100&&getComputedStyle(img).visibility==='visible';
+ },null,{timeout:3500});
  const scrolled=await sample(page);
+ assert.equal(scrolled.navWordmark.visible,true,'Scroll restores visible compact raster');
+ assert.equal(scrolled.navWordmark.loaded,true,'Navbar image decoded');
+ assert.equal(scrolled.navWordmark.src,'/assets/chapchitra-wordmark.webp');
  assert.equal(scrolled.fullLinkHidden,false,'Standard navbar logo accessible on scroll');
  assert.equal(scrolled.heroLogoInert,true,'No duplicate or focusable logo below sticky navbar');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)<.05,{},{timeout:2000});
@@ -156,8 +169,14 @@ for(const t of profiles){
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  await page.locator('#hero [data-slide-to="1"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
+ await page.waitForFunction(()=>{
+  const el=document.querySelector('#siteHeader .logo-word--image');
+  return el&&getComputedStyle(el).visibility==='visible'&&Number(getComputedStyle(el).opacity)>.95;
+ },null,{timeout:3500});
  const slide02=await sample(page);
  assert.equal(slide02.slide,'1','Hero 02 active');
+ assert.equal(slide02.navWordmark.visible,true,'Hero 02 restores original compact wordmark');
+ assert.equal(slide02.navWordmark.loaded,true,'Hero 02 compact wordmark decoded');
  assert.ok(await page.locator('#hero .hero-slide[data-slide="1"]').isVisible());
  await page.screenshot({path:resolve(out,t.name+'-slide02.png')});
  await page.locator('#hero [data-slide-to="4"]').evaluate(node=>node.click());
@@ -167,6 +186,7 @@ for(const t of profiles){
  const returned=await sample(page);
  assert.equal(returned.slide,'0');
  assert.equal(returned.heroLogoInert,false,'Large original logo regains accessibility at top');
+ assert.equal(returned.navWordmark.visible,false,'Hero 01 restores large-only logo presentation');
  await page.screenshot({path:resolve(out,t.name+'-return.png')});
  // Standard header must be untouched on every other page.
  await page.goto(new URL('/shop/',origin).href,{waitUntil:'domcontentloaded',timeout:30000});
@@ -175,7 +195,16 @@ for(const t of profiles){
   mode:document.querySelector('#siteHeader')?.dataset.hero01Mode||'standard',
   paper:document.querySelector('.hero01-paper-panel')!==null,
   navLinks:document.querySelectorAll('#siteHeader .nav-center>a').length,
-  navArt:document.querySelectorAll('#siteHeader .nav-actions img.cc-nav-art').length
+  navArt:document.querySelectorAll('#siteHeader .nav-actions img.cc-nav-art').length,
+  wordmark:(()=>{
+   const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
+   if(!link||!img)return {loaded:false,visible:false};
+   return {loaded:img.complete&&img.naturalWidth>100,
+    visible:getComputedStyle(link).visibility==='visible'&&
+     Number(getComputedStyle(link).opacity)>.95&&getComputedStyle(img).visibility==='visible',
+    src:new URL(img.currentSrc||img.src).pathname,
+    ariaHidden:link.getAttribute('aria-hidden')};
+  })()
  }));
  assert.equal(other.mode,'standard');assert.equal(other.paper,false);
  assert.equal(other.navLinks,4);assert.equal(other.navArt,4);
