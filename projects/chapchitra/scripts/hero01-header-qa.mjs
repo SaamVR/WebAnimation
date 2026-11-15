@@ -319,13 +319,56 @@ for(const t of profiles){
   assert.equal(await link.locator('img').evaluate(n=>getComputedStyle(n).visibility),'visible',
     'C08 must rearm, replay and restore original logo a second time');
  }
+ reviewTimeline.push({event:'Home -> Shop via C02',route:'shop',compactVisible:other.wordmark.visible});
+ await page.waitForTimeout(650);
+ // Return via the ONE original compact navbar Home link.
+ await page.locator('#siteHeader .logo-word--image').click();
+ await page.waitForURL(u=>u.pathname==='/',{timeout:30000});
+ await page.locator('#hero .hero01-full-logo>img.hero-brand-lockup').evaluate(img=>img.decode());
+ await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special',null,{timeout:6000});
+ const homeRestored=await sample(page);
+ assert.equal(homeRestored.navWordmark.visible,false,'Home restores full logo before Journal transition');
+ assert.equal(homeRestored.heroLogoInert,false);
+ reviewTimeline.push({event:'Shop -> Home: full logo restored',route:'home',scale90:homeRestored.logoUniform90});
+ await page.screenshot({path:resolve(out,t.name+'-home-before-journal.png')});
+ await page.waitForTimeout(650);
+ // Real Home -> Journal click with approved C02 navigation; mobile uses drawer.
+ const journalLink=page.locator('#siteHeader .nav-center>a[href="/journal/"]');
+ if(await journalLink.isVisible())await journalLink.click();
+ else{
+  await page.locator('#menuButton').click();
+  await page.locator('#mobileNav a[href="/journal/"]').click();
+ }
+ await page.waitForURL(u=>u.pathname==='/journal/',{timeout:30000});
+ await page.waitForFunction(()=>!document.querySelector('#c02-loader')&&
+   !document.documentElement.classList.contains('c02-pending'),null,{timeout:20000});
+ await page.waitForFunction(()=>{
+   const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
+   return !!(img&&img.complete&&img.naturalWidth>100&&
+     getComputedStyle(link).visibility==='visible'&&Number(getComputedStyle(link).opacity)>.95&&
+     getComputedStyle(img).visibility==='visible');
+ },null,{timeout:6000});
+ const journal=await page.evaluate(()=>{
+  const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
+  return {route:document.body.dataset.page,logoVisible:getComputedStyle(link).visibility==='visible'&&
+   Number(getComputedStyle(link).opacity)>.95&&getComputedStyle(img).visibility==='visible',
+   logoLoaded:img.complete&&img.naturalWidth>100,logoSource:new URL(img.currentSrc||img.src).pathname};
+ });
+ assert.equal(journal.route,'journal');
+ assert.ok(journal.logoVisible&&journal.logoLoaded,'Journal must retain original compact navbar wordmark');
+ assert.equal(journal.logoSource,'/assets/chapchitra-wordmark.webp');
+ reviewTimeline.push({event:'Home -> Journal via C02',route:journal.route,compactVisible:journal.logoVisible});
+ await page.screenshot({path:resolve(out,t.name+'-journal.png')});
+ await page.waitForTimeout(700);
  await context.close();
  const video=await page.video().path();
  await copyFile(video,resolve(out,t.name+'-transitions.webm'));
  await browser.close();
  assert.deepEqual(errors,[],t.name+' browser errors');
- result.push({profile:t.name,initial,afterC08,scrolled,slide02,returned,other,errors,
-  screenshots:[t.name+'-special.png',t.name+'-logo-complete.png',t.name+'-scrolled.png',t.name+'-slide02.png',t.name+'-return.png',t.name+'-shop.png'],
+ result.push({profile:t.name,initial,afterC08,scrolled,slide02,returned,other,homeRestored,journal,reviewTimeline,errors,
+  screenshots:[t.name+'-special.png',t.name+'-logo-complete.png',t.name+'-scrolled.png',t.name+'-scroll-restored.png',
+   t.name+'-slide02.png',t.name+'-slide03.png',t.name+'-slide04.png',t.name+'-slide05.png',
+   t.name+'-return.png',t.name+'-shop.png',t.name+'-home-before-journal.png',t.name+'-journal.png'],
   recording:t.name+'-transitions.webm'});
  console.log('HERO01_OK',t.name,'C08',afterC08.logoAnimation.completed,'tears',initial.tearPaths);
 }
