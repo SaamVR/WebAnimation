@@ -208,13 +208,34 @@ for(const t of profiles){
  }));
  assert.equal(other.mode,'standard');assert.equal(other.paper,false);
  assert.equal(other.navLinks,4);assert.equal(other.navArt,4);
+ assert.deepEqual([other.wordmark.loaded,other.wordmark.visible,other.wordmark.ariaHidden],
+  [true,true,null],'Shop must render the original compact wordmark and accessible link');
+ assert.equal(other.wordmark.src,'/assets/chapchitra-wordmark.webp');
+ await page.screenshot({path:resolve(out,t.name+'-shop.png')});
+ if(t.name==='desktop-chromium'){
+  // The original C08 hover must still play. Completion must restore the
+  // ORIGINAL compact image even if the pointer remains above the link.
+  const link=page.locator('#siteHeader .logo-word--image');
+  await page.waitForFunction(()=>!!window.__chapchitraC08?.navbar,null,{timeout:10000});
+  await link.hover();
+  await page.waitForFunction(()=>window.__chapchitraC08?.navbar?.completed>=1,null,{timeout:18000});
+  await page.waitForFunction(()=>!document.querySelector('#siteHeader .logo-word--image').classList.contains('c08-navbar-playing'));
+  assert.equal(await link.locator('img').evaluate(n=>getComputedStyle(n).visibility),'visible',
+    'C08 completed hover must restore compact image while pointer remains hovered');
+  await page.screenshot({path:resolve(out,'desktop-chromium-shop-hover-restored.png')});
+  await page.mouse.move(2,320);
+  await link.hover();
+  await page.waitForFunction(()=>window.__chapchitraC08?.navbar?.completed>=2,null,{timeout:18000});
+  assert.equal(await link.locator('img').evaluate(n=>getComputedStyle(n).visibility),'visible',
+    'C08 must rearm, replay and restore original logo a second time');
+ }
  await context.close();
  const video=await page.video().path();
  await copyFile(video,resolve(out,t.name+'-transitions.webm'));
  await browser.close();
  assert.deepEqual(errors,[],t.name+' browser errors');
  result.push({profile:t.name,initial,afterC08,scrolled,slide02,returned,other,errors,
-  screenshots:[t.name+'-special.png',t.name+'-logo-complete.png',t.name+'-scrolled.png',t.name+'-slide02.png',t.name+'-return.png'],
+  screenshots:[t.name+'-special.png',t.name+'-logo-complete.png',t.name+'-scrolled.png',t.name+'-slide02.png',t.name+'-return.png',t.name+'-shop.png'],
   recording:t.name+'-transitions.webm'});
  console.log('HERO01_OK',t.name,'C08',afterC08.logoAnimation.completed,'tears',initial.tearPaths);
 }
