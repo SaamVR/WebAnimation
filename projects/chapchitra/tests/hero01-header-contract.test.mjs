@@ -57,3 +57,17 @@ test('local browser acceptance tests verify actual header states and motion',()=
  assert.match(browser,/\.webm/);
  assert.match(gate,/hero01-header-qa\.mjs/);
 });
+
+test('single SVG diagonal is the entire paper panel, navbar seam is removed, hero is left aligned',()=>{
+ assert.match(app,/viewBox="0 0 1440 440"/);
+ assert.match(app,/hero01-paper-cut/);
+ assert.match(css,/#hero \.hero01-paper-panel\s*\{[\s\S]*?background:transparent/);
+ assert.match(css,/#hero \.hero01-paper-edge\s*\{[\s\S]*?position:absolute;inset:0/);
+ assert.match(css,/\[data-hero01-mode="special"\]\s*\{[\s\S]*?border-bottom:0/);
+ assert.match(css,/#hero \.hero-cover \.hero-cover-inner\s*\{[\s\S]*?align-items:flex-start;[\s\S]*?text-align:left/);
+ assert.match(css,/#hero \.hero-cover \.hero-cover-inner>a\s*\{[\s\S]*?align-self:flex-start/);
+ assert.match(browser,/snapshot\.tornDiagonal>=125/);
+ assert.match(browser,/snapshot\.headerBottomBorder/);
+ assert.match(browser,/snapshot\.logoCentered/);
+ assert.match(browser,/snapshot\.ctaLeftAligned/);
+});
