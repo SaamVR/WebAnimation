@@ -183,6 +183,8 @@ for(const t of profiles){
  assert.equal((await sample(page)).state,'standard','Hero 05 must use normal navbar');
  await page.locator('#hero [data-slide-to="0"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
+ await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95,
+  null,{timeout:3500});
  const returned=await sample(page);
  assert.equal(returned.slide,'0');
  assert.equal(returned.heroLogoInert,false,'Large original logo regains accessibility at top');
@@ -191,6 +193,11 @@ for(const t of profiles){
  // Standard header must be untouched on every other page.
  await page.goto(new URL('/shop/',origin).href,{waitUntil:'domcontentloaded',timeout:30000});
  await page.locator('#siteHeader .nav-center>a').first().waitFor({state:'attached',timeout:20000});
+ await page.waitForFunction(()=>{
+  const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
+  return !!(img&&img.complete&&img.naturalWidth>100&&
+   getComputedStyle(link).visibility==='visible'&&Number(getComputedStyle(link).opacity)>.95);
+ },null,{timeout:6000});
  const other=await page.evaluate(()=>({
   mode:document.querySelector('#siteHeader')?.dataset.hero01Mode||'standard',
   paper:document.querySelector('.hero01-paper-panel')!==null,
