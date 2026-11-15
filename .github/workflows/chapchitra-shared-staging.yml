@@ -83,6 +83,13 @@ jobs:
           done
           cat /tmp/chapchitra-stage-preview.log
           exit 1
+      - name: Navbar and favorites exact-state browser QA
+        if: startsWith(github.ref, 'refs/heads/feature/chapchitra-navbar-favorite-colors-')
+        working-directory: projects/chapchitra
+        env:
+          CC_QA_ROOT: http://127.0.0.1:4272
+          CC_QA_OUT: perf-results/shared-stage-navbar-favorites
+        run: node scripts/navbar-favorites-qa.mjs
       - name: Front/back pricing, invoice, and demo bag
         working-directory: projects/chapchitra
         env:
