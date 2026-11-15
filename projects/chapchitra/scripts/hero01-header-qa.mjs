@@ -57,7 +57,9 @@ async function sample(page){
   const d=paperPath?.getAttribute('d')||'';
   const rightEdgeY=Number(d.match(/^M0 0 H1440 V([\d.]+)/)?.[1]||0);
   const leftEdgeY=Number(d.match(/0 ([\d.]+) Z$/)?.[1]||0);
-  const vTipY=Number(d.match(/L721 ([\d.]+)/)?.[1]||0);
+  const vTipY=paperPath?paperPath.getBBox().y+paperPath.getBBox().height:0;
+  // Use actual rendered SVG geometry, not a parser that assumes the apex is
+  // encoded using a straight-line command (it is a cubic Bezier endpoint).
   const filled=(x,y)=>paperPath?.isPointInFill?.(new DOMPoint(x,y))===true;
   const lastCopy=cover?.querySelector('.hero-cover-inner>p:not(.eyebrow)');
   const cta=cover?.querySelector('.hero-cover-inner>a');
