@@ -1,0 +1,54 @@
+name: CHAPCHITRA Navbar + Favorites Focused QA (no deployment)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: chapchitra-navbar-favorites-focused
+  cancel-in-progress: false
+jobs:
+  test-local-navbar-favorites:
+    name: Exact-source + Desktop/Mobile Chromium/WebKit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - name: Checkout selected PR branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Node.js 22 + npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Native contracts and isolated production build
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          npm run check
+          node scripts/build.mjs
+      - name: Install isolated Chromium and WebKit
+        working-directory: projects/chapchitra
+        run: npx playwright install --with-deps chromium webkit
+      - name: Start localhost-only site and test default/selected/deselected favorites
+        working-directory: projects/chapchitra
+        env:
+          CC_QA_ROOT: http://127.0.0.1:4272
+          CC_QA_OUT: perf-results/navbar-favorites-focused
+        shell: bash
+        run: |
+          set -euo pipefail
+          PORT=4272 npm run preview >/tmp/chapchitra-navbar-favorite-local.log 2>&1 &
+          for i in $(seq 1 60); do
+            curl -fsS http://127.0.0.1:4272/shop/ >/dev/null && break
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4272/shop/ >/dev/null
+          node scripts/navbar-favorites-qa.mjs
+      - name: Preserve exact-build screenshots and browser report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: chapchitra-navbar-favorite-focused-browser
+          path: projects/chapchitra/perf-results/navbar-favorites-focused/
+          if-no-files-found: error
+          retention-days: 14

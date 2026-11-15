@@ -59,10 +59,20 @@ test('product favorite storage, state and accessible labels remain wired without
 
 test('dedicated UI QA exercises desktop/mobile initial, selected, deselected, persistence and keyboard',()=>{
  const qa=read('scripts/navbar-favorites-qa.mjs');
- for(const code of ['desktop-chromium','mobile-chromium','aria-pressed','localStorage','press(\'Space\')','nav-favorites-selected.svg','screenshot','color','#1C241D','#8A503B'])
+ for(const code of ['desktop-chromium','mobile-chromium','ipad-webkit','mobile-webkit','aria-pressed','localStorage','press(\'Space\')','nav-favorites-selected.svg','screenshot','color','#1C241D','#8A503B'])
   assert.ok(qa.includes(code),'QA coverage: '+code);
  const wf=read('../../.github/workflows/chapchitra-shared-staging.yml');
  assert.match(wf,/Navbar and favorites exact-state browser QA/);
  assert.match(wf,/node scripts\/navbar-favorites-qa\.mjs/);
  assert.match(wf,/perf-results\/shared-stage-navbar-favorites/);
+});
+
+test('dedicated isolated GitHub Actions QA builds localhost and never deploys',()=>{
+ const wf=read('../../.github/workflows/chapchitra-navbar-favorites-qa.yml');
+ assert.match(wf,/workflow_dispatch:/);
+ assert.match(wf,/npm run check/);
+ assert.match(wf,/node scripts\/navbar-favorites-qa\.mjs/);
+ assert.match(wf,/playwright install --with-deps chromium webkit/);
+ assert.match(wf,/127\.0\.0\.1:4272/);
+ assert.doesNotMatch(wf,/\bdeploy\b|\bpublish\b|\bmerge\b/i);
 });
