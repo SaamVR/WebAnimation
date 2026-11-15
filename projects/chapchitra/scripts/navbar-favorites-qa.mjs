@@ -81,7 +81,8 @@ try{
    assert.equal(info.pressed,String(selected),'aria-pressed state matches favorite');
    assert.ok(info.favoriteSrc?.endsWith(selected?'nav-favorites-selected.svg':'nav-favorites-outline.svg'),'Correct state asset');
    assert.equal(info.iconColor,'rgb(28, 36, 29)','Navbar fallback icon color is Dark Forest');
-   assert.ok(info.navbarIcons.length===4&&info.navbarIcons.every(x=>x.loaded&&x.w>0&&x.h>0),'Existing navbar icons keep visible dimensions');
+   assert.ok(info.navbarIcons.length===4&&info.navbarIcons.every(x=>x.loaded),'All original navbar icons must load');
+   assert.equal(info.navbarIcons.filter(x=>x.w>0&&x.h>0).length,profile.width<=600?2:4,'Preserve mobile menu and desktop navbar visibility');
    assert.ok(info.horizontalOverflow<=1,'No horizontal scroll');
    assert.ok(selected?info.label.startsWith('Remove '):info.label.startsWith('Add '),'Accessible button label');
   };
@@ -115,7 +116,12 @@ try{
   assert.equal(await fav.getAttribute('aria-pressed'),'false','Keyboard activation deselects favorite');
   await page.goto(origin+'/favorites/',{waitUntil:'domcontentloaded'});
   const activeNav=page.locator('.nav-actions a[href="/favorites/"] img.cc-nav-art');
-  await activeNav.waitFor();
+  await activeNav.waitFor({state:'attached'});
+  if(profile.width<=600){
+   await page.locator('#menuButton').click();
+   assert.ok(await page.locator('#mobileNav a[href="/favorites/"]').isVisible(),'Favorites remains reachable through mobile menu');
+   await page.locator('#menuButton').click();
+  }
   assert.ok((await activeNav.getAttribute('src')).endsWith('nav-favorites-selected.svg'),'Favorites nav uses outlined selected asset');
   assert.ok((await page.locator('.nav-actions a[href="/favorites/"]').getAttribute('aria-current'))==='page','Active nav accessible');
   assert.deepEqual(errors,[],'No browser errors');
