@@ -23,8 +23,15 @@ function validate(snapshot){
  assert.equal(snapshot.coverBackground,'rgb(28, 36, 29)','Hero 01 must be exact solid #1C241D');
  assert.equal(snapshot.paperBackground,'rgba(0, 0, 0, 0)','Single SVG must own the white panel, without a separate box');
  assert.equal(snapshot.paperPathFill,'rgb(246, 247, 245)','Continuous paper silhouette must use Gallery White');
- assert.match(snapshot.paperFilter,/drop-shadow\(/,'Paper shadow must follow SVG silhouette');
+ assert.equal(snapshot.paperFilter,'none','Crisp offset silhouette must not use a CSS filter');
  assert.equal(snapshot.paperBoxShadow,'none','Do not introduce a rectangular box-shadow');
+ assert.equal(snapshot.shadowPathCount,1,'Must have exactly one duplicate shadow path');
+ assert.equal(snapshot.paperPathCount,1,'Must have exactly one original white paper path');
+ assert.ok(snapshot.shadowDMatchesPaper,'Shadow must repeat the supplied Illustrator path byte-for-byte');
+ assert.equal(snapshot.shadowTransform,'translate(0 18)','Shadow shape must be translated only vertically');
+ assert.equal(snapshot.shadowFill,'rgb(166, 162, 155)','Shadow must use approved Mushroom Grey');
+ assert.equal(snapshot.shadowStroke,'none','No shadow outlines or drawn torn-edge decoration');
+ assert.ok(snapshot.shadowBeforePaper,'Crisp shadow must render behind white paper');
  assert.equal(snapshot.headerBottomBorder,'0px','Remove divider beneath special Hero 01 navbar');
  assert.ok(snapshot.vTipY>=1180&&snapshot.vTipY<=1190,'Original Illustrator V-tip extent must be preserved');
  assert.ok(snapshot.vTipY-snapshot.leftEdgeY>=450&&snapshot.vTipY-snapshot.rightEdgeY>=450,
@@ -103,6 +110,13 @@ async function sample(page){
    paperPathFill:paperPath&&getComputedStyle(paperPath).fill,
    paperFilter:tear&&getComputedStyle(tear).filter,
    paperBoxShadow:tear&&getComputedStyle(tear).boxShadow,
+   shadowPathCount:tear?.querySelectorAll('path.hero01-paper-shadow').length||0,
+   paperPathCount:tear?.querySelectorAll('path.hero01-paper-cut').length||0,
+   shadowDMatchesPaper:!!(paperPath&&tear?.querySelector('.hero01-paper-shadow')?.getAttribute('d')===paperPath.getAttribute('d')),
+   shadowTransform:tear?.querySelector('.hero01-paper-shadow')?.getAttribute('transform'),
+   shadowFill:tear?.querySelector('.hero01-paper-shadow')&&getComputedStyle(tear.querySelector('.hero01-paper-shadow')).fill,
+   shadowStroke:tear?.querySelector('.hero01-paper-shadow')&&getComputedStyle(tear.querySelector('.hero01-paper-shadow')).stroke,
+   shadowBeforePaper:!!(tear?.querySelector('.hero01-paper-shadow')?.compareDocumentPosition(paperPath)&Node.DOCUMENT_POSITION_FOLLOWING),
    headerBottomBorder:getComputedStyle(document.querySelector('#siteHeader')).borderBottomWidth,
    viewportWidth:innerWidth,viewportHeight:innerHeight,
    paperHeight:edgeRect?.height,

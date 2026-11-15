@@ -493,6 +493,7 @@ async function boot(){
     '<img class="hero-brand-lockup" src="/assets/chapchitra-full.webp" width="1250" height="1052" alt="CHAPCHITRA illustrated clothing badge and original custom wordmark" decoding="async" fetchpriority="high">'+
     '<div class="c08-hero-stage" id="c08HeroStage"></div></div>'+
    '<svg class="hero01-paper-edge" viewBox="0 381 4200 812" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+
+    '<path class="hero01-paper-shadow" d="'+HERO01_TORN_PAPER_PATH+'" transform="translate(0 18)"/>'+ 
     '<path class="hero01-paper-cut" d="'+HERO01_TORN_PAPER_PATH+'"/>'+
     '</svg></div>';
  }
