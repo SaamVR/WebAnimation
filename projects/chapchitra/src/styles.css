@@ -2368,7 +2368,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   flex:0 0 auto;
   width:clamp(205.2px,20.7vw,275.4px); /* 90% of original wrapper at every desktop width */
   max-width:calc(100% - 36px);
-  margin-top:-12px; /* raise the complete unchanged 90% lockup */
+  margin-top:-7px; /* preserve full approved fringe below the sticky navbar; paper rises instead */
   line-height:0;
   pointer-events:auto;
 }
@@ -2378,13 +2378,13 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(max-width:950px){
   #hero{--hero01-paper-height:315px;--hero01-copy-top:300px}
-  #hero .hero01-full-logo{margin-top:-9px}
+  #hero .hero01-full-logo{margin-top:-5px}
 }
 @media(max-width:740px){
   #hero{--hero01-paper-height:275px;--hero01-copy-top:302px}
   #hero .hero01-full-logo{
     width:clamp(181.8px,53.1vw,221.4px); /* exactly 90% on mobile; C08 stage follows image size */
-    margin-top:-4px; /* small-screen lift of complete lockup */
+    margin-top:0; /* keep the complete original badge clear of mobile navbar */
   }
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:720px;min-height:720px;
@@ -2397,7 +2397,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 }
 @media(max-width:365px){
   #hero{--hero01-paper-height:250px;--hero01-copy-top:277px}
-  #hero .hero01-full-logo{margin-top:-3px}
+  #hero .hero01-full-logo{margin-top:1px}
   #hero:has(.hero-cover:not([hidden])) .hero-track{
     height:622px;min-height:622px;
   }
