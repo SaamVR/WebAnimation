@@ -78,9 +78,10 @@ test('C08 hero keeps initial slider hold; navbar never automatically starts',asy
  const app=await text('src/app.mjs');
  const script=await text('src/motion/c08/logo-player.mjs');
  assert.match(app,/let heroLogoHolding=!mediaReduced\.matches/);
- assert.match(app,/function canPlay\(\)\{return !heroLogoHolding/);
- assert.match(app,/onHeroHolding:hold=>\{heroLogoHolding=hold;if\(hold\)pauseHero\(\);else scheduleHero\(\)\}/);
- assert.match(app,/setInterval\(\(\)=>changeHero\(\(active\+1\)%slides\.length,false\),4000\)/);
+ assert.match(app,/const canPlay=\(\)=>!mediaReduced\.matches/);
+ assert.match(app,/onHeroHolding:hold=>\{heroLogoHolding=hold;if\(!hold\)clock\.resume\(\)\}/);
+ assert.match(app,/createHeroCarouselClock\(\{/);
+  assert.doesNotMatch(app,/setInterval\(\(\)=>changeHero/);
  assert.match(script,/loop:false,autoplay:false/);
  assert.match(script,/navbar\.addEventListener\('pointerenter'/);
  assert.match(script,/trigger\.addEventListener\('pointerenter'/);

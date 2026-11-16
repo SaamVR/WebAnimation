@@ -233,7 +233,32 @@ for(const t of profiles){
  await page.screenshot({path:resolve(out,t.name+'-logo-complete.png')});
  reviewTimeline.push({event:'01 C08 complete',completed:afterC08.logoAnimation.completed,c08Aligned:afterC08.logoStageAligned});
  await page.waitForTimeout(550);
- await page.evaluate(()=>window.scrollTo({top:185,behavior:'instant'}));
+ const paperAtTop=await page.locator('#hero01PaperPanel').evaluate(el=>el.getBoundingClientRect().top);
+ const logoAtTop=await page.locator('#hero .hero01-full-logo').evaluate(el=>el.getBoundingClientRect().top);
+ // Slow downward scroll while the original illustrated logo and V travel together.
+ for(const y of [30,60,90,120,150,185]){
+  await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);
+  await page.waitForTimeout(60);
+ }
+ await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
+ const mid=await sample(page);
+ assert.equal(mid.navWordmark.visible,false,'No duplicate compact logo over partially visible paper');
+ assert.equal(mid.heroLogoInert,false,'Original hero logo remains interactive');
+ const midGeo=await page.evaluate(()=>({
+  paper:document.querySelector('#hero01PaperPanel').getBoundingClientRect().top,
+  logo:document.querySelector('#hero .hero01-full-logo').getBoundingClientRect().top,
+  opacity:getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity
+ }));
+ assert.ok(Math.abs(midGeo.paper-paperAtTop+185)<3,'V follows native scroll');
+ assert.ok(Math.abs(midGeo.logo-logoAtTop+185)<3,'Original logo follows same scroll');
+ assert.equal(midGeo.opacity,'1','Never fade original artwork while still visible');
+ await page.screenshot({path:resolve(out,t.name+'-paper-mid-scroll.png')});
+ reviewTimeline.push({event:'paper-mid-scroll',mode:mid.state,scrollY:185,logoOpacity:midGeo.opacity});
+ for(const y of [230,280,330,380,430,480]){
+  await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);
+  await page.waitForTimeout(60);
+ }
+
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
  await page.waitForFunction(()=>{
   const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
@@ -246,16 +271,33 @@ for(const t of profiles){
  assert.equal(scrolled.navWordmark.src,'/assets/chapchitra-wordmark.webp');
  assert.equal(scrolled.fullLinkHidden,false,'Standard navbar logo accessible on scroll');
  assert.equal(scrolled.heroLogoInert,true,'No duplicate or focusable logo below sticky navbar');
- await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)<.05,{},{timeout:2000});
+ await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95,{},{timeout:2000});
  await page.screenshot({path:resolve(out,t.name+'-scrolled.png')});
  reviewTimeline.push({event:'scroll down: compact navbar visible',compactVisible:scrolled.navWordmark.visible,heroInert:scrolled.heroLogoInert});
  await page.waitForTimeout(650);
- await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+ for(const y of [430,380,330,280,230,185,150,120,90,60,30,0]){
+  await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);
+  await page.waitForTimeout(60);
+ }
+
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95);
  await page.screenshot({path:resolve(out,t.name+'-scroll-restored.png')});
  reviewTimeline.push({event:'scroll top: full logo restored',mode:'special'});
  await page.waitForTimeout(650);
+ // Real-browser timer gate: a returned Hero01 gets eight seconds (not an
+ // additional interval after C08), the next hero gets four seconds.
+ await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseleave')));
+ await page.locator('#hero [data-slide-to="0"]').evaluate(node=>node.click());
+ const dwellStart=await page.evaluate(()=>performance.now());
+ await page.waitForFunction(()=>document.querySelector('#hero .hero-slide.is-active')?.dataset.slide==='1',null,{timeout:13000});
+ const firstDwell=(await page.evaluate(()=>performance.now()))-dwellStart;
+ assert.ok(firstDwell>=7900&&firstDwell<9000,'Hero01 dwell must be 8000ms total');
+ const nextStart=await page.evaluate(()=>performance.now());
+ await page.waitForFunction(()=>document.querySelector('#hero .hero-slide.is-active')?.dataset.slide==='2',null,{timeout:7500});
+ const secondDwell=(await page.evaluate(()=>performance.now()))-nextStart;
+ assert.ok(secondDwell>=3900&&secondDwell<5000,'Hero02 dwell must be 4000ms');
+ reviewTimeline.push({event:'native 8s/4s autoplay',firstDwell,secondDwell});
  await page.locator('#hero [data-slide-to="1"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
  await page.waitForFunction(()=>{
@@ -405,7 +447,7 @@ for(const t of profiles){
  await browser.close();
  assert.deepEqual(errors,[],t.name+' browser errors');
  result.push({profile:t.name,initial,afterC08,scrolled,slide02,returned,other,homeRestored,journal,reviewTimeline,errors,
-  screenshots:[t.name+'-special.png',t.name+'-logo-complete.png',t.name+'-scrolled.png',t.name+'-scroll-restored.png',
+  screenshots:[t.name+'-special.png',t.name+'-logo-complete.png',t.name+'-paper-mid-scroll.png',t.name+'-scrolled.png',t.name+'-scroll-restored.png',
    t.name+'-slide02.png',t.name+'-slide03.png',t.name+'-slide04.png',t.name+'-slide05.png',
    t.name+'-return.png',t.name+'-shop.png',t.name+'-home-before-journal.png',t.name+'-journal.png'],
   recording:t.name+'-transitions.webm'});

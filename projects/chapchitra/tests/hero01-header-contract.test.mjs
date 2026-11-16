@@ -24,10 +24,10 @@ test('Hero01 preserves one navbar, restores standard presentation on slide and s
  assert.match(app,/id="siteHeader"/);
  assert.match(app,/data-hero01-mode="special"/);
  assert.match(app,/function syncHero01Header\(\)/);
- assert.match(app,/active===0&&\(window\.scrollY/);
+ assert.match(app,/active===0&&paperBottom>stickyBottom\+2/);
  assert.match(app,/window\.addEventListener\('scroll',onHeroHeaderScroll/);
  assert.match(app,/window\.addEventListener\('pageshow',syncHero01Header\)/);
- assert.match(app,/syncHero01Header\(\);if\(manual\)scheduleHero\(\)/);
+ assert.match(app,/clock\.startSlide\(active\)/);
  assert.match(css,/data-hero01-mode="special"/);
  for(const label of ['Shop','Artist’s Edit','Journal','About Us'])
   assert.ok(app.includes(label));
@@ -52,7 +52,7 @@ test('local browser acceptance tests verify actual header states and motion',()=
  assert.match(browser,/mobile-chromium/);
  assert.match(browser,/reducedMotion:'reduce'/);
  assert.match(browser,/waitForFunction\(\(\)=>window\.__chapchitraC08\?\.hero\?\.completed>=1/);
- assert.match(browser,/window\.scrollTo\(\{top:185/);
+ assert.match(browser,/paper-mid-scroll/);
  assert.match(browser,/data-slide-to="1"/);
  assert.match(browser,/\.webm/);
  assert.match(gate,/hero01-header-qa\.mjs/);
@@ -138,4 +138,13 @@ test('full owner review records every slider, both real C02 routes and logo stat
  assert.match(browser,/Home -> Shop via C02/);
  assert.match(browser,/scroll top: full logo restored/);
  assert.match(browser,/recordVideo/);
+});
+
+test('Hero01 paper and full logo remain painted through normal document scroll',()=>{
+ assert.doesNotMatch(css,/#hero\[data-hero01-mode="standard"\]\s+\.hero01-full-logo/);
+ assert.doesNotMatch(css,/#hero \.hero01-full-logo\{transition:opacity/);
+ assert.match(app,/paperPanel\.getBoundingClientRect\(\)\.bottom/);
+ assert.match(app,/heroIdentity\.inert=!special/);
+ assert.match(browser,/paperAtTop/);
+ assert.match(browser,/logoAtTop/);
 });
