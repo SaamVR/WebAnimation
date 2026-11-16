@@ -1,4 +1,5 @@
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
+import { createHeroCarouselClock } from './hero-carousel-clock.mjs';
 import { ARTIST_CART_STORAGE_KEY, ARTIST_CART_MAX_ITEMS, priceArtistCustomization, readArtistDemoBag, formatArtistBDT } from './worktable-pricing.mjs';
 async function boot(){
  // Artist route critical path begins concurrently with all site shell modules.
@@ -920,20 +921,21 @@ async function boot(){
       .catch(err=>console.warn('C01 static benefits retained:',err))
    : Promise.resolve();
   const heroRoot=$('#hero'),slides=$$('.hero-slide',heroRoot),dots=$$('.hero-dot',heroRoot);
-  let active=0,timer=null,hovered=false,focused=false,touchX=null;
-  // One sticky navbar, never a duplicate. Only its centered logo presentation
-  // changes; the original links, mobile drawer and Illustrator icons stay live.
+  let active=0,hovered=false,focused=false,touchX=null;
+  // Keep the owner paper and full illustrated logo together in document flow.
+  // Only reveal the compact wordmark after that paper has cleared the sticky header.
   const headerRoot=$('#siteHeader'),navIdentity=headerRoot.querySelector('.logo-word--image'),
-   heroIdentity=heroRoot.querySelector('.hero01-full-logo');
+   heroIdentity=heroRoot.querySelector('.hero01-full-logo'),
+   paperPanel=heroRoot.querySelector('#hero01PaperPanel');
   let headerModeInitialized=false,headerRAF=0;
   function syncHero01Header(){
-   const special=active===0&&(window.scrollY||document.documentElement.scrollTop||0)<=12;
+   const paperBottom=paperPanel.getBoundingClientRect().bottom;
+   const stickyBottom=headerRoot.getBoundingClientRect().bottom;
+   const special=active===0&&paperBottom>stickyBottom+2;
    const mode=special?'special':'standard';
    if(headerModeInitialized&&headerRoot.dataset.hero01Mode===mode)return;
    headerModeInitialized=true;headerRoot.dataset.hero01Mode=mode;
    heroRoot.dataset.hero01Mode=mode;
-   // When the standard centered wordmark returns, prevent a second visible
-   // or focusable hero logo/replay button below the sticky header.
    heroIdentity.inert=!special;
    if(special){
     navIdentity.setAttribute('aria-hidden','true');navIdentity.tabIndex=-1;
@@ -948,23 +950,53 @@ async function boot(){
   window.addEventListener('scroll',onHeroHeaderScroll,{passive:true});
   window.addEventListener('pageshow',syncHero01Header);
   syncHero01Header();
-  // Keep Slide 1 visible through the complete initial C08 4-second wordmark
-  // sequence. Start the unchanged 4-second carousel interval only afterward.
+
+  // Slide 01 has 8s TOTAL visible dwell, including initial C08 playback.
+  // A running C08 locks its deadline, but does not restart that countdown.
   let heroLogoHolding=!mediaReduced.matches;
-  function pauseHero(){if(timer!==null){clearInterval(timer);timer=null}}
-  function canPlay(){return !heroLogoHolding&&!mediaReduced.matches&&!hovered&&!focused&&!document.hidden}
-  function scheduleHero(){pauseHero();if(canPlay())timer=setInterval(()=>changeHero((active+1)%slides.length,false),4000)}
-  function changeHero(index,manual){active=(index+slides.length)%slides.length;slides.forEach((s,i)=>{s.hidden=i!==active;s.classList.toggle('is-active',i===active)});dots.forEach((d,i)=>{d.classList.toggle('active',i===active);d.setAttribute('aria-pressed',String(i===active))});$('#heroCount').textContent=String(active+1).padStart(2,'0')+' / 05';syncHero01Header();if(manual)scheduleHero()}
+  const rect=heroRoot.getBoundingClientRect();
+  let heroInView=rect.bottom>0&&rect.top<innerHeight;
+  const canPlay=()=>!mediaReduced.matches&&!hovered&&!focused&&!document.hidden&&heroInView;
+  const clock=createHeroCarouselClock({
+   canRun:canPlay,
+   isLocked:()=>active===0&&heroLogoHolding,
+   onAdvance:next=>changeHero(next,false)
+  });
+  function refreshHeroClock(){if(canPlay())clock.resume();else clock.pause()}
+  function changeHero(index,manual){
+   active=(index+slides.length)%slides.length;
+   slides.forEach((s,i)=>{s.hidden=i!==active;s.classList.toggle('is-active',i===active)});
+   dots.forEach((d,i)=>{d.classList.toggle('active',i===active);d.setAttribute('aria-pressed',String(i===active))});
+   $('#heroCount').textContent=String(active+1).padStart(2,'0')+' / 05';
+   syncHero01Header();
+   clock.startSlide(active);
+  }
+  if('IntersectionObserver' in window){
+   const observer=new IntersectionObserver(entries=>{
+    heroInView=entries[0]?.isIntersecting===true;
+    refreshHeroClock();
+   },{threshold:[0,0.02]});
+   observer.observe(heroRoot);
+  }else{
+   window.addEventListener('scroll',()=>{
+    const bounds=heroRoot.getBoundingClientRect();
+    heroInView=bounds.bottom>0&&bounds.top<innerHeight;
+    refreshHeroClock();
+   },{passive:true});
+  }
+  // Read-only QA snapshot; no new user-facing controls or animation variants.
+  window.__chapchitraHeroCarousel={get state(){return clock.snapshot()}};
+  clock.startSlide(0);
   dots.forEach(dot=>dot.addEventListener('click',()=>changeHero(Number(dot.dataset.slideTo),true)));
-  heroRoot.addEventListener('mouseenter',()=>{hovered=true;pauseHero()});
-  heroRoot.addEventListener('mouseleave',()=>{hovered=false;scheduleHero()});
-  heroRoot.addEventListener('focusin',()=>{focused=true;pauseHero()});
-  heroRoot.addEventListener('focusout',()=>{focused=heroRoot.contains(document.activeElement);if(!focused)scheduleHero()});
+  heroRoot.addEventListener('mouseenter',()=>{hovered=true;refreshHeroClock()});
+  heroRoot.addEventListener('mouseleave',()=>{hovered=false;refreshHeroClock()});
+  heroRoot.addEventListener('focusin',()=>{focused=true;refreshHeroClock()});
+  heroRoot.addEventListener('focusout',()=>{focused=heroRoot.contains(document.activeElement);if(!focused)refreshHeroClock()});
   heroRoot.addEventListener('touchstart',e=>{if(e.touches.length===1)touchX=e.touches[0].clientX},{passive:true});
   heroRoot.addEventListener('touchend',e=>{if(touchX===null||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)>55)changeHero(active+(dx<0?1:-1),true)},{passive:true});
-  document.addEventListener('visibilitychange',scheduleHero);
-  mediaReduced.addEventListener('change',scheduleHero);
-  scheduleHero();
+  document.addEventListener('visibilitychange',refreshHeroClock);
+  mediaReduced.addEventListener('change',refreshHeroClock);
+  refreshHeroClock();
   // Let C01 register its existing IntersectionObserver first, so C08 can
   // reuse the same self-hosted lottie-web script if benefits are in viewport.
   // No C01 artwork, controller, styles, or activation times are changed.
@@ -975,10 +1007,10 @@ async function boot(){
       heroImage:$('.hero-brand-lockup'),
       heroStage:$('#c08HeroStage'),
       heroVariant:'paper',
-      onHeroHolding:hold=>{heroLogoHolding=hold;if(hold)pauseHero();else scheduleHero()}
+      onHeroHolding:hold=>{heroLogoHolding=hold;if(!hold)clock.resume()}
     })
   ).catch(error=>{
-    heroLogoHolding=false;scheduleHero();
+    heroLogoHolding=false;clock.resume();
     console.warn('C08 retained the existing static logo:',error);
   });
   let homePage=1;

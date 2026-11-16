@@ -2421,16 +2421,8 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   min-height:0;
 }
 
-/* Switching back to the standard navbar must not leave two visible logos.
-   Keep the torn-paper background and document flow stable during scrolling. */
-#hero .hero01-full-logo{transition:opacity .2s ease}
-#hero[data-hero01-mode="standard"] .hero01-full-logo{
-  opacity:0;
-  pointer-events:none;
-}
-@media(prefers-reduced-motion:reduce){
- #hero .hero01-full-logo{transition:none!important}
-}
+/* The original paper and full logo travel together with native document scroll.
+   No 12px opacity switch and no logo fade while the V is still in view. */
 
 /* WebKit first-paint safeguard. The organic inline SVG edge can leave a
    stale 0,0 dark tile in WebKit unless the whole Hero owns a compositor layer.
