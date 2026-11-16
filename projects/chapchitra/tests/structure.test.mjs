@@ -15,7 +15,8 @@ test('eleven homepage units and functional UX controller contracts',async()=>{
  assert.match(app,/app\.innerHTML=announcement\(\)\+header\(\)/);
  assert.match(app,/mainPage\(\)\+'<\/main>'\+footer\(\)/);
  for(const label of ['Free delivery on orders over ৳2000','Artist-Inspired Drop','Color, by hand','Your idea, printed','From the Journal'])assert.ok(app.includes(label),label);
- assert.match(app,/setInterval\(\(\)=>changeHero\(\(active\+1\)%slides.length,false\),4000\)/);
+ assert.match(app,/createHeroCarouselClock\(\{/);
+ assert.match(app,/onAdvance:next=>changeHero\(next,false\)/);
  assert.match(app,/aria-pressed/);
  assert.match(app,/mouseenter/);
  assert.match(app,/touchend/);
@@ -210,7 +211,7 @@ test('exact homepage section and individual card background mapping is maintaine
   assert.ok(css.includes(needle)||app.includes(needle),'Missing reference styling: '+needle);
  }
  assert.match(app,/FEATURE_INTERVAL_MS=8200/);
- assert.match(app,/false\),4000\)/);
+ assert.match(app,/clock\.startSlide\(0\)/);
  assert.match(app,/const bellRendered=false/);
 });
 
@@ -920,6 +921,7 @@ test('homepage and non-Shop sections retain their existing nav routes and assets
  assert.match(app,/function about\(\)/);
  assert.match(app,/class="logo-word logo-word--image"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
- assert.match(app,/setInterval\(\(\)=>changeHero\(\(active\+1\)%slides\.length,false\),4000\)/);
+ assert.match(app,/createHeroCarouselClock\(\{/);
+ assert.match(app,/clock\.startSlide\(active\)/);
  assert.match(css,/\.site-header\{position:sticky;top:0/);
 });
