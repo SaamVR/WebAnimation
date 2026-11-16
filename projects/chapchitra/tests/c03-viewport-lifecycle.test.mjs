@@ -12,6 +12,8 @@ test('C03 keeps original GSAP choreography but cancels on measured viewport or s
  assert.match(s,/Math\.abs\(scrollY-start\.scroll\)>4/);
  assert.match(s,/if\(resized\|\|moved\)\{cancelC03\(\);return;\}/);
  assert.match(s,/function cleanup\(\)\{\s*stopFlightWatch\(\)/);
+ assert.match(s,/flightWatchTimer=window\.setInterval\(inspect,40\)/,'native-event independent polling');
+ assert.match(s,/clearInterval\(flightWatchTimer\)/,'no timer leaks after cleanup');
  assert.match(s,/window\.addEventListener\('resize',cancelC03/);
  assert.match(s,/window\.addEventListener\('scroll'/);
  assert.match(s,/duration:\.91,ease:'power2\.inOut'/,'approved flight cadence not changed');

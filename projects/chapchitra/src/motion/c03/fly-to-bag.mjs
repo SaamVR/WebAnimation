@@ -13,7 +13,7 @@
 import {planC03Flight,shrinkAt} from './geometry.mjs';
 
 const ROOT='/motion/c03/';
-let gsapPromise=null,active=null,serial=0,listenersReady=false,cameraActive=false,scrollToken=0,flightWatchRAF=0;
+let gsapPromise=null,active=null,serial=0,listenersReady=false,cameraActive=false,scrollToken=0,flightWatchTimer=0;
 const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function ensureCSS(){
@@ -34,7 +34,7 @@ function getGSAP(){
  return gsapPromise;
 }
 function stopFlightWatch(){
- if(flightWatchRAF){cancelAnimationFrame(flightWatchRAF);flightWatchRAF=0;}
+ if(flightWatchTimer){clearInterval(flightWatchTimer);flightWatchTimer=0;}
 }
 // Native resize/scroll events are not guaranteed by headless or mobile WebKit.
 // While a C03 overlay exists, compare *actual* viewport and scroll geometry on
@@ -45,16 +45,17 @@ function watchFlightGeometry(version){
  const start={width:innerWidth,height:innerHeight,scroll:scrollY,
   visualWidth:window.visualViewport?.width,visualHeight:window.visualViewport?.height};
  const inspect=()=>{
-  flightWatchRAF=0;
-  if(active?.version!==version)return;
+  if(active?.version!==version){stopFlightWatch();return;}
   const resized=innerWidth!==start.width||innerHeight!==start.height||
    (start.visualWidth!=null&&Math.abs((window.visualViewport?.width??start.visualWidth)-start.visualWidth)>2)||
    (start.visualHeight!=null&&Math.abs((window.visualViewport?.height??start.visualHeight)-start.visualHeight)>2);
   const moved=!active.restoring&&!cameraActive&&Math.abs(scrollY-start.scroll)>4;
   if(resized||moved){cancelC03();return;}
-  flightWatchRAF=requestAnimationFrame(inspect);
  };
- flightWatchRAF=requestAnimationFrame(inspect);
+ // WebKit can suppress both native resize events and animation frames during
+ // a programmatic viewport change. A temporary 40ms timer runs only while
+ // the flight exists, and is always cleared by cleanup().
+ flightWatchTimer=window.setInterval(inspect,40);
 }
 function cleanup(){
  stopFlightWatch();
