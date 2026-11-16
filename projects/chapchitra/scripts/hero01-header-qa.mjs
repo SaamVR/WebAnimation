@@ -23,15 +23,12 @@ function validate(snapshot){
  assert.equal(snapshot.coverBackground,'rgb(28, 36, 29)','Hero 01 must be exact solid #1C241D');
  assert.equal(snapshot.paperBackground,'rgba(0, 0, 0, 0)','Single SVG must own the white panel, without a separate box');
  assert.equal(snapshot.paperPathFill,'rgb(246, 247, 245)','Continuous paper silhouette must use Gallery White');
- assert.equal(snapshot.paperFilter,'none','Crisp offset silhouette must not use a CSS filter');
+ assert.match(snapshot.paperFilter,/^drop-shadow\(/,
+  'Mushroom Grey shadow must follow the irregular SVG silhouette, not a box');
  assert.equal(snapshot.paperBoxShadow,'none','Do not introduce a rectangular box-shadow');
- assert.equal(snapshot.shadowPathCount,1,'Must have exactly one duplicate shadow path');
- assert.equal(snapshot.paperPathCount,1,'Must have exactly one original white paper path');
- assert.ok(snapshot.shadowDMatchesPaper,'Shadow must repeat the supplied Illustrator path byte-for-byte');
- assert.equal(snapshot.shadowTransform,'translate(0 18)','Shadow shape must be translated only vertically');
- assert.equal(snapshot.shadowFill,'rgb(166, 162, 155)','Shadow must use approved Mushroom Grey');
- assert.equal(snapshot.shadowStroke,'none','No shadow outlines or drawn torn-edge decoration');
- assert.ok(snapshot.shadowBeforePaper,'Crisp shadow must render behind white paper');
+ assert.equal(snapshot.shadowPathCount,0,'No duplicate offset path or additional paper layer');
+ assert.equal(snapshot.paperPathCount,1,'Render exactly the original Illustrator silhouette');
+ assert.equal(snapshot.tearPaths,1,'No decorative fiber or outline paths');
  assert.equal(snapshot.headerBottomBorder,'0px','Remove divider beneath special Hero 01 navbar');
  assert.ok(snapshot.vTipY>=1180&&snapshot.vTipY<=1190,'Original Illustrator V-tip extent must be preserved');
  assert.ok(snapshot.vTipY-snapshot.leftEdgeY>=450&&snapshot.vTipY-snapshot.rightEdgeY>=450,
@@ -112,11 +109,6 @@ async function sample(page){
    paperBoxShadow:tear&&getComputedStyle(tear).boxShadow,
    shadowPathCount:tear?.querySelectorAll('path.hero01-paper-shadow').length||0,
    paperPathCount:tear?.querySelectorAll('path.hero01-paper-cut').length||0,
-   shadowDMatchesPaper:!!(paperPath&&tear?.querySelector('.hero01-paper-shadow')?.getAttribute('d')===paperPath.getAttribute('d')),
-   shadowTransform:tear?.querySelector('.hero01-paper-shadow')?.getAttribute('transform'),
-   shadowFill:tear?.querySelector('.hero01-paper-shadow')&&getComputedStyle(tear.querySelector('.hero01-paper-shadow')).fill,
-   shadowStroke:tear?.querySelector('.hero01-paper-shadow')&&getComputedStyle(tear.querySelector('.hero01-paper-shadow')).stroke,
-   shadowBeforePaper:!!(tear?.querySelector('.hero01-paper-shadow')?.compareDocumentPosition(paperPath)&Node.DOCUMENT_POSITION_FOLLOWING),
    headerBottomBorder:getComputedStyle(document.querySelector('#siteHeader')).borderBottomWidth,
    viewportWidth:innerWidth,viewportHeight:innerHeight,
    paperHeight:edgeRect?.height,
@@ -231,6 +223,15 @@ for(const t of profiles){
  assert.equal(afterC08.logoAnimation.autoplay,1,'Original C08 hero autoplay fires once');
  assert.ok(afterC08.logoStageAligned,'Approved C08 Wordmark Reprint overlay must track the uniformly scaled original lockup');
  await page.screenshot({path:resolve(out,t.name+'-logo-complete.png')});
+ if(t.name==='desktop-chromium'||t.name==='ipad-webkit'){
+  const width=Math.min(610,Math.floor(t.width*.76)),height=180;
+  const clip={
+   x:Math.round((t.width-width)/2),
+   y:Math.max(0,Math.min(t.height-height,Math.round(afterC08.tipScreenY-height*.66))),
+   width,height
+  };
+  await page.screenshot({path:resolve(out,t.name+'-torn-edge-shadow-closeup.png'),clip});
+ }
  reviewTimeline.push({event:'01 C08 complete',completed:afterC08.logoAnimation.completed,c08Aligned:afterC08.logoStageAligned});
  await page.waitForTimeout(550);
  await page.evaluate(()=>window.scrollTo({top:185,behavior:'instant'}));
@@ -408,7 +409,9 @@ for(const t of profiles){
   screenshots:[t.name+'-special.png',t.name+'-logo-complete.png',t.name+'-scrolled.png',t.name+'-scroll-restored.png',
    t.name+'-slide02.png',t.name+'-slide03.png',t.name+'-slide04.png',t.name+'-slide05.png',
    t.name+'-return.png',t.name+'-shop.png',t.name+'-home-before-journal.png',t.name+'-journal.png'],
-  recording:t.name+'-transitions.webm'});
+  recording:t.name+'-transitions.webm',
+  edgeShadowCloseup:(t.name==='desktop-chromium'||t.name==='ipad-webkit')
+   ?t.name+'-torn-edge-shadow-closeup.png':null});
  console.log('HERO01_OK',t.name,'C08',afterC08.logoAnimation.completed,'tears',initial.tearPaths);
 }
 // Reduced motion: original full static logo remains and C08 does not autoplay.
