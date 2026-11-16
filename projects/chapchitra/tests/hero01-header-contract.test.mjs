@@ -148,3 +148,8 @@ test('Hero01 paper and full logo remain painted through normal document scroll',
  assert.match(browser,/paperAtTop/);
  assert.match(browser,/logoAtTop/);
 });
+
+test('Hero01 navbar logo switches atomically without a 220ms duplicate',()=>{
+ assert.match(css,/body\[data-page="home"\] #app > \.site-header \.logo-word\.logo-word--image\s*\{\s*transition:none/);
+ assert.match(browser,/getComputedStyle\(el\)\.visibility==='hidden'&&Number\(getComputedStyle\(el\)\.opacity\)<\.05/);
+});

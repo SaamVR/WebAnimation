@@ -2272,6 +2272,11 @@ body[data-page="artists-edit"] #app > .site-header {
 #app > .site-header .logo-word.logo-word--image{
   transition:opacity .22s ease,visibility .22s ease;
 }
+/* No transient duplicate wordmarks at the organic Hero 01 paper boundary.
+   Preserve other routes and the approved navbar C08 hover sequence. */
+body[data-page="home"] #app > .site-header .logo-word.logo-word--image{
+  transition:none;
+}
 body[data-page="home"] #app > .site-header[data-hero01-mode="special"]{
   background:var(--bg);
   border-bottom:0;

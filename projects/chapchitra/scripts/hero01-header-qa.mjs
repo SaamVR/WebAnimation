@@ -333,6 +333,10 @@ for(const t of profiles){
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95,
   null,{timeout:3500});
+ await page.waitForFunction(()=>{
+  const el=document.querySelector('#siteHeader .logo-word--image');
+  return el&&getComputedStyle(el).visibility==='hidden'&&Number(getComputedStyle(el).opacity)<.05;
+ },null,{timeout:3500});
  const returned=await sample(page);
  assert.equal(returned.slide,'0');
  assert.equal(returned.heroLogoInert,false,'Large logo regains accessibility after Hero 05');
