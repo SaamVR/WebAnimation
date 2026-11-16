@@ -13,7 +13,7 @@
 import {planC03Flight,shrinkAt} from './geometry.mjs';
 
 const ROOT='/motion/c03/';
-let gsapPromise=null,active=null,serial=0,listenersReady=false,cameraActive=false,scrollToken=0;
+let gsapPromise=null,active=null,serial=0,listenersReady=false,cameraActive=false,scrollToken=0,flightWatchRAF=0;
 const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function ensureCSS(){
@@ -33,7 +33,31 @@ function getGSAP(){
  });
  return gsapPromise;
 }
+function stopFlightWatch(){
+ if(flightWatchRAF){cancelAnimationFrame(flightWatchRAF);flightWatchRAF=0;}
+}
+// Native resize/scroll events are not guaranteed by headless or mobile WebKit.
+// While a C03 overlay exists, compare *actual* viewport and scroll geometry on
+// animation frames. An interruption always cancels the same existing GSAP
+// timeline; this does not change the approved motion curve or timings.
+function watchFlightGeometry(version){
+ stopFlightWatch();
+ const start={width:innerWidth,height:innerHeight,scroll:scrollY,
+  visualWidth:window.visualViewport?.width,visualHeight:window.visualViewport?.height};
+ const inspect=()=>{
+  flightWatchRAF=0;
+  if(active?.version!==version)return;
+  const resized=innerWidth!==start.width||innerHeight!==start.height||
+   (start.visualWidth!=null&&Math.abs((window.visualViewport?.width??start.visualWidth)-start.visualWidth)>2)||
+   (start.visualHeight!=null&&Math.abs((window.visualViewport?.height??start.visualHeight)-start.visualHeight)>2);
+  const moved=!active.restoring&&!cameraActive&&Math.abs(scrollY-start.scroll)>4;
+  if(resized||moved){cancelC03();return;}
+  flightWatchRAF=requestAnimationFrame(inspect);
+ };
+ flightWatchRAF=requestAnimationFrame(inspect);
+}
 function cleanup(){
+ stopFlightWatch();
  const current=active;active=null;
  if(!current)return;
  current.timeline?.kill();
@@ -187,6 +211,7 @@ export async function playC03({button,productId}={}){
   }else cleanup();
  }});
  active={version,layer,path,timeline:tl,bag:icon,badge,restoring:false};
+ watchFlightGeometry(version);
  // THREADS T02 V3: 0.12s anticipation, 0.91s uninterrupted flight,
  // catch at 1.03s, restrained spring settling by ~1.55s.
  tl.to(cloneBox,{opacity:1,duration:.09,ease:'sine.out'},0)
