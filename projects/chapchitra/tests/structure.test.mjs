@@ -124,7 +124,9 @@ test('authoritative twelve brand colors have one canonical root and semantic ali
  assert.match(buttons,/--cc-shadow-graphite:var\(--ink\)/);
  assert.match(buttons,/--cc-shadow-on-dark:var\(--grey\)/);
  assert.match(buttons,/--cc-shadow-on-dark-beige:var\(--mush\)/);
- for(const retired of ['#1C241D','#243b32','#8FA3AF','#5F625E']){
+ // Explicit owner-approved Hero 01-only #1C241D overrides the old retired-color rule.
+  assert.match(css,/#hero \.hero-cover\s*\{\s*background:#1C241D/);
+  for(const retired of ['#243b32','#8FA3AF','#5F625E']){
   assert.ok(!css.toUpperCase().includes(retired.toUpperCase()),'retired color in CSS: '+retired);
   assert.ok(!buttons.toUpperCase().includes(retired.toUpperCase()),'retired color in buttons: '+retired);
  }
@@ -756,13 +758,13 @@ test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',a
  const guard=await read('src/nav-sticky-guard.mjs');
  assert.match(app,/class="logo-word logo-word--image"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
- assert.match(app,/src="\/assets\/chapchitra-full-on-dark-original-patch-cream-terra-wordmark\.webp"/);
+ assert.match(app,/src="\/assets\/chapchitra-full\.webp"/);
  assert.match(app,/class="hero-brand-lockup"/);
  assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);
  assert.match(app,/class="logo-word logo-word--footer"/);
  assert.match(html,/rel="icon"[^>]*href="\/assets\/favicon\.png"/);
  assert.match(html,/rel="apple-touch-icon"[^>]*href="\/assets\/apple-touch-icon\.png"/);
- assert.match(html,/rel="preload" as="image" href="\/assets\/chapchitra-full-on-dark-original-patch-cream-terra-wordmark\.webp"/);
+ assert.match(html,/rel="preload" as="image" href="\/assets\/chapchitra-full\.webp"/);
  assert.doesNotMatch(app,/<div class="hero-display-word">CHAPCHITRA<\/div>/);
  assert.doesNotMatch(app,/Temporary wordmark|final logo pending|Identity, pricing and images remain provisional/);
  assert.doesNotMatch(app,/<span>CHAPCHITRA<\/span>/);

@@ -256,11 +256,24 @@ export function mountC05Values(root,{win=window,doc=document}={}){
   destroyed=true;observer?.disconnect();preloader?.disconnect();
   doc.removeEventListener('visibilitychange',onVisibility);
   media.removeEventListener?.('change',onReduced);
-  win.removeEventListener('pagehide',destroy);
+  win.removeEventListener('pagehide',onPageHide);
+  win.removeEventListener('pageshow',onPageShow);
   states.forEach(s=>{s.disposed=true;s.instance?.destroy()});
   root.dataset.c05Mounted='false';
  };
- win.addEventListener('pagehide',destroy,{once:true});
+ // A bfcache page is not unloaded. Destroying its players on pagehide
+ // leaves a restored homepage inert because ES modules and boot do not rerun.
+ // Pause the existing playheads and resume only visible slots on pageshow.
+ const onPageHide=event=>{
+  if(!event.persisted){destroy();return}
+  states.forEach((s,slot)=>{
+   s.instance?.pause();
+   if(!media.matches)status(slot,'paused');
+  });
+ };
+ const onPageShow=event=>{if(event.persisted)each()};
+ win.addEventListener('pagehide',onPageHide);
+ win.addEventListener('pageshow',onPageShow);
  // Read-only deterministic QA diagnostics, no extra playback clock.
  root.c05QA={
   get states(){return slots.map(slot=>({icon:slot.dataset.c05Icon,state:slot.dataset.c05State,

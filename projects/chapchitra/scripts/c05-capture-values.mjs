@@ -53,18 +53,16 @@ for(const test of cases){
  for(const icon of ['01','02','03','04']){
   const stage=page.locator('#values [data-c05-icon="'+icon+'"]');
   await stage.scrollIntoViewIfNeeded();
-  // Real continuous playback must finish the complete original animation twice.
+  // Real continuous playback must finish the complete original animation three times.
   await page.waitForFunction(n=>{
    const stage=document.querySelector('#values [data-c05-icon="'+n+'"]');
-   return Number(stage?.dataset.c05Cycles||0)>=2;
+   return Number(stage?.dataset.c05Cycles||0)>=3;
   },icon,{timeout:33000});
  }
 
- // Prior cards may pause when out of viewport; never demand terminal state.
- await page.waitForFunction(()=>{
-  const stages=[...document.querySelectorAll('#values [data-c05-icon]')];
-  return stages.length===4&&stages.every(n=>Number(n.dataset.c05Cycles||0)>=2);
- },null,{timeout:33000});
+ // Each offscreen card is intentionally paused; requiring its next cycle
+ // after scrolling away creates a false timeout on single-column mobile.
+ // All four have already completed at least three cycles while in view.
  const states=await page.locator('#values').evaluate(root=>root.c05QA?.states||[]);
  const timeline=states.map(({icon,state,error,frame,cycles})=>({icon,state,error,frame,cycles}));
  await page.screenshot({path:resolve(folder,`c05-${test.label}-final.png`),fullPage:true});
@@ -95,18 +93,59 @@ for(const test of cases){
  const offscreenFrozen=paused1?.state==='paused'&&paused2?.state==='paused'&&
   Math.abs(Number(paused2.frame)-Number(paused1.frame))<=.25;
  await watched.scrollIntoViewIfNeeded();
- await page.waitForTimeout(300);
+ // A fixed 300ms sleep can misreport WebKit's next resumed RAF as stalled.
+ // Require actual playhead advancement within a bounded interval instead.
+ let resumedMotion=false;
+ try{
+  await page.waitForFunction(({frame,cycles})=>{
+   const s=document.querySelector('#values')?.c05QA?.states.find(v=>v.icon==='02');
+   return s?.state==='playing'&&(s.frame!==frame||s.cycles>cycles);
+  },{frame:paused2.frame,cycles:paused2.cycles},{timeout:3500});
+  resumedMotion=true;
+ }catch{/* The retained final assertion reports a genuinely stalled player. */}
  const resumed=await page.locator('#values').evaluate(r=>r.c05QA?.states.find(s=>s.icon==='02'));
- const resumedMotion=resumed?.state==='playing'&&
-  (resumed.frame!==paused2.frame||resumed.cycles>paused2.cycles);
+ // Exercise the real navigation lifecycle, including bfcache if the engine
+ // chooses to restore the original document rather than doing a new load.
+ await page.evaluate(()=>{
+  window.__c05HistoryMark=Date.now();
+  window.__c05HistoryShows=[];
+  window.addEventListener('pageshow',event=>window.__c05HistoryShows.push(event.persisted));
+ });
+ await page.goto(new URL('/shop/',url).href,{waitUntil:'domcontentloaded',timeout:25000});
+ await page.goBack({waitUntil:'domcontentloaded',timeout:25000});
+ const backSlot=page.locator('#values [data-c05-icon="03"]');
+ await backSlot.waitFor({state:'attached',timeout:25000});
+ await backSlot.evaluate(node=>node.scrollIntoView({block:'center',behavior:'instant'}));
+ const historyAtStart=await backSlot.evaluate(node=>Number(node.dataset.c05Cycles||0));
+ await page.waitForFunction(start=>{
+  const node=document.querySelector('#values [data-c05-icon="03"]');
+  return node?.dataset.c05State==='playing'&&Number(node.dataset.c05Cycles||0)>start;
+ },historyAtStart,{timeout:25000});
+ const history=await page.evaluate(()=>({
+  restoredOriginalDocument:!!window.__c05HistoryMark,
+  persistedShows:window.__c05HistoryShows||[],
+  mounted:document.querySelector('#values')?.dataset.c05Mounted,
+  cycles:Number(document.querySelector('#values [data-c05-icon="03"]')?.dataset.c05Cycles||0)
+ }));
+ // Warm reload through the same browser context must also reinitialize playback.
+ await page.reload({waitUntil:'domcontentloaded',timeout:25000});
+ await backSlot.waitFor({state:'attached',timeout:25000});
+ await backSlot.evaluate(node=>node.scrollIntoView({block:'center',behavior:'instant'}));
+ await page.waitForFunction(()=>{
+  const node=document.querySelector('#values [data-c05-icon="03"]');
+  return node?.dataset.c05State==='playing'&&Number(node.dataset.c05Cycles||0)>=1;
+ },null,{timeout:25000});
+ const afterWarmReload=await backSlot.evaluate(node=>Number(node.dataset.c05Cycles||0));
+ const historyQA={history,historyAtStart,afterWarmReload,backResumed:history.cycles>historyAtStart};
  const record={engine:test.engine,viewport:test.label,states:timeline,errors,responses,instances,runtime,
-  visibilityQA:{offscreenFrozen,resumedMotion,paused1,paused2,resumed}};
+  visibilityQA:{offscreenFrozen,resumedMotion,paused1,paused2,resumed},historyQA};
  observations.push(record);
  await ctx.close();await browser.close();
- if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.cycles<2||!['playing','paused'].includes(s.state))||
+ if(errors.length||responses.length||states.length!==4||states.some(s=>s.error||s.cycles<3||!['playing','paused'].includes(s.state))||
     !runtime.rootQA||!runtime.lottieRuntime||!runtime.gsapRuntime||
     !runtime.icon03UsesGSAP||!runtime.icon03ExactDuration||
-    instances.length!==4||instances.some(s=>!s.native)||!offscreenFrozen||!resumedMotion)
+    instances.length!==4||instances.some(s=>!s.native)||!offscreenFrozen||!resumedMotion||
+    !historyQA.backResumed||historyQA.afterWarmReload<1)
   throw Error(`${test.label} C05 native Lottie / original GSAP playback did not complete: ${JSON.stringify(record)}`);
 }
 // Additional reduced-motion check: no moving playhead.

@@ -149,17 +149,23 @@ async function normalTest(config){
   const beforeResize=await page.evaluate(()=>{
    window.__c03NativeResizeEvents=0;
    window.addEventListener('resize',()=>{window.__c03NativeResizeEvents++});
-   return innerWidth;
+   return {width:innerWidth,documentWidth:document.documentElement.clientWidth};
   });
   const resizedWidth=width>700?width-48:Math.max(300,width-32);
   await page.setViewportSize({width:resizedWidth,height});
   await page.waitForTimeout(260);
   const resized=await state(page);
   const resizedViewport=await page.evaluate(()=>({
-   width:innerWidth,events:window.__c03NativeResizeEvents
+   width:innerWidth,documentWidth:document.documentElement.clientWidth,
+   events:window.__c03NativeResizeEvents
   }));
+  // Verify a physical viewport AND layout change, not a native "resize"
+  // callback that mobile WebKit is permitted to omit on setViewportSize.
+  // The separate cancellation assertion below must STILL prove the flight
+  // overlay vanished even when native events===0.
   check(id+' real viewport resize observed',
-   Math.abs(resizedViewport.width-beforeResize)>=16&&resizedViewport.events>=1,
+   Math.abs(resizedViewport.width-beforeResize.width)>=16&&
+   Math.abs(resizedViewport.documentWidth-beforeResize.documentWidth)>=16,
    {beforeResize,resizedViewport});
   check(id+' resize cancels safely',
    resized.overlayCount===0&&resized.count===5,
