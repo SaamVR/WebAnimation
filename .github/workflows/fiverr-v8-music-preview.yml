@@ -15,7 +15,7 @@ jobs:
           mkdir -p private-audio
           curl -fsSL --retry 2 --connect-timeout 15 --max-time 70 'https://assets.mixkit.co/music/130/130.mp3' -o private-audio/tech-house-vibes-130.mp3
           test "$(wc -c < private-audio/tech-house-vibes-130.mp3)" -gt 100000
-          ffprobe -v error -show_entries format=duration,format_name -of json private-audio/tech-house-vibes-130.mp3
+          file private-audio/tech-house-vibes-130.mp3
           printf '%s\n' 'TITLE: Tech House vibes by Alejandro Magaña (A. M.)' 'SOURCE: https://mixkit.co/free-stock-music/' 'SOURCE FILE: https://assets.mixkit.co/music/130/130.mp3' 'LICENSE: Mixkit Stock Music Free License (confirm terms before publication)' 'PURPOSE: private Fiverr six-project review; never commit the raw track' > private-audio/SOURCE-LICENSE.txt
       - uses: actions/upload-artifact@v4
         with:
