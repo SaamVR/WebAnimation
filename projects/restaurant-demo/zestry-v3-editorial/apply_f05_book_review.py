@@ -2,6 +2,7 @@
 """ZESTRY F05 inline interactive book, without Render deployment."""
 import io,zipfile,re,hashlib,subprocess,sys
 from pathlib import Path
+from f05_sixteen_pages import upgrade_book, upgrade_index, install_photos, validate_menu
 P=Path(__file__).resolve().parent.parent
 HERE=Path(__file__).resolve().parent
 PARTS=P/"review_bundle"
@@ -68,12 +69,16 @@ def make_preview(dest):
  newtop='.surface{position:absolute;left:-22.5%;top:-21.5%;width:145%;aspect-ratio:3/2}'
  if oldtop in html:html=html.replace(oldtop,newtop,1)
  assert newtop in html
+ validate_menu()
+ html=upgrade_book(html)
  fs['assets/f05_interactive.html']=html.encode()
  fs['assets/f05_book.lottie']=raw
  fs['assets/f05_menu_integration.css']=(HERE/'f05_menu_integration.css').read_bytes()
  fs['index.html']=(fs['index.html'] if b'id="f05-book-frame"' in fs['index.html'] else patch(fs['index.html'].decode()).encode())
+ fs['index.html']=upgrade_index(fs['index.html'])
  for f in (P/'assets/photos').glob('*.jpg'):
   fs['assets/photos/'+f.name]=f.read_bytes()
+ install_photos(fs)
  for name in ['pancakes','toast','salad','pasta','burger','cake','coffee','lemonade']:
   assert fs.get('assets/photos/'+name+'.jpg') is not None,name
  assert not any("f08" in f.lower() for f in fs)
