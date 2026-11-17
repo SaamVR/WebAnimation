@@ -2358,15 +2358,11 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   overflow:visible;
   shape-rendering:geometricPrecision;
   z-index:1;
-  /* The crisp offset silhouette is its own SVG path; no filtering. */
-  filter:none;
-}
-#hero .hero01-paper-edge .hero01-paper-shadow{
-  fill:var(--color-mushroom-gray);
-  stroke:none;
+  /* Shadow follows every irregular alpha edge, never the rectangular box. */
+  filter:drop-shadow(0 4px 5px color-mix(in srgb,var(--color-mushroom-gray) 36%,transparent));
 }
 #hero .hero01-paper-edge .hero01-paper-cut{
-  fill:var(--bg);
+  fill:var(--color-gallery-white);
   stroke:none;
 }
 #hero .hero01-full-logo{

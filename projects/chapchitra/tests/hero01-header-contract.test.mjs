@@ -62,10 +62,9 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
  assert.match(app,/viewBox="0 381 4200 812"/);
  assert.match(app,/hero01-paper-cut/);
  const paper=app.slice(app.indexOf('function hero01Paper(){'),app.indexOf('function hero(){'));
- assert.equal((paper.match(/<path /g)||[]).length,2,'one owner paper path and one matching shadow silhouette');
- assert.match(paper,/<path class="hero01-paper-shadow" d="'\+HERO01_TORN_PAPER_PATH\+'" transform="translate\(0 18\)"\/>/);
- assert.ok(paper.indexOf('class="hero01-paper-shadow"')<paper.indexOf('class="hero01-paper-cut"'),'shadow must be behind white silhouette');
- assert.equal((paper.match(/HERO01_TORN_PAPER_PATH/g)||[]).length,2,'both paths use unchanged owner path constant');
+ assert.equal((paper.match(/<path /g)||[]).length,1,'one original owner-supplied paper silhouette; no duplicate layers');
+ assert.doesNotMatch(paper,/hero01-paper-shadow|hero01-paper-fibers/);
+ assert.equal((paper.match(/HERO01_TORN_PAPER_PATH/g)||[]).length,1,'only the original Illustrator path may be rendered');
  assert.doesNotMatch(paper,/<g |<mask|<filter|<pattern|<clipPath|hero01-paper-fibers/);
  const master=read('assets/hero01/torn_paper_V.svg');
  const original=master.match(/<path class="st0" d="([\s\S]*?)"\/>/);
@@ -73,11 +72,10 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
  assert.ok(original&&installed,'Original Illustrator path must exist');
  assert.equal(installed[1],original[1],'All original Illustrator path commands must be byte-for-byte preserved');
  assert.match(css,/--color-mushroom-gray:#A6A29B/);
- assert.match(css,/#hero \.hero01-paper-edge\s*\{[^}]*filter:none/);
- assert.match(css,/#hero \.hero01-paper-edge \.hero01-paper-shadow\s*\{\s*fill:var\(--color-mushroom-gray\)/);
+ assert.match(css,/#hero \.hero01-paper-edge\s*\{[^}]*filter:drop-shadow\(0 4px 5px color-mix\(in srgb,var\(--color-mushroom-gray\) 36%,transparent\)\)/);
+ assert.match(css,/#hero \.hero01-paper-edge \.hero01-paper-cut\s*\{\s*fill:var\(--color-gallery-white\)/);
  assert.doesNotMatch(css,/#hero \.hero01-paper-edge\s*\{[^}]*box-shadow:/);
- assert.doesNotMatch(css,/#hero \.hero01-paper-edge\s*\{[^}]*drop-shadow\(/);
- assert.doesNotMatch(css,/#hero \.hero01-paper-edge\s*\{[^}]*blur\(/);
+ assert.doesNotMatch(css,/hero01-paper-shadow|hero01-paper-fibers/);
  assert.match(css,/#hero \.hero01-paper-panel\s*\{[\s\S]*?background:transparent/);
  assert.match(css,/#hero \.hero01-paper-edge\s*\{[\s\S]*?position:absolute;inset:0/);
  assert.match(css,/\[data-hero01-mode="special"\]\s*\{[\s\S]*?border-bottom:0/);
