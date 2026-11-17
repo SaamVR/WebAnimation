@@ -6,11 +6,11 @@
 - [x] Evidence pack generated: Threads, CHAPCHITRA, NOVA/Three.js GLTF, LeadFlow V2 source with 25.4s qualified and timeout recordings.
 - [x] Source lineage/release constraints documented for all six.
 - [x] V8 10.0s / 240-frame **visual-only hook v0 and v1** rendered in conversation workspace. v0 REJECTED; v1 remains a private production audition, not owner-approved.
-- [x] Original NOVA browser capture script committed; capture CI being debugged against updated Ubuntu/Chrome.
+- [x] NOVA live capture: verified ready-state and captured 120 frames. Workflow ffmpeg-less fallback committed; no fabricated product rotation.
 - [x] Isolated private CITYSHIFT source-archive branch created, without modifying V1 release.
 
 ## Open / BLOCKING
-- [ ] Finish NOVA WebGL runtime capture: require ready-state and visible moving GLTF.
+- [x] NOVA original WebGL runtime captured: 120 original 1280×720 frames (5.0s); modelState=ready; zero JavaScript page errors. Runtime capture workflow reached all frames, but GitHub runner had no FFmpeg, so the editor encoded the downloaded originals in the local workspace. `Fiverr_V8_NOVA_Verified_WebGL_Original_5s.mp4` verified by ffprobe.
 - [ ] CITYSHIFT V1 private GitHub Actions archive failed before delivering an artifact; use authorized PC/runner capture or repair private CI. No Cityshift video yet.
 - [ ] Restaurant F01 V4 visual acceptance; F02 Vecteezy artwork commercial rights; F04 art rights.
 - [ ] Hook must pass strong creative auditor and owner review before full edit.
