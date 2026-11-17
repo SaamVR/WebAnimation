@@ -1,0 +1,549 @@
+/* CHAPCHITRA — owner-approved dark palette, isolated dual-theme layer.
+   Light styles are entirely inherited from styles.css / approved animation CSS.
+   Theme scope is the root attribute set synchronously before style paint.
+   No artwork, SVG, Lottie or animation choreography is modified here. */
+
+/* A single theme control appears in either mode; leave the rest of the
+   existing light navbar untouched. This icon is new UI, not supplied artwork. */
+#app > .site-header .nav-actions .cc-theme-toggle {
+  min-width:44px; width:44px; min-height:44px; border-radius:999px;
+  display:inline-grid;place-items:center;
+}
+#app > .site-header .nav-actions .cc-theme-toggle svg {
+  width:20px;height:20px;max-width:20px;max-height:20px;
+  pointer-events:none;
+}
+#app > .site-header .cc-theme-toggle .cc-theme-icon-moon{display:none}
+#app > .site-header .cc-theme-toggle:focus-visible{
+  outline:3px solid var(--color-terracotta);outline-offset:2px;
+}
+#app > .site-header .cc-mobile-theme-toggle{display:none}
+@media(max-width:430px){
+  /* On narrow phone screens the original fixed-center wordmark must not
+     overlap an extra third navbar action. Offer theme selection in the
+     existing hamburger nav at a proper 44px+ keyboard/touch target. */
+  #app > .site-header .nav-actions .cc-theme-toggle{display:none}
+  #app > .site-header .mobile-nav .cc-mobile-theme-toggle{
+    display:flex;align-items:center;justify-content:flex-start;
+    width:100%;min-height:44px;padding:9px 5px;
+    border:0;border-bottom:1px solid var(--line);
+    background:transparent;color:inherit;
+    font:600 13px/1.4 var(--font-ui);
+    text-align:left;cursor:pointer;
+  }
+}
+
+
+/* Canonical tokens stay unchanged. Dark roles and compatibility aliases are
+   overridden once, only under the dark root. No global hex substitution. */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --theme-page:var(--color-dark-olive);
+  --theme-header:var(--color-deep-forest);
+  --theme-hero:var(--color-walnut);
+  --theme-surface:var(--color-deep-forest);
+  --theme-panel:var(--color-mushroom-gray);
+  --theme-gallery:var(--color-warm-beige);
+  --theme-paper:var(--color-gallery-white);
+  --theme-text:var(--color-cream);
+  --theme-muted:var(--color-warm-beige);
+  --theme-on-panel:var(--color-graphite);
+  --theme-line:var(--color-mushroom-gray);
+  --theme-accent:var(--color-terracotta);
+  --theme-focus:var(--color-cream);
+  --surface-page:var(--theme-page);
+  --surface-secondary:var(--theme-surface);
+  --surface-editorial:var(--theme-hero);
+  --surface-paper:var(--theme-gallery);
+  --text-primary:var(--theme-text);
+  --text-secondary:var(--theme-muted);
+  --border-subtle:var(--theme-line);
+  --interactive-primary:var(--color-press-green);
+  --interactive-hover:var(--theme-hero);
+  --interactive-warm:var(--theme-accent);
+  /* Compatibility aliases used by pre-existing routes and components. */
+  --paper:var(--theme-page);
+  --bg:var(--theme-page);
+  --graphite:var(--theme-text);
+  --ink:var(--theme-text);
+  --mut:var(--theme-muted);
+  --muted:var(--theme-muted);
+  --grey:var(--theme-line);
+  --line:var(--theme-line);
+  --fog:var(--theme-surface);
+  --mist:var(--theme-surface);
+  --beige:var(--theme-gallery);
+  --cream:var(--theme-text);
+  --deep:var(--theme-header);
+  --midnight-pine:var(--theme-header);
+  --press:var(--color-press-green);
+  --olive:var(--theme-page);
+  --acc:var(--theme-accent);
+  --clay:var(--theme-accent);
+}
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] #main{
+  background:var(--theme-page);color:var(--theme-text);
+}
+:root[data-theme="dark"] :is(a,button,input,select,textarea):focus-visible,
+:root[data-theme="dark"] [tabindex]:focus-visible {
+  outline:3px solid var(--theme-focus);outline-offset:3px;
+}
+:root[data-theme="dark"] :is(button,input,select,textarea){
+  accent-color:var(--theme-gallery);
+}
+:root[data-theme="dark"] a:not(.cc-sketch):hover{ text-decoration-color:currentColor }
+
+/* Dark Forest sticky navbar and continuation of the *unchanged* V shape. */
+:root[data-theme="dark"] #app > .site-header,
+:root[data-theme="dark"] body[data-page="home"] #app > .site-header[data-hero01-mode="special"]{
+  background:var(--theme-header);color:var(--theme-text);
+  border-bottom-color:var(--theme-header);
+}
+:root[data-theme="dark"] #app > .site-header .nav-center > a{
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #app > .site-header .nav-center > a:hover,
+:root[data-theme="dark"] #app > .site-header .nav-center > a[aria-current]{
+  color:var(--theme-gallery);
+}
+:root[data-theme="dark"] #app > .site-header .nav-actions .cc-theme-toggle{
+  color:var(--theme-text);
+  background:transparent;
+}
+:root[data-theme="dark"] #app > .site-header .cc-theme-toggle svg:first-child{display:none}
+:root[data-theme="dark"] #app > .site-header .cc-theme-toggle .cc-theme-icon-moon{display:block}
+:root[data-theme="dark"] #app > .site-header .nav-actions .cc-theme-toggle:hover{
+  background:var(--color-walnut);
+}
+:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle),
+:root[data-theme="dark"] #app > .site-header .nav-left .hamburger{
+  /* The original dark-ink Illustrator buttons are not recolored or filtered.
+     Warm Beige button surfaces give those untouched dark vectors contrast. */
+  background:var(--theme-gallery);
+  color:var(--theme-on-panel);
+  border-radius:999px;
+}
+:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle):hover,
+:root[data-theme="dark"] #app > .site-header .nav-left .hamburger:hover{
+  background:var(--theme-paper);
+}
+:root[data-theme="dark"] #app > .site-header .bag-count{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] #app > .site-header .mobile-nav,
+:root[data-theme="dark"] #app > .site-header .search-panel{
+  background:var(--theme-header);color:var(--theme-text);
+  border-color:var(--theme-line);
+}
+:root[data-theme="dark"] #app > .site-header .mobile-nav a,
+:root[data-theme="dark"] #app > .site-header .search-form label,
+:root[data-theme="dark"] #app > .site-header .search-form small{
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #app > .site-header .search-inline input{
+  background:var(--theme-page);color:var(--theme-text);
+  border:1px solid var(--theme-line);
+}
+:root[data-theme="dark"] #app > .site-header .search-inline input::placeholder{
+  color:var(--theme-muted);opacity:1;
+}
+:root[data-theme="dark"] .announcement{
+  background:var(--theme-header);color:var(--theme-text);
+}
+:root[data-theme="dark"] #hero .hero01-paper-edge .hero01-paper-cut{
+  fill:var(--theme-header);
+  /* identical SVG d path, shadow, transform, origin, and scale */
+}
+:root[data-theme="dark"] #hero .hero-cover{
+  background:var(--theme-hero);color:var(--theme-text);
+}
+:root[data-theme="dark"] #hero .hero-cover .hero-cover-inner h1,
+:root[data-theme="dark"] #hero .hero-cover .hero-cover-inner .eyebrow,
+:root[data-theme="dark"] #hero .hero-cover .hero-cover-inner > p:not(.eyebrow){
+  color:var(--theme-text);
+}
+/* Heroes 02–05: same markup and timer, only backgrounds/text roles. */
+:root[data-theme="dark"] #hero .hero-slide[data-slide="1"]{
+  background:var(--theme-page);color:var(--theme-text);
+}
+:root[data-theme="dark"] #hero .hero-slide[data-slide="2"]{
+  background:var(--theme-header);color:var(--theme-text);
+}
+:root[data-theme="dark"] #hero .hero-slide[data-slide="3"]{
+  background:var(--theme-hero);color:var(--theme-text);
+}
+:root[data-theme="dark"] #hero .hero-slide[data-slide="4"]{
+  background:var(--theme-page);color:var(--theme-text);
+}
+:root[data-theme="dark"] #hero .hero-slide-copy :is(h2,p,.eyebrow){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #hero .hero-visual{
+  background:var(--theme-panel);
+}
+:root[data-theme="dark"] #hero .hero-visual-2,
+:root[data-theme="dark"] #hero .hero-visual-4{
+  background:var(--theme-gallery);
+}
+:root[data-theme="dark"] #hero .paper-editorial{
+  background:var(--theme-paper);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] #hero .hero-placeholder{
+  color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] #hero .hero-count{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] #hero .hero-dot:before{background:var(--theme-gallery)}
+:root[data-theme="dark"] #hero .hero-dot.active:before{background:var(--theme-accent)}
+:root[data-theme="dark"] #hero .hero-dot:focus-visible{outline-color:var(--theme-focus)}
+
+/* C01 section and C05 animation players: preserve SVG/Lottie pixel values.
+   These are backdrops and HTML text only. */
+:root[data-theme="dark"] #benefits.benefit-section{
+  background:var(--theme-page);color:var(--theme-text);
+  border-color:var(--theme-line);
+}
+:root[data-theme="dark"] #benefits .c01-icon,
+:root[data-theme="dark"] #benefits .c01-poster,
+:root[data-theme="dark"] #benefits .c01-lottie{
+  background:var(--theme-page);
+}
+:root[data-theme="dark"] #benefits .c01-copy h3{color:var(--theme-text)}
+:root[data-theme="dark"] #benefits .c01-icon-shell:before{
+  border-color:var(--theme-gallery);
+}
+
+/* Category illustrations stay original; only surrounding panels recolor. */
+:root[data-theme="dark"] #categories{
+  background:var(--theme-page);color:var(--theme-text);
+}
+:root[data-theme="dark"] #categories .section-title :is(h2,p),
+:root[data-theme="dark"] #categories .category-copy :is(h3,p){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #categories .category-image{
+  background:var(--theme-gallery);
+}
+:root[data-theme="dark"] #categories .category-card:nth-child(2) .category-image{
+  background:var(--theme-panel);
+}
+:root[data-theme="dark"] #categories .category-card:nth-child(3) .category-image{
+  background:var(--theme-gallery);
+}
+:root[data-theme="dark"] #categories .filter-chips a{
+  border-color:var(--theme-gallery);color:var(--theme-text);
+  background:var(--theme-header);
+}
+:root[data-theme="dark"] #categories .filter-chips a:hover{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+
+/* Product collection and shared Polaroid cards, including Shop/Favorites. */
+:root[data-theme="dark"] #collection{
+  background:var(--theme-header);color:var(--theme-text);
+}
+:root[data-theme="dark"] #collection .section-title :is(h2,p){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] .product-card-shell > .polaroid-card,
+:root[data-theme="dark"] .product-card.polaroid-card{
+  background:var(--theme-panel);
+  color:var(--theme-on-panel);
+  box-shadow:4px 5px 0 var(--theme-hero);
+}
+:root[data-theme="dark"] .product-card-shell .polaroid-card .product-meta.polaroid-caption,
+:root[data-theme="dark"] #collection .product-card-shell .polaroid-card .product-meta.polaroid-caption,
+:root[data-theme="dark"] #collection .polaroid-card .product-meta.polaroid-caption{
+  background:var(--theme-panel);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .product-card-shell{
+  --photo-tone:var(--theme-gallery);
+}
+:root[data-theme="dark"] .product-card-shell .polaroid-card .product-visual,
+:root[data-theme="dark"] #collection .product-card-shell .polaroid-card .product-visual,
+:root[data-theme="dark"] .polaroid-card .product-visual,
+:root[data-theme="dark"] .product-visual{
+  background:var(--theme-gallery);
+}
+:root[data-theme="dark"] .product-card-shell .polaroid-name strong,
+:root[data-theme="dark"] .polaroid-card .polaroid-name strong,
+:root[data-theme="dark"] .product-card-shell .polaroid-fit,
+:root[data-theme="dark"] .product-card-shell .product-price :is(small,b),
+:root[data-theme="dark"] .product-card-shell .product-meta :is(span,a,b),
+:root[data-theme="dark"] .polaroid-card .product-meta :is(span,a,b){
+  color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .product-card-shell .favorite-toggle,
+:root[data-theme="dark"] .product-card-shell .favorite-toggle.liked{
+  background:var(--theme-paper);border-color:var(--theme-line);
+  color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .favorite-toggle.liked svg{
+  fill:var(--color-terracotta);
+}
+:root[data-theme="dark"] #app .favorite-toggle.liked svg{fill:var(--color-terracotta)}
+:root[data-theme="dark"] .proof-tag{
+  background:var(--theme-paper);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .product-grid .polaroid-card .proof-tag{
+  background:var(--theme-paper);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .pager button{color:var(--theme-text)}
+:root[data-theme="dark"] .pager button:hover,
+:root[data-theme="dark"] .pager button.page-current{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .text-link{color:var(--theme-text)}
+
+/* Hand-painted banners: change only the CSS brush surface and HTML copy.
+   Their original distressed mask and button artwork are untouched. */
+:root[data-theme="dark"] #banners > .tie-banner{
+  --cc-printed-surface:var(--theme-hero);
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #banners > .edit-banner{
+  --cc-printed-surface:var(--theme-header);
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #banners .banner-editorial-copy :is(h2,p,.eyebrow){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #banners .banner-art-panel{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] #banners .banner-art-panel small{
+  color:var(--theme-on-panel);
+}
+
+/* Featured prints dark-forest section, warm gallery frames. */
+:root[data-theme="dark"] #featured.featured-zone{
+  background:var(--theme-header);color:var(--theme-text);
+  --cc-printed-surface:var(--theme-header);
+}
+:root[data-theme="dark"] #featured.featured-zone > .cc-printed-surface{
+  --cc-printed-surface:var(--theme-header);
+}
+:root[data-theme="dark"] #featured .section-title :is(h2,p){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #featured .feature-frame .art-plate{
+  background:var(--theme-gallery);border-color:var(--theme-paper);
+}
+:root[data-theme="dark"] #featured .featured-wide .featured-controls button{
+  border-color:var(--theme-gallery);color:var(--theme-text);
+}
+
+/* C05 More Than a T-Shirt: do not touch Lottie vectors/animation layers. */
+:root[data-theme="dark"] #values[data-c05-values="true"]{
+  background:var(--theme-page);color:var(--theme-text);
+}
+:root[data-theme="dark"] #values[data-c05-values="true"] .section-title h2,
+:root[data-theme="dark"] #values[data-c05-values="true"] .value-card :is(h3,p){
+  color:var(--theme-text);
+}
+
+/* People / Places / Prints warm story transitions into the dark olive footer. */
+:root[data-theme="dark"] #story.story-section{
+  background:linear-gradient(to bottom,var(--theme-hero) 0%,var(--theme-hero) 70%,var(--theme-page) 100%);
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] #story .story-summary p{color:var(--theme-text)}
+:root[data-theme="dark"] #story .street-note{
+  background:var(--theme-header);color:var(--theme-text);
+}
+:root[data-theme="dark"] .site-footer{
+  background:var(--theme-page);color:var(--theme-text);
+}
+:root[data-theme="dark"] .site-footer :is(h2,p,a,small,span){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] .site-footer .footer-bottom{
+  border-color:var(--theme-line);
+}
+
+/* Inner pages all use Dark Olive; gallery/paper is deliberately lighter. */
+:root[data-theme="dark"] .route-head,
+:root[data-theme="dark"] .route-content,
+:root[data-theme="dark"] .shop-listing,
+:root[data-theme="dark"] .journal-grid,
+:root[data-theme="dark"] .demo-bag-section{
+  background:var(--theme-page);color:var(--theme-text);
+}
+:root[data-theme="dark"] .route-head p,
+:root[data-theme="dark"] .route-content p,
+:root[data-theme="dark"] .shop-listing p,
+:root[data-theme="dark"] .shop-listing label{
+  color:var(--theme-muted);
+}
+:root[data-theme="dark"] .route-head h1,
+:root[data-theme="dark"] .route-content :is(h1,h2,h3),
+:root[data-theme="dark"] .shop-listing :is(h1,h2,h3){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] .shop-banner{
+  background:var(--theme-header);color:var(--theme-text);
+}
+:root[data-theme="dark"] .shop-banner .shop-banner-copy :is(h1,p),
+:root[data-theme="dark"] .shop-banner-copy .eyebrow{
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] .shop-banner-art-frame{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .shop-sidebar{
+  color:var(--theme-text);border-color:var(--theme-line);
+}
+:root[data-theme="dark"] .shop-sidebar .shop-filter-group{
+  border-color:var(--theme-line);
+}
+:root[data-theme="dark"] .shop-filter-option{color:var(--theme-text)}
+:root[data-theme="dark"] .shop-filter-option input:checked + span,
+:root[data-theme="dark"] .shop-clear-filters{
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] .shop-filter-option input{accent-color:var(--theme-gallery)}
+:root[data-theme="dark"] .shop-clear-filters{
+  border-color:var(--theme-gallery);
+}
+:root[data-theme="dark"] .shop-clear-filters:hover{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] :is(.shop-sort-label select,.shop-controls select,.shop-filter-trigger,
+ .shop-size-option > span,.search-inline input, .newsletter-row input,
+ .custom-settings input,.custom-settings select,.custom-settings textarea){
+  background:var(--theme-header);color:var(--theme-text);
+  border-color:var(--theme-line);
+}
+:root[data-theme="dark"] .shop-size-option input:checked + span{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+  border-color:var(--theme-gallery);
+}
+:root[data-theme="dark"] .shop-filter-backdrop{
+  background:color-mix(in srgb,var(--theme-page) 64%,transparent);
+}
+:root[data-theme="dark"] .shop-sidebar:not([hidden]){
+  background:var(--theme-page);
+}
+:root[data-theme="dark"] .shop-color-option input:checked + .shop-color-dot{
+  box-shadow:0 0 0 2px var(--theme-page),0 0 0 4px var(--theme-gallery);
+}
+:root[data-theme="dark"] .shop-color-option[data-color="white"] .shop-color-dot{
+  background:var(--theme-paper);
+}
+:root[data-theme="dark"] .shop-price-unavailable,
+:root[data-theme="dark"] .shop-filter-metadata-note,
+:root[data-theme="dark"] #filterSummary{
+  color:var(--theme-muted);
+}
+:root[data-theme="dark"] .detail-layout .detail-art{
+  background:var(--theme-gallery);
+}
+:root[data-theme="dark"] .detail-layout h1,
+:root[data-theme="dark"] .detail-layout h2{
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] .detail-layout .route-disclaimer,
+:root[data-theme="dark"] .demo-bag-summary,
+:root[data-theme="dark"] .empty-panel{
+  background:var(--theme-header);color:var(--theme-text);
+}
+:root[data-theme="dark"] .detail-layout .route-disclaimer,
+:root[data-theme="dark"] .demo-bag-summary p{
+  color:var(--theme-muted);
+}
+:root[data-theme="dark"] .journal-spotlight,
+:root[data-theme="dark"] .journal-feature-copy{
+  background:var(--theme-header);color:var(--theme-text);
+}
+:root[data-theme="dark"] .journal-feature-art,
+:root[data-theme="dark"] .journal-thumb,
+:root[data-theme="dark"] .article-art,
+:root[data-theme="dark"] .about-visual{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .journal-card :is(h3,p),
+:root[data-theme="dark"] .journal-feature-copy :is(h2,p){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] .journal-controls button{
+  color:var(--theme-text);border-color:var(--theme-gallery);
+}
+:root[data-theme="dark"] .journal-controls button:hover{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .about-layout .about-visual :is(p,small){
+  color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .cc-artist-bag-mark{
+  background:var(--theme-gallery);color:var(--theme-on-panel);
+}
+
+/* Artist's Edit: keep the painted desk, prints, garment and registration exactly
+   unchanged. Only shared HTML chrome, live forms and external copy use dark. */
+:root[data-theme="dark"] body[data-page="artists-edit"] #main{
+  background:var(--theme-page);color:var(--theme-text);
+}
+:root[data-theme="dark"] body[data-page="artists-edit"] .cc-worktable-diagnostic{
+  color:var(--theme-text);background:var(--theme-header);
+  border-color:var(--theme-line);
+}
+:root[data-theme="dark"] body[data-page="artists-edit"] :is(.custom-settings,.cc-worktable-field,.cc-worktable-artwork-intro){
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] body[data-page="artists-edit"] :is(.custom-settings input,.custom-settings select,.custom-settings textarea){
+  background:var(--theme-header);color:var(--theme-text);
+  border-color:var(--theme-line);
+}
+
+/* Disabled controls remain discernible; never fade selected terracotta hearts
+   or overwrite user-authored artwork. */
+:root[data-theme="dark"] :is(button,input,select):disabled{
+  cursor:not-allowed;
+}
+:root[data-theme="dark"] .cc-theme-toggle:focus-visible,
+:root[data-theme="dark"] #app .cc-theme-toggle:focus-visible{
+  outline-color:var(--theme-focus);
+}
+@media(prefers-reduced-motion:reduce){
+  :root[data-theme="dark"] .cc-theme-toggle{transition:none!important}
+}
+/* Contrast repair: existing button artwork/ink masks are preserved. Only
+   live HTML label colors are corrected for their original painted faces. */
+:root[data-theme="dark"] .cc-sketch.cc-sketch--forest,
+:root[data-theme="dark"] .cc-sketch.cc-sketch--terracotta{
+  --cc-label:var(--theme-text);
+  --cc-ink:var(--theme-header);
+}
+:root[data-theme="dark"] .cc-sketch.cc-sketch--beige{
+  --cc-label:var(--theme-on-panel);
+  --cc-ink:var(--theme-header);
+}
+:root[data-theme="dark"] .cc-sketch .cc-sketch-label-ink{
+  color:var(--theme-text);
+}
+:root[data-theme="dark"] .shop-banner-art-frame span{
+  color:var(--theme-on-panel);
+}
+:root[data-theme="dark"] .product-card-shell .product-price b,
+:root[data-theme="dark"] .polaroid-card .product-price b{
+  color:var(--theme-on-panel);
+}
+
+/* Accessibility: the original Artist's Edit controls mount light paper
+   panels. The shared dark alias made small descriptive copy Cream on White.
+   Restore Graphite ink on those ORIGINAL light surfaces; no art/layout edits. */
+:root[data-theme="dark"] body[data-page="artists-edit"]
+:is(.cc-worktable-panel-subtitle,.cc-worktable-field-note,
+    .cc-worktable-hint,.cc-worktable-price-note,
+    .cc-worktable-price-disclaimer){
+  color:var(--theme-on-panel);
+}
+
+:root[data-theme="dark"] #app > .site-header .mobile-nav .cc-mobile-theme-toggle{
+ color:var(--theme-text);border-color:var(--theme-line)
+}
+:root[data-theme="dark"] #app > .site-header .mobile-nav .cc-mobile-theme-toggle:focus-visible{
+ outline:3px solid var(--theme-focus);outline-offset:1px
+}
