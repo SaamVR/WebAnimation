@@ -1,0 +1,709 @@
+{
+  "revision": "dark-refinement-p01",
+  "browserProfiles": [
+    {
+      "profile": "desktop-chromium",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "errors": [],
+      "screenshots": [
+        "desktop-chromium-dark-full-home.png",
+        "desktop-chromium-hero-logo-cta.png",
+        "desktop-chromium-category-chips.png",
+        "desktop-chromium-collection-add-to-bag.png",
+        "desktop-chromium-pagination.png",
+        "desktop-chromium-featured-prints.png",
+        "desktop-chromium-footer-logo.png"
+      ],
+      "measured": {
+        "theme": "dark",
+        "heroLogo": "/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp",
+        "navLogo": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "footerLogo": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "heroButtonFace": "rgb(138, 80, 59)",
+        "heroButtonShadow": "rgb(41, 61, 45)",
+        "longFace": "rgb(166, 162, 155)",
+        "longShadow": "rgb(138, 80, 59)",
+        "categoriesChip": "rgb(216, 206, 194)",
+        "categoriesChipText": "rgb(35, 35, 35)",
+        "pagination": "rgb(110, 82, 63)",
+        "paginationText": "rgb(228, 227, 222)",
+        "featured": "rgb(110, 82, 63)",
+        "story": "linear-gradient(rgb(110, 82, 63) 0%, rgb(110, 82, 63) 70%, rgb(31, 34, 22) 100%)",
+        "overflow": 0,
+        "heroArtworkBytes": [
+          "http://127.0.0.1:4327/assets/chapchitra-wordmark-cream-terra.webp",
+          "http://127.0.0.1:4327/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp"
+        ]
+      },
+      "lightSource": {
+        "hero": "/assets/chapchitra-full.webp",
+        "nav": "/assets/chapchitra-wordmark.webp"
+      },
+      "video": "desktop-chromium-dark-home-scroll-uncut.webm",
+      "scrollTrace": [
+        {
+          "scroll": 0,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 35,
+          "progress": "0.1589",
+          "theme": "dark"
+        },
+        {
+          "scroll": 70,
+          "progress": "0.3177",
+          "theme": "dark"
+        },
+        {
+          "scroll": 105,
+          "progress": "0.4766",
+          "theme": "dark"
+        },
+        {
+          "scroll": 140,
+          "progress": "0.6354",
+          "theme": "dark"
+        },
+        {
+          "scroll": 175,
+          "progress": "0.7943",
+          "theme": "dark"
+        },
+        {
+          "scroll": 210,
+          "progress": "0.9532",
+          "theme": "dark"
+        },
+        {
+          "scroll": 246,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 280,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 315,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 350,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 385,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 420,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 490,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 580,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 700,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 840,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1000,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1200,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1500,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1800,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2100,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2400,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2800,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 3200,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 3700,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4100,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4500,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4781,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4781,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4781,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4781,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4781,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4500,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4100,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 3700,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 3200,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2800,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2400,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2100,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1800,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1500,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1200,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1000,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 840,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 700,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 580,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 490,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 420,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 385,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 350,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 315,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 280,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 245,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 210,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 175,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 140,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 105,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 70,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 35,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 0,
+          "progress": "0.0000",
+          "theme": "dark"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "profile": "ipad-webkit",
+      "viewport": {
+        "width": 834,
+        "height": 1112
+      },
+      "errors": [],
+      "screenshots": [
+        "ipad-webkit-dark-full-home.png",
+        "ipad-webkit-hero-logo-cta.png",
+        "ipad-webkit-category-chips.png",
+        "ipad-webkit-collection-add-to-bag.png",
+        "ipad-webkit-pagination.png",
+        "ipad-webkit-featured-prints.png",
+        "ipad-webkit-footer-logo.png"
+      ],
+      "measured": {
+        "theme": "dark",
+        "heroLogo": "/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp",
+        "navLogo": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "footerLogo": "/assets/chapchitra-wordmark-cream-terra.webp",
+        "heroButtonFace": "rgb(138, 80, 59)",
+        "heroButtonShadow": "rgb(41, 61, 45)",
+        "longFace": "rgb(166, 162, 155)",
+        "longShadow": "rgb(138, 80, 59)",
+        "categoriesChip": "rgb(216, 206, 194)",
+        "categoriesChipText": "rgb(35, 35, 35)",
+        "pagination": "rgb(110, 82, 63)",
+        "paginationText": "rgb(228, 227, 222)",
+        "featured": "rgb(110, 82, 63)",
+        "story": "linear-gradient(rgb(110, 82, 63) 0%, rgb(110, 82, 63) 70%, rgb(31, 34, 22) 100%)",
+        "overflow": 0,
+        "heroArtworkBytes": [
+          "http://127.0.0.1:4327/assets/chapchitra-wordmark-cream-terra.webp",
+          "http://127.0.0.1:4327/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp"
+        ]
+      },
+      "lightSource": {
+        "hero": "/assets/chapchitra-full.webp",
+        "nav": "/assets/chapchitra-wordmark.webp"
+      },
+      "video": "ipad-webkit-dark-home-scroll-uncut.webm",
+      "scrollTrace": [
+        {
+          "scroll": 0,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 35,
+          "progress": "0.1543",
+          "theme": "dark"
+        },
+        {
+          "scroll": 70,
+          "progress": "0.3086",
+          "theme": "dark"
+        },
+        {
+          "scroll": 105,
+          "progress": "0.4630",
+          "theme": "dark"
+        },
+        {
+          "scroll": 140,
+          "progress": "0.4630",
+          "theme": "dark"
+        },
+        {
+          "scroll": 175,
+          "progress": "0.4630",
+          "theme": "dark"
+        },
+        {
+          "scroll": 210,
+          "progress": "0.7716",
+          "theme": "dark"
+        },
+        {
+          "scroll": 246,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 280,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 315,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 350,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 385,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 420,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 490,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 580,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 700,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 840,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1000,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1200,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1500,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1800,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2100,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2400,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2800,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 3200,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 3700,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4100,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4500,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4900,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4974,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4974,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4974,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4900,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4500,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 4100,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 3700,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 3200,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2800,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2400,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 2100,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1800,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1500,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1200,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 1000,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 840,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 700,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 580,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 490,
+          "progress": "1.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 420,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 385,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 350,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 315,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 280,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 245,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 210,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 175,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 140,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 105,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 70,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 35,
+          "progress": "0.0000",
+          "theme": "dark"
+        },
+        {
+          "scroll": 0,
+          "progress": "0.0000",
+          "theme": "dark"
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "origin": "http://127.0.0.1:4327",
+  "videoMethod": "native Playwright video, no cuts, no edits, 1x"
+}
