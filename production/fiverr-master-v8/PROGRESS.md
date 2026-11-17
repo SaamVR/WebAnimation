@@ -1,3 +1,33 @@
+# V8 Director-Review Master — Updated 18 November 2026
+
+**Current authoritative outcome:** 59-second six-project film rendered, full-frame decoded and sonically mixed. **PRIVATE REVIEW / PUBLICATION BLOCKED**, despite model-led visual conditional pass. This supersedes older progress items below.
+
+## Deliverables (generated in current ChatGPT conversation; not GitHub files)
+- `Fiverr_Six_Project_Master_V8_Directors_Review_59s.mp4` — 59.000s, 1,416frames, 1280×720 H264/AAC
+- `Fiverr_Six_Project_V8_Hook_10s_With_Licensed_Sound.mp4` — 10.000s, 240frames
+- `Fiverr_Six_Project_Master_V8_Gallery_Cover_1280x769.png`
+- `Fiverr_Six_Project_Master_V8_Creative_Director_Visual_Audit_20261118.md`
+- `Fiverr_Six_Project_Master_V8_Directors_Review_and_Production_Pack.zip` — script/EDL/cut evidence, but **not** raw music source
+
+## Measured gates
+- Picture: 1,416 frames decoded; 0 near-black or blank-white frame anomalies; 17 cut boundaries reviewed.
+- Sound: licensed Mixkit “Tech House vibes” by Alejandro Magaña plus five CC0 Foley sources; measured −16.0 LUFS, −4.0 dBFS true peak.
+- V8 hook: earlier cropped NOVA and LeadFlow labels rejected, corrected; first 10 seconds show four actual source actions.
+- CITYSHIFT: V1 live route motion now successfully retrieved and its bright lime interstitial cut out.
+- CHAPCHITRA: real C08 site playback replaces idle mock context.
+- LeadFlow: split action into visible synthetic scoring and browser sandbox handoff.
+- NOVA: verified 3D WebGL site footage, unrelated footer trimmed.
+- Source applications not modified; isolated production branch and CI workflows used.
+
+## RELEASE STOP — DO NOT UPLOAD TO FIVERR
+F01 V4 creative owner signoff pending. F02 (Vecteezy-based) and F04 restaurant art rights **unverified**. Owner must judge video with sound and confirm approvals. Honest disclosures: Threads T02 editorial restaging; LeadFlow CRM sandbox and synthetic score; CITYSHIFT time-compressed route demonstration, not live GPS; NOVA fictional product study. The internal “Creative Director” is model-led and does not substitute for a human reviewer.
+
+Full GATES: `production/fiverr-master-v8/GATES.json`. Selected source-linked creative skills: `SKILL_ADOPTION.md`.
+
+---
+
+# Historical progress log (superseded where inconsistent)
+
 # Fiverr Master V8 — Coordinator Progress (2026-11-18)
 
 ## Completed
