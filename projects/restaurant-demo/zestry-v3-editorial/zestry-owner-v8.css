@@ -1,0 +1,40 @@
+/* Owner V8: entire book and its controls stay below sticky navbar. */
+#menu.f05-section{
+ --z-header:92px;scroll-margin-top:0!important;
+ padding:10px 0 6px!important;overflow:clip;background:#fff9f1
+}
+#menu.f05-section .wrap{max-width:none!important;width:100%;padding-inline:clamp(8px,2vw,24px)}
+#menu .f05-viewport{width:100%;min-height:0;position:relative;overflow:hidden}
+#menu .f05-viewport iframe{
+ width:100%!important;height:min(760px,calc(100dvh - var(--z-header) - 22px))!important;
+ min-height:0!important;max-height:none!important;border:0;display:block;background:transparent;
+}
+@supports not (height:100dvh){
+ #menu .f05-viewport iframe{height:min(760px,calc(100vh - var(--z-header) - 22px))!important}
+}
+@media(max-width:760px){
+ #menu.f05-section{--z-header:72px;padding:8px 0!important}
+ #menu .f05-viewport iframe{height:min(525px,calc(100dvh - 92px))!important}
+}
+@media(max-width:390px){#menu .f05-viewport iframe{height:min(450px,calc(100dvh - 92px))!important}}
+
+/* Organic, intentionally asymmetrical ink-and-paper silhouette, not ellipse. */
+.hero .hero-image.hero-visual{
+ border-radius:0!important;
+ clip-path:url(#zestry-hero-blob)!important;
+ -webkit-clip-path:url(#zestry-hero-blob)!important;
+ background:#ffd24b!important;overflow:hidden!important
+}
+.hero-svg-def{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+
+/* Replace duplicate booking/lifestyle section with a real F04 order story. */
+#story.pickup-story{padding:clamp(42px,6vw,84px) 0;background:#fff9f1;overflow:hidden}
+#story .pickup-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);align-items:center;gap:clamp(24px,5vw,80px)}
+#story .pickup-copy p{max-width:510px}
+#story .pickup-visual{width:100%;max-width:490px;justify-self:center;aspect-ratio:1.25;min-width:0}
+#story .pickup-visual .anim{width:100%;height:100%;min-height:0}
+#story .pickup-note{font-size:.84rem;opacity:.75;margin-top:14px}
+@media(max-width:760px){
+ #story .pickup-layout{grid-template-columns:1fr;gap:12px}
+ #story .pickup-visual{width:min(100%,450px)}
+}
