@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Capture NOVA's ACTUAL runtime via Chromium; do not replace GLTF with an imitation."""
-import json, subprocess, time, threading, functools
+import json, subprocess, time, threading, functools, shutil
 from pathlib import Path
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from playwright.sync_api import sync_playwright
@@ -14,7 +14,7 @@ threading.Thread(target=server.serve_forever,daemon=True).start()
 result={"source_repo":"SaamVR/Portfolio", "source_branch":"feat/leadflow-v2-evidence-20261012", "source_path":"NovaAG/", "verified_runtime":False, "frame_count":0, "errors":[]}
 try:
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,args=["--no-sandbox","--enable-unsafe-swiftshader","--use-angle=swiftshader","--disable-dev-shm-usage"])
+        browser=p.chromium.launch(headless=True,executable_path=shutil.which("google-chrome") or shutil.which("google-chrome-stable") or shutil.which("chromium") or None,args=["--no-sandbox","--enable-unsafe-swiftshader","--use-angle=swiftshader","--disable-dev-shm-usage"])
         page=browser.new_page(viewport={"width":1280,"height":720},device_scale_factor=1)
         page.on("pageerror",lambda e:result["errors"].append(str(e)))
         page.goto("http://127.0.0.1:18888/",wait_until="domcontentloaded",timeout=30000)
