@@ -1,3 +1,5 @@
+> Superseded by V12. V11 full-cover scaling cropped original ingredients. V12 inscribes the complete ingredient canvas and fills the circle with the original wood vectors. See V12_F01_NO_CROP_QA.md.
+
 # ZESTRY V11 — F01 Covers the Circular Hero (2026-11-18)
 
 Scope: SaamVR/WebAnimation/projects/restaurant-demo/ ONLY.

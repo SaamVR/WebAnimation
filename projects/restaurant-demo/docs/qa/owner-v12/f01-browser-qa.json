@@ -1,0 +1,171 @@
+{
+  "desktop": {
+    "circle": [
+      485,
+      485
+    ],
+    "inner": [
+      407.390625,
+      407.390625
+    ],
+    "source": [
+      1984,
+      1134
+    ],
+    "safetyPx": 7.879143234644914,
+    "woodFill": "original-vector",
+    "woodSvg": "xMidYMid slice",
+    "nativeSvg": "xMidYMid meet",
+    "backdropHidden": true,
+    "yellowAccent": "rgb(255, 214, 78) -13px 10px 0px -2px",
+    "horizontalOverflow": false,
+    "f04ExtraPlayers": 0,
+    "frames": 261,
+    "sampledFrames": [
+      0,
+      10,
+      20,
+      30,
+      45,
+      60,
+      90,
+      120,
+      150,
+      180,
+      210,
+      240,
+      260
+    ],
+    "errors": [],
+    "networkErrors": []
+  },
+  "wide": {
+    "circle": [
+      485,
+      485
+    ],
+    "inner": [
+      407.390625,
+      407.390625
+    ],
+    "source": [
+      1984,
+      1134
+    ],
+    "safetyPx": 7.879143234644914,
+    "woodFill": "original-vector",
+    "woodSvg": "xMidYMid slice",
+    "nativeSvg": "xMidYMid meet",
+    "backdropHidden": true,
+    "yellowAccent": "rgb(255, 214, 78) -13px 10px 0px -2px",
+    "horizontalOverflow": false,
+    "f04ExtraPlayers": 0,
+    "frames": 261,
+    "sampledFrames": [
+      0,
+      90,
+      260
+    ],
+    "errors": [],
+    "networkErrors": []
+  },
+  "ipad": {
+    "circle": [
+      485,
+      485
+    ],
+    "inner": [
+      407.390625,
+      407.390625
+    ],
+    "source": [
+      1984,
+      1134
+    ],
+    "safetyPx": 7.879143234644914,
+    "woodFill": "original-vector",
+    "woodSvg": "xMidYMid slice",
+    "nativeSvg": "xMidYMid meet",
+    "backdropHidden": true,
+    "yellowAccent": "rgb(255, 214, 78) -13px 10px 0px -2px",
+    "horizontalOverflow": false,
+    "f04ExtraPlayers": 0,
+    "frames": 261,
+    "sampledFrames": [
+      0,
+      90,
+      260
+    ],
+    "errors": [],
+    "networkErrors": []
+  },
+  "mobile": {
+    "circle": [
+      330,
+      330
+    ],
+    "inner": [
+      277.1875,
+      277.1875
+    ],
+    "source": [
+      1984,
+      1134
+    ],
+    "safetyPx": 5.364591760925123,
+    "woodFill": "original-vector",
+    "woodSvg": "xMidYMid slice",
+    "nativeSvg": "xMidYMid meet",
+    "backdropHidden": true,
+    "yellowAccent": "rgb(255, 214, 78) -9px 7px 0px -1px",
+    "horizontalOverflow": false,
+    "f04ExtraPlayers": 0,
+    "frames": 261,
+    "sampledFrames": [
+      0,
+      20,
+      45,
+      90,
+      150,
+      210,
+      260
+    ],
+    "errors": [],
+    "networkErrors": []
+  },
+  "small": {
+    "circle": [
+      288,
+      288
+    ],
+    "inner": [
+      241.90625,
+      241.90625
+    ],
+    "source": [
+      1984,
+      1134
+    ],
+    "safetyPx": 4.683461648401504,
+    "woodFill": "original-vector",
+    "woodSvg": "xMidYMid slice",
+    "nativeSvg": "xMidYMid meet",
+    "backdropHidden": true,
+    "yellowAccent": "rgb(255, 214, 78) -9px 7px 0px -1px",
+    "horizontalOverflow": false,
+    "f04ExtraPlayers": 0,
+    "frames": 261,
+    "sampledFrames": [
+      0,
+      90,
+      260
+    ],
+    "errors": [],
+    "networkErrors": []
+  },
+  "checkout": {
+    "frames": 240,
+    "loop": false,
+    "message": "Sample order received"
+  }
+}
