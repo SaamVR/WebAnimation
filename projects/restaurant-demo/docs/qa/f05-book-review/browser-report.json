@@ -1,0 +1,38 @@
+{
+  "desktop": {
+    "width": 1440,
+    "scrollWidth": 1440,
+    "cartCount": "1",
+    "oldCardsVisible": false,
+    "bookVisible": true,
+    "errors": [],
+    "httpErrors": []
+  },
+  "ipad": {
+    "width": 1024,
+    "scrollWidth": 1024,
+    "cartCount": "1",
+    "oldCardsVisible": false,
+    "bookVisible": true,
+    "errors": [],
+    "httpErrors": []
+  },
+  "mobile": {
+    "width": 390,
+    "scrollWidth": 390,
+    "cartCount": "1",
+    "oldCardsVisible": false,
+    "bookVisible": true,
+    "errors": [],
+    "httpErrors": []
+  },
+  "small": {
+    "width": 320,
+    "scrollWidth": 320,
+    "cartCount": "1",
+    "oldCardsVisible": false,
+    "bookVisible": true,
+    "errors": [],
+    "httpErrors": []
+  }
+}

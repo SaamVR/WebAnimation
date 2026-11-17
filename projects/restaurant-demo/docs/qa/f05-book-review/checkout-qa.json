@@ -1,0 +1,18 @@
+{
+  "desktop": {
+    "subtotal": "$19.00",
+    "confirmed": "Sample order received",
+    "width": 1440,
+    "overflow": false,
+    "errors": [],
+    "httpErrors": []
+  },
+  "mobile": {
+    "subtotal": "$19.00",
+    "confirmed": "Sample order received",
+    "width": 390,
+    "overflow": false,
+    "errors": [],
+    "httpErrors": []
+  }
+}

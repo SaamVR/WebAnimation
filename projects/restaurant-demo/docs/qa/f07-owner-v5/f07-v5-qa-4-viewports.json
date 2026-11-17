@@ -1,0 +1,106 @@
+{
+  "desktop": {
+    "asset": "yes",
+    "found": true,
+    "compName": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+    "fr": 30,
+    "frames": 228,
+    "w": 960,
+    "h": 720,
+    "loop": false,
+    "svg": true,
+    "viewport": 1440,
+    "scrollWidth": 1440,
+    "artBox": [
+      507,
+      350
+    ],
+    "bookVisible": true,
+    "confirm": {
+      "visible": true,
+      "name": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+      "frames": 228,
+      "success": "Sample table request received"
+    },
+    "errors": [],
+    "missing": []
+  },
+  "ipad": {
+    "asset": "yes",
+    "found": true,
+    "compName": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+    "fr": 30,
+    "frames": 228,
+    "w": 960,
+    "h": 720,
+    "loop": false,
+    "svg": true,
+    "viewport": 1024,
+    "scrollWidth": 1024,
+    "artBox": [
+      420,
+      350
+    ],
+    "bookVisible": true,
+    "confirm": {
+      "visible": true,
+      "name": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+      "frames": 228,
+      "success": "Sample table request received"
+    },
+    "errors": [],
+    "missing": []
+  },
+  "mobile": {
+    "asset": "yes",
+    "found": true,
+    "compName": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+    "fr": 30,
+    "frames": 228,
+    "w": 960,
+    "h": 720,
+    "loop": false,
+    "svg": true,
+    "viewport": 390,
+    "scrollWidth": 390,
+    "artBox": [
+      358,
+      310
+    ],
+    "bookVisible": true,
+    "confirm": {
+      "visible": true,
+      "name": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+      "frames": 228,
+      "success": "Sample table request received"
+    },
+    "errors": [],
+    "missing": []
+  },
+  "small": {
+    "asset": "yes",
+    "found": true,
+    "compName": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+    "fr": 30,
+    "frames": 228,
+    "w": 960,
+    "h": 720,
+    "loop": false,
+    "svg": true,
+    "viewport": 320,
+    "scrollWidth": 320,
+    "artBox": [
+      288,
+      310
+    ],
+    "bookVisible": true,
+    "confirm": {
+      "visible": true,
+      "name": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+      "frames": 228,
+      "success": "Sample table request received"
+    },
+    "errors": [],
+    "missing": []
+  }
+}

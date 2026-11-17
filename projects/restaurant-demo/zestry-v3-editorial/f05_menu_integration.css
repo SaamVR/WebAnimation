@@ -1,0 +1,16 @@
+/* ZESTRY F05 — book-first menu section, owner-directed preview. */
+#menu.f05-section{padding:42px 0 40px;background:#fff9f1;overflow:hidden}
+#menu.f05-section .wrap{max-width:1330px}
+#menu .f05-viewport{width:100%;min-height:0;position:relative}
+#menu .f05-viewport iframe{width:100%;height:min(910px,67vw);min-height:660px;border:0;display:block;background:transparent}
+#menu .legacy-menu-internals[hidden]{display:none!important}
+#menu .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:850px){
+#menu.f05-section{padding:25px 0 28px}
+#menu .f05-viewport iframe{height:580px;min-height:0}
+}
+@media(max-width:600px){
+#menu.f05-section{padding:12px 0 15px}
+#menu .wrap{width:100%;max-width:100%;padding:0 8px}
+#menu .f05-viewport iframe{height:395px}
+}

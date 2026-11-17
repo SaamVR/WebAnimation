@@ -1,0 +1,59 @@
+{
+  "desktop": {
+    "baseline": {
+      "name": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+      "layers": 25,
+      "fr": 30,
+      "total": 228,
+      "loop": false,
+      "svg": true,
+      "width": 1440,
+      "windowWidth": 1440
+    },
+    "confirmation": {
+      "text": "Sample table request received",
+      "player": "f07",
+      "svg": true
+    },
+    "errors": [],
+    "missing": []
+  },
+  "ipad": {
+    "baseline": {
+      "name": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+      "layers": 25,
+      "fr": 30,
+      "total": 228,
+      "loop": false,
+      "svg": true,
+      "width": 1024,
+      "windowWidth": 1024
+    },
+    "confirmation": {
+      "text": "Sample table request received",
+      "player": "f07",
+      "svg": true
+    },
+    "errors": [],
+    "missing": []
+  },
+  "mobile": {
+    "baseline": {
+      "name": "F07 Table Reservation / Artist-edited SVG V5 / V4 approved animation unchanged",
+      "layers": 25,
+      "fr": 30,
+      "total": 228,
+      "loop": false,
+      "svg": true,
+      "width": 390,
+      "windowWidth": 390
+    },
+    "confirmation": {
+      "text": "Sample table request received",
+      "player": "f07",
+      "svg": true
+    },
+    "errors": [],
+    "missing": []
+  }
+}

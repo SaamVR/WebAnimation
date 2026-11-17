@@ -1,0 +1,20 @@
+{
+  "desktop": {
+    "width": 1440,
+    "scrollWidth": 1440,
+    "cartCount": "1",
+    "oldCardsVisible": false,
+    "bookVisible": true,
+    "errors": [],
+    "httpErrors": []
+  },
+  "mobile": {
+    "width": 390,
+    "scrollWidth": 390,
+    "cartCount": "1",
+    "oldCardsVisible": false,
+    "bookVisible": true,
+    "errors": [],
+    "httpErrors": []
+  }
+}
