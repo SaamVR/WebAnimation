@@ -19,10 +19,29 @@ for(const [name,width,height] of [['desktop',1440,900],['ipad',1024,768],['mobil
  for(const [cat,event] of [['Main_Courses','select_main'],['Starters','select_starters'],['Desserts','select_desserts'],['Drinks','select_drinks']]){
   await book.locator('[data-event="'+event+'"]').click();
   await book.locator('body[data-f05-state="'+cat+'"]').waitFor({timeout:20000});
-  await page.waitForFunction(()=>{const photos=document.getElementById('f05-book-frame')?.contentDocument?.querySelectorAll('.photos img');return photos?.length>0 && Array.from(photos).every(img=>img.complete&&img.naturalWidth>0)},{timeout:10000});
-  const imgs=await book.locator('.photos img').evaluateAll(els=>els.map(i=>({complete:i.complete,natural:i.naturalWidth,src:i.getAttribute('src')})));
-  if(!imgs.length||imgs.some(x=>!x.complete||!x.natural))throw Error('photos not loaded '+cat+' '+JSON.stringify(imgs));
-  if(cat==='Main_Courses')await page.locator('#menu').screenshot({path:path.join(OUT,name+'-menu-main.png')});
+  const seen=new Set();
+  for(let leaf=1;leaf<=4;leaf++){
+   await book.locator('.book-page-index').waitFor();
+   await page.waitForFunction(({number})=>{
+     const d=document.getElementById('f05-book-frame')?.contentDocument;
+     const counter=d?.querySelector('.book-page-index');
+     return counter?.textContent.trim()===String(number).padStart(2,'0')+' / 04';
+   },{number:leaf},{timeout:10000});
+   const dishes=await book.locator('.photos .dish').count();
+   if(dishes!==1)throw Error('expected exactly one photographed dish on '+cat+' page '+leaf+', got '+dishes);
+   await page.waitForFunction(()=>{
+     const images=Array.from(document.getElementById('f05-book-frame')?.contentDocument?.querySelectorAll('.photos img')||[]);
+     return images.length===1 && images.every(img=>img.complete&&img.naturalWidth>0);
+   },{timeout:12000});
+   const photo=await book.locator('.photos img').getAttribute('src');
+   if(seen.has(photo))throw Error('duplicate dish photograph in '+cat+': '+photo);
+   seen.add(photo);
+   if(cat==='Main_Courses'&&leaf===1)await page.locator('#menu').screenshot({path:path.join(OUT,name+'-menu-main.png')});
+   if(leaf<4)await book.locator('[data-event="next"]').click();
+  }
+  if(seen.size!==4)throw Error('four distinct '+cat+' dish pages required');
+  await book.locator('[data-event="home"]').click();
+  await book.locator('body[data-f05-state="Overview"]').waitFor({timeout:20000});
  }
  await book.locator('[data-event="select_main"]').click();
  await book.locator('body[data-f05-state="Main_Courses"]').waitFor({timeout:20000});
