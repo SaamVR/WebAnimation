@@ -38,7 +38,7 @@ try:
             result["frame_count"]+=1
         browser.close()
     cmd=["ffmpeg","-y","-hide_banner","-loglevel","error","-framerate","24","-i",str(OUT/"frame_%04d.jpg"),"-frames:v","120","-c:v","libx264","-preset","veryfast","-crf","20","-pix_fmt","yuv420p","-movflags","+faststart",str(OUT/"NOVA_verified_webgl_scroll_5s.mp4")]
-    subprocess.run(cmd,check=True)
+    if shutil.which("ffmpeg"):\n        subprocess.run(cmd,check=True)\n    else:\n        result["errors"].append("Runner lacks ffmpeg: original frames archived for safe downstream encoding")
 finally:
     (OUT/"capture_evidence.json").write_text(json.dumps(result,indent=2))
     server.shutdown()
