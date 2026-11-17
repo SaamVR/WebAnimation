@@ -14,8 +14,8 @@ Deployment: NONE. Do not update the existing Render site without explicit owner 
 | Category | Page 1 | Page 2 | Page 3 | Page 4 |
 | --- | --- | --- | --- | --- |
 | Starters | Garden Crunch Salad $13 | Greek Feta Salad $14 | Roasted Beet Salad $15 | Classic Caesar Salad $14 |
-| Main Courses | Basil Pesto Farfalle $19 | The ZESTRY Smash $18 | Spiced Chicken Rice Bowl $22 | Crispy Chicken Sandwich $19 |
-| Desserts | Strawberry Cloud Cake $11 | Chocolate Fudge Brownie $10 | Cafe Tiramisu $12 | Strawberry Cheesecake $12 |
+| Main Courses | Basil Pesto Farfalle $19 | The ZESTRY Smash $18 | Sweet Chili Salmon Rice Bowl $22 | Crispy Chicken Sandwich $19 |
+| Desserts | Chocolate Cloud Cake $11 | Chocolate Fudge Brownie $10 | Cafe Tiramisu $12 | Strawberry Cheesecake $12 |
 | Drinks | Honey Oat Latte $6 | Citrus Cooler $7 | Iced Matcha Latte $8 | Blackberry Smoothie $9 |
 
 Existing six dishes preserve their IDs and demo prices. Ten entries (IDs 10–19) are added to the simulated bag catalog only. The three historical Breakfast/Brunch dishes are not reclassified.
@@ -44,3 +44,6 @@ This branch contains **source changes and updated QA assertions only**. The 15-p
 5. Only after QA passes, regenerate the `review_bundle` using `--pack` on this branch, commit local screenshots, and request owner visual review. **Do not deploy**.
 
 Files changed: `f05_sixteen_pages.py` (new), `apply_f05_book_review.py` and `qa_f05_menu.cjs`. Existing F05 binary and F07 V5 are untouched.
+
+## Visual QA correction
+The initial source contact sheet exposed a salmon/rice bowl and an original chocolate cake photo. The visible demo names were corrected to match the images. Book photo/card framing and page number were also moved inside the right-hand page, leaving the original animated category heading visible. Source Lottie binary remains unchanged.

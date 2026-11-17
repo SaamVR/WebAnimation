@@ -33,11 +33,11 @@ MENU = {
     "Main_Courses": [
         dict(id=3,name="Basil Pesto Farfalle",price=19,photo="pasta.jpg"),
         dict(id=4,name="The ZESTRY Smash",price=18,photo="burger.jpg"),
-        dict(id=13,name="Spiced Chicken Rice Bowl",price=22,photo="chicken_bowl.jpg"),
+        dict(id=13,name="Sweet Chili Salmon Rice Bowl",price=22,photo="chicken_bowl.jpg"),
         dict(id=14,name="Crispy Chicken Sandwich",price=19,photo="chicken_sandwich.jpg"),
     ],
     "Desserts": [
-        dict(id=6,name="Strawberry Cloud Cake",price=11,photo="cake.jpg"),
+        dict(id=6,name="Chocolate Cloud Cake",price=11,photo="cake.jpg"),
         dict(id=15,name="Chocolate Fudge Brownie",price=10,photo="brownie.jpg"),
         dict(id=16,name="Cafe Tiramisu",price=12,photo="tiramisu.jpg"),
         dict(id=17,name="Strawberry Cheesecake",price=12,photo="cheesecake.jpg"),
@@ -55,7 +55,7 @@ import json
 STYLES = r"""
 /* F05 SIXTEEN-PAGE EDITORIAL OVERRIDE: single photo per real book leaf. */
 .photos,.photos.single{
-  left:51.7%;top:33.7%;width:21.4%;height:38.8%;display:none;
+  left:51.7%;top:37.2%;width:21.4%;height:30.6%;display:none;
   grid-template-columns:1fr;gap:0;perspective:900px;align-items:stretch;
 }
 .photos.visible,.photos.single.visible{display:grid}
@@ -83,16 +83,16 @@ STYLES = r"""
 }
 .dish .price small{font-size:.7em;font-weight:600;white-space:nowrap;color:#385144}
 .book-page-index{
-  position:absolute;right:2px;bottom:-23px;color:#385144;
+  position:absolute;right:10px;top:8px;bottom:auto;color:#385144;background:#fffaf1;padding:3px 7px;border-radius:6px;
   font:700 clamp(12px,1vw,16px)/1.1 system-ui,Arial;
   letter-spacing:.08em;pointer-events:none;
 }
 @media(max-width:700px){
- .photos,.photos.single{left:51.6%;top:34.3%;width:22%;height:38.1%}
+ .photos,.photos.single{left:51.6%;top:37.5%;width:22%;height:30.2%}
  .dish{padding:4px;gap:3px}
  .dish .name{font-size:clamp(13px,3.55vw,18px);line-height:1.07}
  .dish .price{font-size:clamp(13px,3.2vw,17px)}
- .book-page-index{bottom:-17px;font-size:11px}
+ .book-page-index{top:6px;bottom:auto;font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.photos.turning .dish{animation:none}}
 """
@@ -215,6 +215,7 @@ def upgrade_index(index_bytes):
         extra_data.append(d)
     marker="window.addEventListener('message',e=>{const book="
     assert s.count(marker)==1, "F05 add-to-bag handler changed"
+    s=s.replace('Strawberry Cloud Cake','Chocolate Cloud Cake')
     injection="/* ZESTRY_F05_16_CATALOG (demo data) */\nitems.push(..."+json.dumps(extra_data,separators=(',',':'))+");\n"
     return s.replace(marker,injection+marker,1).encode("utf-8")
 

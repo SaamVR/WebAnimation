@@ -46,7 +46,12 @@ def make_preview(dest):
  with zipfile.ZipFile(io.BytesIO(b)) as z:
   infos={i.filename:i for i in z.infolist()}
   fs={i.filename:z.read(i.filename) for i in z.infolist()}
- if b'LOCAL QA' in fs['assets/f05_interactive.html']:
+ client_path='assets/f05_book.html' if 'assets/f05_book.html' in fs else 'assets/f05_interactive.html'
+ if client_path=='assets/f05_book.html':
+  assert b'Interactive Menu Book' in fs[client_path]
+  html=fs[client_path].decode()
+  raw=fs['assets/f05_book.lottie']
+ elif b'LOCAL QA' in fs['assets/f05_interactive.html']:
   import tempfile
   with tempfile.TemporaryDirectory() as temp:
    work=Path(temp)
@@ -71,7 +76,9 @@ def make_preview(dest):
  assert newtop in html
  validate_menu()
  html=upgrade_book(html)
- fs['assets/f05_interactive.html']=html.encode()
+ fs[client_path]=html.encode()
+ if client_path=='assets/f05_book.html':
+  assert len(fs['assets/f05_interactive.html'])>1000000,'Render compatibility legacy asset missing'
  fs['assets/f05_book.lottie']=raw
  fs['assets/f05_menu_integration.css']=(HERE/'f05_menu_integration.css').read_bytes()
  fs['index.html']=(fs['index.html'] if b'id="f05-book-frame"' in fs['index.html'] else patch(fs['index.html'].decode()).encode())
