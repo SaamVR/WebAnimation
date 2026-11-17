@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CHAPCHITRA hero — uncut 1x timing QA</title>
+<style>
+html,body{margin:0;height:100%;width:100%;overflow:hidden;background:#151d19;font-family:ui-monospace,Consolas,Menlo,monospace}
+#qa-ribbon{height:56px;box-sizing:border-box;background:#101713;color:white;display:flex;align-items:center;gap:20px;padding:0 18px;border-bottom:1px solid #6b816c;white-space:nowrap;overflow:hidden}
+#stamp{font-size:22px;font-weight:800;letter-spacing:1px;font-variant-numeric:tabular-nums;color:#f3eee0}
+#header-title{font-size:11px;letter-spacing:1px;color:#c4d5cb}
+#slide{font-size:13px;font-weight:600;color:#f3eee0}
+#c08{font-size:11px;color:#c4d5cb}
+#site-frame{display:block;width:100%;height:calc(100% - 56px);border:0;background:#F6F7F5}
+@media(max-width:900px){#qa-ribbon{gap:10px;padding:0 10px}#stamp{font-size:20px}#header-title{font-size:9px;max-width:190px;white-space:normal}#slide{font-size:11px}#c08{font-size:9px}}
+</style>
+</head>
+<body>
+<div id="qa-ribbon" aria-label="External QA recording timecode">
+<strong id="header-title">QA · LIVE 1× · UNEDITED BROWSER CAPTURE</strong>
+<strong id="stamp">00:00.000</strong><span id="slide">HERO 01</span><span id="c08">C08 loading</span>
+</div>
+<iframe id="site-frame" src="/" title="Unmodified CHAPCHITRA website under test"></iframe>
+<script>
+(()=>{
+ "use strict";
+ const $=id=>document.getElementById(id),frame=$("site-frame");
+ const tape={ready:false,events:[],c08:{completedAtMs:null,autoplay:0},counterFrames:0,counterFrameMaxGapMs:0,visibilitySamples:[],source:"qa-ribbon-outside-website-iframe"};
+ window.__qaTape=tape;
+ let startAt=null,lastSlide=-1,lastFrame=null,observer=null,lastCaptureSecond=-1;
+ const count=()=>{
+  const text=frame.contentDocument?.querySelector("#hero .hero-slide.is-active")?.dataset.slide;
+  return text===undefined?null:Number(text);
+ };
+ const mark=()=>{
+  if(startAt===null)return;
+  const current=count();
+  if(current===null||current===lastSlide)return;
+  const now=performance.now();
+  tape.events.push({slide:current+1,tMs:+Math.max(0,now-startAt).toFixed(3),counterText:$("stamp").textContent,
+   clockState:frame.contentWindow.__chapchitraHeroCarousel?.state||null});
+  lastSlide=current;
+ };
+ const draw=()=>{
+  const now=performance.now();
+  if(lastFrame!==null)tape.counterFrameMaxGapMs=Math.max(tape.counterFrameMaxGapMs,now-lastFrame);
+  lastFrame=now;tape.counterFrames++;
+  try{
+   const win=frame.contentWindow,doc=frame.contentDocument,clock=win?.__chapchitraHeroCarousel?.state;
+   if(startAt===null&&clock&&Number.isFinite(clock.remainingMs)&&count()===0){
+    startAt=now-(8000-clock.remainingMs);
+    tape.startAtMs=startAt;tape.ready=true;
+    tape.events.push({slide:1,tMs:0,counterText:"00:00.000",clockState:clock});
+    lastSlide=0;
+    const label=doc.querySelector("#heroCount");
+    if(label){observer=new MutationObserver(mark);observer.observe(label,{childList:true,characterData:true,subtree:true})}
+   }
+   if(startAt!==null){
+    const elapsed=Math.max(0,performance.now()-startAt);
+    const sec=Math.floor(elapsed/1000),millis=Math.floor(elapsed%1000);
+    $("stamp").textContent=String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0")+"."+String(millis).padStart(3,"0");
+    mark();$("slide").textContent="HERO "+String((count()??0)+1).padStart(2,"0")+" / 05";
+    const c08=win.__chapchitraC08?.hero;
+    if(c08){
+     tape.c08.autoplay=c08.autoplay||0;tape.c08.completed=c08.completed||0;tape.c08.failed=c08.failed||0;
+     if(c08.completed>=1&&tape.c08.completedAtMs===null)tape.c08.completedAtMs=+elapsed.toFixed(3);
+     $("c08").textContent=c08.completed>=1?"C08 ✓ complete @ "+(tape.c08.completedAtMs/1000).toFixed(2)+"s":"C08 PLAYING";
+    }
+    const t=Math.floor(elapsed/1000);
+    if(t!==lastCaptureSecond){
+     lastCaptureSecond=t;
+     tape.visibilitySamples.push({atSecond:t,hidden:doc.hidden,heroState:clock,slide:count()+1});
+    }
+    tape.elapsedMs=elapsed;
+   }
+  }catch(e){tape.lastMonitorError=e.message}
+  requestAnimationFrame(draw);
+ };
+ requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
