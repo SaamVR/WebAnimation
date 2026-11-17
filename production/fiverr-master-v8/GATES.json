@@ -36,7 +36,7 @@
     {
       "id": "G3",
       "name": "six actual motion captures",
-      "status": "BLOCKED_CITYSHIFT_NOVA"
+      "status": "PARTIAL_CITYSHIFT_MISSING"
     },
     {
       "id": "G4",
@@ -58,8 +58,14 @@
     "F02/F04 source artwork rights unverified",
     "F01 V4 final owner visual approval pending",
     "CITYSHIFT private CI source package failed",
-    "NOVA WebGL capture blocked on local container: ERR_BLOCKED_BY_ADMINISTRATOR",
     "LeadFlow CRM sandbox not real provider",
     "CITYSHIFT not real fleet tracking"
-  ]
+  ],
+  "nova_verified_evidence": {
+    "source": "SaamVR/Portfolio feat/leadflow-v2-evidence-20261012 NovaAG",
+    "modelState": "ready",
+    "frames": 120,
+    "errors": [],
+    "note": "GitHub runner lacks ffmpeg; 120 JPEG frames and capture_evidence.json downloaded, re-encoded locally into 5-second MP4; source experience verified"
+  }
 }
