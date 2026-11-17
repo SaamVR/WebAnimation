@@ -18,15 +18,33 @@
 }
 @media(max-width:390px){#menu .f05-viewport iframe{height:min(450px,calc(100dvh - 92px))!important}}
 
-/* Organic, intentionally asymmetrical ink-and-paper silhouette, not ellipse. */
+/* V10 OWNER APPROVED: true circular hero, 1:1 visual frame, no SVG clip mask. */
 .hero .hero-image.hero-visual{
- border-radius:0!important;
- clip-path:url(#zestry-hero-blob)!important;
- -webkit-clip-path:url(#zestry-hero-blob)!important;
- background:#ffd24b!important;overflow:hidden!important
+ position:relative!important;box-sizing:border-box!important;
+ width:min(100%,485px)!important;max-width:485px!important;
+ aspect-ratio:1 / 1!important;height:auto!important;min-height:0!important;
+ margin:20px auto!important;padding:0!important;
+ border-radius:50%!important;clip-path:none!important;
+ -webkit-clip-path:none!important;overflow:hidden!important;
+ background:#ffd24b!important;box-shadow:none!important
 }
-.hero-svg-def{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
-
+.hero .hero-image.hero-visual::before,
+.hero .hero-image.hero-visual::after{display:none!important}
+.hero .hero-image.hero-visual .hero-pasta.hero-clip{
+ position:absolute!important;inset:0!important;
+ width:100%!important;height:100%!important
+}
+@media(max-width:680px){
+ .hero .hero-image.hero-visual{
+   width:min(100%,380px)!important;max-width:380px!important;
+   margin:6px auto 22px!important
+ }
+}
+@media(max-width:390px){
+ .hero .hero-image.hero-visual{
+   width:min(100%,330px)!important;max-width:330px!important
+ }
+}
 
 /* Original F04 remains exclusively in the sample checkout confirmation.
    The editorial story has no checkout or reservation behavior. */

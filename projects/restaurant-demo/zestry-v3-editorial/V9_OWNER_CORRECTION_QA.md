@@ -1,3 +1,5 @@
+> **V10 supersedes ONLY the V9 organic hero mask.** V10 restores a true circle without SVG clipping. V9 F04 checkout-only restoration remains valid. See V10_CIRCLE_OWNER_REVIEW_QA.md.
+
 # ZESTRY V9 — Owner correction to PR #125 (2026-11-18)
 
 **Status:** Revised review only; NO Render or Vercel deployment.
