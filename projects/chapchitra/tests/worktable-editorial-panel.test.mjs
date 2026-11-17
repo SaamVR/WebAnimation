@@ -15,8 +15,10 @@ test('uses authoritative CHAPCHITRA tokens and both approved typography families
   ['--color-warm-beige','#D8CEC2'],
   ['--color-cream','#E4E3DE']
  ])assert.ok(brand.includes(name+':'+hex));
- assert.ok(brand.includes('--serif:"Noto Serif Bengali"'));
- assert.ok(brand.includes('--sans:"Hind Siliguri"'));
+ assert.ok(brand.includes('--font-editorial:"Fraunces","Noto Serif Bengali"'));
+ assert.ok(brand.includes('--font-ui:"DM Sans","Noto Sans Bengali"'));
+ assert.ok(brand.includes('--font-bn-serif:"Noto Serif Bengali"'));
+ assert.ok(brand.includes('--font-bn-ui:"Noto Sans Bengali"'));
  assert.ok(css.includes('font:500 clamp(30px,3.5vw,43px)/1.16 var(--serif)'));
  assert.ok(css.includes('font:600 11.5px/1.32 var(--sans)'));
 });

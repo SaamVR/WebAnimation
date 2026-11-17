@@ -1,0 +1,327 @@
+[
+  {
+    "source": "approved-scroll-baseline",
+    "profile": "desktop-chromium",
+    "url": "http://127.0.0.1:4297",
+    "cls": 0.393349451303155,
+    "entries": [
+      {
+        "time": 609,
+        "value": 0.3850648148148148,
+        "sources": [
+          {
+            "tag": "FOOTER",
+            "cls": "site-footer",
+            "id": "footer",
+            "old": [
+              0,
+              99,
+              1440,
+              342.09375
+            ],
+            "next": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "old": [
+              199.390625,
+              59.46875,
+              100.5625,
+              18
+            ],
+            "next": [
+              192.84375,
+              56.46875,
+              83.875,
+              18
+            ]
+          },
+          {
+            "old": [
+              404.21875,
+              59.46875,
+              71.296875,
+              18
+            ],
+            "next": [
+              372.40625,
+              56.46875,
+              59.921875,
+              18
+            ]
+          },
+          {
+            "tag": "A",
+            "cls": "",
+            "id": "",
+            "old": [
+              199.390625,
+              57.46875,
+              100.5625,
+              17.046875
+            ],
+            "next": [
+              192.84375,
+              56.46875,
+              83.875,
+              18.046875
+            ]
+          }
+        ]
+      },
+      {
+        "time": 455,
+        "value": 0.008166666666666666,
+        "sources": [
+          {
+            "tag": "BODY",
+            "cls": "",
+            "id": "",
+            "old": [
+              0,
+              24,
+              1440,
+              108.25
+            ],
+            "next": [
+              0,
+              0,
+              1440,
+              441.09375
+            ]
+          }
+        ]
+      },
+      {
+        "time": 353,
+        "value": 0.00011796982167352538,
+        "sources": [
+          {
+            "old": [
+              290.1875,
+              44,
+              859.625,
+              32
+            ],
+            "next": [
+              290.1875,
+              40,
+              859.625,
+              32
+            ]
+          },
+          {
+            "old": [
+              290.1875,
+              82,
+              859.625,
+              25
+            ],
+            "next": [
+              290.1875,
+              79,
+              859.625,
+              25
+            ]
+          }
+        ]
+      }
+    ],
+    "body": "artists-edit",
+    "studio": "ready",
+    "fonts": [],
+    "pass": true
+  },
+  {
+    "source": "approved-scroll-baseline",
+    "profile": "mobile-chromium",
+    "url": "http://127.0.0.1:4297",
+    "cls": 0.5995990656094877,
+    "entries": [
+      {
+        "time": 639,
+        "value": 0.5793838862559242,
+        "sources": [
+          {
+            "tag": "FOOTER",
+            "cls": "site-footer",
+            "id": "footer",
+            "old": [
+              0,
+              111.1875,
+              390,
+              489
+            ],
+            "next": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "time": 485,
+        "value": 0.020215179353563487,
+        "sources": [
+          {
+            "tag": "BODY",
+            "cls": "",
+            "id": "",
+            "old": [
+              0,
+              24,
+              390,
+              139.25
+            ],
+            "next": [
+              0,
+              0,
+              390,
+              600.1875
+            ]
+          }
+        ]
+      }
+    ],
+    "body": "artists-edit",
+    "studio": "ready",
+    "fonts": [],
+    "pass": true
+  },
+  {
+    "source": "approved-scroll-baseline",
+    "profile": "ipad-webkit",
+    "url": "http://127.0.0.1:4297",
+    "cls": 0,
+    "entries": [],
+    "body": "artists-edit",
+    "studio": "ready",
+    "fonts": [],
+    "pass": true
+  },
+  {
+    "source": "typography-candidate",
+    "profile": "desktop-chromium",
+    "url": "http://127.0.0.1:4309",
+    "cls": 0.38816666666666666,
+    "entries": [
+      {
+        "time": 504,
+        "value": 0.38,
+        "sources": [
+          {
+            "tag": "FOOTER",
+            "cls": "site-footer",
+            "id": "footer",
+            "old": [
+              0,
+              99,
+              1440,
+              342.09375
+            ],
+            "next": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "time": 324,
+        "value": 0.008166666666666666,
+        "sources": [
+          {
+            "tag": "BODY",
+            "cls": "",
+            "id": "",
+            "old": [
+              0,
+              24,
+              1440,
+              108.25
+            ],
+            "next": [
+              0,
+              0,
+              1440,
+              441.09375
+            ]
+          }
+        ]
+      }
+    ],
+    "body": "artists-edit",
+    "studio": "ready",
+    "fonts": [
+      "dm-sans-latin-variable.woff2",
+      "fraunces-latin-variable.woff2",
+      "noto-sans-bengali-variable.woff2",
+      "noto-serif-bengali-variable.woff2"
+    ],
+    "pass": true
+  },
+  {
+    "source": "typography-candidate",
+    "profile": "mobile-chromium",
+    "url": "http://127.0.0.1:4309",
+    "cls": 0.02843601895734597,
+    "entries": [
+      {
+        "time": 477,
+        "value": 0.02843601895734597,
+        "sources": [
+          {
+            "tag": "BODY",
+            "cls": "",
+            "id": "",
+            "old": [
+              0,
+              24,
+              390,
+              139.25
+            ],
+            "next": [
+              0,
+              0,
+              390,
+              844
+            ]
+          }
+        ]
+      }
+    ],
+    "body": "artists-edit",
+    "studio": "ready",
+    "fonts": [
+      "dm-sans-latin-variable.woff2",
+      "fraunces-latin-variable.woff2",
+      "noto-sans-bengali-variable.woff2",
+      "noto-serif-bengali-variable.woff2"
+    ],
+    "pass": true
+  },
+  {
+    "source": "typography-candidate",
+    "profile": "ipad-webkit",
+    "url": "http://127.0.0.1:4309",
+    "cls": 0,
+    "entries": [],
+    "body": "artists-edit",
+    "studio": "ready",
+    "fonts": [
+      "dm-sans-latin-variable.woff2",
+      "fraunces-latin-variable.woff2",
+      "noto-sans-bengali-variable.woff2",
+      "noto-serif-bengali-variable.woff2"
+    ],
+    "pass": true
+  }
+]
