@@ -1,0 +1,64 @@
+/* ZESTRY V5: owner-requested placement corrections only; no original Lottie artwork changes. */
+.hero .hero-content {grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);min-height:570px;gap:clamp(18px,3vw,44px)}
+.hero .hero-image.hero-visual {
+ display:block;position:relative;isolation:isolate;width:100%;max-width:660px;
+ min-height:0!important;height:clamp(370px,36vw,495px)!important;padding:0;margin:24px auto;
+ background:#ffd24b;clip-path:ellipse(49% 48% at 50% 50%);overflow:hidden;box-shadow:none;
+}
+.hero .hero-image.hero-visual::before,.hero .hero-image.hero-visual::after {display:none!important}
+.hero-visual .hero-pasta.hero-clip {
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+ margin:0!important;transform:none!important;overflow:hidden;z-index:1;
+}
+.hero-visual .hero-pasta.hero-clip .anim {width:100%!important;height:100%!important;min-height:0!important;overflow:hidden}
+.hero-visual .hero-pasta.hero-clip .anim svg {display:block;width:100%!important;height:100%!important;overflow:hidden}
+.hero-visual .hero-photo,.hero-visual .hero-art-note {display:none!important}
+
+/* Make the original F03 vector alone carry the coffee story. */
+.coffee-story .coffee-editorial {grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(20px,5vw,82px)}
+.coffee-story .coffee-visual.coffee-duo {display:flex!important;align-items:center;justify-content:center;width:100%;min-width:0;min-height:580px;gap:0}
+.coffee-story .coffee-duo .coffee-photo {display:none!important}
+.coffee-story .coffee-duo .coffee-motion {
+ position:relative!important;inset:auto!important;width:min(100%,470px)!important;
+ max-width:470px!important;height:580px!important;align-self:center;margin:auto;
+ border:none!important;box-shadow:none!important;border-radius:0!important;background:transparent!important;
+ overflow:visible!important;
+}
+.coffee-story .coffee-duo .coffee-motion .anim {width:100%;height:100%;min-height:0}
+
+/* Enlarge the second F02 chef to fill the owner's outlined visual area. */
+.chef-story .chef-layout {grid-template-columns:minmax(0,.97fr) minmax(0,1.03fr);gap:clamp(24px,4vw,64px)}
+.chef-story .chef-copy {min-width:0}
+.chef-story .chef-copy .chef-secondary {
+ width:100%!important;max-width:none!important;height:400px!important;min-height:400px!important;
+ margin:10px auto 0!important;overflow:visible;display:grid;place-items:center;
+}
+.chef-story .chef-copy .chef-secondary .anim {width:100%;height:100%;min-height:0}
+.chef-story .chef-copy .chef-secondary .anim svg {
+ transform:scale(1.15);transform-origin:50% 50%;overflow:visible;
+}
+.chef-story .chef-whisper {text-align:center;margin:0}
+@media(max-width:950px){
+ .hero .hero-content{grid-template-columns:1fr 1fr;min-height:520px}
+ .hero .hero-image.hero-visual{height:clamp(315px,37vw,410px)!important}
+ .coffee-story .coffee-visual.coffee-duo{min-height:490px}
+ .coffee-story .coffee-duo .coffee-motion{height:490px!important;width:min(100%,410px)!important}
+ .chef-story .chef-copy .chef-secondary{height:325px!important;min-height:325px!important}
+}
+@media(max-width:760px){
+ .hero .hero-content{grid-template-columns:1fr;min-height:0;gap:0}
+ .hero .hero-image.hero-visual{max-width:600px;height:clamp(275px,73vw,420px)!important;margin:2px auto 22px}
+ .coffee-story .coffee-editorial{grid-template-columns:1fr;gap:12px}
+ .coffee-story .coffee-visual.coffee-duo{min-height:470px}
+ .coffee-story .coffee-duo .coffee-motion{width:min(100%,370px)!important;height:470px!important}
+ .chef-story .chef-layout{display:flex;flex-direction:column;gap:10px}
+ .chef-story .chef-copy .chef-secondary{width:min(100%,480px)!important;height:320px!important;min-height:320px!important}
+ .chef-story .chef-copy .chef-secondary .anim svg{transform:scale(1.04)}
+}
+@media(max-width:390px){
+ .hero .hero-image.hero-visual{height:clamp(250px,75vw,302px)!important}
+ .coffee-story .coffee-visual.coffee-duo{min-height:410px}
+ .coffee-story .coffee-duo .coffee-motion{width:min(100%,315px)!important;height:410px!important}
+ .chef-story .chef-copy .chef-secondary{height:285px!important;min-height:285px!important}
+}
+@media(prefers-reduced-motion:reduce){.chef-story .chef-copy .chef-secondary .anim svg{transform:none}}

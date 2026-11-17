@@ -1,0 +1,194 @@
+{
+  "desktop": {
+    "viewport": 1440,
+    "bodyWidth": 1440,
+    "heroPhoto": 0,
+    "coffeePhoto": 0,
+    "chefDimensions": [
+      573,
+      400
+    ],
+    "stages": [
+      {
+        "name": "f01",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f02-cooking",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f02-orbit",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f06",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f03",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f07",
+        "loaded": "yes",
+        "svg": true
+      }
+    ],
+    "f01Player": {
+      "loop": false,
+      "layerHasMask": true
+    },
+    "errors": [],
+    "httpErrors": []
+  },
+  "tablet": {
+    "viewport": 820,
+    "bodyWidth": 820,
+    "heroPhoto": 0,
+    "coffeePhoto": 0,
+    "chefDimensions": [
+      380,
+      325
+    ],
+    "stages": [
+      {
+        "name": "f01",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f02-cooking",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f02-orbit",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f06",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f03",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f07",
+        "loaded": "yes",
+        "svg": true
+      }
+    ],
+    "f01Player": {
+      "loop": false,
+      "layerHasMask": true
+    },
+    "errors": [],
+    "httpErrors": []
+  },
+  "mobile": {
+    "viewport": 390,
+    "bodyWidth": 390,
+    "heroPhoto": 0,
+    "coffeePhoto": 0,
+    "chefDimensions": [
+      358,
+      285
+    ],
+    "stages": [
+      {
+        "name": "f01",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f02-cooking",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f02-orbit",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f06",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f03",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f07",
+        "loaded": "yes",
+        "svg": true
+      }
+    ],
+    "f01Player": {
+      "loop": false,
+      "layerHasMask": true
+    },
+    "errors": [],
+    "httpErrors": []
+  },
+  "small": {
+    "viewport": 320,
+    "bodyWidth": 320,
+    "heroPhoto": 0,
+    "coffeePhoto": 0,
+    "chefDimensions": [
+      288,
+      285
+    ],
+    "stages": [
+      {
+        "name": "f01",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f02-cooking",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f02-orbit",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f06",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f03",
+        "loaded": "yes",
+        "svg": true
+      },
+      {
+        "name": "f07",
+        "loaded": "yes",
+        "svg": true
+      }
+    ],
+    "f01Player": {
+      "loop": false,
+      "layerHasMask": true
+    },
+    "errors": [],
+    "httpErrors": []
+  }
+}
