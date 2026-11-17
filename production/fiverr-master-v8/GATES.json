@@ -1,0 +1,65 @@
+{
+  "status": "IN_PROGRESS",
+  "release": "BLOCKED",
+  "target_duration_seconds": 59,
+  "fps": 24,
+  "preferred_resolution": [
+    1920,
+    1080
+  ],
+  "v0_hook": {
+    "status": "REJECTED",
+    "reason": [
+      "Pasta empty-stage start",
+      "LeadFlow count already almost resolved",
+      "No verified NOVA/CITYSHIFT motion"
+    ],
+    "proof": "Fiverr_Six_Project_Master_V8_Hook_Visual_Proof_10s.mp4",
+    "audio": "silent_visual_animatic"
+  },
+  "gates": [
+    {
+      "id": "G0",
+      "name": "source/licence",
+      "status": "PARTIAL"
+    },
+    {
+      "id": "G1",
+      "name": "reference/taste storyboard",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "G2",
+      "name": "10s hook",
+      "status": "REVISION_REQUIRED"
+    },
+    {
+      "id": "G3",
+      "name": "six actual motion captures",
+      "status": "BLOCKED_CITYSHIFT_NOVA"
+    },
+    {
+      "id": "G4",
+      "name": "full animatic",
+      "status": "NOT_STARTED"
+    },
+    {
+      "id": "G5",
+      "name": "independent visual/sound audit",
+      "status": "NOT_STARTED"
+    },
+    {
+      "id": "G6",
+      "name": "owner commercial signoff",
+      "status": "NOT_APPROVED"
+    }
+  ],
+  "red_flags": [
+    "F02/F04 source artwork rights unverified",
+    "F01 V4 final owner visual approval pending",
+    "CITYSHIFT private CI source package failed",
+    "NOVA WebGL capture blocked on local container: ERR_BLOCKED_BY_ADMINISTRATOR",
+    "LeadFlow CRM sandbox not real provider",
+    "CITYSHIFT not real fleet tracking"
+  ]
+}
