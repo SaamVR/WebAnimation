@@ -1,0 +1,67 @@
+{
+  "wide": {
+    "width": 485,
+    "height": 485,
+    "radius": "50%",
+    "clip": "none",
+    "svgAspect": "xMidYMid slice",
+    "viewBox": "0 0 1984 1134",
+    "f04Extra": 0,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  },
+  "desktop": {
+    "width": 485,
+    "height": 485,
+    "radius": "50%",
+    "clip": "none",
+    "svgAspect": "xMidYMid slice",
+    "viewBox": "0 0 1984 1134",
+    "f04Extra": 0,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  },
+  "ipad": {
+    "width": 485,
+    "height": 485,
+    "radius": "50%",
+    "clip": "none",
+    "svgAspect": "xMidYMid slice",
+    "viewBox": "0 0 1984 1134",
+    "f04Extra": 0,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  },
+  "mobile": {
+    "width": 330,
+    "height": 330,
+    "radius": "50%",
+    "clip": "none",
+    "svgAspect": "xMidYMid slice",
+    "viewBox": "0 0 1984 1134",
+    "f04Extra": 0,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  },
+  "small": {
+    "width": 288,
+    "height": 288,
+    "radius": "50%",
+    "clip": "none",
+    "svgAspect": "xMidYMid slice",
+    "viewBox": "0 0 1984 1134",
+    "f04Extra": 0,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  },
+  "checkout": {
+    "frames": 240,
+    "loop": false,
+    "confirmed": "Sample order received"
+  }
+}

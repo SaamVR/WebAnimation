@@ -1,3 +1,5 @@
+> V11 refinement: The circle is preserved, but F01 now covers its entire area without yellow letterboxing. See V11_F01_CIRCLE_COVER_QA.md.
+
 # ZESTRY V10 — Circle Hero, No Organic Clipping
 
 Date: 2026-11-18.
