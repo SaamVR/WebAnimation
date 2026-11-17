@@ -1,0 +1,38 @@
+name: Fiverr V8 Licensed CC0 Sound Kit
+on:
+  push:
+    branches: [production/fiverr-six-projects-v8-20261118]
+    paths: [.github/workflows/fiverr-v8-cc0-sfx.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  archive-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Barty-Bart/motion-graphics
+          ref: main
+          sparse-checkout: |
+            skills/sound-effects/sfx/kit
+            skills/sound-effects/sfx/manifest.json
+            skills/sound-effects/TOP-PICKS.md
+          sparse-checkout-cone-mode: true
+      - name: Check CC0 metadata
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('skills/sound-effects/sfx')
+          o=json.loads((p/'manifest.json').read_text())
+          for x in o['default_kit']:
+            if x.get('bundled'):
+              assert x['license']=='CC0 1.0', x
+              assert (p/x['file']).is_file(), x
+              print(x['category'],x['title'],x['source_url'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiverr-v8-cc0-sound-kit-with-source-manifest
+          path: skills/sound-effects/
+          retention-days: 21
