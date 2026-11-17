@@ -13,6 +13,29 @@ console.log('CHAPCHITRA four back garments verified:',backAssets);
 await rm(output,{recursive:true,force:true});
 await mkdir(output,{recursive:true});
 await cp(src,output,{recursive:true});
+// Final owner-approved type system: preload only the two critical Latin
+// variable files on actual website pages. The Bengali and italic subsets are
+// unicode-range/on-demand, and none of this changes the HTML source/artwork.
+const criticalTypographyPreloads=
+ '<link rel="preload" href="/assets/fonts/dm-sans-latin-variable.woff2" as="font" type="font/woff2" crossorigin>'+
+ '<link rel="preload" href="/assets/fonts/fraunces-latin-variable.woff2" as="font" type="font/woff2" crossorigin>';
+let fontPreloadedPages=0;
+async function injectTypographyPreloads(dir){
+ for(const entry of await readdir(dir,{withFileTypes:true})){
+  const full=resolve(dir,entry.name);
+  if(entry.isDirectory()){await injectTypographyPreloads(full);continue;}
+  if(!entry.isFile()||entry.name!=='index.html')continue;
+  const html=await readFile(full,'utf8');
+  if(!/rel="stylesheet"[^>]*styles[.]css/.test(html))continue;
+  if(!html.includes('<head>')||html.includes('dm-sans-latin-variable.woff2'))
+   throw new Error('Typography preload source unexpectedly altered: '+full);
+  await writeFile(full,html.replace('<head>','<head>'+criticalTypographyPreloads));
+  fontPreloadedPages++;
+ }
+}
+await injectTypographyPreloads(output);
+if(fontPreloadedPages<10)throw new Error('Typography must cover all website routes: '+fontPreloadedPages);
+console.log('CHAPCHITRA typography: only two critical Latin preloads on',fontPreloadedPages,'entrypoints');
 // C05: materialize only the exact, checksum-verified owner-final art (V7/V1/GSAP/V3).
 const {materializeC05Assets}=await import('./materialize-c05-assets.mjs');
 await materializeC05Assets({src,output});

@@ -1,0 +1,1301 @@
+{
+  "url": "http://127.0.0.1:4309",
+  "profiles": [
+    {
+      "name": "desktop-chromium",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pages": [
+        {
+          "route": "home-hero",
+          "url": "/",
+          "status": 200,
+          "selector": ".hero-cover h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "43px",
+          "weight": "650",
+          "style": "normal",
+          "lineHeight": "48.16px",
+          "letterSpacing": "-1.505px",
+          "text": "Art you can wear.",
+          "left": 140,
+          "right": 473.421875,
+          "top": 422.5,
+          "bottom": 470.65625,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-home-hero.png"
+        },
+        {
+          "route": "values-more-than-a-tshirt",
+          "url": "/",
+          "status": 200,
+          "selector": "#valuesTitle",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "38px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "42.56px",
+          "letterSpacing": "-1.71px",
+          "text": "More Than a T-Shirt",
+          "left": 555.734375,
+          "right": 884.25,
+          "top": 473.8125,
+          "bottom": 516.359375,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-values-more-than-a-tshirt.png"
+        },
+        {
+          "route": "home-products",
+          "url": "/",
+          "status": 200,
+          "selector": "#homeProducts .polaroid-name strong",
+          "family": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif",
+          "size": "13px",
+          "weight": "600",
+          "style": "normal",
+          "lineHeight": "16.9px",
+          "letterSpacing": "0.052px",
+          "text": "Studio Sample 01",
+          "left": 166.546875,
+          "right": 361.703125,
+          "top": 486.234375,
+          "bottom": 503.125,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-home-products.png"
+        },
+        {
+          "route": "shop",
+          "url": "/shop/",
+          "status": 200,
+          "selector": "#shopBannerTitle",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "83px",
+          "weight": "650",
+          "style": "normal",
+          "lineHeight": "82.17px",
+          "letterSpacing": "-4.15px",
+          "text": "Shop All",
+          "left": 140,
+          "right": 404.8125,
+          "top": 178.6875,
+          "bottom": 260.84375,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-shop.png"
+        },
+        {
+          "route": "product-detail",
+          "url": "/product/?id=study-001",
+          "status": 200,
+          "selector": "h1",
+          "family": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif",
+          "size": "60.48px",
+          "weight": "600",
+          "style": "normal",
+          "lineHeight": "67.7376px",
+          "letterSpacing": "-2.1168px",
+          "text": "Studio Sample 01",
+          "left": 755,
+          "right": 1300,
+          "top": 217.015625,
+          "bottom": 284.75,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-product-detail.png"
+        },
+        {
+          "route": "favorites",
+          "url": "/favorites/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "88px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "88px",
+          "letterSpacing": "-5.28px",
+          "text": "Favorites",
+          "left": 140,
+          "right": 1300,
+          "top": 199.5,
+          "bottom": 287.5,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-favorites.png"
+        },
+        {
+          "route": "cart",
+          "url": "/bag/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "88px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "88px",
+          "letterSpacing": "-5.28px",
+          "text": "Your Demo Bag",
+          "left": 140,
+          "right": 1300,
+          "top": 199.5,
+          "bottom": 287.5,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-cart.png"
+        },
+        {
+          "route": "journal",
+          "url": "/journal/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "88px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "88px",
+          "letterSpacing": "-5.28px",
+          "text": "The Journal",
+          "left": 140,
+          "right": 1300,
+          "top": 199.5,
+          "bottom": 287.5,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-journal.png"
+        },
+        {
+          "route": "about",
+          "url": "/about/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "88px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "88px",
+          "letterSpacing": "-5.28px",
+          "text": "The Living Print Studio",
+          "left": 140,
+          "right": 1300,
+          "top": 199.5,
+          "bottom": 287.5,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-about.png"
+        },
+        {
+          "route": "artists-edit",
+          "url": "/artists-edit/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "30px",
+          "weight": "700",
+          "style": "normal",
+          "lineHeight": "46.5px",
+          "letterSpacing": "normal",
+          "text": "Artist's Edit",
+          "left": -1,
+          "right": 0,
+          "top": 98,
+          "bottom": 99,
+          "scrollWidth": 1440,
+          "viewportWidth": 1440,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Noto Serif Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "desktop-chromium-artists-edit.png"
+        }
+      ],
+      "errors": [],
+      "productLink": "/product/?id=study-001",
+      "bengali": {
+        "serif": "\"Noto Serif Bengali\", Fraunces, serif",
+        "sans": "\"Noto Sans Bengali\", \"DM Sans\", sans-serif",
+        "loadedSerif": true,
+        "loadedSans": true,
+        "headline": "ছাপচিত্র — মানুষ, স্থান ও ছাপ",
+        "paragraph": "শিল্প, সংস্কৃতি ও সৃজনশীলতার গল্প। নিজের পছন্দের টি-শার্টে আঁকা, ছাপা ও নকশা।",
+        "overflow": false
+      },
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit",
+      "viewport": {
+        "width": 834,
+        "height": 1112
+      },
+      "pages": [
+        {
+          "route": "home-hero",
+          "url": "/",
+          "status": 200,
+          "selector": ".hero-cover h1",
+          "family": "Fraunces, Noto Serif Bengali, Georgia, serif",
+          "size": "34px",
+          "weight": "650",
+          "style": "normal",
+          "lineHeight": "38.080002px",
+          "letterSpacing": "-1.19px",
+          "text": "Art you can wear.",
+          "left": 20,
+          "right": 291.6875,
+          "top": 427.5,
+          "bottom": 465.578125,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-home-hero.png"
+        },
+        {
+          "route": "values-more-than-a-tshirt",
+          "url": "/",
+          "status": 200,
+          "selector": "#valuesTitle",
+          "family": "Fraunces, Noto Serif Bengali, Georgia, serif",
+          "size": "33.360001px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "37.363201px",
+          "letterSpacing": "-1.5012px",
+          "text": "More Than a T-Shirt",
+          "left": 267.671875,
+          "right": 566.3125,
+          "top": 582.453125,
+          "bottom": 619.8125,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-values-more-than-a-tshirt.png"
+        },
+        {
+          "route": "home-products",
+          "url": "/",
+          "status": 200,
+          "selector": "#homeProducts .polaroid-name strong",
+          "family": "DM Sans, Noto Sans Bengali, Arial, sans-serif",
+          "size": "13px",
+          "weight": "600",
+          "style": "normal",
+          "lineHeight": "16.9px",
+          "letterSpacing": "0.052px",
+          "text": "Studio Sample 01",
+          "left": 41.78125,
+          "right": 157.96875,
+          "top": 592.8125,
+          "bottom": 609.703125,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-home-products.png"
+        },
+        {
+          "route": "shop",
+          "url": "/shop/",
+          "status": 200,
+          "selector": "#shopBannerTitle",
+          "family": "Fraunces, Noto Serif Bengali, Georgia, serif",
+          "size": "55.044003px",
+          "weight": "650",
+          "style": "normal",
+          "lineHeight": "54.493565px",
+          "letterSpacing": "-2.7522px",
+          "text": "Shop All",
+          "left": 20,
+          "right": 226.28125,
+          "top": 180.03125,
+          "bottom": 234.5,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-shop.png"
+        },
+        {
+          "route": "product-detail",
+          "url": "/product/?id=study-001",
+          "status": 200,
+          "selector": "h1",
+          "family": "DM Sans, Noto Sans Bengali, Arial, sans-serif",
+          "size": "36px",
+          "weight": "600",
+          "style": "normal",
+          "lineHeight": "40.32px",
+          "letterSpacing": "-1.26px",
+          "text": "Studio Sample 01",
+          "left": 430,
+          "right": 814,
+          "top": 200.609375,
+          "bottom": 240.921875,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-product-detail.png"
+        },
+        {
+          "route": "favorites",
+          "url": "/favorites/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, Noto Serif Bengali, Georgia, serif",
+          "size": "55.878002px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "55.878002px",
+          "letterSpacing": "-3.35268px",
+          "text": "Favorites",
+          "left": 20,
+          "right": 814,
+          "top": 199.5,
+          "bottom": 255.375,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-favorites.png"
+        },
+        {
+          "route": "cart",
+          "url": "/bag/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, Noto Serif Bengali, Georgia, serif",
+          "size": "55.878002px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "55.878002px",
+          "letterSpacing": "-3.35268px",
+          "text": "Your Demo Bag",
+          "left": 20,
+          "right": 814,
+          "top": 199.5,
+          "bottom": 255.375,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-cart.png"
+        },
+        {
+          "route": "journal",
+          "url": "/journal/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, Noto Serif Bengali, Georgia, serif",
+          "size": "55.878002px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "55.878002px",
+          "letterSpacing": "-3.35268px",
+          "text": "The Journal",
+          "left": 20,
+          "right": 814,
+          "top": 199.5,
+          "bottom": 255.375,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-journal.png"
+        },
+        {
+          "route": "about",
+          "url": "/about/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, Noto Serif Bengali, Georgia, serif",
+          "size": "55.878002px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "55.878002px",
+          "letterSpacing": "-3.35268px",
+          "text": "The Living Print Studio",
+          "left": 20,
+          "right": 814,
+          "top": 199.5,
+          "bottom": 255.375,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-about.png"
+        },
+        {
+          "route": "artists-edit",
+          "url": "/artists-edit/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, Noto Serif Bengali, Georgia, serif",
+          "size": "30px",
+          "weight": "700",
+          "style": "normal",
+          "lineHeight": "46.5px",
+          "letterSpacing": "normal",
+          "text": "Artist's Edit",
+          "left": -1,
+          "right": 0,
+          "top": 98,
+          "bottom": 99,
+          "scrollWidth": 834,
+          "viewportWidth": 834,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Noto Serif Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "ipad-webkit-artists-edit.png"
+        }
+      ],
+      "errors": [],
+      "productLink": "/product/?id=study-001",
+      "bengali": {
+        "serif": "Noto Serif Bengali, Fraunces, serif",
+        "sans": "Noto Sans Bengali, DM Sans, sans-serif",
+        "loadedSerif": true,
+        "loadedSans": true,
+        "headline": "ছাপচিত্র — মানুষ, স্থান ও ছাপ",
+        "paragraph": "শিল্প, সংস্কৃতি ও সৃজনশীলতার গল্প। নিজের পছন্দের টি-শার্টে আঁকা, ছাপা ও নকশা।",
+        "overflow": false
+      },
+      "pass": true
+    },
+    {
+      "name": "mobile-chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pages": [
+        {
+          "route": "home-hero",
+          "url": "/",
+          "status": 200,
+          "selector": ".hero-cover h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "27.3px",
+          "weight": "650",
+          "style": "normal",
+          "lineHeight": "30.576px",
+          "letterSpacing": "-0.9555px",
+          "text": "Art you can wear.",
+          "left": 16,
+          "right": 230.765625,
+          "top": 440.6875,
+          "bottom": 471.25,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-home-hero.png"
+        },
+        {
+          "route": "values-more-than-a-tshirt",
+          "url": "/",
+          "status": 200,
+          "selector": "#valuesTitle",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "26px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "29.12px",
+          "letterSpacing": "-0.91px",
+          "text": "More Than a T-Shirt",
+          "left": 16,
+          "right": 374,
+          "top": 452.921875,
+          "bottom": 482.03125,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-values-more-than-a-tshirt.png"
+        },
+        {
+          "route": "home-products",
+          "url": "/",
+          "status": 200,
+          "selector": "#homeProducts .polaroid-name strong",
+          "family": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif",
+          "size": "13px",
+          "weight": "600",
+          "style": "normal",
+          "lineHeight": "17.16px",
+          "letterSpacing": "0.052px",
+          "text": "Studio Sample 01",
+          "left": 32.609375,
+          "right": 150.890625,
+          "top": 458.765625,
+          "bottom": 475.921875,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-home-products.png"
+        },
+        {
+          "route": "shop",
+          "url": "/shop/",
+          "status": 200,
+          "selector": "#shopBannerTitle",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "39px",
+          "weight": "650",
+          "style": "normal",
+          "lineHeight": "38.61px",
+          "letterSpacing": "-1.95px",
+          "text": "Shop All",
+          "left": 16,
+          "right": 157.40625,
+          "top": 184.28125,
+          "bottom": 222.890625,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [
+            "Filters"
+          ],
+          "screenshot": "mobile-chromium-shop.png"
+        },
+        {
+          "route": "product-detail",
+          "url": "/product/?id=study-001",
+          "status": 200,
+          "selector": "h1",
+          "family": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif",
+          "size": "36px",
+          "weight": "600",
+          "style": "normal",
+          "lineHeight": "40.32px",
+          "letterSpacing": "-1.26px",
+          "text": "Studio Sample 01",
+          "left": 16,
+          "right": 374,
+          "top": 526.796875,
+          "bottom": 567.109375,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-product-detail.png"
+        },
+        {
+          "route": "favorites",
+          "url": "/favorites/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "49px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "49px",
+          "letterSpacing": "-2.94px",
+          "text": "Favorites",
+          "left": 16,
+          "right": 374,
+          "top": 191.6875,
+          "bottom": 240.6875,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-favorites.png"
+        },
+        {
+          "route": "cart",
+          "url": "/bag/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "49px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "49px",
+          "letterSpacing": "-2.94px",
+          "text": "Your Demo Bag",
+          "left": 16,
+          "right": 374,
+          "top": 191.6875,
+          "bottom": 240.6875,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-cart.png"
+        },
+        {
+          "route": "journal",
+          "url": "/journal/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "49px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "49px",
+          "letterSpacing": "-2.94px",
+          "text": "The Journal",
+          "left": 16,
+          "right": 374,
+          "top": 191.6875,
+          "bottom": 240.6875,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-journal.png"
+        },
+        {
+          "route": "about",
+          "url": "/about/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "49px",
+          "weight": "550",
+          "style": "normal",
+          "lineHeight": "49px",
+          "letterSpacing": "-2.94px",
+          "text": "The Living Print Studio",
+          "left": 16,
+          "right": 374,
+          "top": 191.6875,
+          "bottom": 289.6875,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "italic",
+              "weight": "300 800"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-about.png"
+        },
+        {
+          "route": "artists-edit",
+          "url": "/artists-edit/",
+          "status": 200,
+          "selector": "h1",
+          "family": "Fraunces, \"Noto Serif Bengali\", Georgia, serif",
+          "size": "30px",
+          "weight": "700",
+          "style": "normal",
+          "lineHeight": "46.5px",
+          "letterSpacing": "normal",
+          "text": "Artist's Edit",
+          "left": -1,
+          "right": 0,
+          "top": 110.1875,
+          "bottom": 111.1875,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "fonts": [
+            {
+              "family": "DM Sans",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Fraunces",
+              "style": "normal",
+              "weight": "300 800"
+            },
+            {
+              "family": "Noto Sans Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            },
+            {
+              "family": "Noto Serif Bengali",
+              "style": "normal",
+              "weight": "400 700"
+            }
+          ],
+          "headingOverflow": [],
+          "screenshot": "mobile-chromium-artists-edit.png"
+        }
+      ],
+      "errors": [],
+      "productLink": "/product/?id=study-001",
+      "bengali": {
+        "serif": "\"Noto Serif Bengali\", Fraunces, serif",
+        "sans": "\"Noto Sans Bengali\", \"DM Sans\", sans-serif",
+        "loadedSerif": true,
+        "loadedSans": true,
+        "headline": "ছাপচিত্র — মানুষ, স্থান ও ছাপ",
+        "paragraph": "শিল্প, সংস্কৃতি ও সৃজনশীলতার গল্প। নিজের পছন্দের টি-শার্টে আঁকা, ছাপা ও নকশা।",
+        "overflow": false
+      },
+      "pass": true
+    }
+  ],
+  "capturedAt": "2026-11-17T17:59:22.220Z"
+}

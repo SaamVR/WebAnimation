@@ -15,8 +15,8 @@
  * HTML contains ONLY the live amount. It is positioned under the
  * already-printed "Total" and angled to follow the paper's edge.
  * Never rotate or reposition the PNG: image layout is owner-approved.
- * Owner's final font choice: Hind Siliguri 700 for the dynamic amount.
- * Keep the printed "Total" on the original PNG, with Noto Serif Bengali
+ * Approved 2026-11-17 font choice: DM Sans 700 for the live amount.
+ * Keep the printed "Total" on the original PNG, with Noto Sans Bengali
  * fallback for the taka glyph; no new external font asset is required.
  * Amount size uses container-query width units for responsive scale.
  */
@@ -31,7 +31,7 @@ export const WORKTABLE_PRICE_TAG=Object.freeze({
   xPercent:58.5,yPercent:66.5,
   rotationDeg:-2.5,
   fontSizeCqw:15.5,
-  fontFamily:'"Hind Siliguri","Noto Serif Bengali",sans-serif',
+  fontFamily:'"DM Sans","Noto Sans Bengali",sans-serif',
   fontWeight:700,
   widthPercent:70,
   letterSpacingEm:-0.025,

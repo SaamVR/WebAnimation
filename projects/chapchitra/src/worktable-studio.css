@@ -20,7 +20,7 @@
 .cc-worktable.is-hydrating .cc-worktable-tint{z-index:5}
 .cc-worktable.is-hydrating .cc-worktable-print{z-index:6}
 .cc-worktable.is-loading .cc-worktable-hit{visibility:hidden;pointer-events:none}
-.cc-worktable-loading{position:absolute;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;padding:20px;color:var(--cc-page);background:color-mix(in srgb,var(--cc-deep) 62%,transparent);font:600 clamp(11px,1.6vw,16px)/1.4 system-ui,sans-serif;text-align:center;letter-spacing:.02em;pointer-events:none}
+.cc-worktable-loading{position:absolute;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;padding:20px;color:var(--cc-page);background:color-mix(in srgb,var(--cc-deep) 62%,transparent);font:600 clamp(11px,1.6vw,16px)/1.4 var(--font-ui,var(--sans));text-align:center;letter-spacing:.02em;pointer-events:none}
 
 /* Visual depth belongs to the real alpha-trimmed image, never its hit box.
    The stage and original wood/paper/paint pixels stay untouched. */
@@ -456,7 +456,7 @@
    Its original compact face and ink animation are not reconstructed. */
 .cc-worktable-view-button.cc-sketch.cc-compact-artwork{
  width:164px;min-width:164px;height:64px;min-height:64px;
- font-family:'Hind Siliguri',var(--sans,system-ui,sans-serif);
+ font-family:var(--font-ui,var(--sans,system-ui,sans-serif));
  font-size:16.5px;font-weight:600;letter-spacing:0;
  -webkit-tap-highlight-color:transparent;
 }
@@ -784,7 +784,7 @@
   color:var(--color-gallery-white,#f6f7f5);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:2px;padding:5px 1px 3px;
-  font:600 clamp(8.5px,2.65vw,12px)/1.12 'Hind Siliguri',var(--sans);
+  font:600 clamp(8.5px,2.65vw,12px)/1.12 var(--font-ui,var(--sans));
   cursor:pointer;touch-action:manipulation;
   box-shadow:0 1px 3px rgb(18 25 16 / .4);
   -webkit-tap-highlight-color:transparent;
