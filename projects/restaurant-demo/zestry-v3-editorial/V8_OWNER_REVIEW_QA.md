@@ -1,3 +1,5 @@
+> **Superseded for hero and F04 by V9.** See V9_OWNER_CORRECTION_QA.md and docs/qa/owner-v9. The V8 flower-like clipping path and added F04 editorial preview were rejected; F04 is now checkout-only as originally approved.
+
 # ZESTRY V8 — Owner Feedback QA (2026-11-18)
 
 **Scope:** SaamVR/WebAnimation / projects/restaurant-demo only.

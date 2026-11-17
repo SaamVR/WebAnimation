@@ -27,14 +27,9 @@
 }
 .hero-svg-def{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
 
-/* Replace duplicate booking/lifestyle section with a real F04 order story. */
-#story.pickup-story{padding:clamp(42px,6vw,84px) 0;background:#fff9f1;overflow:hidden}
-#story .pickup-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);align-items:center;gap:clamp(24px,5vw,80px)}
-#story .pickup-copy p{max-width:510px}
-#story .pickup-visual{width:100%;max-width:490px;justify-self:center;aspect-ratio:1.25;min-width:0}
-#story .pickup-visual .anim{width:100%;height:100%;min-height:0}
-#story .pickup-note{font-size:.84rem;opacity:.75;margin-top:14px}
-@media(max-width:760px){
- #story .pickup-layout{grid-template-columns:1fr;gap:12px}
- #story .pickup-visual{width:min(100%,450px)}
-}
+
+/* Original F04 remains exclusively in the sample checkout confirmation.
+   The editorial story has no checkout or reservation behavior. */
+#story .brand-story-copy{max-width:570px;min-width:0}
+#story .brand-story-copy h2{max-width:620px}
+#story .brand-story-copy p{max-width:510px}
