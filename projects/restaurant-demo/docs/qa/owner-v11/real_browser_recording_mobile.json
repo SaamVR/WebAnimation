@@ -1,0 +1,44 @@
+{
+  "name": "mobile",
+  "width": 390,
+  "height": 844,
+  "frames": 93,
+  "durationRecordedS": 11.044,
+  "maxFrameGapMs": 351,
+  "finish": {
+    "frame": 260,
+    "done": true,
+    "paused": true
+  },
+  "samples": [
+    {
+      "ms": 3,
+      "frame": 3,
+      "complete": false
+    },
+    {
+      "ms": 1856,
+      "frame": 61.5,
+      "complete": false
+    },
+    {
+      "ms": 5510,
+      "frame": 169,
+      "complete": false
+    },
+    {
+      "ms": 8192,
+      "frame": 247.9,
+      "complete": false
+    },
+    {
+      "ms": 9684,
+      "frame": 260,
+      "complete": true
+    }
+  ],
+  "errors": [],
+  "networkErrors": [],
+  "file": "C:\\Users\\Sa\\AppData\\Local\\Temp\\zestry-v11-fixed-interval-recording\\ZESTRY_V11_F01_Circle_Cover_mobile_accurate.mp4",
+  "bytes": 182282
+}
