@@ -547,3 +547,102 @@
 :root[data-theme="dark"] #app > .site-header .mobile-nav .cc-mobile-theme-toggle:focus-visible{
  outline:3px solid var(--theme-focus);outline-offset:1px
 }
+
+
+/* Dark refinement P01 — scoped, owner-approved color corrections only.
+   Preserve all Illustrator source SVG/WebP/Lottie, dimensions and interaction
+   controller code. People / Places / Prints remains entirely untouched. */
+:root[data-theme="dark"]{
+  --cc-p01-button-face:var(--color-terracotta);
+  --cc-p01-button-shadow:var(--color-press-green);
+  --cc-p01-product-face:var(--color-mushroom-gray);
+  --cc-p01-product-shadow:var(--color-terracotta);
+  --cc-p01-dark-ink:var(--color-graphite);
+}
+
+/* Hero 01: existing approved 164×64 compact Illustrator cutout. Reassign
+   only the original inline SVG face/offset-layer paint roles. Preserve
+   existing organic paths, authored subtle strokes, hover ink and travel. */
+:root[data-theme="dark"] #hero .hero-cover .cc-sketch--compact.cc-compact-artwork{
+  --cc-label:var(--color-cream);
+}
+:root[data-theme="dark"] #hero .hero-cover .cc-compact-svg #BUTTON_SHADOW > path{
+  fill:var(--cc-p01-button-shadow)!important;
+}
+:root[data-theme="dark"] #hero .hero-cover .cc-compact-svg #Button_Face_Inside_1_ > path.st7,
+:root[data-theme="dark"] #hero .hero-cover .cc-compact-svg #Button_Face_Inside_1_ .st8{
+  fill:var(--cc-p01-button-face)!important;
+}
+:root[data-theme="dark"] #hero .hero-cover .cc-sketch-copy .cc-sketch-label{
+  color:var(--color-cream);
+}
+
+/* Light pill faces and dark labels. Shapes and click destinations unchanged. */
+:root[data-theme="dark"] #categories .filter-chips a{
+  background:var(--color-warm-beige);
+  border-color:var(--color-gallery-white);
+  color:var(--cc-p01-dark-ink);
+}
+:root[data-theme="dark"] #categories .filter-chips a:is(:hover,:focus-visible){
+  background:var(--color-gallery-white);
+  color:var(--cc-p01-dark-ink);
+  border-color:var(--color-cream);
+}
+:root[data-theme="dark"] #categories .filter-chips a:focus-visible{
+  outline:2px solid var(--color-cream);outline-offset:2px;
+}
+
+/* Collection uses original long SVG. Repaint only the original inline
+   mushroom face and terracotta offset silhouette; preserve entire vector
+   topology, 320×54 ratios, source texture, wipe/confirmation classes. */
+:root[data-theme="dark"] #collection .product-add-button{
+  --cc-label:var(--cc-p01-dark-ink);
+}
+:root[data-theme="dark"] #collection .product-add-button .cc-long-svg #BUTTON_SHADOW path{
+  fill:var(--cc-p01-product-shadow)!important;
+}
+:root[data-theme="dark"] #collection .product-add-button .cc-long-svg #BUTTON_FACE path.st2{
+  fill:var(--cc-p01-product-face)!important;
+}
+:root[data-theme="dark"] #collection .product-add-button:not(.added):not(.long-returning):not(.long-confirm-pending)
+ .cc-sketch-label{
+  color:var(--cc-p01-dark-ink);
+}
+/* Existing .added -> return ink wipe and cart count feedback are untouched. */
+
+/* Pagination: Walnut resting surface with high-contrast Cream numerals;
+   selected page uses Cream with Forest ink, no changes to navigation logic. */
+:root[data-theme="dark"] #collection .pager button{
+  background:var(--color-walnut);
+  color:var(--color-cream);
+  border-color:var(--color-warm-beige);
+}
+:root[data-theme="dark"] #collection .pager button:is(:hover,:focus-visible),
+:root[data-theme="dark"] #collection .pager button.page-current{
+  background:var(--color-cream);color:var(--color-dark-forest);
+  border-color:var(--color-cream);
+}
+:root[data-theme="dark"] #collection .pager button:disabled{
+  opacity:.62;
+}
+:root[data-theme="dark"] #collection .pager button:focus-visible{
+  outline:2px solid var(--color-cream);outline-offset:3px;
+}
+
+/* Featured Prints: change the ENTIRE printed surface and section backing
+   to Walnut; original framed items and slider choreography are not altered. */
+:root[data-theme="dark"] #featured.featured-zone{
+  background:var(--color-walnut);
+  color:var(--color-cream);
+  --cc-printed-surface:var(--color-walnut);
+}
+:root[data-theme="dark"] #featured.featured-zone > .cc-printed-surface{
+  --cc-printed-surface:var(--color-walnut);
+}
+:root[data-theme="dark"] #featured .section-title :is(h2,p){
+  color:var(--color-cream);
+}
+:root[data-theme="dark"] #featured .feature-frame .art-plate{
+  background:var(--color-warm-beige);
+  border-color:var(--color-gallery-white);
+}
