@@ -1,71 +1,64 @@
 {
-  "status": "IN_PROGRESS",
-  "release": "BLOCKED",
-  "target_duration_seconds": 59,
-  "fps": 24,
-  "preferred_resolution": [
-    1920,
-    1080
-  ],
-  "v0_hook": {
-    "status": "REJECTED",
-    "reason": [
-      "Pasta empty-stage start",
-      "LeadFlow count already almost resolved",
-      "No verified NOVA/CITYSHIFT motion"
+  "updated": "2026-11-18",
+  "status": "V8_COMPLETE_PRIVATE_REVIEW",
+  "release": "BLOCKED_NOT_FOR_FIVERR_UPLOAD",
+  "master": {
+    "name": "Fiverr_Six_Project_Master_V8_Directors_Review_59s.mp4",
+    "duration_seconds": 59,
+    "frames": 1416,
+    "fps": 24,
+    "resolution": [
+      1280,
+      720
     ],
-    "proof": "Fiverr_Six_Project_Master_V8_Hook_Visual_Proof_10s.mp4",
-    "audio": "silent_visual_animatic"
+    "audio": "Mixkit Tech House vibes #130 + CC0 Foley",
+    "loudness_lufs": -16,
+    "true_peak_dbfs": -4,
+    "video_codec": "H264",
+    "audio_codec": "AAC",
+    "size_bytes": 6801182,
+    "sha256": "626b3f162c633cfb976f543336b1081ebd2629a9776a9ea210c61aa3674297f1"
   },
-  "gates": [
-    {
-      "id": "G0",
-      "name": "source/licence",
-      "status": "PARTIAL"
-    },
-    {
-      "id": "G1",
-      "name": "reference/taste storyboard",
-      "status": "ACTIVE"
-    },
-    {
-      "id": "G2",
-      "name": "10s hook",
-      "status": "REVISION_REQUIRED"
-    },
-    {
-      "id": "G3",
-      "name": "six actual motion captures",
-      "status": "PARTIAL_CITYSHIFT_MISSING"
-    },
-    {
-      "id": "G4",
-      "name": "full animatic",
-      "status": "NOT_STARTED"
-    },
-    {
-      "id": "G5",
-      "name": "independent visual/sound audit",
-      "status": "NOT_STARTED"
-    },
-    {
-      "id": "G6",
-      "name": "owner commercial signoff",
-      "status": "NOT_APPROVED"
-    }
+  "hook": {
+    "duration": 10,
+    "frames": 240,
+    "source_action": [
+      "CHAPCHITRA print",
+      "Restaurant F01 plated food",
+      "NOVA WebGL",
+      "LeadFlow 96 demo score"
+    ],
+    "technical": "PASS",
+    "creative": "CONDITIONAL_PASS_PRIVATE_REVIEW"
+  },
+  "source_capture": {
+    "threads": "V6 approved source editing",
+    "chapchitra": "C01/C08 original Lottie plus real site capture",
+    "restaurant": "F01/F02/F04 Lottie source verified; rights pending",
+    "nova": "original 3D WebGL browser captured",
+    "leadflow": "original synthetic qualification and CRM sandbox footage",
+    "cityshift": "professional V1 real browser route demonstration, not live GPS"
+  },
+  "qa": {
+    "full_frame_decode": "PASS 1416/1416",
+    "blank_frame_scan": "PASS 0",
+    "cut_boundary_sheet": "PASS 17 edits plus closing",
+    "music_license": "Mixkit Stock Music Free License for web videos",
+    "sfx_license": "CC0 Freesound recordings",
+    "directors_verdict": "CONDITIONAL_PASS_PRIVATE",
+    "human_signoff": "PENDING"
+  },
+  "blockers": [
+    "F01 V4 owner final creative acceptance pending",
+    "F02 source artwork commercial rights not verified",
+    "F04 source artwork commercial rights not verified",
+    "Human owner listening and creative approval pending"
   ],
-  "red_flags": [
-    "F02/F04 source artwork rights unverified",
-    "F01 V4 final owner visual approval pending",
-    "CITYSHIFT private CI source package failed",
-    "LeadFlow CRM sandbox not real provider",
-    "CITYSHIFT not real fleet tracking"
-  ],
-  "nova_verified_evidence": {
-    "source": "SaamVR/Portfolio feat/leadflow-v2-evidence-20261012 NovaAG",
-    "modelState": "ready",
-    "frames": 120,
-    "errors": [],
-    "note": "GitHub runner lacks ffmpeg; 120 JPEG frames and capture_evidence.json downloaded, re-encoded locally into 5-second MP4; source experience verified"
-  }
+  "files": {
+    "master": "ChatGPT conversation artifact",
+    "hook": "ChatGPT conversation artifact",
+    "audit": "Fiverr_Six_Project_Master_V8_Creative_Director_Visual_Audit_20261118.md",
+    "source_script": "assemble_master_v8.py"
+  },
+  "next": "Resolve F01/F02/F04 rights, obtain owner review, then make legally cleared release master; DO NOT merge or publish as currently reviewed."
 }
