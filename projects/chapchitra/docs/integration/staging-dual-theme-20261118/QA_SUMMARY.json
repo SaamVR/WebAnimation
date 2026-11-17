@@ -1,0 +1,46 @@
+{
+  "source_staging_sha": "ad42d075e9e99d268202646ab7396ddd077053ee",
+  "staging_candidate_source_sha": "c29d397fc0462c798cd2662c9abeb4f9a8a0483d",
+  "staging_diff_files": 249,
+  "paths_outside_chapchitra": 0,
+  "native": {
+    "pass": 275,
+    "total": 275
+  },
+  "build": "PASS",
+  "browser_routes": {
+    "pass": 60,
+    "total": 60
+  },
+  "browser_profiles": {
+    "pass": 6,
+    "total": 6
+  },
+  "responsive_narrow": {
+    "pass": 6,
+    "total": 6
+  },
+  "axe_wcag_a_aa": {
+    "pass": 18,
+    "total": 18,
+    "violations": 0
+  },
+  "carousel_desktop": {
+    "pass": true,
+    "initial_hero_ms": 8049.8
+  },
+  "carousel_ipad_initial": {
+    "pass": false,
+    "initial_hero_ms": 9100,
+    "sampled_c08_complete_ms": 9994
+  },
+  "carousel_ipad_retry": {
+    "pass": false,
+    "initial_hero_ms": 8575,
+    "sampled_c08_complete_ms": 9559
+  },
+  "technical_release_gate": "BLOCKED_IPAD_WEBKIT_INITIAL_HERO_TIMING",
+  "owner_visual_review": "PENDING",
+  "staging_merged": false,
+  "deployed": false
+}

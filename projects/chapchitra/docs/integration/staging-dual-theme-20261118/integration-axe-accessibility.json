@@ -1,0 +1,350 @@
+[
+  {
+    "browser": "desktop-chromium",
+    "theme": "light",
+    "route": "home",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 13
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 3
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 98
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "desktop-chromium",
+    "theme": "light",
+    "route": "shop",
+    "violations": [],
+    "passes": 25,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 37
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "desktop-chromium",
+    "theme": "light",
+    "route": "artist",
+    "violations": [],
+    "passes": 27,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 6
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "desktop-chromium",
+    "theme": "dark",
+    "route": "home",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 13
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 3
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 101
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "desktop-chromium",
+    "theme": "dark",
+    "route": "shop",
+    "violations": [],
+    "passes": 25,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 38
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "desktop-chromium",
+    "theme": "dark",
+    "route": "artist",
+    "violations": [],
+    "passes": 27,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "ipad-webkit",
+    "theme": "light",
+    "route": "home",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 13
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 3
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 98
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "ipad-webkit",
+    "theme": "light",
+    "route": "shop",
+    "violations": [],
+    "passes": 25,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 37
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "ipad-webkit",
+    "theme": "light",
+    "route": "artist",
+    "violations": [],
+    "passes": 27,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "ipad-webkit",
+    "theme": "dark",
+    "route": "home",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 13
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 3
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 101
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "ipad-webkit",
+    "theme": "dark",
+    "route": "shop",
+    "violations": [],
+    "passes": 25,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 38
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "ipad-webkit",
+    "theme": "dark",
+    "route": "artist",
+    "violations": [],
+    "passes": 27,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "mobile-chromium",
+    "theme": "light",
+    "route": "home",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 13
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 3
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 95
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "mobile-chromium",
+    "theme": "light",
+    "route": "shop",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 37
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "mobile-chromium",
+    "theme": "light",
+    "route": "artist",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 4
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "mobile-chromium",
+    "theme": "dark",
+    "route": "home",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 13
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 3
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 98
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "mobile-chromium",
+    "theme": "dark",
+    "route": "shop",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 5
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 37
+      }
+    ],
+    "pass": true
+  },
+  {
+    "browser": "mobile-chromium",
+    "theme": "dark",
+    "route": "artist",
+    "violations": [],
+    "passes": 24,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 4
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ],
+    "pass": true
+  }
+]
