@@ -1,0 +1,60 @@
+{
+  "desktop": {
+    "loop": false,
+    "animationDataCount": 27,
+    "parts": 13,
+    "animated": 13,
+    "scrollWidth": 1440,
+    "viewport": 1440,
+    "loaded": "yes",
+    "imagesInCoffee": 0,
+    "errors": [],
+    "failures": []
+  },
+  "ipad": {
+    "loop": false,
+    "animationDataCount": 27,
+    "parts": 13,
+    "animated": 13,
+    "scrollWidth": 820,
+    "viewport": 820,
+    "loaded": "yes",
+    "imagesInCoffee": 0,
+    "errors": [],
+    "failures": []
+  },
+  "mobile": {
+    "loop": false,
+    "animationDataCount": 27,
+    "parts": 13,
+    "animated": 13,
+    "scrollWidth": 390,
+    "viewport": 390,
+    "loaded": "yes",
+    "imagesInCoffee": 0,
+    "errors": [],
+    "failures": []
+  },
+  "small": {
+    "loop": false,
+    "animationDataCount": 27,
+    "parts": 13,
+    "animated": 13,
+    "scrollWidth": 320,
+    "viewport": 320,
+    "loaded": "yes",
+    "imagesInCoffee": 0,
+    "errors": [],
+    "failures": []
+  },
+  "completion": {
+    "complete": "true",
+    "loop": false,
+    "currentFrame": 227,
+    "stopped": true
+  },
+  "revisit": {
+    "complete": "true",
+    "frame": 227
+  }
+}
