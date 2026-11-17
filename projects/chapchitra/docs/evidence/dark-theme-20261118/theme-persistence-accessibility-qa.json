@@ -1,0 +1,224 @@
+[
+  {
+    "profile": "desktop-chromium",
+    "checks": [],
+    "errors": [],
+    "systemDark": {
+      "theme": "dark",
+      "pref": "system",
+      "stored": null,
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "clickToLight": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light",
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "routePersistence": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light",
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "reload": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light"
+    },
+    "reset": {
+      "theme": "dark",
+      "pref": "system",
+      "stored": null
+    },
+    "systemChange": {
+      "theme": "light",
+      "pref": "system",
+      "stored": null,
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "clickToDark": {
+      "theme": "dark",
+      "pref": "dark",
+      "stored": "dark",
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "darkOverrideOS": {
+      "theme": "dark",
+      "pref": "dark",
+      "stored": "dark",
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "favorite": {
+      "selected": "true",
+      "deselected": "false",
+      "src": "/assets/illustrator/nav-favorites-selected.svg"
+    },
+    "focus": {
+      "focusVisible": true,
+      "style": "solid",
+      "width": "3px",
+      "color": "rgb(228, 227, 222)"
+    },
+    "search": {
+      "bg": "rgb(31, 34, 22)",
+      "fg": "rgb(228, 227, 222)",
+      "focusable": true
+    },
+    "pass": true
+  },
+  {
+    "profile": "ipad-webkit",
+    "checks": [],
+    "errors": [],
+    "systemDark": {
+      "theme": "dark",
+      "pref": "system",
+      "stored": null,
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "clickToLight": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light",
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "routePersistence": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light",
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "reload": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light"
+    },
+    "reset": {
+      "theme": "dark",
+      "pref": "system",
+      "stored": null
+    },
+    "systemChange": {
+      "theme": "light",
+      "pref": "system",
+      "stored": null,
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "clickToDark": {
+      "theme": "dark",
+      "pref": "dark",
+      "stored": "dark",
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "darkOverrideOS": {
+      "theme": "dark",
+      "pref": "dark",
+      "stored": "dark",
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "favorite": {
+      "selected": "true",
+      "deselected": "false",
+      "src": "/assets/illustrator/nav-favorites-selected.svg"
+    },
+    "focus": {
+      "focusVisible": true,
+      "style": "solid",
+      "width": "3px",
+      "color": "rgb(228, 227, 222)"
+    },
+    "search": {
+      "bg": "rgb(31, 34, 22)",
+      "fg": "rgb(228, 227, 222)",
+      "focusable": true
+    },
+    "pass": true
+  },
+  {
+    "profile": "mobile-chromium",
+    "checks": [],
+    "errors": [],
+    "systemDark": {
+      "theme": "dark",
+      "pref": "system",
+      "stored": null,
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "clickToLight": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light",
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "routePersistence": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light",
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "reload": {
+      "theme": "light",
+      "pref": "light",
+      "stored": "light"
+    },
+    "reset": {
+      "theme": "dark",
+      "pref": "system",
+      "stored": null
+    },
+    "systemChange": {
+      "theme": "light",
+      "pref": "system",
+      "stored": null,
+      "button": "false",
+      "label": "Switch to dark theme"
+    },
+    "clickToDark": {
+      "theme": "dark",
+      "pref": "dark",
+      "stored": "dark",
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "darkOverrideOS": {
+      "theme": "dark",
+      "pref": "dark",
+      "stored": "dark",
+      "button": "true",
+      "label": "Switch to light theme"
+    },
+    "favorite": {
+      "selected": "true",
+      "deselected": "false",
+      "src": "/assets/illustrator/nav-favorites-selected.svg"
+    },
+    "focus": {
+      "focusVisible": true,
+      "style": "solid",
+      "width": "3px",
+      "color": "rgb(228, 227, 222)"
+    },
+    "search": {
+      "bg": "rgb(31, 34, 22)",
+      "fg": "rgb(228, 227, 222)",
+      "focusable": true
+    },
+    "pass": true
+  }
+]

@@ -29,7 +29,14 @@ async function injectTypographyPreloads(dir){
   if(!/rel="stylesheet"[^>]*styles[.]css/.test(html))continue;
   if(!html.includes('<head>')||html.includes('dm-sans-latin-variable.woff2'))
    throw new Error('Typography preload source unexpectedly altered: '+full);
-  await writeFile(full,html.replace('<head>','<head>'+criticalTypographyPreloads));
+  // Before the first stylesheet or body paint, resolve stored/system theme.
+  // Keep the dark-only stylesheet at the end of the head for semantic overrides.
+  const themeBoot='<script src="/theme-init.js"></script>';
+  const themeCss='<link rel="stylesheet" href="/theme.css">';
+  if(html.includes('theme-init.js')||html.includes('theme.css'))throw new Error('Duplicate theme bootstrap: '+full);
+  await writeFile(full,html
+    .replace('<head>','<head>'+themeBoot+criticalTypographyPreloads)
+    .replace('</head>',themeCss+'</head>'));
   fontPreloadedPages++;
  }
 }
