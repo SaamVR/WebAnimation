@@ -1,0 +1,78 @@
+{
+  "project": "Fiverr V8 six-project combined interactive-web reel",
+  "status": "DIRECTOR-ANIMATIC-NOT-APPROVED",
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "total_seconds": 59,
+  "hook": {
+    "start": 0,
+    "end": 10,
+    "current_candidate": "v1 visual audition; final 4-source mix will be selected after NOVA and CITYSHIFT verified capture",
+    "gate": "REVISE"
+  },
+  "chapters": [
+    {
+      "start": 0,
+      "end": 10,
+      "name": "10s hook",
+      "shots": "Motion actions selected for velocity and buyer-relevance (not branding cards)",
+      "status": "REVISE"
+    },
+    {
+      "start": 10,
+      "end": 18,
+      "name": "Threads",
+      "shots": "T02 fly-to-cart + T01 spotlight search",
+      "status": "SOURCE_READY"
+    },
+    {
+      "start": 18,
+      "end": 25,
+      "name": "CHAPCHITRA",
+      "shots": "C08 print/roller + C01 connected icons + short real-site proof",
+      "status": "SOURCE_READY"
+    },
+    {
+      "start": 25,
+      "end": 32,
+      "name": "Restaurant",
+      "shots": "F01 ingredients and F04 breakfast order; F02 rights-blocked",
+      "status": "PRIVATE_REVIEW_RIGHTS_PENDING"
+    },
+    {
+      "start": 32,
+      "end": 40,
+      "name": "NOVA",
+      "shots": "Original Three.js/GLTF orbit, inspection and folding",
+      "status": "SOURCE_READY_CAPTURE_BLOCKED"
+    },
+    {
+      "start": 40,
+      "end": 47,
+      "name": "LeadFlow",
+      "shots": "96/100 synthetic deterministic decision score + sandbox handoff",
+      "status": "RECORDED"
+    },
+    {
+      "start": 47,
+      "end": 54,
+      "name": "CITYSHIFT",
+      "shots": "Professional V1 road-accurate route draw, vehicle motion, pricing estimate",
+      "status": "SOURCE_CONFIRMED_CAPTURE_BLOCKED"
+    },
+    {
+      "start": 54,
+      "end": 59,
+      "name": "Closing CTA",
+      "shots": "Return to best source motion, buyer-specific promise, no contact or unsupported claims",
+      "status": "STORYBOARD_PENDING"
+    }
+  ],
+  "source_manifest": "PRODUCTION_BRIEF.md",
+  "skills": "SKILL_ADOPTION.md",
+  "audio": {
+    "status": "PENDING licensed samples + track",
+    "policy": "Do not reuse previous oscillator beep soundtrack in final"
+  }
+}
