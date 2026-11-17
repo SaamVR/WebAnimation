@@ -1,5 +1,6 @@
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
 import { createHeroCarouselClock } from './hero-carousel-clock.mjs';
+import {hero01Retraction} from './hero01-retraction.mjs';
 import { ARTIST_CART_STORAGE_KEY, ARTIST_CART_MAX_ITEMS, priceArtistCustomization, readArtistDemoBag, formatArtistBDT } from './worktable-pricing.mjs';
 async function boot(){
  // Artist route critical path begins concurrently with all site shell modules.
@@ -921,16 +922,25 @@ async function boot(){
    : Promise.resolve();
   const heroRoot=$('#hero'),slides=$$('.hero-slide',heroRoot),dots=$$('.hero-dot',heroRoot);
   let active=0,hovered=false,focused=false,touchX=null;
-  // Keep the owner paper and full illustrated logo together in document flow.
-  // Only reveal the compact wordmark after that paper has cleared the sticky header.
+  // Anchor the original V + complete C08 identity to the *sticky navbar*.
+  // Each scroll frame explicitly offsets the panel's native document movement:
+  // edge(top) = stickyHeader(bottom) - retractProgress * (height + shadowGap).
+  // Unlike the former paper-bottom threshold, this is a true scroll-linked
+  // transform, reversible at every pixel and never a timed/fading animation.
   const headerRoot=$('#siteHeader'),navIdentity=headerRoot.querySelector('.logo-word--image'),
    heroIdentity=heroRoot.querySelector('.hero01-full-logo'),
    paperPanel=heroRoot.querySelector('#hero01PaperPanel');
   let headerModeInitialized=false,headerRAF=0;
   function syncHero01Header(){
-   const paperBottom=paperPanel.getBoundingClientRect().bottom;
-   const stickyBottom=headerRoot.getBoundingClientRect().bottom;
-   const special=active===0&&paperBottom>stickyBottom+2;
+   const headerBottom=headerRoot.getBoundingClientRect().bottom;
+   const heroTop=heroRoot.getBoundingClientRect().top;
+   const paperHeight=paperPanel.offsetHeight;
+   const state=hero01Retraction({
+    scrollY:window.scrollY,headerBottom,heroTop,paperHeight
+   });
+   paperPanel.style.transform='translate3d(0,'+state.offsetY.toFixed(3)+'px,0)';
+   paperPanel.dataset.retractionProgress=state.progress.toFixed(4);
+   const special=active===0&&!state.complete;
    const mode=special?'special':'standard';
    if(headerModeInitialized&&headerRoot.dataset.hero01Mode===mode)return;
    headerModeInitialized=true;headerRoot.dataset.hero01Mode=mode;
@@ -947,7 +957,13 @@ async function boot(){
    headerRAF=requestAnimationFrame(()=>{headerRAF=0;syncHero01Header()});
   }
   window.addEventListener('scroll',onHeroHeaderScroll,{passive:true});
-  window.addEventListener('pageshow',syncHero01Header);
+  window.addEventListener('resize',onHeroHeaderScroll,{passive:true});
+  window.addEventListener('pageshow',onHeroHeaderScroll);
+  if('ResizeObserver' in window){
+   const paperResize=new ResizeObserver(onHeroHeaderScroll);
+   paperResize.observe(paperPanel);
+   paperResize.observe(headerRoot);
+  }
   syncHero01Header();
 
   // Slide 01 has 8s TOTAL visible dwell, including initial C08 playback.

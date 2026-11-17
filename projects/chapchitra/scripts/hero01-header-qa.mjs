@@ -200,6 +200,10 @@ for(const t of profiles){
   await img.decode();
   if(img.naturalWidth<100)throw Error('Original full illustrated logo failed to decode');
  });
+ // Wait for image/font-based responsive centering to settle before sampling;
+ // keep the original strict geometry assertions unchanged.
+ await page.evaluate(()=>document.fonts.ready);
+ await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
  // Keep the approved carousel on Hero 01 while the C08 240-frame animation
  // completes, exactly as a real pointer hovering over the hero would.
  await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseenter')));
@@ -245,13 +249,19 @@ for(const t of profiles){
  const mid=await sample(page);
  assert.equal(mid.navWordmark.visible,false,'No duplicate compact logo over partially visible paper');
  assert.equal(mid.heroLogoInert,false,'Original hero logo remains interactive');
- const midGeo=await page.evaluate(()=>({
-  paper:document.querySelector('#hero01PaperPanel').getBoundingClientRect().top,
-  logo:document.querySelector('#hero .hero01-full-logo').getBoundingClientRect().top,
-  opacity:getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity
- }));
- assert.ok(Math.abs(midGeo.paper-paperAtTop+185)<3,'V follows native scroll');
- assert.ok(Math.abs(midGeo.logo-logoAtTop+185)<3,'Original logo follows same scroll');
+ const midGeo=await page.evaluate(()=>{
+  const paper=document.querySelector('#hero01PaperPanel'),header=document.querySelector('#siteHeader');
+  return {
+   paper:paper.getBoundingClientRect().top,
+   logo:document.querySelector('#hero .hero01-full-logo').getBoundingClientRect().top,
+   opacity:getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity,
+   progress:Number(paper.dataset.retractionProgress),
+   target:header.getBoundingClientRect().bottom-(paper.offsetHeight+12)*Number(paper.dataset.retractionProgress)
+  };
+ });
+ assert.ok(midGeo.progress>0&&midGeo.progress<1,'V is partway through scroll-controlled retraction');
+ assert.ok(Math.abs(midGeo.paper-midGeo.target)<2,'V edge tracks sticky navbar, not document scroll');
+ assert.ok(Math.abs((midGeo.logo-logoAtTop)-(midGeo.paper-paperAtTop))<3,'Full logo and paper retract as one assembly');
  assert.equal(midGeo.opacity,'1','Never fade original artwork while still visible');
  await page.screenshot({path:resolve(out,t.name+'-paper-mid-scroll.png')});
  reviewTimeline.push({event:'paper-mid-scroll',mode:mid.state,scrollY:185,logoOpacity:midGeo.opacity});

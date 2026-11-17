@@ -2338,6 +2338,10 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   margin-left:0;
   margin-right:auto;
 }
+/* The compositor-preserved hero clips ordinary descendants; it must release
+   overflow only while Hero01 is active so the retraction can pass *behind*
+   the separate sticky navbar instead of clipping at the hero's old top. */
+#hero:has(.hero-cover:not([hidden])){overflow:visible}
 #hero .hero01-paper-panel{
   position:absolute;
   top:0;left:0;right:0;
@@ -2349,13 +2353,16 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   justify-content:center;
   isolation:isolate;
   pointer-events:none;
+  transform:translate3d(0,0,0);
+  transition:none!important;
+  will-change:transform;
 }
 #hero .hero01-paper-edge{
   position:absolute;inset:0;
   display:block;
   width:100%;height:100%;
   pointer-events:none;
-  overflow:visible;
+  overflow:hidden; /* clip the original SVG outside its approved viewBox; keep shadow below the V */
   shape-rendering:geometricPrecision;
   z-index:1;
   /* Shadow follows every irregular alpha edge, never the rectangular box. */
@@ -2422,8 +2429,8 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   min-height:0;
 }
 
-/* The original paper and full logo travel together with native document scroll.
-   No 12px opacity switch and no logo fade while the V is still in view. */
+/* Single scroll-driven translation of the *unchanged* V, shadow and C08
+   illustrated identity. No independently timed transition, fading or snapping. */
 
 /* WebKit first-paint safeguard. The organic inline SVG edge can leave a
    stale 0,0 dark tile in WebKit unless the whole Hero owns a compositor layer.
