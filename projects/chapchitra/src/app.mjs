@@ -63,7 +63,7 @@ async function boot(){
  // Exact cropped Illustrator vectors; preserve the owner-supplied path geometry.
  const artRoot='/assets/illustrator/';
  const navArt=name=>'<img class="cc-nav-art" src="'+artRoot+'nav-'+name+'.svg" alt="" aria-hidden="true" draggable="false">';
- const favoriteArt=liked=>'<img class="cc-favorite-art" data-favorite-art src="'+artRoot+'nav-favorites-'+(liked?'filled':'outline')+'.svg" alt="" aria-hidden="true" draggable="false">';
+ const favoriteArt=liked=>'<img class="cc-favorite-art" data-favorite-art src="'+artRoot+'nav-favorites-'+(liked?'selected':'outline')+'.svg" alt="" aria-hidden="true" draggable="false">';
  const stampedBagCount=count=>'<span class="sr-only">'+count+'</span><span class="cc-bag-stamps" aria-hidden="true">'+
   [...String(count)].map(d=>'<img src="'+artRoot+'stamp-'+d+'.svg" alt="" draggable="false">').join('')+'</span>';
  const categories=[
@@ -87,7 +87,7 @@ async function boot(){
    '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+navArt('search')+'</button>'+
-   '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites"'+(route==='favorites'?' aria-current="page"':'')+'>'+navArt(route==='favorites'?'favorites-filled':'favorites-outline')+'</a>'+
+   '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites"'+(route==='favorites'?' aria-current="page"':'')+'>'+navArt(route==='favorites'?'favorites-selected':'favorites-outline')+'</a>'+
    '<a class="nav-icon nav-optional-action" href="/account/" aria-label="Account">'+navArt('account')+'</a>'+
    '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+navArt('bag')+'<span class="bag-count">'+stampedBagCount(demoBagCount())+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
@@ -766,7 +766,7 @@ async function boot(){
    btn.classList.toggle('liked',liked);
    btn.setAttribute('aria-pressed',String(liked));
    const heartArt=btn.querySelector('[data-favorite-art]');
-   if(heartArt)heartArt.src=artRoot+'nav-favorites-'+(liked?'filled':'outline')+'.svg';
+   if(heartArt)heartArt.src=artRoot+'nav-favorites-'+(liked?'selected':'outline')+'.svg';
    if(btn.classList.contains('favorite-toggle')){
     const label=catalog.find(p=>p.id===id)?.name||'sample';
     btn.setAttribute('aria-label',(liked?'Remove ':'Add ')+label+(liked?' from':' to')+' favorites');

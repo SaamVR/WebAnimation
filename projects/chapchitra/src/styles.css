@@ -2438,3 +2438,12 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
 }
+
+/* Approved navbar icon ink and favorite states — no geometry/dimension edits.
+   Illustrator silhouettes are in src/assets/illustrator/nav-*.svg. */
+#app .nav-icon{color:#1C241D}
+#app .favorite-toggle,
+#app .favorite-toggle.liked{color:#1C241D}
+#app .favorite-toggle svg{stroke:#1C241D}
+#app .favorite-toggle:not(.liked) svg{fill:none}
+#app .favorite-toggle.liked svg{fill:var(--color-terracotta)}
