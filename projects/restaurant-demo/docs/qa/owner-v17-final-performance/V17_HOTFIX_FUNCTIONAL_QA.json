@@ -1,0 +1,49 @@
+{
+  "source_sha": "V17 optimizations, V16 artwork",
+  "checks": {
+    "wood_vector_mount_and_canvas_clearance": {
+      "woodSvg": true,
+      "woodAspect": "xMidYMid slice",
+      "woodChildren": 2,
+      "woodFill": "original-vector",
+      "nativeAspect": "xMidYMid meet",
+      "circle": 756.59375,
+      "stage": 635.53125,
+      "cornerClearance": 12.287258612393941
+    },
+    "F05_stateful_category_menu_and_cart": {
+      "initial": {
+        "state": "Closed",
+        "output": "Loading…"
+      },
+      "selected": "Starters",
+      "dish": "Add Garden Crunch Salad to demo bag for $13",
+      "bagCount": "1"
+    },
+    "F04_checkout_confirmation_once": {
+      "message": "Sample order received",
+      "f04Rendered": true,
+      "player": {
+        "duration": 8,
+        "loop": false
+      }
+    },
+    "F07_booking_form_and_confirmation": {
+      "message": "Sample table request received",
+      "submitText": [
+        "Preview table request"
+      ]
+    },
+    "no_browser_errors_or_missing_assets": {
+      "jsErrors": 0,
+      "httpErrors": 0
+    }
+  },
+  "issues": [],
+  "artifacts": [
+    "desktop-F05-starters-dish.png",
+    "desktop-F04-checkout-confirmation.png",
+    "desktop-F07-booking-confirmation.png"
+  ],
+  "timestamp": "2026-11-18T07:11:28.322Z"
+}

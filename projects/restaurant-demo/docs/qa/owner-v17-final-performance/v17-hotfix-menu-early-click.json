@@ -1,0 +1,15 @@
+{
+  "initial": {
+    "ready": false,
+    "state": "uninitialized",
+    "text": "Loading…"
+  },
+  "queued": {
+    "ready": false,
+    "queueSize": 1
+  },
+  "ready": true,
+  "finalState": "Starters",
+  "cartCount": "1",
+  "errors": []
+}
