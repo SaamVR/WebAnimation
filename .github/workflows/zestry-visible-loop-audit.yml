@@ -5,6 +5,7 @@ on:
       - feat/zestry-visible-section-loops-chef-orbit-20261118
     paths:
       - projects/restaurant-demo/zestry-v3-editorial/inspect_visible_loop_baseline.py
+      - projects/restaurant-demo/zestry-v3-editorial/inspect_f02_loop_period.py
       - .github/workflows/zestry-visible-loop-audit.yml
 permissions:
   contents: read
@@ -16,3 +17,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Inspect approved Lottie assets and runtime contracts
         run: python3 projects/restaurant-demo/zestry-v3-editorial/inspect_visible_loop_baseline.py
+      - name: Quantify starting/ending chef orbit scene
+        run: python3 projects/restaurant-demo/zestry-v3-editorial/inspect_f02_loop_period.py
