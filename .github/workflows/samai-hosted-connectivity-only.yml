@@ -1,0 +1,62 @@
+name: samai Tailscale remote connectivity - hosted recovery preflight
+
+on:
+  push:
+    branches: [ops/samai-tailscale-hosted-probe-20261118]
+    paths: [.github/workflows/samai-hosted-connectivity-only.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    if: github.repository == 'SaamVR/WebAnimation' && github.ref == 'refs/heads/ops/samai-tailscale-hosted-probe-20261118'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - name: Check for existing CI tailnet identity without displaying secrets
+        id: identity
+        shell: bash
+        env:
+          TS_KEY_PRESENT: ${{ secrets.TAILSCALE_AUTHKEY != '' }}
+          TS_ALT_KEY_PRESENT: ${{ secrets.TS_AUTHKEY != '' }}
+          TS_ID_PRESENT: ${{ secrets.TS_OAUTH_CLIENT_ID != '' }}
+          TS_SECRET_PRESENT: ${{ secrets.TS_OAUTH_CLIENT_SECRET != '' }}
+        run: |
+          set -euo pipefail
+          if [ "$TS_KEY_PRESENT" = true ]; then
+            echo "mode=authkey" >> "$GITHUB_OUTPUT"
+          elif [ "$TS_ALT_KEY_PRESENT" = true ]; then
+            echo "mode=altkey" >> "$GITHUB_OUTPUT"
+          elif [ "$TS_ID_PRESENT" = true ] && [ "$TS_SECRET_PRESENT" = true ]; then
+            echo "mode=oauth" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=none" >> "$GITHUB_OUTPUT"
+            echo 'BLOCKER=NO_EXISTING_TAILSCALE_CREDENTIALS_FOR_GITHUB_ACTIONS'
+          fi
+      - name: Connect using existing TAILSCALE_AUTHKEY
+        if: steps.identity.outputs.mode == 'authkey'
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+      - name: Connect using existing TS_AUTHKEY
+        if: steps.identity.outputs.mode == 'altkey'
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
+      - name: Connect using existing OAuth identity
+        if: steps.identity.outputs.mode == 'oauth'
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_CLIENT_SECRET }}
+          tags: tag:ci
+      - name: Check connection to samai without passwords or changes
+        if: steps.identity.outputs.mode != 'none'
+        shell: bash
+        run: |
+          set +e
+          if timeout 12 tailscale ping --c 2 samai >/dev/null 2>&1; then echo 'SAMAI_TAILNET=reachable'; else echo 'SAMAI_TAILNET=unreachable'; fi
+          if timeout 8 bash -c 'echo >/dev/tcp/samai/22' >/dev/null 2>&1; then echo 'SAMAI_SSH_PORT=reachable'; else echo 'SAMAI_SSH_PORT=unreachable'; fi
+          echo 'NO_DEVICE_MUTATIONS_PERFORMED'
