@@ -1,0 +1,463 @@
+{
+  "targetAdditionalGrowth": 1.3,
+  "relativeToV14": 1.755,
+  "sourceCommit": "b7ee93ac36326e59ae35e74c36d71782fa459b18",
+  "deployment": "NOT DEPLOYED",
+  "creativeSignoff": "PENDING OWNER REVIEW",
+  "sizes": {
+    "desktop": {
+      "viewport": [
+        1600,
+        900
+      ],
+      "metric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 260,
+        "bowl": 407.0155029296875
+      },
+      "jsErrors": [],
+      "failedAssets": [],
+      "outerBandIssues": [
+        {
+          "frame": 51,
+          "outerPixels": 13,
+          "zoom": 1
+        },
+        {
+          "frame": 52,
+          "outerPixels": 10,
+          "zoom": 1
+        }
+      ],
+      "frames": [
+        {
+          "frame": 0,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 22,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 34,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 43,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 50,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 51,
+          "outerPixels": 13,
+          "zoom": 1
+        },
+        {
+          "frame": 52,
+          "outerPixels": 10,
+          "zoom": 1
+        },
+        {
+          "frame": 53,
+          "outerPixels": 1,
+          "zoom": 1
+        },
+        {
+          "frame": 60,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 84,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 92,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 100,
+          "outerPixels": 0,
+          "zoom": 1.095281
+        },
+        {
+          "frame": 112,
+          "outerPixels": 0,
+          "zoom": 1.440158
+        },
+        {
+          "frame": 120,
+          "outerPixels": 0,
+          "zoom": 1.659719
+        },
+        {
+          "frame": 124,
+          "outerPixels": 0,
+          "zoom": 1.729108
+        },
+        {
+          "frame": 128,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 132,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 160,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 200,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 240,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 260,
+          "outerPixels": 0,
+          "zoom": 1.755
+        }
+      ]
+    },
+    "tablet": {
+      "viewport": [
+        768,
+        1024
+      ],
+      "metric": {
+        "circleWidth": 347.484375,
+        "circleHeight": 347.484375,
+        "stageWidth": 291.875,
+        "stageHeight": 291.875,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 260,
+        "bowl": 186.926513671875
+      },
+      "jsErrors": [],
+      "failedAssets": [],
+      "outerBandIssues": [],
+      "frames": [
+        {
+          "frame": 0,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 22,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 34,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 43,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 50,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 51,
+          "outerPixels": 4,
+          "zoom": 1
+        },
+        {
+          "frame": 52,
+          "outerPixels": 2,
+          "zoom": 1
+        },
+        {
+          "frame": 53,
+          "outerPixels": 2,
+          "zoom": 1
+        },
+        {
+          "frame": 60,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 84,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 92,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 100,
+          "outerPixels": 0,
+          "zoom": 1.095281
+        },
+        {
+          "frame": 112,
+          "outerPixels": 0,
+          "zoom": 1.440158
+        },
+        {
+          "frame": 120,
+          "outerPixels": 0,
+          "zoom": 1.659719
+        },
+        {
+          "frame": 124,
+          "outerPixels": 0,
+          "zoom": 1.729108
+        },
+        {
+          "frame": 128,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 132,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 160,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 200,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 240,
+          "outerPixels": 1,
+          "zoom": 1.755
+        },
+        {
+          "frame": 260,
+          "outerPixels": 1,
+          "zoom": 1.755
+        }
+      ]
+    },
+    "mobile": {
+      "viewport": [
+        390,
+        844
+      ],
+      "metric": {
+        "circleWidth": 358,
+        "circleHeight": 358,
+        "stageWidth": 300.71875,
+        "stageHeight": 300.71875,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 260,
+        "bowl": 192.59033203125
+      },
+      "jsErrors": [],
+      "failedAssets": [],
+      "outerBandIssues": [],
+      "frames": [
+        {
+          "frame": 0,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 22,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 34,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 43,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 50,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 51,
+          "outerPixels": 4,
+          "zoom": 1
+        },
+        {
+          "frame": 52,
+          "outerPixels": 2,
+          "zoom": 1
+        },
+        {
+          "frame": 53,
+          "outerPixels": 2,
+          "zoom": 1
+        },
+        {
+          "frame": 60,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 84,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 92,
+          "outerPixels": 0,
+          "zoom": 1
+        },
+        {
+          "frame": 100,
+          "outerPixels": 0,
+          "zoom": 1.095281
+        },
+        {
+          "frame": 112,
+          "outerPixels": 0,
+          "zoom": 1.440158
+        },
+        {
+          "frame": 120,
+          "outerPixels": 0,
+          "zoom": 1.659719
+        },
+        {
+          "frame": 124,
+          "outerPixels": 0,
+          "zoom": 1.729108
+        },
+        {
+          "frame": 128,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 132,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 160,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 200,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 240,
+          "outerPixels": 0,
+          "zoom": 1.755
+        },
+        {
+          "frame": 260,
+          "outerPixels": 0,
+          "zoom": 1.755
+        }
+      ]
+    }
+  },
+  "playback": {
+    "desktop": {
+      "metric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 260,
+        "bowl": 407.0155029296875
+      },
+      "motionComplete": "true",
+      "video": "desktop-V16-real-browser.webm"
+    },
+    "mobile": {
+      "metric": {
+        "circleWidth": 358,
+        "circleHeight": 358,
+        "stageWidth": 300.71875,
+        "stageHeight": 300.71875,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 260,
+        "bowl": 192.59033203125
+      },
+      "motionComplete": "true",
+      "video": "mobile-V16-real-browser.webm"
+    }
+  },
+  "reducedMotion": {
+    "circleWidth": 358,
+    "circleHeight": 358,
+    "stageWidth": 300.71875,
+    "stageHeight": 300.71875,
+    "overflow": false,
+    "wood": true,
+    "woodMode": "original-vector",
+    "zoom": 1,
+    "frame": 0,
+    "bowl": 109.73809814453125
+  },
+  "baselineV15": {
+    "circleWidth": 756.59375,
+    "circleHeight": 756.59375,
+    "stageWidth": 635.53125,
+    "stageHeight": 635.53125,
+    "overflow": false,
+    "wood": true,
+    "woodMode": "original-vector",
+    "zoom": 1.35,
+    "frame": 128,
+    "bowl": 313.0888671875
+  },
+  "bowlDiameterRatio": 1.2999999220219398
+}
