@@ -98,6 +98,11 @@ async function collect(profile){
    return {text:digit?.textContent,opacity:d.opacity,color:d.color,visibility:d.visibility,display:d.display,transform:d.transform,textFill:d.webkitTextFillColor,buttonBackground:b.backgroundColor,buttonColor:b.color,activeAnimations:digit.getAnimations().map(a=>({state:a.playState,currentTime:a.currentTime})),theme:document.documentElement.dataset.theme};
   });
   console.log('C04_HOME_SETTLED_STYLE '+JSON.stringify({profile:profile.id,...homeStyle}));
+  // Canonical dark-mode selected-page ink is Forest #172419 on Cream #E4E3DE.
+  // The prior staging CSS accidentally referenced an undefined `--color-dark-forest`.
+  insist(homeStyle.theme==='dark'&&homeStyle.color==='rgb(23, 36, 25)'&&homeStyle.buttonBackground==='rgb(228, 227, 222)',
+   'Home active page lost approved Forest-on-Cream contrast: '+JSON.stringify(homeStyle));
+  check.push('dark Home active page retains visible Forest ink on Cream surface');
   await snap(page,profile.id+'-home-pager-2','#homePager [aria-current="page"]');
   insist(await page.locator('#homePager [aria-current="page"]').evaluate(el=>el===document.activeElement),'pagination focus not restored after replacing controls');
   check.push('homepage active numeral only; focus restored');
