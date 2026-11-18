@@ -1,0 +1,244 @@
+#!/usr/bin/env python3
+"""Actual Chromium acceptance of owner-authored F01 V4 in existing ZESTRY circle.
+
+The only authored-asset change in the Render ZIP is replacing its inert
+validation stub with the EXACT owner-supplied V4 JSON. Never redraw, mutate,
+zoom, retime or recompute any source Lottie keyframes. Screenshots document
+all important choreography frames. Test final broth AND actual one-shot hold.
+"""
+from pathlib import Path
+import hashlib,io,json,threading,shutil,zipfile
+from tempfile import TemporaryDirectory
+from functools import partial
+from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
+from PIL import Image,ImageChops
+from playwright.sync_api import sync_playwright
+
+ROOT=Path("projects/restaurant-demo")
+OUT=ROOT/"docs/qa/f01-v4-circle-final-live"
+OUT.mkdir(parents=True,exist_ok=True)
+EXPECTED="7fc0054b5ae4c1c7a13d0a3c5e321d117d570d8f0d71e3308ee076a48d301e37"
+URI="https://zestry-v3-restaurant-review-20261117.onrender.com/"
+REPORT={"originalLottieSHA256":EXPECTED,"sourceEdited":False,"renderer":"native Lottie-web 5.12.2", "deployedCommit":"9aaf314fb374576218bf05af9d5ba6a24cfdda70",
+        "viewports":{},"checks":[],"failures":[]}
+def ck(name,condition,detail):
+  REPORT["checks"].append({"name":name,"passed":bool(condition),"details":detail})
+  if not condition:REPORT["failures"].append(name)
+  print("PASS" if condition else "FAIL",name,json.dumps(detail,default=str)[:2200],flush=True)
+
+def get_a(page):
+ return page.evaluate("""()=> {
+  const a=window.lottie?.getRegisteredAnimations?.().find(x=>x.wrapper?.dataset?.player==='f01');
+  if(!a)return null;
+  const circle=document.querySelector('#home .f01-v4-circle');
+  const stage=circle?.querySelector('.anim');
+  const svg=stage?.querySelector('svg');
+  const visual=document.querySelector('#home .hero-image.hero-visual');
+  const broth=a.renderer.elements.find(x=>x?.data?.ind===28);
+  return {
+   frame:a.currentFrame,fr:a.frameRate,frames:a.getDuration(true),loop:a.loop,
+   paused:a.isPaused,direction:a.playDirection,
+   hasBrothMask:broth?.data?.hasMask,brothPathCount:broth?.layerElement?.querySelectorAll('path').length,
+   brothClip:broth?.layerElement?.getAttribute('clip-path'),
+   stageTransform:getComputedStyle(stage).transform,
+   circleMask:getComputedStyle(circle).clipPath,circleOverflow:getComputedStyle(circle).overflow,
+   woodBackground:getComputedStyle(circle).backgroundImage,
+   circleRect:{w:circle?.getBoundingClientRect().width,h:circle?.getBoundingClientRect().height},
+   visualRect:{w:visual?.getBoundingClientRect().width,h:visual?.getBoundingClientRect().height},
+   stageRect:{w:stage?.getBoundingClientRect().width,h:stage?.getBoundingClientRect().height},
+   svgRect:{w:svg?.getBoundingClientRect().width,h:svg?.getBoundingClientRect().height},
+   svgViewbox:svg?.getAttribute('viewBox'),
+   extraZoomHooks:!!window.ZESTRY_V18_VIEWPORT_PLAYBACK_CONTROLLER,
+   xOverflow:document.documentElement.scrollWidth>window.innerWidth+2,
+   completed:stage?.dataset.motionComplete,
+   htmlBackground:document.querySelector('.hero h1')?.innerText,
+   visualPlaceholder:!!document.querySelector('.hero-artwork-placeholder')
+  };
+}""")
+
+def broth_pixels(page,n):
+ page.evaluate("n=>window.lottie.getRegisteredAnimations().find(x=>x.wrapper?.dataset?.player==='f01').goToAndStop(n,true)",n)
+ page.wait_for_timeout(75)
+ box=page.locator("#home .f01-v4-circle").bounding_box()
+ original=page.screenshot(clip=box)
+ page.evaluate("""()=>{
+  const a=window.lottie.getRegisteredAnimations().find(x=>x.wrapper?.dataset?.player==='f01');
+  const b=a.renderer.elements.find(x=>x?.data?.ind===28).layerElement;
+  b.style.setProperty('visibility','hidden','important');
+ }""");page.wait_for_timeout(50)
+ without=page.screenshot(clip=box)
+ page.evaluate("""()=>{
+  const a=window.lottie.getRegisteredAnimations().find(x=>x.wrapper?.dataset?.player==='f01');
+  a.renderer.elements.find(x=>x?.data?.ind===28).layerElement.style.removeProperty('visibility');
+ }""")
+ diff=ImageChops.difference(Image.open(io.BytesIO(original)).convert('RGB'),
+  Image.open(io.BytesIO(without)).convert('RGB')).convert("L")
+ painted=sum(n for i,n in enumerate(diff.histogram()) if i>8)
+ return painted,original
+
+def test_viewport(browser,label,w,h):
+ context=browser.new_context(viewport={"width":w,"height":h},device_scale_factor=1)
+ p=context.new_page();errors=[];failed=[];requests=[]
+ p.on("pageerror",lambda e:errors.append(str(e)))
+ p.on("response",lambda r:failed.append((r.status,r.url))
+      if r.status>=400 and r.url.startswith(URI) else None)
+ p.on("request",lambda r:requests.append(r.url) if "f01" in r.url.lower() else None)
+ p.goto(URI,wait_until="domcontentloaded",timeout=30000)
+ p.screenshot(path=str(OUT/f"{label}-full-page-first-viewport.png"))
+ p.wait_for_function("""()=> {
+   const a=window.lottie?.getRegisteredAnimations?.().find(x=>x.wrapper?.dataset?.player==='f01');
+   return !!a?.renderer?.elements?.length &&
+          !!document.querySelector('#home .f01-v4-circle .anim svg');
+ }""",timeout=26000)
+ state=get_a(p)
+ ck(label+" original V4 30fps /261 frames / one-shot no reverse",
+    state and state["fr"]==30 and state["frames"]==261 and state["loop"] is False
+    and state["direction"]==1 and not state["visualPlaceholder"],
+    state)
+ circle=state["circleRect"]
+ stage=state["stageRect"]
+ ratio=stage["h"]/circle["h"] if circle["h"] else 0
+ ck(label+" fixed nonzooming circle mask and safe foreground proportion",
+    "circle(" in state["circleMask"] and state["circleOverflow"]=="hidden"
+    and "f01-v4-wood-fill.webp" in state["woodBackground"]
+    and abs(circle["w"]-circle["h"])<2 and abs(ratio-0.7)<.008
+    and state["svgViewbox"]=="0 0 1984 1134"
+    and not state["xOverflow"] and state["hasBrothMask"] is True,
+    {"circle":circle,"stage":stage,"stageRatio":ratio,"cssMask":state["circleMask"],
+     "brothHint":state["hasBrothMask"],"xOverflow":state["xOverflow"]})
+ photos={}
+ startSize=(stage["w"],stage["h"])
+ for frame in [0,26,52,60,90,120,134,142,149,160,175,210,260]:
+  px,img=broth_pixels(p,frame)
+  photos[frame]=px
+  if frame in (0,26,52,60,90,134,142,149,160,210,260):
+   (OUT/f"{label}-circle-F01-frame-{frame:03d}.png").write_bytes(img)
+  current=get_a(p)
+  ck(label+f" fixed art scale at original frame {frame}",
+     abs(current["stageRect"]["w"]-startSize[0])<.6 and
+     abs(current["stageRect"]["h"]-startSize[1])<.6,
+     {"frame":frame,"width":current["stageRect"]["w"],"height":current["stageRect"]["h"]})
+ threshold=1000 if label=="desktop" else 170
+ ck(label+" original bowl broth visibly fills at pour and final hold",
+    photos[160]>threshold and photos[260]>threshold,
+    {"brothPixelsAt160":photos[160],"brothPixelsFinal":photos[260],
+      "nativeUnmodifiedHintVerified":True})
+ # Must NOT reset to empty after 261 frames or loop on scroll re-entry.
+ p.evaluate("""()=>{
+  const a=window.lottie.getRegisteredAnimations().find(x=>x.wrapper?.dataset?.player==='f01');
+  a.goToAndStop(257,true);
+  a.play();
+ }""")
+ p.wait_for_timeout(400)
+ completed=get_a(p)
+ p.wait_for_timeout(440)
+ held=get_a(p)
+ ck(label+" holds completed dish instead of looping or enlarging",
+    completed["frame"]>=259 and held["frame"]>=259
+    and not held["loop"] and held["paused"] is True
+    and abs(held["stageRect"]["h"]-startSize[1])<1,
+    {"first":completed,"held":held})
+ p.locator('[data-animation="f02-orbit"]').scroll_into_view_if_needed()
+ p.wait_for_function("""()=>document.querySelector('[data-animation="f02-orbit"]')?.dataset.loaded==='yes'""",timeout=22000)
+ chef=p.evaluate("""()=>{
+  const a=window.lottie.getRegisteredAnimations().find(x=>x.wrapper?.dataset?.player==='f02-orbit');
+  return a?{length:a.getDuration(true),frameRate:a.frameRate,forward:a.playDirection===1,svg:!!a.wrapper.querySelector('svg')}:null;
+ }""")
+ ck(label+" other chef/orbit animation untouched",
+    chef and chef["length"]==210 and chef["frameRate"]==30
+    and chef["forward"] and chef["svg"],chef)
+ ck(label+" asset URLs and browser errors",
+    not errors and not failed and any(x.endswith("/assets/lottie/f01.json") for x in requests)
+    and not any("f01-v16" in x for x in requests),
+    {"console":errors,"badAssets":failed,"F01Requests":requests})
+ context.close()
+ REPORT["viewports"][label]={"first":state,"broth":photos,"last":held,"chef":chef,
+                            "errors":errors,"failedAssets":failed}
+
+def record_full_original_playback(browser,label,w,h):
+ """Capture a natural-speed native-browser loop-free V4 playback and final hold.
+
+ Test harness may position and restart player once; deployed site remains
+ unmodified, with no browser-controlled scaling or layer changes.
+ """
+ ctx=browser.new_context(viewport={"width":w,"height":h},device_scale_factor=1,
+        record_video_dir=str(OUT),record_video_size={"width":w,"height":h})
+ p=ctx.new_page();errors=[]
+ p.on("pageerror",lambda e:errors.append(str(e)))
+ p.goto(URI,wait_until="domcontentloaded",timeout=30000)
+ p.locator("#home .f01-v4-circle").scroll_into_view_if_needed()
+ p.wait_for_function("""()=>{
+   const a=window.lottie?.getRegisteredAnimations?.().find(x=>x.wrapper?.dataset?.player==='f01');
+   return !!a?.renderer?.elements?.length;
+ }""",timeout=26000)
+ p.evaluate("""()=>{
+   const a=window.lottie.getRegisteredAnimations().find(x=>x.wrapper?.dataset.player==='f01');
+   a.goToAndPlay(0,true);
+ }""")
+ initial=get_a(p)
+ p.wait_for_timeout(9700)
+ finish=get_a(p)
+ p.screenshot(path=str(OUT/f"{label}-full-V4-original-final-hold.png"))
+ ck(label+" full 8.7-second natural-speed original playback and final hold",
+     initial["fr"]==30 and initial["loop"] is False
+     and finish["frame"]>=259 and finish["paused"] is True
+     and finish["loop"] is False and not errors
+     and abs(initial["circleRect"]["w"]-finish["circleRect"]["w"])<1
+     and abs(initial["stageRect"]["h"]-finish["stageRect"]["h"])<1,
+     {"start":initial,"finish":finish,"browserErrors":errors})
+ video=p.video
+ ctx.close()
+ if video:
+  dest=OUT/f"{label}-F01-V4-full-original-native-browser.webm"
+  shutil.move(video.path(),dest)
+  ck(label+" original browser recording captured without video AI",
+     dest.stat().st_size>20000,{"filename":dest.name,"bytes":dest.stat().st_size})
+
+
+def main():
+ assert hashlib.sha256((ROOT/"assets/lottie/f01.json").read_bytes()).hexdigest()==EXPECTED
+ with sync_playwright() as playwright:
+  req=playwright.request.new_context(ignore_https_errors=False)
+  response=req.get(URI+"assets/lottie/f01.json",timeout=60000)
+  assert response.status==200,("Live F01 artwork asset missing",response.status)
+  actual=response.body()
+  live_hash=hashlib.sha256(actual).hexdigest()
+  ck("LIVE F01 bytes identical to owner-uploaded V4 master",live_hash==EXPECTED,
+     {"sourceSHA":EXPECTED,"liveSHA":live_hash,"bytes":len(actual),"uri":URI+"assets/lottie/f01.json"})
+  wood=req.get(URI+"assets/f01-v4-wood-fill.webp",timeout=45000)
+  ck("LIVE original wood layer derived static filler reachable",
+     wood.status==200 and wood.body()[:4]==b"RIFF" and
+     wood.body()[8:12]==b"WEBP",{"status":wood.status,"bytes":len(wood.body())})
+  home=req.get(URI,timeout=45000)
+  html=home.text()
+  ck("LIVE site serves only V4 circle controller, not V16/V17/V18 old versions",
+     home.status==200 and "ZESTRY_F01_V4_UNMODIFIED_CIRCLE_20261118" in html and
+     "ZESTRY_V18_VIEWPORT_PLAYBACK_CONTROLLER" not in html and
+     "mountF01" not in html and
+     "f01-v16" not in html,
+     {"http":home.status,"marker":html.count("ZESTRY_F01_V4_UNMODIFIED_CIRCLE_20261118"),
+      "hasOldF01":("mountF01" in html or "f01-v16" in html)})
+  req.dispose()
+  browser=playwright.chromium.launch(headless=True,args=["--no-sandbox"])
+  for label,w,h in [("desktop",1600,900),("mobile",390,844)]:
+   try:test_viewport(browser,label,w,h)
+   except Exception as e:
+    import traceback
+    traceback.print_exc()
+    REPORT["failures"].append({"test":label,"exception":str(e)})
+  for label,w,h in [("desktop",1600,900),("mobile",390,844)]:
+   try:record_full_original_playback(browser,label,w,h)
+   except Exception as e:
+    import traceback
+    traceback.print_exc()
+    REPORT["failures"].append({"test":label+" full browser recording","exception":str(e)})
+  browser.close()
+ (OUT/"F01_V4_FINAL_LIVE_ACCEPTANCE.json").write_text(json.dumps(REPORT,indent=2,default=str)+"\n")
+ print("F01_V4_LIVE_QA",json.dumps({
+  "pass":not REPORT["failures"],"checks":len(REPORT["checks"]),
+  "failures":REPORT["failures"],"sha":"9aaf314fb374576218bf05af9d5ba6a24cfdda70",
+  "url":URI,"originalSourceSHA":EXPECTED
+ })[:4200],flush=True)
+ if REPORT["failures"]:raise SystemExit(2)
+
+if __name__=="__main__":main()
