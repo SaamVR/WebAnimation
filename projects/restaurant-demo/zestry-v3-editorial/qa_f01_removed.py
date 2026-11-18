@@ -92,7 +92,7 @@ def check_site(browser,name,w,h):
        "Sample order received" in msg and
        page.locator("#confirm-player svg").count()>0,{"message":msg[:180]})
     page.locator("#modal button.x[data-close]").click()
-    page.locator('button[data-book]').first.click()
+    page.locator('.hero-buttons button[data-book]').click()
     page.locator('#date').fill("2026-12-01")
     for key in ["time","guests"]:
         vals=page.locator('#'+key+' option').evaluate_all(
