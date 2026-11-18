@@ -6,7 +6,7 @@ regression is duplicate IDs from copied SVG background defs; this test fails
 if any duplicated IDs remain or broth is not visibly painted after the pour.
 """
 from __future__ import annotations
-import hashlib,io,json,shutil,threading
+import hashlib,io,json,shutil,threading,zipfile
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
