@@ -28,7 +28,7 @@ TARGET = round(RELATIVE_GROWTH * V15_FINAL, 6)
 POSITION_FACTOR = 0.82
 # Calibrated independently against the full-size early ingredient entrances.
 # Defaults to the previous center factor until browser QA selects a safe value.
-EARLY_POSITION_FACTOR = float(os.environ.get("ZESTRY_EARLY_Q", "0.82"))
+EARLY_POSITION_FACTOR = float(os.environ.get("ZESTRY_EARLY_Q", "0.26"))
 
 def smooth(t: float) -> float:
     x = max(0., min(1., t))

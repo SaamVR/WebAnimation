@@ -1,0 +1,945 @@
+{
+  "goal": "fixed foreground scale 1.755 from frame 0",
+  "testedFrames": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    70,
+    75,
+    80,
+    84,
+    85,
+    86,
+    90,
+    92,
+    96,
+    104,
+    112,
+    120,
+    128,
+    140,
+    160,
+    200,
+    240,
+    260
+  ],
+  "lateIngredientCenterFactor": 0.82,
+  "candidates": [
+    {
+      "earlyQ": 0.74,
+      "riskCount": 19,
+      "worst": {
+        "frame": 56,
+        "outerBand": 2277
+      },
+      "risky": [
+        {
+          "frame": 21,
+          "outerBand": 1125
+        },
+        {
+          "frame": 22,
+          "outerBand": 1283
+        },
+        {
+          "frame": 23,
+          "outerBand": 789
+        },
+        {
+          "frame": 33,
+          "outerBand": 653
+        },
+        {
+          "frame": 34,
+          "outerBand": 614
+        },
+        {
+          "frame": 42,
+          "outerBand": 61
+        },
+        {
+          "frame": 43,
+          "outerBand": 951
+        },
+        {
+          "frame": 44,
+          "outerBand": 397
+        },
+        {
+          "frame": 46,
+          "outerBand": 1402
+        },
+        {
+          "frame": 47,
+          "outerBand": 1221
+        },
+        {
+          "frame": 52,
+          "outerBand": 62
+        },
+        {
+          "frame": 53,
+          "outerBand": 1484
+        },
+        {
+          "frame": 54,
+          "outerBand": 1899
+        },
+        {
+          "frame": 55,
+          "outerBand": 2067
+        },
+        {
+          "frame": 56,
+          "outerBand": 2277
+        },
+        {
+          "frame": 57,
+          "outerBand": 2006
+        },
+        {
+          "frame": 58,
+          "outerBand": 1283
+        },
+        {
+          "frame": 59,
+          "outerBand": 793
+        },
+        {
+          "frame": 60,
+          "outerBand": 120
+        }
+      ],
+      "errors": [],
+      "missingAssets": [],
+      "initialMetric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 3.5,
+        "bowl": 407.0155029296875
+      }
+    },
+    {
+      "earlyQ": 0.66,
+      "riskCount": 17,
+      "worst": {
+        "frame": 55,
+        "outerBand": 2235
+      },
+      "risky": [
+        {
+          "frame": 19,
+          "outerBand": 130
+        },
+        {
+          "frame": 20,
+          "outerBand": 1259
+        },
+        {
+          "frame": 21,
+          "outerBand": 975
+        },
+        {
+          "frame": 32,
+          "outerBand": 634
+        },
+        {
+          "frame": 33,
+          "outerBand": 174
+        },
+        {
+          "frame": 41,
+          "outerBand": 47
+        },
+        {
+          "frame": 42,
+          "outerBand": 879
+        },
+        {
+          "frame": 43,
+          "outerBand": 70
+        },
+        {
+          "frame": 45,
+          "outerBand": 1634
+        },
+        {
+          "frame": 46,
+          "outerBand": 242
+        },
+        {
+          "frame": 51,
+          "outerBand": 89
+        },
+        {
+          "frame": 52,
+          "outerBand": 1659
+        },
+        {
+          "frame": 53,
+          "outerBand": 1840
+        },
+        {
+          "frame": 54,
+          "outerBand": 2213
+        },
+        {
+          "frame": 55,
+          "outerBand": 2235
+        },
+        {
+          "frame": 56,
+          "outerBand": 1231
+        },
+        {
+          "frame": 57,
+          "outerBand": 595
+        }
+      ],
+      "errors": [],
+      "missingAssets": [],
+      "initialMetric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 1,
+        "bowl": 407.0155029296875
+      }
+    },
+    {
+      "earlyQ": 0.58,
+      "riskCount": 15,
+      "worst": {
+        "frame": 53,
+        "outerBand": 2392
+      },
+      "risky": [
+        {
+          "frame": 18,
+          "outerBand": 1103
+        },
+        {
+          "frame": 19,
+          "outerBand": 1005
+        },
+        {
+          "frame": 20,
+          "outerBand": 13
+        },
+        {
+          "frame": 30,
+          "outerBand": 459
+        },
+        {
+          "frame": 31,
+          "outerBand": 503
+        },
+        {
+          "frame": 40,
+          "outerBand": 337
+        },
+        {
+          "frame": 41,
+          "outerBand": 795
+        },
+        {
+          "frame": 43,
+          "outerBand": 1124
+        },
+        {
+          "frame": 44,
+          "outerBand": 1390
+        },
+        {
+          "frame": 50,
+          "outerBand": 456
+        },
+        {
+          "frame": 51,
+          "outerBand": 1874
+        },
+        {
+          "frame": 52,
+          "outerBand": 2053
+        },
+        {
+          "frame": 53,
+          "outerBand": 2392
+        },
+        {
+          "frame": 54,
+          "outerBand": 1378
+        },
+        {
+          "frame": 55,
+          "outerBand": 679
+        }
+      ],
+      "errors": [],
+      "missingAssets": [],
+      "initialMetric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 0.5,
+        "bowl": 407.0155029296875
+      }
+    },
+    {
+      "earlyQ": 0.5,
+      "riskCount": 43,
+      "worst": {
+        "frame": 17,
+        "outerBand": 3024
+      },
+      "risky": [
+        {
+          "frame": 0,
+          "outerBand": 2269
+        },
+        {
+          "frame": 4,
+          "outerBand": 2269
+        },
+        {
+          "frame": 8,
+          "outerBand": 2269
+        },
+        {
+          "frame": 12,
+          "outerBand": 2269
+        },
+        {
+          "frame": 16,
+          "outerBand": 3003
+        },
+        {
+          "frame": 17,
+          "outerBand": 3024
+        },
+        {
+          "frame": 18,
+          "outerBand": 2110
+        },
+        {
+          "frame": 19,
+          "outerBand": 2075
+        },
+        {
+          "frame": 20,
+          "outerBand": 2075
+        },
+        {
+          "frame": 21,
+          "outerBand": 2075
+        },
+        {
+          "frame": 22,
+          "outerBand": 2075
+        },
+        {
+          "frame": 23,
+          "outerBand": 2075
+        },
+        {
+          "frame": 24,
+          "outerBand": 2075
+        },
+        {
+          "frame": 25,
+          "outerBand": 2075
+        },
+        {
+          "frame": 26,
+          "outerBand": 2075
+        },
+        {
+          "frame": 27,
+          "outerBand": 2075
+        },
+        {
+          "frame": 28,
+          "outerBand": 2075
+        },
+        {
+          "frame": 29,
+          "outerBand": 2243
+        },
+        {
+          "frame": 30,
+          "outerBand": 1648
+        },
+        {
+          "frame": 31,
+          "outerBand": 1648
+        },
+        {
+          "frame": 32,
+          "outerBand": 1648
+        },
+        {
+          "frame": 33,
+          "outerBand": 1648
+        },
+        {
+          "frame": 34,
+          "outerBand": 1648
+        },
+        {
+          "frame": 35,
+          "outerBand": 1648
+        },
+        {
+          "frame": 36,
+          "outerBand": 1648
+        },
+        {
+          "frame": 37,
+          "outerBand": 1648
+        },
+        {
+          "frame": 38,
+          "outerBand": 1648
+        },
+        {
+          "frame": 39,
+          "outerBand": 2472
+        },
+        {
+          "frame": 40,
+          "outerBand": 1806
+        },
+        {
+          "frame": 41,
+          "outerBand": 1637
+        },
+        {
+          "frame": 42,
+          "outerBand": 1637
+        },
+        {
+          "frame": 43,
+          "outerBand": 849
+        },
+        {
+          "frame": 44,
+          "outerBand": 849
+        },
+        {
+          "frame": 45,
+          "outerBand": 849
+        },
+        {
+          "frame": 46,
+          "outerBand": 849
+        },
+        {
+          "frame": 47,
+          "outerBand": 849
+        },
+        {
+          "frame": 48,
+          "outerBand": 849
+        },
+        {
+          "frame": 49,
+          "outerBand": 1725
+        },
+        {
+          "frame": 50,
+          "outerBand": 2043
+        },
+        {
+          "frame": 51,
+          "outerBand": 2234
+        },
+        {
+          "frame": 52,
+          "outerBand": 1979
+        },
+        {
+          "frame": 53,
+          "outerBand": 929
+        },
+        {
+          "frame": 54,
+          "outerBand": 8
+        }
+      ],
+      "errors": [],
+      "missingAssets": [],
+      "initialMetric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 4,
+        "bowl": 407.0155029296875
+      }
+    },
+    {
+      "earlyQ": 0.42,
+      "riskCount": 41,
+      "worst": {
+        "frame": 50,
+        "outerBand": 2284
+      },
+      "risky": [
+        {
+          "frame": 0,
+          "outerBand": 2266
+        },
+        {
+          "frame": 4,
+          "outerBand": 2266
+        },
+        {
+          "frame": 8,
+          "outerBand": 2266
+        },
+        {
+          "frame": 12,
+          "outerBand": 2266
+        },
+        {
+          "frame": 16,
+          "outerBand": 2156
+        },
+        {
+          "frame": 17,
+          "outerBand": 2156
+        },
+        {
+          "frame": 18,
+          "outerBand": 2156
+        },
+        {
+          "frame": 19,
+          "outerBand": 2156
+        },
+        {
+          "frame": 20,
+          "outerBand": 2156
+        },
+        {
+          "frame": 21,
+          "outerBand": 2156
+        },
+        {
+          "frame": 22,
+          "outerBand": 2156
+        },
+        {
+          "frame": 23,
+          "outerBand": 2156
+        },
+        {
+          "frame": 24,
+          "outerBand": 2156
+        },
+        {
+          "frame": 25,
+          "outerBand": 2156
+        },
+        {
+          "frame": 26,
+          "outerBand": 2156
+        },
+        {
+          "frame": 27,
+          "outerBand": 2156
+        },
+        {
+          "frame": 28,
+          "outerBand": 2156
+        },
+        {
+          "frame": 29,
+          "outerBand": 2156
+        },
+        {
+          "frame": 30,
+          "outerBand": 2156
+        },
+        {
+          "frame": 31,
+          "outerBand": 2156
+        },
+        {
+          "frame": 32,
+          "outerBand": 2156
+        },
+        {
+          "frame": 33,
+          "outerBand": 2156
+        },
+        {
+          "frame": 34,
+          "outerBand": 2156
+        },
+        {
+          "frame": 35,
+          "outerBand": 2156
+        },
+        {
+          "frame": 36,
+          "outerBand": 2156
+        },
+        {
+          "frame": 37,
+          "outerBand": 2156
+        },
+        {
+          "frame": 38,
+          "outerBand": 2156
+        },
+        {
+          "frame": 39,
+          "outerBand": 2023
+        },
+        {
+          "frame": 40,
+          "outerBand": 2023
+        },
+        {
+          "frame": 41,
+          "outerBand": 2023
+        },
+        {
+          "frame": 42,
+          "outerBand": 2023
+        },
+        {
+          "frame": 43,
+          "outerBand": 2023
+        },
+        {
+          "frame": 44,
+          "outerBand": 2023
+        },
+        {
+          "frame": 45,
+          "outerBand": 2023
+        },
+        {
+          "frame": 46,
+          "outerBand": 2023
+        },
+        {
+          "frame": 47,
+          "outerBand": 2023
+        },
+        {
+          "frame": 48,
+          "outerBand": 2023
+        },
+        {
+          "frame": 49,
+          "outerBand": 2279
+        },
+        {
+          "frame": 50,
+          "outerBand": 2284
+        },
+        {
+          "frame": 51,
+          "outerBand": 1061
+        },
+        {
+          "frame": 52,
+          "outerBand": 71
+        }
+      ],
+      "errors": [],
+      "missingAssets": [],
+      "initialMetric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 0.5,
+        "bowl": 407.0155029296875
+      }
+    },
+    {
+      "earlyQ": 0.34,
+      "riskCount": 39,
+      "worst": {
+        "frame": 0,
+        "outerBand": 1187
+      },
+      "risky": [
+        {
+          "frame": 0,
+          "outerBand": 1187
+        },
+        {
+          "frame": 4,
+          "outerBand": 1187
+        },
+        {
+          "frame": 8,
+          "outerBand": 1187
+        },
+        {
+          "frame": 12,
+          "outerBand": 1187
+        },
+        {
+          "frame": 16,
+          "outerBand": 1187
+        },
+        {
+          "frame": 17,
+          "outerBand": 1187
+        },
+        {
+          "frame": 18,
+          "outerBand": 1187
+        },
+        {
+          "frame": 19,
+          "outerBand": 1187
+        },
+        {
+          "frame": 20,
+          "outerBand": 1187
+        },
+        {
+          "frame": 21,
+          "outerBand": 1187
+        },
+        {
+          "frame": 22,
+          "outerBand": 1187
+        },
+        {
+          "frame": 23,
+          "outerBand": 1187
+        },
+        {
+          "frame": 24,
+          "outerBand": 1187
+        },
+        {
+          "frame": 25,
+          "outerBand": 1187
+        },
+        {
+          "frame": 26,
+          "outerBand": 1187
+        },
+        {
+          "frame": 27,
+          "outerBand": 1187
+        },
+        {
+          "frame": 28,
+          "outerBand": 1187
+        },
+        {
+          "frame": 29,
+          "outerBand": 1187
+        },
+        {
+          "frame": 30,
+          "outerBand": 1187
+        },
+        {
+          "frame": 31,
+          "outerBand": 1187
+        },
+        {
+          "frame": 32,
+          "outerBand": 1187
+        },
+        {
+          "frame": 33,
+          "outerBand": 1187
+        },
+        {
+          "frame": 34,
+          "outerBand": 1187
+        },
+        {
+          "frame": 35,
+          "outerBand": 1187
+        },
+        {
+          "frame": 36,
+          "outerBand": 1187
+        },
+        {
+          "frame": 37,
+          "outerBand": 1187
+        },
+        {
+          "frame": 38,
+          "outerBand": 1187
+        },
+        {
+          "frame": 39,
+          "outerBand": 1187
+        },
+        {
+          "frame": 40,
+          "outerBand": 1187
+        },
+        {
+          "frame": 41,
+          "outerBand": 1187
+        },
+        {
+          "frame": 42,
+          "outerBand": 1187
+        },
+        {
+          "frame": 43,
+          "outerBand": 1187
+        },
+        {
+          "frame": 44,
+          "outerBand": 1187
+        },
+        {
+          "frame": 45,
+          "outerBand": 1187
+        },
+        {
+          "frame": 46,
+          "outerBand": 1187
+        },
+        {
+          "frame": 47,
+          "outerBand": 1187
+        },
+        {
+          "frame": 48,
+          "outerBand": 1187
+        },
+        {
+          "frame": 49,
+          "outerBand": 618
+        },
+        {
+          "frame": 50,
+          "outerBand": 78
+        }
+      ],
+      "errors": [],
+      "missingAssets": [],
+      "initialMetric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 1,
+        "bowl": 407.0155029296875
+      }
+    },
+    {
+      "earlyQ": 0.26,
+      "riskCount": 0,
+      "worst": {
+        "frame": 0,
+        "outerBand": 0
+      },
+      "risky": [],
+      "errors": [],
+      "missingAssets": [],
+      "initialMetric": {
+        "circleWidth": 756.59375,
+        "circleHeight": 756.59375,
+        "stageWidth": 635.53125,
+        "stageHeight": 635.53125,
+        "overflow": false,
+        "wood": true,
+        "woodMode": "original-vector",
+        "zoom": 1.755,
+        "frame": 3.5,
+        "bowl": 407.0155029296875
+      }
+    }
+  ],
+  "selectedEarlyQ": 0.26
+}
