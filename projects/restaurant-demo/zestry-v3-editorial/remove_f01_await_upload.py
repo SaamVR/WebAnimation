@@ -53,7 +53,9 @@ def replace_once(s,old,new,label):
 
 def strip_original_hero(s):
     assert STAMP not in s,"Already removed: this is a one-time migration"
-    s=replace_once(s,HERO_BEFORE,HERO_AFTER,"hero markup")
+    hero_re=re.compile(r'<div class="hero-image hero-visual" aria-label="Original pasta bowl animation within a circular yellow hero visual">\\s*<div class="hero-pasta hero-clip"><div class="anim" data-animation="f01" aria-label="Illustrated pasta being prepared"></div></div>\\s*</div>')
+    s,count=hero_re.subn(lambda _:HERO_AFTER,s)
+    assert count==1,("hero markup",count)
     s=replace_once(s,"</style>",CSS+"</style>","placeholder styling")
     start=s.find("/* The source F01 is a 1984x1134 widescreen composition.")
     assert start>=0,"F01 runtime comment missing"
