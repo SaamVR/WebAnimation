@@ -198,6 +198,37 @@ document.addEventListener('visibilitychange',()=>{
     assert "addEventListener('click'" in html
     return html
 
+def tune_menu_ready_queue(html: str) -> str:
+    """Keep the full-screen menu responsive while its 4.2 MB book initializes.
+
+    An early user click previously called states.get() before the async
+    archive load had populated states. Queue a few intents and replay only
+    after the initial Closed state is completely ready.
+    """
+    if "ZESTRY_PERF_V17_READY_QUEUE" in html:
+        return html
+    html = replace_exact(
+        html, "function fire(event){const s=states.get(cur);",
+        "/* ZESTRY_PERF_V17_READY_QUEUE: early menu actions are buffered until ready. */"
+        "const pendingMenuEvents=[];"
+        "function fire(event){"
+        "if(!states){"
+        "if(!pendingMenuEvents.includes(event)&&pendingMenuEvents.length<4)"
+        "pendingMenuEvents.push(event);"
+        "return true;"
+        "}"
+        "const s=states.get(cur);",
+        "F05 fire before ready",
+    )
+    html = replace_exact(
+        html, "await enter(sm.initial);window.__f05Ready=true;",
+        "await enter(sm.initial);window.__f05Ready=true;"
+        "for(const event of pendingMenuEvents.splice(0))fire(event);",
+        "F05 finish initial state before flushing queued inputs",
+    )
+    return html
+
+
 def main():
     parts = sorted(BUNDLE.glob("part-*.bin"))
     assert len(parts) >= 20
@@ -215,7 +246,9 @@ def main():
     assert len(files["assets/lottie/f01-v16.json"])>1_000_000
 
     files["index.html"] = tune_page(files["index.html"].decode("utf-8")).encode("utf-8")
-    files["assets/f05_book.html"] = tune_menu_book(files["assets/f05_book.html"].decode("utf-8")).encode("utf-8")
+    files["assets/f05_book.html"] = tune_menu_ready_queue(
+        tune_menu_book(files["assets/f05_book.html"].decode("utf-8"))
+    ).encode("utf-8")
 
     for jpg in sorted(name for name in files if name.startswith("assets/photos/") and name.endswith(".jpg")):
         stem=Path(jpg).stem
