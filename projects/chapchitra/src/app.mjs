@@ -856,7 +856,7 @@ async function boot(){
   if(count!==renderedBagCount){
    const badge=link.querySelector('.bag-count');
    cancelInkImpression(badge.querySelector('.cc-bag-stamps'));
-   badge.innerHTML=stampedBagCount(count);
+   link.querySelector('.bag-count').innerHTML=stampedBagCount(count);
    renderedBagCount=count;
    playInkImpression(badge.querySelector('.cc-bag-stamps'),{reducedMotion:mediaReduced.matches});
   }
