@@ -5,6 +5,7 @@ on:
       - feat/zestry-f01-v4-immutable-circle-20261118
     paths:
       - projects/restaurant-demo/zestry-v3-editorial/qa_f01_v4_native_probe.py
+      - projects/restaurant-demo/zestry-v3-editorial/qa_f01_v4_renderer_compat.py
       - .github/workflows/zestry-f01-v4-native-probe.yml
 permissions:
   contents: read
@@ -28,19 +29,23 @@ jobs:
           python -m playwright install chromium
       - name: Probe unmodified native Lottie master and broth rendering
         run: python projects/restaurant-demo/zestry-v3-editorial/qa_f01_v4_native_probe.py
+      - name: Compare native broth mask vs transient player compatibility
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_f01_v4_renderer_compat.py
       - name: Save proof of actual native SVG frames
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ZESTRY-F01-V4-NATIVE-LottieWeb-PROBE
-          path: projects/restaurant-demo/docs/qa/f01-v4-native-probe/
+          path: |
+            projects/restaurant-demo/docs/qa/f01-v4-native-probe/
+            projects/restaurant-demo/docs/qa/f01-v4-native-compat/
           if-no-files-found: warn
       - name: Commit native renderer evidence to isolated feature branch
         if: success()
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add projects/restaurant-demo/docs/qa/f01-v4-native-probe
+          git add projects/restaurant-demo/docs/qa/f01-v4-native-probe projects/restaurant-demo/docs/qa/f01-v4-native-compat
           if ! git diff --cached --quiet; then
             git commit -m 'test(zestry): unchanged V4 native renderer screenshots [skip ci]'
             git push origin "HEAD:$GITHUB_REF_NAME"
