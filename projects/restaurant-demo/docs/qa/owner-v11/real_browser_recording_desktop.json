@@ -1,0 +1,58 @@
+{
+  "label": "desktop",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "source": {
+    "width": 485,
+    "height": 485,
+    "frames": 261,
+    "svgViewBox": "0 0 1984 1134",
+    "preserveAspectRatio": "xMidYMid slice"
+  },
+  "framesCaptured": 229,
+  "ffmpegBytes": 247348,
+  "durationS": 8.793,
+  "samples": [
+    {
+      "ms": 1000,
+      "frame": 29.99,
+      "done": false,
+      "playState": "playing"
+    },
+    {
+      "ms": 3000,
+      "frame": 89.48,
+      "done": false,
+      "playState": "playing"
+    },
+    {
+      "ms": 5000,
+      "frame": 151.46,
+      "done": false,
+      "playState": "playing"
+    },
+    {
+      "ms": 7000,
+      "frame": 211.95,
+      "done": false,
+      "playState": "playing"
+    },
+    {
+      "ms": 9300,
+      "frame": 260,
+      "done": true,
+      "playState": "paused"
+    }
+  ],
+  "finalStatus": {
+    "ms": 9300,
+    "frame": 260,
+    "done": true,
+    "playState": "paused"
+  },
+  "errors": [],
+  "badResponses": [],
+  "mp4": "C:\\Users\\Sa\\AppData\\Local\\Temp\\zestry-v11-live-capture\\ZESTRY_V11_F01_Circle_Cover_desktop.mp4"
+}

@@ -1,0 +1,103 @@
+/* Owner V8: entire book and its controls stay below sticky navbar. */
+#menu.f05-section{
+ --z-header:92px;scroll-margin-top:0!important;
+ padding:10px 0 6px!important;overflow:clip;background:#fff9f1
+}
+#menu.f05-section .wrap{max-width:none!important;width:100%;padding-inline:clamp(8px,2vw,24px)}
+#menu .f05-viewport{width:100%;min-height:0;position:relative;overflow:hidden}
+#menu .f05-viewport iframe{
+ width:100%!important;height:min(760px,calc(100dvh - var(--z-header) - 22px))!important;
+ min-height:0!important;max-height:none!important;border:0;display:block;background:transparent;
+}
+@supports not (height:100dvh){
+ #menu .f05-viewport iframe{height:min(760px,calc(100vh - var(--z-header) - 22px))!important}
+}
+@media(max-width:760px){
+ #menu.f05-section{--z-header:72px;padding:8px 0!important}
+ #menu .f05-viewport iframe{height:min(525px,calc(100dvh - 92px))!important}
+}
+@media(max-width:390px){#menu .f05-viewport iframe{height:min(450px,calc(100dvh - 92px))!important}}
+
+/* V10 OWNER APPROVED: true circular hero, 1:1 visual frame, no SVG clip mask. */
+.hero .hero-image.hero-visual{
+ position:relative!important;box-sizing:border-box!important;
+ width:min(100%,756.6px)!important;max-width:756.6px!important;
+ aspect-ratio:1 / 1!important;height:auto!important;min-height:0!important;
+ margin:20px auto!important;padding:0!important;
+ border-radius:50%!important;clip-path:none!important;
+ -webkit-clip-path:none!important;overflow:hidden!important;
+ background:#ffd24b!important;box-shadow:none!important
+}
+.hero .hero-image.hero-visual::before,
+.hero .hero-image.hero-visual::after{display:none!important}
+.hero .hero-image.hero-visual .hero-pasta.hero-clip{
+ position:absolute!important;inset:0!important;
+ width:100%!important;height:100%!important
+}
+@media(max-width:680px){
+ .hero .hero-image.hero-visual{
+   width:min(100%,592.8px)!important;max-width:592.8px!important;
+   margin:6px auto 22px!important
+ }
+}
+@media(max-width:390px){
+ .hero .hero-image.hero-visual{
+   width:min(100%,514.8px)!important;max-width:514.8px!important
+ }
+}
+
+/* Original F04 remains exclusively in the sample checkout confirmation.
+   The editorial story has no checkout or reservation behavior. */
+#story .brand-story-copy{max-width:570px;min-width:0}
+#story .brand-story-copy h2{max-width:620px}
+#story .brand-story-copy p{max-width:510px}
+/* V14: Increase F01 stage 30% over V13 (582px -> 756.6px).
+   Keep the 84% inscribed ingredient stage to avoid circular-edge cropping.
+   Cap mobile dimensions responsively to avoid horizontal overflow. */
+/* V12: original wooden tabletop fills circle; F01 ingredients stay inside.
+   The yellow accent is a subtle second circle BEHIND it, never letterboxing. */
+.hero .hero-image.hero-visual{
+ background:#EDAE7E!important;
+ box-shadow:-13px 10px 0 -2px #FFD64E!important;
+ isolation:isolate!important;
+}
+.hero .hero-image.hero-visual .f01-wood-fill{
+ display:block!important;
+ position:absolute!important;
+ inset:0!important;
+ width:100%!important;height:100%!important;
+ z-index:0!important;
+ pointer-events:none!important;
+ overflow:hidden!important;
+}
+.hero .hero-image.hero-visual .hero-pasta.hero-clip{
+ position:absolute!important;
+ inset:8%!important;
+ width:84%!important;
+ height:84%!important;
+ z-index:1!important;
+ margin:0!important;
+ transform:none!important;
+ overflow:visible!important;
+}
+.hero .hero-image.hero-visual .hero-pasta .anim{
+ width:100%!important;
+ height:100%!important;
+ min-width:0!important;min-height:0!important;
+ overflow:hidden!important;
+}
+.hero .hero-image.hero-visual .hero-pasta .anim svg{
+ overflow:hidden!important;
+}
+@media(max-width:680px){
+ .hero .hero-image.hero-visual{box-shadow:-9px 7px 0 -1px #FFD64E!important}
+}
+/* V14 wider split hero: original narrow grid could not hold 756.6px circle.
+   Preserve headline and CTAs on left and circular animation on right. */
+@media(min-width:1100px){
+ .hero .wrap.hero-content{
+  max-width:1500px!important;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr)!important;
+  column-gap:clamp(28px,3vw,52px)!important;
+ }
+}

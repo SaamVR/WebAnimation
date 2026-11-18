@@ -1,0 +1,43 @@
+/* The original book canvas, hotspot overlays, photo and controls scale together. */
+.viewport{width:100%;height:100%;position:relative;overflow:hidden}
+.surface{position:absolute!important;aspect-ratio:3/2;max-width:none!important}
+#art{width:100%;height:100%;display:block}
+.hotspots button{
+ -webkit-tap-highlight-color:transparent!important;
+ appearance:none!important;outline:0;box-shadow:none!important;background:transparent!important
+}
+.hotspots button:focus:not(:focus-visible){outline:0!important;box-shadow:none!important}
+.hotspots button:focus-visible{
+ outline:2px solid #225238!important;outline-offset:2px!important;
+ border-radius:999px!important;background:transparent!important;box-shadow:none!important
+}
+.hotspots .nav,.hotspots .close{border-radius:999px!important;min-width:34px;min-height:34px}
+.hotspots .cat{border-radius:999px!important}
+/* Strict inset from the right page's inner gold frame. Never cross page trim. */
+.photos,.photos.single{
+ left:54.05%!important;top:39.1%!important;width:17.15%!important;
+ height:26.45%!important;min-width:0!important;max-width:none!important;
+ overflow:hidden!important;grid-template-columns:minmax(0,1fr)!important
+}
+.dish{
+ width:100%!important;height:100%!important;min-height:0!important;max-width:100%!important;
+ overflow:hidden!important;grid-template-rows:minmax(0,1fr) auto auto!important;
+ gap:clamp(2px,.25vw,5px)!important;padding:clamp(3px,.38vw,6px)!important;
+ border:1px solid #ead4ac!important;box-shadow:none!important
+}
+.dish img{width:100%!important;height:100%!important;min-height:0!important;object-fit:cover!important}
+.dish .name{font-size:clamp(12px,1.3vw,20px)!important;line-height:1.07!important}
+.dish .price{font-size:clamp(12px,1.15vw,17px)!important;line-height:1.08!important}
+.dish .price small{font-size:.62em!important}
+.book-page-index{right:5px!important;top:4px!important;bottom:auto!important;z-index:5!important;font-size:clamp(10px,.8vw,13px)!important}
+@media(max-width:760px){
+ .dish .name{font-size:clamp(11px,3vw,14px)!important}
+ .dish .price{font-size:clamp(11px,2.9vw,13px)!important}
+ .dish .price small{font-size:.56em!important}
+ .hotspots .nav,.hotspots .close{min-width:30px;min-height:30px}
+}
+@media(max-width:390px){
+ .photos,.photos.single{top:38.7%!important;height:27%!important}
+ .dish .name,.dish .price{font-size:11px!important}
+ .hotspots .nav,.hotspots .close{min-width:28px;min-height:28px}
+}

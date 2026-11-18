@@ -1,0 +1,58 @@
+{
+  "label": "desktop",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "source": {
+    "width": 485,
+    "height": 485,
+    "frames": 261,
+    "svgViewBox": "0 0 1984 1134",
+    "preserveAspectRatio": "xMidYMid meet"
+  },
+  "framesCaptured": 162,
+  "ffmpegBytes": 144442,
+  "durationS": 8.765,
+  "samples": [
+    {
+      "ms": 1000,
+      "frame": 32.49,
+      "done": false,
+      "playState": "playing"
+    },
+    {
+      "ms": 3000,
+      "frame": 93.48,
+      "done": false,
+      "playState": "playing"
+    },
+    {
+      "ms": 5000,
+      "frame": 154.46,
+      "done": false,
+      "playState": "playing"
+    },
+    {
+      "ms": 7000,
+      "frame": 214.95,
+      "done": false,
+      "playState": "playing"
+    },
+    {
+      "ms": 9300,
+      "frame": 260,
+      "done": true,
+      "playState": "paused"
+    }
+  ],
+  "finalStatus": {
+    "ms": 9300,
+    "frame": 260,
+    "done": true,
+    "playState": "paused"
+  },
+  "errors": [],
+  "badResponses": [],
+  "mp4": "C:\\Users\\Sa\\AppData\\Local\\Temp\\zestry-v12-nocrop-live-capture\\ZESTRY_V12_F01_NoCrop_desktop.mp4"
+}

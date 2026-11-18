@@ -1,0 +1,128 @@
+{
+  "source_commit": "c574a2bea361042f965a77529005dae528067274",
+  "test_date": "2026-11-18",
+  "browser": "Chromium 157.0.8103.38",
+  "runner": "isolated samai Linux Playwright native browser",
+  "real_browser_recordings": [
+    "desktop-F01-real-browser.webm",
+    "mobile-F01-real-browser.webm"
+  ],
+  "seven_layouts": {
+    "desktop": {
+      "viewport": [
+        1600,
+        900
+      ],
+      "circle_px": 756.59,
+      "ingredient_stage_px": 635.53,
+      "horizontal_overflow": false,
+      "js_errors": 0,
+      "failed_local_requests": 0
+    },
+    "wide": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "circle_px": 756.59,
+      "ingredient_stage_px": 635.53,
+      "horizontal_overflow": false,
+      "js_errors": 0,
+      "failed_local_requests": 0
+    },
+    "laptop": {
+      "viewport": [
+        1100,
+        800
+      ],
+      "circle_px": 614.92,
+      "ingredient_stage_px": 516.53,
+      "horizontal_overflow": false,
+      "js_errors": 0,
+      "failed_local_requests": 0
+    },
+    "tablet": {
+      "viewport": [
+        1024,
+        768
+      ],
+      "circle_px": 509.38,
+      "ingredient_stage_px": 427.88,
+      "horizontal_overflow": false,
+      "js_errors": 0,
+      "failed_local_requests": 0
+    },
+    "narrow_tablet": {
+      "viewport": [
+        768,
+        1024
+      ],
+      "circle_px": 347.48,
+      "ingredient_stage_px": 291.88,
+      "horizontal_overflow": false,
+      "js_errors": 0,
+      "failed_local_requests": 0
+    },
+    "mobile": {
+      "viewport": [
+        390,
+        844
+      ],
+      "circle_px": 358,
+      "ingredient_stage_px": 300.72,
+      "horizontal_overflow": false,
+      "js_errors": 0,
+      "failed_local_requests": 0
+    },
+    "small_mobile": {
+      "viewport": [
+        320,
+        690
+      ],
+      "circle_px": 288,
+      "ingredient_stage_px": 241.91,
+      "horizontal_overflow": false,
+      "js_errors": 0,
+      "failed_local_requests": 0
+    }
+  },
+  "vector_wood_verified": {
+    "woodSvg": true,
+    "woodAspect": "xMidYMid slice",
+    "woodChildren": 2,
+    "woodFill": "original-vector",
+    "nativeAspect": "xMidYMid meet",
+    "circle": 756.59375,
+    "stage": 635.53125,
+    "cornerClearance": 12.287258612393941
+  },
+  "checkout_F04": {
+    "message": "Sample order received",
+    "f04Rendered": true,
+    "player": {
+      "duration": 8,
+      "loop": false
+    }
+  },
+  "menu_F05": {
+    "initial": {
+      "state": "Closed",
+      "output": "Closed"
+    },
+    "selected": "Starters",
+    "dish": "Add Garden Crunch Salad to demo bag for $13",
+    "bagCount": "1"
+  },
+  "booking_F07": {
+    "message": "Sample table request received",
+    "submitText": [
+      "Preview table request"
+    ]
+  },
+  "mobile_reduced_motion_navigation": "passed",
+  "asset_contract": "57-entry ZIP, F01/F03/F04/F05/F07 original SHA256 preserved in V14 packaging",
+  "visual_note": "Desktop early/mid/end and mobile early/mid/end browser screenshots visually checked: wood tabletop fills circle; yellow accent visible behind; ingredient group remains inside circle. Geometric source-corner clearance +12.287px at full desktop size.",
+  "false_positive_note": "An initial test mistakenly treated the original wood SVG as a container of another SVG, and an intermediate form test clicked before state-machine readiness. Both test-harness errors were corrected; final state-aware functional QA has zero issues.",
+  "critical_issues": [],
+  "owner_creative_signoff": "Pending post-deployment owner review"
+}
