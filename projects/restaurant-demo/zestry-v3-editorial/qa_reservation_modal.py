@@ -92,7 +92,7 @@ def test_view(browser,label,width,height,url,reduced=False):
  if label in ("desktop","mobile") and not reduced:
   kwargs.update(record_video_dir=str(OUT),record_video_size={"width":width,"height":height})
  context=browser.new_context(**kwargs);page=context.new_page()
- errors=[],bad=[],posted=[]
+ errors=[];bad=[];posted=[]
  page.on("pageerror",lambda e:errors.append(str(e)))
  page.on("response",lambda r:bad.append([r.status,r.url]) if r.status>=400 and
          r.url.startswith(url) else None)
