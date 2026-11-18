@@ -1,0 +1,75 @@
+name: CHAPCHITRA C04 — Ink-impression source-only creative QA
+on:
+  push:
+    branches:
+      - feature/chapchitra-c04-ink-impression-20261119
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-c04-ink-impression-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: chapchitra-c04-ink-impression-qa
+  cancel-in-progress: true
+jobs:
+  isolated-c04:
+    name: C04 motion, accessibility and real-browser recordings (no deploy)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Verify exact source and no unrelated-project modifications
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin deploy/chapchitra-render-review
+          git merge-base --is-ancestor origin/deploy/chapchitra-render-review HEAD
+          git diff --name-only origin/deploy/chapchitra-render-review HEAD | tee /tmp/c04-files
+          while IFS= read -r file; do
+            case "$file" in
+              projects/chapchitra/*|.github/workflows/chapchitra-c04-ink-impression-qa.yml) ;;
+              *) echo "Out-of-scope modification: $file"; exit 1;;
+            esac
+          done < /tmp/c04-files
+          if git diff --name-only origin/deploy/chapchitra-render-review HEAD | grep -E 'stamp-[0-9]\.svg'; then
+            echo 'Owner-supplied digit artwork modified'; exit 1
+          fi
+      - name: Native contracts, exact source build
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          npm run check
+          node scripts/build.mjs
+      - name: Install local Chromium, WebKit and video cropper
+        working-directory: projects/chapchitra
+        run: |
+          npx playwright install --with-deps chromium webkit
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Native and enlarged video / screenshot creative review
+        working-directory: projects/chapchitra
+        env:
+          CC_QA_ROOT: http://127.0.0.1:4272
+        run: |
+          set -euo pipefail
+          PORT=4272 npm run preview >/tmp/c04-preview.log 2>&1 &
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:4272/shop/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4272/ >/dev/null
+          node scripts/c04-ink-impression-qa.mjs
+      - name: Upload real browser videos, enlarged closeups, frames and JSON
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: chapchitra-c04-ink-impression-creative-review
+          path: projects/chapchitra/perf-results/c04-ink-impression/
+          retention-days: 30
+          if-no-files-found: warn
