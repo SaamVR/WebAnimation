@@ -1,8 +1,7 @@
 # ZESTRY F01 — Broth Visibility Regression, Root Cause and Corrective Release
 
 **Date:** 18 November 2026  
-**Target:** Existing Render service `srv-dbtkitifngtc73bpc8f0` (NOTE: service ID corrected below)  
-**Actual service:** `srv-dbtkitifngtc73cua2p0`  
+**Target:** Existing Render service `srv-dbtkitifngtc73cua2p0`  
 **Scope:** `projects/restaurant-demo/` only; F01 artwork, choreography and all other animations unchanged.
 
 ## Root cause — proven in a real browser
