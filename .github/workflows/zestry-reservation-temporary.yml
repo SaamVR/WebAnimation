@@ -1,21 +1,65 @@
-name: ZESTRY reservation form source audit (temporary)
+name: ZESTRY PR141 reservation refinement QA (temporary)
 on:
   push:
     branches:
       - feat/zestry-visible-forward-loops-20261119
 permissions:
-  contents: read
+  contents: write
 concurrency:
-  group: zestry-reservation-source-audit
+  group: zestry-reservation-pr141-qa
   cancel-in-progress: true
 jobs:
-  source-audit:
+  reservation-browser-qa:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Read exact shipped reservation HTML and CSS
-        run: python projects/restaurant-demo/zestry-v3-editorial/audit_reservation_source.py
+      - name: Check project boundaries against ZESTRY staging
+        run: |
+          git fetch --no-tags --depth=1 origin deploy/zestry-v3-render-review-20261116
+          git diff --name-only FETCH_HEAD HEAD > /tmp/zestry-changed.txt
+          grep -v -E '^projects/restaurant-demo/|^\.github/workflows/zestry-reservation-temporary.yml$' /tmp/zestry-changed.txt > /tmp/not-zestry.txt || true
+          if test -s /tmp/not-zestry.txt; then cat /tmp/not-zestry.txt; exit 2; fi
+          echo "ZESTRY and temporary CI only; THREADS and CHAPCHITRA untouched"
+      - name: Install existing Chrome QA harness
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install ffmpeg
+          google-chrome --version
+      - name: Verify and integrate only reservation modal markup and CSS
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/refine_reservation_modal.py --check
+          python projects/restaurant-demo/zestry-v3-editorial/refine_reservation_modal.py
+          python projects/restaurant-demo/zestry-v3-editorial/refine_reservation_modal.py --check
+      - name: Test reservation modal, form spacing, video, interactions, reduced-motion
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_reservation_modal.py
+      - name: Regress all previous looping animations and F05-F04 order journey
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_visible_loops.py
+      - name: Upload desktop, iPad, mobile screenshots, videos and two QA reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zestry-pr141-reservation-refinement-review
+          path: |
+            projects/restaurant-demo/docs/qa/owner-reservation-modal-20261119/
+            projects/restaurant-demo/docs/qa/owner-visible-loops-20261119/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit only QA-verified archive and reports on feature branch
+        if: success()
+        run: |
+          git config user.name "ZESTRY QA GitHub Actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add projects/restaurant-demo/review_bundle/ \
+            projects/restaurant-demo/docs/qa/owner-reservation-modal-20261119/PR141_RESERVATION_MODAL_QA.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "feat(zestry): integrate accepted reservation-modal polish and browser QA"
+            git push origin HEAD:feat/zestry-visible-forward-loops-20261119
+          fi
