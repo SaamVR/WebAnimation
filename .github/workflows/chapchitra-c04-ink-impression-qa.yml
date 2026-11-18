@@ -58,6 +58,7 @@ jobs:
           node -p "'Playwright version '+require('./node_modules/playwright/package.json').version"
           command -v ffmpeg || true
       - name: Native and enlarged video / screenshot creative review
+        shell: bash
         working-directory: projects/chapchitra
         env:
           CC_QA_ROOT: http://127.0.0.1:4272
