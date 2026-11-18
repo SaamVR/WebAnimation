@@ -279,7 +279,7 @@ def capture_natural_chef_loops(browser,name,width,height):
 
 
 def main():
- print("ZESTRY_V18_FINAL_LIVE_URL",JSON.stringify({"url":"https://zestry-v3-restaurant-review-20261117.onrender.com/","deployedSha":"7b196c912d11820dce790ddb735e96e1f1599e8e","note":"real website/browser, not offline composite"}),flush=True)
+ print("ZESTRY_V18_FINAL_LIVE_URL",json.dumps({"url":"https://zestry-v3-restaurant-review-20261117.onrender.com/","deployedSha":"7b196c912d11820dce790ddb735e96e1f1599e8e","note":"real website/browser, not offline composite"}),flush=True)
  with sync_playwright() as pw:
   browser=pw.chromium.launch(headless=True,args=['--no-sandbox'])
   for name,w,h in [('desktop',1600,900),('mobile',390,844)]:
