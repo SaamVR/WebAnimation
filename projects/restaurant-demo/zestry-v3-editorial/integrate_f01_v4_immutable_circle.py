@@ -37,10 +37,7 @@ CSS=r"""
   position:absolute;inset:0;border-radius:50%;overflow:hidden;
   clip-path:circle(50% at 50% 50%);-webkit-clip-path:circle(50% at 50% 50%);
   isolation:isolate;z-index:1;
-  background:#ecad7e;
-  background-image:repeating-linear-gradient(180deg,
-    transparent 0px,transparent 16px,rgba(151,84,48,.08) 17px,
-    transparent 18px,transparent 30px);
+  background:#ecad7e url('assets/f01-v4-wood-fill.webp') center center/100% 100% no-repeat;
 }
 #home .hero-image.hero-visual .f01-v4-circle > .anim{
   position:absolute;left:50%;top:50%;
@@ -126,9 +123,13 @@ def main():
     original={k:sha256(v).hexdigest() for k,v in data.items()}
     assert len(data)==57,len(data)
     data["assets/lottie/f01.json"]=SOURCE.read_bytes() # EXACT owner V4 unchanged
+    wood=ROOT/"assets/f01-v4-wood-fill.webp"
+    assert wood.is_file() and wood.stat().st_size>1000,"Derived original wood fill required"
+    assert wood.read_bytes()[:4]==b'RIFF' and wood.read_bytes()[8:12]==b'WEBP'
+    data["assets/f01-v4-wood-fill.webp"]=wood.read_bytes()
     data["index.html"]=integrate(data["index.html"].decode()).encode()
-    changed=[p for p in data if original[p]!=sha256(data[p]).hexdigest()]
-    assert set(changed)=={"assets/lottie/f01.json","index.html"},changed
+    changed=[p for p in data if p not in original or original[p]!=sha256(data[p]).hexdigest()]
+    assert set(changed)=={"assets/lottie/f01.json","index.html","assets/f01-v4-wood-fill.webp"},changed
     result=io.BytesIO()
     with zipfile.ZipFile(result,"w") as out:
         for name,blob in data.items():
@@ -138,7 +139,7 @@ def main():
     payload=result.getvalue()
     with zipfile.ZipFile(io.BytesIO(payload)) as check:
         assert check.testzip() is None
-        assert len(check.namelist())==57
+        assert len(check.namelist())==58
         assert sha256(check.read("assets/lottie/f01.json")).hexdigest()==SHA
         assert check.read("assets/lottie/f01.json")==SOURCE.read_bytes()
         assert all(sha256(check.read(k)).hexdigest()==v
