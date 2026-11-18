@@ -6,7 +6,7 @@
       "f01BrothPixels": 31061,
       "orbit": {
         "name": "f02-orbit",
-        "frame": 11,
+        "frame": 12,
         "isPaused": false,
         "direction": 1,
         "loop": false,
@@ -22,7 +22,7 @@
       },
       "reverse": {
         "name": "f02-orbit",
-        "frame": 201,
+        "frame": 202,
         "isPaused": false,
         "direction": -1,
         "loop": false,
@@ -54,7 +54,7 @@
       },
       "paused": {
         "name": "f02-orbit",
-        "frame": 9,
+        "frame": 10,
         "isPaused": true,
         "direction": 1,
         "loop": false,
@@ -70,7 +70,7 @@
       },
       "resumed": {
         "name": "f02-orbit",
-        "frame": 19,
+        "frame": 20,
         "isPaused": false,
         "direction": 1,
         "loop": false,
@@ -91,7 +91,7 @@
       "f01BrothPixels": 7219,
       "orbit": {
         "name": "f02-orbit",
-        "frame": 13,
+        "frame": 12,
         "isPaused": false,
         "direction": 1,
         "loop": false,
@@ -254,7 +254,7 @@
       "details": {
         "orbit": {
           "name": "f02-orbit",
-          "frame": 11,
+          "frame": 12,
           "isPaused": false,
           "direction": 1,
           "loop": false,
@@ -270,7 +270,7 @@
         },
         "cooking": {
           "name": "f02-cooking",
-          "frame": 11,
+          "frame": 13,
           "isPaused": false,
           "direction": 1,
           "loop": true,
@@ -291,7 +291,7 @@
       "pass": true,
       "details": {
         "name": "f02-orbit",
-        "frame": 201,
+        "frame": 202,
         "isPaused": false,
         "direction": -1,
         "loop": false,
@@ -331,7 +331,7 @@
       "pass": true,
       "details": {
         "name": "f02-orbit",
-        "frame": 9,
+        "frame": 10,
         "isPaused": true,
         "direction": 1,
         "loop": false,
@@ -350,10 +350,10 @@
       "name": "desktop F02 position does not advance offscreen",
       "pass": true,
       "details": {
-        "before": 9,
+        "before": 10,
         "after": {
           "name": "f02-orbit",
-          "frame": 9,
+          "frame": 10,
           "isPaused": true,
           "direction": 1,
           "loop": false,
@@ -414,7 +414,7 @@
       "pass": true,
       "details": {
         "name": "f07",
-        "frame": 8,
+        "frame": 9,
         "isPaused": false,
         "direction": 1,
         "loop": true,
@@ -435,7 +435,7 @@
       "details": {
         "offscreen": {
           "name": "f02-orbit",
-          "frame": 9,
+          "frame": 10,
           "isPaused": true,
           "direction": 1,
           "loop": false,
@@ -451,7 +451,7 @@
         },
         "resumed": {
           "name": "f02-orbit",
-          "frame": 19,
+          "frame": 20,
           "isPaused": false,
           "direction": 1,
           "loop": false,
@@ -480,7 +480,7 @@
       "pass": true,
       "details": {
         "name": "f02-orbit",
-        "frame": 26,
+        "frame": 28,
         "isPaused": false,
         "direction": 1,
         "loop": false,
@@ -581,7 +581,7 @@
       "details": {
         "orbit": {
           "name": "f02-orbit",
-          "frame": 13,
+          "frame": 12,
           "isPaused": false,
           "direction": 1,
           "loop": false,
@@ -597,7 +597,7 @@
         },
         "cooking": {
           "name": "f02-cooking",
-          "frame": 14,
+          "frame": 12,
           "isPaused": false,
           "direction": 1,
           "loop": true,
@@ -807,7 +807,7 @@
       "pass": true,
       "details": {
         "name": "f02-orbit",
-        "frame": 24,
+        "frame": 23,
         "isPaused": false,
         "direction": 1,
         "loop": false,
@@ -841,7 +841,7 @@
       "name": "F04 confirmation loops only while dialog visible",
       "pass": true,
       "details": {
-        "frame": 0,
+        "frame": 1,
         "loop": true,
         "paused": false,
         "motion": "true"
@@ -896,6 +896,100 @@
           "zoom": null,
           "wood": null
         }
+      }
+    },
+    {
+      "name": "desktop F02 natural full forward/return/forward loop",
+      "pass": true,
+      "details": {
+        "initial": {
+          "name": "f02-orbit",
+          "frame": 2,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 0,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "final": {
+          "name": "f02-orbit",
+          "frame": 122,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "name": "desktop F02 natural browser video saved",
+      "pass": true,
+      "details": {
+        "name": "V18-desktop-chef-seamless-real-browser.webm",
+        "bytes": 2667291
+      }
+    },
+    {
+      "name": "mobile F02 natural full forward/return/forward loop",
+      "pass": true,
+      "details": {
+        "initial": {
+          "name": "f02-orbit",
+          "frame": 3,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 0,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "final": {
+          "name": "f02-orbit",
+          "frame": 120,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "name": "mobile F02 natural browser video saved",
+      "pass": true,
+      "details": {
+        "name": "V18-mobile-chef-seamless-real-browser.webm",
+        "bytes": 2534789
       }
     }
   ]
