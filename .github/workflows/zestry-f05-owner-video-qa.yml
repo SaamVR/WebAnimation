@@ -1,0 +1,67 @@
+name: ZESTRY F05 owner video fixes + full browser regression (no deploy)
+on:
+  push:
+    branches:
+      - feat/zestry-f05-flips-food-alignment-compact-story-coffee-20261119
+permissions:
+  contents: write
+concurrency:
+  group: zestry-f05-owner-video-20261119
+  cancel-in-progress: true
+jobs:
+  original-artwork-preserving-refinement:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Assert exact scope, no other projects or hosting changes
+        run: |
+          git fetch --no-tags --depth=1 origin deploy/zestry-v3-render-review-20261116
+          git diff --name-only FETCH_HEAD HEAD > /tmp/changed-paths.txt
+          grep -v -E '^projects/restaurant-demo/|^\.github/workflows/zestry-f05-' /tmp/changed-paths.txt > /tmp/unrelated.txt || true
+          if test -s /tmp/unrelated.txt; then cat /tmp/unrelated.txt; exit 2; fi
+      - name: Prepare Chrome and video recording
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install ffmpeg
+          google-chrome --version
+      - name: Rebuild exact existing review archive without changing owner artwork
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/refine_f05_section_coffee_20261119.py --check
+          python projects/restaurant-demo/zestry-v3-editorial/refine_f05_section_coffee_20261119.py
+          python projects/restaurant-demo/zestry-v3-editorial/refine_f05_section_coffee_20261119.py --check
+      - name: Real browser F05 4-leaf and category boundary + F06 + F03 QA
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_f05_owner_recording_20261119.py
+      - name: Existing full F01-F07 motion and checkout QA
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_visible_loops.py
+      - name: Existing approved F07 reservation dialog regression
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_reservation_modal.py
+      - name: Preserve screenshots, videos, and QA reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zestry-f05-natural-leaf-process-coffee-qa
+          path: |
+            projects/restaurant-demo/docs/qa/owner-f05-page-turn-20261119/
+            projects/restaurant-demo/docs/qa/owner-visible-loops-20261119/
+            projects/restaurant-demo/docs/qa/owner-reservation-modal-20261119/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit only the QA-verified ZIP and report to the isolated feature branch
+        if: success()
+        run: |
+          git config user.name "ZESTRY QA GitHub Actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add projects/restaurant-demo/review_bundle/ \
+            projects/restaurant-demo/docs/qa/owner-f05-page-turn-20261119/ZESTRY_F05_OWNER_PAGE_TURN_QA.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "feat(zestry): QA-verified F05 leaf turns, F06 compact layout and coffee background"
+            git push origin HEAD:feat/zestry-f05-flips-food-alignment-compact-story-coffee-20261119
+          fi
