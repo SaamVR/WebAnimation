@@ -1,0 +1,359 @@
+{
+  "url": "https://zestry-v3-restaurant-review-20261117.onrender.com/",
+  "fix": "Namespace only wood-cloned SVG defs and remap wood references",
+  "originalSha": "1c1406b391cfa7979ff05cea53d3feec758c7f8b",
+  "frames": [
+    {
+      "frame": 0,
+      "original": {
+        "frame": 0,
+        "zoom": 1.755,
+        "duplicateIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "woodDefIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": false,
+        "visibleBrothPixels": 0,
+        "diffBounds": null,
+        "errors": []
+      },
+      "patched": {
+        "frame": 0,
+        "zoom": 1.755,
+        "duplicateIds": [],
+        "woodDefIds": [
+          "zestry-wood-__lottie_element_2",
+          "zestry-wood-__lottie_element_7",
+          "zestry-wood-__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": true,
+        "visibleBrothPixels": 0,
+        "diffBounds": null,
+        "errors": []
+      },
+      "changedPixelsAfterFix": 0,
+      "allPixels": 571536
+    },
+    {
+      "frame": 142,
+      "original": {
+        "frame": 142,
+        "zoom": 1.755,
+        "duplicateIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "woodDefIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": false,
+        "visibleBrothPixels": 0,
+        "diffBounds": null,
+        "errors": []
+      },
+      "patched": {
+        "frame": 142,
+        "zoom": 1.755,
+        "duplicateIds": [],
+        "woodDefIds": [
+          "zestry-wood-__lottie_element_2",
+          "zestry-wood-__lottie_element_7",
+          "zestry-wood-__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": true,
+        "visibleBrothPixels": 84826,
+        "diffBounds": [
+          24,
+          148,
+          528,
+          520
+        ],
+        "errors": []
+      },
+      "changedPixelsAfterFix": 73238,
+      "allPixels": 571536
+    },
+    {
+      "frame": 149,
+      "original": {
+        "frame": 149,
+        "zoom": 1.755,
+        "duplicateIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "woodDefIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": false,
+        "visibleBrothPixels": 0,
+        "diffBounds": null,
+        "errors": []
+      },
+      "patched": {
+        "frame": 149,
+        "zoom": 1.755,
+        "duplicateIds": [],
+        "woodDefIds": [
+          "zestry-wood-__lottie_element_2",
+          "zestry-wood-__lottie_element_7",
+          "zestry-wood-__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": true,
+        "visibleBrothPixels": 72697,
+        "diffBounds": [
+          50,
+          138,
+          548,
+          619
+        ],
+        "errors": []
+      },
+      "changedPixelsAfterFix": 72689,
+      "allPixels": 571536
+    },
+    {
+      "frame": 160,
+      "original": {
+        "frame": 160,
+        "zoom": 1.755,
+        "duplicateIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "woodDefIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": false,
+        "visibleBrothPixels": 0,
+        "diffBounds": null,
+        "errors": []
+      },
+      "patched": {
+        "frame": 160,
+        "zoom": 1.755,
+        "duplicateIds": [],
+        "woodDefIds": [
+          "zestry-wood-__lottie_element_2",
+          "zestry-wood-__lottie_element_7",
+          "zestry-wood-__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": true,
+        "visibleBrothPixels": 57205,
+        "diffBounds": [
+          68,
+          138,
+          548,
+          619
+        ],
+        "errors": []
+      },
+      "changedPixelsAfterFix": 69702,
+      "allPixels": 571536
+    },
+    {
+      "frame": 225,
+      "original": {
+        "frame": 225,
+        "zoom": 1.755,
+        "duplicateIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "woodDefIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": false,
+        "visibleBrothPixels": 0,
+        "diffBounds": null,
+        "errors": []
+      },
+      "patched": {
+        "frame": 225,
+        "zoom": 1.755,
+        "duplicateIds": [],
+        "woodDefIds": [
+          "zestry-wood-__lottie_element_2",
+          "zestry-wood-__lottie_element_7",
+          "zestry-wood-__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": true,
+        "visibleBrothPixels": 31061,
+        "diffBounds": [
+          68,
+          192,
+          548,
+          598
+        ],
+        "errors": []
+      },
+      "changedPixelsAfterFix": 30776,
+      "allPixels": 571536
+    },
+    {
+      "frame": 260,
+      "original": {
+        "frame": 260,
+        "zoom": 1.755,
+        "duplicateIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "woodDefIds": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": false,
+        "visibleBrothPixels": 0,
+        "diffBounds": null,
+        "errors": []
+      },
+      "patched": {
+        "frame": 260,
+        "zoom": 1.755,
+        "duplicateIds": [],
+        "woodDefIds": [
+          "zestry-wood-__lottie_element_2",
+          "zestry-wood-__lottie_element_7",
+          "zestry-wood-__lottie_element_88"
+        ],
+        "nativeDefs": [
+          "__lottie_element_2",
+          "__lottie_element_7",
+          "__lottie_element_88"
+        ],
+        "brothClip": "url(#__lottie_element_88)",
+        "brothTag": "g",
+        "brothPathCount": 1,
+        "marker": true,
+        "visibleBrothPixels": 31061,
+        "diffBounds": [
+          68,
+          192,
+          548,
+          598
+        ],
+        "errors": []
+      },
+      "changedPixelsAfterFix": 30776,
+      "allPixels": 571536
+    }
+  ],
+  "errors": [],
+  "gates": {
+    "noDuplicateIds": true,
+    "brothBecomesVisibleAfterPour": true,
+    "brothPreviouslyInvisibleAtFinalHold": true,
+    "firstFramePreserved": true,
+    "noBrowserErrors": true,
+    "sameFixedScale": true
+  }
+}
