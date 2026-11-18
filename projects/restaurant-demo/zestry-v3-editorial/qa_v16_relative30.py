@@ -137,7 +137,7 @@ def test_frames(browser, url: str, name: str, size: tuple[int,int], out: Path):
             frames.append({"frame":frame,"outerPixels":outer,"zoom":moved["zoom"]})
             if frame in (22,60,100,128,200,240):
                 f=out/(name+"-frame-"+str(frame).zfill(3)+".png")
-                page.screenshot(path=str(f))
+                page.screenshot(path=str(f),clip=clip)
         if frame==128:
             assert abs(moved["zoom"]-TARGET_SCALE)<.001,moved
             assert abs(stage_metrics(page)["zoom"]-TARGET_SCALE)<.001
