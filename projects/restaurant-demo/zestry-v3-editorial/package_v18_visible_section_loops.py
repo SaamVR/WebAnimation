@@ -110,6 +110,13 @@ async function play(name,container,loop=true){
   const root=container.closest('#modal')||container;
   const st={item:l,container,root,near:false,modal:container.closest('#modal'),observer:null};
   motionStates.add(st);
+  // Start visible hero promptly even before the first IO callback. This avoids
+  // a first-paint race on narrow mobile viewports while still preventing any
+  // offscreen autoplay.
+  const initialRect=root.getBoundingClientRect();
+  st.near=initialRect.bottom>0&&initialRect.top<innerHeight&&
+    initialRect.right>0&&initialRect.left<innerWidth;
+  syncMotionState(st);
   if(chefOrbit){
    let direction=1;
    l.addEventListener('complete',()=>{
