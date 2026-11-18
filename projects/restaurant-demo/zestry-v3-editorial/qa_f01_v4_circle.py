@@ -42,6 +42,7 @@ def get_a(page):
    brothClip:broth?.layerElement?.getAttribute('clip-path'),
    stageTransform:getComputedStyle(stage).transform,
    circleMask:getComputedStyle(circle).clipPath,circleOverflow:getComputedStyle(circle).overflow,
+   woodBackground:getComputedStyle(circle).backgroundImage,
    circleRect:{w:circle?.getBoundingClientRect().width,h:circle?.getBoundingClientRect().height},
    visualRect:{w:visual?.getBoundingClientRect().width,h:visual?.getBoundingClientRect().height},
    stageRect:{w:stage?.getBoundingClientRect().width,h:stage?.getBoundingClientRect().height},
@@ -98,6 +99,7 @@ def test_viewport(browser,label,w,h):
  ratio=stage["h"]/circle["h"] if circle["h"] else 0
  ck(label+" fixed nonzooming circle mask and safe foreground proportion",
     "circle(" in state["circleMask"] and state["circleOverflow"]=="hidden"
+    and "f01-v4-wood-fill.webp" in state["woodBackground"]
     and abs(circle["w"]-circle["h"])<2 and abs(ratio-0.7)<.008
     and state["svgViewbox"]=="0 0 1984 1134"
     and not state["xOverflow"] and state["hasBrothMask"] is True,
@@ -159,6 +161,7 @@ def main():
   assert z.testzip() is None
   assert hashlib.sha256(z.read("assets/lottie/f01.json")).hexdigest()==EXPECTED
   assert z.read("assets/lottie/f01.json")==(ROOT/"assets/lottie/f01.json").read_bytes()
+  assert z.read("assets/f01-v4-wood-fill.webp")==(ROOT/"assets/f01-v4-wood-fill.webp").read_bytes()
   assert "assets/lottie/f01-v16.json" not in z.namelist()
   html=z.read("index.html").decode()
   assert "ZESTRY_F01_V4_UNMODIFIED_CIRCLE_20261118" in html
