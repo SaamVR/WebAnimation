@@ -5,7 +5,7 @@
   "viewports": {
     "desktop": {
       "first": {
-        "frame": 1.99716,
+        "frame": 6.499079999999999,
         "fr": 30,
         "frames": 261,
         "loop": false,
@@ -104,7 +104,7 @@
     },
     "mobile": {
       "first": {
-        "frame": 1.9979999999999998,
+        "frame": 5.999039999999999,
         "fr": 30,
         "frames": 261,
         "loop": false,
@@ -207,7 +207,7 @@
       "name": "desktop original V4 30fps /261 frames / one-shot no reverse",
       "passed": true,
       "details": {
-        "frame": 1.99716,
+        "frame": 6.499079999999999,
         "fr": 30,
         "frames": 261,
         "loop": false,
@@ -494,7 +494,7 @@
       "name": "mobile original V4 30fps /261 frames / one-shot no reverse",
       "passed": true,
       "details": {
-        "frame": 1.9979999999999998,
+        "frame": 5.999039999999999,
         "fr": 30,
         "frames": 261,
         "loop": false,
@@ -775,6 +775,184 @@
           "http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp",
           "http://127.0.0.1:18894/assets/lottie/f01.json"
         ]
+      }
+    },
+    {
+      "name": "desktop full 8.7-second natural-speed original playback and final hold",
+      "passed": true,
+      "details": {
+        "start": {
+          "frame": 0,
+          "fr": 30,
+          "frames": 261,
+          "loop": false,
+          "paused": false,
+          "direction": 1,
+          "hasBrothMask": true,
+          "brothPathCount": 1,
+          "brothClip": "url(#__lottie_element_88)",
+          "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
+          "circleMask": "circle(50% at 50% 50%)",
+          "circleOverflow": "hidden",
+          "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
+          "circleRect": {
+            "w": 756.59375,
+            "h": 756.59375
+          },
+          "visualRect": {
+            "w": 756.59375,
+            "h": 756.59375
+          },
+          "stageRect": {
+            "w": 756.59375,
+            "h": 529.609375
+          },
+          "svgRect": {
+            "w": 756.59375,
+            "h": 529.609375
+          },
+          "svgViewbox": "0 0 1984 1134",
+          "extraZoomHooks": false,
+          "xOverflow": false,
+          "completed": null,
+          "htmlBackground": "Fresh food.\nGood mood.",
+          "visualPlaceholder": false
+        },
+        "finish": {
+          "frame": 260,
+          "fr": 30,
+          "frames": 261,
+          "loop": false,
+          "paused": true,
+          "direction": 1,
+          "hasBrothMask": true,
+          "brothPathCount": 1,
+          "brothClip": "url(#__lottie_element_88)",
+          "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
+          "circleMask": "circle(50% at 50% 50%)",
+          "circleOverflow": "hidden",
+          "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
+          "circleRect": {
+            "w": 756.59375,
+            "h": 756.59375
+          },
+          "visualRect": {
+            "w": 756.59375,
+            "h": 756.59375
+          },
+          "stageRect": {
+            "w": 756.59375,
+            "h": 529.609375
+          },
+          "svgRect": {
+            "w": 756.59375,
+            "h": 529.609375
+          },
+          "svgViewbox": "0 0 1984 1134",
+          "extraZoomHooks": false,
+          "xOverflow": false,
+          "completed": "true",
+          "htmlBackground": "Fresh food.\nGood mood.",
+          "visualPlaceholder": false
+        },
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "desktop original browser recording captured without video AI",
+      "passed": true,
+      "details": {
+        "filename": "desktop-F01-V4-full-original-native-browser.webm",
+        "bytes": 1064194
+      }
+    },
+    {
+      "name": "mobile full 8.7-second natural-speed original playback and final hold",
+      "passed": true,
+      "details": {
+        "start": {
+          "frame": 0,
+          "fr": 30,
+          "frames": 261,
+          "loop": false,
+          "paused": false,
+          "direction": 1,
+          "hasBrothMask": true,
+          "brothPathCount": 1,
+          "brothClip": "url(#__lottie_element_88)",
+          "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
+          "circleMask": "circle(50% at 50% 50%)",
+          "circleOverflow": "hidden",
+          "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
+          "circleRect": {
+            "w": 358,
+            "h": 358
+          },
+          "visualRect": {
+            "w": 358,
+            "h": 358
+          },
+          "stageRect": {
+            "w": 358,
+            "h": 250.59375
+          },
+          "svgRect": {
+            "w": 358,
+            "h": 250.59375
+          },
+          "svgViewbox": "0 0 1984 1134",
+          "extraZoomHooks": false,
+          "xOverflow": false,
+          "completed": null,
+          "htmlBackground": "Fresh food.\nGood mood.",
+          "visualPlaceholder": false
+        },
+        "finish": {
+          "frame": 260,
+          "fr": 30,
+          "frames": 261,
+          "loop": false,
+          "paused": true,
+          "direction": 1,
+          "hasBrothMask": true,
+          "brothPathCount": 1,
+          "brothClip": "url(#__lottie_element_88)",
+          "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
+          "circleMask": "circle(50% at 50% 50%)",
+          "circleOverflow": "hidden",
+          "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
+          "circleRect": {
+            "w": 358,
+            "h": 358
+          },
+          "visualRect": {
+            "w": 358,
+            "h": 358
+          },
+          "stageRect": {
+            "w": 358,
+            "h": 250.59375
+          },
+          "svgRect": {
+            "w": 358,
+            "h": 250.59375
+          },
+          "svgViewbox": "0 0 1984 1134",
+          "extraZoomHooks": false,
+          "xOverflow": false,
+          "completed": "true",
+          "htmlBackground": "Fresh food.\nGood mood.",
+          "visualPlaceholder": false
+        },
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "mobile original browser recording captured without video AI",
+      "passed": true,
+      "details": {
+        "filename": "mobile-F01-V4-full-original-native-browser.webm",
+        "bytes": 689646
       }
     }
   ],
