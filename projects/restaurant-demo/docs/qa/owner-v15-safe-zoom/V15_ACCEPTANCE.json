@@ -1,0 +1,667 @@
+{
+  "source": "V14 merged df31c06c51130adcffecfde1ee97a0b7e889cf7d",
+  "qaDate": "2026-11-18",
+  "zoomFactor": 1.35,
+  "viewportTests": {
+    "desktop": {
+      "metric": {
+        "circle": [
+          756.59375,
+          756.59375
+        ],
+        "stage": [
+          635.53125,
+          635.53125
+        ],
+        "wood": true,
+        "overflow": false
+      },
+      "errors": [],
+      "failed": [],
+      "issues": [
+        {
+          "frame": 51,
+          "outer": 13,
+          "scale": 1
+        },
+        {
+          "frame": 52,
+          "outer": 12,
+          "scale": 1
+        },
+        {
+          "frame": 53,
+          "outer": 12,
+          "scale": 1
+        }
+      ],
+      "issueCount": 3,
+      "frames": [
+        {
+          "frame": 0,
+          "outer": 0,
+          "scale": 1,
+          "changed": 38784
+        },
+        {
+          "frame": 21,
+          "outer": 0,
+          "scale": 1,
+          "changed": 39885
+        },
+        {
+          "frame": 22,
+          "outer": 0,
+          "scale": 1,
+          "changed": 40459
+        },
+        {
+          "frame": 34,
+          "outer": 0,
+          "scale": 1,
+          "changed": 42687
+        },
+        {
+          "frame": 43,
+          "outer": 0,
+          "scale": 1,
+          "changed": 45129
+        },
+        {
+          "frame": 50,
+          "outer": 0,
+          "scale": 1,
+          "changed": 48097
+        },
+        {
+          "frame": 53,
+          "outer": 12,
+          "scale": 1,
+          "changed": 54146
+        },
+        {
+          "frame": 56,
+          "outer": 0,
+          "scale": 1,
+          "changed": 57003
+        },
+        {
+          "frame": 60,
+          "outer": 0,
+          "scale": 1,
+          "changed": 57176
+        },
+        {
+          "frame": 84,
+          "outer": 0,
+          "scale": 1,
+          "changed": 58500
+        },
+        {
+          "frame": 85,
+          "outer": 0,
+          "scale": 1,
+          "changed": 58558
+        },
+        {
+          "frame": 90,
+          "outer": 0,
+          "scale": 1,
+          "changed": 58860
+        },
+        {
+          "frame": 100,
+          "outer": 0,
+          "scale": 1.04417,
+          "changed": 64704
+        },
+        {
+          "frame": 110,
+          "outer": 0,
+          "scale": 1.175,
+          "changed": 79228
+        },
+        {
+          "frame": 120,
+          "outer": 0,
+          "scale": 1.30583,
+          "changed": 97873
+        },
+        {
+          "frame": 128,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 104151
+        },
+        {
+          "frame": 160,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 95161
+        },
+        {
+          "frame": 200,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 65744
+        },
+        {
+          "frame": 240,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 66294
+        },
+        {
+          "frame": 260,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 66294
+        }
+      ]
+    },
+    "tablet": {
+      "metric": {
+        "circle": [
+          347.484375,
+          347.484375
+        ],
+        "stage": [
+          291.875,
+          291.875
+        ],
+        "wood": true,
+        "overflow": false
+      },
+      "errors": [],
+      "failed": [],
+      "issues": [],
+      "issueCount": 0,
+      "frames": [
+        {
+          "frame": 0,
+          "outer": 0,
+          "scale": 1,
+          "changed": 8229
+        },
+        {
+          "frame": 21,
+          "outer": 0,
+          "scale": 1,
+          "changed": 8473
+        },
+        {
+          "frame": 22,
+          "outer": 0,
+          "scale": 1,
+          "changed": 8596
+        },
+        {
+          "frame": 34,
+          "outer": 0,
+          "scale": 1,
+          "changed": 9073
+        },
+        {
+          "frame": 43,
+          "outer": 0,
+          "scale": 1,
+          "changed": 9557
+        },
+        {
+          "frame": 50,
+          "outer": 0,
+          "scale": 1,
+          "changed": 10177
+        },
+        {
+          "frame": 53,
+          "outer": 2,
+          "scale": 1,
+          "changed": 11469
+        },
+        {
+          "frame": 56,
+          "outer": 0,
+          "scale": 1,
+          "changed": 12082
+        },
+        {
+          "frame": 60,
+          "outer": 0,
+          "scale": 1,
+          "changed": 12110
+        },
+        {
+          "frame": 84,
+          "outer": 0,
+          "scale": 1,
+          "changed": 12387
+        },
+        {
+          "frame": 85,
+          "outer": 0,
+          "scale": 1,
+          "changed": 12395
+        },
+        {
+          "frame": 90,
+          "outer": 0,
+          "scale": 1,
+          "changed": 12470
+        },
+        {
+          "frame": 100,
+          "outer": 0,
+          "scale": 1.04417,
+          "changed": 13716
+        },
+        {
+          "frame": 110,
+          "outer": 0,
+          "scale": 1.175,
+          "changed": 16773
+        },
+        {
+          "frame": 120,
+          "outer": 0,
+          "scale": 1.30583,
+          "changed": 20694
+        },
+        {
+          "frame": 128,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 22021
+        },
+        {
+          "frame": 160,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 20266
+        },
+        {
+          "frame": 200,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 14632
+        },
+        {
+          "frame": 240,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 14652
+        },
+        {
+          "frame": 260,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 14652
+        }
+      ]
+    },
+    "mobile": {
+      "metric": {
+        "circle": [
+          358,
+          358
+        ],
+        "stage": [
+          300.71875,
+          300.71875
+        ],
+        "wood": true,
+        "overflow": false
+      },
+      "errors": [],
+      "failed": [],
+      "issues": [],
+      "issueCount": 0,
+      "frames": [
+        {
+          "frame": 0,
+          "outer": 0,
+          "scale": 1,
+          "changed": 8729
+        },
+        {
+          "frame": 21,
+          "outer": 0,
+          "scale": 1,
+          "changed": 8985
+        },
+        {
+          "frame": 22,
+          "outer": 0,
+          "scale": 1,
+          "changed": 9116
+        },
+        {
+          "frame": 34,
+          "outer": 0,
+          "scale": 1,
+          "changed": 9615
+        },
+        {
+          "frame": 43,
+          "outer": 0,
+          "scale": 1,
+          "changed": 10122
+        },
+        {
+          "frame": 50,
+          "outer": 0,
+          "scale": 1,
+          "changed": 10788
+        },
+        {
+          "frame": 53,
+          "outer": 2,
+          "scale": 1,
+          "changed": 12149
+        },
+        {
+          "frame": 56,
+          "outer": 0,
+          "scale": 1,
+          "changed": 12784
+        },
+        {
+          "frame": 60,
+          "outer": 0,
+          "scale": 1,
+          "changed": 12818
+        },
+        {
+          "frame": 84,
+          "outer": 0,
+          "scale": 1,
+          "changed": 13171
+        },
+        {
+          "frame": 85,
+          "outer": 0,
+          "scale": 1,
+          "changed": 13194
+        },
+        {
+          "frame": 90,
+          "outer": 0,
+          "scale": 1,
+          "changed": 13233
+        },
+        {
+          "frame": 100,
+          "outer": 0,
+          "scale": 1.04417,
+          "changed": 14536
+        },
+        {
+          "frame": 110,
+          "outer": 0,
+          "scale": 1.175,
+          "changed": 17770
+        },
+        {
+          "frame": 120,
+          "outer": 0,
+          "scale": 1.30583,
+          "changed": 21946
+        },
+        {
+          "frame": 128,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 23369
+        },
+        {
+          "frame": 160,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 21509
+        },
+        {
+          "frame": 200,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 15525
+        },
+        {
+          "frame": 240,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 15525
+        },
+        {
+          "frame": 260,
+          "outer": 0,
+          "scale": 1.35,
+          "changed": 15525
+        }
+      ]
+    }
+  },
+  "failures": [],
+  "criticalFrames": [
+    {
+      "frame": 0,
+      "outer": 0,
+      "scale": 1,
+      "changed": 38784
+    },
+    {
+      "frame": 21,
+      "outer": 0,
+      "scale": 1,
+      "changed": 39885
+    },
+    {
+      "frame": 22,
+      "outer": 0,
+      "scale": 1,
+      "changed": 40459
+    },
+    {
+      "frame": 34,
+      "outer": 0,
+      "scale": 1,
+      "changed": 42687
+    },
+    {
+      "frame": 43,
+      "outer": 0,
+      "scale": 1,
+      "changed": 45129
+    },
+    {
+      "frame": 50,
+      "outer": 0,
+      "scale": 1,
+      "changed": 48097
+    },
+    {
+      "frame": 53,
+      "outer": 12,
+      "scale": 1,
+      "changed": 54146
+    },
+    {
+      "frame": 56,
+      "outer": 0,
+      "scale": 1,
+      "changed": 57003
+    },
+    {
+      "frame": 60,
+      "outer": 0,
+      "scale": 1,
+      "changed": 57176
+    },
+    {
+      "frame": 84,
+      "outer": 0,
+      "scale": 1,
+      "changed": 58500
+    },
+    {
+      "frame": 85,
+      "outer": 0,
+      "scale": 1,
+      "changed": 58558
+    },
+    {
+      "frame": 90,
+      "outer": 0,
+      "scale": 1,
+      "changed": 58860
+    },
+    {
+      "frame": 100,
+      "outer": 0,
+      "scale": 1.04417,
+      "changed": 64704
+    },
+    {
+      "frame": 110,
+      "outer": 0,
+      "scale": 1.175,
+      "changed": 79228
+    },
+    {
+      "frame": 120,
+      "outer": 0,
+      "scale": 1.30583,
+      "changed": 97873
+    },
+    {
+      "frame": 128,
+      "outer": 0,
+      "scale": 1.35,
+      "changed": 104151
+    },
+    {
+      "frame": 160,
+      "outer": 0,
+      "scale": 1.35,
+      "changed": 95161
+    },
+    {
+      "frame": 200,
+      "outer": 0,
+      "scale": 1.35,
+      "changed": 65744
+    },
+    {
+      "frame": 240,
+      "outer": 0,
+      "scale": 1.35,
+      "changed": 66294
+    },
+    {
+      "frame": 260,
+      "outer": 0,
+      "scale": 1.35,
+      "changed": 66294
+    }
+  ],
+  "maxOuterBandPixels": 13,
+  "assets": [
+    "desktop-frame-022.png",
+    "desktop-frame-060.png",
+    "desktop-frame-100.png",
+    "desktop-frame-128.png",
+    "desktop-frame-240.png",
+    "desktop-v15-real-browser.webm",
+    "tablet-frame-022.png",
+    "tablet-frame-060.png",
+    "tablet-frame-100.png",
+    "tablet-frame-128.png",
+    "tablet-frame-240.png",
+    "mobile-frame-022.png",
+    "mobile-frame-060.png",
+    "mobile-frame-100.png",
+    "mobile-frame-128.png",
+    "mobile-frame-240.png",
+    "mobile-v15-real-browser.webm"
+  ],
+  "baselineOnlyAntialiasingWarning": {
+    "frames": [
+      51,
+      52,
+      53
+    ],
+    "outerBandPixelCounts": [
+      13,
+      12,
+      12
+    ],
+    "scale": 1.0,
+    "classification": "13-pixel maximum difference at original unzoomed V14 framing; no V15 zoom activity at these frames"
+  },
+  "verifiedReleaseGate": "PASS with explicitly documented pre-existing V14 antialiasing warning",
+  "functionalTests": {
+    "wood_vector_mount_and_canvas_clearance": {
+      "woodSvg": true,
+      "woodAspect": "xMidYMid slice",
+      "woodChildren": 2,
+      "woodFill": "original-vector",
+      "nativeAspect": "xMidYMid meet",
+      "circle": 756.59375,
+      "stage": 635.53125,
+      "cornerClearance": 12.287258612393941
+    },
+    "F05_stateful_category_menu_and_cart": {
+      "initial": {
+        "state": "Closed",
+        "output": "Closed"
+      },
+      "selected": "Starters",
+      "dish": "Add Garden Crunch Salad to demo bag for $13",
+      "bagCount": "1"
+    },
+    "F04_checkout_confirmation_once": {
+      "message": "Sample order received",
+      "f04Rendered": true,
+      "player": {
+        "duration": 8,
+        "loop": false
+      }
+    },
+    "F07_booking_form_and_confirmation": {
+      "message": "Sample table request received",
+      "submitText": [
+        "Preview table request"
+      ]
+    },
+    "no_browser_errors_or_missing_assets": {
+      "jsErrors": 0,
+      "httpErrors": 0
+    }
+  },
+  "realTimePlayback": {
+    "realWorldFrames": [
+      {
+        "name": "desktop",
+        "scale": 1.35,
+        "complete": "true",
+        "frame": 260,
+        "wood": true
+      },
+      {
+        "name": "mobile",
+        "scale": 1.35,
+        "complete": "true",
+        "frame": 260,
+        "wood": true
+      }
+    ],
+    "errors": [],
+    "failedAssets": [],
+    "reductions": [
+      {
+        "zoom": 1,
+        "reduced": true,
+        "wood": true
+      }
+    ]
+  }
+}

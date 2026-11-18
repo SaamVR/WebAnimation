@@ -1,0 +1,27 @@
+{
+  "realWorldFrames": [
+    {
+      "name": "desktop",
+      "scale": 1.35,
+      "complete": "true",
+      "frame": 260,
+      "wood": true
+    },
+    {
+      "name": "mobile",
+      "scale": 1.35,
+      "complete": "true",
+      "frame": 260,
+      "wood": true
+    }
+  ],
+  "errors": [],
+  "failedAssets": [],
+  "reductions": [
+    {
+      "zoom": 1,
+      "reduced": true,
+      "wood": true
+    }
+  ]
+}
