@@ -5,6 +5,7 @@ on:
       - integration/chapchitra-staging-candidate-20261112
       - feature/chapchitra-navbar-favorite-colors-integration-112-114-20261116
       - deploy/chapchitra-render-review
+      - integration/chapchitra-dual-theme-staging-ready-20261118
     paths:
       - 'projects/chapchitra/**'
       - '.github/workflows/chapchitra-shared-staging.yml'
@@ -152,6 +153,45 @@ jobs:
             node scripts/c02-browser-qa-v2.cjs
             node scripts/c02-adaptive-qa.cjs
           done
+
+  carousel-timing-gate:
+    name: Hero carousel C08 exact timing Chromium/WebKit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    needs: source-integrity
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Build unchanged source and install real browsers
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          node scripts/build.mjs
+          npx playwright install --with-deps chromium webkit
+      - name: Play two uninterrupted cycles and assert strict original timing
+        working-directory: projects/chapchitra
+        shell: bash
+        run: |
+          set -euo pipefail
+          PORT=4336 npm run preview >/tmp/chapchitra-timing-preview.log 2>&1 &
+          for n in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:4336/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4336/ >/dev/null
+          node scripts/staging-integration-carousel-timing-qa.mjs
+      - name: Preserve unedited timecoded Chromium/WebKit recordings and exact timestamps
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: chapchitra-c08-staging-timing
+          path: projects/chapchitra/perf-results/staging-integration-20261118/timing/
+          if-no-files-found: warn
+          retention-days: 14
 
   navbar-favorites-focused:
     name: Navbar favorites isolated Chromium/WebKit QA
