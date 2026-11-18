@@ -1,3 +1,11 @@
+# SUPERSEDED — V16 transition-zoom proof, not the current design
+
+This folder documents the **rejected** earlier V16 approach that grew from small to large after ingredients entered. The owner explicitly rejected this behavior. It remains solely for audit/history. **Do not show it as the current review.**
+
+The authoritative corrected fixed-size review is [`docs/qa/owner-v16-fixed/`](../owner-v16-fixed/), with constant 1.755× camera across all frames, retargeted ingredient paths, QA results and actual desktop/mobile recordings. The live Render site still runs V15.
+
+---
+
 # ZESTRY V16 — review-only, NOT DEPLOYED
 
 **Request:** 30% larger than the deployed V15 F01 foreground, not 30% larger than V14.
