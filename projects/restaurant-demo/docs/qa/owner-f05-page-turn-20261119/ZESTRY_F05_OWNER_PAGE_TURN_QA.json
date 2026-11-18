@@ -1,0 +1,838 @@
+{
+  "deployment": "NONE",
+  "checks": [
+    {
+      "name": "all source-level revision markers present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "owner F05 master Lottie unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop original 2.7s category-flip state used",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Turn_Overview_to_Starters",
+        "scene": "Turn_Overview_to_Starters",
+        "index": null,
+        "src": null,
+        "photoReady": false,
+        "dishes": 0,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "true",
+        "inset": "52.75%",
+        "leftPercent": 3.696049216572143,
+        "widthPercent": 0
+      }
+    },
+    {
+      "name": "desktop Starters page 1 photograph decoded",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "01 / 04",
+        "src": "photos/salad.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop photo centered inside right-hand book page",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "01 / 04",
+        "src": "photos/salad.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop dish leaf rotates entire page, not the photo alone",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "02 / 04",
+        "src": "photos/greek.jpg",
+        "photoReady": true,
+        "dishes": 2,
+        "leaf": true,
+        "leafAnimation": "f05PaperNext",
+        "leafDuration": "0.74s",
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop second starter displays Greek Feta Salad only",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "02 / 04",
+        "src": "photos/greek.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop four genuine starter dishes before boundary",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop next at fourth item triggers original category page turn",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Turn_Starters_to_Main_Courses",
+        "scene": "Turn_Starters_to_Main_Courses",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "true",
+        "inset": "857.422px",
+        "leftPercent": 52.753172161876385,
+        "widthPercent": 17.14193021243872
+      }
+    },
+    {
+      "name": "desktop Main Courses lands on first correct dish, no starter flash",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Main_Courses",
+        "scene": "Main_Courses",
+        "index": "01 / 04",
+        "src": "photos/pasta.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop previous from first main returns to LAST starter item",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop category Desserts first dish correct",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Desserts",
+        "scene": "Desserts",
+        "index": "01 / 04",
+        "src": "photos/cake.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop category Drinks first dish correct",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Drinks",
+        "scene": "Drinks",
+        "index": "01 / 04",
+        "src": "photos/coffee.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "857.422px",
+        "leftPercent": 52.7492069595309,
+        "widthPercent": 17.149860617129676
+      }
+    },
+    {
+      "name": "desktop demo add-to-bag still works",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop no browser exceptions/HTTP errors/sideways scroll",
+      "passed": true,
+      "detail": {
+        "errors": [],
+        "responses": []
+      }
+    },
+    {
+      "name": "desktop F06 section removes excess white height",
+      "passed": true,
+      "detail": {
+        "height": 759.09375,
+        "viewport": 900,
+        "visual": 441,
+        "body": 1600,
+        "label": "A little magic in the making."
+      }
+    },
+    {
+      "name": "desktop coffee gradient darker behind original steam illustration",
+      "passed": true,
+      "detail": {
+        "background": "linear-gradient(110deg, rgb(246, 231, 214) 0%, rgb(231, 200, 166) 47%, rgb(206, 161, 132) 100%)",
+        "text": "Your favorite pause of the day.",
+        "width": 1600,
+        "overflow": 1600
+      }
+    },
+    {
+      "name": "desktop browser recording",
+      "passed": true,
+      "detail": {
+        "file": "desktop-F05-full-interaction.webm",
+        "size": 3715056
+      }
+    },
+    {
+      "name": "ipad original 2.7s category-flip state used",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Turn_Overview_to_Starters",
+        "scene": "Turn_Overview_to_Starters",
+        "index": null,
+        "src": null,
+        "photoReady": false,
+        "dishes": 0,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "true",
+        "inset": "52.75%",
+        "leftPercent": 16.12787356321839,
+        "widthPercent": 0
+      }
+    },
+    {
+      "name": "ipad Starters page 1 photograph decoded",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "01 / 04",
+        "src": "photos/salad.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad photo centered inside right-hand book page",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "01 / 04",
+        "src": "photos/salad.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad dish leaf rotates entire page, not the photo alone",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "02 / 04",
+        "src": "photos/greek.jpg",
+        "photoReady": true,
+        "dishes": 2,
+        "leaf": true,
+        "leafAnimation": "f05PaperNext",
+        "leafDuration": "0.74s",
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad second starter displays Greek Feta Salad only",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "02 / 04",
+        "src": "photos/greek.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad four genuine starter dishes before boundary",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad next at fourth item triggers original category page turn",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Turn_Starters_to_Main_Courses",
+        "scene": "Turn_Starters_to_Main_Courses",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "true",
+        "inset": "734.266px",
+        "leftPercent": 52.74925231933594,
+        "widthPercent": 17.148765476270654
+      }
+    },
+    {
+      "name": "ipad Main Courses lands on first correct dish, no starter flash",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Main_Courses",
+        "scene": "Main_Courses",
+        "index": "01 / 04",
+        "src": "photos/pasta.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad previous from first main returns to LAST starter item",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad category Desserts first dish correct",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Desserts",
+        "scene": "Desserts",
+        "index": "01 / 04",
+        "src": "photos/cake.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad category Drinks first dish correct",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Drinks",
+        "scene": "Drinks",
+        "index": "01 / 04",
+        "src": "photos/coffee.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "734.266px",
+        "leftPercent": 52.74896731321839,
+        "widthPercent": 17.149335488505745
+      }
+    },
+    {
+      "name": "ipad demo add-to-bag still works",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ipad no browser exceptions/HTTP errors/sideways scroll",
+      "passed": true,
+      "detail": {
+        "errors": [],
+        "responses": []
+      }
+    },
+    {
+      "name": "ipad F06 section removes excess white height",
+      "passed": true,
+      "detail": {
+        "height": 622.15625,
+        "viewport": 768,
+        "visual": 376.3125,
+        "body": 1024,
+        "label": "A little magic in the making."
+      }
+    },
+    {
+      "name": "ipad coffee gradient darker behind original steam illustration",
+      "passed": true,
+      "detail": {
+        "background": "linear-gradient(110deg, rgb(246, 231, 214) 0%, rgb(231, 200, 166) 47%, rgb(206, 161, 132) 100%)",
+        "text": "Your favorite pause of the day.",
+        "width": 1024,
+        "overflow": 1024
+      }
+    },
+    {
+      "name": "ipad browser recording",
+      "passed": true,
+      "detail": {
+        "file": "ipad-F05-full-interaction.webm",
+        "size": 3264843
+      }
+    },
+    {
+      "name": "mobile original 2.7s category-flip state used",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Turn_Overview_to_Starters",
+        "scene": "Turn_Overview_to_Starters",
+        "index": null,
+        "src": null,
+        "photoReady": false,
+        "dishes": 0,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "true",
+        "inset": "52.75%",
+        "leftPercent": 24.111321659322847,
+        "widthPercent": 0
+      }
+    },
+    {
+      "name": "mobile Starters page 1 photograph decoded",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "01 / 04",
+        "src": "photos/salad.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile photo centered inside right-hand book page",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "01 / 04",
+        "src": "photos/salad.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile dish leaf rotates entire page, not the photo alone",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "02 / 04",
+        "src": "photos/greek.jpg",
+        "photoReady": true,
+        "dishes": 2,
+        "leaf": true,
+        "leafAnimation": "f05PaperNext",
+        "leafDuration": "0.74s",
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile second starter displays Greek Feta Salad only",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "02 / 04",
+        "src": "photos/greek.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile four genuine starter dishes before boundary",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile next at fourth item triggers original category page turn",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Turn_Starters_to_Main_Courses",
+        "scene": "Turn_Starters_to_Main_Courses",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "true",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile Main Courses lands on first correct dish, no starter flash",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Main_Courses",
+        "scene": "Main_Courses",
+        "index": "01 / 04",
+        "src": "photos/pasta.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile previous from first main returns to LAST starter item",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Starters",
+        "scene": "Starters",
+        "index": "04 / 04",
+        "src": "photos/caesar.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile category Desserts first dish correct",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Desserts",
+        "scene": "Desserts",
+        "index": "01 / 04",
+        "src": "photos/cake.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile category Drinks first dish correct",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "state": "Drinks",
+        "scene": "Drinks",
+        "index": "01 / 04",
+        "src": "photos/coffee.jpg",
+        "photoReady": true,
+        "dishes": 1,
+        "leaf": false,
+        "leafAnimation": null,
+        "leafDuration": null,
+        "oldFoodHidden": true,
+        "busy": "false",
+        "inset": "361.016px",
+        "leftPercent": 52.749937216045296,
+        "widthPercent": 17.148010319399102
+      }
+    },
+    {
+      "name": "mobile demo add-to-bag still works",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile no browser exceptions/HTTP errors/sideways scroll",
+      "passed": true,
+      "detail": {
+        "errors": [],
+        "responses": []
+      }
+    },
+    {
+      "name": "mobile F06 section removes excess white height",
+      "passed": true,
+      "detail": {
+        "height": 646.265625,
+        "viewport": 844,
+        "visual": 329.15625,
+        "body": 390,
+        "label": "A little magic in the making."
+      }
+    },
+    {
+      "name": "mobile coffee gradient darker behind original steam illustration",
+      "passed": true,
+      "detail": {
+        "background": "linear-gradient(110deg, rgb(246, 231, 214) 0%, rgb(231, 200, 166) 47%, rgb(206, 161, 132) 100%)",
+        "text": "Your favorite pause of the day.",
+        "width": 390,
+        "overflow": 390
+      }
+    },
+    {
+      "name": "mobile browser recording",
+      "passed": true,
+      "detail": {
+        "file": "mobile-F05-full-interaction.webm",
+        "size": 1952805
+      }
+    }
+  ],
+  "failures": [],
+  "devices": [],
+  "passed": 50,
+  "total": 50
+}
