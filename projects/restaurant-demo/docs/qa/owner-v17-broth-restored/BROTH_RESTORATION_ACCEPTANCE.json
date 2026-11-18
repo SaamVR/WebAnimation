@@ -1,0 +1,150 @@
+{
+  "sourceHashVerified": true,
+  "patchMarker": "ZESTRY_F01_WOOD_DEFS_ID_NAMESPACE_20261118",
+  "sourceF01Unchanged": true,
+  "viewports": {
+    "desktop": {
+      "frames": [
+        {
+          "frame": 0,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 0
+        },
+        {
+          "frame": 142,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 27010
+        },
+        {
+          "frame": 149,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 73018
+        },
+        {
+          "frame": 160,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 55659
+        },
+        {
+          "frame": 225,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 30784
+        },
+        {
+          "frame": 260,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 30784
+        }
+      ],
+      "errors": []
+    },
+    "mobile": {
+      "frames": [
+        {
+          "frame": 0,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 0
+        },
+        {
+          "frame": 142,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 6106
+        },
+        {
+          "frame": 149,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 16361
+        },
+        {
+          "frame": 160,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 12559
+        },
+        {
+          "frame": 225,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 7086
+        },
+        {
+          "frame": 260,
+          "zoom": 1.755,
+          "brothLayer": "Broth / original vector / delayed reveal",
+          "clipPath": "url(#__lottie_element_88)",
+          "isSubframeEnabled": false,
+          "duplicateIds": [],
+          "wood": true,
+          "layoutOverflow": false,
+          "brothPaintedPixels": 7086
+        }
+      ],
+      "errors": []
+    }
+  },
+  "errors": []
+}
