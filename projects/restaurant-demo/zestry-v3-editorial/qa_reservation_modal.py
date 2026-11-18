@@ -74,14 +74,15 @@ def scene_snapshot(page):
     controlsInsideModal:controls.every(b=>b&&b.left>=rs.modal.left-1&&b.right<=rs.modal.right+1)
   };
  }""")
-def open_booking(page):
+def open_booking(page,reduced=False):
  page.locator('[data-book]:visible').first.click(timeout=15000)
  page.locator('#booking-form').wait_for(state="visible",timeout=15000)
- page.wait_for_function("""()=>{
+ page.wait_for_function("""reduced=>{
   const e=document.getElementById('reservation-modal-animation');
   const a=lottie?.getRegisteredAnimations?.().find(x=>x.wrapper===e);
-  return !!a&&!!e.querySelector('svg')&&e.dataset.motionInView==='true';
- }""",timeout=25000)
+  return !!a&&!!e.querySelector('svg')&&
+   e.dataset.motionInView===(reduced?'false':'true');
+ }""",arg=reduced,timeout=25000)
  return scene_snapshot(page)
 def rect_gap(a,b):
  # Positive gap if no overlap on the horizontal axis.
@@ -99,7 +100,7 @@ def test_view(browser,label,width,height,url,reduced=False):
  page.on("request",lambda r:posted.append([r.method,r.url]) if r.method!="GET" else None)
  try:
   page.goto(url,wait_until="domcontentloaded",timeout=45000)
-  first=open_booking(page)
+  first=open_booking(page,reduced)
   dimensions={"viewport":first["viewport"],"rects":first["rects"],
               "overlap":first["overlap"],"columns":first["gridColumns"]}
   ck(label+" original date, time, guests, name and email controls",
