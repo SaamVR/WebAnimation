@@ -1,0 +1,21 @@
+name: ZESTRY reservation form source audit (temporary)
+on:
+  push:
+    branches:
+      - feat/zestry-visible-forward-loops-20261119
+permissions:
+  contents: read
+concurrency:
+  group: zestry-reservation-source-audit
+  cancel-in-progress: true
+jobs:
+  source-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Read exact shipped reservation HTML and CSS
+        run: python projects/restaurant-demo/zestry-v3-editorial/audit_reservation_source.py
