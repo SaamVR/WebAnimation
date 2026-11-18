@@ -1,0 +1,168 @@
+{
+  "render_service": "srv-dbtkitifngtc73cua2p0",
+  "render_url": "https://zestry-v3-restaurant-review-20261117.onrender.com/",
+  "render_deploy_id": "dep-dbuhro0ae00c73ejg7bg",
+  "deployed_merge_sha": "df31c06c51130adcffecfde1ee97a0b7e889cf7d",
+  "original_v14_application_sha": "c574a2bea361042f965a77529005dae528067274",
+  "qa_mode": "native Playwright headless Chromium against the deployed public Render URL, not offline-composited footage",
+  "results": {
+    "LIVE_served_V14_CSS_not_stale": {
+      "status": 200,
+      "v14Circle": true,
+      "stage84": true,
+      "layout1500": true
+    },
+    "wood_vector_mount_and_canvas_clearance": {
+      "woodSvg": true,
+      "woodAspect": "xMidYMid slice",
+      "woodChildren": 2,
+      "woodFill": "original-vector",
+      "nativeAspect": "xMidYMid meet",
+      "circle": 756.59375,
+      "stage": 635.53125,
+      "cornerClearance": 12.287258612393941
+    },
+    "F05_stateful_category_menu_and_cart": {
+      "initial": {
+        "state": "Closed",
+        "output": "Closed"
+      },
+      "selected": "Starters",
+      "dish": "Add Garden Crunch Salad to demo bag for $13",
+      "bagCount": "1"
+    },
+    "F04_checkout_confirmation_once": {
+      "message": "Sample order received",
+      "f04Rendered": true,
+      "player": {
+        "duration": 8,
+        "loop": false
+      }
+    },
+    "F07_booking_form_and_confirmation": {
+      "message": "Sample table request received",
+      "submitText": [
+        "Preview table request"
+      ]
+    },
+    "no_browser_errors_or_missing_assets": {
+      "jsErrors": 0,
+      "httpErrors": 0
+    }
+  },
+  "desktop": {
+    "circle": {
+      "x": 722.83,
+      "y": 130.38,
+      "w": 756.59,
+      "h": 756.59,
+      "right": 1479.42
+    },
+    "inner": {
+      "x": 783.34,
+      "y": 190.89,
+      "w": 635.53,
+      "h": 635.53,
+      "right": 1418.88
+    },
+    "headline": {
+      "x": 75,
+      "y": 250.03,
+      "w": 554.27,
+      "h": 517.28,
+      "right": 629.27
+    },
+    "wood": {
+      "x": 722.83,
+      "y": 130.38,
+      "w": 756.59,
+      "h": 756.59,
+      "right": 1479.42
+    },
+    "woodSVG": false,
+    "nativeSVG": true,
+    "nativePreserve": "xMidYMid meet",
+    "circleRadius": "50%",
+    "circleOverflow": "hidden",
+    "accent": "rgb(255, 214, 78) -13px 10px 0px -2px",
+    "scrollWidth": 1600,
+    "viewport": 1600,
+    "menuFrame": "assets/f05_book.html",
+    "f04OnStory": false,
+    "f08Present": false,
+    "f01Players": 1,
+    "bodyTitle": "ZESTRY V3 \u2014 Red & Yellow Restaurant Demo",
+    "menuIframeLoaded": {
+      "exists": true,
+      "loaded": true,
+      "src": "assets/f05_book.html",
+      "buttons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "mobile": {
+    "circle": {
+      "x": 16,
+      "y": 471.25,
+      "w": 358,
+      "h": 358,
+      "right": 374
+    },
+    "inner": {
+      "x": 44.63,
+      "y": 499.88,
+      "w": 300.72,
+      "h": 300.72,
+      "right": 345.34
+    },
+    "headline": {
+      "x": 16,
+      "y": 116.75,
+      "w": 358,
+      "h": 348.5,
+      "right": 374
+    },
+    "wood": {
+      "x": 16,
+      "y": 471.25,
+      "w": 358,
+      "h": 358,
+      "right": 374
+    },
+    "woodSVG": false,
+    "nativeSVG": true,
+    "nativePreserve": "xMidYMid meet",
+    "circleRadius": "50%",
+    "circleOverflow": "hidden",
+    "accent": "rgb(255, 214, 78) -9px 7px 0px -1px",
+    "scrollWidth": 390,
+    "viewport": 390,
+    "menuFrame": "assets/f05_book.html",
+    "f04OnStory": false,
+    "f08Present": false,
+    "f01Players": 1,
+    "bodyTitle": "ZESTRY V3 \u2014 Red & Yellow Restaurant Demo"
+  },
+  "javascript_errors": 0,
+  "failed_site_asset_requests": 0,
+  "unintended_circle_crop": "none visible in tested recorded frames; +12.287px inscribed source-corner clearance desktop",
+  "wood_backdrop": "original F01 wood SVG rendered with xMidYMid slice; expected SVG element itself, not a nested SVG",
+  "yellow_accent": "visible offset yellow circle behind backdrop",
+  "recordings": [
+    "desktop-F01-real-browser.webm",
+    "mobile-F01-real-browser.webm"
+  ],
+  "notes": "First-pass legacy assertion for woodSVG looked for a nested SVG; final DOM check verifies svg.f01-wood-fill itself. Native F01 animation may naturally reveal ingredients entering its original source canvas; this is not new circular clipping.",
+  "remaining_critical_defects": [],
+  "owner_visual_approval": "Pending owner review of deployed site"
+}
