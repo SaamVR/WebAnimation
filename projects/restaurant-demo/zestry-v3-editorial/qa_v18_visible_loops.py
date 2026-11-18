@@ -241,6 +241,42 @@ def test_dialog_and_reduced(browser):
     p01['frame']==0 and p02['frame']==0,{'F01':p01,'F02':p02})
  reduced.close()
 
+
+def capture_natural_chef_loops(browser,name,width,height):
+ """Record a complete forward→reverse→forward chef cycle from real Chromium.
+
+ The video is a rendered screen recording, not an offline Lottie composite.
+ """
+ ctx=browser.new_context(viewport={'width':width,'height':height},
+     device_scale_factor=1,record_video_dir=str(OUT),
+     record_video_size={'width':width,'height':height})
+ page=ctx.new_page()
+ errs=[]
+ page.on('pageerror',lambda e:errs.append(str(e)))
+ page.goto('http://127.0.0.1:18898/',wait_until='domcontentloaded',timeout=30000)
+ page.locator('[data-animation="f02-orbit"]').scroll_into_view_if_needed()
+ page.wait_for_function("""()=>document.querySelector('[data-animation="f02-orbit"]')
+    ?.dataset.loaded==='yes'""",timeout=25000)
+ page.wait_for_function("""()=>document.querySelector('[data-animation="f02-orbit"]')
+    ?.dataset.motionInView==='true'""",timeout=15000)
+ first=lottie(page,'f02-orbit')
+ page.screenshot(path=str(OUT/('V18-'+name+'-chef-orbit-start.png')))
+ page.wait_for_timeout(17800)
+ after=lottie(page,'f02-orbit')
+ page.screenshot(path=str(OUT/('V18-'+name+'-chef-orbit-after-complete-loop.png')))
+ ck(name+' F02 natural full forward/return/forward loop',
+    after and after['motionLoops']>=2 and after['direction']==1 and
+    after['playingInViewport']=='true' and not errs,
+    {'initial':first,'final':after,'errors':errs})
+ video=page.video
+ ctx.close()
+ if video:
+  output=OUT/('V18-'+name+'-chef-seamless-real-browser.webm')
+  shutil.move(video.path(),output)
+  ck(name+' F02 natural browser video saved',output.stat().st_size>20000,
+      {'name':output.name,'bytes':output.stat().st_size})
+
+
 def main():
  parts=sorted((ROOT/'review_bundle').glob('part-*.bin'))
  blob=b''.join(x.read_bytes() for x in parts)
@@ -284,6 +320,12 @@ def main():
       import traceback
       traceback.print_exc()
       report['regressions'].append({'name':'dialog_or_reduced_fatal','details':str(e)})
+     for name,w,h in [('desktop',1600,900),('mobile',390,844)]:
+      try:capture_natural_chef_loops(browser,name,w,h)
+      except Exception as e:
+       import traceback
+       traceback.print_exc()
+       report['regressions'].append({'name':name+'_natural_chef_video','details':str(e)})
      browser.close()
    finally:
     server.shutdown()
