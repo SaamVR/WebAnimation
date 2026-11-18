@@ -115,7 +115,7 @@ def test_assets_and_menu(browser):
            ?.contentWindow?.F05_QA !== undefined""",timeout=25000)
     # A click can happen while ZIP is still initializing; V17.1 queues it.
     frame.get_by_role("button",name="Open menu book").click()
-    actual=p.frame(url=lambda u:"f05_book.html" in u)
+    actual=next(f for f in p.frames if "f05_book.html" in f.url)
     actual.wait_for_function("""() =>
         document.body.dataset.f05State==='Overview' """,timeout=35000)
     frame.get_by_role("button",name="Choose Starters").click()
