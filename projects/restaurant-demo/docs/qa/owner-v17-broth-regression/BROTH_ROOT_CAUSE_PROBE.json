@@ -1,0 +1,358 @@
+{
+  "liveURL": "https://zestry-v3-restaurant-review-20261117.onrender.com/",
+  "renderSHA": "1c1406b391cfa7979ff05cea53d3feec758c7f8b",
+  "frames": [
+    {
+      "frame": 0,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 125,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 134,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 142,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 149,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 156,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 165,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 180,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 200,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 225,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    },
+    {
+      "frame": 260,
+      "broth": {
+        "tag": "g",
+        "style": "display: block;",
+        "visibility": "visible",
+        "opacity": "1",
+        "display": "block",
+        "mask": null,
+        "clip": "url(#__lottie_element_88)",
+        "rect": {
+          "width": 325.47015380859375,
+          "height": 326.19049072265625
+        },
+        "pathCount": 1,
+        "parentTag": "g",
+        "parentMask": null
+      },
+      "playerZoom": "1.755000",
+      "svgViewbox": "0 0 1984 1134",
+      "visibleBrothPixelsWhenHidden": 0,
+      "diffBounds": null,
+      "totalPixels": 571536,
+      "brothLayerVisiblyContributes": false
+    }
+  ],
+  "errors": [],
+  "probe": "Unmodified live animation, pause and hide selected broth layer for pixel contribution.",
+  "initial": {
+    "sourceLayer": {
+      "ind": 28,
+      "nm": "Broth / original vector / delayed reveal",
+      "ty": 4,
+      "hasMask": null,
+      "maskCount": 1,
+      "maskProperties": [
+        {
+          "mode": "a",
+          "inv": false,
+          "nm": "F01 pour / liquid fill rise / mask only",
+          "closed": null,
+          "keys": 20,
+          "opacity": 100,
+          "expansion": 0
+        }
+      ],
+      "transforms": {
+        "opacity": {
+          "a": 0,
+          "k": 100
+        },
+        "position": {
+          "a": 0,
+          "k": [
+            0,
+            0,
+            0
+          ]
+        },
+        "scale": {
+          "a": 0,
+          "k": [
+            100,
+            100,
+            100
+          ]
+        }
+      }
+    },
+    "rendererLayer": {
+      "exists": true,
+      "sourceHasMask": true,
+      "elementTag": "g",
+      "layerStyle": "display: block;",
+      "outerHTMLHead": "<g clip-path=\"url(#__lottie_element_88)\" transform=\"matrix(1,0,0,1,0,0)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(107,40,26)\" fill-opacity=\"1\" d=\" M1036.9000244140625,800.2999877929688 C1017.5,805.5 1000.0999755859375,806.9000244140625 976.0999755859375,809.7000122070312 C967.7999877929688,810.7000122070312 962.0999755859375,812 954,813.5 C935.9000244140625,817 917.4000244140625,817.2000122070312 899.9000244140625,814.7000122070312 C881.5999755859375,812.0999755859375 864,804.4000244140625 849.4000244140625,792.2999877929688 C844.2000122070312,788 838.5999755859375,783.5 832.7000122070312,779.4000244140625 C814.2000122070312,766.5 798.0999755859375,755.5 782.7999877929688,743.5 C773.7999877929688,736.5 762,727.4000244140625 747.4000244140625,716.4000244140625 C730.0999755859375,703.2999877929688 716,684.4000244140625 708.7999877929688,663.5999755859375 C706.2999877929688,656.2999877929688 705.0999755859375,647.5999755859375 703.2000122070312,639.2999877929688 C702.5999755859375,636.4000244140625 701.7000122070312,633.2000122070312 700.7000122070312,629.5999755859375 C695.5,610.7999877929688 689.5999755859375,589.2999877929688 683.0999755859375,565.0999755859375 C678,546.0999755859375 677,526.7999877929688 680.0999755859375,507.1000061035156 C681.9000244140625,496 683.5,489.29998779296875 684.4000244140625,479.89999389648",
+      "pathCount": 1,
+      "mask": null,
+      "clipPath": "url(#__lottie_element_88)",
+      "computed": {
+        "visibility": "visible",
+        "display": "block",
+        "opacity": "1"
+      }
+    },
+    "masks": [
+      "__lottie_element_7",
+      "__lottie_element_7"
+    ],
+    "maskCount": 2,
+    "duplicateIds": [
+      "__lottie_element_2",
+      "__lottie_element_7",
+      "__lottie_element_88"
+    ],
+    "duplicateIdCount": 3,
+    "player": {
+      "frameRate": 30,
+      "isSubframeEnabled": false,
+      "currentFrame": 3,
+      "loop": false
+    },
+    "svgCount": 2
+  }
+}
