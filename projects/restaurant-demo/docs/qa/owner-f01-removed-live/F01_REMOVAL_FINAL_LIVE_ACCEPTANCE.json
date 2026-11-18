@@ -1,0 +1,96 @@
+{
+  "url": "https://zestry-v3-restaurant-review-20261117.onrender.com/",
+  "sha": "4b1e0751e2a7c2975e698ddb941c51c451acd91e",
+  "timestamp": "2026-11-18T14:27:18.014816+00:00",
+  "checks": [
+    {
+      "name": "desktop rejected F01 absent on live site",
+      "pass": true,
+      "detail": {
+        "placeholder": "Hero artwork awaiting replacement",
+        "legacyNodeCount": 0,
+        "leftoverAnimation": 0,
+        "absenceMarker": true,
+        "staleSourceReference": false,
+        "horizontalOverflow": false,
+        "header": "Fresh food.Good mood."
+      }
+    },
+    {
+      "name": "desktop neutral hero placeholder displayed",
+      "pass": true,
+      "detail": {
+        "placeholder": "Hero artwork awaiting replacement",
+        "legacyNodeCount": 0,
+        "leftoverAnimation": 0,
+        "absenceMarker": true,
+        "staleSourceReference": false,
+        "horizontalOverflow": false,
+        "header": "Fresh food.Good mood."
+      }
+    },
+    {
+      "name": "desktop original chef F02 intact",
+      "pass": true,
+      "detail": {
+        "frames": 210,
+        "direction": 1,
+        "svg": true
+      }
+    },
+    {
+      "name": "desktop F01 never requested, no website runtime failures",
+      "pass": true,
+      "detail": {
+        "f01Requests": [],
+        "errors": [],
+        "failedAssets": []
+      }
+    },
+    {
+      "name": "mobile rejected F01 absent on live site",
+      "pass": true,
+      "detail": {
+        "placeholder": "Hero artwork awaiting replacement",
+        "legacyNodeCount": 0,
+        "leftoverAnimation": 0,
+        "absenceMarker": true,
+        "staleSourceReference": false,
+        "horizontalOverflow": false,
+        "header": "Fresh food.Good mood."
+      }
+    },
+    {
+      "name": "mobile neutral hero placeholder displayed",
+      "pass": true,
+      "detail": {
+        "placeholder": "Hero artwork awaiting replacement",
+        "legacyNodeCount": 0,
+        "leftoverAnimation": 0,
+        "absenceMarker": true,
+        "staleSourceReference": false,
+        "horizontalOverflow": false,
+        "header": "Fresh food.Good mood."
+      }
+    },
+    {
+      "name": "mobile original chef F02 intact",
+      "pass": true,
+      "detail": {
+        "frames": 210,
+        "direction": 1,
+        "svg": true
+      }
+    },
+    {
+      "name": "mobile F01 never requested, no website runtime failures",
+      "pass": true,
+      "detail": {
+        "f01Requests": [],
+        "errors": [],
+        "failedAssets": []
+      }
+    }
+  ],
+  "failures": []
+}
