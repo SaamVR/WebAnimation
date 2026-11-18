@@ -1,0 +1,186 @@
+{
+  "source_baseline_sha": "8bdcd1711b8b19e9e597a9f3dbb853d701018cc5",
+  "review": "V17 performance-only changes over approved fixed-scale V16",
+  "expected_render_service_id": "srv-dbtkitifngtc73cua2p0",
+  "deployment": "pending merge and live smoke",
+  "static_F01_scale": 1.755,
+  "F01_frames": 261,
+  "F01_duration": 8.7,
+  "unchanged_F01_source_sha256": "7fc0054b5ae4c1c7a13d0a3c5e321d117d570d8f0d71e3308ee076a48d301e37",
+  "unchanged_F03_source_sha256": "136436c9af903ede3485bd0d688b9d2a57a6e9a1b52fb850a4aedb4d79710e68",
+  "unchanged_F04_source_sha256": "e9ca8b2e02a720d96cb4fe4f1f8035a3d2417fe57f7ddf695e32d4a92a4bfbd0",
+  "unchanged_derived_F01_sha256": "14f781c6568a15fd1593b7a906c95f87b9c445bd7573cf8741bbded92ca6660d",
+  "changes": [
+    "SVG Lottie frames use authored 30fps, no 60Hz subframe interpolation",
+    "F01 CSS SVG scale applied once, rather than on every frame",
+    "F05 menu iframe defers 4.2MB Lottie download until menu is near viewport or navigation intent",
+    "F05 internal requestAnimationFrame loop pauses on holds and when iframe is offscreen or document hidden",
+    "All 19 photography assets now also have WebP quality 88 equivalents, with original JPEGs retained"
+  ],
+  "initial_network_requests": {
+    "before": 12,
+    "after": 8,
+    "menu_lottie_bytes_deferred": 4242769
+  },
+  "photo_bytes": {
+    "before": 3199748,
+    "after": 2341318,
+    "reductionPct": 26.8,
+    "worst_PSNR_dB": 39.96
+  },
+  "synthetic_4x_mobile_F01": {
+    "baseline_p95_raf_ms": 33.399999999999636,
+    "final_p95_raf_ms": 16.800000000000182,
+    "caveat": "Single noisy synthetic measurement on multi-tenant Linux runner; results vary; 60fps not guaranteed"
+  },
+  "desktop_caveat": "Desktop 4x-CPU measurements varied materially with shared runner contention; do not cite single-run desktop FPS as universal gain",
+  "visual": {
+    "sampled_viewport_frames": 12,
+    "max_mean_channel_delta": 0.04,
+    "issues": []
+  },
+  "workflow_checks": {
+    "wood_vector_mount_and_canvas_clearance": {
+      "woodSvg": true,
+      "woodAspect": "xMidYMid slice",
+      "woodChildren": 2,
+      "woodFill": "original-vector",
+      "nativeAspect": "xMidYMid meet",
+      "circle": 756.59375,
+      "stage": 635.53125,
+      "cornerClearance": 12.287258612393941
+    },
+    "F05_stateful_category_menu_and_cart": {
+      "initial": {
+        "state": "Closed",
+        "output": "Closed"
+      },
+      "selected": "Starters",
+      "dish": "Add Garden Crunch Salad to demo bag for $13",
+      "bagCount": "1"
+    },
+    "F04_checkout_confirmation_once": {
+      "message": "Sample order received",
+      "f04Rendered": true,
+      "player": {
+        "duration": 8,
+        "loop": false
+      }
+    },
+    "F07_booking_form_and_confirmation": {
+      "message": "Sample table request received",
+      "submitText": [
+        "Preview table request"
+      ]
+    },
+    "no_browser_errors_or_missing_assets": {
+      "jsErrors": 0,
+      "httpErrors": 0
+    }
+  },
+  "animation_sections": [
+    {
+      "animation": "f02-orbit",
+      "first": {
+        "frame": 12,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": true,
+        "duration": 210,
+        "svg": true
+      },
+      "after": {
+        "frame": 37,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 210
+      }
+    },
+    {
+      "animation": "f02-cooking",
+      "first": {
+        "frame": 48,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": true,
+        "duration": 210,
+        "svg": true
+      },
+      "after": {
+        "frame": 72,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 210
+      }
+    },
+    {
+      "animation": "f06",
+      "first": {
+        "frame": 1,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": false,
+        "duration": 432,
+        "svg": true
+      },
+      "after": {
+        "frame": 25,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 432
+      }
+    },
+    {
+      "animation": "f03",
+      "first": {
+        "frame": 1,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": false,
+        "duration": 228,
+        "svg": true
+      },
+      "after": {
+        "frame": 26,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 228
+      }
+    },
+    {
+      "animation": "f07",
+      "first": {
+        "frame": 11,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": false,
+        "duration": 228,
+        "svg": true
+      },
+      "after": {
+        "frame": 36,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 228
+      }
+    }
+  ],
+  "menu": {
+    "first_src": null,
+    "activated_src": "assets/f05_book.html",
+    "offscreen_last_frame_unchanged": true,
+    "bag_count_after_add": "1"
+  },
+  "mobile_nav": {
+    "navOpen": "true",
+    "navClose": "false",
+    "horizontalOverflow": false
+  },
+  "runtime_errors": [],
+  "commerce": "fictional demo only; no real orders or reservations"
+}

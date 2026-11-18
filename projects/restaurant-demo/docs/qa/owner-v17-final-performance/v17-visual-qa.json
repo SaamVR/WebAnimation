@@ -1,0 +1,93 @@
+{
+  "source": "V16 fixed approved artwork",
+  "optimized": "V17 performance changes",
+  "comparisons": [
+    {
+      "viewport": "desktop",
+      "frame": 0,
+      "meanDiff": 0.0161,
+      "changedChannelPercent": 0.00962
+    },
+    {
+      "viewport": "desktop",
+      "frame": 22,
+      "meanDiff": 0.0114,
+      "changedChannelPercent": 0.00472
+    },
+    {
+      "viewport": "desktop",
+      "frame": 60,
+      "meanDiff": 0.0048,
+      "changedChannelPercent": 0
+    },
+    {
+      "viewport": "desktop",
+      "frame": 128,
+      "meanDiff": 0,
+      "changedChannelPercent": 0
+    },
+    {
+      "viewport": "desktop",
+      "frame": 240,
+      "meanDiff": 0,
+      "changedChannelPercent": 0
+    },
+    {
+      "viewport": "desktop",
+      "frame": 260,
+      "meanDiff": 0,
+      "changedChannelPercent": 0
+    },
+    {
+      "viewport": "mobile",
+      "frame": 0,
+      "meanDiff": 0.04,
+      "changedChannelPercent": 0.01092
+    },
+    {
+      "viewport": "mobile",
+      "frame": 22,
+      "meanDiff": 0.04,
+      "changedChannelPercent": 0.00988
+    },
+    {
+      "viewport": "mobile",
+      "frame": 60,
+      "meanDiff": 0.0126,
+      "changedChannelPercent": 0.0013
+    },
+    {
+      "viewport": "mobile",
+      "frame": 128,
+      "meanDiff": 0,
+      "changedChannelPercent": 0
+    },
+    {
+      "viewport": "mobile",
+      "frame": 240,
+      "meanDiff": 0,
+      "changedChannelPercent": 0
+    },
+    {
+      "viewport": "mobile",
+      "frame": 260,
+      "meanDiff": 0,
+      "changedChannelPercent": 0
+    }
+  ],
+  "errors": [],
+  "desktopNatural": {
+    "zoom": 1.755,
+    "frame": 260,
+    "complete": "true",
+    "wood": true,
+    "overflow": false
+  },
+  "mobileNatural": {
+    "zoom": 1.755,
+    "frame": 260,
+    "complete": "true",
+    "wood": true,
+    "overflow": false
+  }
+}
