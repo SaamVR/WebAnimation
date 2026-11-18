@@ -1,0 +1,424 @@
+{
+  "site": "ZESTRY existing staging source",
+  "deployment": "NOT DEPLOYED",
+  "ownerOriginalF02SHA256": "e48ae2126de66a2e60098156f6403fae797fb89c04168654d6232fbc517406fa",
+  "frames": {
+    "desktop": {
+      "0": {
+        "frame": 0,
+        "width": 536.40625,
+        "height": 536.40625,
+        "paths": 527
+      },
+      "30": {
+        "frame": 30,
+        "width": 536.40625,
+        "height": 536.40625,
+        "paths": 527
+      },
+      "60": {
+        "frame": 60,
+        "width": 536.40625,
+        "height": 536.40625,
+        "paths": 527
+      },
+      "105": {
+        "frame": 105,
+        "width": 536.40625,
+        "height": 536.40625,
+        "paths": 527
+      },
+      "150": {
+        "frame": 150,
+        "width": 536.40625,
+        "height": 536.40625,
+        "paths": 527
+      },
+      "180": {
+        "frame": 180,
+        "width": 536.40625,
+        "height": 536.40625,
+        "paths": 527
+      },
+      "209": {
+        "frame": 209,
+        "width": 536.40625,
+        "height": 536.40625,
+        "paths": 527
+      }
+    },
+    "mobile": {
+      "0": {
+        "frame": 0,
+        "width": 358,
+        "height": 358,
+        "paths": 527
+      },
+      "30": {
+        "frame": 30,
+        "width": 358,
+        "height": 358,
+        "paths": 527
+      },
+      "60": {
+        "frame": 60,
+        "width": 358,
+        "height": 358,
+        "paths": 527
+      },
+      "105": {
+        "frame": 105,
+        "width": 358,
+        "height": 358,
+        "paths": 527
+      },
+      "150": {
+        "frame": 150,
+        "width": 358,
+        "height": 358,
+        "paths": 527
+      },
+      "180": {
+        "frame": 180,
+        "width": 358,
+        "height": 358,
+        "paths": 527
+      },
+      "209": {
+        "frame": 209,
+        "width": 358,
+        "height": 358,
+        "paths": 527
+      }
+    }
+  },
+  "checks": [
+    {
+      "name": "desktop only one full360 chef with native 2268px vector art",
+      "pass": true,
+      "details": {
+        "frame": 1.9979999999999989,
+        "fps": 30,
+        "duration": 210,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "display": "block",
+        "containerWidth": 536.40625,
+        "containerHeight": 536.40625,
+        "svgViewBox": "0 0 2268 2268",
+        "svgPaths": 527,
+        "originalChefCount": 0,
+        "singleChefCount": 1,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop all 7 choreography checkpoints render without CSS zoom",
+      "pass": true,
+      "details": {
+        "0": {
+          "frame": 0,
+          "width": 536.40625,
+          "height": 536.40625,
+          "paths": 527
+        },
+        "30": {
+          "frame": 30,
+          "width": 536.40625,
+          "height": 536.40625,
+          "paths": 527
+        },
+        "60": {
+          "frame": 60,
+          "width": 536.40625,
+          "height": 536.40625,
+          "paths": 527
+        },
+        "105": {
+          "frame": 105,
+          "width": 536.40625,
+          "height": 536.40625,
+          "paths": 527
+        },
+        "150": {
+          "frame": 150,
+          "width": 536.40625,
+          "height": 536.40625,
+          "paths": 527
+        },
+        "180": {
+          "frame": 180,
+          "width": 536.40625,
+          "height": 536.40625,
+          "paths": 527
+        },
+        "209": {
+          "frame": 209,
+          "width": 536.40625,
+          "height": 536.40625,
+          "paths": 527
+        }
+      }
+    },
+    {
+      "name": "desktop F01 still plays independently",
+      "pass": true,
+      "details": {
+        "F01SVGCount": 1
+      }
+    },
+    {
+      "name": "desktop F05 interactive menu preserved",
+      "pass": true,
+      "details": {
+        "state": "Overview"
+      }
+    },
+    {
+      "name": "desktop f03 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f03",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "desktop f06 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f06",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "desktop f07 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f07",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "desktop old chefs never fetched, no errors",
+      "pass": true,
+      "details": {
+        "requests": [
+          "http://127.0.0.1:18884/assets/lottie/f02-chef-full360.json"
+        ],
+        "errors": [],
+        "badResponses": []
+      }
+    },
+    {
+      "name": "mobile only one full360 chef with native 2268px vector art",
+      "pass": true,
+      "details": {
+        "frame": 0.9990000000000003,
+        "fps": 30,
+        "duration": 210,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "display": "block",
+        "containerWidth": 358,
+        "containerHeight": 358,
+        "svgViewBox": "0 0 2268 2268",
+        "svgPaths": 527,
+        "originalChefCount": 0,
+        "singleChefCount": 1,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile all 7 choreography checkpoints render without CSS zoom",
+      "pass": true,
+      "details": {
+        "0": {
+          "frame": 0,
+          "width": 358,
+          "height": 358,
+          "paths": 527
+        },
+        "30": {
+          "frame": 30,
+          "width": 358,
+          "height": 358,
+          "paths": 527
+        },
+        "60": {
+          "frame": 60,
+          "width": 358,
+          "height": 358,
+          "paths": 527
+        },
+        "105": {
+          "frame": 105,
+          "width": 358,
+          "height": 358,
+          "paths": 527
+        },
+        "150": {
+          "frame": 150,
+          "width": 358,
+          "height": 358,
+          "paths": 527
+        },
+        "180": {
+          "frame": 180,
+          "width": 358,
+          "height": 358,
+          "paths": 527
+        },
+        "209": {
+          "frame": 209,
+          "width": 358,
+          "height": 358,
+          "paths": 527
+        }
+      }
+    },
+    {
+      "name": "mobile F01 still plays independently",
+      "pass": true,
+      "details": {
+        "F01SVGCount": 1
+      }
+    },
+    {
+      "name": "mobile F05 interactive menu preserved",
+      "pass": true,
+      "details": {
+        "state": "Overview"
+      }
+    },
+    {
+      "name": "mobile f03 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f03",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "mobile f06 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f06",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "mobile f07 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f07",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "mobile old chefs never fetched, no errors",
+      "pass": true,
+      "details": {
+        "requests": [
+          "http://127.0.0.1:18884/assets/lottie/f02-chef-full360.json"
+        ],
+        "errors": [],
+        "badResponses": []
+      }
+    },
+    {
+      "name": "desktop entire original 7-second clockwise sequence holds final scene",
+      "pass": true,
+      "details": {
+        "start": {
+          "frame": 1.5,
+          "fps": 30,
+          "duration": 210,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "display": "block",
+          "containerWidth": 536.40625,
+          "containerHeight": 536.40625,
+          "svgViewBox": "0 0 2268 2268",
+          "svgPaths": 527,
+          "originalChefCount": 0,
+          "singleChefCount": 1,
+          "horizontalOverflow": false
+        },
+        "end": {
+          "frame": 209,
+          "fps": 30,
+          "duration": 210,
+          "isPaused": true,
+          "direction": 1,
+          "loop": false,
+          "display": "block",
+          "containerWidth": 536.40625,
+          "containerHeight": 536.40625,
+          "svgViewBox": "0 0 2268 2268",
+          "svgPaths": 527,
+          "originalChefCount": 0,
+          "singleChefCount": 1,
+          "horizontalOverflow": false
+        }
+      }
+    },
+    {
+      "name": "desktop real Chromium natural-speed playback recorded",
+      "pass": true,
+      "details": {
+        "filename": "desktop-F02-full360-native-browser.webm",
+        "bytes": 980389
+      }
+    },
+    {
+      "name": "mobile entire original 7-second clockwise sequence holds final scene",
+      "pass": true,
+      "details": {
+        "start": {
+          "frame": 3.0030000000000006,
+          "fps": 30,
+          "duration": 210,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "display": "block",
+          "containerWidth": 358,
+          "containerHeight": 358,
+          "svgViewBox": "0 0 2268 2268",
+          "svgPaths": 527,
+          "originalChefCount": 0,
+          "singleChefCount": 1,
+          "horizontalOverflow": false
+        },
+        "end": {
+          "frame": 209,
+          "fps": 30,
+          "duration": 210,
+          "isPaused": true,
+          "direction": 1,
+          "loop": false,
+          "display": "block",
+          "containerWidth": 358,
+          "containerHeight": 358,
+          "svgViewBox": "0 0 2268 2268",
+          "svgPaths": 527,
+          "originalChefCount": 0,
+          "singleChefCount": 1,
+          "horizontalOverflow": false
+        }
+      }
+    },
+    {
+      "name": "mobile real Chromium natural-speed playback recorded",
+      "pass": true,
+      "details": {
+        "filename": "mobile-F02-full360-native-browser.webm",
+        "bytes": 1029302
+      }
+    }
+  ],
+  "failures": []
+}
