@@ -97,7 +97,7 @@
       "name": "desktop only one full360 chef with native 2268px vector art",
       "pass": true,
       "details": {
-        "frame": 1.0019999999999993,
+        "frame": 1.9979999999999989,
         "fps": 30,
         "duration": 210,
         "isPaused": false,
@@ -176,6 +176,30 @@
       }
     },
     {
+      "name": "desktop f03 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f03",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "desktop f06 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f06",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "desktop f07 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f07",
+        "sourceUnmodified": true
+      }
+    },
+    {
       "name": "desktop old chefs never fetched, no errors",
       "pass": true,
       "details": {
@@ -190,7 +214,7 @@
       "name": "mobile only one full360 chef with native 2268px vector art",
       "pass": true,
       "details": {
-        "frame": 1.0019999999999993,
+        "frame": 0.9990000000000003,
         "fps": 30,
         "duration": 210,
         "isPaused": false,
@@ -269,6 +293,30 @@
       }
     },
     {
+      "name": "mobile f03 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f03",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "mobile f06 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f06",
+        "sourceUnmodified": true
+      }
+    },
+    {
+      "name": "mobile f07 unrelated original Lottie still renders",
+      "pass": true,
+      "details": {
+        "scene": "f07",
+        "sourceUnmodified": true
+      }
+    },
+    {
       "name": "mobile old chefs never fetched, no errors",
       "pass": true,
       "details": {
@@ -322,7 +370,7 @@
       "pass": true,
       "details": {
         "filename": "desktop-F02-full360-native-browser.webm",
-        "bytes": 1025478
+        "bytes": 980389
       }
     },
     {
@@ -330,7 +378,7 @@
       "pass": true,
       "details": {
         "start": {
-          "frame": 2.0009999999999994,
+          "frame": 3.0030000000000006,
           "fps": 30,
           "duration": 210,
           "isPaused": false,
@@ -368,7 +416,7 @@
       "pass": true,
       "details": {
         "filename": "mobile-F02-full360-native-browser.webm",
-        "bytes": 1005064
+        "bytes": 1029302
       }
     }
   ],
