@@ -1,0 +1,60 @@
+name: ZESTRY V18 section-scoped loops + seamless chef orbit QA (NO DEPLOY)
+on:
+  push:
+    branches:
+      - feat/zestry-visible-section-loops-chef-orbit-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/package_v18_visible_section_loops.py
+      - projects/restaurant-demo/zestry-v3-editorial/qa_v18_visible_loops.py
+      - .github/workflows/zestry-v18-section-loop-qa.yml
+permissions:
+  contents: read
+jobs:
+  browser-reviews:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout nondeployment feature branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Package V18 playback wiring; preserve all existing Lottie JSON
+        run: python3 projects/restaurant-demo/zestry-v3-editorial/package_v18_visible_section_loops.py
+      - name: Install Chromium testing and image-diff tools
+        run: |
+          python -m pip install 'playwright==1.56.0' 'Pillow==11.3.0'
+          python -m playwright install chromium
+      - name: Test all real browser animation loops, scroll/pause, and critical flows
+        run: |
+          python3 projects/restaurant-demo/zestry-v3-editorial/qa_v18_visible_loops.py
+      - name: Upload screenshot and QA report even if it fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-V18-VISIBLE-LOOPS-CHROMIUM-QA
+          path: projects/restaurant-demo/docs/qa/owner-v18-visible-loop-review/
+          if-no-files-found: warn
+          retention-days: 21
+      - name: Commit release bundle only if independent browser gates pass
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/review_bundle/ \
+            projects/restaurant-demo/docs/qa/owner-v18-visible-loop-review/
+          git diff --cached --name-only > /tmp/zestry-loop-scope.txt
+          if grep -v '^projects/restaurant-demo/' /tmp/zestry-loop-scope.txt; then
+            echo 'Out of scope file mutation; blocking'
+            exit 1
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(zestry): V18 section-loop review bundle and native QA evidence [skip ci]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo 'NO MERGE OR DEPLOYMENT'
