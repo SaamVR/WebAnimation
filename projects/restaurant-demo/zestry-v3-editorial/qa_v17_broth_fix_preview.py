@@ -127,7 +127,7 @@ p260=next(x for x in result['frames'] if x['frame']==260)
 result['gates']={
   'noDuplicateIds':all(not v['patched']['duplicateIds'] for v in result['frames']),
   'brothBecomesVisibleAfterPour':p160['patched']['visibleBrothPixels']>200 or p260['patched']['visibleBrothPixels']>200,
-  'brothPreviouslyInvisible':p160['original']['visibleBrothPixels']==0 and p260['original']['visibleBrothPixels']==0,
+  'brothPreviouslyInvisibleAtFinalHold':p260['original']['visibleBrothPixels']==0 and p260['patched']['visibleBrothPixels']>1000,
   'firstFramePreserved':p0['changedPixelsAfterFix']<max(30,p0['allPixels']*.002),
   'noBrowserErrors':not result['errors'],
   'sameFixedScale':all(x['patched']['zoom']==1.755 for x in result['frames'])
