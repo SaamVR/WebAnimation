@@ -1,6 +1,7 @@
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
 import { createHeroCarouselClock } from './hero-carousel-clock.mjs';
 import {hero01Retraction} from './hero01-retraction.mjs';
+import {playInkImpression,cancelInkImpression} from './motion/c04/ink-impression.mjs';
 import { ARTIST_CART_STORAGE_KEY, ARTIST_CART_MAX_ITEMS, priceArtistCustomization, readArtistDemoBag, formatArtistBDT } from './worktable-pricing.mjs';
 async function boot(){
  // Artist route critical path begins concurrently with all site shell modules.
@@ -66,7 +67,7 @@ async function boot(){
  const artRoot='/assets/illustrator/';
  const navArt=name=>'<img class="cc-nav-art" src="'+artRoot+'nav-'+name+'.svg" alt="" aria-hidden="true" draggable="false">';
  const favoriteArt=liked=>'<img class="cc-favorite-art" data-favorite-art src="'+artRoot+'nav-favorites-'+(liked?'selected':'outline')+'.svg" alt="" aria-hidden="true" draggable="false">';
- const stampedBagCount=count=>'<span class="sr-only">'+count+'</span><span class="cc-bag-stamps" aria-hidden="true">'+
+ const stampedBagCount=count=>'<span class="sr-only">'+count+'</span><span class="cc-bag-stamps" data-c04-impression="bag" aria-hidden="true">'+
   [...String(count)].map(d=>'<img src="'+artRoot+'stamp-'+d+'.svg" alt="" draggable="false">').join('')+'</span>';
  const categories=[
   {id:'regular-tees',title:'Regular Tees',desc:'A classic everyday canvas'},
@@ -557,7 +558,7 @@ async function boot(){
   const choices=new Set([1,2,3,total,current-1,current,current+1].filter(i=>i>0&&i<=total));
   const sorted=[...choices].sort((a,b)=>a-b);
   let prev=0;
-  const numbers=sorted.map(n=>{const gap=n-prev>1?'<span class="pager-ellipsis" aria-hidden="true">…</span>':'';prev=n;return gap+'<button type="button" data-pager="'+scope+'" data-page-number="'+n+'"'+(n===current?' aria-current="page" class="page-current"':'')+'>'+n+'</button>'}).join('');
+  const numbers=sorted.map(n=>{const gap=n-prev>1?'<span class="pager-ellipsis" aria-hidden="true">…</span>':'';prev=n;return gap+'<button type="button" data-pager="'+scope+'" data-page-number="'+n+'"'+(n===current?' aria-current="page" class="page-current"':'')+'><span class="cc-c04-ink" data-c04-impression="page">'+n+'</span></button>'}).join('');
   return '<nav class="pager" aria-label="'+scope+' page navigation"><button type="button" data-pager="'+scope+'" data-page-number="'+Math.max(1,current-1)+'" '+(current===1?'disabled':'')+' aria-label="Previous page">‹</button>'+numbers+'<button type="button" data-pager="'+scope+'" data-page-number="'+Math.min(total,current+1)+'" '+(current===total?'disabled':'')+' aria-label="Next page">›</button></nav>';
  }
  function collection(){
@@ -737,6 +738,8 @@ async function boot(){
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
  app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
+  // Hydration restores the existing count without replaying the stamp.
+  let renderedBagCount=demoBagCount();
  // Native CSS sticky handles alignment; optional ?navdebug=1 is read-only.
  installStickyViewportDiagnostics(document, window);
  // The synchronous head bootstrap owns persistence/system detection. This
@@ -847,7 +850,16 @@ async function boot(){
  }
  function updateBagCounter(){
   const count=demoBagCount(),link=$('.bag-link');
-  link.querySelector('.bag-count').innerHTML=stampedBagCount(count);
+  if(!link)return;
+  // Do not rebuild/replay unchanged values (including a quantity limit).
+  // C03 keeps its original flight and arrival feedback on the outer .bag-count.
+  if(count!==renderedBagCount){
+   const badge=link.querySelector('.bag-count');
+   cancelInkImpression(badge.querySelector('.cc-bag-stamps'));
+   badge.innerHTML=stampedBagCount(count);
+   renderedBagCount=count;
+   playInkImpression(badge.querySelector('.cc-bag-stamps'),{reducedMotion:mediaReduced.matches});
+  }
   link.setAttribute('aria-label','Demo shopping bag, '+count+' item'+(count===1?'':'s'));
  }
  function setDemoBagQty(id,qty){
@@ -1090,7 +1102,7 @@ async function boot(){
    $('#homePager').innerHTML=pager(pages,homePage,'collection');
    $$('[data-favorite]', $('#homeProducts')).forEach(b=>{const yes=isFavoriteNow(b.dataset.favorite);b.classList.toggle('liked',yes);b.setAttribute('aria-pressed',String(yes))});
   }
-  $('#homePager').addEventListener('click',e=>{const btn=e.target.closest('[data-page-number]');if(!btn||btn.disabled)return;homePage=Number(btn.dataset.pageNumber);renderHomeCollection();$('#collection').scrollIntoView({behavior:mediaReduced.matches?'instant':'smooth',block:'start'})});
+  $('#homePager').addEventListener('click',e=>{const btn=e.target.closest('[data-page-number]');if(!btn||btn.disabled)return;const next=Number(btn.dataset.pageNumber);if(next===homePage)return;homePage=next;renderHomeCollection();const current=$('#homePager [aria-current="page"]');current?.focus({preventScroll:true});playInkImpression(current?.querySelector('.cc-c04-ink'),{reducedMotion:mediaReduced.matches});$('#collection').scrollIntoView({behavior:mediaReduced.matches?'instant':'smooth',block:'start'})});
   renderHomeCollection();
   // Five real card nodes persist while positions animate; never rebuild the frames on selection.
   let focusedPrint=2;
@@ -1263,7 +1275,12 @@ async function boot(){
   $('#shopPager').addEventListener('click',event=>{
    const button=event.target.closest('[data-page-number]');
    if(!button||button.disabled)return;
-   pageNum=Number(button.dataset.pageNumber);renderShop();
+   const next=Number(button.dataset.pageNumber);
+   if(next===pageNum)return;
+   pageNum=next;renderShop();
+   const current=$('#shopPager [aria-current="page"]');
+   current?.focus({preventScroll:true});
+   playInkImpression(current?.querySelector('.cc-c04-ink'),{reducedMotion:mediaReduced.matches});
    $('#shopResults').scrollIntoView({behavior:mediaReduced.matches?'instant':'smooth',block:'start'});
   });
   const mobileFilterQuery=window.matchMedia('(max-width:740px)');
