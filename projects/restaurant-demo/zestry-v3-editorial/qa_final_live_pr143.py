@@ -62,7 +62,7 @@ def site_assets():
   string=book.decode()
   verify("LIVE F05 paper-leaf and category handoff",
          code==200 and "ZESTRY_F05_OWNER_NATURAL_PAPER_TURN_20261119" in string and
-         "f05PaperNext" in string and "Turn_Starters_to_Main_Courses" in string)
+         "f05PaperNext" in string and "function bookNavigation(event)" in string)
   code,fit,_=fetch("assets/f05-fit-v8.css")
   verify("LIVE photo alignment override centered at 52.75%",
          code==200 and "ZESTRY_F05_PHOTO_FRAME_CENTER_20261119" in fit.decode() and
