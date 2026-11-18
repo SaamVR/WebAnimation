@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""ZESTRY V16: 30% larger than deployed V15, review-only.
+"""ZESTRY V16 revision: 30% larger than deployed V15, FIXED SIZE from frame 0, review-only.
 
 Preserves the canonical original F01 JSON and every vector shape, layer order,
-timing, easing, and non-F01 component. Creates a derived position-only F01 asset
-and changes only the review ZIP's F01 load target and camera multiplier.
+timing, easing, and non-F01 component. Creates a derived position-only F01 asset with all flight paths retargeted
+for the same fixed foreground scale at every frame. No zooming, no scaling animation.
 Run on the isolated review branch. Never trigger or create a Render deployment.
 """
 from __future__ import annotations
@@ -49,7 +49,7 @@ def generate_derived(original: bytes) -> bytes:
                 if not isinstance(value, list) or len(value) < 2:
                     continue
                 time = keyframe["t"] if side == "s" or i+1 == len(frames) else frames[i+1]["t"]
-                q = 1. + (POSITION_FACTOR-1.)*smooth((time-92.)/36.)
+                q = POSITION_FACTOR  # Fixed-size composition: retarget motion positions throughout
                 value[0] = round(992. + (value[0]-992.)*q, 5)
                 value[1] = round(567. + (value[1]-567.)*q, 5)
                 count += 1
@@ -117,22 +117,24 @@ def main() -> None:
     assets["assets/lottie/f01-v16.json"] = generate_derived(assets["assets/lottie/f01.json"])
     index = assets["index.html"].decode("utf-8")
     old_fn = "mountF01V15SafeZoom"
-    new_fn = "mountF01V16Relative30Zoom"
+    new_fn = "mountF01V16FixedSize"
     index = index.replace(old_fn, new_fn)
-    index = index.replace("const zoom=1+0.35*ease;", "const zoom=1+0.755*ease;")
+    index = index.replace("const zoom=1+0.35*ease;", "const zoom=1.755;")
+    index = index.replace("const zoom=1+0.755*ease;", "const zoom=1.755;")
     before = "fetch('assets/lottie/'+encodeURIComponent(name)+'.json')"
     after = "fetch('assets/lottie/'+encodeURIComponent(name==='f01'?'f01-v16':name)+'.json')"
     if before in index:
         assert index.count(before) == 1
         index = index.replace(before, after)
     assert index.count(after) == 1
-    assert index.count("const zoom=1+0.755*ease;") == 1
+    assert index.count("const zoom=1.755;") == 1
+    assert "const zoom=1+0.755*ease;" not in index and "const zoom=1+0.35*ease;" not in index
     assert index.count("function "+new_fn) == 1
     assert index.count(new_fn+"(l,container)") == 1
     assets["index.html"] = index.encode("utf-8")
 
     css = assets["assets/zestry-owner-v8.css"].decode("utf-8")
-    marker = "/* V16 review: F01 30% larger than V15 (1.755x V14), ingredient position-only retargeting. */"
+    marker = "/* V16 FIXED SIZE review: F01 stays 1.755x V14 through every frame, no zoom or camera growth. */"
     if marker not in css:
         css += "\n"+marker+"\n"
     assets["assets/zestry-owner-v8.css"] = css.encode("utf-8")
@@ -160,7 +162,7 @@ def main() -> None:
     if args.review_site is not None:
         prepare_local_site(final, args.review_site)
 
-    print("V16 REVIEW ONLY: 1.755x artwork; 0.82 ingredient-center factor; ZIP bytes", len(final))
+    print("V16 FIXED FROM FRAME 0: 1.755x artwork; 0.82 ingredient-center factor; ZIP bytes", len(final))
     print("V16 REVIEW ONLY: No deploy command, hosting change or merge performed")
 
 if __name__ == "__main__":
