@@ -121,18 +121,18 @@ async function collect(profile){
   await stress.addInitScript(instrument);
   await stress.addInitScript(()=>{
    // Seed the same first catalog row once from a real app-rendered session in this QA only.
-   sessionStorage.setItem('chapchitra-session-demo-bag-v1',JSON.stringify([['tee-regular-001',98]]));
+   sessionStorage.setItem('chapchitra-session-demo-bag-v1',JSON.stringify([['study-001',98]]));
   });
   // The seeded ID is a test fixture; only exercise if the catalog actually contains it.
   const stressPage=await stress.newPage();
   await stressPage.goto(ORIGIN+'/',{waitUntil:'domcontentloaded'});
   const start=await stressPage.locator('.bag-link').getAttribute('aria-label');
   if(start.includes('98 items')){
-   await stressPage.locator('[data-add-to-bag="tee-regular-001"]').first().click();
+   await stressPage.locator('[data-add-to-bag="study-001"]').first().click();
    const at99=await stressPage.locator('.bag-link').getAttribute('aria-label');
    insist(at99.includes('99 items'),'98→99 failed');
    const c=await stressPage.evaluate(()=>window.__c04Calls.length);
-   await stressPage.locator('[data-add-to-bag="tee-regular-001"]').first().click();
+   await stressPage.locator('[data-add-to-bag="study-001"]').first().click();
    insist(await stressPage.evaluate(n=>window.__c04Calls.length===n,c),'limit 99 should not reprint');
    check.push('99 limit: no false stamp');
   }else warnings.push('99-limit seed ID not in catalog; skipped this specific limit scenario');
