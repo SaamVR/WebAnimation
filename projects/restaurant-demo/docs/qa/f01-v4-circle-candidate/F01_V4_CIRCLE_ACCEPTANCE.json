@@ -5,7 +5,7 @@
   "viewports": {
     "desktop": {
       "first": {
-        "frame": 0,
+        "frame": 1.99716,
         "fr": 30,
         "frames": 261,
         "loop": false,
@@ -17,6 +17,7 @@
         "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
         "circleMask": "circle(50% at 50% 50%)",
         "circleOverflow": "hidden",
+        "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
         "circleRect": {
           "w": 756.59375,
           "h": 756.59375
@@ -68,6 +69,7 @@
         "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
         "circleMask": "circle(50% at 50% 50%)",
         "circleOverflow": "hidden",
+        "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
         "circleRect": {
           "w": 756.59375,
           "h": 756.59375
@@ -102,7 +104,7 @@
     },
     "mobile": {
       "first": {
-        "frame": 0.49907999999999986,
+        "frame": 1.9979999999999998,
         "fr": 30,
         "frames": 261,
         "loop": false,
@@ -114,6 +116,7 @@
         "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
         "circleMask": "circle(50% at 50% 50%)",
         "circleOverflow": "hidden",
+        "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
         "circleRect": {
           "w": 358,
           "h": 358
@@ -165,6 +168,7 @@
         "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
         "circleMask": "circle(50% at 50% 50%)",
         "circleOverflow": "hidden",
+        "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
         "circleRect": {
           "w": 358,
           "h": 358
@@ -203,7 +207,7 @@
       "name": "desktop original V4 30fps /261 frames / one-shot no reverse",
       "passed": true,
       "details": {
-        "frame": 0,
+        "frame": 1.99716,
         "fr": 30,
         "frames": 261,
         "loop": false,
@@ -215,6 +219,7 @@
         "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
         "circleMask": "circle(50% at 50% 50%)",
         "circleOverflow": "hidden",
+        "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
         "circleRect": {
           "w": 756.59375,
           "h": 756.59375
@@ -400,6 +405,7 @@
           "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
           "circleMask": "circle(50% at 50% 50%)",
           "circleOverflow": "hidden",
+          "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
           "circleRect": {
             "w": 756.59375,
             "h": 756.59375
@@ -436,6 +442,7 @@
           "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
           "circleMask": "circle(50% at 50% 50%)",
           "circleOverflow": "hidden",
+          "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
           "circleRect": {
             "w": 756.59375,
             "h": 756.59375
@@ -478,6 +485,7 @@
         "console": [],
         "badAssets": [],
         "F01Requests": [
+          "http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp",
           "http://127.0.0.1:18894/assets/lottie/f01.json"
         ]
       }
@@ -486,7 +494,7 @@
       "name": "mobile original V4 30fps /261 frames / one-shot no reverse",
       "passed": true,
       "details": {
-        "frame": 0.49907999999999986,
+        "frame": 1.9979999999999998,
         "fr": 30,
         "frames": 261,
         "loop": false,
@@ -498,6 +506,7 @@
         "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
         "circleMask": "circle(50% at 50% 50%)",
         "circleOverflow": "hidden",
+        "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
         "circleRect": {
           "w": 358,
           "h": 358
@@ -683,6 +692,7 @@
           "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
           "circleMask": "circle(50% at 50% 50%)",
           "circleOverflow": "hidden",
+          "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
           "circleRect": {
             "w": 358,
             "h": 358
@@ -719,6 +729,7 @@
           "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
           "circleMask": "circle(50% at 50% 50%)",
           "circleOverflow": "hidden",
+          "woodBackground": "url(\"http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp\")",
           "circleRect": {
             "w": 358,
             "h": 358
@@ -761,6 +772,7 @@
         "console": [],
         "badAssets": [],
         "F01Requests": [
+          "http://127.0.0.1:18894/assets/f01-v4-wood-fill.webp",
           "http://127.0.0.1:18894/assets/lottie/f01.json"
         ]
       }
