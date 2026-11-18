@@ -1,0 +1,161 @@
+{
+  "project": "ZESTRY",
+  "change": "Remove rejected F01 hero animation and its original source awaiting user re-upload",
+  "deployment": "NOT DEPLOYED",
+  "checks": [
+    {
+      "name": "original F01 source removed from GitHub working tree",
+      "pass": true,
+      "detail": {
+        "originalSourceDeleted": "projects/restaurant-demo/assets/lottie/f01.json",
+        "derivedSourceDeletedFromZIP": true,
+        "renderBuildSentinelOnly": true
+      }
+    },
+    {
+      "name": "desktop hero old F01 illustration absent",
+      "pass": true,
+      "detail": {
+        "placeholder": "Hero artwork awaiting replacement",
+        "oldF01Node": 0,
+        "oldWoodNode": 0,
+        "originalPastaNode": 0,
+        "heroWidth": 756.59375,
+        "f01AnimationCount": 0,
+        "horizontalOverflow": false,
+        "originalHeroText": "Fresh food.Good mood.",
+        "pageHasHeroReplacementMarker": true
+      }
+    },
+    {
+      "name": "desktop neutral placeholder and original marketing content",
+      "pass": true,
+      "detail": {
+        "placeholder": "Hero artwork awaiting replacement",
+        "oldF01Node": 0,
+        "oldWoodNode": 0,
+        "originalPastaNode": 0,
+        "heroWidth": 756.59375,
+        "f01AnimationCount": 0,
+        "horizontalOverflow": false,
+        "originalHeroText": "Fresh food.Good mood.",
+        "pageHasHeroReplacementMarker": true
+      }
+    },
+    {
+      "name": "desktop original chef animation still playable",
+      "pass": true,
+      "detail": {
+        "frame": 0,
+        "duration": 210,
+        "loop": true,
+        "direction": 1,
+        "rendered": true
+      }
+    },
+    {
+      "name": "desktop F05 menu still opens and adds simulated dish",
+      "pass": true,
+      "detail": {
+        "count": "1",
+        "state": "Starters"
+      }
+    },
+    {
+      "name": "desktop F04 checkout confirmation preserved",
+      "pass": true,
+      "detail": {
+        "message": "Sample order confirmation\n\u00d7\nYOUR ORDER\nSample order received\n\nSample subtotal $13.00.\n\nThis is a demonstration. Nothing was submitted or paid for.\n\nReturn to ZESTRY"
+      }
+    },
+    {
+      "name": "desktop F07 booking confirmation preserved",
+      "pass": true,
+      "detail": {
+        "message": "Sample table request\n\u00d7\nYOUR TABLE\nSample table request received\n\n1 guests, 2026-12-01 at 10:00 AM.\n\nThis is a demonstration. Nothing was submitted or paid for.\n\nReturn to ZESTRY"
+      }
+    },
+    {
+      "name": "desktop F01 never requested and no site errors",
+      "pass": true,
+      "detail": {
+        "F01Requests": [],
+        "jsErrors": [],
+        "failedSiteAssets": []
+      }
+    },
+    {
+      "name": "mobile hero old F01 illustration absent",
+      "pass": true,
+      "detail": {
+        "placeholder": "Hero artwork awaiting replacement",
+        "oldF01Node": 0,
+        "oldWoodNode": 0,
+        "originalPastaNode": 0,
+        "heroWidth": 358,
+        "f01AnimationCount": 0,
+        "horizontalOverflow": false,
+        "originalHeroText": "Fresh food.Good mood.",
+        "pageHasHeroReplacementMarker": true
+      }
+    },
+    {
+      "name": "mobile neutral placeholder and original marketing content",
+      "pass": true,
+      "detail": {
+        "placeholder": "Hero artwork awaiting replacement",
+        "oldF01Node": 0,
+        "oldWoodNode": 0,
+        "originalPastaNode": 0,
+        "heroWidth": 358,
+        "f01AnimationCount": 0,
+        "horizontalOverflow": false,
+        "originalHeroText": "Fresh food.Good mood.",
+        "pageHasHeroReplacementMarker": true
+      }
+    },
+    {
+      "name": "mobile original chef animation still playable",
+      "pass": true,
+      "detail": {
+        "frame": 0,
+        "duration": 210,
+        "loop": true,
+        "direction": 1,
+        "rendered": true
+      }
+    },
+    {
+      "name": "mobile F05 menu still opens and adds simulated dish",
+      "pass": true,
+      "detail": {
+        "count": "1",
+        "state": "Starters"
+      }
+    },
+    {
+      "name": "mobile F04 checkout confirmation preserved",
+      "pass": true,
+      "detail": {
+        "message": "Sample order confirmation\n\u00d7\nYOUR ORDER\nSample order received\n\nSample subtotal $13.00.\n\nThis is a demonstration. Nothing was submitted or paid for.\n\nReturn to ZESTRY"
+      }
+    },
+    {
+      "name": "mobile F07 booking confirmation preserved",
+      "pass": true,
+      "detail": {
+        "message": "Sample table request\n\u00d7\nYOUR TABLE\nSample table request received\n\n1 guests, 2026-12-01 at 10:00 AM.\n\nThis is a demonstration. Nothing was submitted or paid for.\n\nReturn to ZESTRY"
+      }
+    },
+    {
+      "name": "mobile F01 never requested and no site errors",
+      "pass": true,
+      "detail": {
+        "F01Requests": [],
+        "jsErrors": [],
+        "failedSiteAssets": []
+      }
+    }
+  ],
+  "errors": []
+}
