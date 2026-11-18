@@ -1,0 +1,67 @@
+name: ZESTRY PR141 temporary archive and browser QA
+on:
+  push:
+    branches:
+      - feat/zestry-visible-forward-loops-20261119
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zestry-pr141-archive-qa
+  cancel-in-progress: false
+
+jobs:
+  approved-visible-replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify feature-only file paths and untouched THREADS
+        run: |
+          git diff --name-only 37d270fd96e5a3f3fab66ca5431a450c90e41914 HEAD |
+            grep -v -E '^projects/restaurant-demo/|^\.github/workflows/zestry-pr141-temporary-qa.yml$' > /tmp/nonzestry-changes.txt || true
+          if test -s /tmp/nonzestry-changes.txt; then cat /tmp/nonzestry-changes.txt; exit 2; fi
+          echo 'No changes to THREADS, CHAPCHITRA or other projects.'
+      - name: Set up Chromium
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright==1.56.0
+          python -m playwright install chromium --with-deps
+      - name: Validate patcher contracts
+        run: |
+          python -m unittest discover -v -s projects/restaurant-demo/zestry-v3-editorial -p test_visible_loops.py
+          python projects/restaurant-demo/zestry-v3-editorial/enable_visible_loops.py --check
+      - name: Integrate approved loop wiring into existing ZIP archive
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/enable_visible_loops.py
+          python projects/restaurant-demo/zestry-v3-editorial/enable_visible_loops.py --check
+      - name: Browser QA at exact deployed build transformations (localhost only)
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/qa_visible_loops.py
+      - name: Preserve real browser screenshots, videos and machine QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zestry-pr141-viewport-loop-qa
+          path: projects/restaurant-demo/docs/qa/owner-visible-loops-20261119/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit verified archive and QA report to feature branch only
+        if: success()
+        run: |
+          git config user.name "ZESTRY QA GitHub Actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add projects/restaurant-demo/review_bundle/ projects/restaurant-demo/docs/qa/owner-visible-loops-20261119/PR141_VISIBLE_LOOP_QA.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "feat(zestry): integrate QA-verified visible-only replay into review archive"
+            git push origin HEAD:feat/zestry-visible-forward-loops-20261119
+          fi
