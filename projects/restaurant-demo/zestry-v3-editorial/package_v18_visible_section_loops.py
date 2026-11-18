@@ -24,7 +24,7 @@ DEFAULTS={
 }
 JS=r"""/* ZESTRY_V18_VIEWPORT_PLAYBACK_CONTROLLER
  * All exported Lottie animations use their original 30fps keyframes.
- * Playback is allowed only while the containing SECTION (or dialog) is
+ * Playback is allowed only while the animation ELEMENT (or dialog) is
  * visible, while this document is foregrounded, and when motion is allowed.
  * F02 orbit uses bounce/ping-pong between the exact approved end poses:
  * no artificial jump from frame 209 to 0 and no original artwork edits.
@@ -105,7 +105,9 @@ async function play(name,container,loop=true){
   container.dataset.motionComplete='false';
   container.dataset.motionLoops='0';
   container.dataset.motionPolicy=chefOrbit?'pingpong':'repeat';
-  const root=container.closest('#modal')||container.closest('section')||container;
+  // Observe the ACTUAL illustration: tall mobile sections can remain in view
+  // after the animation itself has fully scrolled away.
+  const root=container.closest('#modal')||container;
   const st={item:l,container,root,near:false,modal:container.closest('#modal'),observer:null};
   motionStates.add(st);
   if(chefOrbit){
