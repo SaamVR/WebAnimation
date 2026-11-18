@@ -119,17 +119,31 @@ def main():
         data={i.filename:z.read(i.filename) for i in z.infolist()}
     assert "assets/lottie/f01-v16.json" not in data
     old=json.loads(data["assets/lottie/f01.json"])
-    assert old["nm"]=="F01_REMOVED__EMPTY_RENDER_BUILD_VALIDATION_ONLY"
+    assert old["nm"] in ("F01_REMOVED__EMPTY_RENDER_BUILD_VALIDATION_ONLY",
+                         master["nm"]),old["nm"]
     original={k:sha256(v).hexdigest() for k,v in data.items()}
-    assert len(data)==57,len(data)
+    assert len(data) in (57,58),len(data)
     data["assets/lottie/f01.json"]=SOURCE.read_bytes() # EXACT owner V4 unchanged
     wood=ROOT/"assets/f01-v4-wood-fill.webp"
     assert wood.is_file() and wood.stat().st_size>1000,"Derived original wood fill required"
     assert wood.read_bytes()[:4]==b'RIFF' and wood.read_bytes()[8:12]==b'WEBP'
     data["assets/f01-v4-wood-fill.webp"]=wood.read_bytes()
-    data["index.html"]=integrate(data["index.html"].decode()).encode()
+    page=data["index.html"].decode()
+    if MARKER in page:
+        original_css="""  background:#ecad7e;
+  background-image:repeating-linear-gradient(180deg,
+    transparent 0px,transparent 16px,rgba(151,84,48,.08) 17px,
+    transparent 18px,transparent 30px);"""
+        final_css="""  background:#ecad7e url('assets/f01-v4-wood-fill.webp') center center/100% 100% no-repeat;"""
+        if original_css in page:
+            page=page.replace(original_css,final_css,1)
+        assert final_css in page,"Previously integrated player has unknown background"
+    else:
+        page=integrate(page)
+    data["index.html"]=page.encode()
     changed=[p for p in data if p not in original or original[p]!=sha256(data[p]).hexdigest()]
-    assert set(changed)=={"assets/lottie/f01.json","index.html","assets/f01-v4-wood-fill.webp"},changed
+    assert set(changed)<={"assets/lottie/f01.json","index.html","assets/f01-v4-wood-fill.webp"},changed
+    assert "assets/f01-v4-wood-fill.webp" in data
     result=io.BytesIO()
     with zipfile.ZipFile(result,"w") as out:
         for name,blob in data.items():
