@@ -1,0 +1,64 @@
+name: ZESTRY remove rejected F01 source and hero (NO DEPLOY)
+on:
+  push:
+    branches:
+      - remove/zestry-f01-await-new-artwork-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/remove_f01_await_upload.py
+      - projects/restaurant-demo/zestry-v3-editorial/qa_f01_removed.py
+      - .github/workflows/zestry-f01-remove-qa.yml
+
+permissions:
+  contents: read
+
+jobs:
+  remove-only-f01-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Remove original F01 data and runtime from existing ZESTRY ZIP
+        run: python3 projects/restaurant-demo/zestry-v3-editorial/remove_f01_await_upload.py
+      - name: Delete original F01 JSON source from current GitHub branch
+        run: |
+          git rm -f projects/restaurant-demo/assets/lottie/f01.json
+          test ! -e projects/restaurant-demo/assets/lottie/f01.json
+          echo 'Original F01 source deleted; separate inert compatibility stub remains only in ZIP for existing Render build'
+      - name: Install actual Chromium for regression testing
+        run: |
+          python -m pip install 'playwright==1.56.0'
+          python -m playwright install chromium
+      - name: Browser QA — no old F01, other animations still functional
+        run: python3 projects/restaurant-demo/zestry-v3-editorial/qa_f01_removed.py
+      - name: Preserve QA evidence even if test fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-F01-REMOVAL-AND-REPLACEMENT-SLOT-QA
+          path: projects/restaurant-demo/docs/qa/owner-f01-removed/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Publish reviewed source deletion and bundle to feature branch ONLY
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/review_bundle/ \
+            projects/restaurant-demo/docs/qa/owner-f01-removed/
+          git diff --cached --name-only > /tmp/zestry-f01-scoped.txt
+          if grep -v '^projects/restaurant-demo/' /tmp/zestry-f01-scoped.txt; then
+            echo 'Unexpected change outside restaurant demo';exit 1
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'remove(zestry): rejected F01 original source and rendered hero, retain other animations [skip ci]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo 'No Render deployment; candidate remains isolated until release review'
