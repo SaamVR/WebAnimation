@@ -44,3 +44,17 @@ Passing GitHub Actions: https://github.com/SaamVR/WebAnimation/actions/runs/4439
 2. Merge PR #141 into the existing staging integration branch when ready, preserving unrelated projects; no new preview site.
 3. Deploy **only after explicit owner permission**, in place on existing Render service `srv-dbtkitifngtc73cua2p0`.
 4. Verify actual live SHA, F01/F02/F07 asset hashes, booking overlay geometry and F07 playback at desktop/mobile widths. Do not label merged source live until confirmed on Render.
+
+## Owner follow-up — marked wide reservation illustration (2026-11-19)
+
+The owner approved the modal design but identified unused space within the red header with a green rectangular outline. The subsequent direction was to **expand the original F07 reservation animation from the small corner tile into a wide rectangular panel occupying that marked header region**. This request updates container geometry only; it does not authorize altering, replacing, cropping, or rescripting the original F07 artwork.
+
+Implemented on PR #141:
+- Desktop and iPad: original F07 Lottie in a **356×146 px** wide yellow panel (aspect ratio ≈2.44:1), next to the heading and below/left of the close button, uncropped via the original Lottie \`preserveAspectRatio: xMidYMid meet\`.
+- Mobile 390px: **132×74 px** landscape panel; compact 320px: **104×60 px**; responsive text, close affordance, and vertically stacked form remain intact.
+- Native forward looping still runs only with the modal visible and stops when closed or offscreen; reduced-motion remains respected.
+- Original F07 source SHA-256 remains \`a07dac1c24e3b867e9ca81cb30df99eafe5a4b8809a4a03dbfc8f603b636b84b\`.
+
+**Latest browser acceptance:** https://github.com/SaamVR/WebAnimation/actions/runs/44399573955 — reservation/modal **71/71 PASS**, full independent F01–F07/F04/F05 regression **63/63 PASS**, on desktop, iPad, mobile, compact screen and reduced-motion. Video and screenshot artifact: \`zestry-pr141-wide-reservation-panel-qa\`. The ZIP patcher edits only \`index.html\`; original Lottie JSON files are byte-identical.
+
+**Release governance unchanged:** PR #141 stays within \`projects/restaurant-demo/\`; no merge/deploy without owner authorization and in-place release controls. The screenshot is a native browser rendering. Final owner visual review can proceed before staging deployment.
