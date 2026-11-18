@@ -11,14 +11,14 @@ with zipfile.ZipFile(io.BytesIO(b"".join(p.read_bytes() for p in parts))) as z:
  html=z.read("index.html").decode()
  print("ARCHIVE_MEMBERS",len(z.namelist()),"MAIN_SHA256",hashlib.sha256(html.encode()).hexdigest(),flush=True)
  print("ANIM_HOSTS",re.findall(r'data-animation=["\x27]([^"\x27]+)',html),flush=True)
- for needle in ("Request a table","booking-form","bookform","id='modal'","id=\"modal\"","function askBooking","async function play","function showModal","new IntersectionObserver","form-row","res-form","data-book","id=\"reservation"):
+ for needle in ("Request a table","booking-form","bookform","id='modal'","id=\"modal\"","function askBooking","function setDialog","function modal(","function close(","async function play","function showModal","new IntersectionObserver","form-row","res-form","data-book","id=\"reservation"):
   matches=[m.start() for m in re.finditer(re.escape(needle),html,re.I)]
   print("\n==== SEARCH",needle,len(matches),flush=True)
   for p in matches[:3]:
    print("OFFSET",p,repr(html[max(0,p-1000):p+2900]),flush=True)
  css=html.split("<style>",1)[1].split("</style>",1)[0] if "<style>" in html else ""
  print("\nINLINE CSS TOTAL",len(css),flush=True)
- for needle in ("#modal",".modal",".booking-",".field",".form-grid",".form-row",".reserve-",".book-"):
+ for needle in (":root","--red","--yellow","#modal",".modal",".booking-",".field",".form-grid",".form-row",".reserve-",".book-"):
   matches=[m.start() for m in re.finditer(re.escape(needle),css,re.I)]
   print("\n==== CSS",needle,len(matches),flush=True)
   for p in matches[:8]:
