@@ -1,0 +1,1240 @@
+{
+  "deployment": "NONE",
+  "pr": 141,
+  "checks": [
+    {
+      "name": "immutable f01",
+      "pass": true,
+      "details": {
+        "actual": "7fc0054b5ae4c1c7a13d0a3c5e321d117d570d8f0d71e3308ee076a48d301e37"
+      }
+    },
+    {
+      "name": "immutable f02-chef-full360",
+      "pass": true,
+      "details": {
+        "actual": "e48ae2126de66a2e60098156f6403fae797fb89c04168654d6232fbc517406fa"
+      }
+    },
+    {
+      "name": "immutable f03",
+      "pass": true,
+      "details": {
+        "actual": "136436c9af903ede3485bd0d688b9d2a57a6e9a1b52fb850a4aedb4d79710e68"
+      }
+    },
+    {
+      "name": "only one single-chef source player",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "desktop f01 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f01",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 8,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 261,
+        "rate": 30,
+        "svg": true,
+        "children": 502
+      }
+    },
+    {
+      "name": "desktop f01 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f01",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 4,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 261,
+        "rate": 30,
+        "svg": true,
+        "children": 502
+      }
+    },
+    {
+      "name": "desktop f01 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f01",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 12,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 261,
+          "rate": 30,
+          "svg": true,
+          "children": 502
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f01",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 12,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 261,
+          "rate": 30,
+          "svg": true,
+          "children": 502
+        }
+      }
+    },
+    {
+      "name": "desktop f01 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f01",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 12,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 261,
+        "rate": 30,
+        "svg": true,
+        "children": 502
+      }
+    },
+    {
+      "name": "desktop f02-chef-full360 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 4,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "desktop f02-chef-full360 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 0,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "desktop f02-chef-full360 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f02-chef-full360",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 8,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 210,
+          "rate": 30,
+          "svg": true,
+          "children": 527
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f02-chef-full360",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 8,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 210,
+          "rate": 30,
+          "svg": true,
+          "children": 527
+        }
+      }
+    },
+    {
+      "name": "desktop f02-chef-full360 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 8,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "desktop f03 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f03",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 23,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 72
+      }
+    },
+    {
+      "name": "desktop f03 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f03",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 1,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 72
+      }
+    },
+    {
+      "name": "desktop f03 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f03",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 10,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 228,
+          "rate": 30,
+          "svg": true,
+          "children": 72
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f03",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 10,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 228,
+          "rate": 30,
+          "svg": true,
+          "children": 72
+        }
+      }
+    },
+    {
+      "name": "desktop f03 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f03",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 10,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 72
+      }
+    },
+    {
+      "name": "desktop f06 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f06",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 4,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 432,
+        "rate": 30,
+        "svg": true,
+        "children": 186
+      }
+    },
+    {
+      "name": "desktop f06 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f06",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 1,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 432,
+        "rate": 30,
+        "svg": true,
+        "children": 186
+      }
+    },
+    {
+      "name": "desktop f06 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f06",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 8,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 432,
+          "rate": 30,
+          "svg": true,
+          "children": 186
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f06",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 8,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 432,
+          "rate": 30,
+          "svg": true,
+          "children": 186
+        }
+      }
+    },
+    {
+      "name": "desktop f06 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f06",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 8,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 432,
+        "rate": 30,
+        "svg": true,
+        "children": 186
+      }
+    },
+    {
+      "name": "desktop f07 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f07",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 113,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 1565
+      }
+    },
+    {
+      "name": "desktop f07 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f07",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 1,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 1565
+      }
+    },
+    {
+      "name": "desktop f07 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f07",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 8,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 228,
+          "rate": 30,
+          "svg": true,
+          "children": 1565
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f07",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 8,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 228,
+          "rate": 30,
+          "svg": true,
+          "children": 1565
+        }
+      }
+    },
+    {
+      "name": "desktop f07 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f07",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 9,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 1565
+      }
+    },
+    {
+      "name": "desktop uses exactly one approved chef",
+      "pass": true,
+      "details": [
+        "http://127.0.0.1:40315/assets/lottie/f02-chef-full360.json"
+      ]
+    },
+    {
+      "name": "desktop hidden document pauses",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "false",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 16,
+        "paused": true,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "desktop visible document resumes",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 16,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "desktop F05 manual menu page-turn preserved",
+      "pass": true,
+      "details": {
+        "state": "Overview"
+      }
+    },
+    {
+      "name": "desktop F04 demo confirmation forward-loop while modal open",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "policy": "visible-forward-repeat",
+        "inView": "true",
+        "loop": true,
+        "paused": false,
+        "direction": 1,
+        "modal": "modal active",
+        "label": "Sample order received"
+      }
+    },
+    {
+      "name": "desktop F04 modal close pauses playback",
+      "pass": true,
+      "details": {
+        "paused": true
+      }
+    },
+    {
+      "name": "desktop no browser errors or missing local assets",
+      "pass": true,
+      "details": {
+        "errors": [],
+        "httpFailures": []
+      }
+    },
+    {
+      "name": "desktop no horizontal overflow",
+      "pass": true,
+      "details": {
+        "width": 1600,
+        "scrollWidth": 1600
+      }
+    },
+    {
+      "name": "desktop real browser recording",
+      "pass": true,
+      "details": {
+        "path": "desktop-viewport-loop-browser.webm",
+        "bytes": 2501429
+      }
+    },
+    {
+      "name": "mobile f01 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f01",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 9,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 261,
+        "rate": 30,
+        "svg": true,
+        "children": 502
+      }
+    },
+    {
+      "name": "mobile f01 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f01",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 1,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 261,
+        "rate": 30,
+        "svg": true,
+        "children": 502
+      }
+    },
+    {
+      "name": "mobile f01 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f01",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 9,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 261,
+          "rate": 30,
+          "svg": true,
+          "children": 502
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f01",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 9,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 261,
+          "rate": 30,
+          "svg": true,
+          "children": 502
+        }
+      }
+    },
+    {
+      "name": "mobile f01 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f01",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 10,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 261,
+        "rate": 30,
+        "svg": true,
+        "children": 502
+      }
+    },
+    {
+      "name": "mobile f02-chef-full360 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 5,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "mobile f02-chef-full360 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 1,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "mobile f02-chef-full360 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f02-chef-full360",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 8,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 210,
+          "rate": 30,
+          "svg": true,
+          "children": 527
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f02-chef-full360",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 8,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 210,
+          "rate": 30,
+          "svg": true,
+          "children": 527
+        }
+      }
+    },
+    {
+      "name": "mobile f02-chef-full360 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 8,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "mobile f03 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f03",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 18,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 72
+      }
+    },
+    {
+      "name": "mobile f03 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f03",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 1,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 72
+      }
+    },
+    {
+      "name": "mobile f03 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f03",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 7,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 228,
+          "rate": 30,
+          "svg": true,
+          "children": 72
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f03",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 7,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 228,
+          "rate": 30,
+          "svg": true,
+          "children": 72
+        }
+      }
+    },
+    {
+      "name": "mobile f03 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f03",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 8,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 72
+      }
+    },
+    {
+      "name": "mobile f06 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f06",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 3,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 432,
+        "rate": 30,
+        "svg": true,
+        "children": 186
+      }
+    },
+    {
+      "name": "mobile f06 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f06",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 1,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 432,
+        "rate": 30,
+        "svg": true,
+        "children": 186
+      }
+    },
+    {
+      "name": "mobile f06 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f06",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 7,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 432,
+          "rate": 30,
+          "svg": true,
+          "children": 186
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f06",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 7,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 432,
+          "rate": 30,
+          "svg": true,
+          "children": 186
+        }
+      }
+    },
+    {
+      "name": "mobile f06 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f06",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 8,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 432,
+        "rate": 30,
+        "svg": true,
+        "children": 186
+      }
+    },
+    {
+      "name": "mobile f07 native loop enabled",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f07",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 110,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 1565
+      }
+    },
+    {
+      "name": "mobile f07 completes two forward loops",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f07",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 0,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 1565
+      }
+    },
+    {
+      "name": "mobile f07 pauses offscreen at same frame",
+      "pass": true,
+      "details": {
+        "paused": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f07",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 7,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 228,
+          "rate": 30,
+          "svg": true,
+          "children": 1565
+        },
+        "after350ms": {
+          "exists": true,
+          "loaded": "yes",
+          "player": "f07",
+          "inView": "false",
+          "policy": "visible-forward-repeat",
+          "loops": 2,
+          "frame": 7,
+          "paused": true,
+          "loop": true,
+          "direction": 1,
+          "duration": 228,
+          "rate": 30,
+          "svg": true,
+          "children": 1565
+        }
+      }
+    },
+    {
+      "name": "mobile f07 resumes forward on return",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f07",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 8,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 228,
+        "rate": 30,
+        "svg": true,
+        "children": 1565
+      }
+    },
+    {
+      "name": "mobile uses exactly one approved chef",
+      "pass": true,
+      "details": [
+        "http://127.0.0.1:40315/assets/lottie/f02-chef-full360.json"
+      ]
+    },
+    {
+      "name": "mobile hidden document pauses",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "false",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 16,
+        "paused": true,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "mobile visible document resumes",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f02-chef-full360",
+        "inView": "true",
+        "policy": "visible-forward-repeat",
+        "loops": 2,
+        "frame": 16,
+        "paused": false,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "rate": 30,
+        "svg": true,
+        "children": 527
+      }
+    },
+    {
+      "name": "mobile F05 manual menu page-turn preserved",
+      "pass": true,
+      "details": {
+        "state": "Overview"
+      }
+    },
+    {
+      "name": "mobile F04 demo confirmation forward-loop while modal open",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "policy": "visible-forward-repeat",
+        "inView": "true",
+        "loop": true,
+        "paused": false,
+        "direction": 1,
+        "modal": "modal active",
+        "label": "Sample order received"
+      }
+    },
+    {
+      "name": "mobile F04 modal close pauses playback",
+      "pass": true,
+      "details": {
+        "paused": true
+      }
+    },
+    {
+      "name": "mobile no browser errors or missing local assets",
+      "pass": true,
+      "details": {
+        "errors": [],
+        "httpFailures": []
+      }
+    },
+    {
+      "name": "mobile no horizontal overflow",
+      "pass": true,
+      "details": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "name": "mobile real browser recording",
+      "pass": true,
+      "details": {
+        "path": "mobile-viewport-loop-browser.webm",
+        "bytes": 1797988
+      }
+    },
+    {
+      "name": "reduced motion keeps F01 paused",
+      "pass": true,
+      "details": {
+        "exists": true,
+        "loaded": "yes",
+        "player": "f01",
+        "inView": "false",
+        "policy": "visible-forward-repeat",
+        "loops": 0,
+        "frame": 0,
+        "paused": true,
+        "loop": true,
+        "direction": 1,
+        "duration": 261,
+        "rate": 30,
+        "svg": true,
+        "children": 502
+      }
+    }
+  ],
+  "failures": [],
+  "sources": {
+    "f01": "7fc0054b5ae4c1c7a13d0a3c5e321d117d570d8f0d71e3308ee076a48d301e37",
+    "f02-chef-full360": "e48ae2126de66a2e60098156f6403fae797fb89c04168654d6232fbc517406fa",
+    "f03": "136436c9af903ede3485bd0d688b9d2a57a6e9a1b52fb850a4aedb4d79710e68"
+  },
+  "passed": 63,
+  "total": 63
+}

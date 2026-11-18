@@ -1,0 +1,3402 @@
+{
+  "pr": 141,
+  "deployment": "NONE",
+  "screens": [
+    "desktop-reservation-modal.png",
+    "ipad-reservation-modal.png",
+    "mobile-reservation-modal.png",
+    "compact-reservation-modal.png",
+    "reduced-reservation-modal.png"
+  ],
+  "checks": [
+    {
+      "name": "unchanged approved f01",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged approved f02-chef-full360",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged approved f07",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop original date, time, guests, name and email controls",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          1600,
+          900
+        ],
+        "rects": {
+          "modal": {
+            "left": 420,
+            "top": 129.609375,
+            "right": 1180,
+            "bottom": 770.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 421,
+            "top": 130.609375,
+            "right": 1179,
+            "bottom": 339.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 455,
+            "top": 189.3125,
+            "right": 741,
+            "bottom": 229.625,
+            "width": 286,
+            "height": 40.3125
+          },
+          "note": {
+            "left": 455,
+            "top": 239.625,
+            "right": 741,
+            "bottom": 279.90625,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 757,
+            "top": 161.609375,
+            "right": 1113,
+            "bottom": 307.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 1123,
+            "top": 142.609375,
+            "right": 1167,
+            "bottom": 186.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 457,
+            "top": 681.28125,
+            "right": 657.390625,
+            "bottom": 735.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 457,
+            "top": 397.5,
+            "right": 789,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 811,
+            "top": 397.5,
+            "right": 1143,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 457,
+            "top": 500.390625,
+            "right": 789,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 811,
+            "top": 500.390625,
+            "right": 1143,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 457,
+            "top": 603.28125,
+            "right": 1143,
+            "bottom": 657.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "332px 332px"
+      }
+    },
+    {
+      "name": "desktop note is directly under title with smaller type",
+      "passed": true,
+      "detail": {
+        "titleSize": 36,
+        "noteSize": 13,
+        "title": {
+          "left": 455,
+          "top": 189.3125,
+          "right": 741,
+          "bottom": 229.625,
+          "width": 286,
+          "height": 40.3125
+        },
+        "note": {
+          "left": 455,
+          "top": 239.625,
+          "right": 741,
+          "bottom": 279.90625,
+          "width": 286,
+          "height": 40.28125
+        }
+      }
+    },
+    {
+      "name": "desktop visually branded warm red header and yellow animation panel",
+      "passed": true,
+      "detail": {
+        "headerBG": "rgb(195, 40, 45)",
+        "illustrationBG": "linear-gradient(140deg, rgb(255, 210, 75), rgb(255, 233, 162))"
+      }
+    },
+    {
+      "name": "desktop animation in header right, no text or close overlap",
+      "passed": true,
+      "detail": {
+        "rects": {
+          "modal": {
+            "left": 420,
+            "top": 129.609375,
+            "right": 1180,
+            "bottom": 770.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 421,
+            "top": 130.609375,
+            "right": 1179,
+            "bottom": 339.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 455,
+            "top": 189.3125,
+            "right": 741,
+            "bottom": 229.625,
+            "width": 286,
+            "height": 40.3125
+          },
+          "note": {
+            "left": 455,
+            "top": 239.625,
+            "right": 741,
+            "bottom": 279.90625,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 757,
+            "top": 161.609375,
+            "right": 1113,
+            "bottom": 307.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 1123,
+            "top": 142.609375,
+            "right": 1167,
+            "bottom": 186.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 457,
+            "top": 681.28125,
+            "right": 657.390625,
+            "bottom": 735.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 457,
+            "top": 397.5,
+            "right": 789,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 811,
+            "top": 397.5,
+            "right": 1143,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 457,
+            "top": 500.390625,
+            "right": 789,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 811,
+            "top": 500.390625,
+            "right": 1143,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 457,
+            "top": 603.28125,
+            "right": 1143,
+            "bottom": 657.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        }
+      }
+    },
+    {
+      "name": "desktop illustration occupies wide marked header area",
+      "passed": true,
+      "detail": {
+        "art": {
+          "left": 757,
+          "top": 161.609375,
+          "right": 1113,
+          "bottom": 307.609375,
+          "width": 356,
+          "height": 146
+        },
+        "header": {
+          "left": 421,
+          "top": 130.609375,
+          "right": 1179,
+          "bottom": 339.609375,
+          "width": 758,
+          "height": 209
+        },
+        "minimumWidth": 320,
+        "aspect": 2.4383561643835616
+      }
+    },
+    {
+      "name": "desktop controls fit modal and never overlap",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          1600,
+          900
+        ],
+        "rects": {
+          "modal": {
+            "left": 420,
+            "top": 129.609375,
+            "right": 1180,
+            "bottom": 770.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 421,
+            "top": 130.609375,
+            "right": 1179,
+            "bottom": 339.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 455,
+            "top": 189.3125,
+            "right": 741,
+            "bottom": 229.625,
+            "width": 286,
+            "height": 40.3125
+          },
+          "note": {
+            "left": 455,
+            "top": 239.625,
+            "right": 741,
+            "bottom": 279.90625,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 757,
+            "top": 161.609375,
+            "right": 1113,
+            "bottom": 307.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 1123,
+            "top": 142.609375,
+            "right": 1167,
+            "bottom": 186.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 457,
+            "top": 681.28125,
+            "right": 657.390625,
+            "bottom": 735.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 457,
+            "top": 397.5,
+            "right": 789,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 811,
+            "top": 397.5,
+            "right": 1143,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 457,
+            "top": 500.390625,
+            "right": 789,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 811,
+            "top": 500.390625,
+            "right": 1143,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 457,
+            "top": 603.28125,
+            "right": 1143,
+            "bottom": 657.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "332px 332px"
+      }
+    },
+    {
+      "name": "desktop responsive form arrangement and breathing space",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          1600,
+          900
+        ],
+        "rects": {
+          "modal": {
+            "left": 420,
+            "top": 129.609375,
+            "right": 1180,
+            "bottom": 770.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 421,
+            "top": 130.609375,
+            "right": 1179,
+            "bottom": 339.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 455,
+            "top": 189.3125,
+            "right": 741,
+            "bottom": 229.625,
+            "width": 286,
+            "height": 40.3125
+          },
+          "note": {
+            "left": 455,
+            "top": 239.625,
+            "right": 741,
+            "bottom": 279.90625,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 757,
+            "top": 161.609375,
+            "right": 1113,
+            "bottom": 307.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 1123,
+            "top": 142.609375,
+            "right": 1167,
+            "bottom": 186.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 457,
+            "top": 681.28125,
+            "right": 657.390625,
+            "bottom": 735.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 457,
+            "top": 397.5,
+            "right": 789,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 811,
+            "top": 397.5,
+            "right": 1143,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 457,
+            "top": 500.390625,
+            "right": 789,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 811,
+            "top": 500.390625,
+            "right": 1143,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 457,
+            "top": 603.28125,
+            "right": 1143,
+            "bottom": 657.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "332px 332px"
+      }
+    },
+    {
+      "name": "desktop modal within viewport bounds",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          1600,
+          900
+        ],
+        "rects": {
+          "modal": {
+            "left": 420,
+            "top": 129.609375,
+            "right": 1180,
+            "bottom": 770.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 421,
+            "top": 130.609375,
+            "right": 1179,
+            "bottom": 339.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 455,
+            "top": 189.3125,
+            "right": 741,
+            "bottom": 229.625,
+            "width": 286,
+            "height": 40.3125
+          },
+          "note": {
+            "left": 455,
+            "top": 239.625,
+            "right": 741,
+            "bottom": 279.90625,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 757,
+            "top": 161.609375,
+            "right": 1113,
+            "bottom": 307.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 1123,
+            "top": 142.609375,
+            "right": 1167,
+            "bottom": 186.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 457,
+            "top": 681.28125,
+            "right": 657.390625,
+            "bottom": 735.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 457,
+            "top": 397.5,
+            "right": 789,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 811,
+            "top": 397.5,
+            "right": 1143,
+            "bottom": 451.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 457,
+            "top": 500.390625,
+            "right": 789,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 811,
+            "top": 500.390625,
+            "right": 1143,
+            "bottom": 554.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 457,
+            "top": 603.28125,
+            "right": 1143,
+            "bottom": 657.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "332px 332px"
+      }
+    },
+    {
+      "name": "desktop correct original F07 animation with viewport policy",
+      "passed": true,
+      "detail": {
+        "present": true,
+        "svg": true,
+        "playing": true,
+        "loop": true,
+        "direction": 1,
+        "frame": 9,
+        "inView": "true",
+        "loops": "0",
+        "totalFrames": 228
+      }
+    },
+    {
+      "name": "desktop F07 modal animation actually repeats forward",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop F07 modal pauses on close",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop reopen retains exactly one active reservation illustration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop simulated booking confirmation preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop no unexpected requests, local errors or overflow",
+      "passed": true,
+      "detail": {
+        "errors": [],
+        "badResponses": [],
+        "nonGet": []
+      }
+    },
+    {
+      "name": "desktop browser capture",
+      "passed": true,
+      "detail": {
+        "video": "desktop-reservation-interaction.webm",
+        "size": 580570
+      }
+    },
+    {
+      "name": "ipad original date, time, guests, name and email controls",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          1024,
+          768
+        ],
+        "rects": {
+          "modal": {
+            "left": 132,
+            "top": 63.609375,
+            "right": 892,
+            "bottom": 704.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 133,
+            "top": 64.609375,
+            "right": 891,
+            "bottom": 273.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 167,
+            "top": 126.265625,
+            "right": 453,
+            "bottom": 160.65625,
+            "width": 286,
+            "height": 34.390625
+          },
+          "note": {
+            "left": 167,
+            "top": 170.65625,
+            "right": 453,
+            "bottom": 210.9375,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 469,
+            "top": 95.609375,
+            "right": 825,
+            "bottom": 241.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 835,
+            "top": 76.609375,
+            "right": 879,
+            "bottom": 120.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 169,
+            "top": 615.28125,
+            "right": 369.390625,
+            "bottom": 669.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 169,
+            "top": 331.5,
+            "right": 501,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 523,
+            "top": 331.5,
+            "right": 855,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 169,
+            "top": 434.390625,
+            "right": 501,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 523,
+            "top": 434.390625,
+            "right": 855,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 169,
+            "top": 537.28125,
+            "right": 855,
+            "bottom": 591.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "332px 332px"
+      }
+    },
+    {
+      "name": "ipad note is directly under title with smaller type",
+      "passed": true,
+      "detail": {
+        "titleSize": 30.72,
+        "noteSize": 13,
+        "title": {
+          "left": 167,
+          "top": 126.265625,
+          "right": 453,
+          "bottom": 160.65625,
+          "width": 286,
+          "height": 34.390625
+        },
+        "note": {
+          "left": 167,
+          "top": 170.65625,
+          "right": 453,
+          "bottom": 210.9375,
+          "width": 286,
+          "height": 40.28125
+        }
+      }
+    },
+    {
+      "name": "ipad visually branded warm red header and yellow animation panel",
+      "passed": true,
+      "detail": {
+        "headerBG": "rgb(195, 40, 45)",
+        "illustrationBG": "linear-gradient(140deg, rgb(255, 210, 75), rgb(255, 233, 162))"
+      }
+    },
+    {
+      "name": "ipad animation in header right, no text or close overlap",
+      "passed": true,
+      "detail": {
+        "rects": {
+          "modal": {
+            "left": 132,
+            "top": 63.609375,
+            "right": 892,
+            "bottom": 704.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 133,
+            "top": 64.609375,
+            "right": 891,
+            "bottom": 273.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 167,
+            "top": 126.265625,
+            "right": 453,
+            "bottom": 160.65625,
+            "width": 286,
+            "height": 34.390625
+          },
+          "note": {
+            "left": 167,
+            "top": 170.65625,
+            "right": 453,
+            "bottom": 210.9375,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 469,
+            "top": 95.609375,
+            "right": 825,
+            "bottom": 241.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 835,
+            "top": 76.609375,
+            "right": 879,
+            "bottom": 120.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 169,
+            "top": 615.28125,
+            "right": 369.390625,
+            "bottom": 669.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 169,
+            "top": 331.5,
+            "right": 501,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 523,
+            "top": 331.5,
+            "right": 855,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 169,
+            "top": 434.390625,
+            "right": 501,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 523,
+            "top": 434.390625,
+            "right": 855,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 169,
+            "top": 537.28125,
+            "right": 855,
+            "bottom": 591.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        }
+      }
+    },
+    {
+      "name": "ipad illustration occupies wide marked header area",
+      "passed": true,
+      "detail": {
+        "art": {
+          "left": 469,
+          "top": 95.609375,
+          "right": 825,
+          "bottom": 241.609375,
+          "width": 356,
+          "height": 146
+        },
+        "header": {
+          "left": 133,
+          "top": 64.609375,
+          "right": 891,
+          "bottom": 273.609375,
+          "width": 758,
+          "height": 209
+        },
+        "minimumWidth": 320,
+        "aspect": 2.4383561643835616
+      }
+    },
+    {
+      "name": "ipad controls fit modal and never overlap",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          1024,
+          768
+        ],
+        "rects": {
+          "modal": {
+            "left": 132,
+            "top": 63.609375,
+            "right": 892,
+            "bottom": 704.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 133,
+            "top": 64.609375,
+            "right": 891,
+            "bottom": 273.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 167,
+            "top": 126.265625,
+            "right": 453,
+            "bottom": 160.65625,
+            "width": 286,
+            "height": 34.390625
+          },
+          "note": {
+            "left": 167,
+            "top": 170.65625,
+            "right": 453,
+            "bottom": 210.9375,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 469,
+            "top": 95.609375,
+            "right": 825,
+            "bottom": 241.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 835,
+            "top": 76.609375,
+            "right": 879,
+            "bottom": 120.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 169,
+            "top": 615.28125,
+            "right": 369.390625,
+            "bottom": 669.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 169,
+            "top": 331.5,
+            "right": 501,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 523,
+            "top": 331.5,
+            "right": 855,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 169,
+            "top": 434.390625,
+            "right": 501,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 523,
+            "top": 434.390625,
+            "right": 855,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 169,
+            "top": 537.28125,
+            "right": 855,
+            "bottom": 591.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "332px 332px"
+      }
+    },
+    {
+      "name": "ipad responsive form arrangement and breathing space",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          1024,
+          768
+        ],
+        "rects": {
+          "modal": {
+            "left": 132,
+            "top": 63.609375,
+            "right": 892,
+            "bottom": 704.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 133,
+            "top": 64.609375,
+            "right": 891,
+            "bottom": 273.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 167,
+            "top": 126.265625,
+            "right": 453,
+            "bottom": 160.65625,
+            "width": 286,
+            "height": 34.390625
+          },
+          "note": {
+            "left": 167,
+            "top": 170.65625,
+            "right": 453,
+            "bottom": 210.9375,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 469,
+            "top": 95.609375,
+            "right": 825,
+            "bottom": 241.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 835,
+            "top": 76.609375,
+            "right": 879,
+            "bottom": 120.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 169,
+            "top": 615.28125,
+            "right": 369.390625,
+            "bottom": 669.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 169,
+            "top": 331.5,
+            "right": 501,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 523,
+            "top": 331.5,
+            "right": 855,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 169,
+            "top": 434.390625,
+            "right": 501,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 523,
+            "top": 434.390625,
+            "right": 855,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 169,
+            "top": 537.28125,
+            "right": 855,
+            "bottom": 591.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "332px 332px"
+      }
+    },
+    {
+      "name": "ipad modal within viewport bounds",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          1024,
+          768
+        ],
+        "rects": {
+          "modal": {
+            "left": 132,
+            "top": 63.609375,
+            "right": 892,
+            "bottom": 704.390625,
+            "width": 760,
+            "height": 640.78125
+          },
+          "header": {
+            "left": 133,
+            "top": 64.609375,
+            "right": 891,
+            "bottom": 273.609375,
+            "width": 758,
+            "height": 209
+          },
+          "title": {
+            "left": 167,
+            "top": 126.265625,
+            "right": 453,
+            "bottom": 160.65625,
+            "width": 286,
+            "height": 34.390625
+          },
+          "note": {
+            "left": 167,
+            "top": 170.65625,
+            "right": 453,
+            "bottom": 210.9375,
+            "width": 286,
+            "height": 40.28125
+          },
+          "art": {
+            "left": 469,
+            "top": 95.609375,
+            "right": 825,
+            "bottom": 241.609375,
+            "width": 356,
+            "height": 146
+          },
+          "close": {
+            "left": 835,
+            "top": 76.609375,
+            "right": 879,
+            "bottom": 120.609375,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 169,
+            "top": 615.28125,
+            "right": 369.390625,
+            "bottom": 669.390625,
+            "width": 200.390625,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 169,
+            "top": 331.5,
+            "right": 501,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "time": {
+            "left": 523,
+            "top": 331.5,
+            "right": 855,
+            "bottom": 385.5,
+            "width": 332,
+            "height": 54
+          },
+          "guests": {
+            "left": 169,
+            "top": 434.390625,
+            "right": 501,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "name": {
+            "left": 523,
+            "top": 434.390625,
+            "right": 855,
+            "bottom": 488.390625,
+            "width": 332,
+            "height": 54
+          },
+          "email": {
+            "left": 169,
+            "top": 537.28125,
+            "right": 855,
+            "bottom": 591.28125,
+            "width": 686,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "332px 332px"
+      }
+    },
+    {
+      "name": "ipad correct original F07 animation with viewport policy",
+      "passed": true,
+      "detail": {
+        "present": true,
+        "svg": true,
+        "playing": true,
+        "loop": true,
+        "direction": 1,
+        "frame": 6,
+        "inView": "true",
+        "loops": "0",
+        "totalFrames": 228
+      }
+    },
+    {
+      "name": "ipad F07 modal animation actually repeats forward",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ipad F07 modal pauses on close",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ipad reopen retains exactly one active reservation illustration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ipad simulated booking confirmation preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ipad no unexpected requests, local errors or overflow",
+      "passed": true,
+      "detail": {
+        "errors": [],
+        "badResponses": [],
+        "nonGet": []
+      }
+    },
+    {
+      "name": "mobile original date, time, guests, name and email controls",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "328px"
+      }
+    },
+    {
+      "name": "mobile note is directly under title with smaller type",
+      "passed": true,
+      "detail": {
+        "titleSize": 25.35,
+        "noteSize": 11.5,
+        "title": {
+          "left": 30,
+          "top": 77.03125,
+          "right": 216,
+          "bottom": 105.40625,
+          "width": 186,
+          "height": 28.375
+        },
+        "note": {
+          "left": 30,
+          "top": 114.40625,
+          "right": 216,
+          "bottom": 163.390625,
+          "width": 186,
+          "height": 48.984375
+        }
+      }
+    },
+    {
+      "name": "mobile visually branded warm red header and yellow animation panel",
+      "passed": true,
+      "detail": {
+        "headerBG": "rgb(195, 40, 45)",
+        "illustrationBG": "linear-gradient(140deg, rgb(255, 210, 75), rgb(255, 233, 162))"
+      }
+    },
+    {
+      "name": "mobile animation in header right, no text or close overlap",
+      "passed": true,
+      "detail": {
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        }
+      }
+    },
+    {
+      "name": "mobile illustration occupies wide marked header area",
+      "passed": true,
+      "detail": {
+        "art": {
+          "left": 228,
+          "top": 115.21875,
+          "right": 360,
+          "bottom": 189.21875,
+          "width": 132,
+          "height": 74
+        },
+        "header": {
+          "left": 11,
+          "top": 26.21875,
+          "right": 379,
+          "bottom": 214.21875,
+          "width": 368,
+          "height": 188
+        },
+        "minimumWidth": 100,
+        "aspect": 1.7837837837837838
+      }
+    },
+    {
+      "name": "mobile controls fit modal and never overlap",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "328px"
+      }
+    },
+    {
+      "name": "mobile responsive form arrangement and breathing space",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "328px"
+      }
+    },
+    {
+      "name": "mobile modal within viewport bounds",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "328px"
+      }
+    },
+    {
+      "name": "mobile correct original F07 animation with viewport policy",
+      "passed": true,
+      "detail": {
+        "present": true,
+        "svg": true,
+        "playing": true,
+        "loop": true,
+        "direction": 1,
+        "frame": 8,
+        "inView": "true",
+        "loops": "0",
+        "totalFrames": 228
+      }
+    },
+    {
+      "name": "mobile F07 modal animation actually repeats forward",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile F07 modal pauses on close",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile reopen retains exactly one active reservation illustration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile simulated booking confirmation preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile no unexpected requests, local errors or overflow",
+      "passed": true,
+      "detail": {
+        "errors": [],
+        "badResponses": [],
+        "nonGet": []
+      }
+    },
+    {
+      "name": "mobile browser capture",
+      "passed": true,
+      "detail": {
+        "video": "mobile-reservation-interaction.webm",
+        "size": 199706
+      }
+    },
+    {
+      "name": "compact original date, time, guests, name and email controls",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          320,
+          690
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 12,
+            "right": 310,
+            "bottom": 678,
+            "width": 300,
+            "height": 666
+          },
+          "header": {
+            "left": 11,
+            "top": 13,
+            "right": 309,
+            "bottom": 188.8125,
+            "width": 298,
+            "height": 175.8125
+          },
+          "title": {
+            "left": 27,
+            "top": 38,
+            "right": 182,
+            "bottom": 89.5,
+            "width": 155,
+            "height": 51.5
+          },
+          "note": {
+            "left": 27,
+            "top": 98.5,
+            "right": 182,
+            "bottom": 163.8125,
+            "width": 155,
+            "height": 65.3125
+          },
+          "art": {
+            "left": 190,
+            "top": 102.90625,
+            "right": 294,
+            "bottom": 162.90625,
+            "width": 104,
+            "height": 60
+          },
+          "close": {
+            "left": 258,
+            "top": 20,
+            "right": 302,
+            "bottom": 64,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 27,
+            "top": 709.265625,
+            "right": 293,
+            "bottom": 763.375,
+            "width": 266,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 27,
+            "top": 235.703125,
+            "right": 293,
+            "bottom": 289.703125,
+            "width": 266,
+            "height": 54
+          },
+          "time": {
+            "left": 27,
+            "top": 335.59375,
+            "right": 293,
+            "bottom": 389.59375,
+            "width": 266,
+            "height": 54
+          },
+          "guests": {
+            "left": 27,
+            "top": 435.484375,
+            "right": 293,
+            "bottom": 489.484375,
+            "width": 266,
+            "height": 54
+          },
+          "name": {
+            "left": 27,
+            "top": 535.375,
+            "right": 293,
+            "bottom": 589.375,
+            "width": 266,
+            "height": 54
+          },
+          "email": {
+            "left": 27,
+            "top": 635.265625,
+            "right": 293,
+            "bottom": 689.265625,
+            "width": 266,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "266px"
+      }
+    },
+    {
+      "name": "compact note is directly under title with smaller type",
+      "passed": true,
+      "detail": {
+        "titleSize": 23,
+        "noteSize": 11.5,
+        "title": {
+          "left": 27,
+          "top": 38,
+          "right": 182,
+          "bottom": 89.5,
+          "width": 155,
+          "height": 51.5
+        },
+        "note": {
+          "left": 27,
+          "top": 98.5,
+          "right": 182,
+          "bottom": 163.8125,
+          "width": 155,
+          "height": 65.3125
+        }
+      }
+    },
+    {
+      "name": "compact visually branded warm red header and yellow animation panel",
+      "passed": true,
+      "detail": {
+        "headerBG": "rgb(195, 40, 45)",
+        "illustrationBG": "linear-gradient(140deg, rgb(255, 210, 75), rgb(255, 233, 162))"
+      }
+    },
+    {
+      "name": "compact animation in header right, no text or close overlap",
+      "passed": true,
+      "detail": {
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 12,
+            "right": 310,
+            "bottom": 678,
+            "width": 300,
+            "height": 666
+          },
+          "header": {
+            "left": 11,
+            "top": 13,
+            "right": 309,
+            "bottom": 188.8125,
+            "width": 298,
+            "height": 175.8125
+          },
+          "title": {
+            "left": 27,
+            "top": 38,
+            "right": 182,
+            "bottom": 89.5,
+            "width": 155,
+            "height": 51.5
+          },
+          "note": {
+            "left": 27,
+            "top": 98.5,
+            "right": 182,
+            "bottom": 163.8125,
+            "width": 155,
+            "height": 65.3125
+          },
+          "art": {
+            "left": 190,
+            "top": 102.90625,
+            "right": 294,
+            "bottom": 162.90625,
+            "width": 104,
+            "height": 60
+          },
+          "close": {
+            "left": 258,
+            "top": 20,
+            "right": 302,
+            "bottom": 64,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 27,
+            "top": 709.265625,
+            "right": 293,
+            "bottom": 763.375,
+            "width": 266,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 27,
+            "top": 235.703125,
+            "right": 293,
+            "bottom": 289.703125,
+            "width": 266,
+            "height": 54
+          },
+          "time": {
+            "left": 27,
+            "top": 335.59375,
+            "right": 293,
+            "bottom": 389.59375,
+            "width": 266,
+            "height": 54
+          },
+          "guests": {
+            "left": 27,
+            "top": 435.484375,
+            "right": 293,
+            "bottom": 489.484375,
+            "width": 266,
+            "height": 54
+          },
+          "name": {
+            "left": 27,
+            "top": 535.375,
+            "right": 293,
+            "bottom": 589.375,
+            "width": 266,
+            "height": 54
+          },
+          "email": {
+            "left": 27,
+            "top": 635.265625,
+            "right": 293,
+            "bottom": 689.265625,
+            "width": 266,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        }
+      }
+    },
+    {
+      "name": "compact illustration occupies wide marked header area",
+      "passed": true,
+      "detail": {
+        "art": {
+          "left": 190,
+          "top": 102.90625,
+          "right": 294,
+          "bottom": 162.90625,
+          "width": 104,
+          "height": 60
+        },
+        "header": {
+          "left": 11,
+          "top": 13,
+          "right": 309,
+          "bottom": 188.8125,
+          "width": 298,
+          "height": 175.8125
+        },
+        "minimumWidth": 95,
+        "aspect": 1.7333333333333334
+      }
+    },
+    {
+      "name": "compact controls fit modal and never overlap",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          320,
+          690
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 12,
+            "right": 310,
+            "bottom": 678,
+            "width": 300,
+            "height": 666
+          },
+          "header": {
+            "left": 11,
+            "top": 13,
+            "right": 309,
+            "bottom": 188.8125,
+            "width": 298,
+            "height": 175.8125
+          },
+          "title": {
+            "left": 27,
+            "top": 38,
+            "right": 182,
+            "bottom": 89.5,
+            "width": 155,
+            "height": 51.5
+          },
+          "note": {
+            "left": 27,
+            "top": 98.5,
+            "right": 182,
+            "bottom": 163.8125,
+            "width": 155,
+            "height": 65.3125
+          },
+          "art": {
+            "left": 190,
+            "top": 102.90625,
+            "right": 294,
+            "bottom": 162.90625,
+            "width": 104,
+            "height": 60
+          },
+          "close": {
+            "left": 258,
+            "top": 20,
+            "right": 302,
+            "bottom": 64,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 27,
+            "top": 709.265625,
+            "right": 293,
+            "bottom": 763.375,
+            "width": 266,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 27,
+            "top": 235.703125,
+            "right": 293,
+            "bottom": 289.703125,
+            "width": 266,
+            "height": 54
+          },
+          "time": {
+            "left": 27,
+            "top": 335.59375,
+            "right": 293,
+            "bottom": 389.59375,
+            "width": 266,
+            "height": 54
+          },
+          "guests": {
+            "left": 27,
+            "top": 435.484375,
+            "right": 293,
+            "bottom": 489.484375,
+            "width": 266,
+            "height": 54
+          },
+          "name": {
+            "left": 27,
+            "top": 535.375,
+            "right": 293,
+            "bottom": 589.375,
+            "width": 266,
+            "height": 54
+          },
+          "email": {
+            "left": 27,
+            "top": 635.265625,
+            "right": 293,
+            "bottom": 689.265625,
+            "width": 266,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "266px"
+      }
+    },
+    {
+      "name": "compact responsive form arrangement and breathing space",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          320,
+          690
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 12,
+            "right": 310,
+            "bottom": 678,
+            "width": 300,
+            "height": 666
+          },
+          "header": {
+            "left": 11,
+            "top": 13,
+            "right": 309,
+            "bottom": 188.8125,
+            "width": 298,
+            "height": 175.8125
+          },
+          "title": {
+            "left": 27,
+            "top": 38,
+            "right": 182,
+            "bottom": 89.5,
+            "width": 155,
+            "height": 51.5
+          },
+          "note": {
+            "left": 27,
+            "top": 98.5,
+            "right": 182,
+            "bottom": 163.8125,
+            "width": 155,
+            "height": 65.3125
+          },
+          "art": {
+            "left": 190,
+            "top": 102.90625,
+            "right": 294,
+            "bottom": 162.90625,
+            "width": 104,
+            "height": 60
+          },
+          "close": {
+            "left": 258,
+            "top": 20,
+            "right": 302,
+            "bottom": 64,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 27,
+            "top": 709.265625,
+            "right": 293,
+            "bottom": 763.375,
+            "width": 266,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 27,
+            "top": 235.703125,
+            "right": 293,
+            "bottom": 289.703125,
+            "width": 266,
+            "height": 54
+          },
+          "time": {
+            "left": 27,
+            "top": 335.59375,
+            "right": 293,
+            "bottom": 389.59375,
+            "width": 266,
+            "height": 54
+          },
+          "guests": {
+            "left": 27,
+            "top": 435.484375,
+            "right": 293,
+            "bottom": 489.484375,
+            "width": 266,
+            "height": 54
+          },
+          "name": {
+            "left": 27,
+            "top": 535.375,
+            "right": 293,
+            "bottom": 589.375,
+            "width": 266,
+            "height": 54
+          },
+          "email": {
+            "left": 27,
+            "top": 635.265625,
+            "right": 293,
+            "bottom": 689.265625,
+            "width": 266,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "266px"
+      }
+    },
+    {
+      "name": "compact modal within viewport bounds",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          320,
+          690
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 12,
+            "right": 310,
+            "bottom": 678,
+            "width": 300,
+            "height": 666
+          },
+          "header": {
+            "left": 11,
+            "top": 13,
+            "right": 309,
+            "bottom": 188.8125,
+            "width": 298,
+            "height": 175.8125
+          },
+          "title": {
+            "left": 27,
+            "top": 38,
+            "right": 182,
+            "bottom": 89.5,
+            "width": 155,
+            "height": 51.5
+          },
+          "note": {
+            "left": 27,
+            "top": 98.5,
+            "right": 182,
+            "bottom": 163.8125,
+            "width": 155,
+            "height": 65.3125
+          },
+          "art": {
+            "left": 190,
+            "top": 102.90625,
+            "right": 294,
+            "bottom": 162.90625,
+            "width": 104,
+            "height": 60
+          },
+          "close": {
+            "left": 258,
+            "top": 20,
+            "right": 302,
+            "bottom": 64,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 27,
+            "top": 709.265625,
+            "right": 293,
+            "bottom": 763.375,
+            "width": 266,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 27,
+            "top": 235.703125,
+            "right": 293,
+            "bottom": 289.703125,
+            "width": 266,
+            "height": 54
+          },
+          "time": {
+            "left": 27,
+            "top": 335.59375,
+            "right": 293,
+            "bottom": 389.59375,
+            "width": 266,
+            "height": 54
+          },
+          "guests": {
+            "left": 27,
+            "top": 435.484375,
+            "right": 293,
+            "bottom": 489.484375,
+            "width": 266,
+            "height": 54
+          },
+          "name": {
+            "left": 27,
+            "top": 535.375,
+            "right": 293,
+            "bottom": 589.375,
+            "width": 266,
+            "height": 54
+          },
+          "email": {
+            "left": 27,
+            "top": 635.265625,
+            "right": 293,
+            "bottom": 689.265625,
+            "width": 266,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "266px"
+      }
+    },
+    {
+      "name": "compact correct original F07 animation with viewport policy",
+      "passed": true,
+      "detail": {
+        "present": true,
+        "svg": true,
+        "playing": true,
+        "loop": true,
+        "direction": 1,
+        "frame": 8,
+        "inView": "true",
+        "loops": "0",
+        "totalFrames": 228
+      }
+    },
+    {
+      "name": "compact F07 modal animation actually repeats forward",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compact F07 modal pauses on close",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compact reopen retains exactly one active reservation illustration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compact simulated booking confirmation preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compact no unexpected requests, local errors or overflow",
+      "passed": true,
+      "detail": {
+        "errors": [],
+        "badResponses": [],
+        "nonGet": []
+      }
+    },
+    {
+      "name": "reduced original date, time, guests, name and email controls",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "328px"
+      }
+    },
+    {
+      "name": "reduced note is directly under title with smaller type",
+      "passed": true,
+      "detail": {
+        "titleSize": 25.35,
+        "noteSize": 11.5,
+        "title": {
+          "left": 30,
+          "top": 77.03125,
+          "right": 216,
+          "bottom": 105.40625,
+          "width": 186,
+          "height": 28.375
+        },
+        "note": {
+          "left": 30,
+          "top": 114.40625,
+          "right": 216,
+          "bottom": 163.390625,
+          "width": 186,
+          "height": 48.984375
+        }
+      }
+    },
+    {
+      "name": "reduced visually branded warm red header and yellow animation panel",
+      "passed": true,
+      "detail": {
+        "headerBG": "rgb(195, 40, 45)",
+        "illustrationBG": "linear-gradient(140deg, rgb(255, 210, 75), rgb(255, 233, 162))"
+      }
+    },
+    {
+      "name": "reduced animation in header right, no text or close overlap",
+      "passed": true,
+      "detail": {
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        }
+      }
+    },
+    {
+      "name": "reduced illustration occupies wide marked header area",
+      "passed": true,
+      "detail": {
+        "art": {
+          "left": 228,
+          "top": 115.21875,
+          "right": 360,
+          "bottom": 189.21875,
+          "width": 132,
+          "height": 74
+        },
+        "header": {
+          "left": 11,
+          "top": 26.21875,
+          "right": 379,
+          "bottom": 214.21875,
+          "width": 368,
+          "height": 188
+        },
+        "minimumWidth": 100,
+        "aspect": 1.7837837837837838
+      }
+    },
+    {
+      "name": "reduced controls fit modal and never overlap",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "328px"
+      }
+    },
+    {
+      "name": "reduced responsive form arrangement and breathing space",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "328px"
+      }
+    },
+    {
+      "name": "reduced modal within viewport bounds",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "rects": {
+          "modal": {
+            "left": 10,
+            "top": 25.21875,
+            "right": 380,
+            "bottom": 818.78125,
+            "width": 370,
+            "height": 793.5625
+          },
+          "header": {
+            "left": 11,
+            "top": 26.21875,
+            "right": 379,
+            "bottom": 214.21875,
+            "width": 368,
+            "height": 188
+          },
+          "title": {
+            "left": 30,
+            "top": 77.03125,
+            "right": 216,
+            "bottom": 105.40625,
+            "width": 186,
+            "height": 28.375
+          },
+          "note": {
+            "left": 30,
+            "top": 114.40625,
+            "right": 216,
+            "bottom": 163.390625,
+            "width": 186,
+            "height": 48.984375
+          },
+          "art": {
+            "left": 228,
+            "top": 115.21875,
+            "right": 360,
+            "bottom": 189.21875,
+            "width": 132,
+            "height": 74
+          },
+          "close": {
+            "left": 328,
+            "top": 33.21875,
+            "right": 372,
+            "bottom": 77.21875,
+            "width": 44,
+            "height": 44
+          },
+          "button": {
+            "left": 31,
+            "top": 737.671875,
+            "right": 359,
+            "bottom": 791.78125,
+            "width": 328,
+            "height": 54.109375
+          },
+          "date": {
+            "left": 31,
+            "top": 264.109375,
+            "right": 359,
+            "bottom": 318.109375,
+            "width": 328,
+            "height": 54
+          },
+          "time": {
+            "left": 31,
+            "top": 364,
+            "right": 359,
+            "bottom": 418,
+            "width": 328,
+            "height": 54
+          },
+          "guests": {
+            "left": 31,
+            "top": 463.890625,
+            "right": 359,
+            "bottom": 517.890625,
+            "width": 328,
+            "height": 54
+          },
+          "name": {
+            "left": 31,
+            "top": 563.78125,
+            "right": 359,
+            "bottom": 617.78125,
+            "width": 328,
+            "height": 54
+          },
+          "email": {
+            "left": 31,
+            "top": 663.671875,
+            "right": 359,
+            "bottom": 717.671875,
+            "width": 328,
+            "height": 54
+          }
+        },
+        "overlap": {
+          "dateTime": false,
+          "guestsName": false,
+          "artTitle": false,
+          "artNote": false,
+          "artClose": false
+        },
+        "columns": "328px"
+      }
+    },
+    {
+      "name": "reduced correct original F07 animation with viewport policy",
+      "passed": true,
+      "detail": {
+        "present": true,
+        "svg": true,
+        "playing": false,
+        "loop": true,
+        "direction": 1,
+        "frame": 0,
+        "inView": "false",
+        "loops": "0",
+        "totalFrames": 228
+      }
+    },
+    {
+      "name": "reduced no unexpected requests, local errors or overflow",
+      "passed": true,
+      "detail": {
+        "errors": [],
+        "badResponses": [],
+        "nonGet": []
+      }
+    }
+  ],
+  "failures": [],
+  "passed": 71,
+  "total": 71
+}
