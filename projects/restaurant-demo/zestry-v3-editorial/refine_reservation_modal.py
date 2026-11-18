@@ -102,7 +102,7 @@ STYLES=r"""
  width:172px;
  height:142px;
  max-width:100%;
- margin-top:20px;
+ margin-top:44px;
  margin-right:18px;
  background:linear-gradient(140deg,var(--yellow),#ffe9a2);
  border:2px solid #ffefba;
@@ -213,7 +213,7 @@ STYLES=r"""
   width:110px;
   height:93px;
   max-width:100%;
-  margin:37px 0 0;
+  margin:64px 0 0;
   border-radius:13px;
  }
  #modal.reservation-dialog .modalhead>.x{right:7px;top:7px}
