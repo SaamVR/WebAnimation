@@ -26,6 +26,9 @@ RELATIVE_GROWTH = 1.30
 V15_FINAL = 1.35
 TARGET = round(RELATIVE_GROWTH * V15_FINAL, 6)
 POSITION_FACTOR = 0.82
+# Calibrated independently against the full-size early ingredient entrances.
+# Defaults to the previous center factor until browser QA selects a safe value.
+EARLY_POSITION_FACTOR = float(os.environ.get("ZESTRY_EARLY_Q", "0.82"))
 
 def smooth(t: float) -> float:
     x = max(0., min(1., t))
@@ -49,7 +52,7 @@ def generate_derived(original: bytes) -> bytes:
                 if not isinstance(value, list) or len(value) < 2:
                     continue
                 time = keyframe["t"] if side == "s" or i+1 == len(frames) else frames[i+1]["t"]
-                q = POSITION_FACTOR  # Fixed-size composition: retarget motion positions throughout
+                q = EARLY_POSITION_FACTOR + (POSITION_FACTOR-EARLY_POSITION_FACTOR)*smooth((time-68.)/24.)
                 value[0] = round(992. + (value[0]-992.)*q, 5)
                 value[1] = round(567. + (value[1]-567.)*q, 5)
                 count += 1
