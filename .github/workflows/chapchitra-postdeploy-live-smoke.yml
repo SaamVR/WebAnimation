@@ -1,0 +1,35 @@
+name: CHAPCHITRA Public Render Staging Live Smoke (post-merge)
+on:
+  push:
+    branches:
+      - qa/chapchitra-live-smoke-20261118
+permissions:
+  contents: read
+jobs:
+  live-site:
+    name: LIVE Render light/dark browsers and C-series smoke
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Install actual Chromium and WebKit
+        working-directory: projects/chapchitra
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium webkit
+      - name: Live deployed CHAPCHITRA dual-theme + navigation + motion QA
+        working-directory: projects/chapchitra
+        run: node scripts/live-staging-qa.mjs
+      - name: Save actual browser evidence from LIVE Render
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: chapchitra-20261118-live-render-browser-qa
+          path: projects/chapchitra/perf-results/live-staging-20261118/
+          retention-days: 14
+          if-no-files-found: warn
