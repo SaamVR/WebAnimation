@@ -84,6 +84,7 @@ def test_viewport(browser,label,w,h):
       if r.status>=400 and r.url.startswith(URI) else None)
  p.on("request",lambda r:requests.append(r.url) if "f01" in r.url.lower() else None)
  p.goto(URI,wait_until="domcontentloaded",timeout=30000)
+ p.screenshot(path=str(OUT/f"{label}-full-page-first-viewport.png"))
  p.wait_for_function("""()=> {
    const a=window.lottie?.getRegisteredAnimations?.().find(x=>x.wrapper?.dataset?.player==='f01');
    return !!a?.renderer?.elements?.length &&
@@ -154,6 +155,46 @@ def test_viewport(browser,label,w,h):
  REPORT["viewports"][label]={"first":state,"broth":photos,"last":held,"chef":chef,
                             "errors":errors,"failedAssets":failed}
 
+def record_full_original_playback(browser,label,w,h):
+ """Capture a natural-speed native-browser loop-free V4 playback and final hold.
+
+ Test harness may position and restart player once; deployed site remains
+ unmodified, with no browser-controlled scaling or layer changes.
+ """
+ ctx=browser.new_context(viewport={"width":w,"height":h},device_scale_factor=1,
+        record_video_dir=str(OUT),record_video_size={"width":w,"height":h})
+ p=ctx.new_page();errors=[]
+ p.on("pageerror",lambda e:errors.append(str(e)))
+ p.goto(URI,wait_until="domcontentloaded",timeout=30000)
+ p.locator("#home .f01-v4-circle").scroll_into_view_if_needed()
+ p.wait_for_function("""()=>{
+   const a=window.lottie?.getRegisteredAnimations?.().find(x=>x.wrapper?.dataset?.player==='f01');
+   return !!a?.renderer?.elements?.length;
+ }""",timeout=26000)
+ p.evaluate("""()=>{
+   const a=window.lottie.getRegisteredAnimations().find(x=>x.wrapper?.dataset.player==='f01');
+   a.goToAndPlay(0,true);
+ }""")
+ initial=get_a(p)
+ p.wait_for_timeout(9700)
+ finish=get_a(p)
+ p.screenshot(path=str(OUT/f"{label}-full-V4-original-final-hold.png"))
+ ck(label+" full 8.7-second natural-speed original playback and final hold",
+     initial["fr"]==30 and initial["loop"] is False
+     and finish["frame"]>=259 and finish["paused"] is True
+     and finish["loop"] is False and not errors
+     and abs(initial["circleRect"]["w"]-finish["circleRect"]["w"])<1
+     and abs(initial["stageRect"]["h"]-finish["stageRect"]["h"])<1,
+     {"start":initial,"finish":finish,"browserErrors":errors})
+ video=p.video
+ ctx.close()
+ if video:
+  dest=OUT/f"{label}-F01-V4-full-original-native-browser.webm"
+  shutil.move(video.path(),dest)
+  ck(label+" original browser recording captured without video AI",
+     dest.stat().st_size>20000,{"filename":dest.name,"bytes":dest.stat().st_size})
+
+
 def main():
  parts=sorted((ROOT/"review_bundle").glob("part-*.bin"))
  assert parts
@@ -199,6 +240,12 @@ def main():
        import traceback
        traceback.print_exc()
        REPORT["failures"].append({"test":label,"exception":str(e)})
+     for label,w,h in [("desktop",1600,900),("mobile",390,844)]:
+      try:record_full_original_playback(browser,label,w,h)
+      except Exception as e:
+       import traceback
+       traceback.print_exc()
+       REPORT["failures"].append({"test":label+" full browser recording","exception":str(e)})
      browser.close()
    finally:server.shutdown()
  (OUT/"F01_V4_CIRCLE_ACCEPTANCE.json").write_text(json.dumps(REPORT,indent=2,default=str)+"\n")
