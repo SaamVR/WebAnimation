@@ -1,0 +1,118 @@
+{
+  "sections": [
+    {
+      "animation": "f02-orbit",
+      "first": {
+        "frame": 12,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": true,
+        "duration": 210,
+        "svg": true
+      },
+      "after": {
+        "frame": 37,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 210
+      }
+    },
+    {
+      "animation": "f02-cooking",
+      "first": {
+        "frame": 48,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": true,
+        "duration": 210,
+        "svg": true
+      },
+      "after": {
+        "frame": 72,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 210
+      }
+    },
+    {
+      "animation": "f06",
+      "first": {
+        "frame": 1,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": false,
+        "duration": 432,
+        "svg": true
+      },
+      "after": {
+        "frame": 25,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 432
+      }
+    },
+    {
+      "animation": "f03",
+      "first": {
+        "frame": 1,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": false,
+        "duration": 228,
+        "svg": true
+      },
+      "after": {
+        "frame": 26,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 228
+      }
+    },
+    {
+      "animation": "f07",
+      "first": {
+        "frame": 11,
+        "fr": 30,
+        "paused": false,
+        "subframeEnabled": false,
+        "loop": false,
+        "duration": 228,
+        "svg": true
+      },
+      "after": {
+        "frame": 36,
+        "paused": false,
+        "subframeEnabled": false,
+        "duration": 228
+      }
+    }
+  ],
+  "mobile": {
+    "navOpen": "true",
+    "navClose": "false",
+    "horizontalOverflow": false
+  },
+  "issues": [],
+  "date": "2026-11-18T07:01:01.730Z",
+  "menuFirstLoad": {
+    "src": null,
+    "activated": null
+  },
+  "menuActivated": {
+    "src": "assets/f05_book.html",
+    "active": "true"
+  },
+  "menuPausedOffscreen": {
+    "before": 0,
+    "after": 0
+  },
+  "menuResumed": {
+    "state": "Starters",
+    "lastFrame": 0
+  },
+  "bookAdd": "1"
+}

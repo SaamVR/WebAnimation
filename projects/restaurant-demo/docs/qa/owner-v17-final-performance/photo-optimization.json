@@ -1,0 +1,122 @@
+{
+  "count": 19,
+  "originalBytes": 3199748,
+  "webpBytes": 2341318,
+  "reductionPct": 26.8,
+  "rows": [
+    {
+      "name": "beet.jpg",
+      "originalBytes": 194274,
+      "webpBytes": 175758,
+      "psnr": 40.49
+    },
+    {
+      "name": "brownie.jpg",
+      "originalBytes": 64357,
+      "webpBytes": 35000,
+      "psnr": 45.04
+    },
+    {
+      "name": "burger.jpg",
+      "originalBytes": 154957,
+      "webpBytes": 117886,
+      "psnr": 42.19
+    },
+    {
+      "name": "caesar.jpg",
+      "originalBytes": 179161,
+      "webpBytes": 148510,
+      "psnr": 40.56
+    },
+    {
+      "name": "cake.jpg",
+      "originalBytes": 205524,
+      "webpBytes": 158780,
+      "psnr": 40.84
+    },
+    {
+      "name": "cheesecake.jpg",
+      "originalBytes": 127291,
+      "webpBytes": 79702,
+      "psnr": 42.08
+    },
+    {
+      "name": "chicken_bowl.jpg",
+      "originalBytes": 177924,
+      "webpBytes": 146082,
+      "psnr": 40.62
+    },
+    {
+      "name": "chicken_sandwich.jpg",
+      "originalBytes": 109833,
+      "webpBytes": 80568,
+      "psnr": 41.84
+    },
+    {
+      "name": "coffee.jpg",
+      "originalBytes": 363990,
+      "webpBytes": 238792,
+      "psnr": 41.41
+    },
+    {
+      "name": "greek.jpg",
+      "originalBytes": 168591,
+      "webpBytes": 116998,
+      "psnr": 40.66
+    },
+    {
+      "name": "lemonade.jpg",
+      "originalBytes": 246507,
+      "webpBytes": 147720,
+      "psnr": 42.29
+    },
+    {
+      "name": "matcha.jpg",
+      "originalBytes": 67729,
+      "webpBytes": 34740,
+      "psnr": 45.3
+    },
+    {
+      "name": "pancakes.jpg",
+      "originalBytes": 156113,
+      "webpBytes": 108314,
+      "psnr": 41.75
+    },
+    {
+      "name": "pasta.jpg",
+      "originalBytes": 168505,
+      "webpBytes": 126752,
+      "psnr": 40.86
+    },
+    {
+      "name": "restaurant.jpg",
+      "originalBytes": 253524,
+      "webpBytes": 203086,
+      "psnr": 40.38
+    },
+    {
+      "name": "salad.jpg",
+      "originalBytes": 235201,
+      "webpBytes": 190880,
+      "psnr": 39.96
+    },
+    {
+      "name": "smoothie.jpg",
+      "originalBytes": 90053,
+      "webpBytes": 60042,
+      "psnr": 43.8
+    },
+    {
+      "name": "tiramisu.jpg",
+      "originalBytes": 116064,
+      "webpBytes": 88646,
+      "psnr": 42.47
+    },
+    {
+      "name": "toast.jpg",
+      "originalBytes": 120150,
+      "webpBytes": 83062,
+      "psnr": 42.72
+    }
+  ]
+}

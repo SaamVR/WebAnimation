@@ -1,0 +1,428 @@
+{
+  "tag": "baseline",
+  "measurements": [
+    {
+      "name": "desktop",
+      "first": {
+        "navigation": {
+          "domContentLoaded": 815.2000000476837,
+          "load": 952.8000000715256,
+          "transfer": 34908
+        },
+        "longTasks": [
+          {
+            "duration": 100,
+            "startTime": 410.10000002384186
+          },
+          {
+            "duration": 61,
+            "startTime": 720.5
+          },
+          {
+            "duration": 112,
+            "startTime": 973.8999999761581
+          },
+          {
+            "duration": 626,
+            "startTime": 1134.7000000476837
+          },
+          {
+            "duration": 62,
+            "startTime": 2136.600000023842
+          },
+          {
+            "duration": 66,
+            "startTime": 4027.2000000476837
+          }
+        ],
+        "requestEntries": [
+          {
+            "name": "fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap",
+            "duration": 85,
+            "transfer": 975,
+            "encoded": 675
+          },
+          {
+            "name": "assets/editorial-v4.css",
+            "duration": 39,
+            "transfer": 13089,
+            "encoded": 12789
+          },
+          {
+            "name": "assets/feedback-v5.css",
+            "duration": 36,
+            "transfer": 4533,
+            "encoded": 4233
+          },
+          {
+            "name": "assets/f05_menu_integration.css",
+            "duration": 38,
+            "transfer": 1181,
+            "encoded": 881
+          },
+          {
+            "name": "assets/zestry-owner-v8.css",
+            "duration": 36,
+            "transfer": 5286,
+            "encoded": 4986
+          },
+          {
+            "name": "vendor/lottie.min.js",
+            "duration": 41,
+            "transfer": 305843,
+            "encoded": 305543
+          },
+          {
+            "name": "assets/f05_book.html",
+            "duration": 654,
+            "transfer": 0,
+            "encoded": 0
+          },
+          {
+            "name": "lottie/f01-v16.json",
+            "duration": 42,
+            "transfer": 1873233,
+            "encoded": 1872933
+          },
+          {
+            "name": "assets/favicon.svg",
+            "duration": 12,
+            "transfer": 576,
+            "encoded": 276
+          }
+        ],
+        "visiblePlayers": [
+          {
+            "name": "f01",
+            "loaded": "yes",
+            "nodeCount": 1095
+          },
+          {
+            "name": "f02-cooking",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          },
+          {
+            "name": "f02-orbit",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          },
+          {
+            "name": "f06",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          },
+          {
+            "name": "f03",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          },
+          {
+            "name": "f07",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          }
+        ],
+        "count": 2174,
+        "svgCount": 2,
+        "pathCount": 847,
+        "iframe": {
+          "src": "assets/f05_book.html",
+          "ready": "complete"
+        },
+        "layoutOverflow": false
+      },
+      "raf": {
+        "count": 136,
+        "mean": 23.427205882352943,
+        "p50": 16.699999999999818,
+        "p95": 50,
+        "p99": 50.099999999999454,
+        "over33": 16,
+        "over50": 2
+      },
+      "performanceMetrics": {
+        "Nodes": 2574,
+        "LayoutCount": 240,
+        "RecalcStyleCount": 243,
+        "ScriptDuration": 1.53702,
+        "TaskDuration": 6.269093,
+        "JSHeapUsedSize": 30327548
+      },
+      "errors": [],
+      "responses": [
+        {
+          "url": "127.0.0.1:18877/",
+          "status": 200
+        },
+        {
+          "url": "assets/editorial-v4.css",
+          "status": 200
+        },
+        {
+          "url": "assets/feedback-v5.css",
+          "status": 200
+        },
+        {
+          "url": "assets/zestry-owner-v8.css",
+          "status": 200
+        },
+        {
+          "url": "assets/f05_menu_integration.css",
+          "status": 200
+        },
+        {
+          "url": "vendor/lottie.min.js",
+          "status": 200
+        },
+        {
+          "url": "assets/f05_book.html",
+          "status": 200
+        },
+        {
+          "url": "assets/f05-fit-v8.css",
+          "status": 200
+        },
+        {
+          "url": "assets/f05-fit-v8.js",
+          "status": 200
+        },
+        {
+          "url": "lottie/f01-v16.json",
+          "status": 200
+        },
+        {
+          "url": "assets/f05_book.lottie",
+          "status": 200
+        },
+        {
+          "url": "assets/favicon.svg",
+          "status": 200
+        }
+      ],
+      "secondsElapsed": 7.706
+    },
+    {
+      "name": "mobile",
+      "first": {
+        "navigation": {
+          "domContentLoaded": 1235.1000000238419,
+          "load": 1355.5,
+          "transfer": 34908
+        },
+        "longTasks": [
+          {
+            "duration": 54,
+            "startTime": 277.2999999523163
+          },
+          {
+            "duration": 97,
+            "startTime": 732.1000000238419
+          },
+          {
+            "duration": 58,
+            "startTime": 1372.6000000238419
+          },
+          {
+            "duration": 173,
+            "startTime": 1437.1999999284744
+          },
+          {
+            "duration": 693,
+            "startTime": 1659
+          },
+          {
+            "duration": 161,
+            "startTime": 2352.600000023842
+          },
+          {
+            "duration": 73,
+            "startTime": 2754
+          },
+          {
+            "duration": 76,
+            "startTime": 2995.6999999284744
+          },
+          {
+            "duration": 59,
+            "startTime": 3556.899999976158
+          },
+          {
+            "duration": 61,
+            "startTime": 3772.899999976158
+          },
+          {
+            "duration": 62,
+            "startTime": 3894.899999976158
+          }
+        ],
+        "requestEntries": [
+          {
+            "name": "fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap",
+            "duration": 140,
+            "transfer": 975,
+            "encoded": 675
+          },
+          {
+            "name": "assets/editorial-v4.css",
+            "duration": 121,
+            "transfer": 13089,
+            "encoded": 12789
+          },
+          {
+            "name": "assets/feedback-v5.css",
+            "duration": 137,
+            "transfer": 4533,
+            "encoded": 4233
+          },
+          {
+            "name": "assets/f05_menu_integration.css",
+            "duration": 135,
+            "transfer": 1181,
+            "encoded": 881
+          },
+          {
+            "name": "assets/zestry-owner-v8.css",
+            "duration": 137,
+            "transfer": 5286,
+            "encoded": 4986
+          },
+          {
+            "name": "vendor/lottie.min.js",
+            "duration": 147,
+            "transfer": 305843,
+            "encoded": 305543
+          },
+          {
+            "name": "assets/f05_book.html",
+            "duration": 1055,
+            "transfer": 0,
+            "encoded": 0
+          },
+          {
+            "name": "lottie/f01-v16.json",
+            "duration": 98,
+            "transfer": 1873233,
+            "encoded": 1872933
+          },
+          {
+            "name": "assets/favicon.svg",
+            "duration": 142,
+            "transfer": 576,
+            "encoded": 276
+          }
+        ],
+        "visiblePlayers": [
+          {
+            "name": "f01",
+            "loaded": "yes",
+            "nodeCount": 1095
+          },
+          {
+            "name": "f02-cooking",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          },
+          {
+            "name": "f02-orbit",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          },
+          {
+            "name": "f06",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          },
+          {
+            "name": "f03",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          },
+          {
+            "name": "f07",
+            "loaded": "not mounted",
+            "nodeCount": 0
+          }
+        ],
+        "count": 2174,
+        "svgCount": 2,
+        "pathCount": 847,
+        "iframe": {
+          "src": "assets/f05_book.html",
+          "ready": "complete"
+        },
+        "layoutOverflow": false
+      },
+      "raf": {
+        "count": 154,
+        "mean": 20.76753246799692,
+        "p50": 16.699999999999818,
+        "p95": 33.399999999999636,
+        "p99": 50,
+        "over33": 7,
+        "over50": 1
+      },
+      "performanceMetrics": {
+        "Nodes": 2573,
+        "LayoutCount": 220,
+        "RecalcStyleCount": 227,
+        "ScriptDuration": 1.758748,
+        "TaskDuration": 7.228159,
+        "JSHeapUsedSize": 35857052
+      },
+      "errors": [],
+      "responses": [
+        {
+          "url": "127.0.0.1:18877/",
+          "status": 200
+        },
+        {
+          "url": "assets/editorial-v4.css",
+          "status": 200
+        },
+        {
+          "url": "assets/feedback-v5.css",
+          "status": 200
+        },
+        {
+          "url": "assets/f05_menu_integration.css",
+          "status": 200
+        },
+        {
+          "url": "assets/zestry-owner-v8.css",
+          "status": 200
+        },
+        {
+          "url": "vendor/lottie.min.js",
+          "status": 200
+        },
+        {
+          "url": "assets/f05_book.html",
+          "status": 200
+        },
+        {
+          "url": "assets/f05-fit-v8.css",
+          "status": 200
+        },
+        {
+          "url": "assets/f05-fit-v8.js",
+          "status": 200
+        },
+        {
+          "url": "assets/f05_book.lottie",
+          "status": 200
+        },
+        {
+          "url": "lottie/f01-v16.json",
+          "status": 200
+        },
+        {
+          "url": "assets/favicon.svg",
+          "status": 200
+        }
+      ],
+      "secondsElapsed": 8.077
+    }
+  ],
+  "created": "2026-11-18T06:44:04.533Z"
+}
