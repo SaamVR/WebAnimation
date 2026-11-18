@@ -27,7 +27,55 @@ def replace_exact(s: str, old: str, new: str, label: str) -> str:
     assert n == 1, f"{label} expected once, found {n}"
     return s.replace(old, new, 1)
 
+def isolate_f01_wood_definition_ids(html: str) -> str:
+    """Give wood BACKGROUND cloned defs unique IDs before mounting SVG.
+
+    Fixes the diagnosed F01 visible-broth regression where cloning the entire
+    source defs duplicates the broth clipPath IDs (including __lottie_element_88)
+    and the browser resolves the foreground clip against the wood SVG's defs.
+    No artwork, path/keyframes, animation order, or original composition changes.
+    """
+    marker = "ZESTRY_F01_WOOD_DEFS_ID_NAMESPACE_20261118"
+    if marker in html:
+        return html
+    old = re.compile(
+        r"if\(defs\)wood.appendChild\(defs.cloneNode\(true\)\);\s*"
+        r"wood.appendChild\(original.cloneNode\(true\)\);"
+    )
+    replacement = r"""if(defs)wood.appendChild(defs.cloneNode(true));
+   wood.appendChild(original.cloneNode(true));
+   /* ZESTRY_F01_WOOD_DEFS_ID_NAMESPACE_20261118:
+      The foreground F01 mask/clip IDs must be unique in the document.
+      Cloned wood-only definitions have independent IDs and their own
+      URL/href references are rewritten. Source Lottie is unchanged. */
+   const woodIdMap=new Map();
+   for(const n of wood.querySelectorAll('[id]')){
+     const id=n.getAttribute('id');
+     if(!woodIdMap.has(id))woodIdMap.set(id,'zestry-wood-'+id);
+   }
+   for(const n of wood.querySelectorAll('[id]')){
+     n.setAttribute('id',woodIdMap.get(n.getAttribute('id')));
+   }
+   for(const n of wood.querySelectorAll('*')){
+     for(const a of Array.from(n.attributes)){
+       if(a.name==='id')continue;
+       let val=a.value;
+       val=val.replace(/url\(#([^)]+)\)/g,(all,id)=>
+         woodIdMap.has(id)?'url(#'+woodIdMap.get(id)+')':all);
+       if(val[0]==='#'&&woodIdMap.has(val.slice(1))){
+         val='#'+woodIdMap.get(val.slice(1));
+       }
+       if(val!==a.value)n.setAttribute(a.name,val);
+     }
+   }"""
+    fixed, count = old.subn(lambda _: replacement, html)
+    assert count == 1, f"Expected one F01 defs clone, got {count}"
+    assert marker in fixed
+    return fixed
+
+
 def tune_page(html: str) -> str:
+    html = isolate_f01_wood_definition_ids(html)
     if "ZESTRY_PERF_V17_ENTRY" in html:
         return html  # repeatable rebuild from an already optimized review ZIP
 
