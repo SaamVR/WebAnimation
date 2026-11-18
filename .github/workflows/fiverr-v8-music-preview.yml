@@ -1,0 +1,24 @@
+name: Fiverr V8 Licensed Mixkit Music Preview Fetch
+on:
+  push:
+    branches: [production/fiverr-six-projects-v8-20261118]
+    paths: ['.github/workflows/fiverr-v8-music-preview.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  music-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - run: |
+          set -eu
+          mkdir -p private-audio
+          curl -fsSL --retry 2 --connect-timeout 15 --max-time 70 'https://assets.mixkit.co/music/130/130.mp3' -o private-audio/tech-house-vibes-130.mp3
+          test "$(wc -c < private-audio/tech-house-vibes-130.mp3)" -gt 100000
+          file private-audio/tech-house-vibes-130.mp3
+          printf '%s\n' 'TITLE: Tech House vibes by Alejandro Magaña (A. M.)' 'SOURCE: https://mixkit.co/free-stock-music/' 'SOURCE FILE: https://assets.mixkit.co/music/130/130.mp3' 'LICENSE: Mixkit Stock Music Free License (confirm terms before publication)' 'PURPOSE: private Fiverr six-project review; never commit the raw track' > private-audio/SOURCE-LICENSE.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: private-fiverr-v8-mixkit-tech-house-music-edit
+          path: private-audio/
+          retention-days: 7

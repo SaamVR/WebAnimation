@@ -1,0 +1,66 @@
+name: Fiverr Six-Project Source Ingest
+on:
+  push:
+    branches: [production/fiverr-six-projects-v8-20261118]
+    paths: ['.github/workflows/fiverr-six-project-ingest.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Get approved Threads evidence
+        uses: actions/checkout@v4
+        with:
+          repository: SaamVR/WebAnimation
+          ref: release/threads-demo-complete-20261026
+          path: sources/threads
+          sparse-checkout: |
+            docs/evidence/threads/t01-camera/deployed
+            docs/evidence/threads/t02-v3-final/deployed
+            docs/evidence/threads/t04-final/deployed
+            site/threads
+          sparse-checkout-cone-mode: true
+      - name: Get approved CHAPCHITRA evidence
+        uses: actions/checkout@v4
+        with:
+          repository: SaamVR/WebAnimation
+          ref: integration/chapchitra-artist-approved-freeze-20261113
+          path: sources/chapchitra
+          sparse-checkout: |
+            projects/chapchitra/docs/c01-evidence
+            projects/chapchitra/docs/c08-evidence
+            projects/chapchitra/docs/performance-evidence/print-guides-tools
+            projects/chapchitra/src/assets/c01
+            projects/chapchitra/src/assets/c08
+            projects/chapchitra/src/motion/c01/vendor
+          sparse-checkout-cone-mode: true
+      - name: Get NOVA local 3D experience and LeadFlow V2 evidence
+        uses: actions/checkout@v4
+        with:
+          repository: SaamVR/Portfolio
+          ref: feat/leadflow-v2-evidence-20261012
+          path: sources/portfolio
+          sparse-checkout: |
+            NovaAG
+            leadflow-evidence-v2
+          sparse-checkout-cone-mode: true
+      - name: Verify exact source paths
+        run: |
+          set -eu
+          test -f sources/portfolio/NovaAG/index.html
+          test -f sources/portfolio/NovaAG/assets/headphones-web.gltf
+          test -f sources/portfolio/leadflow-evidence-v2/media/leadflow-v2-qualified.mp4
+          test -f sources/threads/docs/evidence/threads/t02-v3-final/deployed/pdp-desktop-final-review.mp4
+          find sources -maxdepth 4 -type f | head -40
+          du -sh sources/*
+      - name: Deliver original approved source package
+        uses: actions/upload-artifact@v4
+        with:
+          name: fiverr-v8-threads-chap-nova-leadflow-originals
+          path: sources/
+          compression-level: 5
+          retention-days: 21
+          if-no-files-found: error

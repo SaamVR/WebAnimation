@@ -1,0 +1,29 @@
+name: Fiverr V9 Encrypted NOVA Source Handoff
+on:
+  push:
+    branches: [production/fiverr-six-projects-v8-20261118]
+    paths:
+      - production/fiverr-master-v9/secure-transfer/nova-video-aes-cbc-20261118.enc
+      - .github/workflows/fiverr-v9-nova-encrypted-handoff.yml
+permissions: {contents: read}
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify encrypted object exists only
+        run: |
+          set -eu
+          test -s production/fiverr-master-v9/secure-transfer/nova-video-aes-cbc-20261118.enc
+          wc -c production/fiverr-master-v9/secure-transfer/nova-video-aes-cbc-20261118.enc
+          sha256sum production/fiverr-master-v9/secure-transfer/nova-video-aes-cbc-20261118.enc > encrypted-upload.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiverr-v9-aes-encrypted-nova-original
+          path: |
+            production/fiverr-master-v9/secure-transfer/nova-video-aes-cbc-20261118.enc
+            encrypted-upload.sha256
+          retention-days: 2
+          compression-level: 1
+          if-no-files-found: error

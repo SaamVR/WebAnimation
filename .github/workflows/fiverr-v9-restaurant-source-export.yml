@@ -1,0 +1,36 @@
+name: Fiverr V9 Restaurant Full HTML Source Export
+on:
+  push:
+    branches: [production/fiverr-six-projects-v8-20261118]
+    paths: ['.github/workflows/fiverr-v9-restaurant-source-export.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  export-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: SaamVR/WebAnimation
+          ref: feat/restaurant-lottie-bistro-demo-20261116
+          path: upstream
+          sparse-checkout: projects/restaurant-demo
+          sparse-checkout-cone-mode: true
+      - name: Verify actual HTML + original motion assets
+        run: |
+          set -eu
+          test -f upstream/projects/restaurant-demo/index.html
+          test -f upstream/projects/restaurant-demo/app.js
+          test -f upstream/projects/restaurant-demo/assets/lottie/f01.json
+          test -f upstream/projects/restaurant-demo/assets/lottie/f02.json
+          test -f upstream/projects/restaurant-demo/assets/lottie/f04.json
+          test -f upstream/projects/restaurant-demo/assets/lottie/f05-interactive.html
+          du -sh upstream/projects/restaurant-demo
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiverr-v9-restaurant-ZESTRY-full-original-html-source
+          path: upstream/projects/restaurant-demo/
+          retention-days: 21
+          compression-level: 4
+          if-no-files-found: error
