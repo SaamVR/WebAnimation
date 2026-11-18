@@ -1,0 +1,18 @@
+name: ZESTRY F02 orbit baseline and visible-loop inspection (NO DEPLOY)
+on:
+  push:
+    branches:
+      - feat/zestry-visible-section-loops-chef-orbit-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/inspect_visible_loop_baseline.py
+      - .github/workflows/zestry-visible-loop-audit.yml
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect approved Lottie assets and runtime contracts
+        run: python3 projects/restaurant-demo/zestry-v3-editorial/inspect_visible_loop_baseline.py
