@@ -1,0 +1,36 @@
+name: ZESTRY V17.1 verified-live QA (NO DEPLOY)
+on:
+  push:
+    branches:
+      - qa/zestry-v17-1-live-smoke-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/qa_v17_1_live.py
+      - .github/workflows/zestry-v17-1-live-qa-only.yml
+permissions:
+  contents: read
+jobs:
+  live-browser-release-acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - name: Checkout isolated QA branch (never deploy)
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Chromium for native browser checks
+        run: |
+          python -m pip install "playwright==1.56.0"
+          python -m playwright install --with-deps chromium
+      - name: Verify deployed Render URL, fixed hero and early menu readiness
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/qa_v17_1_live.py
+      - name: Preserve reports and actual browser recording
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-V17-1-LIVE-BROWSER-QA-ONLY
+          path: projects/restaurant-demo/docs/qa/live-v17-1-ci/
+          retention-days: 30
+          if-no-files-found: warn
