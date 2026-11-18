@@ -93,6 +93,11 @@ async function collect(profile){
   insist(pageCall?.options.duration===280,'home active numeral impression missing');
   // Save the actual final printed impression, not the 0%-opacity contact frame.
   await page.waitForTimeout(310);
+  const homeStyle=await page.locator('#homePager [aria-current="page"]').evaluate(button=>{
+   const digit=button.querySelector('.cc-c04-ink'),d=getComputedStyle(digit),b=getComputedStyle(button);
+   return {text:digit?.textContent,opacity:d.opacity,color:d.color,visibility:d.visibility,display:d.display,transform:d.transform,textFill:d.webkitTextFillColor,buttonBackground:b.backgroundColor,buttonColor:b.color,activeAnimations:digit.getAnimations().map(a=>({state:a.playState,currentTime:a.currentTime})),theme:document.documentElement.dataset.theme};
+  });
+  console.log('C04_HOME_SETTLED_STYLE '+JSON.stringify({profile:profile.id,...homeStyle}));
   await snap(page,profile.id+'-home-pager-2','#homePager [aria-current="page"]');
   insist(await page.locator('#homePager [aria-current="page"]').evaluate(el=>el===document.activeElement),'pagination focus not restored after replacing controls');
   check.push('homepage active numeral only; focus restored');
@@ -109,6 +114,11 @@ async function collect(profile){
   insist(shopCall?.options.duration===280,'Shop active numeral impression missing');
   // Record original geometry after 280ms, with the number fully visible.
   await page.waitForTimeout(310);
+  const shopStyle=await page.locator('#shopPager [aria-current="page"]').evaluate(button=>{
+   const digit=button.querySelector('.cc-c04-ink'),d=getComputedStyle(digit),b=getComputedStyle(button);
+   return {text:digit?.textContent,opacity:d.opacity,color:d.color,visibility:d.visibility,display:d.display,transform:d.transform,textFill:d.webkitTextFillColor,buttonBackground:b.backgroundColor,buttonColor:b.color,activeAnimations:digit.getAnimations().map(a=>({state:a.playState,currentTime:a.currentTime})),theme:document.documentElement.dataset.theme};
+  });
+  console.log('C04_SHOP_SETTLED_STYLE '+JSON.stringify({profile:profile.id,...shopStyle}));
   await snap(page,profile.id+'-shop-pager-2','#shopPager [aria-current="page"]');
   check.push('Shop keyboard selection; only incoming numeral animated');
   // Motion has ended; its final layout/text must remain stable.
