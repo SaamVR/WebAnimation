@@ -1,0 +1,80 @@
+{
+  "release": "V17 emergency rollback",
+  "sha": "2bdfe0c6d19050bb1e44ae79640a547ddb62844d",
+  "url": "https://zestry-v3-restaurant-review-20261117.onrender.com/",
+  "checks": [
+    {
+      "label": "desktop original hero final hold restored",
+      "pass": true,
+      "detail": {
+        "frame": 260,
+        "loop": false,
+        "zoom": "1.755000",
+        "complete": "true",
+        "wood": true,
+        "duplicateIds": [],
+        "overflow": false,
+        "brokenV18Marker": false
+      }
+    },
+    {
+      "label": "desktop broth visible at completed bowl",
+      "pass": true,
+      "detail": {
+        "brothPixels": 31609
+      }
+    },
+    {
+      "label": "desktop chef reversed-playback hack removed",
+      "pass": true,
+      "detail": {
+        "loop": true,
+        "direction": 1,
+        "v18Policy": null,
+        "motionLoops": null
+      }
+    },
+    {
+      "label": "desktop no JS exceptions",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "label": "mobile original hero final hold restored",
+      "pass": true,
+      "detail": {
+        "frame": 260,
+        "loop": false,
+        "zoom": "1.755000",
+        "complete": "true",
+        "wood": true,
+        "duplicateIds": [],
+        "overflow": false,
+        "brokenV18Marker": false
+      }
+    },
+    {
+      "label": "mobile broth visible at completed bowl",
+      "pass": true,
+      "detail": {
+        "brothPixels": 7464
+      }
+    },
+    {
+      "label": "mobile chef reversed-playback hack removed",
+      "pass": true,
+      "detail": {
+        "loop": true,
+        "direction": 1,
+        "v18Policy": null,
+        "motionLoops": null
+      }
+    },
+    {
+      "label": "mobile no JS exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "issues": []
+}
