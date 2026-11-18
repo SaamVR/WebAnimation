@@ -51,6 +51,9 @@
 #story .brand-story-copy{max-width:570px;min-width:0}
 #story .brand-story-copy h2{max-width:620px}
 #story .brand-story-copy p{max-width:510px}
+/* V13 pending QA: F01 foreground exactly 20% larger (84% -> 100.8%).
+   WARNING: this reduces circle-boundary safety; browser frame review required.
+   Source-only patch until packaged V13 review bundle is rebuilt. */
 /* V12: original wooden tabletop fills circle; F01 ingredients stay inside.
    The yellow accent is a subtle second circle BEHIND it, never letterboxing. */
 .hero .hero-image.hero-visual{
@@ -69,9 +72,9 @@
 }
 .hero .hero-image.hero-visual .hero-pasta.hero-clip{
  position:absolute!important;
- inset:8%!important;
- width:84%!important;
- height:84%!important;
+ inset:-0.4%!important;
+ width:100.8%!important;
+ height:100.8%!important;
  z-index:1!important;
  margin:0!important;
  transform:none!important;
