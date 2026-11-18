@@ -1,0 +1,50 @@
+name: ZESTRY F01 original artwork removed — final live browser check (NO DEPLOY)
+on:
+  push:
+    branches:
+      - qa/zestry-f01-removed-final-live-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/qa_f01_removed_live.py
+      - .github/workflows/zestry-f01-removal-final-live.yml
+permissions:
+  contents: read
+jobs:
+  verify-actual-live-website:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install native Chromium browser
+        run: |
+          python -m pip install 'playwright==1.56.0'
+          python -m playwright install chromium
+      - name: Check F01 absent on existing Render site
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/qa_f01_removed_live.py
+      - name: Upload evidence regardless of pass or fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-ORIGINAL-F01-DELETED-FINAL-LIVE
+          path: projects/restaurant-demo/docs/qa/owner-f01-removed-live/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Publish passing evidence to QA branch only
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/docs/qa/owner-f01-removed-live/
+          if ! git diff --cached --quiet; then
+            git commit -m 'test(zestry): verify original F01 absent on live site [skip ci]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo 'No new deployment; QA-only branch'
