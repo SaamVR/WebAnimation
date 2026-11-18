@@ -1,0 +1,168 @@
+{
+  "project": "ZESTRY",
+  "status": "source only \u2014 NO PREVIEW DEPLOYED",
+  "request": "Remove both old F02 visuals while waiting for owner Lottie",
+  "tests": [
+    {
+      "name": "desktop two F02 visuals removed",
+      "pass": true,
+      "details": {
+        "oldOrbit": 0,
+        "oldCooking": 0,
+        "liveF02Players": 0,
+        "replacementSlots": 1,
+        "placeholder": "New chef illustration coming soon",
+        "chefSecondary": 0,
+        "heading": "A kitchen full of character.",
+        "f01": true,
+        "f03": true,
+        "f06": true,
+        "f07": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop one neutral slot, kitchen text intact",
+      "pass": true,
+      "details": {
+        "oldOrbit": 0,
+        "oldCooking": 0,
+        "liveF02Players": 0,
+        "replacementSlots": 1,
+        "placeholder": "New chef illustration coming soon",
+        "chefSecondary": 0,
+        "heading": "A kitchen full of character.",
+        "f01": true,
+        "f03": true,
+        "f06": true,
+        "f07": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop f01 still renders",
+      "pass": true,
+      "details": {
+        "scene": "f01"
+      }
+    },
+    {
+      "name": "desktop f03 still renders",
+      "pass": true,
+      "details": {
+        "scene": "f03"
+      }
+    },
+    {
+      "name": "desktop f06 still renders",
+      "pass": true,
+      "details": {
+        "scene": "f06"
+      }
+    },
+    {
+      "name": "desktop f07 still renders",
+      "pass": true,
+      "details": {
+        "scene": "f07"
+      }
+    },
+    {
+      "name": "desktop existing interactive menu still operates",
+      "pass": true,
+      "details": {
+        "menuState": "Overview"
+      }
+    },
+    {
+      "name": "desktop no F02 source requests or site errors",
+      "pass": true,
+      "details": {
+        "F02Requests": [],
+        "errors": [],
+        "HTTPFailures": []
+      }
+    },
+    {
+      "name": "mobile two F02 visuals removed",
+      "pass": true,
+      "details": {
+        "oldOrbit": 0,
+        "oldCooking": 0,
+        "liveF02Players": 0,
+        "replacementSlots": 1,
+        "placeholder": "New chef illustration coming soon",
+        "chefSecondary": 0,
+        "heading": "A kitchen full of character.",
+        "f01": true,
+        "f03": true,
+        "f06": true,
+        "f07": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile one neutral slot, kitchen text intact",
+      "pass": true,
+      "details": {
+        "oldOrbit": 0,
+        "oldCooking": 0,
+        "liveF02Players": 0,
+        "replacementSlots": 1,
+        "placeholder": "New chef illustration coming soon",
+        "chefSecondary": 0,
+        "heading": "A kitchen full of character.",
+        "f01": true,
+        "f03": true,
+        "f06": true,
+        "f07": true,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile f01 still renders",
+      "pass": true,
+      "details": {
+        "scene": "f01"
+      }
+    },
+    {
+      "name": "mobile f03 still renders",
+      "pass": true,
+      "details": {
+        "scene": "f03"
+      }
+    },
+    {
+      "name": "mobile f06 still renders",
+      "pass": true,
+      "details": {
+        "scene": "f06"
+      }
+    },
+    {
+      "name": "mobile f07 still renders",
+      "pass": true,
+      "details": {
+        "scene": "f07"
+      }
+    },
+    {
+      "name": "mobile existing interactive menu still operates",
+      "pass": true,
+      "details": {
+        "menuState": "Overview"
+      }
+    },
+    {
+      "name": "mobile no F02 source requests or site errors",
+      "pass": true,
+      "details": {
+        "F02Requests": [],
+        "errors": [],
+        "HTTPFailures": []
+      }
+    }
+  ],
+  "errors": []
+}
