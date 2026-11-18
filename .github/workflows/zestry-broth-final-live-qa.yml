@@ -1,0 +1,49 @@
+name: ZESTRY F01 restored broth — FINAL LIVE Chromium QA (NO DEPLOY)
+on:
+  push:
+    branches:
+      - qa/zestry-broth-restoration-final-live-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/qa_v17_broth_final_live.py
+      - .github/workflows/zestry-broth-final-live-qa.yml
+permissions:
+  contents: read
+jobs:
+  verify-live-broth:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install native browser test
+        run: |
+          pip install "playwright==1.56.0" "Pillow==11.3.0"
+          python -m playwright install chromium
+      - name: Run actual public URL F01 broth final desktop/mobile recordings
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_v17_broth_final_live.py
+      - name: Preserve evidence even if a visual gate fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-BROTH-RESTORED-FINAL-LIVE-CHROMIUM
+          path: projects/restaurant-demo/docs/qa/owner-v17-broth-final-live/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Commit passing real browser proof on QA branch only
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/docs/qa/owner-v17-broth-final-live
+          if ! git diff --cached --quiet; then
+            git commit -m 'test(zestry): live F01 broth visible on desktop/mobile [skip ci]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo 'No deployment: only QA report published'
