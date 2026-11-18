@@ -51,6 +51,16 @@ def wait_index(page,n,timeout=12000):
  }""",arg=n,timeout=timeout)
 def check_scenes(page,label):
  page.locator('#process').scroll_into_view_if_needed(timeout=15000)
+ page.wait_for_function("""()=>{
+  const e=document.querySelector('[data-animation="f06"]');
+  return e?.dataset.loaded==='yes'&&!!e.querySelector('svg')&&
+   !!window.lottie?.getRegisteredAnimations?.().find(a=>a.wrapper===e);
+ }""",timeout=25000)
+ page.evaluate("""()=>{
+  const e=document.querySelector('[data-animation="f06"]');
+  const a=lottie.getRegisteredAnimations().find(x=>x.wrapper===e);
+  a.goToAndStop(Math.min(160,a.totalFrames-1),true);
+ }""")
  p=page.evaluate("""()=>{
   const e=document.getElementById('process'),v=e.querySelector('.process-visual .anim'),r=e.getBoundingClientRect();
   return {height:r.height,viewport:innerHeight,visual:v.getBoundingClientRect().height,body:document.documentElement.scrollWidth,
@@ -60,6 +70,11 @@ def check_scenes(page,label):
         p["visual"]<455 and p["height"]<790 and p["body"]<=page.viewport_size["width"]+2,p)
  stamp(page,label+"-F06-compact.png")
  page.locator('#coffee').scroll_into_view_if_needed(timeout=15000)
+ page.wait_for_function("""()=>{
+  const e=document.querySelector('[data-animation="f03"]');
+  return e?.dataset.loaded==='yes'&&!!e.querySelector('svg')&&
+   !!window.lottie?.getRegisteredAnimations?.().find(a=>a.wrapper===e);
+ }""",timeout=25000)
  c=page.evaluate("""()=>{
   const e=document.getElementById('coffee'),b=getComputedStyle(e);
   return {background:b.backgroundImage,text:document.getElementById('coffee-heading')?.innerText,
@@ -72,9 +87,15 @@ def check_scenes(page,label):
  page.evaluate("""()=>{
   const e=document.querySelector('[data-animation="f03"]');
   const a=lottie.getRegisteredAnimations().find(x=>x.wrapper===e);
-  if(a)a.goToAndStop(Math.min(a.totalFrames-10,210),true);
+  if(a)a.goToAndStop(Math.max(0,a.totalFrames-5),true);
  }""")
  stamp(page,label+"-F03-steam-contrast.png")
+ page.evaluate("""()=>{
+  const e=document.querySelector('[data-animation="f03"]');
+  const a=lottie.getRegisteredAnimations().find(x=>x.wrapper===e);
+  if(a)a.goToAndStop(Math.max(0,a.totalFrames-20),true);
+ }""")
+ stamp(page,label+"-F03-near-end-steam.png")
 def run_device(browser,label,w,h,url):
  ctx=browser.new_context(viewport={"width":w,"height":h},
        record_video_dir=str(OUT),record_video_size={"width":w,"height":h},
