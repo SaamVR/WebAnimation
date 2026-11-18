@@ -1,0 +1,62 @@
+name: ZESTRY F01 broth mask hotfix release gate (NO DEPLOY)
+on:
+  push:
+    branches:
+      - fix/zestry-v17-broth-mask-id-conflict-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/package_v17_final_perf.py
+      - projects/restaurant-demo/zestry-v3-editorial/qa_v17_broth_restored.py
+      - .github/workflows/zestry-broth-hotfix-qa.yml
+permissions:
+  contents: read
+jobs:
+  prepare-and-verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout nondeployment broth-fix branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Python test setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Rebuild V17.1 ZIP without modifying any Lottie artwork
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/package_v17_final_perf.py
+      - name: Install Chromium and image comparison
+        run: |
+          pip install "playwright==1.56.0" "Pillow==11.3.0"
+          python -m playwright install chromium
+      - name: Verify unique IDs and positive broth pixels after pour and final hold
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/qa_v17_broth_restored.py
+      - name: Archive screenshots and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-F01-BROTH-RESTORED-BEFORE-DEPLOY
+          path: projects/restaurant-demo/docs/qa/owner-v17-broth-restored/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit verified release bundle to feature branch ONLY
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/review_bundle \
+            projects/restaurant-demo/docs/qa/owner-v17-broth-restored
+          git diff --cached --name-only > /tmp/zestry-broth-file-scope.txt
+          if grep -v '^projects/restaurant-demo/' /tmp/zestry-broth-file-scope.txt; then
+            echo 'Out-of-scope file write; rejecting'
+            exit 1
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'test(zestry): rebuilt reviewed broth hotfix ZIP and browser proof [skip ci]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo 'REVIEW ONLY: no Render deployment, no branch merge'
