@@ -1,0 +1,40 @@
+name: ZESTRY PR143 final live review verification (no deploy)
+on:
+  push:
+    branches:
+      - qa/zestry-pr143-live-review-20261119
+permissions:
+  contents: read
+jobs:
+  verify-actual-live-demo:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Confirm read-only QA branch and deployed base commit
+        run: |
+          git merge-base --is-ancestor 63274b383c7622f2df0074947a647acafeb98152 HEAD
+          git diff --name-only 63274b383c7622f2df0074947a647acafeb98152 HEAD >/tmp/changed.txt
+          grep -v -E '^projects/restaurant-demo/zestry-v3-editorial/qa_final_live_pr143.py$|^\.github/workflows/zestry-final-live-pr143.yml$' /tmp/changed.txt > /tmp/unrelated.txt || true
+          if test -s /tmp/unrelated.txt; then cat /tmp/unrelated.txt; exit 2; fi
+          echo "QA-only, deployed files untouched."
+      - name: Prepare preinstalled Chrome and Playwright FFmpeg
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install ffmpeg
+          google-chrome --version
+      - name: Verify exact LIVE Render HTML, five Lottie SHA256 and full desktop iPad mobile workflows
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_final_live_pr143.py
+      - name: Retain native browser recording and screens for owner review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zestry-pr143-final-live-review
+          path: projects/restaurant-demo/docs/qa/live-pr143-20261119/
+          if-no-files-found: warn
+          retention-days: 30
