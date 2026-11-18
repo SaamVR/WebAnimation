@@ -1,0 +1,770 @@
+{
+  "originalLottieSHA256": "7fc0054b5ae4c1c7a13d0a3c5e321d117d570d8f0d71e3308ee076a48d301e37",
+  "sourceEdited": false,
+  "renderer": "native Lottie-web 5.12.2",
+  "viewports": {
+    "desktop": {
+      "first": {
+        "frame": 0,
+        "fr": 30,
+        "frames": 261,
+        "loop": false,
+        "paused": false,
+        "direction": 1,
+        "hasBrothMask": true,
+        "brothPathCount": 1,
+        "brothClip": "url(#__lottie_element_88)",
+        "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
+        "circleMask": "circle(50% at 50% 50%)",
+        "circleOverflow": "hidden",
+        "circleRect": {
+          "w": 756.59375,
+          "h": 756.59375
+        },
+        "visualRect": {
+          "w": 756.59375,
+          "h": 756.59375
+        },
+        "stageRect": {
+          "w": 756.59375,
+          "h": 529.609375
+        },
+        "svgRect": {
+          "w": 756.59375,
+          "h": 529.609375
+        },
+        "svgViewbox": "0 0 1984 1134",
+        "extraZoomHooks": false,
+        "xOverflow": false,
+        "completed": null,
+        "htmlBackground": "Fresh food.\nGood mood.",
+        "visualPlaceholder": false
+      },
+      "broth": {
+        "0": 0,
+        "26": 0,
+        "52": 0,
+        "60": 0,
+        "90": 0,
+        "120": 0,
+        "134": 0,
+        "142": 12704,
+        "149": 33564,
+        "160": 28248,
+        "175": 14330,
+        "210": 14311,
+        "260": 14311
+      },
+      "last": {
+        "frame": 260,
+        "fr": 30,
+        "frames": 261,
+        "loop": false,
+        "paused": true,
+        "direction": 1,
+        "hasBrothMask": true,
+        "brothPathCount": 1,
+        "brothClip": "url(#__lottie_element_88)",
+        "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
+        "circleMask": "circle(50% at 50% 50%)",
+        "circleOverflow": "hidden",
+        "circleRect": {
+          "w": 756.59375,
+          "h": 756.59375
+        },
+        "visualRect": {
+          "w": 756.59375,
+          "h": 756.59375
+        },
+        "stageRect": {
+          "w": 756.59375,
+          "h": 529.609375
+        },
+        "svgRect": {
+          "w": 756.59375,
+          "h": 529.609375
+        },
+        "svgViewbox": "0 0 1984 1134",
+        "extraZoomHooks": false,
+        "xOverflow": false,
+        "completed": "true",
+        "htmlBackground": "Fresh food.\nGood mood.",
+        "visualPlaceholder": false
+      },
+      "chef": {
+        "length": 210,
+        "frameRate": 30,
+        "forward": true,
+        "svg": true
+      },
+      "errors": [],
+      "failedAssets": []
+    },
+    "mobile": {
+      "first": {
+        "frame": 0.49907999999999986,
+        "fr": 30,
+        "frames": 261,
+        "loop": false,
+        "paused": false,
+        "direction": 1,
+        "hasBrothMask": true,
+        "brothPathCount": 1,
+        "brothClip": "url(#__lottie_element_88)",
+        "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
+        "circleMask": "circle(50% at 50% 50%)",
+        "circleOverflow": "hidden",
+        "circleRect": {
+          "w": 358,
+          "h": 358
+        },
+        "visualRect": {
+          "w": 358,
+          "h": 358
+        },
+        "stageRect": {
+          "w": 358,
+          "h": 250.59375
+        },
+        "svgRect": {
+          "w": 358,
+          "h": 250.59375
+        },
+        "svgViewbox": "0 0 1984 1134",
+        "extraZoomHooks": false,
+        "xOverflow": false,
+        "completed": null,
+        "htmlBackground": "Fresh food.\nGood mood.",
+        "visualPlaceholder": false
+      },
+      "broth": {
+        "0": 0,
+        "26": 0,
+        "52": 0,
+        "60": 0,
+        "90": 0,
+        "120": 0,
+        "134": 0,
+        "142": 3122,
+        "149": 7569,
+        "160": 6391,
+        "175": 3339,
+        "210": 3332,
+        "260": 3332
+      },
+      "last": {
+        "frame": 260,
+        "fr": 30,
+        "frames": 261,
+        "loop": false,
+        "paused": true,
+        "direction": 1,
+        "hasBrothMask": true,
+        "brothPathCount": 1,
+        "brothClip": "url(#__lottie_element_88)",
+        "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
+        "circleMask": "circle(50% at 50% 50%)",
+        "circleOverflow": "hidden",
+        "circleRect": {
+          "w": 358,
+          "h": 358
+        },
+        "visualRect": {
+          "w": 358,
+          "h": 358
+        },
+        "stageRect": {
+          "w": 358,
+          "h": 250.59375
+        },
+        "svgRect": {
+          "w": 358,
+          "h": 250.59375
+        },
+        "svgViewbox": "0 0 1984 1134",
+        "extraZoomHooks": false,
+        "xOverflow": false,
+        "completed": "true",
+        "htmlBackground": "Fresh food.\nGood mood.",
+        "visualPlaceholder": false
+      },
+      "chef": {
+        "length": 210,
+        "frameRate": 30,
+        "forward": true,
+        "svg": true
+      },
+      "errors": [],
+      "failedAssets": []
+    }
+  },
+  "checks": [
+    {
+      "name": "desktop original V4 30fps /261 frames / one-shot no reverse",
+      "passed": true,
+      "details": {
+        "frame": 0,
+        "fr": 30,
+        "frames": 261,
+        "loop": false,
+        "paused": false,
+        "direction": 1,
+        "hasBrothMask": true,
+        "brothPathCount": 1,
+        "brothClip": "url(#__lottie_element_88)",
+        "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
+        "circleMask": "circle(50% at 50% 50%)",
+        "circleOverflow": "hidden",
+        "circleRect": {
+          "w": 756.59375,
+          "h": 756.59375
+        },
+        "visualRect": {
+          "w": 756.59375,
+          "h": 756.59375
+        },
+        "stageRect": {
+          "w": 756.59375,
+          "h": 529.609375
+        },
+        "svgRect": {
+          "w": 756.59375,
+          "h": 529.609375
+        },
+        "svgViewbox": "0 0 1984 1134",
+        "extraZoomHooks": false,
+        "xOverflow": false,
+        "completed": null,
+        "htmlBackground": "Fresh food.\nGood mood.",
+        "visualPlaceholder": false
+      }
+    },
+    {
+      "name": "desktop fixed nonzooming circle mask and safe foreground proportion",
+      "passed": true,
+      "details": {
+        "circle": {
+          "w": 756.59375,
+          "h": 756.59375
+        },
+        "stage": {
+          "w": 756.59375,
+          "h": 529.609375
+        },
+        "stageRatio": 0.6999917392920574,
+        "cssMask": "circle(50% at 50% 50%)",
+        "brothHint": true,
+        "xOverflow": false
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 0",
+      "passed": true,
+      "details": {
+        "frame": 0,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 26",
+      "passed": true,
+      "details": {
+        "frame": 26,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 52",
+      "passed": true,
+      "details": {
+        "frame": 52,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 60",
+      "passed": true,
+      "details": {
+        "frame": 60,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 90",
+      "passed": true,
+      "details": {
+        "frame": 90,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 120",
+      "passed": true,
+      "details": {
+        "frame": 120,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 134",
+      "passed": true,
+      "details": {
+        "frame": 134,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 142",
+      "passed": true,
+      "details": {
+        "frame": 142,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 149",
+      "passed": true,
+      "details": {
+        "frame": 149,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 160",
+      "passed": true,
+      "details": {
+        "frame": 160,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 175",
+      "passed": true,
+      "details": {
+        "frame": 175,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 210",
+      "passed": true,
+      "details": {
+        "frame": 210,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop fixed art scale at original frame 260",
+      "passed": true,
+      "details": {
+        "frame": 260,
+        "width": 756.59375,
+        "height": 529.609375
+      }
+    },
+    {
+      "name": "desktop original bowl broth visibly fills at pour and final hold",
+      "passed": true,
+      "details": {
+        "brothPixelsAt160": 28248,
+        "brothPixelsFinal": 14311,
+        "nativeUnmodifiedHintVerified": true
+      }
+    },
+    {
+      "name": "desktop holds completed dish instead of looping or enlarging",
+      "passed": true,
+      "details": {
+        "first": {
+          "frame": 260,
+          "fr": 30,
+          "frames": 261,
+          "loop": false,
+          "paused": true,
+          "direction": 1,
+          "hasBrothMask": true,
+          "brothPathCount": 1,
+          "brothClip": "url(#__lottie_element_88)",
+          "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
+          "circleMask": "circle(50% at 50% 50%)",
+          "circleOverflow": "hidden",
+          "circleRect": {
+            "w": 756.59375,
+            "h": 756.59375
+          },
+          "visualRect": {
+            "w": 756.59375,
+            "h": 756.59375
+          },
+          "stageRect": {
+            "w": 756.59375,
+            "h": 529.609375
+          },
+          "svgRect": {
+            "w": 756.59375,
+            "h": 529.609375
+          },
+          "svgViewbox": "0 0 1984 1134",
+          "extraZoomHooks": false,
+          "xOverflow": false,
+          "completed": "true",
+          "htmlBackground": "Fresh food.\nGood mood.",
+          "visualPlaceholder": false
+        },
+        "held": {
+          "frame": 260,
+          "fr": 30,
+          "frames": 261,
+          "loop": false,
+          "paused": true,
+          "direction": 1,
+          "hasBrothMask": true,
+          "brothPathCount": 1,
+          "brothClip": "url(#__lottie_element_88)",
+          "stageTransform": "matrix(1, 0, 0, 1, -378.297, -264.805)",
+          "circleMask": "circle(50% at 50% 50%)",
+          "circleOverflow": "hidden",
+          "circleRect": {
+            "w": 756.59375,
+            "h": 756.59375
+          },
+          "visualRect": {
+            "w": 756.59375,
+            "h": 756.59375
+          },
+          "stageRect": {
+            "w": 756.59375,
+            "h": 529.609375
+          },
+          "svgRect": {
+            "w": 756.59375,
+            "h": 529.609375
+          },
+          "svgViewbox": "0 0 1984 1134",
+          "extraZoomHooks": false,
+          "xOverflow": false,
+          "completed": "true",
+          "htmlBackground": "Fresh food.\nGood mood.",
+          "visualPlaceholder": false
+        }
+      }
+    },
+    {
+      "name": "desktop other chef/orbit animation untouched",
+      "passed": true,
+      "details": {
+        "length": 210,
+        "frameRate": 30,
+        "forward": true,
+        "svg": true
+      }
+    },
+    {
+      "name": "desktop asset URLs and browser errors",
+      "passed": true,
+      "details": {
+        "console": [],
+        "badAssets": [],
+        "F01Requests": [
+          "http://127.0.0.1:18894/assets/lottie/f01.json"
+        ]
+      }
+    },
+    {
+      "name": "mobile original V4 30fps /261 frames / one-shot no reverse",
+      "passed": true,
+      "details": {
+        "frame": 0.49907999999999986,
+        "fr": 30,
+        "frames": 261,
+        "loop": false,
+        "paused": false,
+        "direction": 1,
+        "hasBrothMask": true,
+        "brothPathCount": 1,
+        "brothClip": "url(#__lottie_element_88)",
+        "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
+        "circleMask": "circle(50% at 50% 50%)",
+        "circleOverflow": "hidden",
+        "circleRect": {
+          "w": 358,
+          "h": 358
+        },
+        "visualRect": {
+          "w": 358,
+          "h": 358
+        },
+        "stageRect": {
+          "w": 358,
+          "h": 250.59375
+        },
+        "svgRect": {
+          "w": 358,
+          "h": 250.59375
+        },
+        "svgViewbox": "0 0 1984 1134",
+        "extraZoomHooks": false,
+        "xOverflow": false,
+        "completed": null,
+        "htmlBackground": "Fresh food.\nGood mood.",
+        "visualPlaceholder": false
+      }
+    },
+    {
+      "name": "mobile fixed nonzooming circle mask and safe foreground proportion",
+      "passed": true,
+      "details": {
+        "circle": {
+          "w": 358,
+          "h": 358
+        },
+        "stage": {
+          "w": 358,
+          "h": 250.59375
+        },
+        "stageRatio": 0.6999825418994413,
+        "cssMask": "circle(50% at 50% 50%)",
+        "brothHint": true,
+        "xOverflow": false
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 0",
+      "passed": true,
+      "details": {
+        "frame": 0,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 26",
+      "passed": true,
+      "details": {
+        "frame": 26,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 52",
+      "passed": true,
+      "details": {
+        "frame": 52,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 60",
+      "passed": true,
+      "details": {
+        "frame": 60,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 90",
+      "passed": true,
+      "details": {
+        "frame": 90,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 120",
+      "passed": true,
+      "details": {
+        "frame": 120,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 134",
+      "passed": true,
+      "details": {
+        "frame": 134,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 142",
+      "passed": true,
+      "details": {
+        "frame": 142,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 149",
+      "passed": true,
+      "details": {
+        "frame": 149,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 160",
+      "passed": true,
+      "details": {
+        "frame": 160,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 175",
+      "passed": true,
+      "details": {
+        "frame": 175,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 210",
+      "passed": true,
+      "details": {
+        "frame": 210,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile fixed art scale at original frame 260",
+      "passed": true,
+      "details": {
+        "frame": 260,
+        "width": 358,
+        "height": 250.59375
+      }
+    },
+    {
+      "name": "mobile original bowl broth visibly fills at pour and final hold",
+      "passed": true,
+      "details": {
+        "brothPixelsAt160": 6391,
+        "brothPixelsFinal": 3332,
+        "nativeUnmodifiedHintVerified": true
+      }
+    },
+    {
+      "name": "mobile holds completed dish instead of looping or enlarging",
+      "passed": true,
+      "details": {
+        "first": {
+          "frame": 260,
+          "fr": 30,
+          "frames": 261,
+          "loop": false,
+          "paused": true,
+          "direction": 1,
+          "hasBrothMask": true,
+          "brothPathCount": 1,
+          "brothClip": "url(#__lottie_element_88)",
+          "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
+          "circleMask": "circle(50% at 50% 50%)",
+          "circleOverflow": "hidden",
+          "circleRect": {
+            "w": 358,
+            "h": 358
+          },
+          "visualRect": {
+            "w": 358,
+            "h": 358
+          },
+          "stageRect": {
+            "w": 358,
+            "h": 250.59375
+          },
+          "svgRect": {
+            "w": 358,
+            "h": 250.59375
+          },
+          "svgViewbox": "0 0 1984 1134",
+          "extraZoomHooks": false,
+          "xOverflow": false,
+          "completed": "true",
+          "htmlBackground": "Fresh food.\nGood mood.",
+          "visualPlaceholder": false
+        },
+        "held": {
+          "frame": 260,
+          "fr": 30,
+          "frames": 261,
+          "loop": false,
+          "paused": true,
+          "direction": 1,
+          "hasBrothMask": true,
+          "brothPathCount": 1,
+          "brothClip": "url(#__lottie_element_88)",
+          "stageTransform": "matrix(1, 0, 0, 1, -179, -125.297)",
+          "circleMask": "circle(50% at 50% 50%)",
+          "circleOverflow": "hidden",
+          "circleRect": {
+            "w": 358,
+            "h": 358
+          },
+          "visualRect": {
+            "w": 358,
+            "h": 358
+          },
+          "stageRect": {
+            "w": 358,
+            "h": 250.59375
+          },
+          "svgRect": {
+            "w": 358,
+            "h": 250.59375
+          },
+          "svgViewbox": "0 0 1984 1134",
+          "extraZoomHooks": false,
+          "xOverflow": false,
+          "completed": "true",
+          "htmlBackground": "Fresh food.\nGood mood.",
+          "visualPlaceholder": false
+        }
+      }
+    },
+    {
+      "name": "mobile other chef/orbit animation untouched",
+      "passed": true,
+      "details": {
+        "length": 210,
+        "frameRate": 30,
+        "forward": true,
+        "svg": true
+      }
+    },
+    {
+      "name": "mobile asset URLs and browser errors",
+      "passed": true,
+      "details": {
+        "console": [],
+        "badAssets": [],
+        "F01Requests": [
+          "http://127.0.0.1:18894/assets/lottie/f01.json"
+        ]
+      }
+    }
+  ],
+  "failures": []
+}
