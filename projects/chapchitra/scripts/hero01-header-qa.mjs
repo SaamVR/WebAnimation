@@ -240,8 +240,14 @@ for(const t of profiles){
  await page.waitForTimeout(550);
  const paperAtTop=await page.locator('#hero01PaperPanel').evaluate(el=>el.getBoundingClientRect().top);
  const logoAtTop=await page.locator('#hero .hero01-full-logo').evaluate(el=>el.getBoundingClientRect().top);
- // Slow downward scroll while the original illustrated logo and V travel together.
- for(const y of [30,60,90,120,150,185]){
+ // Sample the SAME genuine 45%-retracted paper on every viewport.
+ // Fixed 185px is already fully retracted at some 320px configurations;
+ // that incorrectly demanded "special" after the intended standard switch.
+ // Retain all geometry and scroll-reversal assertions below unchanged.
+ const midScrollY=await page.locator('#hero01PaperPanel').evaluate(el=>
+  Math.min(185,Math.max(8,Math.floor(el.offsetHeight*.72*.45))));
+ for(const fraction of [1/6,2/6,3/6,4/6,5/6,1]){
+  const y=Math.round(midScrollY*fraction);
   await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);
   await page.waitForTimeout(60);
  }
@@ -264,7 +270,7 @@ for(const t of profiles){
  assert.ok(Math.abs((midGeo.logo-logoAtTop)-(midGeo.paper-paperAtTop))<3,'Full logo and paper retract as one assembly');
  assert.equal(midGeo.opacity,'1','Never fade original artwork while still visible');
  await page.screenshot({path:resolve(out,t.name+'-paper-mid-scroll.png')});
- reviewTimeline.push({event:'paper-mid-scroll',mode:mid.state,scrollY:185,logoOpacity:midGeo.opacity});
+ reviewTimeline.push({event:'paper-mid-scroll',mode:mid.state,scrollY:midScrollY,logoOpacity:midGeo.opacity});
  for(const y of [230,280,330,380,430,480]){
   await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);
   await page.waitForTimeout(60);
