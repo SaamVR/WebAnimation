@@ -17,7 +17,7 @@ jobs:
           cat projects/restaurant-demo/review_bundle/part-*.bin > /tmp/current-review.zip
           unzip -tq /tmp/current-review.zip
           unzip -p /tmp/current-review.zip index.html > /tmp/zestry-f05-inspect/index.html
-          unzip -p /tmp/current-review.zip assets/f05_interactive.html > /tmp/zestry-f05-inspect/f05_interactive.html
+          unzip -p /tmp/current-review.zip assets/f05_book.html > /tmp/zestry-f05-inspect/f05_book.html
           python - <<'PY'
           import zipfile,json
           z=zipfile.ZipFile('/tmp/current-review.zip')
