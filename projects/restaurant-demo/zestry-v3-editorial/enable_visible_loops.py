@@ -112,16 +112,30 @@ def change_page(page:str)->str:
  old=match.group(0)
  assert "lottie.loadAnimation" in old
  assert "container.dataset.loaded='yes';" in old
- if old.count('autoplay:true')!=1:
-  print("ZESTRY_PLAYER_AUTOPLAY_DIAGNOSTIC",repr(re.findall(r'.{0,120}autoplay.{0,160}',old,re.I|re.S)),flush=True)
-  print("ZESTRY_PLAYER_SOURCE_DIAGNOSTIC",repr(old[:3500]),flush=True)
-  raise AssertionError("Unknown existing autoplay shape")
+ original_player=(
+  "let l=lottie.loadAnimation({container,renderer:'svg',loop,"
+  "autoplay:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,"
+  "animationData:v,rendererSettings:{preserveAspectRatio:'xMidYMid meet'}});"
+  "container.dataset.loaded='yes';container.dataset.player=name;"
+  "if(name==='f01'||name==='f03')l.addEventListener('complete',()=>{"
+  "container.dataset.motionComplete='true';"
+  "l.goToAndStop(Math.max(0,v.op-1),true)});"
+  "if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){"
+  "l.goToAndStop(0,true)}else{let obs=new IntersectionObserver(es=>{"
+  "if(es[0].isIntersecting){if(container.dataset.motionComplete!=='true')"
+  "l.play()}else l.pause()},{threshold:.12});obs.observe(container)}"
+ )
+ new_player=(
+  "let l=lottie.loadAnimation({container,renderer:'svg',loop:true,"
+  "autoplay:false,animationData:v,"
+  "rendererSettings:{preserveAspectRatio:'xMidYMid meet'}});"
+  "if(typeof l.setSubframe==='function')l.setSubframe(false);"
+  "container.dataset.loaded='yes';container.dataset.player=name;"
+  "zestryMotionAttach(l,container)"
+ )
  policy="if(name==='f01'||name==='f02-chef-full360'||name==='f03'||name==='f07')loop=false;"
  new=once(old,policy,"loop=true;","one-shot policy")
- new=once(new,"autoplay:true","autoplay:false","viewport-gated start")
- new=once(new,"container.dataset.loaded='yes';",
-          "container.dataset.loaded='yes';zestryMotionAttach(l,container);",
-          "existing native player")
+ new=once(new,original_player,new_player,"replace obsolete one-shot observer")
  assert 'broth.hasMask=true' in new and "if(name==='f03')" in new
  page=page[:match.start()]+new+page[match.end():]
  page=once(page,"async function play(name,container,loop=false){",
