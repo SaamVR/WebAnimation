@@ -33,6 +33,7 @@ jobs:
       - name: Install Python Lottie QA client using preinstalled Chrome
         run: |
           python -m pip install playwright==1.56.0
+          python -m playwright install ffmpeg
           google-chrome --version
       - name: Verify integration code and archive source hashes
         run: |
