@@ -16,6 +16,8 @@ jobs:
   isolated-c04:
     name: C04 motion, accessibility and real-browser recordings (no deploy)
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -48,12 +50,12 @@ jobs:
           npm ci --no-audit --no-fund
           npm run check
           node scripts/build.mjs
-      - name: Install local Chromium, WebKit and video cropper
+      - name: Verify preinstalled Chromium and WebKit in official Playwright container
         working-directory: projects/chapchitra
         run: |
-          npx playwright install --with-deps chromium webkit
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg
+          test -d /ms-playwright
+          node -p "'Playwright version '+require('./node_modules/playwright/package.json').version"
+          command -v ffmpeg || true
       - name: Native and enlarged video / screenshot creative review
         working-directory: projects/chapchitra
         env:
