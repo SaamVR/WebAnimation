@@ -1,0 +1,53 @@
+name: ZESTRY F01 V4 final deployed Chromium acceptance (NO DEPLOY)
+on:
+  push:
+    branches:
+      - qa/zestry-f01-v4-live-native-acceptance-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/qa_f01_v4_final_live.py
+      - .github/workflows/zestry-f01-v4-final-live.yml
+permissions:
+  contents: read
+jobs:
+  verify-live-v4:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout evidence-only branch, never deploy
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install native Chromium and image-difference libraries
+        run: |
+          python -m pip install "playwright==1.56.0" "Pillow==11.3.0"
+          python -m playwright install chromium
+      - name: Test live original F01 source hash, complete motion and circle on desktop/mobile
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_f01_v4_final_live.py
+      - name: Preserve video and screenshot proof even on a failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-F01-V4-LIVE-NATIVE-BROWSER-ACCEPTANCE
+          path: projects/restaurant-demo/docs/qa/f01-v4-final-live/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Commit passing live-site screenshots and natural speed recordings to QA branch
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/docs/qa/f01-v4-final-live/
+          if git diff --cached --name-only | grep -v '^projects/restaurant-demo/docs/qa/f01-v4-final-live/'; then
+            echo "Out-of-scope artifact detected"; exit 1
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m "test(zestry): verify real V4 playback and fixed circular viewport [skip ci]"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo "No Render service creation, deployment or integration commit"
