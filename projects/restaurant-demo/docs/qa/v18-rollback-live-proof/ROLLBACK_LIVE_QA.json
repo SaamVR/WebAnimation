@@ -1,0 +1,156 @@
+{
+  "url": "https://zestry-v3-restaurant-review-20261117.onrender.com/",
+  "deployedSHA": "2bdfe0c6d19050bb1e44ae79640a547ddb62844d",
+  "atUTC": "2026-11-18T11:20:58.162148+00:00",
+  "tests": [
+    {
+      "test": "desktop reverted to V17, broth repair kept",
+      "pass": true,
+      "detail": {
+        "v18PlaybackMarker": false,
+        "brothRepairMarker": true,
+        "cssTransform": "matrix(1.755, 0, 0, 1.755, 0, 0)"
+      }
+    },
+    {
+      "test": "desktop F01 one-shot policy and fixed scale",
+      "pass": true,
+      "detail": {
+        "frame": 2,
+        "loop": false,
+        "direction": 1,
+        "scale": "1.755000",
+        "complete": null,
+        "wood": true,
+        "brothClip": "url(#__lottie_element_88)",
+        "duplicates": []
+      }
+    },
+    {
+      "test": "desktop plate stays finished; no automatic restart",
+      "pass": true,
+      "detail": {
+        "before": {
+          "frame": 260,
+          "loop": false,
+          "direction": 1,
+          "scale": "1.755000",
+          "complete": "true",
+          "wood": true,
+          "brothClip": "url(#__lottie_element_88)",
+          "duplicates": []
+        },
+        "after": {
+          "frame": 260,
+          "loop": false,
+          "direction": 1,
+          "scale": "1.755000",
+          "complete": "true",
+          "wood": true,
+          "brothClip": "url(#__lottie_element_88)",
+          "duplicates": []
+        }
+      }
+    },
+    {
+      "test": "desktop broth visible on completed plate",
+      "pass": true,
+      "detail": {
+        "brothPixels": 31609
+      }
+    },
+    {
+      "test": "desktop F02 former playback restored; no reversal controller",
+      "pass": true,
+      "detail": {
+        "frame": 0,
+        "loop": true,
+        "direction": 1,
+        "noV18PingPong": true
+      }
+    },
+    {
+      "test": "desktop no page or site-request failures",
+      "pass": true,
+      "detail": {
+        "jsErrors": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "test": "mobile reverted to V17, broth repair kept",
+      "pass": true,
+      "detail": {
+        "v18PlaybackMarker": false,
+        "brothRepairMarker": true,
+        "cssTransform": "matrix(1.755, 0, 0, 1.755, 0, 0)"
+      }
+    },
+    {
+      "test": "mobile F01 one-shot policy and fixed scale",
+      "pass": true,
+      "detail": {
+        "frame": 3,
+        "loop": false,
+        "direction": 1,
+        "scale": "1.755000",
+        "complete": null,
+        "wood": true,
+        "brothClip": "url(#__lottie_element_88)",
+        "duplicates": []
+      }
+    },
+    {
+      "test": "mobile plate stays finished; no automatic restart",
+      "pass": true,
+      "detail": {
+        "before": {
+          "frame": 260,
+          "loop": false,
+          "direction": 1,
+          "scale": "1.755000",
+          "complete": "true",
+          "wood": true,
+          "brothClip": "url(#__lottie_element_88)",
+          "duplicates": []
+        },
+        "after": {
+          "frame": 260,
+          "loop": false,
+          "direction": 1,
+          "scale": "1.755000",
+          "complete": "true",
+          "wood": true,
+          "brothClip": "url(#__lottie_element_88)",
+          "duplicates": []
+        }
+      }
+    },
+    {
+      "test": "mobile broth visible on completed plate",
+      "pass": true,
+      "detail": {
+        "brothPixels": 7464
+      }
+    },
+    {
+      "test": "mobile F02 former playback restored; no reversal controller",
+      "pass": true,
+      "detail": {
+        "frame": 1,
+        "loop": true,
+        "direction": 1,
+        "noV18PingPong": true
+      }
+    },
+    {
+      "test": "mobile no page or site-request failures",
+      "pass": true,
+      "detail": {
+        "jsErrors": [],
+        "httpErrors": []
+      }
+    }
+  ],
+  "failures": []
+}
