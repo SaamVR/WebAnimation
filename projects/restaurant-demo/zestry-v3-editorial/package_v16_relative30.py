@@ -116,9 +116,9 @@ def main() -> None:
 
     assets["assets/lottie/f01-v16.json"] = generate_derived(assets["assets/lottie/f01.json"])
     index = assets["index.html"].decode("utf-8")
-    old_fn = "mountF01V15SafeZoom"
     new_fn = "mountF01V16FixedSize"
-    index = index.replace(old_fn, new_fn)
+    for old_fn in ("mountF01V15SafeZoom", "mountF01V16Relative30Zoom"):
+        index = index.replace(old_fn, new_fn)
     index = index.replace("const zoom=1+0.35*ease;", "const zoom=1.755;")
     index = index.replace("const zoom=1+0.755*ease;", "const zoom=1.755;")
     before = "fetch('assets/lottie/'+encodeURIComponent(name)+'.json')"
