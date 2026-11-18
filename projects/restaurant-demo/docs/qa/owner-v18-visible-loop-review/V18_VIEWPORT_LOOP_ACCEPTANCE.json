@@ -1,0 +1,996 @@
+{
+  "description": "features/V18 chef orbit ping-pong and viewport-scoped Lottie playback",
+  "deployment": "NOT DEPLOYED",
+  "viewports": {
+    "desktop": {
+      "f01BrothPixels": 31061,
+      "orbit": {
+        "name": "f02-orbit",
+        "frame": 12,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      },
+      "reverse": {
+        "name": "f02-orbit",
+        "frame": 202,
+        "isPaused": false,
+        "direction": -1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 1,
+        "orbitDirection": "return",
+        "zoom": null,
+        "wood": null
+      },
+      "forward": {
+        "name": "f02-orbit",
+        "frame": 4,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      },
+      "paused": {
+        "name": "f02-orbit",
+        "frame": 10,
+        "isPaused": true,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "false",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      },
+      "resumed": {
+        "name": "f02-orbit",
+        "frame": 20,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      },
+      "errors": [],
+      "badAssets": []
+    },
+    "mobile": {
+      "f01BrothPixels": 7219,
+      "orbit": {
+        "name": "f02-orbit",
+        "frame": 12,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      },
+      "reverse": {
+        "name": "f02-orbit",
+        "frame": 202,
+        "isPaused": false,
+        "direction": -1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 1,
+        "orbitDirection": "return",
+        "zoom": null,
+        "wood": null
+      },
+      "forward": {
+        "name": "f02-orbit",
+        "frame": 4,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      },
+      "paused": {
+        "name": "f02-orbit",
+        "frame": 6,
+        "isPaused": true,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "false",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      },
+      "resumed": {
+        "name": "f02-orbit",
+        "frame": 16,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      },
+      "errors": [],
+      "badAssets": []
+    }
+  },
+  "regressions": [],
+  "errors": [],
+  "passes": [
+    {
+      "name": "desktop F01 initial renderer/loop policy",
+      "pass": true,
+      "details": {
+        "name": "f01",
+        "frame": 0,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 261,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": "1.755000",
+        "wood": "original-vector"
+      }
+    },
+    {
+      "name": "desktop F01 hero visible",
+      "pass": true,
+      "details": {
+        "name": "f01",
+        "frame": 0,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 261,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": "1.755000",
+        "wood": "original-vector"
+      }
+    },
+    {
+      "name": "desktop F01 final broth painted",
+      "pass": true,
+      "details": {
+        "brothPaintedPixels": 31061
+      }
+    },
+    {
+      "name": "desktop F01 loops forward instead of final hold",
+      "pass": true,
+      "details": {
+        "name": "f01",
+        "frame": 7,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 261,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 1,
+        "orbitDirection": null,
+        "zoom": "1.755000",
+        "wood": "original-vector"
+      }
+    },
+    {
+      "name": "desktop no F01 wood/broth SVG duplicate IDs",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "desktop F02 chef pingpong and cooking repeat policies",
+      "pass": true,
+      "details": {
+        "orbit": {
+          "name": "f02-orbit",
+          "frame": 12,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 0,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "cooking": {
+          "name": "f02-cooking",
+          "frame": 13,
+          "isPaused": false,
+          "direction": 1,
+          "loop": true,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 0,
+          "orbitDirection": null,
+          "zoom": null,
+          "wood": null
+        }
+      }
+    },
+    {
+      "name": "desktop F02 orbit reverses smoothly at end",
+      "pass": true,
+      "details": {
+        "name": "f02-orbit",
+        "frame": 202,
+        "isPaused": false,
+        "direction": -1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 1,
+        "orbitDirection": "return",
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "desktop F02 orbit starts new forward cycle at original scene",
+      "pass": true,
+      "details": {
+        "name": "f02-orbit",
+        "frame": 4,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "desktop F02 pauses after scrolling to process",
+      "pass": true,
+      "details": {
+        "name": "f02-orbit",
+        "frame": 10,
+        "isPaused": true,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "false",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "desktop F02 position does not advance offscreen",
+      "pass": true,
+      "details": {
+        "before": 10,
+        "after": {
+          "name": "f02-orbit",
+          "frame": 10,
+          "isPaused": true,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "false",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        }
+      }
+    },
+    {
+      "name": "desktop F06 loops when process visible",
+      "pass": true,
+      "details": {
+        "name": "f06",
+        "frame": 19,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 432,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "desktop F03 coffee scene loops while section visible",
+      "pass": true,
+      "details": {
+        "name": "f03",
+        "frame": 5,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 228,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "desktop F07 reservation section loops while visible",
+      "pass": true,
+      "details": {
+        "name": "f07",
+        "frame": 9,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 228,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "desktop F02 resumes same state on return",
+      "pass": true,
+      "details": {
+        "offscreen": {
+          "name": "f02-orbit",
+          "frame": 10,
+          "isPaused": true,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "false",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "resumed": {
+          "name": "f02-orbit",
+          "frame": 20,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        }
+      }
+    },
+    {
+      "name": "desktop background-tab pauses all tracked players",
+      "pass": true,
+      "details": {
+        "paused": true,
+        "total": 6
+      }
+    },
+    {
+      "name": "desktop restore viewport playback after tab foreground",
+      "pass": true,
+      "details": {
+        "name": "f02-orbit",
+        "frame": 28,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "desktop no script or missing assets",
+      "pass": true,
+      "details": {
+        "errors": [],
+        "failed": []
+      }
+    },
+    {
+      "name": "mobile F01 initial renderer/loop policy",
+      "pass": true,
+      "details": {
+        "name": "f01",
+        "frame": 0,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 261,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": "1.755000",
+        "wood": "original-vector"
+      }
+    },
+    {
+      "name": "mobile F01 hero visible",
+      "pass": true,
+      "details": {
+        "name": "f01",
+        "frame": 0,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 261,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": "1.755000",
+        "wood": "original-vector"
+      }
+    },
+    {
+      "name": "mobile F01 final broth painted",
+      "pass": true,
+      "details": {
+        "brothPaintedPixels": 7219
+      }
+    },
+    {
+      "name": "mobile F01 loops forward instead of final hold",
+      "pass": true,
+      "details": {
+        "name": "f01",
+        "frame": 7,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 261,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 1,
+        "orbitDirection": null,
+        "zoom": "1.755000",
+        "wood": "original-vector"
+      }
+    },
+    {
+      "name": "mobile no F01 wood/broth SVG duplicate IDs",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "mobile F02 chef pingpong and cooking repeat policies",
+      "pass": true,
+      "details": {
+        "orbit": {
+          "name": "f02-orbit",
+          "frame": 12,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 0,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "cooking": {
+          "name": "f02-cooking",
+          "frame": 12,
+          "isPaused": false,
+          "direction": 1,
+          "loop": true,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 0,
+          "orbitDirection": null,
+          "zoom": null,
+          "wood": null
+        }
+      }
+    },
+    {
+      "name": "mobile F02 orbit reverses smoothly at end",
+      "pass": true,
+      "details": {
+        "name": "f02-orbit",
+        "frame": 202,
+        "isPaused": false,
+        "direction": -1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 1,
+        "orbitDirection": "return",
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "mobile F02 orbit starts new forward cycle at original scene",
+      "pass": true,
+      "details": {
+        "name": "f02-orbit",
+        "frame": 4,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "mobile F02 pauses after scrolling to process",
+      "pass": true,
+      "details": {
+        "name": "f02-orbit",
+        "frame": 6,
+        "isPaused": true,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "false",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "mobile F02 position does not advance offscreen",
+      "pass": true,
+      "details": {
+        "before": 6,
+        "after": {
+          "name": "f02-orbit",
+          "frame": 6,
+          "isPaused": true,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "false",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        }
+      }
+    },
+    {
+      "name": "mobile F06 loops when process visible",
+      "pass": true,
+      "details": {
+        "name": "f06",
+        "frame": 18,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 432,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "mobile F03 coffee scene loops while section visible",
+      "pass": true,
+      "details": {
+        "name": "f03",
+        "frame": 5,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 228,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "mobile F07 reservation section loops while visible",
+      "pass": true,
+      "details": {
+        "name": "f07",
+        "frame": 10,
+        "isPaused": false,
+        "direction": 1,
+        "loop": true,
+        "subframe": false,
+        "duration": 228,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 0,
+        "orbitDirection": null,
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "mobile F02 resumes same state on return",
+      "pass": true,
+      "details": {
+        "offscreen": {
+          "name": "f02-orbit",
+          "frame": 6,
+          "isPaused": true,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "false",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "resumed": {
+          "name": "f02-orbit",
+          "frame": 16,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        }
+      }
+    },
+    {
+      "name": "mobile background-tab pauses all tracked players",
+      "pass": true,
+      "details": {
+        "paused": true,
+        "total": 6
+      }
+    },
+    {
+      "name": "mobile restore viewport playback after tab foreground",
+      "pass": true,
+      "details": {
+        "name": "f02-orbit",
+        "frame": 23,
+        "isPaused": false,
+        "direction": 1,
+        "loop": false,
+        "subframe": false,
+        "duration": 210,
+        "fps": 30,
+        "loaded": "yes",
+        "playingInViewport": "true",
+        "motionLoops": 2,
+        "orbitDirection": "forward",
+        "zoom": null,
+        "wood": null
+      }
+    },
+    {
+      "name": "mobile no script or missing assets",
+      "pass": true,
+      "details": {
+        "errors": [],
+        "failed": []
+      }
+    },
+    {
+      "name": "F05 interactive book preserved, adds to simulated bag",
+      "pass": true,
+      "details": {
+        "bagCount": 1
+      }
+    },
+    {
+      "name": "F04 confirmation loops only while dialog visible",
+      "pass": true,
+      "details": {
+        "frame": 1,
+        "loop": true,
+        "paused": false,
+        "motion": "true"
+      }
+    },
+    {
+      "name": "F04 confirmation pauses on dialog close",
+      "pass": true,
+      "details": {
+        "paused": true,
+        "modalActive": false
+      }
+    },
+    {
+      "name": "F05/F04 regression no JS errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "reduced motion keeps F01 and F02 paused at opening frames",
+      "pass": true,
+      "details": {
+        "F01": {
+          "name": "f01",
+          "frame": 0,
+          "isPaused": true,
+          "direction": 1,
+          "loop": true,
+          "subframe": false,
+          "duration": 261,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "false",
+          "motionLoops": 0,
+          "orbitDirection": null,
+          "zoom": "1.755000",
+          "wood": "original-vector"
+        },
+        "F02": {
+          "name": "f02-orbit",
+          "frame": 0,
+          "isPaused": true,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "false",
+          "motionLoops": 0,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        }
+      }
+    },
+    {
+      "name": "desktop F02 natural full forward/return/forward loop",
+      "pass": true,
+      "details": {
+        "initial": {
+          "name": "f02-orbit",
+          "frame": 2,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 0,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "final": {
+          "name": "f02-orbit",
+          "frame": 122,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "name": "desktop F02 natural browser video saved",
+      "pass": true,
+      "details": {
+        "name": "V18-desktop-chef-seamless-real-browser.webm",
+        "bytes": 2667291
+      }
+    },
+    {
+      "name": "mobile F02 natural full forward/return/forward loop",
+      "pass": true,
+      "details": {
+        "initial": {
+          "name": "f02-orbit",
+          "frame": 3,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 0,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "final": {
+          "name": "f02-orbit",
+          "frame": 120,
+          "isPaused": false,
+          "direction": 1,
+          "loop": false,
+          "subframe": false,
+          "duration": 210,
+          "fps": 30,
+          "loaded": "yes",
+          "playingInViewport": "true",
+          "motionLoops": 2,
+          "orbitDirection": "forward",
+          "zoom": null,
+          "wood": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "name": "mobile F02 natural browser video saved",
+      "pass": true,
+      "details": {
+        "name": "V18-mobile-chef-seamless-real-browser.webm",
+        "bytes": 2534789
+      }
+    }
+  ]
+}
