@@ -85,7 +85,21 @@ def main():
                   ("assets/lottie/f02-orbit.json",OLD_ORBIT_SHA),
                   ("assets/lottie/f02-cooking.json",OLD_COOK_SHA)]:
   assert previous[name]==sha,("Unexpected source asset",name)
- assert "assets/lottie/f02-chef-full360.json" not in data
+ if "assets/lottie/f02-chef-full360.json" in data:
+  # A previous successful QA run already committed this immutable site bundle.
+  # Re-run the source/hash and single-chef checks without rewriting any bytes.
+  assert data["assets/lottie/f02-chef-full360.json"]==new_asset
+  current=data["index.html"].decode()
+  assert MARK in current and NEW_SLOT in current and NEW_NAMES in current
+  assert NEW_ONESHOT in current
+  assert "data-animation=\"f02-orbit\"" not in current
+  assert "data-animation=\"f02-cooking\"" not in current
+  assert previous["assets/lottie/f01.json"]==F01_SHA
+  print("SINGLE_F02_ALREADY_INTEGRATED_UNCHANGED",json.dumps({
+    "ownerSourceSha256":OWNER_SHA,"sourceUnmodified":True,
+    "existingZipFiles":len(data),"deployment":False
+  }),flush=True)
+  return
  original=data["index.html"].decode()
  assert MARK not in original
  assert "data-animation=\"f02-orbit\"" not in original
