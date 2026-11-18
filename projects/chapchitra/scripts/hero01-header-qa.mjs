@@ -200,6 +200,10 @@ for(const t of profiles){
   await img.decode();
   if(img.naturalWidth<100)throw Error('Original full illustrated logo failed to decode');
  });
+ // Wait for image/font-based responsive centering to settle before sampling;
+ // keep the original strict geometry assertions unchanged.
+ await page.evaluate(()=>document.fonts.ready);
+ await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
  // Keep the approved carousel on Hero 01 while the C08 240-frame animation
  // completes, exactly as a real pointer hovering over the hero would.
  await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseenter')));
@@ -236,8 +240,14 @@ for(const t of profiles){
  await page.waitForTimeout(550);
  const paperAtTop=await page.locator('#hero01PaperPanel').evaluate(el=>el.getBoundingClientRect().top);
  const logoAtTop=await page.locator('#hero .hero01-full-logo').evaluate(el=>el.getBoundingClientRect().top);
- // Slow downward scroll while the original illustrated logo and V travel together.
- for(const y of [30,60,90,120,150,185]){
+ // Sample the SAME genuine 45%-retracted paper on every viewport.
+ // Fixed 185px is already fully retracted at some 320px configurations;
+ // that incorrectly demanded "special" after the intended standard switch.
+ // Retain all geometry and scroll-reversal assertions below unchanged.
+ const midScrollY=await page.locator('#hero01PaperPanel').evaluate(el=>
+  Math.min(185,Math.max(8,Math.floor(el.offsetHeight*.72*.45))));
+ for(const fraction of [1/6,2/6,3/6,4/6,5/6,1]){
+  const y=Math.round(midScrollY*fraction);
   await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);
   await page.waitForTimeout(60);
  }
@@ -245,16 +255,22 @@ for(const t of profiles){
  const mid=await sample(page);
  assert.equal(mid.navWordmark.visible,false,'No duplicate compact logo over partially visible paper');
  assert.equal(mid.heroLogoInert,false,'Original hero logo remains interactive');
- const midGeo=await page.evaluate(()=>({
-  paper:document.querySelector('#hero01PaperPanel').getBoundingClientRect().top,
-  logo:document.querySelector('#hero .hero01-full-logo').getBoundingClientRect().top,
-  opacity:getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity
- }));
- assert.ok(Math.abs(midGeo.paper-paperAtTop+185)<3,'V follows native scroll');
- assert.ok(Math.abs(midGeo.logo-logoAtTop+185)<3,'Original logo follows same scroll');
+ const midGeo=await page.evaluate(()=>{
+  const paper=document.querySelector('#hero01PaperPanel'),header=document.querySelector('#siteHeader');
+  return {
+   paper:paper.getBoundingClientRect().top,
+   logo:document.querySelector('#hero .hero01-full-logo').getBoundingClientRect().top,
+   opacity:getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity,
+   progress:Number(paper.dataset.retractionProgress),
+   target:header.getBoundingClientRect().bottom-(paper.offsetHeight+12)*Number(paper.dataset.retractionProgress)
+  };
+ });
+ assert.ok(midGeo.progress>0&&midGeo.progress<1,'V is partway through scroll-controlled retraction');
+ assert.ok(Math.abs(midGeo.paper-midGeo.target)<2,'V edge tracks sticky navbar, not document scroll');
+ assert.ok(Math.abs((midGeo.logo-logoAtTop)-(midGeo.paper-paperAtTop))<3,'Full logo and paper retract as one assembly');
  assert.equal(midGeo.opacity,'1','Never fade original artwork while still visible');
  await page.screenshot({path:resolve(out,t.name+'-paper-mid-scroll.png')});
- reviewTimeline.push({event:'paper-mid-scroll',mode:mid.state,scrollY:185,logoOpacity:midGeo.opacity});
+ reviewTimeline.push({event:'paper-mid-scroll',mode:mid.state,scrollY:midScrollY,logoOpacity:midGeo.opacity});
  for(const y of [230,280,330,380,430,480]){
   await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),y);
   await page.waitForTimeout(60);

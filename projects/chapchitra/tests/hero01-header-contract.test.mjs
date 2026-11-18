@@ -24,9 +24,9 @@ test('Hero01 preserves one navbar, restores standard presentation on slide and s
  assert.match(app,/id="siteHeader"/);
  assert.match(app,/data-hero01-mode="special"/);
  assert.match(app,/function syncHero01Header\(\)/);
- assert.match(app,/active===0&&paperBottom>stickyBottom\+2/);
+ assert.match(app,/const special=active===0&&!state.complete/);
  assert.match(app,/window\.addEventListener\('scroll',onHeroHeaderScroll/);
- assert.match(app,/window\.addEventListener\('pageshow',syncHero01Header\)/);
+ assert.match(app,/window\.addEventListener\('pageshow',onHeroHeaderScroll\)/);
  assert.match(app,/clock\.startSlide\(active\)/);
  assert.match(css,/data-hero01-mode="special"/);
  for(const label of ['Shop','Artist’s Edit','Journal','About Us'])
@@ -138,10 +138,12 @@ test('full owner review records every slider, both real C02 routes and logo stat
  assert.match(browser,/recordVideo/);
 });
 
-test('Hero01 paper and full logo remain painted through normal document scroll',()=>{
+test('Hero01 paper and full logo remain painted through scroll-linked retraction against the sticky navbar',()=>{
  assert.doesNotMatch(css,/#hero\[data-hero01-mode="standard"\]\s+\.hero01-full-logo/);
  assert.doesNotMatch(css,/#hero \.hero01-full-logo\{transition:opacity/);
- assert.match(app,/paperPanel\.getBoundingClientRect\(\)\.bottom/);
+ assert.match(app,/paperPanel\.style\.transform='translate3d/);
+ assert.match(app,/hero01Retraction\(\{/);
+ assert.match(css,/#hero:has\(\.hero-cover:not\(\[hidden\]\)\)\{overflow:visible\}/);
  assert.match(app,/heroIdentity\.inert=!special/);
  assert.match(browser,/paperAtTop/);
  assert.match(browser,/logoAtTop/);

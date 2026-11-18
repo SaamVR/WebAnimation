@@ -1,0 +1,71 @@
+{
+  "origin": "http://127.0.0.1:4297",
+  "baseline": "84a17011d378a57e2bae4f1e4ab2a19a26bc324c",
+  "pass": true,
+  "results": [
+    {
+      "name": "desktop-chromium",
+      "checks": {
+        "initialC08Completed": true,
+        "manualDot": true,
+        "hoverPause": true,
+        "resumeAfterHover": true,
+        "offscreenPause": true,
+        "onScreenResume": true,
+        "manualReturnToHero1": true,
+        "c08StillValid": true,
+        "keyboardFocusPause": true,
+        "keyboardBlurResume": true,
+        "reducedMotion": true
+      },
+      "errors": [],
+      "hoverRemaining": {
+        "before": 4000,
+        "after": 4000
+      },
+      "scrollRemaining": {
+        "before": 3656.2999999523163,
+        "after": 3656.2999999523163
+      },
+      "c08ManualReturnDebug": {
+        "autoplay": 1,
+        "completed": 1,
+        "failed": false,
+        "pathLength": 45667
+      },
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit",
+      "checks": {
+        "initialC08Completed": true,
+        "manualDot": true,
+        "hoverPause": true,
+        "resumeAfterHover": true,
+        "offscreenPause": true,
+        "onScreenResume": true,
+        "manualReturnToHero1": true,
+        "c08StillValid": true,
+        "keyboardFocusPause": true,
+        "keyboardBlurResume": true,
+        "reducedMotion": true
+      },
+      "errors": [],
+      "hoverRemaining": {
+        "before": 4000,
+        "after": 4000
+      },
+      "scrollRemaining": {
+        "before": 3664,
+        "after": 3664
+      },
+      "c08ManualReturnDebug": {
+        "autoplay": 1,
+        "completed": 1,
+        "failed": false,
+        "pathLength": 45667
+      },
+      "pass": true
+    }
+  ]
+}

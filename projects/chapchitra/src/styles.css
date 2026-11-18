@@ -1,4 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600&display=swap');
+/* Owner-approved self-hosted variable typography: Google Fonts WOFF2 subsets. */
+/* DM Sans · normal · latin-ext subset */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(/assets/fonts/dm-sans-latin-ext-variable.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* DM Sans · normal · latin subset */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(/assets/fonts/dm-sans-latin-variable.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Fraunces · italic · latin-ext subset */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(/assets/fonts/fraunces-latin-ext-italic-variable.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Fraunces · italic · latin subset */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(/assets/fonts/fraunces-latin-italic-variable.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Fraunces · normal · latin-ext subset */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(/assets/fonts/fraunces-latin-ext-variable.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Fraunces · normal · latin subset */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(/assets/fonts/fraunces-latin-variable.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Noto Sans Bengali · normal · bengali subset */
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/assets/fonts/noto-sans-bengali-variable.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0, U+1CD2, U+1CD5-1CD6, U+1CD8, U+1CE1, U+1CEA, U+1CED, U+1CF2, U+1CF5-1CF7, U+200C-200D, U+20B9, U+25CC, U+A8F1, U+11DF0-11DF1;
+}
+/* Noto Serif Bengali · normal · bengali subset */
+@font-face {
+  font-family: 'Noto Serif Bengali';
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/assets/fonts/noto-serif-bengali-variable.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0, U+1CD2, U+1CD5-1CD6, U+1CD8, U+1CE1, U+1CEA, U+1CED, U+1CF2, U+1CF5-1CF7, U+200C-200D, U+20B9, U+25CC, U+A8F1, U+11DF0-11DF1;
+}
 /* CHAPCHITRA — authoritative 12-color brand system (owner approved 2026-11-06).
    Canonical palette literals live ONLY here. Semantic roles and legacy aliases
    all reference them, so older routes share the same values.
@@ -59,10 +133,20 @@
   --fog:var(--mist);
   --line:var(--grey);
   --muted:var(--mut);
-  --serif:"Noto Serif Bengali",Georgia,"Times New Roman",serif;
-  --sans:"Hind Siliguri",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  /* Final 2026-11-17 typography system: fonts, not artwork colors. */
+  --font-editorial:"Fraunces","Noto Serif Bengali",Georgia,serif;
+  --font-ui:"DM Sans","Noto Sans Bengali",Arial,sans-serif;
+  --font-bn-serif:"Noto Serif Bengali","Fraunces",serif;
+  --font-bn-ui:"Noto Sans Bengali","DM Sans",sans-serif;
+  --font-weight-display:650;
+  --font-weight-section:550;
+  --font-weight-quote:375;
+  --font-weight-label:600;
+  --font-text-size:16px;
+  --serif:var(--font-editorial);
+  --sans:var(--font-ui);
 }
-*,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--graphite);font:14px/1.65 var(--sans);-webkit-font-smoothing:antialiased}img,svg{max-width:100%}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}:focus-visible{outline:3px solid var(--clay);outline-offset:3px}[hidden]{display:none!important}.wrap{width:min(1200px,calc(100% - 76px));margin-inline:auto}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:absolute;top:-80px;left:12px;padding:10px;background:var(--bg);z-index:999}.skip-link:focus{top:8px}
+*,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--graphite);font:400 var(--font-text-size)/1.6 var(--sans);-webkit-font-smoothing:antialiased}img,svg{max-width:100%}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}:focus-visible{outline:3px solid var(--clay);outline-offset:3px}[hidden]{display:none!important}.wrap{width:min(1200px,calc(100% - 76px));margin-inline:auto}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:absolute;top:-80px;left:12px;padding:10px;background:var(--bg);z-index:999}.skip-link:focus{top:8px}
 .eyebrow{font-weight:750;font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--press-olive)}h1,h2,h3,p{overflow-wrap:break-word}.button{min-height:47px;display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:.02em}.button.dark{background:var(--midnight-pine);color:var(--bg)}.button.light{background:var(--paper);color:var(--midnight-pine)}.text-link{display:inline-flex;font-size:12px;font-weight:700;border-bottom:1px solid currentColor;padding-bottom:5px}.text-link:hover{color:var(--clay)}
 .announcement{min-height:34px;padding:7px 18px;display:grid;place-items:center;text-align:center;background:var(--midnight-pine);color:var(--paper);font-size:11px;letter-spacing:.045em}
 .site-header{position:sticky;top:0;z-index:50;background:var(--bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.header-line{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:25px}.logo-word{display:inline-flex;flex-direction:column;line-height:1.12;flex-shrink:0;font:600 24px var(--serif);letter-spacing:-.05em}.logo-word small{font:12px var(--sans);letter-spacing:.07em;color:var(--press-olive)}
@@ -2338,6 +2422,10 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   margin-left:0;
   margin-right:auto;
 }
+/* The compositor-preserved hero clips ordinary descendants; it must release
+   overflow only while Hero01 is active so the retraction can pass *behind*
+   the separate sticky navbar instead of clipping at the hero's old top. */
+#hero:has(.hero-cover:not([hidden])){overflow:visible}
 #hero .hero01-paper-panel{
   position:absolute;
   top:0;left:0;right:0;
@@ -2349,13 +2437,16 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   justify-content:center;
   isolation:isolate;
   pointer-events:none;
+  transform:translate3d(0,0,0);
+  transition:none!important;
+  will-change:transform;
 }
 #hero .hero01-paper-edge{
   position:absolute;inset:0;
   display:block;
   width:100%;height:100%;
   pointer-events:none;
-  overflow:visible;
+  overflow:hidden; /* clip the original SVG outside its approved viewBox; keep shadow below the V */
   shape-rendering:geometricPrecision;
   z-index:1;
   /* Shadow follows every irregular alpha edge, never the rectangular box. */
@@ -2422,8 +2513,8 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   min-height:0;
 }
 
-/* The original paper and full logo travel together with native document scroll.
-   No 12px opacity switch and no logo fade while the V is still in view. */
+/* Single scroll-driven translation of the *unchanged* V, shadow and C08
+   illustrated identity. No independently timed transition, fading or snapping. */
 
 /* WebKit first-paint safeguard. The organic inline SVG edge can leave a
    stale 0,0 dark tile in WebKit unless the whole Hero owns a compositor layer.
@@ -2444,3 +2535,82 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 #app .favorite-toggle svg{stroke:#1C241D}
 #app .favorite-toggle:not(.liked) svg{fill:none}
 #app .favorite-toggle.liked svg{fill:var(--color-terracotta)}
+\n
+/* === FINAL APPROVED CHAPCHITRA TYPOGRAPHY (2026-11-17) ===
+   All text across shared routes inherits DM Sans. Fraunces is editorial
+   display/phrase only. The custom raster logo and SVG/Lottie art are unchanged.
+   Optical sizing follows actual font-size. Bengali glyphs remain script-correct.
+   Fonts are local WOFF2; the homepage preloads just the two critical Latin faces. */
+body{font-family:var(--font-ui)}
+body,input,select,textarea,button{font-optical-sizing:auto}
+h1,h2,h3,h4,h5,h6,.editorial-phrase{
+ font-family:var(--font-editorial);
+ font-optical-sizing:auto;
+ font-synthesis:none;
+}
+:is(h1,h2,h3,h4,h5,h6,.editorial-phrase):lang(bn){
+ font-family:var(--font-bn-serif);
+ line-height:1.35;
+ letter-spacing:normal;
+}
+:is(p,small,label,span,a,button,input,select,textarea):lang(bn){
+ font-family:var(--font-bn-ui);
+ line-height:1.6;
+ letter-spacing:normal;
+}
+.hero-translate:lang(bn){font-family:var(--font-bn-serif);line-height:1.4}
+.hero-cover h1{
+ font-family:var(--font-editorial);font-size:clamp(34px,3.2vw,43px);
+ font-style:normal;font-weight:var(--font-weight-display);
+ line-height:1.12;letter-spacing:-.035em;
+}
+.hero-slide-copy h2{font-weight:var(--font-weight-display);letter-spacing:-.055em;line-height:1.05}
+.section-title h2{font-weight:var(--font-weight-section);letter-spacing:-.045em;line-height:1.12}
+.category-copy h3{font-weight:var(--font-weight-section);letter-spacing:-.035em}
+.editorial-banner h2,.paper-editorial strong{
+ font-family:var(--font-editorial);font-style:italic;
+ font-weight:var(--font-weight-quote);font-optical-sizing:auto;
+}
+.hero-cover p:not(.eyebrow):not(.hero-translate){font-size:var(--font-text-size);line-height:1.55}
+.hero-slide-copy p:not(.eyebrow){font-size:var(--font-text-size);line-height:1.6}
+.section-title p:last-child{font-size:15px;line-height:1.58}
+.nav-center>a,.shop-dropdown>summary{font-family:var(--font-ui);font-weight:600;font-size:12px;letter-spacing:.055em}
+.button,.text-link,.search-inline button,.newsletter-row button{font-family:var(--font-ui);font-weight:600}
+.button,.text-link{font-size:13px}
+.eyebrow{font-family:var(--font-ui);font-weight:600;letter-spacing:.14em}
+.product-meta a{font-family:var(--font-ui);font-size:15px;font-weight:600;line-height:1.4}
+.product-meta > span,.product-meta > .product-price > small{font-size:13px;font-weight:400;line-height:1.45}
+.product-price b{font-size:14px;font-weight:600}
+.category-copy p{font-size:14px;line-height:1.5}
+.route-content p:not(.eyebrow){line-height:1.62}
+.route-content :is(.page-lead,.page-intro,.article-copy,.story-body) p{font-size:var(--font-text-size)}
+.cc-worktable-loading,.cc-worktable-diagnostic,.cc-worktable-recovery{font-family:var(--font-ui)}
+/* Page titles remain expressive Fraunces; product-detail naming and all
+   monetary figures are functional DM Sans, never a display serif. */
+.shop-banner-copy h1{font-weight:var(--font-weight-display);letter-spacing:-.05em}
+.route-head h1,.article-detail h1{font-weight:var(--font-weight-section)}
+.journal-feature-copy h2,.journal-card h3,.article-detail h2{
+ font-weight:var(--font-weight-section)
+}
+.detail-layout h1{
+ font-family:var(--font-ui);font-size:clamp(36px,4.2vw,62px);
+ font-weight:600;letter-spacing:-.035em;line-height:1.12
+}
+.detail-layout h2{
+ font-family:var(--font-ui);font-size:26px;font-weight:600;
+ letter-spacing:-.02em;line-height:1.3
+}
+/* Responsive line lengths stay within the existing layout / garment geometry. */
+@media(max-width:800px){
+ .hero-slide-copy h2{font-size:clamp(37px,7.2vw,64px);letter-spacing:-.045em}
+ .section-title h2{letter-spacing:-.035em}
+}
+@media(max-width:600px){
+ .hero-cover h1{font-size:clamp(31px,8.1vw,40px)}
+ .hero-slide-copy p:not(.eyebrow){font-size:15px}
+ .section-title p:last-child{font-size:14px}
+ .product-meta a{font-size:14px}
+ .polaroid-card .polaroid-name strong{font-size:13px;line-height:1.32}
+ .nav-center>a,.shop-dropdown>summary{font-size:11px}
+}
+/* === END TYPOGRAPHY SYSTEM === */

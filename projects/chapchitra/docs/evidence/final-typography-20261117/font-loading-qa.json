@@ -1,0 +1,360 @@
+{
+  "pass": true,
+  "profiles": [
+    {
+      "name": "desktop-chromium",
+      "pages": [
+        {
+          "route": "/",
+          "status": 200,
+          "cls": 0,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 41.3,
+              "transferSize": 37232,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 61.8,
+              "transferSize": 67604,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-italic-variable.woff2",
+              "durationMs": 75.4,
+              "transferSize": 81820,
+              "initiator": "css"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 73.9,
+              "transferSize": 108020,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "route": "/shop/",
+          "status": 200,
+          "cls": 0,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 15.3,
+              "transferSize": 37232,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 15.4,
+              "transferSize": 67604,
+              "initiator": "link"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 71.6,
+              "transferSize": 108020,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "route": "/artists-edit/",
+          "status": 200,
+          "cls": 0.38816666666666666,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 21.2,
+              "transferSize": 37232,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 32.4,
+              "transferSize": 67604,
+              "initiator": "link"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 67.7,
+              "transferSize": 108020,
+              "initiator": "css"
+            },
+            {
+              "name": "noto-serif-bengali-variable.woff2",
+              "durationMs": 18.3,
+              "transferSize": 191584,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 1440,
+          "scrollWidth": 1440
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        "Inherited asynchronous Artist Edit worktable mount shift; compare baseline CLS evidence"
+      ],
+      "pass": true
+    },
+    {
+      "name": "ipad-webkit",
+      "pages": [
+        {
+          "route": "/",
+          "status": 200,
+          "cls": 0,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 19,
+              "transferSize": 37245,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 29,
+              "transferSize": 67618,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-italic-variable.woff2",
+              "durationMs": 3,
+              "transferSize": 81834,
+              "initiator": "css"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 3,
+              "transferSize": 108034,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 834,
+          "scrollWidth": 834
+        },
+        {
+          "route": "/shop/",
+          "status": 200,
+          "cls": 0,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 0,
+              "transferSize": 0,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 1,
+              "transferSize": 0,
+              "initiator": "link"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 3,
+              "transferSize": 108034,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 834,
+          "scrollWidth": 834
+        },
+        {
+          "route": "/artists-edit/",
+          "status": 200,
+          "cls": 0,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 1,
+              "transferSize": 0,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 1,
+              "transferSize": 0,
+              "initiator": "link"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 5,
+              "transferSize": 108034,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 834,
+          "scrollWidth": 834
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "pass": true
+    },
+    {
+      "name": "mobile-chromium",
+      "pages": [
+        {
+          "route": "/",
+          "status": 200,
+          "cls": 0,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 12.3,
+              "transferSize": 37232,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 41.8,
+              "transferSize": 67604,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-italic-variable.woff2",
+              "durationMs": 85.5,
+              "transferSize": 81820,
+              "initiator": "css"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 85,
+              "transferSize": 108020,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 390,
+          "scrollWidth": 390
+        },
+        {
+          "route": "/shop/",
+          "status": 200,
+          "cls": 0,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 14.9,
+              "transferSize": 37232,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 15.5,
+              "transferSize": 67604,
+              "initiator": "link"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 58,
+              "transferSize": 108020,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 390,
+          "scrollWidth": 390
+        },
+        {
+          "route": "/artists-edit/",
+          "status": 200,
+          "cls": 0.5995990656094877,
+          "clsSupported": true,
+          "fontsChecked": {
+            "fraunces": true,
+            "dm": true
+          },
+          "fonts": [
+            {
+              "name": "dm-sans-latin-variable.woff2",
+              "durationMs": 35.6,
+              "transferSize": 37232,
+              "initiator": "link"
+            },
+            {
+              "name": "fraunces-latin-variable.woff2",
+              "durationMs": 35.9,
+              "transferSize": 67604,
+              "initiator": "link"
+            },
+            {
+              "name": "noto-sans-bengali-variable.woff2",
+              "durationMs": 28.3,
+              "transferSize": 108020,
+              "initiator": "css"
+            },
+            {
+              "name": "noto-serif-bengali-variable.woff2",
+              "durationMs": 21.1,
+              "transferSize": 191584,
+              "initiator": "css"
+            }
+          ],
+          "preloads": 2,
+          "viewport": 390,
+          "scrollWidth": 390
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        "Inherited asynchronous Artist Edit worktable mount shift; compare baseline CLS evidence"
+      ],
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,810 @@
+[
+  {
+    "name": "desktop-chromium",
+    "checks": [
+      {
+        "route": "home",
+        "status": 200,
+        "theme": "dark",
+        "width": 1440,
+        "scroll": 1440,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(23, 36, 25)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "hero": {
+          "background": "rgb(110, 82, 63)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "collection": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "values": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "logo": "/assets/chapchitra-full.webp",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "shop",
+        "status": 200,
+        "theme": "dark",
+        "width": 1440,
+        "scroll": 1440,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "product",
+        "status": 200,
+        "theme": "dark",
+        "width": 1440,
+        "scroll": 1440,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "artist",
+        "status": 200,
+        "theme": "dark",
+        "width": 1440,
+        "scroll": 1440,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": null,
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "journal",
+        "status": 200,
+        "theme": "dark",
+        "width": 1440,
+        "scroll": 1440,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": null,
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "name": "ipad-webkit",
+    "checks": [
+      {
+        "route": "home",
+        "status": 200,
+        "theme": "dark",
+        "width": 834,
+        "scroll": 834,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "v": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(23, 36, 25)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "hero": {
+          "background": "rgb(110, 82, 63)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "collection": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "values": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "toggle": "true",
+        "logo": "/assets/chapchitra-full.webp",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "shop",
+        "status": 200,
+        "theme": "dark",
+        "width": 834,
+        "scroll": 834,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "product",
+        "status": 200,
+        "theme": "dark",
+        "width": 834,
+        "scroll": 834,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "artist",
+        "status": 200,
+        "theme": "dark",
+        "width": 834,
+        "scroll": 834,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "product": null,
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "journal",
+        "status": 200,
+        "theme": "dark",
+        "width": 834,
+        "scroll": 834,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "product": null,
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "DM Sans, Noto Sans Bengali, Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "name": "mobile-chromium",
+    "checks": [
+      {
+        "route": "home",
+        "status": 200,
+        "theme": "dark",
+        "width": 390,
+        "scroll": 390,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(23, 36, 25)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "hero": {
+          "background": "rgb(110, 82, 63)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "collection": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "values": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "logo": "/assets/chapchitra-full.webp",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "shop",
+        "status": 200,
+        "theme": "dark",
+        "width": 390,
+        "scroll": 390,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "product",
+        "status": 200,
+        "theme": "dark",
+        "width": 390,
+        "scroll": 390,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "artist",
+        "status": 200,
+        "theme": "dark",
+        "width": 390,
+        "scroll": 390,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": null,
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "journal",
+        "status": 200,
+        "theme": "dark",
+        "width": 390,
+        "scroll": 390,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": null,
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      }
+    ],
+    "consoleErrors": []
+  },
+  {
+    "name": "narrow-chromium",
+    "checks": [
+      {
+        "route": "home",
+        "status": 200,
+        "theme": "dark",
+        "width": 320,
+        "scroll": 320,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(23, 36, 25)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "hero": {
+          "background": "rgb(110, 82, 63)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "collection": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "values": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "logo": "/assets/chapchitra-full.webp",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "shop",
+        "status": 200,
+        "theme": "dark",
+        "width": 320,
+        "scroll": 320,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "product",
+        "status": 200,
+        "theme": "dark",
+        "width": 320,
+        "scroll": 320,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": {
+          "background": "rgb(166, 162, 155)",
+          "color": "rgb(35, 35, 35)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "artist",
+        "status": 200,
+        "theme": "dark",
+        "width": 320,
+        "scroll": 320,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": null,
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      },
+      {
+        "route": "journal",
+        "status": 200,
+        "theme": "dark",
+        "width": 320,
+        "scroll": 320,
+        "header": {
+          "background": "rgb(23, 36, 25)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "v": null,
+        "hero": null,
+        "collection": null,
+        "values": null,
+        "footer": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "product": null,
+        "main": {
+          "background": "rgb(31, 34, 22)",
+          "color": "rgb(228, 227, 222)",
+          "fill": "rgb(0, 0, 0)",
+          "font": "\"DM Sans\", \"Noto Sans Bengali\", Arial, sans-serif"
+        },
+        "toggle": "true",
+        "hasThemeSheet": true
+      }
+    ],
+    "consoleErrors": []
+  }
+]

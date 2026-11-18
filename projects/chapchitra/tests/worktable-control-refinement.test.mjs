@@ -39,7 +39,7 @@ test('Front/back reuses exact approved compact renderer, never a new faux pill',
  assert.match(studio,/viewButton\.querySelectorAll\('\.cc-sketch-label,\.cc-sketch-label-ink'\)/);
  assert.match(studio,/viewButton\.querySelectorAll\('\.cc-worktable-view-label'\)/);
  assert.match(studio,/viewButton\.setAttribute\('aria-label',view==='front'\?'View back':'View front'\)/);
- assert.match(css,/font-family:'Hind Siliguri'/);
+ assert.match(css,/font-family:var\(--font-ui,var\(--sans/);
  assert.match(css,/font-size:16\.5px/);
  assert.match(css,/\.cc-worktable-view-button\.cc-sketch\.cc-compact-artwork \.cc-compact-art\{[\s\S]*?transform:scale\(\.8\)/);
  assert.match(css,/\.cc-worktable-view-button\.cc-sketch\.cc-compact-artwork \.cc-sketch-copy\{[\s\S]*?scale\(\.8\)/);

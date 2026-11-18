@@ -1,0 +1,6 @@
+c29d397 style(chapchitra): refine dark logo, controls and featured surface
+faf9e35 feat(chapchitra): implement approved dark theme with browser and WCAG evidence
+5527e83 feat(chapchitra): implement approved Fraunces and DM Sans typography
+11e2bcd test(chapchitra): confirm manual, pause, C08 and reduced-motion controls
+3785654 test(chapchitra): record two uncut 55-second carousel cycles with QA timecode
+84a1701 feat(chapchitra): scroll-link Hero01 V retraction under sticky navbar

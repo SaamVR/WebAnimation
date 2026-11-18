@@ -1,5 +1,6 @@
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
 import { createHeroCarouselClock } from './hero-carousel-clock.mjs';
+import {hero01Retraction} from './hero01-retraction.mjs';
 import { ARTIST_CART_STORAGE_KEY, ARTIST_CART_MAX_ITEMS, priceArtistCustomization, readArtistDemoBag, formatArtistBDT } from './worktable-pricing.mjs';
 async function boot(){
  // Artist route critical path begins concurrently with all site shell modules.
@@ -85,8 +86,13 @@ async function boot(){
    '<nav class="nav-center" aria-label="Main navigation"><a href="/shop/">Shop</a>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
    '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+ 
-   '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
+   '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" data-cc-theme-brand="nav" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
    '<div class="nav-actions">'+
+   '<button type="button" class="nav-icon cc-theme-toggle" id="themeToggle" aria-label="Switch to dark theme" aria-pressed="false" title="Switch color theme">'+
+     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+
+     '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>'+
+     '<svg viewBox="0 0 24 24" class="cc-theme-icon-moon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+
+     '<path d="M20.5 15.4A8.3 8.3 0 0 1 8.6 3.5 8.6 8.6 0 1 0 20.5 15.4Z"/></svg></button>'+
    '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+navArt('search')+'</button>'+
    '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites"'+(route==='favorites'?' aria-current="page"':'')+'>'+navArt(route==='favorites'?'favorites-selected':'favorites-outline')+'</a>'+
    '<a class="nav-icon nav-optional-action" href="/account/" aria-label="Account">'+navArt('account')+'</a>'+
@@ -94,7 +100,8 @@ async function boot(){
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
    '</div></div>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
-   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop</a><a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a><a href="/favorites/">Favorites</a><a href="/account/">Account</a></nav></header>';
+   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop</a><a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a><a href="/favorites/">Favorites</a><a href="/account/">Account</a>'+
+   '<button type="button" class="cc-mobile-theme-toggle" id="themeToggleMobile" aria-pressed="false" aria-label="Switch to dark theme"><span class="cc-theme-menu-label">Switch to dark theme</span></button></nav></header>';
  }
  const paperVisual=(i)=>'<div class="art-plate art-plate-'+(i%3)+'">'+(i%2===0?shirtSilhouette(i):printSilhouette(i))+'<span class="plate-disclaimer">Illustration placeholder</span></div>';
  const linkFiltered=(category,audience)=>'/shop/?category='+encodeURIComponent(category)+(audience?'&audience='+audience:'');
@@ -491,7 +498,7 @@ async function boot(){
  function hero01Paper(){
   return '<div class="hero01-paper-panel" id="hero01PaperPanel">'+
    '<div class="hero01-full-logo" aria-label="CHAPCHITRA original illustrated clothing badge and custom lettering">'+
-    '<img class="hero-brand-lockup" src="/assets/chapchitra-full.webp" width="1250" height="1052" alt="CHAPCHITRA illustrated clothing badge and original custom wordmark" decoding="async" fetchpriority="high">'+
+    '<img class="hero-brand-lockup" src="/assets/chapchitra-full.webp" data-cc-theme-brand="hero" width="1250" height="1052" alt="CHAPCHITRA illustrated clothing badge and original custom wordmark" decoding="async" fetchpriority="high">'+
     '<div class="c08-hero-stage" id="c08HeroStage"></div></div>'+
    '<svg class="hero01-paper-edge" viewBox="0 381 4200 812" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+
     '<path class="hero01-paper-cut" d="'+HERO01_TORN_PAPER_PATH+'"/>'+
@@ -732,6 +739,54 @@ async function boot(){
  app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
  // Native CSS sticky handles alignment; optional ?navdebug=1 is read-only.
  installStickyViewportDiagnostics(document, window);
+ // The synchronous head bootstrap owns persistence/system detection. This
+ // handler only reflects/accessibly changes its resolved choice, never layout.
+ const themeButtons=[$('#themeToggle'),$('#themeToggleMobile')].filter(Boolean);
+ const syncThemeButton=()=>{
+  const dark=document.documentElement.dataset.theme==='dark';
+  const label=dark?'Switch to light theme':'Switch to dark theme';
+  // Switch between the ORIGINAL light artwork and the exact owner-supplied,
+  // hash-audited inverted dark assets. The theme boot runs before app mount;
+  // this callback synchronizes before the first rendered frame as well as
+  // after manual/system theme changes. Never recolor or filter source images.
+  const approvedBrandSources={
+   nav:dark?'/assets/chapchitra-wordmark-cream-terra.webp':'/assets/chapchitra-wordmark.webp',
+   hero:dark?'/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp':'/assets/chapchitra-full.webp'
+  };
+  for(const image of document.querySelectorAll('img[data-cc-theme-brand]')){
+   const source=approvedBrandSources[image.dataset.ccThemeBrand];
+   if(source && image.getAttribute('src')!==source)image.setAttribute('src',source);
+  }
+  // The original compact/long button geometry and hydration remain intact.
+  // Use existing approved colored SVG posters for the brief pre-hydration
+  // fallback; the dark-only CSS colors the actual inline SVG face/shadow.
+  const buttonFallbacks=[
+   ['#hero .hero-cover .cc-compact-fallback',
+    dark?'/assets/compact/compact-button-terracotta.svg?compact=final-colors-ink-2':
+         '/assets/compact/compact-button-neutral.svg?compact=final-colors-ink-2'],
+   ['#collection .product-add-button .cc-long-fallback',
+    dark?'/assets/long/long-button-neutral.svg?long=final-1':
+         '/assets/long/long-button-forest.svg?long=final-1']
+  ];
+  for(const [selector,source] of buttonFallbacks){
+   for(const image of document.querySelectorAll(selector))
+    if(image.getAttribute('src')!==source)image.setAttribute('src',source);
+  }
+  for(const control of themeButtons){
+   control.setAttribute('aria-pressed',String(dark));
+   control.setAttribute('aria-label',label);
+   control.title=label;
+   const menuText=control.querySelector('.cc-theme-menu-label');
+   if(menuText)menuText.textContent=label;
+  }
+ };
+ syncThemeButton();
+ for(const control of themeButtons)control.addEventListener('click',()=>{
+  const target=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  window.chapchitraTheme?.set(target);
+  syncThemeButton();
+ });
+ window.addEventListener('chapchitra:themechange',syncThemeButton);
  // Global navigation and keyboard behavior.
  const search=$('#searchPanel'),searchButton=$('#searchButton');
  const mobileNav=$('#mobileNav'),menuButton=$('#menuButton');
@@ -921,16 +976,25 @@ async function boot(){
    : Promise.resolve();
   const heroRoot=$('#hero'),slides=$$('.hero-slide',heroRoot),dots=$$('.hero-dot',heroRoot);
   let active=0,hovered=false,focused=false,touchX=null;
-  // Keep the owner paper and full illustrated logo together in document flow.
-  // Only reveal the compact wordmark after that paper has cleared the sticky header.
+  // Anchor the original V + complete C08 identity to the *sticky navbar*.
+  // Each scroll frame explicitly offsets the panel's native document movement:
+  // edge(top) = stickyHeader(bottom) - retractProgress * (height + shadowGap).
+  // Unlike the former paper-bottom threshold, this is a true scroll-linked
+  // transform, reversible at every pixel and never a timed/fading animation.
   const headerRoot=$('#siteHeader'),navIdentity=headerRoot.querySelector('.logo-word--image'),
    heroIdentity=heroRoot.querySelector('.hero01-full-logo'),
    paperPanel=heroRoot.querySelector('#hero01PaperPanel');
   let headerModeInitialized=false,headerRAF=0;
   function syncHero01Header(){
-   const paperBottom=paperPanel.getBoundingClientRect().bottom;
-   const stickyBottom=headerRoot.getBoundingClientRect().bottom;
-   const special=active===0&&paperBottom>stickyBottom+2;
+   const headerBottom=headerRoot.getBoundingClientRect().bottom;
+   const heroTop=heroRoot.getBoundingClientRect().top;
+   const paperHeight=paperPanel.offsetHeight;
+   const state=hero01Retraction({
+    scrollY:window.scrollY,headerBottom,heroTop,paperHeight
+   });
+   paperPanel.style.transform='translate3d(0,'+state.offsetY.toFixed(3)+'px,0)';
+   paperPanel.dataset.retractionProgress=state.progress.toFixed(4);
+   const special=active===0&&!state.complete;
    const mode=special?'special':'standard';
    if(headerModeInitialized&&headerRoot.dataset.hero01Mode===mode)return;
    headerModeInitialized=true;headerRoot.dataset.hero01Mode=mode;
@@ -947,7 +1011,13 @@ async function boot(){
    headerRAF=requestAnimationFrame(()=>{headerRAF=0;syncHero01Header()});
   }
   window.addEventListener('scroll',onHeroHeaderScroll,{passive:true});
-  window.addEventListener('pageshow',syncHero01Header);
+  window.addEventListener('resize',onHeroHeaderScroll,{passive:true});
+  window.addEventListener('pageshow',onHeroHeaderScroll);
+  if('ResizeObserver' in window){
+   const paperResize=new ResizeObserver(onHeroHeaderScroll);
+   paperResize.observe(paperPanel);
+   paperResize.observe(headerRoot);
+  }
   syncHero01Header();
 
   // Slide 01 has 8s TOTAL visible dwell, including initial C08 playback.

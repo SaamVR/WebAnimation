@@ -352,7 +352,8 @@ test('integrated pill labels remain centered, single-line and inherit variant co
  const storefront=await read('src/styles.css');
  const buttons=await read('src/button-system.css');
  assert.doesNotMatch(storefront,/\.product-meta span,\.product-meta small/);
- assert.equal((storefront.match(/\.product-meta > span,\.product-meta > \.product-price > small/g)||[]).length,2);
+ // Two historic rules plus one final typography-only override.
+ assert.equal((storefront.match(/\.product-meta > span,\.product-meta > \.product-price > small/g)||[]).length,3);
  assert.match(buttons,/\.cc-sketch \.cc-sketch-copy,[\s\S]*?position:absolute/);
  assert.match(buttons,/left:calc\(50% - var\(--cc-half-offset\)\)/);
  assert.match(buttons,/top:calc\(50% - var\(--cc-half-offset\)\)/);
