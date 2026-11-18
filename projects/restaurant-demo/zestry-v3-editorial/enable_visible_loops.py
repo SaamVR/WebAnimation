@@ -112,7 +112,10 @@ def change_page(page:str)->str:
  old=match.group(0)
  assert "lottie.loadAnimation" in old
  assert "container.dataset.loaded='yes';" in old
- assert old.count('autoplay:true')==1
+ if old.count('autoplay:true')!=1:
+  print("ZESTRY_PLAYER_AUTOPLAY_DIAGNOSTIC",repr(re.findall(r'.{0,120}autoplay.{0,160}',old,re.I|re.S)),flush=True)
+  print("ZESTRY_PLAYER_SOURCE_DIAGNOSTIC",repr(old[:3500]),flush=True)
+  raise AssertionError("Unknown existing autoplay shape")
  policy="if(name==='f01'||name==='f02-chef-full360'||name==='f03'||name==='f07')loop=false;"
  new=once(old,policy,"loop=true;","one-shot policy")
  new=once(new,"autoplay:true","autoplay:false","viewport-gated start")
