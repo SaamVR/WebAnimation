@@ -1,0 +1,103 @@
+{
+  "source_SHA": "7fc0054b5ae4c1c7a13d0a3c5e321d117d570d8f0d71e3308ee076a48d301e37",
+  "source_mutated": false,
+  "frames": [
+    {
+      "frame": 0,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 513
+    },
+    {
+      "frame": 70,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 513
+    },
+    {
+      "frame": 134,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 513
+    },
+    {
+      "frame": 142,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 636
+    },
+    {
+      "frame": 149,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 473
+    },
+    {
+      "frame": 165,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 76
+    },
+    {
+      "frame": 175,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 120
+    },
+    {
+      "frame": 225,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 125
+    },
+    {
+      "frame": 260,
+      "brothTag": "g",
+      "brothStyle": "display: block;",
+      "brothClip": "url(#__lottie_element_88)",
+      "brothVisibility": "visible",
+      "domPathCount": 1,
+      "brothVisiblePixels": 133
+    }
+  ],
+  "errors": [],
+  "initial": {
+    "fr": 30,
+    "length": 261,
+    "loop": false,
+    "subframe": true,
+    "brothLayer": "Broth / original vector / delayed reveal",
+    "brothHasMask": null,
+    "brothClip": "url(#__lottie_element_88)",
+    "brothMask": null,
+    "maskProps": 1,
+    "brothOuterHTML": "<g clip-path=\"url(#__lottie_element_88)\" transform=\"matrix(1,0,0,1,0,0)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(107,40,26)\" fill-opacity=\"1\" d=\" M1036.9000244140625,800.2999877929688 C1017.5,805.5 1000.0999755859375,806.9000244140625 976.0999755859375,809.7000122070312 C967.7999877929688,810.7000122070312 962.0999755859375,812 954,813.5 C935.9000244140625,817 917.4000244140625,817.2000122070312 899.9000244140625,814.7000122070312 C881.5999755859375,812.0999755859375 864,804.4000244140625 849.4000244140625,792.2999877929688 C844.2000122070312,788 838.5999755859375,783.5 832.7000122070312,779.4000244140625 C814.2000122070312,766.5 798.0999755859375,755.5 782.7999877929688,743.5 C773.7999877929688,736.5 762,727.4000244140625 747.4000244140625,716.4000244140625 C730.0999755859375,703.2999877929688 716,684.4000244140625 708.799987792",
+    "defsCount": 3,
+    "defsDuplicateIds": [],
+    "svgViewbox": "0 0 1984 1134"
+  }
+}
