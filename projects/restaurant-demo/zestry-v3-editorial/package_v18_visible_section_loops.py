@@ -156,7 +156,11 @@ def modify(index: str) -> str:
  fixed=old.sub(lambda _:JS,index,count=1)
  orig="play(name,c,name!=='f06')"
  assert fixed.count(orig)==1,("Initial lazy-animation observer changed",fixed.count(orig))
- fixed=fixed.replace(orig,"play(name,c,true)")
+ # Keep the existing Render service build-command sentinel unchanged: it
+ # replaces this old call during the deployed static-site build.
+ # The new runtime controller ignores that legacy loop argument and always
+ # enables approved scene loops (F02 orbit instead uses ping-pong).
+ assert fixed.count(orig)==1
  assert MARKER in fixed
  assert "mountF01WoodBackdrop(l,container)" in fixed
  assert "mountF01V16FixedSize(l,container)" in fixed
