@@ -1,0 +1,48 @@
+name: ZESTRY F01 broth cloned defs repair preview (NO DEPLOY)
+on:
+  push:
+    branches:
+      - qa/zestry-f01-broth-mask-regression-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/qa_v17_broth_fix_preview.py
+      - .github/workflows/zestry-f01-broth-fix-preview.yml
+permissions:
+  contents: read
+jobs:
+  verify-visible-broth:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Chromium test runtime
+        run: |
+          pip install "playwright==1.56.0" "Pillow==11.3.0"
+          python -m playwright install chromium
+      - name: Inject wood-def namespace ONLY in browser and measure original vs corrected F01
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_v17_broth_fix_preview.py
+      - name: Preserve browser evidence even on visual veto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-BROTH-REPAIR-BROWSER-PREVIEW
+          path: projects/restaurant-demo/docs/qa/owner-v17-broth-fix-preview/
+          if-no-files-found: warn
+      - name: Commit passing preview evidence to isolated QA branch only
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/docs/qa/owner-v17-broth-fix-preview/
+          if ! git diff --cached --quiet; then
+            git commit -m 'test(zestry): restored broth pixel evidence on original live assets [skip ci]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo 'NO Render deployment or integration branch changes'
