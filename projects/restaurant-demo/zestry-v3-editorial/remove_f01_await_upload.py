@@ -53,7 +53,7 @@ def replace_once(s,old,new,label):
 
 def strip_original_hero(s):
     assert STAMP not in s,"Already removed: this is a one-time migration"
-    hero_re=re.compile(r'<div class="hero-image hero-visual" aria-label="Original pasta bowl animation within a circular yellow hero visual">\\s*<div class="hero-pasta hero-clip"><div class="anim" data-animation="f01" aria-label="Illustrated pasta being prepared"></div></div>\\s*</div>')
+    hero_re=re.compile(r'<div class="hero-image hero-visual" aria-label="Original pasta bowl animation within a circular yellow hero visual">\s*<div class="hero-pasta hero-clip"><div class="anim" data-animation="f01" aria-label="Illustrated pasta being prepared"></div></div>\s*</div>')
     s,count=hero_re.subn(lambda _:HERO_AFTER,s)
     assert count==1,("hero markup",count)
     s=replace_once(s,"</style>",CSS+"</style>","placeholder styling")
