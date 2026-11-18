@@ -75,7 +75,7 @@ def scene_snapshot(page):
   };
  }""")
 def open_booking(page):
- page.locator('[data-book]').first.click(timeout=15000)
+ page.locator('[data-book]:visible').first.click(timeout=15000)
  page.locator('#booking-form').wait_for(state="visible",timeout=15000)
  page.wait_for_function("""()=>{
   const e=document.getElementById('reservation-modal-animation');
