@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Native Chromium QA for ZESTRY V16 review-only site. No deployments."""
+"""Native Chromium QA for ZESTRY V16 FIXED SIZE from frame 0. No deployment."""
 from __future__ import annotations
 import argparse
 import io
@@ -18,7 +18,7 @@ from playwright.sync_api import sync_playwright
 
 TARGET_SCALE = 1.755
 EXPECTED_SHA = "b7ee93ac36326e59ae35e74c36d71782fa459b18"
-SAMPLE = [0, 22, 34, 43, 50, 51, 52, 53, 60, 84, 92, 100, 112, 120, 124, 128, 132, 160, 200, 240, 260]
+SAMPLE = [0, 10, 20, 22, 34, 43, 50, 51, 52, 53, 60, 84, 92, 100, 112, 120, 124, 128, 132, 160, 200, 240, 260]
 
 class Quiet(SimpleHTTPRequestHandler):
     def log_message(self, fmt, *args):
@@ -123,6 +123,7 @@ def test_frames(browser, url: str, name: str, size: tuple[int,int], out: Path):
     assert before["wood"] and before["woodMode"]=="original-vector",before
     assert not before["overflow"],before
     assert abs(before["circleWidth"]-before["circleHeight"])<1,before
+    assert abs(before["zoom"]-TARGET_SCALE)<.001, ('FIRST_FRAME_NOT_FULL_SIZE', before)
 
     clip=screenshot_clip(page)
     base,ring=pixel_circle_baseline(page,clip)
@@ -133,9 +134,10 @@ def test_frames(browser, url: str, name: str, size: tuple[int,int], out: Path):
         outer=count_outer(base,ring,shot)
         if outer>5:
             issues.append({"frame":frame,"outerPixels":outer,"zoom":moved["zoom"]})
+        assert abs(moved["zoom"]-TARGET_SCALE)<.001, ('CAMERA_ZOOM_ANIMATION_DETECTED', frame, moved)
         if frame in SAMPLE:
             frames.append({"frame":frame,"outerPixels":outer,"zoom":moved["zoom"]})
-            if frame in (22,60,100,128,200,240):
+            if frame in (0,10,20,22,34,43,60,100,128,200,240):
                 f=out/(name+"-frame-"+str(frame).zfill(3)+".png")
                 page.screenshot(path=str(f),clip=clip)
         if frame==128:
@@ -146,7 +148,7 @@ def test_frames(browser, url: str, name: str, size: tuple[int,int], out: Path):
     after=stage_metrics(page)
     assert abs(after["zoom"]-TARGET_SCALE)<.001,after
     assert not errors and not failed,(errors,failed)
-    assert all(item["frame"]<92 for item in issues),issues
+    assert not issues, ('CLIPPED_AT_STATIC_FULL_SIZE', issues)
     context.close()
     return {"viewport":list(size),"metric":after,"jsErrors":errors,
             "failedAssets":failed,"outerBandIssues":issues,"frames":frames}
@@ -181,27 +183,27 @@ def capture_baseline(browser,url,out):
         "() => !!document.querySelector('.hero .hero-pasta .anim svg') && !!document.querySelector('svg.f01-wood-fill')",
         timeout=20000
     )
-    frame_seek(page,128)
+    frame_seek(page,0)
     metric=stage_metrics(page)
-    assert abs(metric["zoom"]-1.35)<.001,metric
+    assert abs(metric["zoom"]-1.0)<.001,metric
     clip=screenshot_clip(page)
-    p=out/"before-v15-hero-frame128.png"
+    p=out/"before-v16-dynamic-hero-frame000.png"
     page.screenshot(path=str(p),clip=clip)
     context.close()
     return metric
 
 def comparison(out):
-    before=Image.open(out/"before-v15-hero-frame128.png").convert("RGB")
-    after=Image.open(out/"desktop-frame-128.png").convert("RGB")
+    before=Image.open(out/"before-v16-dynamic-hero-frame000.png").convert("RGB")
+    after=Image.open(out/"desktop-frame-000.png").convert("RGB")
     assert before.size==after.size
     margin=36;header=76
     board=Image.new("RGB",(before.width*2+3*margin,before.height+header+margin),(246,242,235))
     pen=ImageDraw.Draw(board)
-    pen.text((margin,25),"V15 - CURRENT LIVE (1.35x V14)",fill=(45,45,45))
-    pen.text((margin*2+before.width,25),"V16 - +30% OVER V15 (1.755x V14)",fill=(45,45,45))
+    pen.text((margin,25),"BEFORE - V16 STARTS SMALL",fill=(45,45,45))
+    pen.text((margin*2+before.width,25),"AFTER - FULL SIZE FROM FRAME ZERO",fill=(45,45,45))
     board.paste(before,(margin,header))
     board.paste(after,(margin*2+before.width,header))
-    board.save(out/"V15-vs-V16-F01-before-after.png",optimize=True)
+    board.save(out/"V16-static-first-frame-vs-original-zoom.png",optimize=True)
 
 def main():
     parser=argparse.ArgumentParser()
@@ -232,7 +234,7 @@ def main():
             p.goto("http://127.0.0.1:18861/",wait_until="domcontentloaded")
             p.wait_for_function("() => !!document.querySelector('.hero .hero-pasta .anim svg')")
             report["reducedMotion"]=stage_metrics(p)
-            assert abs(report["reducedMotion"]["zoom"]-1)<.001,report["reducedMotion"]
+            assert abs(report["reducedMotion"]["zoom"]-TARGET_SCALE)<.001,report["reducedMotion"]
             reduced.close()
             report["baselineV15"]=capture_baseline(browser,"http://127.0.0.1:18862/",args.output)
             comparison(args.output)
@@ -240,7 +242,7 @@ def main():
             v15_width=report["baselineV15"]["bowl"]
             if v15_width is not None and v16_width is not None:
                 report["bowlDiameterRatio"]=v16_width/v15_width
-                assert abs(report["bowlDiameterRatio"]-1.30)<0.02,report["bowlDiameterRatio"]
+                assert abs(report["bowlDiameterRatio"]-TARGET_SCALE)<0.02,report["bowlDiameterRatio"]
             print("BOWL_MEASURE",v15_width,v16_width,report.get("bowlDiameterRatio"),flush=True)
             browser.close()
     finally:
@@ -255,14 +257,13 @@ def main():
         "**Request:** 30% larger than the deployed V15 F01 foreground, not 30% larger than V14.\n"
         "**Verified target:** 1.30 × 1.35 = 1.755× the V14 artwork size.\n"
         "**Background:** original 756.6px wooden circle and yellow accent unchanged.\n"
-        "**Motion:** original 261-frame/8.7s timing, vector paths and easing preserved. "
-        "Camera enlargement after the safe entrance and derived position-only retargeting at "
-        "factor 0.82 for moving ingredient centers avoids new circular clipping.\n\n"
+        "**Motion:** fixed 1.755x camera from frame 0, no enlargement transition at any time. "
+        "Original 261-frame/8.7s timing and vector paths/easing preserved. "
+        "Derived position-only retargeting at factor 0.82 applies from the first frame.\n\n"
         "Native Chromium captured and checked all 261 frames at desktop, tablet and mobile "
         "viewports, plus natural-speed desktop/mobile recordings, reduced-motion check, and "
         "a same-frame side-by-side before/after visual. "
-        "Any early f51–f52 edge-band pixels belong to the unchanged 1× baseline entrance, "
-        "not the new enlarged frames.\n\n"
+        "Zero unexpected edge-band overlaps are required in all frames, including entrances.\n\n"
         "**Do not merge or deploy until the owner explicitly approves the visual.** "
         "The existing Render service and deploy branch are untouched.\n"
     )
