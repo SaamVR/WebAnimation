@@ -1,0 +1,152 @@
+{
+  "url": "https://zestry-v3-restaurant-review-20261117.onrender.com/",
+  "deployed_sha_expected": "1c1406b391cfa7979ff05cea53d3feec758c7f8b",
+  "captured_at": "2026-11-18T07:24:46.845784+00:00",
+  "render_service_reused": "srv-dbtkitifngtc73cua2p0",
+  "checks": {
+    "desktop_initial_fixed_F01": {
+      "pass": true,
+      "detail": {
+        "frame": 0,
+        "durationFrames": 261,
+        "frameRate": 30,
+        "subframe": false,
+        "zoom": 1.755,
+        "complete": null,
+        "wood": true,
+        "overflow": false,
+        "lazyMenuSrc": null,
+        "lazyMenuDataSrc": "assets/f05_book.html"
+      }
+    },
+    "desktop_lazy_F05": {
+      "pass": true,
+      "detail": {
+        "src": null,
+        "dataSrc": "assets/f05_book.html"
+      }
+    },
+    "desktop_natural_8_7s_completion": {
+      "pass": true,
+      "detail": {
+        "frame": 260,
+        "durationFrames": 261,
+        "frameRate": 30,
+        "subframe": false,
+        "zoom": 1.755,
+        "complete": "true",
+        "wood": true,
+        "overflow": false,
+        "lazyMenuSrc": null,
+        "lazyMenuDataSrc": "assets/f05_book.html"
+      }
+    },
+    "desktop_no_runtime_or_origin_asset_errors": {
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "failedResponses": []
+      }
+    },
+    "desktop_real_browser_recording": {
+      "pass": true,
+      "detail": {
+        "bytes": 1108343,
+        "file": "desktop-actual-live-Chromium.webm"
+      }
+    },
+    "mobile_initial_fixed_F01": {
+      "pass": true,
+      "detail": {
+        "frame": 0,
+        "durationFrames": 261,
+        "frameRate": 30,
+        "subframe": false,
+        "zoom": 1.755,
+        "complete": null,
+        "wood": true,
+        "overflow": false,
+        "lazyMenuSrc": null,
+        "lazyMenuDataSrc": "assets/f05_book.html"
+      }
+    },
+    "mobile_lazy_F05": {
+      "pass": true,
+      "detail": {
+        "src": null,
+        "dataSrc": "assets/f05_book.html"
+      }
+    },
+    "mobile_natural_8_7s_completion": {
+      "pass": true,
+      "detail": {
+        "frame": 260,
+        "durationFrames": 261,
+        "frameRate": 30,
+        "subframe": false,
+        "zoom": 1.755,
+        "complete": "true",
+        "wood": true,
+        "overflow": false,
+        "lazyMenuSrc": null,
+        "lazyMenuDataSrc": "assets/f05_book.html"
+      }
+    },
+    "mobile_no_runtime_or_origin_asset_errors": {
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "failedResponses": []
+      }
+    },
+    "mobile_real_browser_recording": {
+      "pass": true,
+      "detail": {
+        "bytes": 881310,
+        "file": "mobile-actual-live-Chromium.webm"
+      }
+    },
+    "live_assets_are_V17_1_not_cached_V15": {
+      "pass": true,
+      "detail": {
+        "fixedHero": true,
+        "authored30fps": true,
+        "menuDeferredMarker": true,
+        "readyQueueMarker": true,
+        "photoStatus": 200,
+        "photoType": "image/webp",
+        "photoBytes": 203086,
+        "f01Status": 200,
+        "f01Bytes": 1872933
+      }
+    },
+    "F05_book_menu_to_cart": {
+      "pass": true,
+      "detail": {
+        "state": "Starters",
+        "bagCount": "1"
+      }
+    },
+    "F04_checkout_confirmation": {
+      "pass": true,
+      "detail": {
+        "text": "Sample order confirmation\n\u00d7\nYOUR ORDER\nSample order received\n\nSample subtotal $13.00.\n\nThis is a demonstration. Nothing was submitted or paid for.\n\nRe",
+        "f04Svg": true
+      }
+    },
+    "F07_sample_reservation": {
+      "pass": true,
+      "detail": {
+        "text": "Sample table request\n\u00d7\nYOUR TABLE\nSample table request received\n\n1 guests, 2026-12-01 at 10:00 AM.\n\nThis is a demonstration. Nothing was submitted or paid for.\n"
+      }
+    },
+    "F05_F04_F07_no_browser_errors": {
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "assetErrors": []
+      }
+    }
+  },
+  "issues": []
+}
