@@ -1,0 +1,352 @@
+{
+  "baselineCommit": "8bdcd1711b8b19e9e597a9f3dbb853d701018cc5",
+  "status": "LIVE RENDER acceptance for SHA 04f405af1a1642c79cd0843cdf15e2878c0bb18f",
+  "scope": "exact V16 animation bundle with only cloned-wood SVG ID namespace",
+  "checks": [
+    {
+      "name": "desktop approved V16 fixed size/one-shot and wood",
+      "pass": true,
+      "detail": {
+        "frame": 0,
+        "loop": false,
+        "duration": 261,
+        "frameRate": 30,
+        "subframe": true,
+        "zoom": 1.755,
+        "complete": null,
+        "wood": true,
+        "broth": "Broth / original vector / delayed reveal",
+        "clip": "url(#__lottie_element_88)",
+        "duplicateIDs": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "desktop original SVG ids isolated",
+      "pass": true,
+      "detail": {
+        "duplicateIDs": []
+      }
+    },
+    {
+      "name": "desktop broth appears during/after pour",
+      "pass": true,
+      "detail": {
+        "pixelsAt160": 55567,
+        "pixelsAt260": 30776,
+        "all": {
+          "0": 0,
+          "30": 0,
+          "65": 0,
+          "100": 0,
+          "134": 0,
+          "149": 73183,
+          "160": 55567,
+          "200": 30214,
+          "240": 30776,
+          "260": 30776
+        }
+      }
+    },
+    {
+      "name": "desktop ONLY V16 motion controller + broth ID correction",
+      "pass": true,
+      "detail": {
+        "V16Mount": true,
+        "V17Perf": false,
+        "V17MountOnce": false,
+        "V18Loop": false,
+        "V16MaskOnly": true
+      }
+    },
+    {
+      "name": "desktop original F02 chef source/forward playback restored",
+      "pass": true,
+      "detail": {
+        "frame": 0.5009999999999946,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "fps": 30,
+        "V18PingPong": false
+      }
+    },
+    {
+      "name": "desktop no browser errors/assets failed",
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "failed": []
+      }
+    },
+    {
+      "name": "desktop natural playback holds completed plate",
+      "pass": true,
+      "detail": {
+        "initial": {
+          "frame": 2.996999999999999,
+          "loop": false,
+          "duration": 261,
+          "frameRate": 30,
+          "subframe": true,
+          "zoom": 1.755,
+          "complete": null,
+          "wood": true,
+          "broth": "Broth / original vector / delayed reveal",
+          "clip": "url(#__lottie_element_88)",
+          "duplicateIDs": [],
+          "overflow": false
+        },
+        "complete": {
+          "frame": 260,
+          "loop": false,
+          "duration": 261,
+          "frameRate": 30,
+          "subframe": true,
+          "zoom": 1.755,
+          "complete": "true",
+          "wood": true,
+          "broth": "Broth / original vector / delayed reveal",
+          "clip": "url(#__lottie_element_88)",
+          "duplicateIDs": [],
+          "overflow": false
+        },
+        "hold": {
+          "frame": 260,
+          "loop": false,
+          "duration": 261,
+          "frameRate": 30,
+          "subframe": true,
+          "zoom": 1.755,
+          "complete": "true",
+          "wood": true,
+          "broth": "Broth / original vector / delayed reveal",
+          "clip": "url(#__lottie_element_88)",
+          "duplicateIDs": [],
+          "overflow": false
+        },
+        "errors": []
+      }
+    },
+    {
+      "name": "desktop actual 10-second V16 browser recording",
+      "pass": true,
+      "detail": {
+        "name": "desktop-V16-original-motion-browser.webm",
+        "bytes": 1100467
+      }
+    },
+    {
+      "name": "mobile approved V16 fixed size/one-shot and wood",
+      "pass": true,
+      "detail": {
+        "frame": 2.0009999999999994,
+        "loop": false,
+        "duration": 261,
+        "frameRate": 30,
+        "subframe": true,
+        "zoom": 1.755,
+        "complete": null,
+        "wood": true,
+        "broth": "Broth / original vector / delayed reveal",
+        "clip": "url(#__lottie_element_88)",
+        "duplicateIDs": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "mobile original SVG ids isolated",
+      "pass": true,
+      "detail": {
+        "duplicateIDs": []
+      }
+    },
+    {
+      "name": "mobile broth appears during/after pour",
+      "pass": true,
+      "detail": {
+        "pixelsAt160": 12559,
+        "pixelsAt260": 7086,
+        "all": {
+          "0": 0,
+          "30": 0,
+          "65": 0,
+          "100": 0,
+          "134": 0,
+          "149": 16665,
+          "160": 12559,
+          "200": 6991,
+          "240": 7086,
+          "260": 7086
+        }
+      }
+    },
+    {
+      "name": "mobile ONLY V16 motion controller + broth ID correction",
+      "pass": true,
+      "detail": {
+        "V16Mount": true,
+        "V17Perf": false,
+        "V17MountOnce": false,
+        "V18Loop": false,
+        "V16MaskOnly": true
+      }
+    },
+    {
+      "name": "mobile original F02 chef source/forward playback restored",
+      "pass": true,
+      "detail": {
+        "frame": 0.5010000000000082,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "fps": 30,
+        "V18PingPong": false
+      }
+    },
+    {
+      "name": "mobile no browser errors/assets failed",
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "failed": []
+      }
+    },
+    {
+      "name": "mobile natural playback holds completed plate",
+      "pass": true,
+      "detail": {
+        "initial": {
+          "frame": 0,
+          "loop": false,
+          "duration": 261,
+          "frameRate": 30,
+          "subframe": true,
+          "zoom": 1.755,
+          "complete": null,
+          "wood": true,
+          "broth": "Broth / original vector / delayed reveal",
+          "clip": "url(#__lottie_element_88)",
+          "duplicateIDs": [],
+          "overflow": false
+        },
+        "complete": {
+          "frame": 260,
+          "loop": false,
+          "duration": 261,
+          "frameRate": 30,
+          "subframe": true,
+          "zoom": 1.755,
+          "complete": "true",
+          "wood": true,
+          "broth": "Broth / original vector / delayed reveal",
+          "clip": "url(#__lottie_element_88)",
+          "duplicateIDs": [],
+          "overflow": false
+        },
+        "hold": {
+          "frame": 260,
+          "loop": false,
+          "duration": 261,
+          "frameRate": 30,
+          "subframe": true,
+          "zoom": 1.755,
+          "complete": "true",
+          "wood": true,
+          "broth": "Broth / original vector / delayed reveal",
+          "clip": "url(#__lottie_element_88)",
+          "duplicateIDs": [],
+          "overflow": false
+        },
+        "errors": []
+      }
+    },
+    {
+      "name": "mobile actual 10-second V16 browser recording",
+      "pass": true,
+      "detail": {
+        "name": "mobile-V16-original-motion-browser.webm",
+        "bytes": 901535
+      }
+    }
+  ],
+  "issues": [],
+  "viewport": {
+    "desktop": {
+      "initial": {
+        "frame": 0,
+        "loop": false,
+        "duration": 261,
+        "frameRate": 30,
+        "subframe": true,
+        "zoom": 1.755,
+        "complete": null,
+        "wood": true,
+        "broth": "Broth / original vector / delayed reveal",
+        "clip": "url(#__lottie_element_88)",
+        "duplicateIDs": [],
+        "overflow": false
+      },
+      "broth": {
+        "0": 0,
+        "30": 0,
+        "65": 0,
+        "100": 0,
+        "134": 0,
+        "149": 73183,
+        "160": 55567,
+        "200": 30214,
+        "240": 30776,
+        "260": 30776
+      },
+      "orbit": {
+        "frame": 0.5009999999999946,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "fps": 30,
+        "V18PingPong": false
+      },
+      "jsErrors": [],
+      "originFailures": []
+    },
+    "mobile": {
+      "initial": {
+        "frame": 2.0009999999999994,
+        "loop": false,
+        "duration": 261,
+        "frameRate": 30,
+        "subframe": true,
+        "zoom": 1.755,
+        "complete": null,
+        "wood": true,
+        "broth": "Broth / original vector / delayed reveal",
+        "clip": "url(#__lottie_element_88)",
+        "duplicateIDs": [],
+        "overflow": false
+      },
+      "broth": {
+        "0": 0,
+        "30": 0,
+        "65": 0,
+        "100": 0,
+        "134": 0,
+        "149": 16665,
+        "160": 12559,
+        "200": 6991,
+        "240": 7086,
+        "260": 7086
+      },
+      "orbit": {
+        "frame": 0.5010000000000082,
+        "loop": true,
+        "direction": 1,
+        "duration": 210,
+        "fps": 30,
+        "V18PingPong": false
+      },
+      "jsErrors": [],
+      "originFailures": []
+    }
+  }
+}
