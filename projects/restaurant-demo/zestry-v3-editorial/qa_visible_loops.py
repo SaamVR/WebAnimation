@@ -213,7 +213,10 @@ def main():
    url=f"http://127.0.0.1:{server.server_port}/"
    try:
     with sync_playwright() as pw:
-     browser=pw.chromium.launch(headless=True,args=["--no-sandbox","--disable-dev-shm-usage"])
+     try:
+      browser=pw.chromium.launch(headless=True,channel="chrome",args=["--no-sandbox","--disable-dev-shm-usage"])
+     except Exception:
+      browser=pw.chromium.launch(headless=True,args=["--no-sandbox","--disable-dev-shm-usage"])
      for label,w,h in (("desktop",1600,900),("mobile",390,844)):
       try:test_browser(browser,label,w,h,url)
       except Exception as e:check(label+" browser lifecycle",False,str(e))
