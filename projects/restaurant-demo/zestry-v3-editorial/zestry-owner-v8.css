@@ -101,3 +101,19 @@
   column-gap:clamp(28px,3vw,52px)!important;
  }
 }
+
+
+/* ZESTRY V15: 35% F01 foreground enlargement after safe ingredient entry.
+   The large 756.6px circular wood background and subtle yellow accent remain
+   EXACTLY V14. The original 84% F01 viewport stays centered, but only its
+   outer wrapper allows the SVG's 1.35x camera enlargement to extend beyond
+   that viewport; the SVG native source canvas retains internal clipping.
+   The frame-synchronized zoom is applied to the F01 SVG by JS; no Lottie
+   artwork, keyframe, easing, layer order or duration is modified. */
+.hero .hero-image.hero-visual .hero-pasta .anim {
+  overflow:visible!important;
+}
+.hero .hero-image.hero-visual .hero-pasta .anim svg {
+  overflow:hidden!important;
+  transform-origin:50% 50%!important;
+}
