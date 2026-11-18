@@ -103,7 +103,7 @@ def test_scene(page,label,name):
   const node=document.querySelector('[data-animation="'+name+'"]');
   lottie.getRegisteredAnimations().find(x=>x.wrapper===node).setSpeed(1);
  }""",name)
- page.evaluate("window.scrollTo(0,document.documentElement.scrollHeight)")
+ page.evaluate("name=>window.scrollTo(0,name==='f07'?0:document.documentElement.scrollHeight)",name)
  page.wait_for_function("""name=>{
   const e=document.querySelector('[data-animation="'+name+'"]');
   const a=lottie.getRegisteredAnimations().find(x=>x.wrapper===e);
@@ -166,6 +166,45 @@ def test_browser(browser,label,w,h,url):
   frame.locator("body[data-f05-state='Overview']").wait_for(timeout=15000)
   check(label+" F05 manual menu page-turn preserved",True,{"state":"Overview"})
  except Exception as e:check(label+" F05 manual menu flow",False,str(e))
+ # Exercise real F05 -> demo cart -> F04 confirmation, not just static F04 data.
+ try:
+  frame.locator('[data-event="select_main"]').click(timeout=12000)
+  frame.locator("body[data-f05-state='Main_Courses']").wait_for(timeout=20000)
+  frame.locator(".dish").first.click(timeout=15000)
+  page.wait_for_function("""()=>Number(document.getElementById('bag-count')?.textContent||0)>0""",timeout=12000)
+  page.locator("#cart-open").click(timeout=12000)
+  page.locator("#drawer.active").wait_for(timeout=12000)
+  page.locator("#cart-checkout").click(timeout=12000)
+  page.locator("#pickup-form").wait_for(state="visible",timeout=12000)
+  page.locator("#pickup-name").fill("Portfolio QA Tester")
+  page.locator("#pickup-phone").fill("01234567890")
+  page.locator('#pickup-form button[type="submit"]').click(timeout=12000)
+  page.locator("#confirm-player svg").first.wait_for(state="attached",timeout=25000)
+  confirm=page.evaluate("""()=>{
+    const e=document.getElementById('confirm-player');
+    const a=window.lottie?.getRegisteredAnimations?.().find(x=>x.wrapper===e);
+    return {exists:!!e,loaded:e?.dataset.loaded,policy:e?.dataset.motionPolicy,
+     inView:e?.dataset.motionInView,loop:a?.loop,paused:a?.isPaused,
+     direction:a?.playDirection,modal:document.getElementById('modal')?.className,
+     label:document.querySelector('.confirmbox .success')?.textContent};
+   }""")
+  check(label+" F04 demo confirmation forward-loop while modal open",
+        confirm["loop"] is True and confirm["paused"] is False and
+        confirm["direction"]==1 and confirm["policy"]=="visible-forward-repeat",
+        confirm)
+  page.evaluate("document.getElementById('modal').classList.remove('active')")
+  page.wait_for_function("""()=>{
+    const e=document.getElementById('confirm-player');
+    return e?.dataset.motionInView==='false';
+   }""",timeout=6000)
+  confirmation_paused=page.evaluate("""()=>{
+    const e=document.getElementById('confirm-player');
+    return window.lottie.getRegisteredAnimations().find(x=>x.wrapper===e)?.isPaused
+   }""")
+  check(label+" F04 modal close pauses playback",confirmation_paused is True,
+        {"paused":confirmation_paused})
+ except Exception as e:
+  check(label+" F04 modal checkout and playback",False,str(e))
  check(label+" no browser errors or missing local assets",not errors and not failed,
        {"errors":errors,"httpFailures":failed[:15]})
  check(label+" no horizontal overflow",
