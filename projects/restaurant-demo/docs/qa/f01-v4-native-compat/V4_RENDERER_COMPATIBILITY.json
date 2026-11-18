@@ -1,0 +1,58 @@
+{
+  "sourceSha": "7fc0054b5ae4c1c7a13d0a3c5e321d117d570d8f0d71e3308ee076a48d301e37",
+  "sourceFileEdited": false,
+  "cases": [
+    {
+      "case": "original",
+      "frames": [
+        {
+          "frame": 0,
+          "brothPixels": 513
+        },
+        {
+          "frame": 142,
+          "brothPixels": 714
+        },
+        {
+          "frame": 160,
+          "brothPixels": 207
+        },
+        {
+          "frame": 190,
+          "brothPixels": 125
+        },
+        {
+          "frame": 260,
+          "brothPixels": 137
+        }
+      ],
+      "jsErrors": []
+    },
+    {
+      "case": "player_compat",
+      "frames": [
+        {
+          "frame": 0,
+          "brothPixels": 0
+        },
+        {
+          "frame": 142,
+          "brothPixels": 21346
+        },
+        {
+          "frame": 160,
+          "brothPixels": 48300
+        },
+        {
+          "frame": 190,
+          "brothPixels": 22329
+        },
+        {
+          "frame": 260,
+          "brothPixels": 24258
+        }
+      ],
+      "jsErrors": []
+    }
+  ]
+}
