@@ -122,6 +122,16 @@ def test_view(browser,label,width,height,url,reduced=False):
     first["rects"]["art"]["left"]>first["rects"]["title"]["left"] and
     not any(first["overlap"][key] for key in ("artTitle","artNote","artClose")),
     {"rects":first["rects"],"overlap":first["overlap"]})
+  panel=first["rects"]["art"]
+  banner_target_width=320 if width>600 else (100 if width>350 else 95)
+  ck(label+" illustration occupies wide marked header area",
+    panel["width"]>=banner_target_width and
+    panel["height"]>=55 and
+    panel["width"]/panel["height"]>= (2.2 if width>600 else 1.55) and
+    panel["right"]<=first["rects"]["header"]["right"]-8 and
+    panel["left"]>first["rects"]["header"]["left"]+first["rects"]["header"]["width"]*.43,
+    {"art":panel,"header":first["rects"]["header"],
+     "minimumWidth":banner_target_width,"aspect":panel["width"]/panel["height"]})
   ck(label+" controls fit modal and never overlap",
     first["controlsInsideModal"] and
     not first["overlap"]["dateTime"] and not first["overlap"]["guestsName"] and
