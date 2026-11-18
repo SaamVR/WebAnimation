@@ -86,6 +86,15 @@ def scene(browser,label,width,height):
  real=next(f for f in p.frames if "f05_book.html" in f.url)
  real.wait_for_function("""()=>document.body.dataset.f05State==='Overview'""",timeout=25000)
  ck(label+" F05 interactive menu preserved",True,{"state":"Overview"})
+ for other in ("f03","f06","f07"):
+  p.locator('[data-animation="'+other+'"]').scroll_into_view_if_needed(timeout=12000)
+  p.wait_for_function("""name=>{
+    const node=document.querySelector('[data-animation="'+name+'"]');
+    return node?.dataset.loaded==='yes' && !!node.querySelector('svg');
+   }""",arg=other,timeout=26000)
+  ck(label+" "+other+" unrelated original Lottie still renders",
+     p.locator('[data-animation="'+other+'"] svg').count()>0,
+     {"scene":other,"sourceUnmodified":True})
  ck(label+" old chefs never fetched, no errors",
     not errors and not failed and
     not any("f02-orbit" in x or "f02-cooking" in x for x in f02_requests)
