@@ -22,8 +22,7 @@ async function play(name,container,loop=false){
 if(name==='f01'||name==='f02-chef-full360'||name==='f03'||name==='f07')loop=false;
 if(name==='f01'){broth.hasMask=true;}
 if(name==='f03'){const keep=true;}
-const l=lottie.loadAnimation({container,loop,autoplay:true,renderer:'svg'});
-container.dataset.loaded='yes';
+let l=lottie.loadAnimation({container,renderer:'svg',loop,autoplay:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,animationData:v,rendererSettings:{preserveAspectRatio:'xMidYMid meet'}});container.dataset.loaded='yes';container.dataset.player=name;if(name==='f01'||name==='f03')l.addEventListener('complete',()=>{container.dataset.motionComplete='true';l.goToAndStop(Math.max(0,v.op-1),true)});if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){l.goToAndStop(0,true)}else{let obs=new IntersectionObserver(es=>{if(es[0].isIntersecting){if(container.dataset.motionComplete!=='true')l.play()}else l.pause()},{threshold:.12});obs.observe(container)}
 }
 function askBooking(){return 'ok'}
 for(const c of document.querySelectorAll('.anim'))play(name,c,name!=='f06')
@@ -34,13 +33,15 @@ class VisibleReplayContracts(unittest.TestCase):
   page=visible.change_page(PAGE)
   self.assertEqual(visible.change_page(page),page)
   for needed in ("loop=true;","autoplay:false",
-                 "zestryMotionAttach(l,container);","!document.hidden",
+                 "zestryMotionAttach(l,container)","!document.hidden",
                  "isIntersecting&&e.intersectionRatio>0",
                  "zestryMotionReduced.matches",
                  "play(name,c,name!=='f06')","broth.hasMask=true"):
    self.assertIn(needed,page)
   self.assertEqual(page.count(visible.MARK),1)
   self.assertNotIn("setDirection(",page)
+  self.assertNotIn("motionComplete",page)
+  self.assertNotIn("threshold:.12",page)
  def test_rejects_obsolete_two_chefs(self):
   with self.assertRaises(AssertionError):
    visible.change_page(PAGE.replace("f02-chef-full360","f02-cooking"))
