@@ -91,6 +91,8 @@ async function collect(profile){
   insist((await page.locator('#homePager [aria-current="page"]').textContent()).trim()==='2','home pagination failed');
   const pageCall=await page.evaluate(()=>window.__c04Calls.find(x=>x.role==='page'));
   insist(pageCall?.options.duration===280,'home active numeral impression missing');
+  // Save the actual final printed impression, not the 0%-opacity contact frame.
+  await page.waitForTimeout(310);
   await snap(page,profile.id+'-home-pager-2','#homePager [aria-current="page"]');
   insist(await page.locator('#homePager [aria-current="page"]').evaluate(el=>el===document.activeElement),'pagination focus not restored after replacing controls');
   check.push('homepage active numeral only; focus restored');
@@ -105,10 +107,11 @@ async function collect(profile){
   insist((await page.locator('#shopPager [aria-current="page"]').textContent()).trim()==='2','Shop keyboard pagination failed');
   const shopCall=await page.evaluate(()=>window.__c04Calls.filter(x=>x.role==='page').at(-1));
   insist(shopCall?.options.duration===280,'Shop active numeral impression missing');
+  // Record original geometry after 280ms, with the number fully visible.
+  await page.waitForTimeout(310);
   await snap(page,profile.id+'-shop-pager-2','#shopPager [aria-current="page"]');
   check.push('Shop keyboard selection; only incoming numeral animated');
-  // Motion may stop after 280ms, but its final layout/text must remain stable.
-  await page.waitForTimeout(310);
+  // Motion has ended; its final layout/text must remain stable.
   insist(await page.locator('#shopPager [aria-current="page"] .cc-c04-ink').evaluate(el=>getComputedStyle(el).opacity==='1'&&getComputedStyle(el).transform==='none'),'printed number not permanently at original rest state');
   check.push('280ms one-shot, final numeral undistorted');
   await page.emulateMedia({reducedMotion:'reduce'});

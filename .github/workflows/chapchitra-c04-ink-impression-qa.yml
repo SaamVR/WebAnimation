@@ -57,6 +57,15 @@ jobs:
           test -d /ms-playwright
           node -p "'Playwright version '+require('./node_modules/playwright/package.json').version"
           command -v ffmpeg || true
+      - name: Install FFmpeg video cropper in isolated browser container
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            apt-get update -qq
+            DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg
+          fi
+          command -v ffmpeg
       - name: Native and enlarged video / screenshot creative review
         shell: bash
         working-directory: projects/chapchitra
