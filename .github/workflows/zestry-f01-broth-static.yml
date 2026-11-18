@@ -1,0 +1,19 @@
+name: ZESTRY F01 broth bundle audit (NO DEPLOY)
+on:
+  push:
+    branches:
+      - qa/zestry-f01-broth-mask-regression-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/qa_v17_broth_bundle_audit.py
+      - .github/workflows/zestry-f01-broth-static.yml
+permissions:
+  contents: read
+jobs:
+  audit-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract approved F01 broth layer, mask, and previous runtime compatibility
+        run: |
+          python3 projects/restaurant-demo/zestry-v3-editorial/qa_v17_broth_bundle_audit.py
