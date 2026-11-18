@@ -1,0 +1,17 @@
+name: ZESTRY inspect F01 source removal (NO DEPLOY)
+on:
+  push:
+    branches: [remove/zestry-f01-await-new-artwork-20261118]
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/inspect_f01_removal.py
+      - .github/workflows/zestry-f01-removal-inspect.yml
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect actual Render static source package and hero DOM
+        run: python3 projects/restaurant-demo/zestry-v3-editorial/inspect_f01_removal.py
