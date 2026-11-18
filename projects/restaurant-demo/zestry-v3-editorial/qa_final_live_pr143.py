@@ -40,6 +40,22 @@ motion=imp("qa_visible_loops.py","motion_pr143_live")
 reservation=imp("qa_reservation_modal.py","reservation_pr143_live")
 # Reservation imports a separate copy of motion; both share same output directory.
 f05.OUT=motion.OUT=reservation.OUT=reservation.existing.OUT=OUT
+# Public CDN images resolve asynchronously. Do not sample a settled dish
+# before its own <img> decode finishes. Retain a real failure for 404 images.
+_ORIGINAL_PAGE_STATE=f05.page_state
+def loaded_page_state(page):
+ try:
+  page.wait_for_function("""()=>{
+   const doc=document.getElementById('f05-book-frame')?.contentDocument;
+   if(!doc)return false;
+   if(doc.querySelector('.f05-paper-leaf'))return true;
+   const image=doc.querySelector('#f05-photos .dish img');
+   return !image||(image.complete&&image.naturalWidth>0);
+  }""",timeout=11000)
+ except Exception:
+  pass
+ return _ORIGINAL_PAGE_STATE(page)
+f05.page_state=loaded_page_state
 def site_assets():
  for path,expected in ASSETS.items():
   try:
