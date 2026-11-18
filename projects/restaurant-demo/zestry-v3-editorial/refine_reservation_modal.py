@@ -14,6 +14,52 @@ MARK="ZESTRY_BOOK_A_TABLE_EDITORIAL_20261119"
 F01="7fc0054b5ae4c1c7a13d0a3c5e321d117d570d8f0d71e3308ee076a48d301e37"
 F02="e48ae2126de66a2e60098156f6403fae797fb89c04168654d6232fbc517406fa"
 F07="a07dac1c24e3b867e9ca81cb30df99eafe5a4b8809a4a03dbfc8f603b636b84b"
+WIDE_MARK="ZESTRY_RESERVATION_WIDE_PANEL_20261119"
+WIDE_STYLES=r"""
+/* ZESTRY_RESERVATION_WIDE_PANEL_20261119
+ * Owner-marked header area rather than a small corner tile.
+ * Original F07 Lottie remains uncropped via xMidYMid meet.
+ */
+@media(min-width:601px){
+ #modal.reservation-dialog .modalhead{
+  grid-template-columns:minmax(0,1fr) minmax(0,388px);
+  column-gap:16px;
+ }
+ #modal.reservation-dialog .reservation-illustration{
+  justify-self:start;
+  align-self:center;
+  width:calc(100% - 32px);
+  height:146px;
+  margin:0;
+  border-radius:15px;
+ }
+}
+@media(max-width:600px){
+ #modal.reservation-dialog .modalhead{
+  grid-template-columns:minmax(0,1fr) minmax(0,132px);
+  column-gap:12px;
+ }
+ #modal.reservation-dialog .reservation-illustration{
+  justify-self:stretch;
+  width:100%;
+  height:74px;
+  margin:64px 0 0;
+  border-radius:12px;
+ }
+}
+@media(max-width:350px){
+ #modal.reservation-dialog .modalhead{
+  grid-template-columns:minmax(0,1fr) minmax(0,104px);
+  column-gap:8px;
+ }
+ #modal.reservation-dialog .reservation-illustration{
+  width:100%;
+  height:60px;
+  margin-top:64px;
+ }
+}
+"""
+
 OLD_DIALOG="function setDialog(title,content){$('#modal-title').textContent=title;$('#modal-content').innerHTML=content;$('#drawer').classList.remove('active');modal('dialog')}"
 NEW_DIALOG=r"""function setDialog(title,content){
  // Fully retire any previous confirmation/booking modal Lottie before a
@@ -247,7 +293,10 @@ def replace_once(s,old,new,label):
 def modify(page):
  if MARK in page:
   assert page.count(MARK)==1 and "reservation-modal-animation" in page
-  return page
+  if WIDE_MARK in page:
+   assert page.count(WIDE_MARK)==1
+   return page
+  return replace_once(page,"</style>","\n"+WIDE_STYLES+"\n</style>","extend reservation illustration to marked rectangle")
  assert "ZESTRY_VISIBLE_ONLY_FORWARD_REPEAT_20261119" in page
  assert "ZESTRY_F02_OWNER_FULL360_SINGLE_20261119" in page
  assert "play(name,c,name!=='f06')" in page
@@ -256,7 +305,7 @@ def modify(page):
  disclaimer='<p>This is a simulated reservation request. No real restaurant availability is checked.</p><form id="booking-form">'
  page=replace_once(page,disclaimer,'<form id="booking-form">',"remove oversized helper from form")
  page=replace_once(page,"$('#date').value=m}","$('#date').value=m;play('f07',$('#reservation-modal-animation'),true)}","mount approved F07 only in open booking dialog")
- page=replace_once(page,"</style>","\n"+STYLES+"\n</style>","reservation scoped styling")
+ page=replace_once(page,"</style>","\n"+STYLES+"\n"+WIDE_STYLES+"\n</style>","reservation scoped styling")
  assert page.count(MARK)==1
  assert page.count("id=\"booking-form\"")==1
  assert page.count("id=\"reservation-modal-animation\"")==1
