@@ -1,0 +1,48 @@
+name: ZESTRY V17 emergency rollback LIVE acceptance (NO DEPLOY)
+on:
+  push:
+    branches:
+      - qa/zestry-v17-emergency-rollback-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/qa_v17_emergency_rollback_live.py
+      - .github/workflows/zestry-v17-rollback-live.yml
+permissions:
+  contents: read
+jobs:
+  verify-rollback:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Playwright + Chromium
+        run: |
+          pip install 'playwright==1.56.0' 'Pillow==11.3.0'
+          python -m playwright install chromium
+      - name: Check actual restored V17 site against desktop and mobile
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_v17_emergency_rollback_live.py
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-V17-EMERGENCY-ROLLBACK-LIVE
+          path: projects/restaurant-demo/docs/qa/owner-v17-rollback-live/
+          if-no-files-found: warn
+      - name: Save passing QA evidence to QA branch ONLY
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/docs/qa/owner-v17-rollback-live/
+          if ! git diff --cached --quiet; then
+            git commit -m 'test(zestry): public V17 restored hero and chef proof [skip ci]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo 'No additional hosting deployment'
