@@ -154,8 +154,8 @@
         "oldFoodHidden": true,
         "busy": "true",
         "inset": "857.422px",
-        "leftPercent": 52.7492069595309,
-        "widthPercent": 17.149860617129676
+        "leftPercent": 52.753172161876385,
+        "widthPercent": 17.14193021243872
       }
     },
     {
@@ -281,7 +281,7 @@
       "passed": true,
       "detail": {
         "file": "desktop-F05-full-interaction.webm",
-        "size": 3281172
+        "size": 3715056
       }
     },
     {
@@ -427,8 +427,8 @@
         "oldFoodHidden": true,
         "busy": "true",
         "inset": "734.266px",
-        "leftPercent": 52.74896731321839,
-        "widthPercent": 17.149335488505745
+        "leftPercent": 52.74925231933594,
+        "widthPercent": 17.148765476270654
       }
     },
     {
@@ -554,7 +554,7 @@
       "passed": true,
       "detail": {
         "file": "ipad-F05-full-interaction.webm",
-        "size": 3127969
+        "size": 3264843
       }
     },
     {
@@ -827,7 +827,7 @@
       "passed": true,
       "detail": {
         "file": "mobile-F05-full-interaction.webm",
-        "size": 1935297
+        "size": 1952805
       }
     }
   ],
