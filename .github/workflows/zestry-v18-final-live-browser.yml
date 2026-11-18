@@ -1,0 +1,52 @@
+name: ZESTRY V18 FINAL LIVE browser validation (NO DEPLOY)
+on:
+  push:
+    branches:
+      - qa/zestry-v18-final-live-playback-20261118
+    paths:
+      - projects/restaurant-demo/zestry-v3-editorial/qa_v18_final_live.py
+      - .github/workflows/zestry-v18-final-live-browser.yml
+permissions:
+  contents: read
+jobs:
+  live-acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout isolated QA branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install native Chromium test runner
+        run: |
+          python -m pip install "playwright==1.56.0" "Pillow==11.3.0"
+          python -m playwright install chromium
+      - name: Test actual deployed Render URL — all visibility loop and UI flows
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/qa_v18_final_live.py
+      - name: Publish recordings and QA even on a failed acceptance gate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZESTRY-V18-FINAL-DEPLOYED-CHROMIUM-AND-ORBIT-VIDEOS
+          path: projects/restaurant-demo/docs/qa/owner-v18-final-live/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Commit verified public-website evidence to isolated QA branch
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/restaurant-demo/docs/qa/owner-v18-final-live/
+          if ! git diff --cached --quiet; then
+            git commit -m 'test(zestry): final live V18 chef loops and scroll QA evidence [skip ci]'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo 'No new deployment: evidence only'
