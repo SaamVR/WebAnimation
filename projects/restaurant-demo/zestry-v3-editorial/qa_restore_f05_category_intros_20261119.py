@@ -115,7 +115,7 @@ def test_frames(browser,device,w,h,url):
       photo:!!doc.querySelector('.dish img'),
       illustrationLayers:d.layers.filter(x=>x.nm.startsWith('PAGE_'+category+'_Food_')
         &&x.ks?.o?.a===0&&x.ks.o.k===100).length,
-      allIllustrationsNotFiltered:!w.drawF05.toString().includes('startsWith(\'Turn_\')')};
+      allIllustrationsNotFiltered:!w.drawF05.toString().includes('Turn_')};
    }""",category)
    test(device+" "+category+" original FULL illustrated cover holds before dishes",
        illustrated["cover"] is True and illustrated["photo"] is False and
