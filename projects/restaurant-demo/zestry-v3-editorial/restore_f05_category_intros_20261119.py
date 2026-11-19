@@ -61,8 +61,8 @@ def patch(dry_run):
   data={i.filename:z.read(i.filename) for i in infos}
  assert "assets/f05_book.html" in data and "index.html" in data
  before={n:digest(b) for n,b in data.items()}
- p=previous()
- for name,expected in p.MASTERS.items():
+ parent=previous()
+ for name,expected in parent.MASTERS.items():
   assert before[name]==expected,("approved original file changed",name)
  assert "ZESTRY_RESERVATION_WIDE_PANEL_20261119" in data["index.html"].decode()
  assert "ZESTRY_F05_OWNER_FLIP_F06_COMPACT_F03_COFFEE_20261119" in data["index.html"].decode()
@@ -89,7 +89,7 @@ def patch(dry_run):
  return {"status":"dry-run" if dry_run else "patched",
          "changed":["assets/f05_book.html"],
          "otherMembersPreserved":len(data)-1,
-         "originalAssetsUnchanged":list(p.MASTERS),
+         "originalAssetsUnchanged":list(parent.MASTERS),
          "zipBytes":len(result),"deploy":False}
 
 if __name__=="__main__":
