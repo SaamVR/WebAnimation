@@ -170,6 +170,9 @@ def test_browser(browser,label,w,h,url):
  try:
   frame.locator('[data-event="select_main"]').click(timeout=12000)
   frame.locator("body[data-f05-state='Main_Courses']").wait_for(timeout=20000)
+  frame.locator('[data-event="next"]').click(timeout=12000)
+  frame.locator("body[data-f05-state='Replay_Main_Courses']").wait_for(timeout=6000)
+  frame.locator("body[data-f05-state='Main_Courses']").wait_for(timeout=14000)
   frame.locator(".dish").first.click(timeout=15000)
   page.wait_for_function("""()=>Number(document.getElementById('bag-count')?.textContent||0)>0""",timeout=12000)
   page.locator("#cart-open").click(timeout=12000)
