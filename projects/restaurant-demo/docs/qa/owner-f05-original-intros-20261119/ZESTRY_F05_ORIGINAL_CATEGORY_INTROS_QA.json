@@ -3,7 +3,7 @@
   "status": "QA-source-only",
   "checks": [
     {
-      "name": "reverted ONLY restrictive canvas filter",
+      "name": "original category cover filter respects first-page state",
       "pass": true,
       "details": null
     },
@@ -57,7 +57,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Starters",
-        "frame": 24.525,
+        "frame": 24.965999999999823,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -88,6 +88,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "desktop Starters original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Starters",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 19,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -105,7 +116,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Main_Courses",
-        "frame": 19.664999999999836,
+        "frame": 16.950000000000518,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -136,6 +147,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "desktop Main_Courses original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Main_Courses",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 7,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -153,7 +175,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Desserts",
-        "frame": 19.280999999999832,
+        "frame": 16.88100000000035,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -184,6 +206,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "desktop Desserts original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Desserts",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 10,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -201,7 +234,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Drinks",
-        "frame": 19.571999999999715,
+        "frame": 17.205000000000002,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -232,6 +265,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "desktop Drinks original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Drinks",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 15,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -262,7 +306,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Starters",
-        "frame": 21.927000000000003,
+        "frame": 26.559000000000175,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -293,6 +337,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "ipad Starters original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Starters",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 19,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -310,7 +365,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Main_Courses",
-        "frame": 24.980999999999913,
+        "frame": 24.848999999999815,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -341,6 +396,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "ipad Main_Courses original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Main_Courses",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 7,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -358,7 +424,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Desserts",
-        "frame": 24.56700000000018,
+        "frame": 24.830999999999477,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -389,6 +455,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "ipad Desserts original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Desserts",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 10,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -406,7 +483,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Drinks",
-        "frame": 24.588000000000065,
+        "frame": 24.93899999999998,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -437,6 +514,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "ipad Drinks original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Drinks",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 15,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -467,7 +555,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Starters",
-        "frame": 24.906000000000173,
+        "frame": 24.873000000000353,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -498,6 +586,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "mobile Starters original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Starters",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 19,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -515,7 +614,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Main_Courses",
-        "frame": 22.127999999999915,
+        "frame": 24.64500000000052,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -546,6 +645,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "mobile Main_Courses original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Main_Courses",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 7,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -563,7 +673,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Desserts",
-        "frame": 24.783000000000012,
+        "frame": 24.62700000000015,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -594,6 +704,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "mobile Desserts original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Desserts",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 10,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -611,7 +732,7 @@
       "pass": true,
       "details": {
         "state": "Turn_Overview_to_Drinks",
-        "frame": 24.85499999999989,
+        "frame": 24.52200000000037,
         "firstCategoryArtworkAllowed": true,
         "authorFoodLayers": [
           "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
@@ -642,6 +763,17 @@
         ],
         "card": null,
         "frameHasSVG": true
+      }
+    },
+    {
+      "name": "mobile Drinks original FULL illustrated cover holds before dishes",
+      "pass": true,
+      "details": {
+        "state": "Drinks",
+        "cover": true,
+        "photo": false,
+        "illustrationLayers": 15,
+        "allIllustrationsNotFiltered": true
       }
     },
     {
@@ -671,18 +803,30 @@
   "failures": [],
   "screens": [
     "desktop-original-Starters-intro.png",
+    "desktop-original-Starters-FULL-COVER.png",
     "desktop-original-Main-Courses-intro.png",
+    "desktop-original-Main-Courses-FULL-COVER.png",
     "desktop-original-Desserts-intro.png",
+    "desktop-original-Desserts-FULL-COVER.png",
     "desktop-original-Drinks-intro.png",
+    "desktop-original-Drinks-FULL-COVER.png",
     "ipad-original-Starters-intro.png",
+    "ipad-original-Starters-FULL-COVER.png",
     "ipad-original-Main-Courses-intro.png",
+    "ipad-original-Main-Courses-FULL-COVER.png",
     "ipad-original-Desserts-intro.png",
+    "ipad-original-Desserts-FULL-COVER.png",
     "ipad-original-Drinks-intro.png",
+    "ipad-original-Drinks-FULL-COVER.png",
     "mobile-original-Starters-intro.png",
+    "mobile-original-Starters-FULL-COVER.png",
     "mobile-original-Main-Courses-intro.png",
+    "mobile-original-Main-Courses-FULL-COVER.png",
     "mobile-original-Desserts-intro.png",
-    "mobile-original-Drinks-intro.png"
+    "mobile-original-Desserts-FULL-COVER.png",
+    "mobile-original-Drinks-intro.png",
+    "mobile-original-Drinks-FULL-COVER.png"
   ],
-  "passed": 40,
-  "total": 40
+  "passed": 52,
+  "total": 52
 }
