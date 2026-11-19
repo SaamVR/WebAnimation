@@ -1,5 +1,13 @@
 name: CHAPCHITRA Shared Staging Integration Gate
 on:
+  # Required status checks must originate from an eligible PR event. A manually
+  # dispatched validation run is evidence but does not unblock GitHub rulesets.
+  pull_request:
+    branches:
+      - deploy/chapchitra-render-review
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-shared-staging.yml'
   push:
     branches:
       - integration/chapchitra-staging-candidate-20261112
