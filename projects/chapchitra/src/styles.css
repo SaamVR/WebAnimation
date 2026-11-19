@@ -2614,3 +2614,8 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
  .nav-center>a,.shop-dropdown>summary{font-size:11px}
 }
 /* === END TYPOGRAPHY SYSTEM === */
+
+/* C04: compositor-only ink impression. The supplied SVGs and button geometries are unchanged. */
+#app .pager .cc-c04-ink{display:inline-block;transform-origin:50% 50%;vertical-align:baseline}
+#app .bag-count .cc-bag-stamps{transform-origin:50% 50%}
+#app .cc-c04-inking{will-change:transform,opacity}

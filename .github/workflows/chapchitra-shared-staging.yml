@@ -1,5 +1,13 @@
 name: CHAPCHITRA Shared Staging Integration Gate
 on:
+  # Required status checks must originate from an eligible PR event. A manually
+  # dispatched validation run is evidence but does not unblock GitHub rulesets.
+  pull_request:
+    branches:
+      - deploy/chapchitra-render-review
+    paths:
+      - 'projects/chapchitra/**'
+      - '.github/workflows/chapchitra-shared-staging.yml'
   push:
     branches:
       - integration/chapchitra-staging-candidate-20261112
@@ -63,6 +71,8 @@ jobs:
   browser-smoke:
     name: Home Shop Artist invoice navbar Chromium/WebKit mobile
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
     timeout-minutes: 45
     needs: source-integrity
     steps:
@@ -72,12 +82,14 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Trust checked-out repository inside pinned browser container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Prepare the isolated candidate
         working-directory: projects/chapchitra
         run: |
           npm ci --no-audit --no-fund
           node scripts/build.mjs
-          npx playwright install --with-deps chromium webkit
+          test -d /ms-playwright # pinned container provides Chromium and WebKit
           PORT=4272 npm run preview >/tmp/chapchitra-stage-preview.log 2>&1 &
           for n in $(seq 1 60); do
             if curl -fsS http://127.0.0.1:4272/ >/dev/null; then exit 0; fi
@@ -121,6 +133,8 @@ jobs:
   c02-navigation-gate:
     name: Exact merged C02, when present
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
     timeout-minutes: 45
     needs: source-integrity
     steps:
@@ -130,6 +144,8 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Trust checked-out repository inside pinned browser container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Gate actual C02 navigation and adaptive loader when added to staging
         working-directory: projects/chapchitra
         shell: bash
@@ -141,7 +157,7 @@ jobs:
           fi
           npm ci --no-audit --no-fund
           node scripts/build.mjs
-          npx playwright install --with-deps chromium webkit
+          test -d /ms-playwright # pinned container provides Chromium and WebKit
           PORT=4273 npm run preview >/tmp/chapchitra-c02-stage.log 2>&1 &
           for n in $(seq 1 60); do
             curl -fsS http://127.0.0.1:4273/ >/dev/null && break
@@ -157,6 +173,8 @@ jobs:
   carousel-timing-gate:
     name: Hero carousel C08 exact timing Chromium/WebKit
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
     timeout-minutes: 30
     needs: source-integrity
     steps:
@@ -166,12 +184,14 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Trust checked-out repository inside pinned browser container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Build unchanged source and install real browsers
         working-directory: projects/chapchitra
         run: |
           npm ci --no-audit --no-fund
           node scripts/build.mjs
-          npx playwright install --with-deps chromium webkit
+          test -d /ms-playwright # pinned container provides Chromium and WebKit
       - name: Play two uninterrupted cycles and assert strict original timing
         working-directory: projects/chapchitra
         shell: bash

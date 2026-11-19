@@ -149,6 +149,15 @@ for(const filename of await readdir(output)){
   await cp(resolve(output,filename),resolve(releaseDir,filename));
  }
 }
+// C04 is a nested relative import of app.mjs. The Artist's Edit serves the
+// SHA-pinned app under /releases/<SHA>/app.mjs, so its C04 dependency must
+// be pinned under the same release root. Root-site /motion/c04 is kept intact.
+const c04Source=resolve(output,'motion/c04/ink-impression.mjs');
+const c04Release=resolve(releaseDir,'motion/c04/ink-impression.mjs');
+await mkdir(resolve(releaseDir,'motion/c04'),{recursive:true});
+await cp(c04Source,c04Release);
+if(! (await readFile(c04Release)).equals(await readFile(c04Source)))
+ throw Error('C04 SHA-pinned release module mismatch');
 const sourceManifest=JSON.parse(await readFile(resolve(output,'assets/worktable/manifest.json'),'utf8'));
 sourceManifest.__deliveryBuild=release;
 const stagedManifest=JSON.stringify(sourceManifest,null,2)+'\n';
