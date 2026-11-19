@@ -116,6 +116,14 @@ def run_device(browser,label,w,h,url):
   verify(label+" original 2.7s category-flip state used",
       start["state"]=="Turn_Overview_to_Starters" and not start["src"],start)
   wait_for_state(book,"Starters",14000)
+  intro=page_state(page)
+  verify(label+" original Starters illustrated first page retained",
+         intro["state"]=="Starters" and not intro["src"] and
+         page.evaluate("document.querySelector('#f05-book-frame').contentWindow.__f05BookIntro===true"),intro)
+  stamp(page,label+"-original-starters-cover.png")
+  book.locator('[data-event="next"]').click(timeout=12000)
+  wait_for_state(book,"Replay_Starters",6000)
+  wait_for_state(book,"Starters",14000)
   wait_index(page,1)
   first=page_state(page)
   verify(label+" Starters page 1 photograph decoded",
@@ -156,6 +164,14 @@ def run_device(browser,label,w,h,url):
       bridge["index"]!="01 / 04" and bridge["src"]!="photos/salad.jpg",bridge)
   stamp(page,label+"-starter-to-main-flip.png")
   wait_for_state(book,"Main_Courses",14000)
+  cover=page_state(page)
+  verify(label+" original Main Course burger cover retained",
+         cover["state"]=="Main_Courses" and not cover["src"] and
+         page.evaluate("document.querySelector('#f05-book-frame').contentWindow.__f05BookIntro===true"),cover)
+  stamp(page,label+"-original-main-cover.png")
+  book.locator('[data-event="next"]').click(timeout=12000)
+  wait_for_state(book,"Replay_Main_Courses",6000)
+  wait_for_state(book,"Main_Courses",14000)
   wait_index(page,1)
   main=page_state(page)
   verify(label+" Main Courses lands on first correct dish, no starter flash",
@@ -176,6 +192,14 @@ def run_device(browser,label,w,h,url):
   ]:
    book.locator('[data-event="'+event+'"]').click(timeout=10000)
    wait_for_state(book,category,14000)
+   intro=page_state(page)
+   verify(label+" original "+category+" illustrated first page",
+          not intro["src"] and
+          page.evaluate("document.querySelector('#f05-book-frame').contentWindow.__f05BookIntro===true"),intro)
+   stamp(page,label+"-original-"+category+"-cover.png")
+   book.locator('[data-event="next"]').click(timeout=12000)
+   wait_for_state(book,"Replay_"+category,6000)
+   wait_for_state(book,category,14000)
    wait_index(page,1)
    actual=page_state(page)
    verify(label+" category "+category+" first dish correct",
@@ -184,6 +208,9 @@ def run_device(browser,label,w,h,url):
    wait_for_state(book,"Overview",14000)
   # User can still add a photograph item to the demo bag.
   book.locator('[data-event="select_main"]').click(timeout=10000)
+  wait_for_state(book,"Main_Courses",14000)
+  book.locator('[data-event="next"]').click(timeout=12000)
+  wait_for_state(book,"Replay_Main_Courses",6000)
   wait_for_state(book,"Main_Courses",14000)
   book.locator('.dish').first.click(timeout=14000)
   page.wait_for_function("""()=>document.getElementById('bag-count')?.textContent.trim()==='1'""",timeout=10000)
