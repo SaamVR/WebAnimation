@@ -619,7 +619,7 @@
 }
 :root[data-theme="dark"] #collection .pager button:is(:hover,:focus-visible),
 :root[data-theme="dark"] #collection .pager button.page-current{
-  background:var(--color-cream);color:var(--color-dark-forest);
+  background:var(--color-cream);color:var(--color-deep-forest);
   border-color:var(--color-cream);
 }
 :root[data-theme="dark"] #collection .pager button:disabled{
