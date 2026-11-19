@@ -1,0 +1,49 @@
+name: ZESTRY F05 category illustration original-master audit (temporary)
+on:
+  push:
+    branches:
+      - fix/zestry-f05-restore-original-category-intros-20261119
+permissions:
+  contents: read
+jobs:
+  preserve-original-state-evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect untouched author dotLottie state machine and illustration layers
+        run: |
+          mkdir -p /tmp/f05-intro-source
+          cat projects/restaurant-demo/review_bundle/part-*.bin > /tmp/zestry-restored-review.zip
+          unzip -tq /tmp/zestry-restored-review.zip
+          python - <<'PY'
+          from zipfile import ZipFile
+          from pathlib import Path
+          import io,json
+          target=Path('/tmp/f05-intro-source')
+          with ZipFile('/tmp/zestry-restored-review.zip') as z:
+           data=z.read('assets/f05_book.lottie')
+           (target/'f05_book.lottie').write_bytes(data)
+           (target/'f05_book.html').write_bytes(z.read('assets/f05_book.html'))
+          with ZipFile(io.BytesIO(data)) as archive:
+           files=archive.namelist()
+           (target/'manifest.json').write_bytes(archive.read('manifest.json'))
+           state=json.loads(archive.read('s/F05_Menu_Controller.json'))
+           (target/'F05_Menu_Controller.json').write_text(json.dumps(state,indent=2))
+           doc_ids=set(s['animation'] for s in state['states'])
+           summary=[]
+           for n in state['states']:
+            if not any(k in n['name'] for k in ('Starters','Main_Courses','Desserts','Drinks','Overview')):continue
+            doc=json.loads(archive.read('a/'+n['animation']+'.json'))
+            layers=[x['nm'] for x in doc['layers'] if any(k.lower() in x['nm'].lower() for k in ('Salad','Burger','Cake','Dessert','Drink','PAGE_','Coffee','Food_'))]
+            summary.append({'state':n['name'],'animation':n['animation'],'op':doc['op'],'fr':doc['fr'],'layers':layers[:80],'layerCount':len(doc['layers'])})
+           (target/'state-food-layer-map.json').write_text(json.dumps(summary,indent=2))
+           print('ORIGINAL_STATE_MAP')
+           for row in summary:
+            print(row['state'], 'frames',row['op'],'layerCount',row['layerCount'],'foodLayers',len(row['layers']), 'sample',row['layers'][:6])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zestry-original-f05-state-and-layer-evidence
+          path: /tmp/f05-intro-source/
+          retention-days: 7
