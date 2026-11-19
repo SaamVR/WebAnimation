@@ -1,0 +1,688 @@
+{
+  "deployment": "NONE",
+  "status": "QA-source-only",
+  "checks": [
+    {
+      "name": "reverted ONLY restrictive canvas filter",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "restored original category intro marker once",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "identical approved paper turns remain",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "original 52.75pct photo alignment remains",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "original F03 coffee, F06 compact, F07 untouched",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "approved source SHA256 assets/lottie/f01.json",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "approved source SHA256 assets/lottie/f02-chef-full360.json",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "approved source SHA256 assets/lottie/f03.json",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "approved source SHA256 assets/lottie/f07.json",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "approved source SHA256 assets/f05_book.lottie",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "desktop Starters original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Starters",
+        "frame": 24.525,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "desktop Starters first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Starters",
+        "src": "photos/salad.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "desktop Main_Courses original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Main_Courses",
+        "frame": 19.664999999999836,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "desktop Main_Courses first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Main_Courses",
+        "src": "photos/pasta.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "desktop Desserts original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Desserts",
+        "frame": 19.280999999999832,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "desktop Desserts first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Desserts",
+        "src": "photos/cake.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "desktop Drinks original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Drinks",
+        "frame": 19.571999999999715,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "desktop Drinks first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Drinks",
+        "src": "photos/coffee.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "desktop no JS errors, bad fetches, or overflow",
+      "pass": true,
+      "details": {
+        "errors": [],
+        "httpFailures": []
+      }
+    },
+    {
+      "name": "desktop recorded browser opening transitions",
+      "pass": true,
+      "details": "desktop-original-category-intros.webm"
+    },
+    {
+      "name": "ipad Starters original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Starters",
+        "frame": 21.927000000000003,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "ipad Starters first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Starters",
+        "src": "photos/salad.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "ipad Main_Courses original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Main_Courses",
+        "frame": 24.980999999999913,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "ipad Main_Courses first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Main_Courses",
+        "src": "photos/pasta.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "ipad Desserts original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Desserts",
+        "frame": 24.56700000000018,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "ipad Desserts first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Desserts",
+        "src": "photos/cake.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "ipad Drinks original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Drinks",
+        "frame": 24.588000000000065,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "ipad Drinks first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Drinks",
+        "src": "photos/coffee.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "ipad no JS errors, bad fetches, or overflow",
+      "pass": true,
+      "details": {
+        "errors": [],
+        "httpFailures": []
+      }
+    },
+    {
+      "name": "ipad recorded browser opening transitions",
+      "pass": true,
+      "details": "ipad-original-category-intros.webm"
+    },
+    {
+      "name": "mobile Starters original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Starters",
+        "frame": 24.906000000000173,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "mobile Starters first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Starters",
+        "src": "photos/salad.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "mobile Main_Courses original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Main_Courses",
+        "frame": 22.127999999999915,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "mobile Main_Courses first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Main_Courses",
+        "src": "photos/pasta.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "mobile Desserts original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Desserts",
+        "frame": 24.783000000000012,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "mobile Desserts first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Desserts",
+        "src": "photos/cake.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "mobile Drinks original illustrated opening visible",
+      "pass": true,
+      "details": {
+        "state": "Turn_Overview_to_Drinks",
+        "frame": 24.85499999999989,
+        "firstCategoryArtworkAllowed": true,
+        "authorFoodLayers": [
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_leaf_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_lemon",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_straw",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_ice_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_03",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_02",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Outline_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Vector_Part_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_path_Light_Surface_01",
+          "PAGE_Drinks_Food_Category_Page_Drinks_Food_glass_ellipse_Shade_Or_Shadow_01",
+          "SVG_EXACT__OPEN_Book_Open_Main_Spread_Special_Cake_strawberry_2_",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_strawberry",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_01",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_03",
+          "PAGE_Desserts_Food_Category_Page_Desserts_Food_cream_02"
+        ],
+        "inkSamplesRightPage": 810,
+        "sourceCanvas": [
+          1536,
+          1024
+        ],
+        "card": null,
+        "frameHasSVG": true
+      }
+    },
+    {
+      "name": "mobile Drinks first photo appears after original opening",
+      "pass": true,
+      "details": {
+        "state": "Drinks",
+        "src": "photos/coffee.jpg",
+        "count": "01 / 04",
+        "leafStyle": true
+      }
+    },
+    {
+      "name": "mobile no JS errors, bad fetches, or overflow",
+      "pass": true,
+      "details": {
+        "errors": [],
+        "httpFailures": []
+      }
+    },
+    {
+      "name": "mobile recorded browser opening transitions",
+      "pass": true,
+      "details": "mobile-original-category-intros.webm"
+    }
+  ],
+  "failures": [],
+  "screens": [
+    "desktop-original-Starters-intro.png",
+    "desktop-original-Main-Courses-intro.png",
+    "desktop-original-Desserts-intro.png",
+    "desktop-original-Drinks-intro.png",
+    "ipad-original-Starters-intro.png",
+    "ipad-original-Main-Courses-intro.png",
+    "ipad-original-Desserts-intro.png",
+    "ipad-original-Drinks-intro.png",
+    "mobile-original-Starters-intro.png",
+    "mobile-original-Main-Courses-intro.png",
+    "mobile-original-Desserts-intro.png",
+    "mobile-original-Drinks-intro.png"
+  ],
+  "passed": 40,
+  "total": 40
+}
