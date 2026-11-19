@@ -36,7 +36,9 @@ def source_checks(z):
  html=z.read("assets/f05_book.html").decode()
  index=z.read("index.html").decode()
  fit=z.read("assets/f05-fit-v8.css").decode()
- test("reverted ONLY restrictive canvas filter",html.count(origin.DRAW_OLD)==1 and origin.DRAW_NEW not in html)
+ test("original category cover filter respects first-page state",
+      "ZESTRY_F05_AUTHORED_CATEGORY_COVER_BEFORE_PHOTOS_20261119" in html and
+      "&&!window.__f05BookIntro" in html and origin.DRAW_NEW not in html)
  test("restored original category intro marker once",html.count("ZESTRY_F05_RESTORE_APPROVED_CATEGORY_INTROS_20261119")==1)
  test("identical approved paper turns remain",all(t in html for t in (
   "ZESTRY_F05_OWNER_NATURAL_PAPER_TURN_20261119",
@@ -106,11 +108,36 @@ def test_frames(browser,device,w,h,url):
    page.locator('#f05-book-frame').screenshot(path=str(OUT/name))
    REPORT["screens"].append(name)
    page.frame_locator("#f05-book-frame").locator('body[data-f05-state="'+category+'"]').wait_for(timeout=11000)
+   illustrated=page.evaluate("""category=>{
+    const frame=document.getElementById('f05-book-frame'),w=frame.contentWindow,
+      doc=frame.contentDocument,d=w.F05_QA.document;
+    return {state:doc.body.dataset.f05State,cover:w.__f05BookIntro,
+      photo:!!doc.querySelector('.dish img'),
+      illustrationLayers:d.layers.filter(x=>x.nm.startsWith('PAGE_'+category+'_Food_')
+        &&x.ks?.o?.a===0&&x.ks.o.k===100).length,
+      allIllustrationsNotFiltered:!w.drawF05.toString().includes('startsWith(\'Turn_\')')};
+   }""",category)
+   test(device+" "+category+" original FULL illustrated cover holds before dishes",
+       illustrated["cover"] is True and illustrated["photo"] is False and
+       illustrated["illustrationLayers"]>0 and illustrated["allIllustrationsNotFiltered"],
+       illustrated)
+   covername=device+"-original-"+category.replace("_","-")+"-FULL-COVER.png"
+   page.locator('#f05-book-frame').screenshot(path=str(OUT/covername))
+   REPORT["screens"].append(covername)
+   page.frame_locator("#f05-book-frame").locator('[data-event="next"]').click(timeout=12000)
+   page.frame_locator("#f05-book-frame").locator(
+      'body[data-f05-state="Replay_'+category+'"]').wait_for(timeout=6000)
+   page.frame_locator("#f05-book-frame").locator(
+      'body[data-f05-state="'+category+'"]').wait_for(timeout=11000)
    page.wait_for_function("""category=>{
-    const doc=document.querySelector('#f05-book-frame')?.contentDocument;
-    return doc?.body.dataset.f05State===category && !!doc.querySelector('.dish img') &&
-      doc.querySelector('.dish img').complete && doc.querySelector('.dish img').naturalWidth>0;
-   }""",arg=category,timeout=11000)
+    const frame=document.querySelector('#f05-book-frame');
+    const doc=frame?.contentDocument;
+    return doc?.body.dataset.f05State===category &&
+      frame?.contentWindow?.__f05BookIntro===false &&
+      !!doc.querySelector('.dish img') &&
+      doc.querySelector('.dish img').complete &&
+      doc.querySelector('.dish img').naturalWidth>0;
+   }""",arg=category,timeout=12000)
    after=page.evaluate("""()=>{
     const doc=document.querySelector('#f05-book-frame').contentDocument;
     return {state:doc.body.dataset.f05State,
