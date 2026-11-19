@@ -74,6 +74,8 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Trust checked-out repository inside pinned browser container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Prepare the isolated candidate
         working-directory: projects/chapchitra
         run: |
@@ -134,6 +136,8 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Trust checked-out repository inside pinned browser container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Gate actual C02 navigation and adaptive loader when added to staging
         working-directory: projects/chapchitra
         shell: bash
@@ -172,6 +176,8 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: projects/chapchitra/package-lock.json
+      - name: Trust checked-out repository inside pinned browser container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Build unchanged source and install real browsers
         working-directory: projects/chapchitra
         run: |
