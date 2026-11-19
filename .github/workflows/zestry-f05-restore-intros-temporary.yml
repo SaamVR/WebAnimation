@@ -1,0 +1,70 @@
+name: ZESTRY original F05 category intro restoration QA (no deploy)
+on:
+  push:
+    branches:
+      - fix/zestry-f05-restore-original-category-intros-20261119
+permissions:
+  contents: write
+concurrency:
+  group: zestry-f05-intro-restore-20261119
+  cancel-in-progress: true
+jobs:
+  preserve-approved-first-category-pages:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Confirm edit isolated to ZESTRY with no site deploy or new services
+        run: |
+          git fetch --no-tags --depth=1 origin deploy/zestry-v3-render-review-20261116
+          git diff --name-only FETCH_HEAD HEAD > /tmp/changed.txt
+          grep -v -E '^projects/restaurant-demo/|^\.github/workflows/zestry-f05-restore-intros-temporary.yml$' /tmp/changed.txt > /tmp/unrelated.txt || true
+          if test -s /tmp/unrelated.txt; then cat /tmp/unrelated.txt; exit 2; fi
+      - name: Prepare native Chrome and Playwright video tooling
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install ffmpeg
+          google-chrome --version
+      - name: Apply ONLY original F05 category-art filter to reviewed website ZIP
+        run: |
+          python projects/restaurant-demo/zestry-v3-editorial/restore_f05_category_intros_20261119.py --check
+          python projects/restaurant-demo/zestry-v3-editorial/restore_f05_category_intros_20261119.py
+          python projects/restaurant-demo/zestry-v3-editorial/restore_f05_category_intros_20261119.py --check
+      - name: Native Chromium evidence of four opening illustrations desktop iPad mobile
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_restore_f05_category_intros_20261119.py
+      - name: Confirm existing approved 16-item F05 navigation, original page swipe and F03 F06
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_f05_owner_recording_20261119.py
+      - name: Confirm all other native Lottie animations F01-F07 stay correct
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_visible_loops.py
+      - name: Confirm approved reservation modal unchanged
+        run: python projects/restaurant-demo/zestry-v3-editorial/qa_reservation_modal.py
+      - name: Save new original-category introduction screenshots and videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zestry-restored-original-f05-intro-review
+          path: |
+            projects/restaurant-demo/docs/qa/owner-f05-original-intros-20261119/
+            projects/restaurant-demo/docs/qa/owner-f05-page-turn-20261119/
+            projects/restaurant-demo/docs/qa/owner-visible-loops-20261119/
+            projects/restaurant-demo/docs/qa/owner-reservation-modal-20261119/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit only QA-verified revised ZIP and restored-intro report to feature branch
+        if: success()
+        run: |
+          git config user.name "ZESTRY QA GitHub Actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add projects/restaurant-demo/review_bundle/ \
+            projects/restaurant-demo/docs/qa/owner-f05-original-intros-20261119/ZESTRY_F05_ORIGINAL_CATEGORY_INTROS_QA.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(zestry): integrate verified original F05 first category pages, preserve all page turns"
+            git push origin HEAD:fix/zestry-f05-restore-original-category-intros-20261119
+          fi
