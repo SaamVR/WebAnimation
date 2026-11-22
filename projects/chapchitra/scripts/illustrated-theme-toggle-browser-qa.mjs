@@ -96,7 +96,7 @@ for(const profile of profiles){
     return progress>0.04&&progress<0.96;
    },selector,{timeout:1500});
    const middle=await read(page,selector);
-   await capture(page,profile.name+'-'+theme+'-mid-transition');
+   // A separate clock-controlled browser pass captures the true 150ms midpoint.
    await page.waitForTimeout(360);
    const end=await read(page,selector);
    assert(end.progress===(theme==='dark'?0:1),'theme slide did not finish');
@@ -108,7 +108,7 @@ for(const profile of profiles){
     const progress=Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
     return progress>0.04&&progress<0.96;
    },selector,{timeout:1500});
-   await capture(page,profile.name+'-'+theme+'-reverse-mid');
+   // The reverse midpoint is captured in the same deterministic browser pass.
    await page.waitForTimeout(350);
    assert((await read(page,selector)).progress===start.progress,'natural reverse did not finish');
    for(let i=0;i<6;i++){await button.click();await page.waitForTimeout(40);}
@@ -139,6 +139,44 @@ for(const profile of profiles){
   }
  }
  audit.profiles.push(record);
+}
+
+// Actual mid-animation screenshots must be captured at a paused 150ms browser
+// clock; a normal screenshot can take longer than the entire 300ms transition.
+// This second browser pass does not alter the published animation source, only
+// isolates its actual frame state for review (both directions, all profiles).
+for(const profile of profiles){
+ for(const theme of ['light','dark']){
+  let env;
+  try{
+   env=await prepare(profile,theme,false);
+   const {page,button,selector}=env;
+   await page.clock.install();
+   const click=()=>button.evaluate(element=>element.click());
+   await click();
+   await page.clock.runFor(150);
+   const forward=await read(page,selector);
+   assert(forward.progress>.15&&forward.progress<.85,
+    profile.name+' '+theme+' not at true transition midpoint: '+forward.progress);
+   await capture(page,profile.name+'-'+theme+'-mid-transition');
+   await page.clock.runFor(180);
+   assert((await read(page,selector)).progress===(theme==='dark'?0:1),
+    'first 300ms movement did not finish with controlled clock');
+   await click();
+   await page.clock.runFor(150);
+   const reverse=await read(page,selector);
+   assert(reverse.progress>.15&&reverse.progress<.85,
+    profile.name+' '+theme+' not at reverse midpoint: '+reverse.progress);
+   await capture(page,profile.name+'-'+theme+'-reverse-mid');
+   await page.clock.runFor(180);
+   assert((await read(page,selector)).progress===(theme==='dark'?1:0),
+    'reversal did not finish with controlled clock');
+  }catch(error){
+   audit.errors.push('Clock-controlled midpoint '+profile.name+' '+theme+': '+String(error));
+  }finally{
+   if(env){await env.context.close();await env.browser.close();}
+  }
+ }
 }
 try{
  const browser=await chromium.launch({headless:true,timeout:60000});
