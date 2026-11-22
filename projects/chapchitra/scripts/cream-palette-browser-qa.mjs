@@ -80,7 +80,7 @@ async function openRoute(page,base,route,path){
  return response;
 }
 async function takeShot(page,file,full=false){
- await page.screenshot({path:file,fullPage:full,animations:'disabled',timeout:120000});
+ await page.screenshot({path:file,...(full?{fullPage:true}:{}),animations:'disabled',timeout:120000});
 }
 async function makePair(files,id){
  const width=640,gap=18;
