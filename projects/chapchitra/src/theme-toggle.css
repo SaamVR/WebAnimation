@@ -28,7 +28,13 @@
 @media(max-width:430px){
   #app > .site-header .nav-actions .cc-theme-toggle{display:none;}
   #app > .site-header .mobile-nav .cc-mobile-theme-toggle{
-   gap:12px;justify-content:flex-start; min-height:52px;padding:5px 4px;
+   /* Keep the original two-column links; the toggle receives one full-width row. */
+   grid-column:1 / -1;
+   width:100%;gap:12px;justify-content:flex-start;align-items:center;
+   min-height:52px;padding:5px 4px;
+  }
+  #app > .site-header .mobile-nav .cc-mobile-theme-toggle .cc-theme-menu-label{
+   white-space:nowrap;
   }
   #app > .site-header .cc-mobile-theme-toggle .cc-theme-toggle-art{width:96px;height:42px;}
   #app > .site-header .cc-mobile-theme-toggle .cc-owner-toggle-svg{
