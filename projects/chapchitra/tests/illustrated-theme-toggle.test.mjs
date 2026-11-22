@@ -63,5 +63,7 @@ test('site build includes illustration CSS and SHA pinned artist route module',(
  assert.match(build,/filename\.endsWith\('\.mjs'\)/);
  assert.match(css,/width:96px; min-width:96px; height:44px; min-height:44px/);
  assert.match(css,/@media\(max-width:430px\)/);
+ assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.cc-theme-toggle:focus-visible \{\s*outline-color:var\(--color-cream\)/);
+ assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.cc-mobile-theme-toggle:focus-visible \{outline-color:var\(--color-cream\)/);
  assert.doesNotMatch(theme,/cc-theme-icon-moon|cc-theme-toggle svg:first-child/);
 });
