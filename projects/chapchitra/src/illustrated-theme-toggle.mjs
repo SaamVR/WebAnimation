@@ -42,8 +42,9 @@ function createMotion(svg){
   ref['inner-fill'].style.fill=paper;
   ref['inner-texture'].style.fill=ink;
   ref['inner-border'].style.fill=ink;
-  sliderBase.style.fill=lerpColor(PRESS,CREAM,progress);
-  sliderGrain.style.fill=lerpColor(CREAM,PRESS,progress);
+  // Preserve the Illustrator light endpoint: Cream circle, Press Green distress.
+  sliderBase.style.fill=lerpColor(CREAM,PRESS,progress);
+  sliderGrain.style.fill=lerpColor(PRESS,CREAM,progress);
   ref.slider.setAttribute('transform',`translate(${(TRAVEL*progress).toFixed(3)} 0)`);
   ref.day.style.opacity=String(1-progress);
   ref.night.style.opacity=String(progress);
