@@ -6,7 +6,8 @@
   background:transparent!important;
   -webkit-tap-highlight-color:transparent;
 }
-#app > .site-header .nav-actions .cc-theme-toggle:hover {background:transparent!important;}
+#app > .site-header .nav-actions .cc-theme-toggle:hover,
+:root[data-theme="dark"] #app > .site-header .nav-actions .cc-theme-toggle:hover {background:transparent!important;}
 #app > .site-header .cc-theme-toggle-art {
   display:inline-flex; width:96px; height:42px; flex:none;
   align-items:center;justify-content:center;
