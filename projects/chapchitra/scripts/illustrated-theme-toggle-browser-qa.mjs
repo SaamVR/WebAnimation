@@ -57,6 +57,20 @@ async function prepare(profile,theme,record=false){
  }
  const selector=mobile?'#themeToggleMobile':'#themeToggle';
  await page.locator(selector+'[data-art-ready="true"]').waitFor({timeout:30000});
+ if(mobile){
+  const layout=await page.locator('#themeToggleMobile').evaluate(button=>{
+   const label=button.querySelector('.cc-theme-menu-label');
+   const b=button.getBoundingClientRect(),l=label.getBoundingClientRect();
+   return {gridColumn:getComputedStyle(button).gridColumn,
+    labelHeight:l.height,lineHeight:parseFloat(getComputedStyle(label).lineHeight),
+    labelRight:l.right,buttonRight:b.right};
+  });
+  assert(layout.gridColumn.includes('1 / -1') || layout.gridColumn.includes('1 / span 2'),
+   'mobile toggle must have its own full-width menu row');
+  assert(layout.labelHeight<=layout.lineHeight*1.12,
+   'mobile toggle label wraps or clips instead of using one readable line');
+  assert(layout.labelRight<=layout.buttonRight+1,'mobile toggle label overflows');
+ }
  const button=page.locator(selector);
  assert(await button.getAttribute('aria-pressed')===(theme==='dark'?'true':'false'),'incorrect accessible initial state');
  return {browser,context,page,button,selector,issues};
