@@ -13,7 +13,7 @@ test('uses authoritative CHAPCHITRA tokens and both approved typography families
   ['--color-press-green','#293D2D'],
   ['--color-terracotta','#8A503B'],
   ['--color-warm-beige','#D8CEC2'],
-  ['--color-cream','#E4E3DE']
+  ['--color-cream','#F4EBE4']
  ])assert.ok(brand.includes(name+':'+hex));
  assert.ok(brand.includes('--font-editorial:"Fraunces","Noto Serif Bengali"'));
  assert.ok(brand.includes('--font-ui:"DM Sans","Noto Sans Bengali"'));
