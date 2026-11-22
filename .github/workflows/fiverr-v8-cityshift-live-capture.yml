@@ -1,0 +1,30 @@
+name: Fiverr V8 CITYSHIFT Live Route Capture
+on:
+  push:
+    branches: [production/fiverr-six-projects-v8-20261118]
+    paths: ['.github/workflows/fiverr-v8-cityshift-live-capture.yml', 'production/fiverr-master-v8/scripts/capture_cityshift.py']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: System browser and Playwright
+        run: |
+          python -m pip install playwright==1.56.0
+          command -v google-chrome || command -v google-chrome-stable || command -v chromium
+      - name: Capture actual Render-deployed CITYSHIFT V1 route/tracking
+        run: python production/fiverr-master-v8/scripts/capture_cityshift.py
+      - name: Preserve screenshot proof and motion frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fiverr-v8-cityshift-live-route-evidence
+          path: out/cityshift/
+          retention-days: 14
+          if-no-files-found: warn

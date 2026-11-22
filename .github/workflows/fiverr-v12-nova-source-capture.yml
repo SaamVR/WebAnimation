@@ -1,0 +1,37 @@
+name: Fiverr V12 Native NOVA 3D Motion Capture
+on:
+  push:
+    branches: [production/fiverr-six-projects-v8-20261118]
+    paths:
+      - production/fiverr-master-v12/scripts/capture_real_nova.py
+      - .github/workflows/fiverr-v12-nova-source-capture.yml
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  real-webgl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: SaamVR/Portfolio
+          ref: feat/leadflow-v2-evidence-20261012
+          path: sources/portfolio
+          sparse-checkout: NovaAG
+          sparse-checkout-cone-mode: true
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install Playwright package
+        run: python -m pip install playwright==1.56.0
+      - name: Capture real browser WebGL
+        run: python production/fiverr-master-v12/scripts/capture_real_nova.py
+      - name: Archive captured source frames and capture log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fiverr-v12-original-nova-3d-hero-fold-inspect-360-frames
+          path: out/nova-v12/
+          retention-days: 7
+          compression-level: 5
+          if-no-files-found: warn

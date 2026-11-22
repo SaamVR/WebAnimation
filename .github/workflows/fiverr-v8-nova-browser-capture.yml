@@ -1,0 +1,38 @@
+name: Fiverr V8 NOVA Verified WebGL Capture
+on:
+  push:
+    branches: [production/fiverr-six-projects-v8-20261118]
+    paths: ['.github/workflows/fiverr-v8-nova-browser-capture.yml', 'production/fiverr-master-v8/scripts/capture_nova.py']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout original NOVA application
+        uses: actions/checkout@v4
+        with:
+          repository: SaamVR/Portfolio
+          ref: feat/leadflow-v2-evidence-20261012
+          path: sources/portfolio
+          sparse-checkout: NovaAG
+          sparse-checkout-cone-mode: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install automated browser
+        run: |
+          python -m pip install playwright==1.56.0
+          command -v google-chrome || command -v google-chrome-stable || command -v chromium
+      - name: Record verified original WebGL interaction
+        run: python production/fiverr-master-v8/scripts/capture_nova.py
+      - name: Preserve video and evidence even when runtime is blocked
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fiverr-v8-nova-runtime-proof
+          path: out/nova/
+          retention-days: 14
+          if-no-files-found: warn

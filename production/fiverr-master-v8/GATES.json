@@ -1,0 +1,64 @@
+{
+  "updated": "2026-11-18",
+  "status": "V8_COMPLETE_PRIVATE_REVIEW",
+  "release": "BLOCKED_NOT_FOR_FIVERR_UPLOAD",
+  "master": {
+    "name": "Fiverr_Six_Project_Master_V8_Directors_Review_59s.mp4",
+    "duration_seconds": 59,
+    "frames": 1416,
+    "fps": 24,
+    "resolution": [
+      1280,
+      720
+    ],
+    "audio": "Mixkit Tech House vibes #130 + CC0 Foley",
+    "loudness_lufs": -16,
+    "true_peak_dbfs": -4,
+    "video_codec": "H264",
+    "audio_codec": "AAC",
+    "size_bytes": 6801182,
+    "sha256": "626b3f162c633cfb976f543336b1081ebd2629a9776a9ea210c61aa3674297f1"
+  },
+  "hook": {
+    "duration": 10,
+    "frames": 240,
+    "source_action": [
+      "CHAPCHITRA print",
+      "Restaurant F01 plated food",
+      "NOVA WebGL",
+      "LeadFlow 96 demo score"
+    ],
+    "technical": "PASS",
+    "creative": "CONDITIONAL_PASS_PRIVATE_REVIEW"
+  },
+  "source_capture": {
+    "threads": "V6 approved source editing",
+    "chapchitra": "C01/C08 original Lottie plus real site capture",
+    "restaurant": "F01/F02/F04 Lottie source verified; rights pending",
+    "nova": "original 3D WebGL browser captured",
+    "leadflow": "original synthetic qualification and CRM sandbox footage",
+    "cityshift": "professional V1 real browser route demonstration, not live GPS"
+  },
+  "qa": {
+    "full_frame_decode": "PASS 1416/1416",
+    "blank_frame_scan": "PASS 0",
+    "cut_boundary_sheet": "PASS 17 edits plus closing",
+    "music_license": "Mixkit Stock Music Free License for web videos",
+    "sfx_license": "CC0 Freesound recordings",
+    "directors_verdict": "CONDITIONAL_PASS_PRIVATE",
+    "human_signoff": "PENDING"
+  },
+  "blockers": [
+    "F01 V4 owner final creative acceptance pending",
+    "F02 source artwork commercial rights not verified",
+    "F04 source artwork commercial rights not verified",
+    "Human owner listening and creative approval pending"
+  ],
+  "files": {
+    "master": "ChatGPT conversation artifact",
+    "hook": "ChatGPT conversation artifact",
+    "audit": "Fiverr_Six_Project_Master_V8_Creative_Director_Visual_Audit_20261118.md",
+    "source_script": "assemble_master_v8.py"
+  },
+  "next": "Resolve F01/F02/F04 rights, obtain owner review, then make legally cleared release master; DO NOT merge or publish as currently reviewed."
+}
