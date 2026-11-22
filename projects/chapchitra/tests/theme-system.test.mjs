@@ -83,5 +83,5 @@ test('head bootstrap executes before CSS and the dark layer loads after page sty
  assert.match(build,/const themeBoot='<script src="\/theme-init[.]js"><\/script>'/);
  assert.match(build,/const themeCss='<link rel="stylesheet" href="\/theme[.]css">'/);
  assert.match(build,/\.replace\('<head>','<head>'\+themeBoot\+criticalTypographyPreloads\)/);
- assert.match(build,/\.replace\('<\/head>',themeCss\+'<\/head>'\)/);
+ assert.match(build,/\.replace\('<\/head>',themeCss\+themeToggleCss\+'<\/head>'\)/);
 });
