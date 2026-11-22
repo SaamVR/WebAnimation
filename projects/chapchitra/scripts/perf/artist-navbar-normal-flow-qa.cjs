@@ -237,4 +237,22 @@ async function run(browser,engine,width,height){
    process.exitCode=2;
   }
  }
+
+ // Cream palette feature PR only: reproduce staging-vs-local screenshots
+ // in this already pinned Chromium/WebKit browser QA job. Never deploy.
+ if(process.env.GITHUB_HEAD_REF==='feature/chapchitra-cream-palette-global-20261122'){
+  const {spawnSync}=require('node:child_process');
+  const paletteQA=path.resolve(__dirname,'../cream-palette-browser-qa.mjs');
+  const result=spawnSync(process.execPath,[paletteQA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,CC_PALETTE_OUT:path.resolve('perf-results/shared-stage-cream-palette'),
+    CC_PALETTE_BEFORE_ROOT:'https://chapchitra-webanimation.onrender.com',
+    CC_QA_ROOT:origin},
+   encoding:'utf8',stdio:'inherit',timeout:12*60*1000
+  });
+  if(result.error||result.status!==0){
+   console.error('Cream palette matched Chromium/WebKit QA failed',result.error?.message||result.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});
