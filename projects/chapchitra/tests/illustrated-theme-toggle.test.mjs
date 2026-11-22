@@ -32,8 +32,9 @@ test('one reusable SVG inner pill; original paths retained without redraw',()=>{
  }
  assert.doesNotMatch(text,/id="(?:Light-mode-pill-inner-background|Dark-mode-pill-inner-background)"/);
  const shapes=[...source.matchAll(/\bd="([^"]+)"/g)].map(m=>m[1]);
- const orig=new Set(shapes);
- for(const m of text.matchAll(/\bd="([^"]+)"/g))assert.ok(orig.has(m[1]),'all original path geometry preserved');
+ const normalize=data=>data.replace(/\s+/g,' ').trim();
+ const orig=new Set(shapes.map(normalize));
+ for(const m of text.matchAll(/\bd="([^"]+)"/g))assert.ok(orig.has(normalize(m[1])),'all original path geometry preserved');
  assert.match(text,/<clipPath id="cc-inner-pill-clip"/);
  assert.match(text,/clip-path="url\(#cc-inner-pill-clip\)"/);
 });
@@ -47,7 +48,7 @@ test('actual controller drives visuals; no second theme state machine',()=>{
  assert.match(app,/mountOriginalThemeToggle\(themeButtons\)/);
  assert.match(app,/illustratedToggle\.sync\(dark\)/);
  assert.match(app,/window\.chapchitraTheme\?\.set\(target\)/);
- assert.doesNotMatch(script,/localStorage|location\.reload|document\.documentElement\.dataset\.theme\s*=/);
+ assert.doesNotMatch(script,/localStorage|location\.reload|document\.documentElement\.dataset\.theme\s*=(?!=)/);
  assert.match(script,/DURATION=300/);
  assert.match(script,/const TRAVEL=196/);
  assert.match(script,/cancelAnimationFrame\(raf\)/);
