@@ -45,16 +45,16 @@ test('vector treatment uses new Cream and Press Green, scoped from site artwork'
  assert.doesNotMatch(text,/<image\b|<filter\b|<foreignObject\b/i);
 });
 test('sun preserves original Press Green Illustrator paths, circle light endpoint stays Cream',()=>{
- const sun=text.match(/<g id="sun-icon"[^>]*>([\\s\\S]*?)<\\/g>/)?.[1];
+ const sun=text.match(/<g id="sun-icon"[^>]*>([\s\S]*?)<\/g>/)?.[1];
  assert.ok(sun,'sun scene must exist');
- assert.equal((sun.match(/<path\\b/g)||[]).length,9);
+ assert.equal((sun.match(/<path\b/g)||[]).length,9);
  assert.equal((sun.match(/class="st1"/g)||[]).length,9);
  assert.doesNotMatch(sun,/style="fill:#F4EBE4;"/i,'green sun must not have Cream inline override');
  const slider=text.slice(text.indexOf('id="sliding-circle-inside-fill"'),text.indexOf('id="sun-icon"'));
  assert.match(slider,/<path class="st0"[^>]*style="fill:#F4EBE4;"/);
  assert.match(slider,/<g style="fill:#293D2D;">/);
- assert.match(script,/sliderBase\\.style\\.fill=lerpColor\\(CREAM,PRESS,progress\\)/);
- assert.match(script,/sliderGrain\\.style\\.fill=lerpColor\\(PRESS,CREAM,progress\\)/);
+ assert.match(script,/sliderBase\.style\.fill=lerpColor\(CREAM,PRESS,progress\)/);
+ assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,CREAM,progress\)/);
 });
 test('actual controller drives visuals; no second theme state machine',()=>{
  assert.match(app,/mountOriginalThemeToggle\(themeButtons\)/);
