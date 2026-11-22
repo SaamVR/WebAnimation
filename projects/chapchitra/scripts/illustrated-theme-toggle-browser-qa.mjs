@@ -155,19 +155,26 @@ for(const profile of profiles){
    const click=()=>button.evaluate(element=>element.click());
    await click();
    await page.clock.runFor(150);
+   // Screenshot acquisition pumps rAF unless the installed clock is explicitly paused.
+   await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())));
    const forward=await read(page,selector);
    assert(forward.progress>.15&&forward.progress<.85,
     profile.name+' '+theme+' not at true transition midpoint: '+forward.progress);
    await capture(page,profile.name+'-'+theme+'-mid-transition');
+   assert(Math.abs((await read(page,selector)).progress-forward.progress)<.01,
+    'forward screenshot changed actual midpoint frame');
    await page.clock.runFor(180);
    assert((await read(page,selector)).progress===(theme==='dark'?0:1),
     'first 300ms movement did not finish with controlled clock');
    await click();
    await page.clock.runFor(150);
+   await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())));
    const reverse=await read(page,selector);
    assert(reverse.progress>.15&&reverse.progress<.85,
     profile.name+' '+theme+' not at reverse midpoint: '+reverse.progress);
    await capture(page,profile.name+'-'+theme+'-reverse-mid');
+   assert(Math.abs((await read(page,selector)).progress-reverse.progress)<.01,
+    'reverse screenshot changed actual midpoint frame');
    await page.clock.runFor(180);
    assert((await read(page,selector)).progress===(theme==='dark'?1:0),
     'reversal did not finish with controlled clock');
