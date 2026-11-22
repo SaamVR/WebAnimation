@@ -23,6 +23,9 @@
 #app > .site-header .cc-theme-toggle:focus-visible {
   outline:3px solid var(--color-terracotta);outline-offset:3px;
 }
+:root[data-theme="dark"] #app > .site-header .cc-theme-toggle:focus-visible {
+  outline-color:var(--color-cream);
+}
 /* Narrow mobile nav retains its approved hamburger layout. The ORIGINAL SVG
    appears inside the existing menu switch, not crammed beside the wordmark. */
 @media(max-width:430px){
@@ -43,4 +46,5 @@
   }
   #app > .site-header .cc-mobile-theme-toggle:not([data-art-ready="true"]) .cc-theme-toggle-art{visibility:hidden;}
   #app > .site-header .cc-mobile-theme-toggle:focus-visible {outline:3px solid var(--color-terracotta);outline-offset:2px;}
+  :root[data-theme="dark"] #app > .site-header .cc-mobile-theme-toggle:focus-visible {outline-color:var(--color-cream);}
 }
