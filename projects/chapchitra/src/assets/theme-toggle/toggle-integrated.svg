@@ -4,6 +4,10 @@
   .cc-owner-toggle-svg .st0 {fill:var(--cc-toggle-paper,#F6F7F5);}
   .cc-owner-toggle-svg .cc-mountain-negative-details .st1 {fill:var(--cc-toggle-paper,#F6F7F5);}
   .cc-owner-toggle-svg .st1 {fill:var(--cc-toggle-ink,#293D2D);}
+  /* Moon master includes a solid ink disc: swap ONLY moon paint roles so it
+     cannot cover the Cream sliding-circle background in dark mode. */
+  .cc-owner-toggle-svg [data-toggle-role="moon"] .st1 {fill:var(--cc-toggle-paper,#F6F7F5);}
+  .cc-owner-toggle-svg [data-toggle-role="moon"] .st0 {fill:var(--cc-toggle-ink,#293D2D);}
 </style>
 <defs><clipPath id="cc-inner-pill-clip" clipPathUnits="userSpaceOnUse"><use href="#inner-pill-solid-shape"/></clipPath></defs><g id="pill-outer-background">
 	<g id="pill-outer-inside">

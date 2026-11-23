@@ -60,14 +60,14 @@ test('sun remains Press Green and sliding circle is Gallery White in light mode'
  const slider=text.slice(text.indexOf('id="sliding-circle-inside-fill"'),text.indexOf('id="sun-icon"'));
  assert.match(slider,/<path class="st0"[^>]*style="fill:#F6F7F5;"/);
  assert.match(slider,/<g style="fill:#293D2D;">/);
- assert.match(script,/sliderBase\.style\.fill=lerpColor\(GALLERY_WHITE,TERRACOTTA,progress\)/);
- assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,CREAM,progress\)/);
+ assert.match(script,/sliderBase\.style\.fill=lerpColor\(GALLERY_WHITE,CREAM,progress\)/);
+ assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,TERRACOTTA,progress\)/);
 });
 test('light Gallery White/Press Green and dark Cream/Terracotta palettes',()=>{
- assert.equal((text.match(/#293D2D/gi)||[]).length,5,'ink roles plus mountain fill default Press Green');
+ assert.equal((text.match(/#293D2D/gi)||[]).length,6,'ink roles, moon role fallback and mountain fill default Press Green');
  assert.equal((text.match(/#8A503B/gi)||[]).length,0,'dark ink is runtime only');
  assert.equal((text.match(/#F4EBE4/gi)||[]).length,0,'derived SVG initial light state must be Gallery White');
- assert.equal((text.match(/#F6F7F5/gi)||[]).length,4,'all four visible paper roles use Gallery White');
+ assert.equal((text.match(/#F6F7F5/gi)||[]).length,5,'all paper roles including moon CSS fallback use Gallery White');
  assert.match(text,/<g id="light-mode-scene-mountains" class="cc-mountain-negative-details">/);
  assert.match(text,/\.cc-mountain-negative-details \.st1 \{fill:var\(--cc-toggle-paper,#F6F7F5\);\}/);
  assert.match(text,/<path id="cc-mountain-solid-fill"[^>]*style="fill:var\(--cc-toggle-ink,#293D2D\);"/);
@@ -78,8 +78,8 @@ test('light Gallery White/Press Green and dark Cream/Terracotta palettes',()=>{
  assert.match(script,/const ink=lerpColor\(PRESS,CREAM,progress\)/);
  assert.match(script,/const paper=lerpColor\(GALLERY_WHITE,TERRACOTTA,progress\)/);
  assert.match(script,/svg\.style\.setProperty\('--cc-toggle-paper',lerpColor\(GALLERY_WHITE,CREAM,progress\)\)/);
- assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,CREAM,progress\)/);
- assert.match(script,/sliderBase\.style\.fill=lerpColor\(GALLERY_WHITE,TERRACOTTA,progress\)/);
+ assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,TERRACOTTA,progress\)/);
+ assert.match(script,/sliderBase\.style\.fill=lerpColor\(GALLERY_WHITE,CREAM,progress\)/);
  assert.match(script,/const DURATION=300/);
  assert.match(script,/const TRAVEL=196/);
 });
@@ -105,4 +105,15 @@ test('site build includes illustration CSS and SHA pinned artist route module',(
  assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.cc-theme-toggle:focus-visible \{\s*outline-color:var\(--color-cream\)/);
  assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.cc-mobile-theme-toggle:focus-visible \{outline-color:var\(--color-cream\)/);
  assert.doesNotMatch(theme,/cc-theme-icon-moon|cc-theme-toggle svg:first-child/);
+});
+
+test('dark circle retains Cream fill and Terracotta moon detail; bag stamp has no square',()=>{
+ assert.ok(script.includes("sliderBase.style.fill=lerpColor(GALLERY_WHITE,CREAM,progress)"));
+ assert.ok(script.includes("sliderGrain.style.fill=lerpColor(PRESS,TERRACOTTA,progress)"));
+ assert.ok(text.includes('[data-toggle-role="moon"] .st1 {fill:var(--cc-toggle-paper,#F6F7F5);}'));
+ assert.ok(text.includes('[data-toggle-role="moon"] .st0 {fill:var(--cc-toggle-ink,#293D2D);}'));
+ assert.ok(theme.includes('background:transparent;color:inherit;'));
+ const darkBagRule=theme.match(/:root\[data-theme="dark"\] #app > \.site-header \.bag-count\{([^}]+)\}/)?.[1];
+ assert.ok(darkBagRule,'dark bag badge rule exists');
+ assert.ok(!darkBagRule.includes('var(--theme-gallery)'),'bag dark background cannot be a rectangle');
 });
