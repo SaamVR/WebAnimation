@@ -1,0 +1,44 @@
+[
+  {
+    "theme": "light",
+    "before": "false",
+    "srcBefore": "/assets/illustrator/nav-favorites-outline.svg",
+    "after": "true",
+    "srcAfter": "/assets/illustrator/nav-favorites-selected.svg",
+    "stored": [
+      "study-001"
+    ],
+    "active": "page",
+    "source": "/assets/illustrator/nav-owner-favorites-selected.svg",
+    "checks": {
+      "selectedAfterClick": true,
+      "productArtUntouched": true,
+      "storagePersisted": true,
+      "headerSelectedArt": true,
+      "headerCurrentActive": true,
+      "noJSErrors": true
+    },
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "before": "false",
+    "srcBefore": "/assets/illustrator/nav-favorites-outline.svg",
+    "after": "true",
+    "srcAfter": "/assets/illustrator/nav-favorites-selected.svg",
+    "stored": [
+      "study-001"
+    ],
+    "active": "page",
+    "source": "/assets/illustrator/nav-owner-favorites-selected.svg",
+    "checks": {
+      "selectedAfterClick": true,
+      "productArtUntouched": true,
+      "storagePersisted": true,
+      "headerSelectedArt": true,
+      "headerCurrentActive": true,
+      "noJSErrors": true
+    },
+    "errors": []
+  }
+]
