@@ -155,7 +155,18 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
     trigger.className='c08-hero-trigger';
     trigger.setAttribute('aria-label','Replay CHAPCHITRA animated logo');
     trigger.title='Replay logo animation';
-    heroStage.append(slot,trigger);
+    // The exact Illustrator Cloth_patch stays ABOVE the unchanged C08
+    // Lottie wordmark; its static full-logo twin is hidden during playback.
+    const cloth=document.createElement('img');
+    cloth.className='c08-hero-cloth';
+    cloth.src=document.documentElement.dataset.theme==='dark'
+      ?'/assets/brand/chapchitra-dark-cloth.svg'
+      :'/assets/brand/chapchitra-light-cloth.svg';
+    cloth.dataset.ccThemeBrand='cloth';
+    cloth.alt='';
+    cloth.setAttribute('aria-hidden','true');
+    cloth.draggable=false;
+    heroStage.append(slot,cloth,trigger);
     hero.trigger=trigger;
     const place=()=>{
       const box=heroImage.getBoundingClientRect();

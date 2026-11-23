@@ -88,7 +88,7 @@ async function boot(){
    '<nav class="nav-center" aria-label="Main navigation"><a href="/shop/">Shop</a>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
    '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+ 
-   '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" data-cc-theme-brand="nav" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
+   '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/brand/chapchitra-light-wordmark.svg" data-cc-theme-brand="nav" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon cc-theme-toggle" id="themeToggle" aria-label="Switch to dark theme" aria-pressed="false" title="Switch color theme">'+
      '<span class="cc-theme-toggle-art" aria-hidden="true"></span></button>'+
@@ -497,7 +497,7 @@ async function boot(){
  function hero01Paper(){
   return '<div class="hero01-paper-panel" id="hero01PaperPanel">'+
    '<div class="hero01-full-logo" aria-label="CHAPCHITRA original illustrated clothing badge and custom lettering">'+
-    '<img class="hero-brand-lockup" src="/assets/chapchitra-full.webp" data-cc-theme-brand="hero" width="1250" height="1052" alt="CHAPCHITRA illustrated clothing badge and original custom wordmark" decoding="async" fetchpriority="high">'+
+    '<img class="hero-brand-lockup" src="/assets/brand/chapchitra-light-full.svg" data-cc-theme-brand="hero" width="1250" height="1052" alt="CHAPCHITRA illustrated clothing badge and original custom wordmark" decoding="async" fetchpriority="high">'+
     '<div class="c08-hero-stage" id="c08HeroStage"></div></div>'+
    '<svg class="hero01-paper-edge" viewBox="0 381 4200 812" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+
     '<path class="hero01-paper-cut" d="'+HERO01_TORN_PAPER_PATH+'"/>'+
@@ -614,7 +614,7 @@ async function boot(){
   // only; never send visitors to 404s, demo checkout, or invented URLs.
   const help=['Support','Terms & Conditions','Contact Us'];
   return '<footer class="site-footer" id="footer"><div class="wrap footer-grid">'+
-   '<div class="footer-identity"><a class="logo-word logo-word--footer" href="/" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark-cream-terra.webp" width="1400" height="316" alt="" aria-hidden="true" loading="lazy" decoding="async"></a><p>PEOPLE · PLACES · PRINTS</p>'+footerSocials()+'</div>'+
+   '<div class="footer-identity"><a class="logo-word logo-word--footer" href="/" aria-label="CHAPCHITRA home"><img src="/assets/brand/chapchitra-light-wordmark.svg" data-cc-theme-brand="footer" width="1400" height="316" alt="" aria-hidden="true" loading="lazy" decoding="async"></a><p>PEOPLE · PLACES · PRINTS</p>'+footerSocials()+'</div>'+
    '<nav class="footer-column footer-nav-discover" aria-labelledby="footerDiscover"><h2 id="footerDiscover">Discover</h2>'+
    discover.map(([title,href])=>'<a href="'+href+'">'+title+'</a>').join('')+'</nav>'+
    '<div class="footer-column footer-nav-help" aria-labelledby="footerHelp"><h2 id="footerHelp">Help</h2>'+
@@ -751,9 +751,12 @@ async function boot(){
   // hash-audited inverted dark assets. The theme boot runs before app mount;
   // this callback synchronizes before the first rendered frame as well as
   // after manual/system theme changes. Never recolor or filter source images.
+  // Theme-specific owner Illustrator vectors; their internal paint is immutable.
   const approvedBrandSources={
-   nav:dark?'/assets/chapchitra-wordmark-cream-terra.webp':'/assets/chapchitra-wordmark.webp',
-   hero:dark?'/assets/chapchitra-full-on-dark-original-patch-cream-terra-wordmark.webp':'/assets/chapchitra-full.webp'
+   nav:dark?'/assets/brand/chapchitra-dark-wordmark.svg':'/assets/brand/chapchitra-light-wordmark.svg',
+   hero:dark?'/assets/brand/chapchitra-dark-full.svg':'/assets/brand/chapchitra-light-full.svg',
+   footer:dark?'/assets/brand/chapchitra-dark-wordmark.svg':'/assets/brand/chapchitra-light-wordmark.svg',
+   cloth:dark?'/assets/brand/chapchitra-dark-cloth.svg':'/assets/brand/chapchitra-light-cloth.svg'
   };
   for(const image of document.querySelectorAll('img[data-cc-theme-brand]')){
    const source=approvedBrandSources[image.dataset.ccThemeBrand];

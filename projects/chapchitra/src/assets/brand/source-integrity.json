@@ -1,0 +1,86 @@
+{
+  "light": {
+    "originalName": "Logo.svg",
+    "originalSHA256": "7643634548c0cae82bb20777d85b07bd91bc4cce5f54311f1eadd72c564130a7",
+    "variants": {
+      "full": {
+        "file": "chapchitra-light-full.svg",
+        "viewBox": "0 0 2400 2020",
+        "sha256": "77a38e1299905cc59d77e8f80fce29d0c3d1a5231d7b7c84d0f6d036f3356c14",
+        "bytes": 897549,
+        "paths": 3066,
+        "polygons": 55,
+        "topLevelGroups": [
+          "Wordmark",
+          "Cloth_patch",
+          "T_OF_WORDMARK"
+        ]
+      },
+      "cloth": {
+        "file": "chapchitra-light-cloth.svg",
+        "viewBox": "0 0 2400 2020",
+        "sha256": "dd39e6b906a8fa6c6415ebba336b5ba7d8a86e6ff82451c373d9caa54262b0f9",
+        "bytes": 890177,
+        "paths": 3049,
+        "polygons": 55,
+        "topLevelGroups": [
+          "Cloth_patch"
+        ]
+      },
+      "wordmark": {
+        "file": "chapchitra-light-wordmark.svg",
+        "viewBox": "0 1520 2400 542",
+        "sha256": "c86b8c3f4eca3487c5b8c13530f09ae256e5f4ecf320cedf3a299400096567c7",
+        "bytes": 8201,
+        "paths": 17,
+        "polygons": 0,
+        "topLevelGroups": [
+          "Wordmark",
+          "T_OF_WORDMARK"
+        ]
+      }
+    }
+  },
+  "dark": {
+    "originalName": "Inverted Logo.svg",
+    "originalSHA256": "f38349767f1b2872c9c204259d855388c52f02fb3d37062f04b31f75dc01b9aa",
+    "variants": {
+      "full": {
+        "file": "chapchitra-dark-full.svg",
+        "viewBox": "-2516.9 -1 2400 2020",
+        "sha256": "b82ce937e9797a464ac2b348d6862e52765d50836689291bc83e550b95b919f9",
+        "bytes": 906318,
+        "paths": 3066,
+        "polygons": 55,
+        "topLevelGroups": [
+          "Wordmark",
+          "Cloth_patch",
+          "T_OF_WORDMARK"
+        ]
+      },
+      "cloth": {
+        "file": "chapchitra-dark-cloth.svg",
+        "viewBox": "-2516.9 -1 2400 2020",
+        "sha256": "5eb1b4677f8de01c984114e873f2102bc0b35237cbe26cfcb74ef4a64af0a6e3",
+        "bytes": 898937,
+        "paths": 3049,
+        "polygons": 55,
+        "topLevelGroups": [
+          "Cloth_patch"
+        ]
+      },
+      "wordmark": {
+        "file": "chapchitra-dark-wordmark.svg",
+        "viewBox": "-2516.9 1519 2400 542",
+        "sha256": "224a030e26395c0261c979f1f0b7d7d3e5ab30aefe76e656a020a2c990a6af27",
+        "bytes": 8194,
+        "paths": 17,
+        "polygons": 0,
+        "topLevelGroups": [
+          "Wordmark",
+          "T_OF_WORDMARK"
+        ]
+      }
+    }
+  }
+}
