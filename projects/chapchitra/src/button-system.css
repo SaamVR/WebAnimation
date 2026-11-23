@@ -388,7 +388,11 @@
   fill:#293D2D;opacity:1;
 }
 @media(hover:hover) and (pointer:fine){
-  .cc-sketch--long.cc-long-artwork:not([data-add-to-bag]):hover:not(:disabled) .cc-long-ink-graphite{
+  /* Add to Bag was unintentionally excluded from this existing long-svg
+     300ms face-clip wipe. Retain its distinct pressed/added/returning
+     confirmation flow; animate only normal, available hover state. */
+  .cc-sketch--long.cc-long-artwork:not([data-add-to-bag]):hover:not(:disabled) .cc-long-ink-graphite,
+  .cc-sketch--long.cc-long-artwork[data-add-to-bag]:hover:not(:disabled):not(.added):not(.long-confirm-pending):not(.long-returning) .cc-long-ink-graphite{
     transform:scaleX(1);
   }
 }

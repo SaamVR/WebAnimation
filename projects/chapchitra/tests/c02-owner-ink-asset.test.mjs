@@ -61,13 +61,13 @@ test('roller remains aligned to the original SVG mid-row contact at every viewpo
  }
 });
 
-test('C02 has exactly one vector surface through cover/full/loading/reveal',async()=>{
+test('C02 has exactly one theme-correct composed vector per cover/full/loading/reveal',async()=>{
  const runtime=await readFile(new URL('../src/motion/c02/ink-sweep.mjs',import.meta.url),'utf8');
  const early=await readFile(new URL('../src/motion/c02/early-head.html',import.meta.url),'utf8');
  const build=await readFile(new URL('../scripts/build.mjs',import.meta.url),'utf8');
  const review=await readFile(new URL('../src/c02-review/asset-compare/index.html',import.meta.url),'utf8');
- assert.match(runtime,/inkAssetImg\.src=C02_INK_ASSET\.composedPath/);
- assert.match(runtime,/inkImg\.src=C02_INK_ASSET\.composedPath/);
+ assert.match(runtime,/inkAssetImg\.src=darkInk\?C02_INK_ASSET\.composedDarkPath:C02_INK_ASSET\.composedPath/);
+ assert.match(runtime,/inkImg\.src=doc\.documentElement\.dataset\.theme==='dark'/);
  assert.match(runtime,/inkAssetLayer\.append\(inkAssetImg\)/);
  assert.match(runtime,/const surfaceP=mode==='reveal'\?1:p/);
  assert.match(runtime,/c02InkRevealClip\(p,viewport\.width,viewport\.height\)/);
@@ -88,15 +88,17 @@ test('C02 has exactly one vector surface through cover/full/loading/reveal',asyn
  assert.match(runtime,/win\.location\.assign\(target\.href\)/);
  assert.doesNotMatch(runtime,/inkAssetFill|background-repeat:repeat-x|ink-unified\.webp/);
  assert.match(early,/background-image:url\('\/assets\/c02\/texture-composed\.svg'\)/);
- assert.match(early,/href="\/assets\/c02\/texture-composed\.svg"/);
+ assert.match(early,/link\.href=dark\?'\/assets\/c02\/texture-composed-dark\.svg':'\/assets\/c02\/texture-composed\.svg'/);
  assert.match(early,/rightContact-8096\*scale/);
  assert.match(early,/var scale=vh\*1\.5\/1152/);
  assert.doesNotMatch(early,/ink-interior-loop|ink-unified|Ink_swipe_1\.png/);
  assert.match(build,/C02 exact hand-illustrated SVG source verified/);
  assert.match(build,/inkSVGHash!==C02_INK_ASSET\.sourceSHA256/);
  assert.match(build,/whiteInkBacking\(inkVectorBytes\)/);
- assert.match(build,/C02 single-svg white ink underprint/);
- assert.match(runtime,/dataset\.inkBacking='gallery-white-source-envelope'/);
+ assert.match(build,/C02 one silhouette, theme-aware backing, 727 untouched ink paths/);
+ assert.match(runtime,/dataset\.inkBacking=darkInk\?'walnut-source-envelope':'gallery-white-source-envelope'/);
+ assert.match(build,/texture-composed-dark\.svg/);
+ assert.match(early,/background-color:#6E523F/);
  assert.doesNotMatch(build,/generateUnifiedInk|\.webp\(\{lossless:true/);
  assert.match(review,/C02_INK_ASSET\.composedPath/);
  assert.doesNotMatch(review,/C02_INK_ASSET\.composite/);

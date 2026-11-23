@@ -1,0 +1,3027 @@
+{
+  "mode": "Real staging with PR154 resource overrides, NOT deployed",
+  "results": [
+    {
+      "profile": "1920x1080-light",
+      "checks": {
+        "active0": true,
+        "noOverflow0": true,
+        "viewportBottom0": true,
+        "slideHeight0": true,
+        "belowFold0": true,
+        "active1": true,
+        "noOverflow1": true,
+        "viewportBottom1": true,
+        "slideHeight1": true,
+        "belowFold1": true,
+        "splitFullWidth1": true,
+        "active2": true,
+        "noOverflow2": true,
+        "viewportBottom2": true,
+        "slideHeight2": true,
+        "belowFold2": true,
+        "splitFullWidth2": true,
+        "active3": true,
+        "noOverflow3": true,
+        "viewportBottom3": true,
+        "slideHeight3": true,
+        "belowFold3": true,
+        "splitFullWidth3": true,
+        "active4": true,
+        "noOverflow4": true,
+        "viewportBottom4": true,
+        "slideHeight4": true,
+        "belowFold4": true,
+        "splitFullWidth4": true,
+        "iconsLoad": true,
+        "navbarWidth": true,
+        "creamCircle": true,
+        "correctCss": true,
+        "prepaintPatched": true,
+        "zeroErrors": true
+      },
+      "slides": [
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "0",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 98,
+            "width": 1920,
+            "height": 982,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 98,
+            "width": 1920,
+            "height": 982,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 98,
+            "width": 1920,
+            "height": 982,
+            "bottom": 1080
+          },
+          "split": null,
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": false
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": false
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": false
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "1",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "2",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "3",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "4",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "httpErrors": [],
+      "overrides": [
+        "/styles.css",
+        "/theme.css",
+        "/motion/c02/ink-sweep.mjs",
+        "/motion/c02/ink-asset.mjs",
+        "/button-system.css"
+      ],
+      "patched": 1,
+      "failed": []
+    },
+    {
+      "profile": "1920x1080-dark",
+      "checks": {
+        "active0": true,
+        "noOverflow0": true,
+        "viewportBottom0": true,
+        "slideHeight0": true,
+        "belowFold0": true,
+        "active1": true,
+        "noOverflow1": true,
+        "viewportBottom1": true,
+        "slideHeight1": true,
+        "belowFold1": true,
+        "splitFullWidth1": true,
+        "active2": true,
+        "noOverflow2": true,
+        "viewportBottom2": true,
+        "slideHeight2": true,
+        "belowFold2": true,
+        "splitFullWidth2": true,
+        "active3": true,
+        "noOverflow3": true,
+        "viewportBottom3": true,
+        "slideHeight3": true,
+        "belowFold3": true,
+        "splitFullWidth3": true,
+        "active4": true,
+        "noOverflow4": true,
+        "viewportBottom4": true,
+        "slideHeight4": true,
+        "belowFold4": true,
+        "splitFullWidth4": true,
+        "iconsLoad": true,
+        "navbarWidth": true,
+        "creamCircle": true,
+        "correctCss": true,
+        "prepaintPatched": true,
+        "zeroErrors": true
+      },
+      "slides": [
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "0",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 98,
+            "width": 1920,
+            "height": 982,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 98,
+            "width": 1920,
+            "height": 982,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 98,
+            "width": 1920,
+            "height": 982,
+            "bottom": 1080
+          },
+          "split": null,
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "1",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "2",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "3",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1920,
+          "vh": 1080,
+          "active": "4",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1920,
+            "height": 981,
+            "bottom": 1080
+          },
+          "benefits": {
+            "x": 0,
+            "y": 1080,
+            "width": 1920,
+            "height": 155.890625,
+            "bottom": 1235.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1856,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "httpErrors": [],
+      "overrides": [
+        "/styles.css",
+        "/theme.css",
+        "/assets/c02/texture-composed-dark.svg",
+        "/motion/c02/ink-sweep.mjs",
+        "/motion/c02/ink-asset.mjs",
+        "/button-system.css"
+      ],
+      "patched": 1,
+      "failed": []
+    },
+    {
+      "profile": "1440x900-light",
+      "checks": {
+        "active0": true,
+        "noOverflow0": true,
+        "viewportBottom0": true,
+        "slideHeight0": true,
+        "belowFold0": true,
+        "active1": true,
+        "noOverflow1": true,
+        "viewportBottom1": true,
+        "slideHeight1": true,
+        "belowFold1": true,
+        "splitFullWidth1": true,
+        "active2": true,
+        "noOverflow2": true,
+        "viewportBottom2": true,
+        "slideHeight2": true,
+        "belowFold2": true,
+        "splitFullWidth2": true,
+        "active3": true,
+        "noOverflow3": true,
+        "viewportBottom3": true,
+        "slideHeight3": true,
+        "belowFold3": true,
+        "splitFullWidth3": true,
+        "active4": true,
+        "noOverflow4": true,
+        "viewportBottom4": true,
+        "slideHeight4": true,
+        "belowFold4": true,
+        "splitFullWidth4": true,
+        "iconsLoad": true,
+        "navbarWidth": true,
+        "creamCircle": true,
+        "correctCss": true,
+        "prepaintPatched": true,
+        "zeroErrors": true
+      },
+      "slides": [
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "0",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 98,
+            "width": 1440,
+            "height": 802,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 98,
+            "width": 1440,
+            "height": 802,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 98,
+            "width": 1440,
+            "height": 802,
+            "bottom": 900
+          },
+          "split": null,
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "1",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "2",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "3",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "4",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "httpErrors": [],
+      "overrides": [
+        "/styles.css",
+        "/theme.css",
+        "/motion/c02/ink-sweep.mjs",
+        "/motion/c02/ink-asset.mjs",
+        "/button-system.css"
+      ],
+      "patched": 1,
+      "failed": []
+    },
+    {
+      "profile": "1440x900-dark",
+      "checks": {
+        "active0": true,
+        "noOverflow0": true,
+        "viewportBottom0": true,
+        "slideHeight0": true,
+        "belowFold0": true,
+        "active1": true,
+        "noOverflow1": true,
+        "viewportBottom1": true,
+        "slideHeight1": true,
+        "belowFold1": true,
+        "splitFullWidth1": true,
+        "active2": true,
+        "noOverflow2": true,
+        "viewportBottom2": true,
+        "slideHeight2": true,
+        "belowFold2": true,
+        "splitFullWidth2": true,
+        "active3": true,
+        "noOverflow3": true,
+        "viewportBottom3": true,
+        "slideHeight3": true,
+        "belowFold3": true,
+        "splitFullWidth3": true,
+        "active4": true,
+        "noOverflow4": true,
+        "viewportBottom4": true,
+        "slideHeight4": true,
+        "belowFold4": true,
+        "splitFullWidth4": true,
+        "iconsLoad": true,
+        "navbarWidth": true,
+        "creamCircle": true,
+        "correctCss": true,
+        "prepaintPatched": true,
+        "zeroErrors": true
+      },
+      "slides": [
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "0",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 98,
+            "width": 1440,
+            "height": 802,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 98,
+            "width": 1440,
+            "height": 802,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 98,
+            "width": 1440,
+            "height": 802,
+            "bottom": 900
+          },
+          "split": null,
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": false
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": false
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": false
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": false
+            }
+          ]
+        },
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "1",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "2",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "3",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1440,
+          "vh": 900,
+          "active": "4",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1440,
+            "height": 801,
+            "bottom": 900
+          },
+          "benefits": {
+            "x": 0,
+            "y": 900,
+            "width": 1440,
+            "height": 155.890625,
+            "bottom": 1055.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1376,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "httpErrors": [],
+      "overrides": [
+        "/styles.css",
+        "/theme.css",
+        "/assets/c02/texture-composed-dark.svg",
+        "/motion/c02/ink-sweep.mjs",
+        "/motion/c02/ink-asset.mjs",
+        "/button-system.css"
+      ],
+      "patched": 1,
+      "failed": []
+    },
+    {
+      "profile": "1366x768-light",
+      "checks": {
+        "active0": true,
+        "noOverflow0": true,
+        "viewportBottom0": true,
+        "slideHeight0": true,
+        "belowFold0": true,
+        "active1": true,
+        "noOverflow1": true,
+        "viewportBottom1": true,
+        "slideHeight1": true,
+        "belowFold1": true,
+        "splitFullWidth1": true,
+        "active2": true,
+        "noOverflow2": true,
+        "viewportBottom2": true,
+        "slideHeight2": true,
+        "belowFold2": true,
+        "splitFullWidth2": true,
+        "active3": true,
+        "noOverflow3": true,
+        "viewportBottom3": true,
+        "slideHeight3": true,
+        "belowFold3": true,
+        "splitFullWidth3": true,
+        "active4": true,
+        "noOverflow4": true,
+        "viewportBottom4": true,
+        "slideHeight4": true,
+        "belowFold4": true,
+        "splitFullWidth4": true,
+        "iconsLoad": true,
+        "navbarWidth": true,
+        "creamCircle": true,
+        "correctCss": true,
+        "prepaintPatched": true,
+        "zeroErrors": true
+      },
+      "slides": [
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "0",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 98,
+            "width": 1366,
+            "height": 670,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 98,
+            "width": 1366,
+            "height": 670,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 98,
+            "width": 1366,
+            "height": 670,
+            "bottom": 768
+          },
+          "split": null,
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "1",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "2",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "3",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "4",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "httpErrors": [],
+      "overrides": [
+        "/styles.css",
+        "/theme.css",
+        "/motion/c02/ink-sweep.mjs",
+        "/motion/c02/ink-asset.mjs",
+        "/button-system.css"
+      ],
+      "patched": 1,
+      "failed": []
+    },
+    {
+      "profile": "1366x768-dark",
+      "checks": {
+        "active0": true,
+        "noOverflow0": true,
+        "viewportBottom0": true,
+        "slideHeight0": true,
+        "belowFold0": true,
+        "active1": true,
+        "noOverflow1": true,
+        "viewportBottom1": true,
+        "slideHeight1": true,
+        "belowFold1": true,
+        "splitFullWidth1": true,
+        "active2": true,
+        "noOverflow2": true,
+        "viewportBottom2": true,
+        "slideHeight2": true,
+        "belowFold2": true,
+        "splitFullWidth2": true,
+        "active3": true,
+        "noOverflow3": true,
+        "viewportBottom3": true,
+        "slideHeight3": true,
+        "belowFold3": true,
+        "splitFullWidth3": true,
+        "active4": true,
+        "noOverflow4": true,
+        "viewportBottom4": true,
+        "slideHeight4": true,
+        "belowFold4": true,
+        "splitFullWidth4": true,
+        "iconsLoad": true,
+        "navbarWidth": true,
+        "creamCircle": true,
+        "correctCss": true,
+        "prepaintPatched": true,
+        "zeroErrors": true
+      },
+      "slides": [
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "0",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 98,
+            "width": 1366,
+            "height": 670,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 98,
+            "width": 1366,
+            "height": 670,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 98,
+            "width": 1366,
+            "height": 670,
+            "bottom": 768
+          },
+          "split": null,
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "1",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "2",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "3",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 1366,
+          "vh": 768,
+          "active": "4",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "split": {
+            "x": 0,
+            "y": 99,
+            "width": 1366,
+            "height": 669,
+            "bottom": 768
+          },
+          "benefits": {
+            "x": 0,
+            "y": 768,
+            "width": 1366,
+            "height": 155.890625,
+            "bottom": 923.890625
+          },
+          "header": {
+            "x": 32,
+            "y": 34,
+            "width": 1302,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "httpErrors": [],
+      "overrides": [
+        "/styles.css",
+        "/theme.css",
+        "/assets/c02/texture-composed-dark.svg",
+        "/motion/c02/ink-sweep.mjs",
+        "/motion/c02/ink-asset.mjs",
+        "/button-system.css"
+      ],
+      "patched": 1,
+      "failed": []
+    },
+    {
+      "profile": "ipad834x1112-light",
+      "checks": {
+        "active0": true,
+        "noOverflow0": true,
+        "active1": true,
+        "noOverflow1": true,
+        "active2": true,
+        "noOverflow2": true,
+        "active3": true,
+        "noOverflow3": true,
+        "active4": true,
+        "noOverflow4": true,
+        "iconsLoad": true,
+        "navbarWidth": true,
+        "creamCircle": true,
+        "correctCss": true,
+        "prepaintPatched": true,
+        "zeroErrors": true
+      },
+      "slides": [
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "0",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 98,
+            "width": 834,
+            "height": 850,
+            "bottom": 948
+          },
+          "track": {
+            "x": 0,
+            "y": 98,
+            "width": 834,
+            "height": 850,
+            "bottom": 948
+          },
+          "slide": {
+            "x": 0,
+            "y": 98,
+            "width": 834,
+            "height": 850,
+            "bottom": 948
+          },
+          "split": null,
+          "benefits": {
+            "x": 0,
+            "y": 948,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 1103.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "1",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "split": {
+            "x": 20,
+            "y": 99,
+            "width": 794,
+            "height": 600,
+            "bottom": 699
+          },
+          "benefits": {
+            "x": 0,
+            "y": 699,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 854.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "2",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "split": {
+            "x": 20,
+            "y": 99,
+            "width": 794,
+            "height": 600,
+            "bottom": 699
+          },
+          "benefits": {
+            "x": 0,
+            "y": 699,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 854.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "3",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "split": {
+            "x": 20,
+            "y": 99,
+            "width": 794,
+            "height": 600,
+            "bottom": 699
+          },
+          "benefits": {
+            "x": 0,
+            "y": 699,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 854.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "4",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "split": {
+            "x": 20,
+            "y": 99,
+            "width": 794,
+            "height": 600,
+            "bottom": 699
+          },
+          "benefits": {
+            "x": 0,
+            "y": 699,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 854.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "loaded": true
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "httpErrors": [],
+      "overrides": [
+        "/motion/c02/ink-sweep.mjs",
+        "/styles.css",
+        "/theme.css",
+        "/motion/c02/ink-asset.mjs",
+        "/button-system.css"
+      ],
+      "patched": 1,
+      "failed": []
+    },
+    {
+      "profile": "ipad834x1112-dark",
+      "checks": {
+        "active0": true,
+        "noOverflow0": true,
+        "active1": true,
+        "noOverflow1": true,
+        "active2": true,
+        "noOverflow2": true,
+        "active3": true,
+        "noOverflow3": true,
+        "active4": true,
+        "noOverflow4": true,
+        "iconsLoad": true,
+        "navbarWidth": true,
+        "creamCircle": true,
+        "correctCss": true,
+        "prepaintPatched": true,
+        "zeroErrors": true
+      },
+      "slides": [
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "0",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 98,
+            "width": 834,
+            "height": 850,
+            "bottom": 948
+          },
+          "track": {
+            "x": 0,
+            "y": 98,
+            "width": 834,
+            "height": 850,
+            "bottom": 948
+          },
+          "slide": {
+            "x": 0,
+            "y": 98,
+            "width": 834,
+            "height": 850,
+            "bottom": 948
+          },
+          "split": null,
+          "benefits": {
+            "x": 0,
+            "y": 948,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 1103.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": false
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": false
+            }
+          ]
+        },
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "1",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "split": {
+            "x": 20,
+            "y": 99,
+            "width": 794,
+            "height": 600,
+            "bottom": 699
+          },
+          "benefits": {
+            "x": 0,
+            "y": 699,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 854.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "2",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "split": {
+            "x": 20,
+            "y": 99,
+            "width": 794,
+            "height": 600,
+            "bottom": 699
+          },
+          "benefits": {
+            "x": 0,
+            "y": 699,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 854.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "3",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "split": {
+            "x": 20,
+            "y": 99,
+            "width": 794,
+            "height": 600,
+            "bottom": 699
+          },
+          "benefits": {
+            "x": 0,
+            "y": 699,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 854.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        },
+        {
+          "vw": 834,
+          "vh": 1112,
+          "active": "4",
+          "scrollY": 0,
+          "hero": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "track": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "slide": {
+            "x": 0,
+            "y": 99,
+            "width": 834,
+            "height": 600,
+            "bottom": 699
+          },
+          "split": {
+            "x": 20,
+            "y": 99,
+            "width": 794,
+            "height": 600,
+            "bottom": 699
+          },
+          "benefits": {
+            "x": 0,
+            "y": 699,
+            "width": 834,
+            "height": 155.890625,
+            "bottom": 854.890625
+          },
+          "header": {
+            "x": 20,
+            "y": 34,
+            "width": 794,
+            "height": 64,
+            "bottom": 98
+          },
+          "overflow": 0,
+          "icons": [
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            },
+            {
+              "bg": "rgb(244, 235, 228)",
+              "loaded": true
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "httpErrors": [],
+      "overrides": [
+        "/assets/c02/texture-composed-dark.svg",
+        "/motion/c02/ink-sweep.mjs",
+        "/styles.css",
+        "/theme.css",
+        "/motion/c02/ink-asset.mjs",
+        "/button-system.css"
+      ],
+      "patched": 1,
+      "failed": []
+    }
+  ]
+}

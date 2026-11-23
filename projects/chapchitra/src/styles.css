@@ -2619,3 +2619,43 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
 #app .pager .cc-c04-ink{display:inline-block;transform-origin:50% 50%;vertical-align:baseline}
 #app .bag-count .cc-bag-stamps{transform-origin:50% 50%}
 #app .cc-c04-inking{will-change:transform,opacity}
+
+
+/* CHAPCHITRA PR154: viewport-bound desktop hero only.
+   The original 34px announcement + 64px Hero01 special header (65px normal)
+   remain unchanged. Do NOT reset global .wrap, tablet/mobile hero dimensions,
+   Hero01 paper V, controls, content, or C08 animation geometry. */
+@media (min-width:1024px){
+  /* Desktop navigation uses the viewport while preserving its existing
+     flex positions and 32px safe-edge gutters. Other route wraps stay fixed. */
+  #app > .site-header .header-line.wrap{
+    width:calc(100% - 64px);
+    max-width:none;
+  }
+  body[data-page="home"] #hero .hero-track{
+    height:calc(100dvh - 99px);
+    min-height:0;
+  }
+  body[data-page="home"] #hero:has(.hero-cover:not([hidden])) .hero-track{
+    height:calc(100dvh - 98px);
+    min-height:0;
+  }
+  body[data-page="home"] #hero .hero-slide{
+    height:100%;
+    min-height:0;
+  }
+  /* Fill the entire hero grid, not the globally capped editorial wrap. */
+  body[data-page="home"] #hero .hero-split-inner.wrap{
+    width:100%;
+    max-width:none;
+    height:100%;
+    min-height:0;
+    margin-inline:0;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  body[data-page="home"] #hero .hero-slide-copy{
+    padding-left:max(32px,calc((100vw - 1160px)/2));
+    padding-right:clamp(32px,4vw,72px);
+    padding-bottom:70px;
+  }
+}

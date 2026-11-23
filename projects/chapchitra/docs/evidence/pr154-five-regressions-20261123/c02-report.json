@@ -1,0 +1,277 @@
+{
+  "candidate": true,
+  "results": [
+    {
+      "theme": "light",
+      "engine": "chromium",
+      "checks": {
+        "twoDerivedSamePaths": true,
+        "underprintColors": true,
+        "navigated": true,
+        "revealProof": true,
+        "backingMatches": true,
+        "correctTheme": true,
+        "prepaintCorrect": true,
+        "noJSerrors": true
+      },
+      "requested": [
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed.svg"
+      ],
+      "errors": [],
+      "http": [],
+      "log": [],
+      "assetIntegrity": {
+        "sameGeometry": true,
+        "lightCount": 728,
+        "darkCount": 728,
+        "lightFill": true,
+        "darkFill": true
+      },
+      "final": {
+        "theme": "light",
+        "proof": "{\"source\":\"/assets/c02/texture-composed.svg\",\"asset\":\"owner-vector-svg\",\"backing\":\"gallery-white-source-envelope\",\"layers\":1,\"svgHidden\":true,\"progress\":0,\"contact\":1832.7024000000001}",
+        "c02Handoff": "matched-first-frame",
+        "prepaint": [
+          {
+            "phase": "cover",
+            "rootClasses": "c02-full-cover c02-asset-arrival",
+            "progress": "1",
+            "source": "/assets/c02/texture-composed.svg",
+            "backing": "rgb(246, 247, 245)",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "reveal",
+            "rootClasses": "c02-full-cover c02-asset-arrival",
+            "progress": "0",
+            "source": "/assets/c02/texture-composed.svg",
+            "backing": "rgb(246, 247, 245)",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "COMPLETE",
+            "rootClasses": "c02-full-cover c02-asset-arrival",
+            "progress": "1",
+            "source": null,
+            "backing": "",
+            "prepaint": "",
+            "prepaintColor": ""
+          }
+        ],
+        "outgoing": [
+          {
+            "phase": "none",
+            "rootClasses": "",
+            "progress": "",
+            "source": null,
+            "backing": "",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "cover",
+            "rootClasses": "",
+            "progress": "0",
+            "source": "/assets/c02/texture-composed.svg",
+            "backing": "transparent",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "cover",
+            "rootClasses": "",
+            "progress": "1",
+            "source": "/assets/c02/texture-composed.svg",
+            "backing": "rgb(246, 247, 245)",
+            "prepaint": "",
+            "prepaintColor": ""
+          }
+        ],
+        "currentUrl": "/shop/"
+      },
+      "failed": []
+    },
+    {
+      "theme": "dark",
+      "engine": "chromium",
+      "checks": {
+        "twoDerivedSamePaths": true,
+        "underprintColors": true,
+        "navigated": true,
+        "revealProof": true,
+        "backingMatches": true,
+        "correctTheme": true,
+        "prepaintCorrect": true,
+        "noJSerrors": true
+      },
+      "requested": [
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed.svg"
+      ],
+      "errors": [],
+      "http": [],
+      "log": [],
+      "assetIntegrity": {
+        "sameGeometry": true,
+        "lightCount": 728,
+        "darkCount": 728,
+        "lightFill": true,
+        "darkFill": true
+      },
+      "final": {
+        "theme": "dark",
+        "proof": "{\"source\":\"/assets/c02/texture-composed-dark.svg\",\"asset\":\"owner-vector-svg\",\"backing\":\"walnut-source-envelope\",\"layers\":1,\"svgHidden\":true,\"progress\":0,\"contact\":1832.7024000000001}",
+        "c02Handoff": "matched-first-frame",
+        "prepaint": [
+          {
+            "phase": "cover",
+            "rootClasses": "c02-full-cover c02-asset-arrival",
+            "progress": "1",
+            "source": "/assets/c02/texture-composed-dark.svg",
+            "backing": "rgb(110, 82, 63)",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "reveal",
+            "rootClasses": "c02-full-cover c02-asset-arrival",
+            "progress": "0",
+            "source": "/assets/c02/texture-composed-dark.svg",
+            "backing": "rgb(110, 82, 63)",
+            "prepaint": "",
+            "prepaintColor": ""
+          }
+        ],
+        "outgoing": [
+          {
+            "phase": "none",
+            "rootClasses": "",
+            "progress": "",
+            "source": null,
+            "backing": "",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "cover",
+            "rootClasses": "",
+            "progress": "0",
+            "source": "/assets/c02/texture-composed-dark.svg",
+            "backing": "transparent",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "cover",
+            "rootClasses": "",
+            "progress": "1",
+            "source": "/assets/c02/texture-composed-dark.svg",
+            "backing": "rgb(110, 82, 63)",
+            "prepaint": "",
+            "prepaintColor": ""
+          }
+        ],
+        "currentUrl": "/shop/"
+      },
+      "failed": []
+    },
+    {
+      "theme": "dark",
+      "engine": "webkit",
+      "checks": {
+        "twoDerivedSamePaths": true,
+        "underprintColors": true,
+        "navigated": true,
+        "revealProof": true,
+        "backingMatches": true,
+        "correctTheme": true,
+        "prepaintCorrect": true,
+        "noJSerrors": true
+      },
+      "requested": [
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed-dark.svg",
+        "https://chapchitra-webanimation.onrender.com/assets/c02/texture-composed.svg"
+      ],
+      "errors": [],
+      "http": [],
+      "log": [],
+      "assetIntegrity": {
+        "sameGeometry": true,
+        "lightCount": 728,
+        "darkCount": 728,
+        "lightFill": true,
+        "darkFill": true
+      },
+      "final": {
+        "theme": "dark",
+        "proof": "{\"source\":\"/assets/c02/texture-composed-dark.svg\",\"asset\":\"owner-vector-svg\",\"backing\":\"walnut-source-envelope\",\"layers\":1,\"svgHidden\":true,\"progress\":0,\"contact\":1832.7024000000001}",
+        "c02Handoff": "matched-first-frame",
+        "prepaint": [
+          {
+            "phase": "cover",
+            "rootClasses": "c02-full-cover c02-asset-arrival",
+            "progress": "1",
+            "source": "/assets/c02/texture-composed-dark.svg",
+            "backing": "rgb(110, 82, 63)",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "reveal",
+            "rootClasses": "c02-full-cover c02-asset-arrival",
+            "progress": "0",
+            "source": "/assets/c02/texture-composed-dark.svg",
+            "backing": "rgb(110, 82, 63)",
+            "prepaint": "",
+            "prepaintColor": ""
+          }
+        ],
+        "outgoing": [
+          {
+            "phase": "none",
+            "rootClasses": "",
+            "progress": "",
+            "source": null,
+            "backing": "",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "cover",
+            "rootClasses": "",
+            "progress": "0",
+            "source": "/assets/c02/texture-composed-dark.svg",
+            "backing": "transparent",
+            "prepaint": "",
+            "prepaintColor": ""
+          },
+          {
+            "phase": "cover",
+            "rootClasses": "",
+            "progress": "1",
+            "source": "/assets/c02/texture-composed-dark.svg",
+            "backing": "rgb(110, 82, 63)",
+            "prepaint": "",
+            "prepaintColor": ""
+          }
+        ],
+        "currentUrl": "/shop/"
+      },
+      "failed": []
+    }
+  ]
+}

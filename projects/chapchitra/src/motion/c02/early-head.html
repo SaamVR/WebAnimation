@@ -1,7 +1,18 @@
-<!-- CHAPCHITRA C02: same atomically decoded vector (owner's unchanged
-     green paths above a build-derived inset white silhouette) for first paint,
-     cover, loading and reveal. Geometry and choreography unchanged. -->
-<link rel="preload" as="image" type="image/svg+xml" href="/assets/c02/texture-composed.svg" fetchpriority="high">
+<!-- CHAPCHITRA C02: one exact green owner vector over its theme-specific
+     build-derived silhouette (Gallery White light / Walnut dark), from prepaint
+     through cover, loading, reveal. Geometry and choreography unchanged. -->
+<script id="c02-theme-asset-preload">(function(){
+ // This snippet precedes theme-init.js in the built document. Resolve the
+ // same stored/system preference early so only the correct SVG is preloaded.
+ var pref=null;
+ try{pref=localStorage.getItem('chapchitra-color-theme-v1')}catch(_){}
+ var dark=pref==='dark'||(pref!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+ var link=document.createElement('link');
+ link.rel='preload';link.as='image';link.type='image/svg+xml';
+ link.href=dark?'/assets/c02/texture-composed-dark.svg':'/assets/c02/texture-composed.svg';
+ link.setAttribute('fetchpriority','high');
+ document.head.appendChild(link);
+})();</script>
 <style id="c02-prepaint">
 html.c02-pending::before{content:"";position:fixed;inset:0;z-index:2147482900;background:#293D2D;pointer-events:auto;clip-path:var(--c02-prepaint-clip,polygon(0 0,65% 0,70% 50%,65% 100%,0 100%))}
 /* Match the owner's complete vector image on the FIRST incoming frame.
@@ -18,6 +29,12 @@ z-index:2147483001}
    seal UNDER the same composed SVG background. No advancing white panel. */
 html.c02-pending.c02-asset-arrival.c02-full-cover::after{
 background-color:#F6F7F5}
+/* Keep first-paint, fully covered loading and final reveal on exactly the
+   dark-mode Walnut underprint — never flash the Gallery White derivative. */
+html[data-theme="dark"].c02-pending.c02-asset-arrival::after{
+background-image:url('/assets/c02/texture-composed-dark.svg')}
+html[data-theme="dark"].c02-pending.c02-asset-arrival.c02-full-cover::after{
+background-color:#6E523F}
 /* Cross-document native View Transitions are deliberately not auto-enabled:
    Chromium can suspend the outgoing animated document while snapshotting,
    stranding an ink overlay. The one-use native-navigation fallback is the
