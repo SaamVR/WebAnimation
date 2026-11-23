@@ -109,9 +109,12 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  inkAssetImg.style.cssText='position:absolute;left:0;top:0;max-width:none;'+
   'object-fit:fill;pointer-events:none;will-change:transform;';
  inkAssetImg.addEventListener('error',()=>{overlay.dataset.assetError='owner-svg';},{once:true});
- // An atomic single SVG embeds the inset white backing *under* the owner's
- // unchanged green strokes; no independently decoded white rectangle.
- inkAssetImg.src=C02_INK_ASSET.composedPath;
+ // Source-derived, atomically decoded SVGs differ only in the ONE underprint
+ // fill. Preserve the original ink, roller, distressed edge and clip motion.
+ // Freeze the transition's theme to avoid an asset swap during cover/reveal.
+ const darkInk=doc.documentElement.dataset.theme==='dark';
+ const c02Backing=darkInk?C02_INK_ASSET.darkBacking:C02_INK_ASSET.lightBacking;
+ inkAssetImg.src=darkInk?C02_INK_ASSET.composedDarkPath:C02_INK_ASSET.composedPath;
  const assetsReady=edgeStyle==='asset'
   ?inkAssetImg.decode().then(()=>true,()=>{overlay.dataset.assetError='decode';return false;})
   :Promise.resolve(true);
@@ -236,16 +239,15 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    if(inkAssetLayer.style.clipPath!==clip)inkAssetLayer.style.clipPath=clip;
    // The owner SVG's far-edge open bristle channels remain transparent at p=1
    // on tall/narrow screens. Seal ONLY the already-completed surface with the
-   // approved Gallery White pigment. The existing source-derived backing is
-   // unchanged, and this color is inside the SAME reveal-clipped image layer.
-   // The seal is transparent during all moving/partial cover frames.
+   // Gallery White (light) / Walnut (dark), matching the derived underprint
+   // INSIDE the same reveal-clipped compositor; partial paint stays clear.
    const sealed=mode==='reveal'||(mode==='cover'&&p>=1);
-   const backing=sealed?'#F6F7F5':'transparent';
+   const backing=sealed?c02Backing:'transparent';
    if(inkAssetLayer.style.backgroundColor!==backing)
     inkAssetLayer.style.backgroundColor=backing;
    overlay.dataset.c02CoverSealed=sealed?'true':'false';
    overlay.dataset.inkAsset='owner-vector-svg';
-   overlay.dataset.inkBacking='gallery-white-source-envelope';
+   overlay.dataset.inkBacking=darkInk?'walnut-source-envelope':'gallery-white-source-envelope';
    overlay.dataset.inkContactX=String(placement.contactX);
    // Retain one proof of the actual reveal surface after the overlay is
    // removed. Ultrawide screenshots can miss the 385ms reveal entirely.
