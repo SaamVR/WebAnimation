@@ -119,3 +119,27 @@ test('global C08 navbar resolves from versioned Artist Edit release without chan
  assert.ok(!(await text('src/worktable-studio.mjs')).includes('c08'));
  assert.ok(!(await text('src/motion/c01/connected-benefits.mjs')).includes('c08'));
 });
+
+
+test('owner Cream C08 dark variant changes only 22 static fill paints, never timing or geometry',async()=>{
+ const source=JSON.parse(await text('src/assets/c08/wordmark-reprint-dark-inverted-v2.json'));
+ const derived=JSON.parse(await text('src/assets/c08/wordmark-reprint-dark-owner-cream.json'));
+ const expected=JSON.parse(JSON.stringify(source));
+ let repainted=0;
+ const paint=part=>{
+  if(!part||typeof part!=='object')return;
+  if(part.ty==='fl'&&Array.isArray(part.c?.k)&&part.c.k.length>=3&&
+    [228/255,227/255,222/255].every((v,i)=>Math.abs(part.c.k[i]-v)<.0003)){
+   [244/255,235/255,228/255].forEach((v,i)=>part.c.k[i]=v);
+   repainted++;
+  }
+  for(const node of Object.values(part))paint(node);
+ };
+ paint(expected);
+ assert.equal(repainted,22);
+ assert.deepEqual(derived,expected,'C08 geometry, keyframes, easing, roller, source colors except Cream and full duration remain immutable');
+ assert.equal(derived.fr,60);assert.equal(derived.op,240);
+ const player=await text('src/motion/c08/logo-player.mjs');
+ assert.match(player,/const DARK = '\/assets\/c08\/wordmark-reprint-dark-owner-cream\.json'/);
+ assert.match(player,/const themedSource = \(\) => document\.documentElement\.dataset\.theme==='dark' \? DARK : SOURCE/);
+});
