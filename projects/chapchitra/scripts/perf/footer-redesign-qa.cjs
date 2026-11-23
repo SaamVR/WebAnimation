@@ -67,7 +67,7 @@ async function run(device){
     };
    });
    const label=device.id;
-   assert(label,route,'real brand logo',details.logoSrc==='/assets/chapchitra-wordmark-cream-terra.webp'&&details.logoLoaded,details);
+   assert(label,route,'real brand logo',details.logoSrc==='/assets/brand/chapchitra-light-wordmark.svg'&&details.logoLoaded,details);
    assert(label,route,'tagline',details.tagline==='PEOPLE · PLACES · PRINTS');
    assert(label,route,'three Discover routes',JSON.stringify(details.discover.map(x=>x.url))===JSON.stringify(['/artists-edit/','/journal/','/about/'])&&details.discoverHeading==='Discover',details.discover);
    assert(label,route,'Help labels not fabricated links',JSON.stringify(details.help)===JSON.stringify(['Support','Terms & Conditions','Contact Us'])&&details.helpAnchors===0&&details.helpHeading==='Help',details.help);
