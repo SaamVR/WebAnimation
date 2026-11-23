@@ -1,5 +1,6 @@
-/* Independent exact-owner SVG toggle review in the existing isolated CI preview.
- * Never interacts with the live Render staging site.
+/* Independent exact-owner SVG toggle review in isolated PR Chromium/WebKit.
+ * The staging push also runs against LIVE Render only AFTER the exact public
+ * release-marker SHA is verified by the integration runner.
  * Uncut Chromium video + native screenshots + reversible-frame QA.
  */
 import {chromium,webkit} from 'playwright';
@@ -14,7 +15,10 @@ const profiles=[
  {name:'mobile-chromium',browser:chromium,width:390,height:844},
  {name:'narrow-320-chromium',browser:chromium,width:320,height:700}
 ];
-const audit={source:'Owner Illustrator exact master, no raster replacement',mode:'isolated PR build, NOT deployed',screenshots:[],profiles:[],errors:[]};
+const audit={source:'Owner Illustrator exact master, no raster replacement',
+ mode:ROOT.startsWith('https://chapchitra-webanimation.onrender.com')?
+  'LIVE Render staging public URL':'isolated PR build, NOT deployed',
+ screenshots:[],profiles:[],errors:[]};
 const assert=(ok,message)=>{if(!ok)throw Error(message)};
 const read=async(page,selector)=>page.locator(selector+' svg.cc-owner-toggle-svg').evaluate(svg=>{
  const roles=[...svg.querySelectorAll('[data-toggle-role]')].map(x=>x.getAttribute('data-toggle-role'));
@@ -117,8 +121,10 @@ for(const profile of profiles){
       'original mountain relief paths not preserving inverse paper color: '+start.mountainDetails);
     assert(start.moonCircleFill===paperInk,'moon disc must not conceal Cream slider fill: '+start.moonCircleFill);
     assert(start.moonCrescentFill===stateInk,'crescent should use state ink against light paper: '+start.moonCrescentFill);
-    assert(start.bagBadgeBackground==='rgba(0, 0, 0, 0)'||start.bagBadgeBackground==='transparent',
-      'bag numeral must have no rectangular backdrop: '+start.bagBadgeBackground);
+    // Owner rejected only the DARK rectangular backplate; light artwork is final.
+    if(theme==='dark')assert(
+      start.bagBadgeBackground==='rgba(0, 0, 0, 0)'||start.bagBadgeBackground==='transparent',
+      'dark bag numeral must have no rectangular backdrop: '+start.bagBadgeBackground);
    await capture(page,profile.name+'-'+theme+'-initial-navbar');
    await button.click({timeout:10000});
    await page.waitForFunction(sel=>{
