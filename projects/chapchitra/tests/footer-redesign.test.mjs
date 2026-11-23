@@ -7,7 +7,7 @@ const css=readFileSync(new URL('src/styles.css',root),'utf8');
 const footer=source.split(' function footer(){')[1]?.split(' function home(){')[0];
 test('one shared footer retains original brand assets, tagline and copyright',()=>{
  assert.ok(footer);
- assert.match(footer,/chapchitra-wordmark-cream-terra\.webp/);
+ assert.match(footer,/brand\/chapchitra-light-wordmark\.svg/);
  assert.match(footer,/PEOPLE · PLACES · PRINTS/);
  assert.match(footer,/© 2026 CHAPCHITRA · V3 architectural prototype/);
  assert.match(footer,/No orders, payments or subscriptions are processed/);

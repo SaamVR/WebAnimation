@@ -735,7 +735,7 @@ test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only'
  assert.match(header,/id="mobileNav"[^>]*hidden/);
  assert.match(header,/id="searchPanel"[^>]*hidden/);
  assert.match(header,/id="searchButton"/);
- assert.match(header,/src="\/assets\/chapchitra-wordmark\.webp"/);
+ assert.match(header,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
  assert.ok(header.indexOf('class="nav-left"')<header.indexOf('class="logo-word logo-word--image"'));
  assert.ok(header.indexOf('class="logo-word logo-word--image"')<header.indexOf('class="nav-actions"'));
  const rules=css.slice(css.indexOf('/* CHAPCHITRA — mathematical centered three-zone'));
@@ -759,14 +759,14 @@ test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',a
  const app=await read('src/app.mjs'),css=await read('src/styles.css'),html=await read('src/index.html');
  const guard=await read('src/nav-sticky-guard.mjs');
  assert.match(app,/class="logo-word logo-word--image"/);
- assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
- assert.match(app,/src="\/assets\/chapchitra-full\.webp"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-full\.svg"/);
  assert.match(app,/class="hero-brand-lockup"/);
- assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
  assert.match(app,/class="logo-word logo-word--footer"/);
  assert.match(html,/rel="icon"[^>]*href="\/assets\/favicon\.png"/);
  assert.match(html,/rel="apple-touch-icon"[^>]*href="\/assets\/apple-touch-icon\.png"/);
- assert.match(html,/rel="preload" as="image" href="\/assets\/chapchitra-full\.webp"/);
+ assert.match(html,/rel="preload" as="image" href="\/assets\/brand\/chapchitra-light-full\.svg"/);
  assert.doesNotMatch(app,/<div class="hero-display-word">CHAPCHITRA<\/div>/);
  assert.doesNotMatch(app,/Temporary wordmark|final logo pending|Identity, pricing and images remain provisional/);
  assert.doesNotMatch(app,/<span>CHAPCHITRA<\/span>/);
@@ -921,7 +921,7 @@ test('homepage and non-Shop sections retain their existing nav routes and assets
  assert.match(app,/function journal\(\)/);
  assert.match(app,/function about\(\)/);
  assert.match(app,/class="logo-word logo-word--image"/);
- assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
  assert.match(app,/createHeroCarouselClock\(\{/);
  assert.match(app,/clock\.startSlide\(active\)/);
  assert.match(css,/\.site-header\{position:sticky;top:0/);

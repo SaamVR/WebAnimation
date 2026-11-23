@@ -50,13 +50,13 @@ test('C08 dark-surface brand uses versioned asset URLs while light-background na
  const app=await readFile(resolve(root,'src/app.mjs'),'utf8');
  const html=await readFile(resolve(root,'src/index.html'),'utf8');
  const player=await readFile(resolve(root,'src/motion/c08/logo-player.mjs'),'utf8');
- assert.match(app,/src="\/assets\/chapchitra-full\.webp"/);
- assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);
- assert.match(html,/href="\/assets\/chapchitra-full\.webp"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-full\.svg"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
+ assert.match(html,/href="\/assets\/brand\/chapchitra-light-full\.svg"/);
  assert.match(player,/const HERO = '\/assets\/c08\/wordmark-reprint-dark-inverted-v2\.json'/);
   assert.match(player,/heroVariant==='paper'\?SOURCE:HERO/);
  assert.match(player,/const SOURCE = '\/assets\/c08\/wordmark-reprint-original\.json'/);
- assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
  assert.doesNotMatch(app,/src="\/assets\/chapchitra-wordmark-light\.webp"/);
  assert.doesNotMatch(player,/const HERO = '\/assets\/c08\/wordmark-reprint-hero-light\.json'/);
 });

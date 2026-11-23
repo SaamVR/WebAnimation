@@ -10,6 +10,7 @@ const read=p=>readFileSync(resolve(base,p),'utf8');
 const sha=p=>createHash('sha256').update(readFileSync(resolve(base,p))).digest('hex');
 const vectorAttributes=(source,tag,attr)=>
  [...source.matchAll(new RegExp(`<${tag}\\b[^>]*?\\b${attr}="([^"]*)"[^>]*>`, 'g'))].map(m=>m[1]);
+const normalizeVectorSpacing=value=>value.replace(/\s+/g,' ').trim();
 const style=source=>source.match(/<style\s+type="text\/css">([\s\S]*?)<\/style>/)?.[1];
 
 const originals={
@@ -26,8 +27,8 @@ for(const [theme,meta] of Object.entries(originals)){
   const original=read('masters/'+meta.name),derived=read(`chapchitra-${theme}-full.svg`);
   const a=vectorAttributes(original,'path','d'),b=vectorAttributes(derived,'path','d');
   const pa=vectorAttributes(original,'polygon','points'),pb=vectorAttributes(derived,'polygon','points');
-  assert.equal(a.length,3066);assert.deepEqual(b,a);
-  assert.equal(pa.length,55);assert.deepEqual(pb,pa);
+  assert.equal(a.length,3066);assert.deepEqual(b.map(normalizeVectorSpacing),a.map(normalizeVectorSpacing));
+  assert.equal(pa.length,55);assert.deepEqual(pb.map(normalizeVectorSpacing),pa.map(normalizeVectorSpacing));
   assert.equal(style(derived),style(original));
   assert.match(derived,new RegExp('viewBox="'+meta.box.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'"'));
   assert.match(derived,/id="Cloth_patch"/);
