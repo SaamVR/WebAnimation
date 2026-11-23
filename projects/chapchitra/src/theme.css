@@ -656,3 +656,29 @@
   background:var(--color-warm-beige);
   border-color:var(--color-gallery-white);
 }
+
+
+/* CHAPCHITRA PR155 — dark Cream icon circles sized optically to the
+   illustrated theme toggle. SVGs, stamped bag, toggle and light theme do
+   not change. Visible circles = accessible 44 × 44px controls. */
+:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
+  box-sizing:border-box;
+  width:44px;
+  height:44px;
+  min-width:44px;
+  min-height:44px;
+  max-width:44px;
+  max-height:44px;
+  flex:0 0 44px;
+  padding:0;
+  /* Preserve the existing mobile .nav-optional-action display:none rule;
+     forcing display:grid here accidentally exposed hidden Favorites/Account. */
+  place-items:center;
+  border-radius:50%;
+  background:var(--color-cream);
+}
+@media (min-width:431px){
+  :root[data-theme="dark"] #app > .site-header .nav-actions{
+    gap:2px;
+  }
+}
