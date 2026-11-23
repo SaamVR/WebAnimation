@@ -67,7 +67,7 @@ test('C02 has exactly one theme-correct composed vector per cover/full/loading/r
  const build=await readFile(new URL('../scripts/build.mjs',import.meta.url),'utf8');
  const review=await readFile(new URL('../src/c02-review/asset-compare/index.html',import.meta.url),'utf8');
  assert.match(runtime,/inkAssetImg\.src=darkInk\?C02_INK_ASSET\.composedDarkPath:C02_INK_ASSET\.composedPath/);
- assert.match(runtime,/inkImg\.src=C02_INK_ASSET\.composedPath/);
+ assert.match(runtime,/inkImg\.src=doc\.documentElement\.dataset\.theme==='dark'/);
  assert.match(runtime,/inkAssetLayer\.append\(inkAssetImg\)/);
  assert.match(runtime,/const surfaceP=mode==='reveal'\?1:p/);
  assert.match(runtime,/c02InkRevealClip\(p,viewport\.width,viewport\.height\)/);
