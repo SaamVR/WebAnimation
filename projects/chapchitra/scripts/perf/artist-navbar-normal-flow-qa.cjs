@@ -256,17 +256,34 @@ async function run(browser,engine,width,height){
   }
  }
 
- // C09 Illustrator toggle: require genuine Chromium/WebKit frame, palette,
- // moon-disc and stamped bag QA for this owner refinement and staging merges.
- // Retain strict visual assertions and the real uncut browser video artifact.
+ // C09 Illustrator toggle: strict native browser test in PR149; on the
+ // STAGING PUSH the same test must use the PUBLIC Render URL, not localhost.
+ // Wait until the live release marker proves Render deployed this exact SHA.
+ const stagingPush=process.env.GITHUB_REF==='refs/heads/deploy/chapchitra-render-review';
  if(process.env.GITHUB_HEAD_REF==='feature/chapchitra-illustrated-theme-toggle-20261123'||
     process.env.GITHUB_HEAD_REF==='feature/chapchitra-dark-slider-cream-circular-bag-badge-20261123'||
-    process.env.GITHUB_REF==='refs/heads/deploy/chapchitra-render-review'){
+    stagingPush){
   const {spawnSync}=require('node:child_process');
   const pathQA=path.resolve(__dirname,'../illustrated-theme-toggle-browser-qa.mjs');
+  const publicRoot='https://chapchitra-webanimation.onrender.com';
+  if(stagingPush){
+   const sha=process.env.GITHUB_SHA||'';
+   if(!/^[a-f0-9]{40}$/i.test(sha)){console.error('No valid staging merge SHA');process.exitCode=2;return;}
+   const marker=publicRoot+'/releases/'+sha+'/release.json';
+   let confirmed=false;
+   for(let attempt=0;attempt<72;attempt++){
+    try{
+     const response=await fetch(marker,{cache:'no-store',signal:AbortSignal.timeout(12000)});
+     if(response.ok&&(await response.json()).sourceSHA===sha){confirmed=true;break;}
+    }catch(e){if(attempt===71)console.error('Render live release marker unavailable',e.message);}
+    await new Promise(done=>setTimeout(done,4000));
+   }
+   if(!confirmed){console.error('Refusing browser approval without LIVE deployed SHA',marker);process.exitCode=2;return;}
+   console.log('CHAPCHITRA_PUBLIC_RELEASE_MARKER_VERIFIED',sha,marker);
+  }
   const result=spawnSync(process.execPath,[pathQA],{
    cwd:path.resolve(__dirname,'../..'),
-   env:{...process.env,CC_QA_ROOT:origin,
+   env:{...process.env,CC_QA_ROOT:stagingPush?publicRoot:origin,
     CC_TOGGLE_QA_OUT:path.resolve('perf-results/shared-stage-illustrated-toggle')},
    encoding:'utf8',stdio:'inherit',timeout:11*60*1000
   });
