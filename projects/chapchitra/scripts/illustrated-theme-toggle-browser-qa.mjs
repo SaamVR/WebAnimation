@@ -34,6 +34,9 @@ const read=async(page,selector)=>page.locator(selector+' svg.cc-owner-toggle-svg
   outerInkFill:getComputedStyle(svg.querySelector('[id$="pill-outer-outline"] .st1')).fill,
   artworkInk:getComputedStyle(svg).getPropertyValue('--cc-toggle-ink').trim(),
   artworkPaper:getComputedStyle(svg).getPropertyValue('--cc-toggle-paper').trim(),
+  moonCircleFill:getComputedStyle(svg.querySelector('[data-toggle-role="moon"] [id$="Moon-circle"] .st1')).fill,
+  moonCrescentFill:getComputedStyle(svg.querySelector('[data-toggle-role="moon"] [id$="Moon-shape"] .st0')).fill,
+  bagBadgeBackground:getComputedStyle(document.querySelector('#app > .site-header .bag-count')).backgroundColor,
   mountainFill:getComputedStyle(svg.querySelector('[id$="cc-mountain-solid-fill"]')).fill,
   mountainDetails:getComputedStyle(svg.querySelector('.cc-mountain-negative-details path.st1')).fill
  };
@@ -98,9 +101,9 @@ for(const profile of profiles){
    assert(start.clipStyle&&start.clipStyle!=='none','invalid scene clipping');
    assert(Math.abs(start.svgBox.width-96)<2,'native SVG width wrong');
    assert(Math.abs(start.progress-(theme==='dark'?1:0))<.001,'initial SVG theme flash');
-   assert(start.sliderBaseFill===(theme==='dark'?'rgb(138, 80, 59)':'rgb(246, 247, 245)'),
+   assert(start.sliderBaseFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(246, 247, 245)'),
     'Illustrator slider base endpoint wrong: '+start.sliderBaseFill);
-   assert(start.sliderGrainFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(41, 61, 45)'),
+   assert(start.sliderGrainFill===(theme==='dark'?'rgb(138, 80, 59)':'rgb(41, 61, 45)'),
     'Illustrator slider grain endpoint wrong: '+start.sliderGrainFill);
    const stateInk=theme==='dark'?'rgb(138, 80, 59)':'rgb(41, 61, 45)';
    assert(start.sunFill===stateInk,'sun ink not using theme palette: '+start.sunFill);
@@ -112,6 +115,10 @@ for(const profile of profiles){
     assert(start.artworkPaper===paperInk,'paper light Gallery White / dark Cream incorrect: '+start.artworkPaper);
     assert(start.mountainDetails===paperInk,
       'original mountain relief paths not preserving inverse paper color: '+start.mountainDetails);
+    assert(start.moonCircleFill===paperInk,'moon disc must not conceal Cream slider fill: '+start.moonCircleFill);
+    assert(start.moonCrescentFill===stateInk,'crescent should use state ink against light paper: '+start.moonCrescentFill);
+    assert(start.bagBadgeBackground==='rgba(0, 0, 0, 0)'||start.bagBadgeBackground==='transparent',
+      'bag numeral must have no rectangular backdrop: '+start.bagBadgeBackground);
    await capture(page,profile.name+'-'+theme+'-initial-navbar');
    await button.click({timeout:10000});
    await page.waitForFunction(sel=>{
@@ -123,7 +130,7 @@ for(const profile of profiles){
    await page.waitForTimeout(360);
    const end=await read(page,selector);
    assert(end.progress===(theme==='dark'?0:1),'theme slide did not finish');
-   assert(end.sliderBaseFill===(theme==='dark'?'rgb(246, 247, 245)':'rgb(138, 80, 59)'),
+   assert(end.sliderBaseFill===(theme==='dark'?'rgb(246, 247, 245)':'rgb(244, 235, 228)'),
     'reversed slider base endpoint wrong: '+end.sliderBaseFill);
    assert(end.artworkInk===(theme==='dark'?'rgb(41, 61, 45)':'rgb(138, 80, 59)'),
     'reversed illustrator ink palette wrong: '+end.artworkInk);
