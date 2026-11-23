@@ -762,7 +762,7 @@ test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',a
  assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
  assert.match(app,/src="\/assets\/brand\/chapchitra-light-full\.svg"/);
  assert.match(app,/class="hero-brand-lockup"/);
- assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-dark-wordmark\.svg"/);
  assert.match(app,/class="logo-word logo-word--footer"/);
  assert.match(html,/rel="icon"[^>]*href="\/assets\/favicon\.png"/);
  assert.match(html,/rel="apple-touch-icon"[^>]*href="\/assets\/apple-touch-icon\.png"/);
