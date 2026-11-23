@@ -1,0 +1,171 @@
+{
+  "ai01": {
+    "dir": "AI01_Chaos_to_Clarity",
+    "fps": 30,
+    "width": 4000,
+    "height": 2250,
+    "frames": 471,
+    "duration": 15.7,
+    "asset_root": "assets/animations/ai01/",
+    "slots": [
+      13
+    ]
+  },
+  "ai02": {
+    "dir": "AI02_Task_Completion",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "frames": 360,
+    "duration": 12.0,
+    "asset_root": "assets/animations/ai02/",
+    "slots": [
+      15
+    ]
+  },
+  "ai03": {
+    "dir": "AI03_Connecting_Apps",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "frames": 297,
+    "duration": 9.9,
+    "asset_root": "assets/animations/ai03/",
+    "slots": [
+      17
+    ]
+  },
+  "ai04": {
+    "dir": "AI04_Document_Intelligence",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "frames": 480,
+    "duration": 16.0,
+    "asset_root": "assets/animations/ai04/",
+    "slots": [
+      18
+    ]
+  },
+  "ai05": {
+    "dir": "AI05_Human_AI_Collaboration",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "frames": 525,
+    "duration": 17.5,
+    "asset_root": "assets/animations/ai05/",
+    "slots": [
+      19
+    ]
+  },
+  "ai06": {
+    "dir": "AI06_Infographic_Gear",
+    "fps": 30,
+    "width": 1000,
+    "height": 1000,
+    "frames": 150,
+    "duration": 5.0,
+    "asset_root": "assets/animations/ai06/",
+    "slots": [
+      20
+    ]
+  },
+  "ai07": {
+    "dir": "AI07_Data_To_Insights",
+    "fps": 30,
+    "width": 1800,
+    "height": 1000,
+    "frames": 270,
+    "duration": 9.0,
+    "asset_root": "assets/animations/ai07/",
+    "slots": [
+      21
+    ]
+  },
+  "voice": {
+    "dir": "AI08_01_Voice_Recognition",
+    "fps": 30,
+    "width": 500,
+    "height": 500,
+    "frames": 165,
+    "duration": 5.5,
+    "asset_root": "assets/animations/voice/",
+    "slots": [
+      1
+    ]
+  },
+  "face": {
+    "dir": "AI08_02_Face_Recognition",
+    "fps": 30,
+    "width": 500,
+    "height": 500,
+    "frames": 150,
+    "duration": 5.0,
+    "asset_root": "assets/animations/face/",
+    "slots": [
+      2
+    ]
+  },
+  "image": {
+    "dir": "AI08_03_Image_Generation",
+    "fps": 30,
+    "width": 500,
+    "height": 500,
+    "frames": 165,
+    "duration": 5.5,
+    "asset_root": "assets/animations/image/",
+    "slots": [
+      3
+    ]
+  },
+  "cube": {
+    "dir": "AI08_04_3D_Generation",
+    "fps": 30,
+    "width": 500,
+    "height": 500,
+    "frames": 165,
+    "duration": 5.5,
+    "asset_root": "assets/animations/cube/",
+    "slots": [
+      4
+    ]
+  },
+  "cms": {
+    "dir": "AI08_05_CMS",
+    "fps": 30,
+    "width": 500,
+    "height": 500,
+    "frames": 165,
+    "duration": 5.5,
+    "asset_root": "assets/animations/cms/",
+    "slots": [
+      5
+    ]
+  },
+  "search": {
+    "dir": "AI08_06_Smart_Search",
+    "fps": 30,
+    "width": 500,
+    "height": 500,
+    "frames": 150,
+    "duration": 5.0,
+    "asset_root": "assets/animations/search/",
+    "slots": [
+      6
+    ]
+  },
+  "hero": {
+    "dir": "AI08_Six_Icon_Integration",
+    "fps": 30,
+    "width": 1600,
+    "height": 1000,
+    "frames": 735,
+    "duration": 24.5,
+    "asset_root": "assets/animations/hero/",
+    "mode": "multi-player integrated video fallback / source included",
+    "slots": [
+      0
+    ]
+  }
+}
