@@ -130,7 +130,7 @@ try{
    assert.ok(await page.locator('#mobileNav a[href="/favorites/"]').isVisible(),'Favorites remains reachable through mobile menu');
    await page.locator('#menuButton').click();
   }
-  assert.ok((await activeNav.getAttribute('src')).endsWith('nav-favorites-selected.svg'),'Favorites nav uses outlined selected asset');
+  assert.ok((await activeNav.getAttribute('src')).endsWith('nav-owner-favorites-selected.svg'),'Favorites nav uses outlined selected asset');
   assert.ok((await page.locator('.nav-actions a[href="/favorites/"]').getAttribute('aria-current'))==='page','Active nav accessible');
   assert.deepEqual(errors,[],'No browser errors');
   summary.push({profile:profile.name,viewport:[profile.width,profile.height],passed:true,

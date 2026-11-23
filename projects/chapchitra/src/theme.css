@@ -125,6 +125,12 @@
 :root[data-theme="dark"] #app > .site-header .nav-left .hamburger:hover{
   background:var(--theme-paper);
 }
+/* Owner review candidate: dark header icons only. Keep the pressed green on
+   original vector paths unfiltered; dark green-on-green contrast is known
+   to fail and must be resolved by owner approval, not auto-recolored. */
+:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
+  background:var(--color-press-green);
+}
 :root[data-theme="dark"] #app > .site-header .bag-count{
   /* Original stamped numeral SVG is already circular; no square backplate. */
   background:transparent;color:inherit;
