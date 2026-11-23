@@ -1,0 +1,185 @@
+{
+  "candidate": true,
+  "cases": [
+    {
+      "theme": "light",
+      "checks": {
+        "longSvgReady": true,
+        "idleInkRetracted": true,
+        "animatedMidpoint": true,
+        "hoverInkFull": true,
+        "reversible": true,
+        "addedLabel": true,
+        "bagIncrement": true,
+        "confirmReturns": true,
+        "c03Flight": true,
+        "noJSerrors": true
+      },
+      "errors": [],
+      "initial": {
+        "ready": "ready",
+        "hover": false,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 0,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "0",
+        "bagStamp": "/assets/illustrator/stamp-0.svg",
+        "c03Layers": 0
+      },
+      "mid": {
+        "ready": "ready",
+        "hover": true,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 0.691091,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "0",
+        "bagStamp": "/assets/illustrator/stamp-0.svg",
+        "c03Layers": 0
+      },
+      "hovered": {
+        "ready": "ready",
+        "hover": true,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 1,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "0",
+        "bagStamp": "/assets/illustrator/stamp-0.svg",
+        "c03Layers": 0
+      },
+      "returned": {
+        "ready": "ready",
+        "hover": false,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 0,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "0",
+        "bagStamp": "/assets/illustrator/stamp-0.svg",
+        "c03Layers": 0
+      },
+      "confirm": {
+        "ready": "ready",
+        "hover": true,
+        "added": true,
+        "label": "ADDED",
+        "ink": 1,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "1",
+        "bagStamp": "/assets/illustrator/stamp-1.svg",
+        "c03Layers": 1
+      },
+      "settled": {
+        "ready": "ready",
+        "hover": true,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 1,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "1",
+        "bagStamp": "/assets/illustrator/stamp-1.svg",
+        "c03Layers": 0
+      },
+      "c03Seen": true,
+      "failed": []
+    },
+    {
+      "theme": "dark",
+      "checks": {
+        "longSvgReady": true,
+        "idleInkRetracted": true,
+        "animatedMidpoint": true,
+        "hoverInkFull": true,
+        "reversible": true,
+        "addedLabel": true,
+        "bagIncrement": true,
+        "confirmReturns": true,
+        "c03Flight": true,
+        "noJSerrors": true
+      },
+      "errors": [],
+      "initial": {
+        "ready": "ready",
+        "hover": false,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 0,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "0",
+        "bagStamp": "/assets/illustrator/stamp-0.svg",
+        "c03Layers": 0
+      },
+      "mid": {
+        "ready": "ready",
+        "hover": true,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 0.599965,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "0",
+        "bagStamp": "/assets/illustrator/stamp-0.svg",
+        "c03Layers": 0
+      },
+      "hovered": {
+        "ready": "ready",
+        "hover": true,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 1,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "0",
+        "bagStamp": "/assets/illustrator/stamp-0.svg",
+        "c03Layers": 0
+      },
+      "returned": {
+        "ready": "ready",
+        "hover": false,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 0,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "0",
+        "bagStamp": "/assets/illustrator/stamp-0.svg",
+        "c03Layers": 0
+      },
+      "confirm": {
+        "ready": "ready",
+        "hover": true,
+        "added": true,
+        "label": "ADDED",
+        "ink": 1,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "1",
+        "bagStamp": "/assets/illustrator/stamp-1.svg",
+        "c03Layers": 1
+      },
+      "settled": {
+        "ready": "ready",
+        "hover": true,
+        "added": false,
+        "label": "ADD TO BAG",
+        "ink": 1,
+        "returnInk": 0,
+        "clip": "long-face-ink-1",
+        "bagText": "1",
+        "bagStamp": "/assets/illustrator/stamp-1.svg",
+        "c03Layers": 0
+      },
+      "c03Seen": true,
+      "failed": []
+    }
+  ]
+}
