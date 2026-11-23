@@ -113,5 +113,7 @@ test('dark circle retains Cream fill and Terracotta moon detail; bag stamp has n
  assert.ok(text.includes('[data-toggle-role="moon"] .st1 {fill:var(--cc-toggle-paper,#F6F7F5);}'));
  assert.ok(text.includes('[data-toggle-role="moon"] .st0 {fill:var(--cc-toggle-ink,#293D2D);}'));
  assert.ok(theme.includes('background:transparent;color:inherit;'));
- assert.ok(!theme.includes('background:var(--theme-gallery);color:var(--theme-on-panel);'));
+ const darkBagRule=theme.match(/:root\[data-theme="dark"\] #app > \.site-header \.bag-count\{([^}]+)\}/)?.[1];
+ assert.ok(darkBagRule,'dark bag badge rule exists');
+ assert.ok(!darkBagRule.includes('var(--theme-gallery)'),'bag dark background cannot be a rectangle');
 });
