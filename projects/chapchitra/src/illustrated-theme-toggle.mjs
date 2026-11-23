@@ -1,6 +1,7 @@
 /* CHAPCHITRA — hand-drawn SVG theme switch. Art source is immutable.
    The app's existing chapchitraTheme controller remains the ONLY state owner. */
 const ASSET='/assets/theme-toggle/toggle-integrated.svg';
+const PRESS=[41,61,45];
 const TERRACOTTA=[138,80,59];
 const CREAM=[244,235,228];
 const TRAVEL=196;
@@ -37,14 +38,16 @@ function createMotion(svg){
  let progress=0,target=0,raf=0,startedAt=0,from=0,duration=DURATION;
  const show=(v)=>{
   progress=clamp(v);
-  const ink=lerpColor(TERRACOTTA,CREAM,progress);
+  // Existing Illustrator ink changes from light Press Green to dark Terracotta.
+  svg.style.setProperty('--cc-toggle-ink',lerpColor(PRESS,TERRACOTTA,progress));
+  const ink=lerpColor(PRESS,CREAM,progress);
   const paper=lerpColor(CREAM,TERRACOTTA,progress);
   ref['inner-fill'].style.fill=paper;
   ref['inner-texture'].style.fill=ink;
   ref['inner-border'].style.fill=ink;
-  // Preserve the Illustrator light endpoint: Cream circle, Terracotta distress.
+  // Preserve the Illustrator light endpoint: Cream circle, Press Green distress.
   sliderBase.style.fill=lerpColor(CREAM,TERRACOTTA,progress);
-  sliderGrain.style.fill=lerpColor(TERRACOTTA,CREAM,progress);
+  sliderGrain.style.fill=lerpColor(PRESS,CREAM,progress);
   ref.slider.setAttribute('transform',`translate(${(TRAVEL*progress).toFixed(3)} 0)`);
   ref.day.style.opacity=String(1-progress);
   ref.night.style.opacity=String(progress);

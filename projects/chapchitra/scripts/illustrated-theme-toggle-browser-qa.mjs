@@ -29,7 +29,10 @@ const read=async(page,selector)=>page.locator(selector+' svg.cc-owner-toggle-svg
   sliderTransform:svg.querySelector('[data-toggle-role=slider]').getAttribute('transform'),
   sliderBaseFill:getComputedStyle(svg.querySelector('[id$="sliding-circle-inside-fill"] g > path')).fill,
   sliderGrainFill:getComputedStyle(svg.querySelector('[id$="sliding-circle-inside-fill"] > g:nth-child(2)')).fill,
-  sunFill:getComputedStyle(svg.querySelector('[data-toggle-role="sun"] path')).fill
+  sunFill:getComputedStyle(svg.querySelector('[data-toggle-role="sun"] path')).fill,
+  dayInkFill:getComputedStyle(svg.querySelector('[data-toggle-role="day"] .st1')).fill,
+  outerInkFill:getComputedStyle(svg.querySelector('[id$="pill-outer-outline"] .st1')).fill,
+  artworkInk:getComputedStyle(svg).getPropertyValue('--cc-toggle-ink').trim()
  };
 });
 async function capture(page,name){
@@ -94,12 +97,13 @@ for(const profile of profiles){
    assert(Math.abs(start.progress-(theme==='dark'?1:0))<.001,'initial SVG theme flash');
    assert(start.sliderBaseFill===(theme==='dark'?'rgb(138, 80, 59)':'rgb(244, 235, 228)'),
     'Illustrator slider base endpoint wrong: '+start.sliderBaseFill);
-   assert(start.sliderGrainFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(138, 80, 59)'),
+   assert(start.sliderGrainFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(41, 61, 45)'),
     'Illustrator slider grain endpoint wrong: '+start.sliderGrainFill);
-   assert(start.sunFill==='rgb(138, 80, 59)','original sun must be Terracotta: '+start.sunFill);
-   assert(!/#293D2D|rgb\s*\(\s*41\s*,\s*61\s*,\s*45\s*\)/i.test(
-    await page.locator(selector+' svg').evaluate(el=>el.outerHTML)),
-    'Old Press Green retained in derived SVG');
+   const stateInk=theme==='dark'?'rgb(138, 80, 59)':'rgb(41, 61, 45)';
+   assert(start.sunFill===stateInk,'sun ink not using theme palette: '+start.sunFill);
+   assert(start.dayInkFill===stateInk,'day ink not using theme palette: '+start.dayInkFill);
+   assert(start.outerInkFill===stateInk,'outer pill ink not using theme palette: '+start.outerInkFill);
+   assert(start.artworkInk===stateInk,'scoped illustrator ink not using theme palette: '+start.artworkInk);
    await capture(page,profile.name+'-'+theme+'-initial-navbar');
    await button.click({timeout:10000});
    await page.waitForFunction(sel=>{
@@ -113,6 +117,8 @@ for(const profile of profiles){
    assert(end.progress===(theme==='dark'?0:1),'theme slide did not finish');
    assert(end.sliderBaseFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(138, 80, 59)'),
     'reversed slider base endpoint wrong: '+end.sliderBaseFill);
+   assert(end.artworkInk===(theme==='dark'?'rgb(41, 61, 45)':'rgb(138, 80, 59)'),
+    'reversed illustrator ink palette wrong: '+end.artworkInk);
    assert(start.svgBox.x===end.svgBox.x&&start.svgBox.width===end.svgBox.width,'outer pill moved or scaled');
    assert(await button.getAttribute('aria-pressed')===(theme==='dark'?'false':'true'),'ARIA state not updated');
    await capture(page,profile.name+'-'+theme+'-finished-navbar');
