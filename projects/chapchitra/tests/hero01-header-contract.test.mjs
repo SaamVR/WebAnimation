@@ -38,7 +38,7 @@ test('Hero01 preserves one navbar, restores standard presentation on slide and s
 test('Existing C08 keyframes are reused through original white-background variant',()=>{
  assert.match(app,/heroVariant:'paper'/);
  assert.match(c08,/heroVariant='dark'/);
- assert.match(c08,/heroVariant==='paper'\?SOURCE:HERO/);
+ assert.match(c08,/heroVariant==='paper'\?themedSource\(\):HERO/);
  assert.match(c08css,/\.hero01-full-logo\.c08-hero-shown/);
  assert.match(c08css,/clip-path:inset\(0 0 26\.35% 0\)/);
  assert.doesNotMatch(app,/new win\.IntersectionObserver|gsap\.timeline/);
