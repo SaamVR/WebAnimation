@@ -32,7 +32,10 @@ const read=async(page,selector)=>page.locator(selector+' svg.cc-owner-toggle-svg
   sunFill:getComputedStyle(svg.querySelector('[data-toggle-role="sun"] path')).fill,
   dayInkFill:getComputedStyle(svg.querySelector('[data-toggle-role="day"] .st1')).fill,
   outerInkFill:getComputedStyle(svg.querySelector('[id$="pill-outer-outline"] .st1')).fill,
-  artworkInk:getComputedStyle(svg).getPropertyValue('--cc-toggle-ink').trim()
+  artworkInk:getComputedStyle(svg).getPropertyValue('--cc-toggle-ink').trim(),
+  artworkPaper:getComputedStyle(svg).getPropertyValue('--cc-toggle-paper').trim(),
+  mountainFill:getComputedStyle(svg.querySelector('[id$="cc-mountain-solid-fill"]')).fill,
+  mountainDetails:getComputedStyle(svg.querySelector('.cc-mountain-negative-details path.st1')).fill
  };
 });
 async function capture(page,name){
@@ -89,13 +92,13 @@ for(const profile of profiles){
    env=await prepare(profile,theme,profile.record&&theme==='light');
    const {page,button,selector,issues}=env;
    const start=await read(page,selector);
-   assert(start.pathCount===915,'original geometry/path count changed');
+   assert(start.pathCount===916,'original geometry/path count plus one mountain background changed');
    assert(start.roles.length===8,'required layer roles missing');
    assert(start.dayClip?.includes('url(#'),'unclipped scenery');
    assert(start.clipStyle&&start.clipStyle!=='none','invalid scene clipping');
    assert(Math.abs(start.svgBox.width-96)<2,'native SVG width wrong');
    assert(Math.abs(start.progress-(theme==='dark'?1:0))<.001,'initial SVG theme flash');
-   assert(start.sliderBaseFill===(theme==='dark'?'rgb(138, 80, 59)':'rgb(244, 235, 228)'),
+   assert(start.sliderBaseFill===(theme==='dark'?'rgb(138, 80, 59)':'rgb(246, 247, 245)'),
     'Illustrator slider base endpoint wrong: '+start.sliderBaseFill);
    assert(start.sliderGrainFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(41, 61, 45)'),
     'Illustrator slider grain endpoint wrong: '+start.sliderGrainFill);
@@ -104,6 +107,11 @@ for(const profile of profiles){
    assert(start.dayInkFill===stateInk,'day ink not using theme palette: '+start.dayInkFill);
    assert(start.outerInkFill===stateInk,'outer pill ink not using theme palette: '+start.outerInkFill);
    assert(start.artworkInk===stateInk,'scoped illustrator ink not using theme palette: '+start.artworkInk);
+    assert(start.mountainFill===stateInk,'mountain silhouette fill not using theme ink: '+start.mountainFill);
+    const paperInk=theme==='dark'?'rgb(244, 235, 228)':'rgb(246, 247, 245)';
+    assert(start.artworkPaper===paperInk,'paper light Gallery White / dark Cream incorrect: '+start.artworkPaper);
+    assert(start.mountainDetails===paperInk,
+      'original mountain relief paths not preserving inverse paper color: '+start.mountainDetails);
    await capture(page,profile.name+'-'+theme+'-initial-navbar');
    await button.click({timeout:10000});
    await page.waitForFunction(sel=>{
@@ -115,7 +123,7 @@ for(const profile of profiles){
    await page.waitForTimeout(360);
    const end=await read(page,selector);
    assert(end.progress===(theme==='dark'?0:1),'theme slide did not finish');
-   assert(end.sliderBaseFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(138, 80, 59)'),
+   assert(end.sliderBaseFill===(theme==='dark'?'rgb(246, 247, 245)':'rgb(138, 80, 59)'),
     'reversed slider base endpoint wrong: '+end.sliderBaseFill);
    assert(end.artworkInk===(theme==='dark'?'rgb(41, 61, 45)':'rgb(138, 80, 59)'),
     'reversed illustrator ink palette wrong: '+end.artworkInk);
