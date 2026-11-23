@@ -41,18 +41,31 @@ export function polaroidInkPath(width,height){
 export function installPolaroidOutlines(root=document){
  if(typeof document==='undefined'||typeof ResizeObserver==='undefined')return;
  const frames=new WeakSet();
- const resize=new ResizeObserver(entries=>{
-  for(const {target} of entries){
+ const pending=new Set();
+ let raf=0;
+ // Safari/WebKit can loop when a measured SVG mutates during observer
+ // delivery. Keep the exact existing path function; commit its geometry
+ // outside the ResizeObserver notification on the next native animation frame.
+ const paint=()=>{
+  raf=0;
+  for(const target of pending){
+   if(!target.isConnected)continue;
    const svg=target.querySelector(':scope > .polaroid-ink-outline');
    const path=svg?.firstElementChild;
    if(!svg||!path)continue;
-   // offset dimensions ignore the approved hover rotate/scale transform;
-   // the ink must always fit the actual paper's untransformed border box.
+   // Original untransformed CSS-pixel dimensions, not animated hover scales.
    const width=target.offsetWidth,height=target.offsetHeight;
    if(width<40||height<40)continue;
-   svg.setAttribute('viewBox','0 0 '+round(width)+' '+round(height));
-   path.setAttribute('d',polaroidInkPath(width,height));
+   const box='0 0 '+round(width)+' '+round(height);
+   if(svg.getAttribute('viewBox')!==box)svg.setAttribute('viewBox',box);
+   const d=polaroidInkPath(width,height);
+   if(path.getAttribute('d')!==d)path.setAttribute('d',d);
   }
+  pending.clear();
+ };
+ const resize=new ResizeObserver(entries=>{
+  for(const {target} of entries)pending.add(target);
+  if(pending.size&&!raf)raf=requestAnimationFrame(paint);
  });
  function watch(frame){
   if(frames.has(frame))return;
@@ -77,5 +90,5 @@ export function installPolaroidOutlines(root=document){
   for(const record of records)for(const node of record.addedNodes)scan(node);
  });
  observer.observe(root.body||root,{childList:true,subtree:true});
- return {disconnect(){observer.disconnect();resize.disconnect()}};
+ return {disconnect(){observer.disconnect();resize.disconnect();if(raf)cancelAnimationFrame(raf);pending.clear()}};
 }
