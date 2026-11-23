@@ -64,10 +64,10 @@ test('sun remains Press Green and sliding circle is Gallery White in light mode'
  assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,TERRACOTTA,progress\)/);
 });
 test('light Gallery White/Press Green and dark Cream/Terracotta palettes',()=>{
- assert.equal((text.match(/#293D2D/gi)||[]).length,5,'ink roles plus mountain fill default Press Green');
+ assert.equal((text.match(/#293D2D/gi)||[]).length,6,'ink roles, moon role fallback and mountain fill default Press Green');
  assert.equal((text.match(/#8A503B/gi)||[]).length,0,'dark ink is runtime only');
  assert.equal((text.match(/#F4EBE4/gi)||[]).length,0,'derived SVG initial light state must be Gallery White');
- assert.equal((text.match(/#F6F7F5/gi)||[]).length,4,'all four visible paper roles use Gallery White');
+ assert.equal((text.match(/#F6F7F5/gi)||[]).length,5,'all paper roles including moon CSS fallback use Gallery White');
  assert.match(text,/<g id="light-mode-scene-mountains" class="cc-mountain-negative-details">/);
  assert.match(text,/\.cc-mountain-negative-details \.st1 \{fill:var\(--cc-toggle-paper,#F6F7F5\);\}/);
  assert.match(text,/<path id="cc-mountain-solid-fill"[^>]*style="fill:var\(--cc-toggle-ink,#293D2D\);"/);
