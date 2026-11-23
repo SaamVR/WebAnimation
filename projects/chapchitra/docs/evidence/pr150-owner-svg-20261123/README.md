@@ -18,3 +18,6 @@ C08 dark owner-cream is a derived paint-only asset: 22 old-Cream fill triples up
 
 ## Release boundary
 Feature PR only; do not merge into main or production. The only approved integration destination is the existing `deploy/chapchitra-render-review` staging branch after required CI passes and serial integration is authorized.
+
+## Footer contrast audit
+The footer uses permanent Dark Olive `#1F2216` in both themes. The original light Press Green wordmark on that background was visually illegible in browser screenshots. Consequently the **original inverted** SVG is used there in *both* modes; layout, background, dimensions, original texture, and paint are unchanged. The theme-specific header and hero SVGs remain fully themed. `footer-light.png` and `footer-dark.png` show the corrected full-width footer in live-browser candidate override tests.
