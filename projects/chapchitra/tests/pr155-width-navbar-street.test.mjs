@@ -11,12 +11,12 @@ test('street Illustrator master remains byte-for-byte intact; web display change
  const master=file('src/assets/illustrator/masters/street-illustration-layers-original.svg');
  const derivative=file('src/assets/street-illustration-provisional.svg');
  assert.equal(checksum(master),'7eeba23119cc0e04b12487321aeb1518f1daf67418f0728386db06ffa17f099c');
- assert.equal(checksum(derivative),'d5349e474c50a8c57627b6a019e2159a3f9a5e6f154dae77d1dddbdc1ad69a64');
+ assert.equal(checksum(derivative),'2c0bb4d5f2ac6e82fac632bba694b8cc2acdd8ecd551f459c039e842f95ca72b');
  const src=master.toString('utf8'),web=derivative.toString('utf8');
  const missing='Street_illustration_4K_transparent.png';
  const transparent='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGBgAAAABQABpfZFQAAAAABJRU5ErkJggg==';
  assert.equal(src.split(missing).length,2);
- assert.equal(web,src.replace(missing,transparent),'only invisible missing Layer_2 raster placeholder may change');
+ assert.equal(web,src.replace(missing,transparent).replace('y="0px"\r\n\t viewBox="0 0 1920 700"','y="0px" width="1920" height="700"\r\n\t viewBox="0 0 1920 700"'),'only the missing hidden raster reference and intrinsic web framing may change');
  for(const candidate of [src,web]){
   assert.match(candidate,/viewBox="0 0 1920 700"/);
   assert.equal((candidate.match(/<path\b/g)||[]).length,4012);
