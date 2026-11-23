@@ -193,5 +193,7 @@ test('native page commit is gated by actual complete ink geometry and a paint bo
  assert.match(prepaint,/background-color:#F6F7F5/);
  assert.match(runtime,/inkAssetLayer\.style\.clipPath=clip/);
  assert.match(runtime,/const sealed=mode==='reveal'\|\|\(mode==='cover'&&p>=1\)/);
- assert.match(runtime,/const backing=sealed\?'#F6F7F5':'transparent'/);
+ assert.match(runtime,/const backing=sealed\?c02Backing:'transparent'/);
+ assert.match(runtime,/c02Backing=darkInk\?C02_INK_ASSET\.darkBacking:C02_INK_ASSET\.lightBacking/);
+ assert.match(prepaint,/background-color:#6E523F/);
 });
