@@ -36,6 +36,8 @@ test('one reusable SVG inner pill; original paths retained without redraw',()=>{
  const orig=new Set(shapes.map(normalize));
  const mountainFill=text.match(/<path id="cc-mountain-solid-fill" d="([^"]+)"/)?.[1];
  assert.ok(mountainFill,'added mountain silhouette present');
+ assert.equal(mountainFill,'M62 120 L105 101 L180 51 L236 80 L260 66 L310 87 L310 122 L62 122 Z',
+  'solid green mountain must extend to the owner-marked left wedge without modifying original edge paths');
  assert.doesNotMatch(source,/cc-mountain-solid-fill/,'owner master unchanged');
  for(const m of text.matchAll(/\bd="([^"]+)"/g))
   assert.ok(orig.has(normalize(m[1]))||normalize(m[1])===normalize(mountainFill),
