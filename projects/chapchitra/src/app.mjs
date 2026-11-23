@@ -614,7 +614,7 @@ async function boot(){
   // only; never send visitors to 404s, demo checkout, or invented URLs.
   const help=['Support','Terms & Conditions','Contact Us'];
   return '<footer class="site-footer" id="footer"><div class="wrap footer-grid">'+
-   '<div class="footer-identity"><a class="logo-word logo-word--footer" href="/" aria-label="CHAPCHITRA home"><img src="/assets/brand/chapchitra-light-wordmark.svg" data-cc-theme-brand="footer" width="1400" height="316" alt="" aria-hidden="true" loading="lazy" decoding="async"></a><p>PEOPLE · PLACES · PRINTS</p>'+footerSocials()+'</div>'+
+   '<div class="footer-identity"><a class="logo-word logo-word--footer" href="/" aria-label="CHAPCHITRA home"><img src="/assets/brand/chapchitra-dark-wordmark.svg" data-cc-theme-brand="footer" width="1400" height="316" alt="" aria-hidden="true" loading="lazy" decoding="async"></a><p>PEOPLE · PLACES · PRINTS</p>'+footerSocials()+'</div>'+
    '<nav class="footer-column footer-nav-discover" aria-labelledby="footerDiscover"><h2 id="footerDiscover">Discover</h2>'+
    discover.map(([title,href])=>'<a href="'+href+'">'+title+'</a>').join('')+'</nav>'+
    '<div class="footer-column footer-nav-help" aria-labelledby="footerHelp"><h2 id="footerHelp">Help</h2>'+
@@ -755,7 +755,7 @@ async function boot(){
   const approvedBrandSources={
    nav:dark?'/assets/brand/chapchitra-dark-wordmark.svg':'/assets/brand/chapchitra-light-wordmark.svg',
    hero:dark?'/assets/brand/chapchitra-dark-full.svg':'/assets/brand/chapchitra-light-full.svg',
-   footer:dark?'/assets/brand/chapchitra-dark-wordmark.svg':'/assets/brand/chapchitra-light-wordmark.svg',
+   footer:'/assets/brand/chapchitra-dark-wordmark.svg',
    cloth:dark?'/assets/brand/chapchitra-dark-cloth.svg':'/assets/brand/chapchitra-light-cloth.svg'
   };
   for(const image of document.querySelectorAll('img[data-cc-theme-brand]')){
