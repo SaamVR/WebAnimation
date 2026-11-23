@@ -1,0 +1,532 @@
+{
+  "method": "Actual staging origin in Chromium/WebKit with PR #153 exact resources locally intercepted; NOT deployed",
+  "results": [
+    {
+      "name": "desktop-chromium-light",
+      "theme": "light",
+      "checks": {
+        "correctTheme": true,
+        "fourOriginalVectors": true,
+        "background": true,
+        "touchTargets": true,
+        "stampedNumeralUnchanged": true,
+        "existingCardHeartUnchanged": true,
+        "themeToggleUnchanged": true,
+        "noOverflow": true,
+        "mobileOptionalHidden": true,
+        "searchOpens": true,
+        "searchCloses": true,
+        "favoritesSelectedRoute": true,
+        "noPageErrors": true,
+        "noHTTPFailures": true
+      },
+      "errors": [],
+      "badHttp": [],
+      "patches": [
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-outline.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg",
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-selected.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg"
+      ],
+      "start": {
+        "theme": "light",
+        "icons": {
+          "search": {
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "loaded": true,
+            "style": "rgba(0, 0, 0, 0)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "favorites": {
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "loaded": true,
+            "style": "rgba(0, 0, 0, 0)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "account": {
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "loaded": true,
+            "style": "rgba(0, 0, 0, 0)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "bag": {
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "loaded": true,
+            "style": "rgba(0, 0, 0, 0)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          }
+        },
+        "menu": true,
+        "stamp": "/assets/illustrator/stamp-0.svg",
+        "card": "/assets/illustrator/nav-favorites-outline.svg",
+        "toggleExists": true,
+        "horizontalOverflow": 0,
+        "headerBox": {
+          "x": 0,
+          "y": 34,
+          "width": 1440,
+          "height": 64,
+          "top": 34,
+          "right": 1440,
+          "bottom": 98,
+          "left": 0
+        }
+      },
+      "favPage": {
+        "current": "page",
+        "src": "/assets/illustrator/nav-owner-favorites-selected.svg"
+      },
+      "failed": []
+    },
+    {
+      "name": "desktop-chromium-dark",
+      "theme": "dark",
+      "checks": {
+        "correctTheme": true,
+        "fourOriginalVectors": true,
+        "background": true,
+        "touchTargets": true,
+        "stampedNumeralUnchanged": true,
+        "existingCardHeartUnchanged": true,
+        "themeToggleUnchanged": true,
+        "noOverflow": true,
+        "mobileOptionalHidden": true,
+        "searchOpens": true,
+        "searchCloses": true,
+        "favoritesSelectedRoute": true,
+        "noPageErrors": true,
+        "noHTTPFailures": true
+      },
+      "errors": [],
+      "badHttp": [],
+      "patches": [
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-outline.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg",
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-selected.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg"
+      ],
+      "start": {
+        "theme": "dark",
+        "icons": {
+          "search": {
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "favorites": {
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "account": {
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "bag": {
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          }
+        },
+        "menu": true,
+        "stamp": "/assets/illustrator/stamp-0.svg",
+        "card": "/assets/illustrator/nav-favorites-outline.svg",
+        "toggleExists": true,
+        "horizontalOverflow": 0,
+        "headerBox": {
+          "x": 0,
+          "y": 34,
+          "width": 1440,
+          "height": 64,
+          "top": 34,
+          "right": 1440,
+          "bottom": 98,
+          "left": 0
+        }
+      },
+      "favPage": {
+        "current": "page",
+        "src": "/assets/illustrator/nav-owner-favorites-selected.svg"
+      },
+      "failed": []
+    },
+    {
+      "name": "tablet-webkit-dark",
+      "theme": "dark",
+      "checks": {
+        "correctTheme": true,
+        "fourOriginalVectors": true,
+        "background": true,
+        "touchTargets": true,
+        "stampedNumeralUnchanged": true,
+        "existingCardHeartUnchanged": true,
+        "themeToggleUnchanged": true,
+        "noOverflow": true,
+        "mobileOptionalHidden": true,
+        "searchOpens": true,
+        "searchCloses": true,
+        "favoritesSelectedRoute": true,
+        "noPageErrors": true,
+        "noHTTPFailures": true
+      },
+      "errors": [],
+      "badHttp": [],
+      "patches": [
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-outline.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg",
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-selected.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg"
+      ],
+      "start": {
+        "theme": "dark",
+        "icons": {
+          "search": {
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "favorites": {
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "account": {
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "bag": {
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          }
+        },
+        "menu": true,
+        "stamp": "/assets/illustrator/stamp-0.svg",
+        "card": "/assets/illustrator/nav-favorites-outline.svg",
+        "toggleExists": true,
+        "horizontalOverflow": 0,
+        "headerBox": {
+          "x": 0,
+          "y": 34,
+          "width": 834,
+          "height": 64,
+          "top": 34,
+          "right": 834,
+          "bottom": 98,
+          "left": 0
+        }
+      },
+      "favPage": {
+        "current": "page",
+        "src": "/assets/illustrator/nav-owner-favorites-selected.svg"
+      },
+      "failed": []
+    },
+    {
+      "name": "mobile-chromium-light",
+      "theme": "light",
+      "checks": {
+        "correctTheme": true,
+        "fourOriginalVectors": true,
+        "background": true,
+        "touchTargets": true,
+        "stampedNumeralUnchanged": true,
+        "existingCardHeartUnchanged": true,
+        "themeToggleUnchanged": true,
+        "noOverflow": true,
+        "mobileOptionalHidden": true,
+        "mobileMenuFavoritesAccount": true,
+        "searchOpens": true,
+        "searchCloses": true,
+        "favoritesSelectedRoute": true,
+        "noPageErrors": true,
+        "noHTTPFailures": true
+      },
+      "errors": [],
+      "badHttp": [],
+      "patches": [
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-outline.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg",
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-selected.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg"
+      ],
+      "start": {
+        "theme": "light",
+        "icons": {
+          "search": {
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "loaded": true,
+            "style": "rgba(0, 0, 0, 0)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "favorites": {
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "loaded": true,
+            "style": "rgba(0, 0, 0, 0)",
+            "target": {
+              "width": 0,
+              "height": 0
+            },
+            "visible": false,
+            "ariaCurrent": null
+          },
+          "account": {
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "loaded": true,
+            "style": "rgba(0, 0, 0, 0)",
+            "target": {
+              "width": 0,
+              "height": 0
+            },
+            "visible": false,
+            "ariaCurrent": null
+          },
+          "bag": {
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "loaded": true,
+            "style": "rgba(0, 0, 0, 0)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          }
+        },
+        "menu": true,
+        "stamp": "/assets/illustrator/stamp-0.svg",
+        "card": "/assets/illustrator/nav-favorites-outline.svg",
+        "toggleExists": true,
+        "horizontalOverflow": 0,
+        "headerBox": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 390,
+          "height": 65,
+          "top": 45.1875,
+          "right": 390,
+          "bottom": 110.1875,
+          "left": 0
+        }
+      },
+      "favPage": {
+        "current": "page",
+        "src": "/assets/illustrator/nav-owner-favorites-selected.svg"
+      },
+      "failed": []
+    },
+    {
+      "name": "mobile-chromium-dark",
+      "theme": "dark",
+      "checks": {
+        "correctTheme": true,
+        "fourOriginalVectors": true,
+        "background": true,
+        "touchTargets": true,
+        "stampedNumeralUnchanged": true,
+        "existingCardHeartUnchanged": true,
+        "themeToggleUnchanged": true,
+        "noOverflow": true,
+        "mobileOptionalHidden": true,
+        "mobileMenuFavoritesAccount": true,
+        "searchOpens": true,
+        "searchCloses": true,
+        "favoritesSelectedRoute": true,
+        "noPageErrors": true,
+        "noHTTPFailures": true
+      },
+      "errors": [],
+      "badHttp": [],
+      "patches": [
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-outline.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg",
+        "/app.mjs",
+        "/theme.css",
+        "/assets/illustrator/nav-owner-search.svg",
+        "/assets/illustrator/nav-owner-favorites-selected.svg",
+        "/assets/illustrator/nav-owner-account.svg",
+        "/assets/illustrator/nav-owner-bag.svg"
+      ],
+      "start": {
+        "theme": "dark",
+        "icons": {
+          "search": {
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          },
+          "favorites": {
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 0,
+              "height": 0
+            },
+            "visible": false,
+            "ariaCurrent": null
+          },
+          "account": {
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 0,
+              "height": 0
+            },
+            "visible": false,
+            "ariaCurrent": null
+          },
+          "bag": {
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "loaded": true,
+            "style": "rgb(41, 61, 45)",
+            "target": {
+              "width": 44,
+              "height": 44
+            },
+            "visible": true,
+            "ariaCurrent": null
+          }
+        },
+        "menu": true,
+        "stamp": "/assets/illustrator/stamp-0.svg",
+        "card": "/assets/illustrator/nav-favorites-outline.svg",
+        "toggleExists": true,
+        "horizontalOverflow": 0,
+        "headerBox": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 390,
+          "height": 65,
+          "top": 45.1875,
+          "right": 390,
+          "bottom": 110.1875,
+          "left": 0
+        }
+      },
+      "favPage": {
+        "current": "page",
+        "src": "/assets/illustrator/nav-owner-favorites-selected.svg"
+      },
+      "failed": []
+    }
+  ]
+}
