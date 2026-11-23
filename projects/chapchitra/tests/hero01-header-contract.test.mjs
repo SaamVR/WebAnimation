@@ -11,7 +11,7 @@ test('Hero01 uses original illustrated badge, distinct responsive tear, and no p
  assert.match(app,/hero01-paper-panel/);
  assert.match(app,/hero01-paper-edge/);
  assert.doesNotMatch(app,/hero01-paper-fibers/);
- assert.match(app,/\/assets\/chapchitra-full\.webp/);
+ assert.match(app,/\/assets\/brand\/chapchitra-light-full\.svg/);
  assert.match(app,/id="c08HeroStage"/);
  assert.doesNotMatch(app,/<img class="hero-background" src="\/assets\/hero-paper\.svg"/);
  assert.match(css,/#hero \.hero-cover\s*\{\s*background:#1C241D/);

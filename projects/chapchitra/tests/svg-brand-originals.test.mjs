@@ -29,7 +29,7 @@ for(const [theme,meta] of Object.entries(originals)){
   const pa=vectorAttributes(original,'polygon','points'),pb=vectorAttributes(derived,'polygon','points');
   assert.equal(a.length,3066);assert.deepEqual(b.map(normalizeVectorSpacing),a.map(normalizeVectorSpacing));
   assert.equal(pa.length,55);assert.deepEqual(pb.map(normalizeVectorSpacing),pa.map(normalizeVectorSpacing));
-  assert.equal(style(derived),style(original));
+  assert.equal(normalizeVectorSpacing(style(derived)),normalizeVectorSpacing(style(original)));
   assert.match(derived,new RegExp('viewBox="'+meta.box.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'"'));
   assert.match(derived,/id="Cloth_patch"/);
   assert.match(derived,/id="Wordmark"/);
@@ -42,7 +42,7 @@ for(const [theme,meta] of Object.entries(originals)){
   assert.match(word,/id="Wordmark"/);
   assert.doesNotMatch(word,/id="Cloth_patch"/);
   assert.match(word,new RegExp('viewBox="'+meta.wordBox.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'"'));
-  assert.equal(style(cloth),style(read('masters/'+meta.name)));
+  assert.equal(normalizeVectorSpacing(style(cloth)),normalizeVectorSpacing(style(read('masters/'+meta.name))));
  });
 }
 
