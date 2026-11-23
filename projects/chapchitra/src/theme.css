@@ -665,7 +665,7 @@
   gap:2px;
 }
 :root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
-  display:inline-grid;
+  /* Do not override the original mobile display:none for Favorites/Account. */
   place-items:center;
   box-sizing:border-box;
   width:44px;
