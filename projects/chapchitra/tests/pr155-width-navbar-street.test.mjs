@@ -41,7 +41,7 @@ test('page backgrounds are full width while Shop and editorial content stay boun
  const css=text('src/styles.css');
  assert.match(css,/#app,\s*\n#main\{\s*\n\s*width:100%/);
  assert.match(css,/#categories\.section-pad\.wrap,\s*\n#collection\.section-pad\.wrap,\s*\n#values\.section-pad\.wrap\{\s*\n\s*width:100%/);
- assert.match(css,/#collection\.section-pad\.wrap > \*\{/);
+ assert.match(css,/#collection\.section-pad\.wrap > \*,/);
  assert.match(css,/\.route-head\.wrap\{\s*\n\s*width:100%/);
  assert.match(css,/\.shop-listing\.wrap\{\s*\n\s*width:100%/);
  assert.match(css,/padding-inline:max\(32px,calc\(\(100% - 1680px\)\/2\)\)/);
