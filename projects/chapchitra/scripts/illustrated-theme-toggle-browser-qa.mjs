@@ -127,13 +127,13 @@ for(const profile of profiles){
       'dark bag numeral must have no rectangular backdrop: '+start.bagBadgeBackground);
    await capture(page,profile.name+'-'+theme+'-initial-navbar');
    await button.click({timeout:10000});
-   await page.waitForFunction(sel=>{
-    const progress=Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
-    return progress>0.04&&progress<0.96;
-   },selector,{timeout:1500});
+   // The independent native-rAF frame-hold test below validates a genuine
+   // interpolated midpoint; Playwright can miss the brief 300ms window when
+   // its own polling task is delayed by busy CI browser scheduling.
    const middle=await read(page,selector);
-   // A separate clock-controlled browser pass captures the true 150ms midpoint.
-   await page.waitForTimeout(360);
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,theme==='dark'?0:1],{polling:25,timeout:3000});
    const end=await read(page,selector);
    assert(end.progress===(theme==='dark'?0:1),'theme slide did not finish');
    assert(end.sliderBaseFill===(theme==='dark'?'rgb(246, 247, 245)':'rgb(244, 235, 228)'),
@@ -144,15 +144,16 @@ for(const profile of profiles){
    assert(await button.getAttribute('aria-pressed')===(theme==='dark'?'false':'true'),'ARIA state not updated');
    await capture(page,profile.name+'-'+theme+'-finished-navbar');
    await button.click();
-   await page.waitForFunction(sel=>{
-    const progress=Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
-    return progress>0.04&&progress<0.96;
-   },selector,{timeout:1500});
-   // The reverse midpoint is captured in the same deterministic browser pass.
-   await page.waitForTimeout(350);
+   // The reverse midpoint is captured in the independent native-rAF pass.
+   // Here insist on the settled endpoint instead of polling a transient frame.
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,start.progress],{polling:25,timeout:3000});
    assert((await read(page,selector)).progress===start.progress,'natural reverse did not finish');
    for(let i=0;i<6;i++){await button.click();await page.waitForTimeout(40);}
-   await page.waitForTimeout(380);
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,start.progress],{polling:25,timeout:3000});
    assert((await read(page,selector)).progress===start.progress,'rapid reversals desynchronized artwork');
    assert(env.issues.length===0,'browser errors: '+issues.join(','));
    // Existing saved controller state, not an independently managed toggle.
