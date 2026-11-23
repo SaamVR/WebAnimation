@@ -1,0 +1,705 @@
+{
+  "method": "Actual public staging browser with exact PR candidate source overrides, NOT a deployed release",
+  "results": [
+    {
+      "id": "desktop-light",
+      "theme": "light",
+      "checks": {
+        "originalLoaded": true,
+        "navLoaded": true,
+        "correctTheme": true,
+        "correctSvgRoutes": true,
+        "noHorizontalOverflow": true,
+        "clothLoaded": true,
+        "clothTheme": true,
+        "stageAligned": true,
+        "c08Completed": true,
+        "staticHidden": true,
+        "clothOnTop": true,
+        "themeSwitchUpdatesAll": true,
+        "noHTTPFailures": true,
+        "noJsErrors": true
+      },
+      "errors": [],
+      "patched": [
+        "/motion/c08/logo-player.css",
+        "/app.mjs",
+        "/assets/brand/chapchitra-light-wordmark.svg",
+        "/assets/brand/chapchitra-light-full.svg",
+        "/motion/c08/logo-player.mjs",
+        "/assets/brand/chapchitra-light-cloth.svg",
+        "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+        "/assets/brand/chapchitra-dark-wordmark.svg",
+        "/assets/brand/chapchitra-dark-full.svg",
+        "/assets/brand/chapchitra-dark-cloth.svg"
+      ],
+      "httpErrors": [],
+      "start": {
+        "theme": "light",
+        "original": {
+          "src": "/assets/brand/chapchitra-light-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 582.296875,
+            "y": 91,
+            "w": 275.390625,
+            "h": 231.78125
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-light-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 582.296875,
+            "y": 91,
+            "w": 275.390625,
+            "h": 231.78125
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-light-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-light-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 582.296875,
+          "y": 91,
+          "w": 275.390625,
+          "h": 231.78125
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-original.json",
+          "frame": 34.98599999999996
+        },
+        "overflow": 0
+      },
+      "end": {
+        "theme": "light",
+        "original": {
+          "src": "/assets/brand/chapchitra-light-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 582.296875,
+            "y": 91,
+            "w": 275.390625,
+            "h": 231.78125
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-light-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 582.296875,
+            "y": 91,
+            "w": 275.390625,
+            "h": 231.78125
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-light-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-light-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 582.296875,
+          "y": 91,
+          "w": 275.390625,
+          "h": 231.78125
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": false,
+          "completed": 1,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-original.json",
+          "frame": 239
+        },
+        "overflow": 0
+      },
+      "switch": {
+        "theme": "dark",
+        "original": {
+          "src": "/assets/brand/chapchitra-dark-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-dark-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": false,
+          "completed": 1,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+          "frame": 239
+        },
+        "overflow": 0
+      },
+      "video": "F:\\CHAPCHITRA_SVG_PR150_20261123\\candidate-browser-evidence\\desktop-light-C08-autoplay.webm",
+      "failed": []
+    },
+    {
+      "id": "desktop-dark",
+      "theme": "dark",
+      "checks": {
+        "originalLoaded": true,
+        "navLoaded": true,
+        "correctTheme": true,
+        "correctSvgRoutes": true,
+        "noHorizontalOverflow": true,
+        "clothLoaded": true,
+        "clothTheme": true,
+        "stageAligned": true,
+        "c08Completed": true,
+        "staticHidden": true,
+        "clothOnTop": true,
+        "noHTTPFailures": true,
+        "noJsErrors": true
+      },
+      "errors": [],
+      "patched": [
+        "/motion/c08/logo-player.css",
+        "/app.mjs",
+        "/assets/brand/chapchitra-dark-wordmark.svg",
+        "/assets/brand/chapchitra-dark-full.svg",
+        "/motion/c08/logo-player.mjs",
+        "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+        "/assets/brand/chapchitra-dark-cloth.svg"
+      ],
+      "httpErrors": [],
+      "start": {
+        "theme": "dark",
+        "original": {
+          "src": "/assets/brand/chapchitra-dark-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 582.296875,
+            "y": 91,
+            "w": 275.390625,
+            "h": 231.78125
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-dark-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 582.296875,
+            "y": 91,
+            "w": 275.390625,
+            "h": 231.78125
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 582.296875,
+          "y": 91,
+          "w": 275.390625,
+          "h": 231.78125
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+          "frame": 37.992
+        },
+        "overflow": 0
+      },
+      "end": {
+        "theme": "dark",
+        "original": {
+          "src": "/assets/brand/chapchitra-dark-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 582.296875,
+            "y": 91,
+            "w": 275.390625,
+            "h": 231.78125
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-dark-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 582.296875,
+            "y": 91,
+            "w": 275.390625,
+            "h": 231.78125
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 582.296875,
+          "y": 91,
+          "w": 275.390625,
+          "h": 231.78125
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": false,
+          "completed": 1,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+          "frame": 239
+        },
+        "overflow": 0
+      },
+      "video": "F:\\CHAPCHITRA_SVG_PR150_20261123\\candidate-browser-evidence\\desktop-dark-C08-autoplay.webm",
+      "failed": []
+    },
+    {
+      "id": "ipad-dark-webkit",
+      "theme": "dark",
+      "checks": {
+        "originalLoaded": true,
+        "navLoaded": true,
+        "correctTheme": true,
+        "correctSvgRoutes": true,
+        "noHorizontalOverflow": true,
+        "clothLoaded": true,
+        "clothTheme": true,
+        "stageAligned": true,
+        "c08Completed": true,
+        "staticHidden": true,
+        "clothOnTop": true,
+        "noHTTPFailures": true,
+        "noJsErrors": true
+      },
+      "errors": [],
+      "patched": [
+        "/motion/c08/logo-player.css",
+        "/app.mjs",
+        "/assets/brand/chapchitra-light-wordmark.svg",
+        "/assets/brand/chapchitra-light-full.svg",
+        "/assets/brand/chapchitra-dark-wordmark.svg",
+        "/assets/brand/chapchitra-dark-full.svg",
+        "/motion/c08/logo-player.mjs",
+        "/assets/brand/chapchitra-dark-cloth.svg",
+        "/assets/c08/wordmark-reprint-dark-owner-cream.json"
+      ],
+      "httpErrors": [],
+      "start": {
+        "theme": "dark",
+        "original": {
+          "src": "/assets/brand/chapchitra-dark-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 314.40625,
+            "y": 93,
+            "w": 205.1875,
+            "h": 172.6875
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-dark-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 314.40625,
+            "y": 93,
+            "w": 205.1875,
+            "h": 172.6875
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 314.40625,
+          "y": 93,
+          "w": 205.1875,
+          "h": 172.6875
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+          "frame": 15
+        },
+        "overflow": 0
+      },
+      "end": {
+        "theme": "dark",
+        "original": {
+          "src": "/assets/brand/chapchitra-dark-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 314.40625,
+            "y": 93,
+            "w": 205.1875,
+            "h": 172.6875
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-dark-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 314.40625,
+            "y": 93,
+            "w": 205.1875,
+            "h": 172.6875
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 314.40625,
+          "y": 93,
+          "w": 205.1875,
+          "h": 172.6875
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": false,
+          "completed": 1,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+          "frame": 239
+        },
+        "overflow": 0
+      },
+      "video": "F:\\CHAPCHITRA_SVG_PR150_20261123\\candidate-browser-evidence\\ipad-dark-webkit-C08-autoplay.webm",
+      "failed": []
+    },
+    {
+      "id": "mobile-light",
+      "theme": "light",
+      "checks": {
+        "originalLoaded": true,
+        "navLoaded": true,
+        "correctTheme": true,
+        "correctSvgRoutes": true,
+        "noHorizontalOverflow": true,
+        "clothLoaded": true,
+        "clothTheme": true,
+        "stageAligned": true,
+        "c08Completed": true,
+        "staticHidden": true,
+        "clothOnTop": true,
+        "noHTTPFailures": true,
+        "noJsErrors": true
+      },
+      "errors": [],
+      "patched": [
+        "/motion/c08/logo-player.css",
+        "/app.mjs",
+        "/assets/brand/chapchitra-light-wordmark.svg",
+        "/assets/brand/chapchitra-light-full.svg",
+        "/motion/c08/logo-player.mjs",
+        "/assets/brand/chapchitra-light-cloth.svg"
+      ],
+      "httpErrors": [],
+      "start": {
+        "theme": "light",
+        "original": {
+          "src": "/assets/brand/chapchitra-light-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 91.453125,
+            "y": 110.1875,
+            "w": 207.078125,
+            "h": 174.28125
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-light-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 91.453125,
+            "y": 110.1875,
+            "w": 207.078125,
+            "h": 174.28125
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-light-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-light-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 91.453125,
+          "y": 110.1875,
+          "w": 207.078125,
+          "h": 174.28125
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": true,
+          "completed": 0,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-original.json",
+          "frame": 37.00199999999999
+        },
+        "overflow": 0
+      },
+      "end": {
+        "theme": "light",
+        "original": {
+          "src": "/assets/brand/chapchitra-light-full.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 91.453125,
+            "y": 110.1875,
+            "w": 207.078125,
+            "h": 174.28125
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-light-cloth.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 91.453125,
+            "y": 110.1875,
+            "w": 207.078125,
+            "h": 174.28125
+          }
+        },
+        "word": {
+          "visible": "visible",
+          "svg": true
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-light-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-light-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 91.453125,
+          "y": 110.1875,
+          "w": 207.078125,
+          "h": 174.28125
+        },
+        "shown": true,
+        "c08": {
+          "ready": true,
+          "playing": false,
+          "completed": 1,
+          "autoplay": 1,
+          "failed": false,
+          "source": "/assets/c08/wordmark-reprint-original.json",
+          "frame": 239
+        },
+        "overflow": 0
+      },
+      "video": "F:\\CHAPCHITRA_SVG_PR150_20261123\\candidate-browser-evidence\\mobile-light-C08-autoplay.webm",
+      "failed": []
+    },
+    {
+      "id": "mobile-dark-reduced",
+      "theme": "dark",
+      "checks": {
+        "originalLoaded": true,
+        "navLoaded": true,
+        "correctTheme": true,
+        "correctSvgRoutes": true,
+        "noHorizontalOverflow": true,
+        "reducedStaticShown": true,
+        "reducedNoAnimatedWordmark": true,
+        "noHTTPFailures": true,
+        "noJsErrors": true
+      },
+      "errors": [],
+      "patched": [
+        "/motion/c08/logo-player.css",
+        "/app.mjs",
+        "/assets/brand/chapchitra-dark-wordmark.svg",
+        "/assets/brand/chapchitra-dark-full.svg",
+        "/motion/c08/logo-player.mjs",
+        "/assets/brand/chapchitra-dark-cloth.svg"
+      ],
+      "httpErrors": [],
+      "start": {
+        "theme": "dark",
+        "original": {
+          "src": "/assets/brand/chapchitra-dark-full.svg",
+          "loaded": true,
+          "visible": "visible",
+          "rect": {
+            "x": 91.453125,
+            "y": 110.1875,
+            "w": 207.078125,
+            "h": 174.28125
+          }
+        },
+        "cloth": {
+          "src": "/assets/brand/chapchitra-dark-cloth.svg",
+          "loaded": true,
+          "visible": "hidden",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          }
+        },
+        "word": {
+          "visible": "hidden",
+          "svg": false
+        },
+        "nav": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "footer": {
+          "src": "/assets/brand/chapchitra-dark-wordmark.svg",
+          "loaded": true
+        },
+        "stage": {
+          "x": 91.453125,
+          "y": 110.1875,
+          "w": 207.078125,
+          "h": 174.28125
+        },
+        "shown": false,
+        "c08": {
+          "ready": false,
+          "playing": false,
+          "completed": 0,
+          "autoplay": 0,
+          "failed": false,
+          "source": null,
+          "frame": null
+        },
+        "overflow": 0
+      },
+      "video": "F:\\CHAPCHITRA_SVG_PR150_20261123\\candidate-browser-evidence\\mobile-dark-reduced-C08-autoplay.webm",
+      "failed": []
+    }
+  ]
+}

@@ -4,6 +4,10 @@
 const PLAYER = '/motion/c01/vendor/lottie.min.js';
 const SOURCE = '/assets/c08/wordmark-reprint-original.json';
 const HERO = '/assets/c08/wordmark-reprint-dark-inverted-v2.json';
+// Paint-only derivative: the Illustrator-approved Cream #F4EBE4, with identical
+// 240-frame C08 choreography and original Source/Legacy dark JSON untouched.
+const DARK = '/assets/c08/wordmark-reprint-dark-owner-cream.json';
+const themedSource = () => document.documentElement.dataset.theme==='dark' ? DARK : SOURCE;
 const CSS = '/motion/c08/logo-player.css';
 
 const DURATION_FRAMES = 240;
@@ -82,8 +86,8 @@ function ensureC08Stylesheet() {
 
 export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark',onHeroHolding=()=>{}}={}) {
   if(navbar||heroImage)ensureC08Stylesheet();
-  const nav={ready:false,playing:false,loadRequested:false,completed:0,loaded:false,hovered:false,armed:true,instance:null};
-  const hero={ready:false,playing:false,completed:0,autoplay:0,instance:null,failed:false,stage:null,trigger:null};
+  const nav={ready:false,playing:false,loadRequested:false,completed:0,loaded:false,hovered:false,armed:true,instance:null,source:null};
+  const hero={ready:false,playing:false,completed:0,autoplay:0,instance:null,failed:false,stage:null,trigger:null,source:null};
 
   if (navbar && !navbar.dataset.c08Mounted) {
     navbar.dataset.c08Mounted='true';
@@ -96,7 +100,11 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
       if(nav.loadRequested)return null;
       nav.loadRequested=true;
       try{
-        nav.instance=await loadAnimation(target,SOURCE);
+        const request=themedSource();
+        const instance=await loadAnimation(target,request);
+        if(request!==themedSource()){instance.destroy();return null;}
+        nav.instance=instance;
+        nav.source=request;
         nav.ready=true;
         nav.instance.addEventListener('complete',()=>{
           nav.playing=false;
@@ -141,6 +149,19 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
       nav.playing=false;
       showStatic();
     });
+    // Invalidate only the paint renderer on a theme change. The approved
+    // hover trigger and full 240-frame C08 timeline run unmodified on re-entry.
+    new MutationObserver(()=>{
+      if(!nav.instance||nav.source===themedSource())return;
+      nav.instance.pause();
+      nav.instance.destroy();
+      nav.instance=null;
+      nav.source=null;
+      nav.ready=false;
+      nav.playing=false;
+      nav.armed=true;
+      navbar.classList.remove('c08-navbar-playing');
+    }).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
     // Navbar remains an ordinary Home link, including on touch. Never prevent navigation.
   }
   if (heroImage && heroStage && !heroStage.dataset.c08Mounted) {
@@ -155,7 +176,18 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
     trigger.className='c08-hero-trigger';
     trigger.setAttribute('aria-label','Replay CHAPCHITRA animated logo');
     trigger.title='Replay logo animation';
-    heroStage.append(slot,trigger);
+    // The exact Illustrator Cloth_patch stays ABOVE the unchanged C08
+    // Lottie wordmark; its static full-logo twin is hidden during playback.
+    const cloth=document.createElement('img');
+    cloth.className='c08-hero-cloth';
+    cloth.src=document.documentElement.dataset.theme==='dark'
+      ?'/assets/brand/chapchitra-dark-cloth.svg'
+      :'/assets/brand/chapchitra-light-cloth.svg';
+    cloth.dataset.ccThemeBrand='cloth';
+    cloth.alt='';
+    cloth.setAttribute('aria-hidden','true');
+    cloth.draggable=false;
+    heroStage.append(slot,cloth,trigger);
     hero.trigger=trigger;
     const place=()=>{
       const box=heroImage.getBoundingClientRect();
@@ -202,12 +234,22 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
       if(HOVER.matches&&e.detail>0)return;
       play();
     });
-    let heroPreparing=false;
+    const heroSource=()=>heroVariant==='paper'?themedSource():HERO;
+    let heroPreparing=false,heroSwapping=false;
     const prepareHero=async()=>{
       if(heroPreparing||hero.ready||REDUCED.matches)return;
       heroPreparing=true;
       try{
-        hero.instance=await loadAnimation(slot,heroVariant==='paper'?SOURCE:HERO);
+        const requested=heroSource();
+        const instance=await loadAnimation(slot,requested);
+        if(requested!==heroSource()){
+          instance.destroy();
+          // A theme toggle while first loading should not show the wrong ink.
+          queueMicrotask(()=>{if(!hero.ready&&!REDUCED.matches)void prepareHero()});
+          return;
+        }
+        hero.instance=instance;
+        hero.source=requested;
         hero.ready=true;
         hero.instance.addEventListener('complete',finish);
         if(REDUCED.matches){onHeroHolding(false);return}
@@ -229,6 +271,56 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
         console.warn('C08 hero retained original static logo:',error);
       }finally{heroPreparing=false}
     };
+    // Theme changes replace only SVG renderers, never the timing, keyframes,
+    // easing, replay state, roller rig or Wordmark Reprint playback sequence.
+    // While the new painter loads, show the complete original static SVG.
+    const refreshHeroTheme=async()=>{
+      if(heroSwapping||heroPreparing||!hero.ready||hero.source===heroSource()||REDUCED.matches)return;
+      heroSwapping=true;
+      const wasShown=parent.classList.contains('c08-hero-shown');
+      const wasPlaying=hero.playing;
+      const frame=Math.min(DURATION_FRAMES-1,hero.instance?.currentFrame??0);
+      hero.instance?.pause();
+      hero.instance?.destroy();
+      hero.instance=null;
+      hero.ready=false;
+      hero.playing=false;
+      parent.classList.remove('c08-hero-shown');
+      try{
+        let next,requested;
+        for(let attempt=0;attempt<6;attempt++){
+          requested=heroSource();
+          next=await loadAnimation(slot,requested);
+          if(requested===heroSource())break;
+          next.destroy();next=null;
+        }
+        if(!next)throw new Error('C08 theme changed during renderer replacement');
+        hero.instance=next;
+        hero.source=requested;
+        hero.ready=true;
+        next.addEventListener('complete',finish);
+        if(REDUCED.matches){onHeroHolding(false);return}
+        if(wasShown){
+          parent.classList.add('c08-hero-shown');
+          next.goToAndStop(frame,true);
+          if(wasPlaying&&!document.hidden){hero.playing=true;next.play();}
+          else{
+            if(hero.completed>0)next.goToAndStop(DURATION_FRAMES-1,true);
+            onHeroHolding(false);
+          }
+        }else if(hero.autoplay===0&&hero.completed===0&&!document.hidden){
+          play({autoplay:true});
+        }else onHeroHolding(false);
+      }catch(error){
+        hero.failed=true;
+        trigger.hidden=true;
+        parent.classList.remove('c08-hero-shown');
+        onHeroHolding(false);
+        console.warn('C08 theme renderer retained original static artwork:',error);
+      }finally{heroSwapping=false;}
+    };
+    new MutationObserver(()=>{void refreshHeroTheme()}).observe(
+      document.documentElement,{attributes:true,attributeFilter:['data-theme']});
     const reflectReduced=()=>{
       if(REDUCED.matches){
         hero.instance?.pause();
@@ -239,6 +331,7 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
       }else{
         trigger.hidden=false;
         if(hero.ready){
+          if(hero.source!==heroSource()){void refreshHeroTheme();return;}
           if(hero.completed>0)parent.classList.add('c08-hero-shown');
           else if(!hero.playing&&!document.hidden){
             if(!play({autoplay:true}))onHeroHolding(false);
@@ -257,9 +350,9 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
   // Compact read-only visual-QA diagnostics, no extra clock and no owner UI changes.
   window.__chapchitraC08={
     get hero(){return {ready:hero.ready,playing:hero.playing,completed:hero.completed,
-      autoplay:hero.autoplay,failed:hero.failed,frame:hero.instance?.currentFrame??null}},
+      autoplay:hero.autoplay,failed:hero.failed,source:hero.source,frame:hero.instance?.currentFrame??null}},
     get navbar(){return {ready:nav.ready,playing:nav.playing,completed:nav.completed,
-      hovered:nav.hovered,loaded:!!nav.instance,frame:nav.instance?.currentFrame??null}},
+      hovered:nav.hovered,loaded:!!nav.instance,source:nav.source,frame:nav.instance?.currentFrame??null}},
     seekHeroForQA(frame){
       if(!hero.instance)return false;
       hero.instance.pause();hero.instance.goToAndStop(frame,true);

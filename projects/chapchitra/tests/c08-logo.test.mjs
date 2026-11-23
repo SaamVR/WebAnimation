@@ -63,12 +63,12 @@ test('dark-surface derived SVG has the same original vector path geometry and ex
  assert.ok(!/#232323|#293D2D|#F6F7F5|#9DC39F/.test(inverse));
  assert.ok(inverse.includes('#E4E3DE')&&inverse.includes('#8A503B'));
 });
-test('original full hero lockup on paper and navbar raster remain immediate static fallbacks',async()=>{
+test('original full hero lockup on paper and navbar SVG remain immediate static fallbacks',async()=>{
  const app=await text('src/app.mjs');
- assert.match(app,/src="\/assets\/chapchitra-full\.webp"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-full\.svg"/);
  assert.match(app,/class="hero-brand-lockup"/);
- assert.match(app,/src="\/assets\/chapchitra-wordmark\.webp"/);
- assert.match(app,/src="\/assets\/chapchitra-wordmark-cream-terra\.webp"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
  assert.match(app,/class="logo-word logo-word--image"/);
  assert.match(app,/class="c08-navbar-animation" aria-hidden="true"/);
  assert.match(app,/class="c08-hero-stage"/);
@@ -118,4 +118,28 @@ test('global C08 navbar resolves from versioned Artist Edit release without chan
  // Scope remains separate from the Artist Edit worktable and C01 originals.
  assert.ok(!(await text('src/worktable-studio.mjs')).includes('c08'));
  assert.ok(!(await text('src/motion/c01/connected-benefits.mjs')).includes('c08'));
+});
+
+
+test('owner Cream C08 dark variant changes only 22 static fill paints, never timing or geometry',async()=>{
+ const source=JSON.parse(await text('src/assets/c08/wordmark-reprint-dark-inverted-v2.json'));
+ const derived=JSON.parse(await text('src/assets/c08/wordmark-reprint-dark-owner-cream.json'));
+ const expected=JSON.parse(JSON.stringify(source));
+ let repainted=0;
+ const paint=part=>{
+  if(!part||typeof part!=='object')return;
+  if(part.ty==='fl'&&Array.isArray(part.c?.k)&&part.c.k.length>=3&&
+    [228/255,227/255,222/255].every((v,i)=>Math.abs(part.c.k[i]-v)<.0003)){
+   [244/255,235/255,228/255].forEach((v,i)=>part.c.k[i]=v);
+   repainted++;
+  }
+  for(const node of Object.values(part))paint(node);
+ };
+ paint(expected);
+ assert.equal(repainted,22);
+ assert.deepEqual(derived,expected,'C08 geometry, keyframes, easing, roller, source colors except Cream and full duration remain immutable');
+ assert.equal(derived.fr,60);assert.equal(derived.op,240);
+ const player=await text('src/motion/c08/logo-player.mjs');
+ assert.match(player,/const DARK = '\/assets\/c08\/wordmark-reprint-dark-owner-cream\.json'/);
+ assert.match(player,/const themedSource = \(\) => document\.documentElement\.dataset\.theme==='dark' \? DARK : SOURCE/);
 });

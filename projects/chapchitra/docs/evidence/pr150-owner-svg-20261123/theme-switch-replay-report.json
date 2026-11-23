@@ -1,0 +1,82 @@
+{
+  "hero": {
+    "before": {
+      "ready": true,
+      "playing": true,
+      "completed": 0,
+      "autoplay": 1,
+      "failed": false,
+      "source": "/assets/c08/wordmark-reprint-original.json",
+      "frame": 58.97999999999998
+    },
+    "during": {
+      "ready": true,
+      "playing": true,
+      "completed": 0,
+      "autoplay": 1,
+      "failed": false,
+      "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+      "frame": 64.97399999999999
+    },
+    "finished": {
+      "ready": true,
+      "playing": false,
+      "completed": 1,
+      "autoplay": 1,
+      "failed": false,
+      "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+      "frame": 239
+    },
+    "reverted": {
+      "ready": true,
+      "playing": false,
+      "completed": 1,
+      "autoplay": 1,
+      "failed": false,
+      "source": "/assets/c08/wordmark-reprint-original.json",
+      "frame": 239
+    },
+    "checks": {
+      "darkSwapPreservesAutoplay": true,
+      "darkSwapKeepsFrame": true,
+      "completedOnce": true,
+      "lightSwapKeepsCompletion": true,
+      "noJSerrors": true
+    }
+  },
+  "navbar": {
+    "navDark": {
+      "ready": true,
+      "playing": true,
+      "completed": 0,
+      "hovered": true,
+      "loaded": true,
+      "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+      "frame": 0
+    },
+    "afterToggle": {
+      "ready": false,
+      "playing": false,
+      "completed": 0,
+      "hovered": false,
+      "loaded": false,
+      "source": null,
+      "frame": null
+    },
+    "navLight": {
+      "ready": true,
+      "playing": true,
+      "completed": 0,
+      "hovered": true,
+      "loaded": true,
+      "source": "/assets/c08/wordmark-reprint-original.json",
+      "frame": 0
+    },
+    "checks": {
+      "darkPlayed": true,
+      "themeInvalidated": true,
+      "lightReplayed": true
+    }
+  },
+  "errors": []
+}

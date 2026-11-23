@@ -135,7 +135,8 @@ async function sample(page){
    logoImageMatchesBox:(()=>{
      const img=logo?.querySelector('img.hero-brand-lockup'),ir=img?.getBoundingClientRect();
      return !!(logoRect&&ir&&Math.abs(ir.width-logoRect.width)<1.2&&
-       Math.abs(ir.height-ir.width*1052/1250)<2);
+       img.naturalWidth>0&&img.naturalHeight>0&&
+       Math.abs(ir.height-ir.width*img.naturalHeight/img.naturalWidth)<2);
    })(),
    logoRaised:!!(logo&&Number.parseFloat(getComputedStyle(logo).marginTop)<
      (innerWidth<=365?7:innerWidth<=740?6:innerWidth<=950?4:3)), 
@@ -154,7 +155,7 @@ async function sample(page){
    tearPaths:tear?.querySelectorAll('path').length||0,
    navLinks:document.querySelectorAll('#siteHeader .nav-center>a').length,
    navArt:document.querySelectorAll('#siteHeader .nav-actions img.cc-nav-art').length,
-   logoOriginal:!!paper?.querySelector('img.hero-brand-lockup[src="/assets/chapchitra-full.webp"]'),
+   logoOriginal:!!paper?.querySelector('img.hero-brand-lockup[src="/assets/brand/chapchitra-light-full.svg"]'),
    textBelowTear:!!(edgeRect&&copyRect&&copyRect.top>=tearAtCopy+16),
    horizontalOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth),
    canvasBottom:cover?.getBoundingClientRect().bottom??0,
@@ -190,7 +191,7 @@ for(const t of profiles){
  });
  const page=await context.newPage(),errors=[],reviewTimeline=[];
  page.on('pageerror',error=>errors.push(error.message));
- page.on('response',response=>{if(response.url().includes('/assets/chapchitra-full.webp')&&response.status()>=400)
+ page.on('response',response=>{if(response.url().includes('/assets/brand/chapchitra-light-full.svg')&&response.status()>=400)
   errors.push('Full logo HTTP '+response.status())});
  await page.goto(origin,{waitUntil:'domcontentloaded',timeout:30000});
  await page.locator('#hero .hero01-paper-panel').waitFor({state:'visible',timeout:20000});
@@ -283,9 +284,9 @@ for(const t of profiles){
     img.complete&&img.naturalWidth>100&&getComputedStyle(img).visibility==='visible';
  },null,{timeout:3500});
  const scrolled=await sample(page);
- assert.equal(scrolled.navWordmark.visible,true,'Scroll restores visible compact raster');
+ assert.equal(scrolled.navWordmark.visible,true,'Scroll restores visible original SVG wordmark');
  assert.equal(scrolled.navWordmark.loaded,true,'Navbar image decoded');
- assert.equal(scrolled.navWordmark.src,'/assets/chapchitra-wordmark.webp');
+ assert.equal(scrolled.navWordmark.src,'/assets/brand/chapchitra-light-wordmark.svg');
  assert.equal(scrolled.fullLinkHidden,false,'Standard navbar logo accessible on scroll');
  assert.equal(scrolled.heroLogoInert,true,'No duplicate or focusable logo below sticky navbar');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95,{},{timeout:2000});
@@ -402,7 +403,7 @@ for(const t of profiles){
  assert.equal(other.navLinks,4);assert.equal(other.navArt,4);
  assert.deepEqual([other.wordmark.loaded,other.wordmark.visible,other.wordmark.ariaHidden],
   [true,true,null],'Shop must render the original compact wordmark and accessible link');
- assert.equal(other.wordmark.src,'/assets/chapchitra-wordmark.webp');
+ assert.equal(other.wordmark.src,'/assets/brand/chapchitra-light-wordmark.svg');
  await page.screenshot({path:resolve(out,t.name+'-shop.png')});
  if(t.name==='desktop-chromium'){
   // The original C08 hover must still play. Completion must restore the
@@ -458,7 +459,7 @@ for(const t of profiles){
  });
  assert.equal(journal.route,'journal');
  assert.ok(journal.logoVisible&&journal.logoLoaded,'Journal must retain original compact navbar wordmark');
- assert.equal(journal.logoSource,'/assets/chapchitra-wordmark.webp');
+ assert.equal(journal.logoSource,'/assets/brand/chapchitra-light-wordmark.svg');
  reviewTimeline.push({event:'Home -> Journal via C02',route:journal.route,compactVisible:journal.logoVisible});
  await page.screenshot({path:resolve(out,t.name+'-journal.png')});
  await page.waitForTimeout(700);
