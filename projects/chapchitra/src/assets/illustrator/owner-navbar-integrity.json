@@ -1,0 +1,68 @@
+{
+  "master": {
+    "sha256": "e10a2632b2357c47347736e3ce8e02ffa396061e0b7772b57f5288053d1fe199",
+    "bytes": 301473,
+    "rootViewBox": "0 0 512 512",
+    "pathCount": 590
+  },
+  "assets": {
+    "search": {
+      "filename": "nav-owner-search.svg",
+      "sourceId": "unlabeled search group",
+      "viewBox": "-3367 14 495 483",
+      "pathCount": 191,
+      "polygonCount": 6,
+      "paintClasses": {
+        "st0": 197
+      },
+      "sha256": "6982dab6e6c4ab3f1039a5037ee10a588420871a5452ab3653b208f4cab8f4fd"
+    },
+    "favorites": {
+      "filename": "nav-owner-favorites-outline.svg",
+      "sourceId": "Favourite_x5F_Icon",
+      "viewBox": "-2254 9 538 493",
+      "pathCount": 140,
+      "polygonCount": 2,
+      "paintClasses": {
+        "st1": 15,
+        "st0": 127
+      },
+      "sha256": "a094549eca66f2d577d749edb2c8a7b6f391ff31c74b475a8c794d4e4cba62ed"
+    },
+    "account": {
+      "filename": "nav-owner-account.svg",
+      "sourceId": "Account_x5F_Icon",
+      "viewBox": "-1071 24 439 499",
+      "pathCount": 185,
+      "polygonCount": 8,
+      "paintClasses": {
+        "st0": 193
+      },
+      "sha256": "edc7852a1f48429765b41f2c539983f0d1435e65aa32d5d5acffe5df27c0d75e"
+    },
+    "bag": {
+      "filename": "nav-owner-bag.svg",
+      "sourceId": "Bag_x5F_Icon",
+      "viewBox": "23 -15 464 539",
+      "pathCount": 73,
+      "polygonCount": 2,
+      "paintClasses": {
+        "st0": 74,
+        "st1": 1
+      },
+      "sha256": "89a4e6b749db4d967977cc43397773c8d51b78557e765bdf27c1b7f22ba0debf"
+    },
+    "favorites-selected": {
+      "filename": "nav-owner-favorites-selected.svg",
+      "sourceId": "Favourite_x5F_Icon",
+      "viewBox": "-2254 9 538 493",
+      "pathCount": 140,
+      "polygonCount": 2,
+      "paintClasses": {
+        "st1": 15,
+        "st0": 127
+      },
+      "sha256": "a094549eca66f2d577d749edb2c8a7b6f391ff31c74b475a8c794d4e4cba62ed"
+    }
+  }
+}

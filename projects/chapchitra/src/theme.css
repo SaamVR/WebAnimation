@@ -13,6 +13,11 @@
   width:20px;height:20px;max-width:20px;max-height:20px;
   pointer-events:none;
 }
+/* The visible Illustrator artwork stays at the approved size. Extend only
+   the four header action targets to 44px; do not alter their SVG artwork. */
+#app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
+  min-width:44px;min-height:44px;
+}
 #app > .site-header .cc-theme-toggle:focus-visible{
   outline:3px solid var(--color-terracotta);outline-offset:2px;
 }
@@ -113,10 +118,15 @@
 :root[data-theme="dark"] #app > .site-header .nav-actions .cc-theme-toggle:hover{
   background:var(--color-walnut);
 }
-:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle),
+:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
+  /* Owner-requested preview ONLY: preserve Press Green hand-drawn SVG ink
+     against a Press Green circle, despite the deliberate 1:1 green contrast. */
+  background:var(--color-press-green);
+  color:var(--theme-on-panel);
+  border-radius:999px;
+}
 :root[data-theme="dark"] #app > .site-header .nav-left .hamburger{
-  /* The original dark-ink Illustrator buttons are not recolored or filtered.
-     Warm Beige button surfaces give those untouched dark vectors contrast. */
+  /* The hamburger is not among the four new supplied icon illustrations. */
   background:var(--theme-gallery);
   color:var(--theme-on-panel);
   border-radius:999px;
