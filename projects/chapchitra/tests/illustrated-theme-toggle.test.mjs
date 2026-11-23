@@ -60,8 +60,8 @@ test('sun remains Press Green and sliding circle is Gallery White in light mode'
  const slider=text.slice(text.indexOf('id="sliding-circle-inside-fill"'),text.indexOf('id="sun-icon"'));
  assert.match(slider,/<path class="st0"[^>]*style="fill:#F6F7F5;"/);
  assert.match(slider,/<g style="fill:#293D2D;">/);
- assert.match(script,/sliderBase\.style\.fill=lerpColor\(GALLERY_WHITE,TERRACOTTA,progress\)/);
- assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,CREAM,progress\)/);
+ assert.match(script,/sliderBase\.style\.fill=lerpColor\(GALLERY_WHITE,CREAM,progress\)/);
+ assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,TERRACOTTA,progress\)/);
 });
 test('light Gallery White/Press Green and dark Cream/Terracotta palettes',()=>{
  assert.equal((text.match(/#293D2D/gi)||[]).length,5,'ink roles plus mountain fill default Press Green');
@@ -78,8 +78,8 @@ test('light Gallery White/Press Green and dark Cream/Terracotta palettes',()=>{
  assert.match(script,/const ink=lerpColor\(PRESS,CREAM,progress\)/);
  assert.match(script,/const paper=lerpColor\(GALLERY_WHITE,TERRACOTTA,progress\)/);
  assert.match(script,/svg\.style\.setProperty\('--cc-toggle-paper',lerpColor\(GALLERY_WHITE,CREAM,progress\)\)/);
- assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,CREAM,progress\)/);
- assert.match(script,/sliderBase\.style\.fill=lerpColor\(GALLERY_WHITE,TERRACOTTA,progress\)/);
+ assert.match(script,/sliderGrain\.style\.fill=lerpColor\(PRESS,TERRACOTTA,progress\)/);
+ assert.match(script,/sliderBase\.style\.fill=lerpColor\(GALLERY_WHITE,CREAM,progress\)/);
  assert.match(script,/const DURATION=300/);
  assert.match(script,/const TRAVEL=196/);
 });
@@ -105,4 +105,13 @@ test('site build includes illustration CSS and SHA pinned artist route module',(
  assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.cc-theme-toggle:focus-visible \{\s*outline-color:var\(--color-cream\)/);
  assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.cc-mobile-theme-toggle:focus-visible \{outline-color:var\(--color-cream\)/);
  assert.doesNotMatch(theme,/cc-theme-icon-moon|cc-theme-toggle svg:first-child/);
+});
+
+test('dark circle retains Cream fill and Terracotta moon detail; bag stamp has no square',()=>{
+ assert.ok(script.includes("sliderBase.style.fill=lerpColor(GALLERY_WHITE,CREAM,progress)"));
+ assert.ok(script.includes("sliderGrain.style.fill=lerpColor(PRESS,TERRACOTTA,progress)"));
+ assert.ok(text.includes('[data-toggle-role="moon"] .st1 {fill:var(--cc-toggle-paper,#F6F7F5);}'));
+ assert.ok(text.includes('[data-toggle-role="moon"] .st0 {fill:var(--cc-toggle-ink,#293D2D);}'));
+ assert.ok(theme.includes('background:transparent;color:inherit;'));
+ assert.ok(!theme.includes('background:var(--theme-gallery);color:var(--theme-on-panel);'));
 });
