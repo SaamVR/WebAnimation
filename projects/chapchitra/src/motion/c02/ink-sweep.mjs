@@ -114,6 +114,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  // Freeze the transition's theme to avoid an asset swap during cover/reveal.
  const darkInk=doc.documentElement.dataset.theme==='dark';
  const c02Backing=darkInk?C02_INK_ASSET.darkBacking:C02_INK_ASSET.lightBacking;
+ const c02BackingRgb=darkInk?'rgb(110, 82, 63)':'rgb(246, 247, 245)';
  inkAssetImg.src=darkInk?C02_INK_ASSET.composedDarkPath:C02_INK_ASSET.composedPath;
  const assetsReady=edgeStyle==='asset'
   ?inkAssetImg.decode().then(()=>true,()=>{overlay.dataset.assetError='decode';return false;})
@@ -430,7 +431,7 @@ function makeOverlay(doc,win,edgeStyle='asset'){
    overlay.dataset.phase==='cover';
   const whiteSeal=edgeStyle!=='asset'||(
    overlay.dataset.c02CoverSealed==='true'&&
-   style.backgroundColor==='rgb(246, 247, 245)');
+   style.backgroundColor===c02BackingRgb);
   const covered=complete&&frameFits&&(edgeStyle==='asset'
    ?ready&&imageSpans&&whiteSeal&&style.display==='block'&&
     style.clipPath==='none'&&minPigmentEdge>=viewport.width+2
@@ -474,21 +475,33 @@ function awaitShell(win,doc){
 }
 export function installC02PageTransitions(win=window,doc=document){
  if(!doc.body||doc.documentElement.dataset.c02Installed==='v2')return;
- let inkPreloaded=false,inkPreloadFailed=false;
+ let inkPreloaded=false,inkPreloadFailed=false,inkPreloadGeneration=0;
  doc.documentElement.dataset.c02Installed='v2';
  const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
- // Warm the 2KB exact-source SVG so the first visible ink-edge frame has a roller.
+ // Warm the original roller once and decode the one theme-specific source
+ // BEFORE eligible clicks. Theme switching does not reuse a stale old
+ // pigment readiness flag; no changes to motion, edge, or SVG geometry.
  if(!reduced.matches){
   const rollerImg=new win.Image();rollerImg.src='/assets/c02/roller-original.svg';
-  // Warm and decode SVG once before eligible clicks. No arbitrary buffer.
+ }
+ const preloadInk=()=>{
+  if(reduced.matches)return;
+  const generation=++inkPreloadGeneration;
+  inkPreloaded=false;inkPreloadFailed=false;
+  doc.documentElement.dataset.c02AssetReady='loading';
   const inkImg=new win.Image();inkImg.decoding='async';
-  inkImg.src=C02_INK_ASSET.composedPath;
+  inkImg.src=doc.documentElement.dataset.theme==='dark'
+   ?C02_INK_ASSET.composedDarkPath:C02_INK_ASSET.composedPath;
   inkImg.decode().then(()=>{
+   if(generation!==inkPreloadGeneration)return;
    inkPreloaded=true;doc.documentElement.dataset.c02AssetReady='true';
   },()=>{
+   if(generation!==inkPreloadGeneration)return;
    inkPreloadFailed=true;doc.documentElement.dataset.c02AssetReady='error';
   });
- }
+ };
+ preloadInk();
+ win.addEventListener('chapchitra:themechange',preloadInk);
  let overlay=null,leaving=false,watchdog=0,incomingGuard=0,prefetchAbort=null,
   drive=null,commitTimer=0,navigationCommitted=false,
   pendingTarget=null,pendingStartedAt=0,pendingDemoMs=0;
