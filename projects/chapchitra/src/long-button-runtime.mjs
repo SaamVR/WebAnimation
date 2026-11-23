@@ -35,6 +35,23 @@ async function sourceFor(tone){
  }).catch(e=>{cache.delete(url);throw e}));
  return cache.get(url);
 }
+// The eager Illustrator poster and fetch() can race in WebKit. Do not detach
+// the <img> (aborting its resource load) until the poster request has settled.
+// Original artwork, ink motion, and fallback behavior remain unchanged.
+async function waitForPosterLoad(art){
+ const poster=art.querySelector(':scope > img.cc-long-fallback');
+ if(!poster||poster.complete)return;
+ await new Promise(resolve=>{
+  const settled=()=>{
+   poster.removeEventListener('load',settled);
+   poster.removeEventListener('error',settled);
+   resolve();
+  };
+  poster.addEventListener('load',settled,{once:true});
+  poster.addEventListener('error',settled,{once:true});
+  if(poster.complete)settled();
+ });
+}
 function installLayers(svg){
  const face=svg.querySelector('#BUTTON_FACE');
  const groups=[...face.children].filter(x=>x.localName==='g');
@@ -165,6 +182,8 @@ async function hydrate(button){
   svg.setAttribute('preserveAspectRatio','xMidYMid meet');
   svg.setAttribute('focusable','false');svg.setAttribute('aria-hidden','true');
   const parts=installLayers(svg);
+  await waitForPosterLoad(art);
+  if(!button.isConnected)return;
   art.replaceChildren(svg);
   button.dataset.long='ready';button.dataset.longInkClip=parts.clipId;
   wireInteraction(button);
