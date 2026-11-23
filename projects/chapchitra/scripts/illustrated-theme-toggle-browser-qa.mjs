@@ -92,11 +92,14 @@ for(const profile of profiles){
    assert(start.clipStyle&&start.clipStyle!=='none','invalid scene clipping');
    assert(Math.abs(start.svgBox.width-96)<2,'native SVG width wrong');
    assert(Math.abs(start.progress-(theme==='dark'?1:0))<.001,'initial SVG theme flash');
-   assert(start.sliderBaseFill===(theme==='dark'?'rgb(41, 61, 45)':'rgb(244, 235, 228)'),
+   assert(start.sliderBaseFill===(theme==='dark'?'rgb(138, 80, 59)':'rgb(244, 235, 228)'),
     'Illustrator slider base endpoint wrong: '+start.sliderBaseFill);
-   assert(start.sliderGrainFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(41, 61, 45)'),
+   assert(start.sliderGrainFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(138, 80, 59)'),
     'Illustrator slider grain endpoint wrong: '+start.sliderGrainFill);
-   assert(start.sunFill==='rgb(41, 61, 45)','original sun must stay Press Green: '+start.sunFill);
+   assert(start.sunFill==='rgb(138, 80, 59)','original sun must be Terracotta: '+start.sunFill);
+   assert(!/#293D2D|rgb\s*\(\s*41\s*,\s*61\s*,\s*45\s*\)/i.test(
+    await page.locator(selector+' svg').evaluate(el=>el.outerHTML)),
+    'Old Press Green retained in derived SVG');
    await capture(page,profile.name+'-'+theme+'-initial-navbar');
    await button.click({timeout:10000});
    await page.waitForFunction(sel=>{
@@ -108,7 +111,7 @@ for(const profile of profiles){
    await page.waitForTimeout(360);
    const end=await read(page,selector);
    assert(end.progress===(theme==='dark'?0:1),'theme slide did not finish');
-   assert(end.sliderBaseFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(41, 61, 45)'),
+   assert(end.sliderBaseFill===(theme==='dark'?'rgb(244, 235, 228)':'rgb(138, 80, 59)'),
     'reversed slider base endpoint wrong: '+end.sliderBaseFill);
    assert(start.svgBox.x===end.svgBox.x&&start.svgBox.width===end.svgBox.width,'outer pill moved or scaled');
    assert(await button.getAttribute('aria-pressed')===(theme==='dark'?'false':'true'),'ARIA state not updated');
