@@ -40,7 +40,7 @@ try{
   assert.ok(await nav.isVisible(),'Navbar actions must be visible');
   const productArt=fav.locator('img[data-favorite-art]');
   const inspect=async selected=>page.evaluate(async selected=>{
-   const navAssets=['nav-search.svg','nav-account.svg','nav-bag.svg','nav-favorites-outline.svg'];
+   const navAssets=['nav-owner-search.svg','nav-owner-account.svg','nav-owner-bag.svg','nav-owner-favorites-outline.svg'];
    const load=async name=>{
     const response=await fetch('/assets/illustrator/'+name);
     if(!response.ok)throw Error('Cannot fetch '+name);
@@ -54,7 +54,7 @@ try{
    const navColors=[];
    for(const name of navAssets){
     const doc=await load(name);
-    navColors.push({name,dark:color(doc).includes('.st0{fill:#1C241D;}')});
+    navColors.push({name,pressGreen:color(doc).includes('.st0{fill:#293D2D;}'),terracotta:color(doc).includes('.st1{fill:#8A503B;')});
    }
    const button=document.querySelector('.polaroid-card .favorite-toggle');
    const img=button?.querySelector('img[data-favorite-art]');
@@ -78,7 +78,8 @@ try{
    };
   },selected);
   const validate=(info,selected)=>{
-   assert.ok(info.navColors.every(x=>x.dark),'All navigation silhouettes must use #1C241D');
+   assert.ok(info.navColors.every(x=>x.pressGreen),'All four owner navigation silhouettes must retain #293D2D Press Green');
+   assert.ok(info.navColors.every(x=>x.terracotta),'The original Terracotta #8A503B paint class is preserved');
    assert.ok(info.sameOutline,'Selected heart must retain identical original outline path');
    assert.ok(info.matchingFrame,'Selected heart must preserve original dimensions/viewBox');
    assert.equal(info.selectedFill,'#8A503B','Terracotta only inside selected icon');
@@ -86,7 +87,9 @@ try{
    assert.equal(info.pressed,String(selected),'aria-pressed state matches favorite');
    assert.ok(info.favoriteSrc?.endsWith(selected?'nav-favorites-selected.svg':'nav-favorites-outline.svg'),'Correct state asset');
    assert.equal(info.iconColor,'rgb(28, 36, 29)','Navbar fallback icon color is Dark Forest');
-   assert.ok(info.navbarIcons.length===4&&info.navbarIcons.every(x=>x.loaded),'All original navbar icons must load');
+   assert.ok(info.navbarIcons.length===4&&info.navbarIcons.every(x=>x.loaded),'All four owner SVG navbar icons must load');
+   const expected=['nav-owner-search.svg','nav-owner-favorites-outline.svg','nav-owner-account.svg','nav-owner-bag.svg'];
+   assert.deepEqual(info.navbarIcons.map(x=>x.src?.split('/').pop()),expected,'Navbar must use exactly the approved owner variants');
    assert.equal(info.navbarIcons.filter(x=>x.w>0&&x.h>0).length,profile.width<=600?2:4,'Preserve mobile menu and desktop navbar visibility');
    assert.ok(info.horizontalOverflow<=1,'No horizontal scroll');
    assert.ok(selected?info.label.startsWith('Remove '):info.label.startsWith('Add '),'Accessible button label');
@@ -130,7 +133,7 @@ try{
    assert.ok(await page.locator('#mobileNav a[href="/favorites/"]').isVisible(),'Favorites remains reachable through mobile menu');
    await page.locator('#menuButton').click();
   }
-  assert.ok((await activeNav.getAttribute('src')).endsWith('nav-favorites-selected.svg'),'Favorites nav uses outlined selected asset');
+  assert.ok((await activeNav.getAttribute('src')).endsWith('nav-owner-favorites-selected.svg'),'Selected navbar heart retains both owner hatch and outline layers');
   assert.ok((await page.locator('.nav-actions a[href="/favorites/"]').getAttribute('aria-current'))==='page','Active nav accessible');
   assert.deepEqual(errors,[],'No browser errors');
   summary.push({profile:profile.name,viewport:[profile.width,profile.height],passed:true,
