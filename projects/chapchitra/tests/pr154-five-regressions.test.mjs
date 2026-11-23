@@ -55,7 +55,7 @@ test('C02 derives two atomic composed SVGs, preserving the exact owner texture',
  assert.match(build,/inkComposed\('#F6F7F5'\)/);
  assert.match(build,/inkComposed\('#6E523F'\)/);
  assert.match(build,/texture-composed-dark\.svg/);
- assert.match(build,/===728/);
+ assert.match(build,/length!==728/);
  assert.match(asset,/composedDarkPath:'\/assets\/c02\/texture-composed-dark\.svg'/);
  const runtime=read('src/motion/c02/ink-sweep.mjs');
  assert.match(runtime,/darkInk\?C02_INK_ASSET\.composedDarkPath:C02_INK_ASSET\.composedPath/);
