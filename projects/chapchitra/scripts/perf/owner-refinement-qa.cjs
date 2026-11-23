@@ -50,8 +50,8 @@ async function run(d){
    };
   });
   verify(d.name+' owner navbar art',JSON.stringify(before.icons)===JSON.stringify([
-   '/assets/illustrator/nav-search.svg','/assets/illustrator/nav-favorites-outline.svg',
-   '/assets/illustrator/nav-account.svg','/assets/illustrator/nav-bag.svg']),before.icons);
+   '/assets/illustrator/nav-owner-search.svg','/assets/illustrator/nav-owner-favorites-outline.svg',
+   '/assets/illustrator/nav-owner-account.svg','/assets/illustrator/nav-owner-bag.svg']),before.icons);
   verify(d.name+' outlined unselected favorite',before.favorite==='/assets/illustrator/nav-favorites-outline.svg'&&before.pressed==='false',before);
   const fav=page.locator('.product-card .favorite-toggle').first();
   await fav.click();
