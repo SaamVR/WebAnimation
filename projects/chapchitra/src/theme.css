@@ -126,7 +126,8 @@
   background:var(--theme-paper);
 }
 :root[data-theme="dark"] #app > .site-header .bag-count{
-  background:var(--theme-gallery);color:var(--theme-on-panel);
+  /* Original stamped numeral SVG is already circular; no square backplate. */
+  background:transparent;color:inherit;
 }
 :root[data-theme="dark"] #app > .site-header .mobile-nav,
 :root[data-theme="dark"] #app > .site-header .search-panel{
