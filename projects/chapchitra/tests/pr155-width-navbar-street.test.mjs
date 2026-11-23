@@ -11,10 +11,11 @@ test('Original Illustrator layered street artwork is preserved byte-exact',()=>{
  const master=source('src/assets/street-owner-layers-master.svg');
  const visible=source('src/assets/street-owner-provisional.svg');
  assert.equal(hash(master),'7eeba23119cc0e04b12487321aeb1518f1daf67418f0728386db06ffa17f099c');
- assert.equal(hash(visible),'9d4fd708761c84edd3bd12bfebaa303c7c386f6401b9eb9ccc398b913859cfc7');
+ assert.equal(hash(visible),'ce026489583b76139f6226fd32321ab425f0192d0949a8224a317b800a1a79ab');
  const a=master.toString('utf8'),b=visible.toString('utf8');
  assert.match(a,/viewBox="0 0 1920 700"/);
  assert.match(b,/viewBox="0 0 1920 700"/);
+ assert.match(b,/width="1920" height="700"/);
  assert.match(a,/<g id="Layer_1">/);
  assert.equal(b.slice(b.indexOf('<g id="Layer_1">')),a.slice(a.indexOf('<g id="Layer_1">')));
  assert.equal((b.match(/<path\b/g)||[]).length,4012);
@@ -34,6 +35,7 @@ test('Street remains static and uncropped on Home and About',()=>{
  assert.match(scoped,/aspect-ratio:1920 \/ 700/);
  assert.match(scoped,/object-fit:contain/);
  assert.match(scoped,/max-height:none/);
+ assert.match(scoped,/min-height:0/);
  assert.match(scoped,/#story \.street-link::after\{display:none\}/);
  assert.doesNotMatch(scoped,/filter:|animation:|@keyframes/);
 });
