@@ -151,50 +151,92 @@ for(const profile of profiles){
  audit.profiles.push(record);
 }
 
-// Actual mid-animation screenshots must be captured at a paused 150ms browser
-// clock; a normal screenshot can take longer than the entire 300ms transition.
-// This second browser pass does not alter the published animation source, only
-// isolates its actual frame state for review (both directions, all profiles).
+// Capture TRUE rendered mid-transition frames, not synthetic reconstructed art.
+// WebKit can jump past the 150ms target when a Playwright Clock is installed
+// AFTER page scripts have scheduled rAF work. Arm an in-page rAF barrier instead:
+// the production callback runs normally until the controller itself reaches the
+// midpoint, then subsequent callbacks are held solely for screenshot acquisition.
+// Releasing the barrier lets the original live timeline finish unchanged.
+audit.midpoints=[];
+async function installLiveFrameHold(page,selector){
+ await page.evaluate(sel=>{
+  const nativeRaf=window.requestAnimationFrame.bind(window);
+  const state={armed:false,paused:false,pending:[],hits:0};
+  const progress=()=>Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
+  window.requestAnimationFrame=(callback)=>nativeRaf(time=>{
+   if(state.paused){state.pending.push(callback);return;}
+   callback(time);
+   if(state.armed&&!state.paused){
+    const v=progress();
+    if(v>=0.30&&v<=0.70){
+     state.armed=false;state.paused=true;state.hits++;
+    }
+   }
+  });
+  window.__ccFrameHold={
+   state,
+   arm(){state.armed=true;state.paused=false;state.pending.length=0;},
+   release(){
+    state.armed=false;state.paused=false;
+    for(const callback of state.pending.splice(0))nativeRaf(callback);
+   }
+  };
+ },selector);
+}
 for(const profile of profiles){
  for(const theme of ['light','dark']){
   let env;
   try{
    env=await prepare(profile,theme,false);
    const {page,button,selector}=env;
-   await page.clock.install();
+   await installLiveFrameHold(page,selector);
+   const target=theme==='dark'?0:1;
+   const origin=1-target;
    const click=()=>button.evaluate(element=>element.click());
+   // 1: Capture a genuinely rendered intermediate light-to-dark or dark-to-light
+   // frame. Poll using a timer rather than rAF because the latter is intentionally
+   // paused for the still acquisition.
+   await page.evaluate(()=>window.__ccFrameHold.arm());
    await click();
-   await page.clock.runFor(150);
-   // Screenshot acquisition pumps rAF unless the installed clock is explicitly paused.
-   await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())));
+   await page.waitForFunction(()=>window.__ccFrameHold?.state.paused===true,
+    undefined,{polling:25,timeout:3000});
    const forward=await read(page,selector);
-   assert(forward.progress>.15&&forward.progress<.85,
-    profile.name+' '+theme+' not at true transition midpoint: '+forward.progress);
+   assert(forward.progress>=.30&&forward.progress<=.70,
+    profile.name+' '+theme+' true forward midpoint missing: '+forward.progress);
    await capture(page,profile.name+'-'+theme+'-mid-transition');
    assert(Math.abs((await read(page,selector)).progress-forward.progress)<.01,
-    'forward screenshot changed actual midpoint frame');
-   await page.clock.runFor(180);
-   assert((await read(page,selector)).progress===(theme==='dark'?0:1),
-    'first 300ms movement did not finish with controlled clock');
+    'forward screenshot changed captured live midpoint frame');
+   await page.evaluate(()=>window.__ccFrameHold.release());
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,target],{polling:25,timeout:3000});
+   // 2: Reverse from a fully settled real endpoint, and capture a new actual
+   // WebKit/Chromium animation frame before letting the motion finish.
+   await page.evaluate(()=>window.__ccFrameHold.arm());
    await click();
-   await page.clock.runFor(150);
-   await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())));
+   await page.waitForFunction(()=>window.__ccFrameHold?.state.paused===true,
+    undefined,{polling:25,timeout:3000});
    const reverse=await read(page,selector);
-   assert(reverse.progress>.15&&reverse.progress<.85,
-    profile.name+' '+theme+' not at reverse midpoint: '+reverse.progress);
+   assert(reverse.progress>=.30&&reverse.progress<=.70,
+    profile.name+' '+theme+' true reverse midpoint missing: '+reverse.progress);
    await capture(page,profile.name+'-'+theme+'-reverse-mid');
    assert(Math.abs((await read(page,selector)).progress-reverse.progress)<.01,
-    'reverse screenshot changed actual midpoint frame');
-   await page.clock.runFor(180);
-   assert((await read(page,selector)).progress===(theme==='dark'?1:0),
-    'reversal did not finish with controlled clock');
+    'reverse screenshot changed captured live midpoint frame');
+   await page.evaluate(()=>window.__ccFrameHold.release());
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,origin],{polling:25,timeout:3000});
+   audit.midpoints.push({profile:profile.name,initialTheme:theme,
+    forward:forward.progress,reverse:reverse.progress,
+    method:'live native rAF capture barrier'});
   }catch(error){
-   audit.errors.push('Clock-controlled midpoint '+profile.name+' '+theme+': '+String(error));
+   audit.errors.push('Live midpoint '+profile.name+' '+theme+': '+String(error));
   }finally{
    if(env){await env.context.close();await env.browser.close();}
   }
  }
 }
+
 try{
  const browser=await chromium.launch({headless:true,timeout:60000});
  const context=await browser.newContext({reducedMotion:'reduce',viewport:{width:1440,height:900}});
