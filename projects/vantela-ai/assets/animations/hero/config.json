@@ -1,0 +1,180 @@
+{
+  "w": 1600,
+  "h": 1000,
+  "fps": 30,
+  "duration": 24.5,
+  "clouds": [
+    {
+      "id": "cloud_top_left",
+      "key": "voice",
+      "label": "Voice Recognition",
+      "start": 1.95,
+      "duration": 1.2,
+      "center": [
+        299.5,
+        345.0
+      ],
+      "icon_size": 388,
+      "icon_center": [
+        306.0,
+        336.0
+      ]
+    },
+    {
+      "id": "cloud_top_middle",
+      "key": "face",
+      "label": "Face Recognition",
+      "start": 3.04,
+      "duration": 1.18,
+      "center": [
+        781.96,
+        240.0
+      ],
+      "icon_size": 497,
+      "icon_center": [
+        779.5,
+        225.5
+      ]
+    },
+    {
+      "id": "cloud_top_right",
+      "key": "image",
+      "label": "Image Generation",
+      "start": 4.13,
+      "duration": 1.18,
+      "center": [
+        1274.0,
+        263.7
+      ],
+      "icon_size": 455,
+      "icon_center": [
+        1283.5,
+        271.5
+      ]
+    },
+    {
+      "id": "cloud_bottom_left",
+      "key": "3d",
+      "label": "3D Generation",
+      "start": 5.22,
+      "duration": 1.2,
+      "center": [
+        419.4,
+        676.6
+      ],
+      "icon_size": 486,
+      "icon_center": [
+        426.0,
+        676.0
+      ]
+    },
+    {
+      "id": "cloud_bottom_middle",
+      "key": "cms",
+      "label": "CMS",
+      "start": 6.31,
+      "duration": 1.17,
+      "center": [
+        904.0,
+        607.95
+      ],
+      "icon_size": 503,
+      "icon_center": [
+        897.5,
+        595.5
+      ]
+    },
+    {
+      "id": "cloud_bottom_right",
+      "key": "search",
+      "label": "Smart Search",
+      "start": 7.4,
+      "duration": 1.16,
+      "center": [
+        1343.0,
+        622.8
+      ],
+      "icon_size": 428,
+      "icon_center": [
+        1343.0,
+        625.0
+      ]
+    }
+  ],
+  "portal": [
+    255,
+    222,
+    1341,
+    826
+  ],
+  "sources": {
+    "voice": "standalone/voice.json",
+    "face": "standalone/face.json",
+    "image": "standalone/image.json",
+    "3d": "standalone/3d.json",
+    "cms": "standalone/cms.json",
+    "search": "standalone/search.json"
+  },
+  "all_clouds_settled_seconds": 8.56,
+  "two_loop_phase_start_seconds": "next natural loop boundary after 8.56s",
+  "two_loop_phase_count": 2,
+  "hold_completed_frames": {
+    "voice": 137,
+    "face": 125,
+    "image": 145,
+    "3d": 145,
+    "cms": 145,
+    "search": 130
+  },
+  "counted_cycle_schedule": {
+    "voice": {
+      "first_full_cycle_start_frame": 389,
+      "first_full_cycle_start_s": 12.966666666666667,
+      "completed_two_loops_frame": 719,
+      "completed_two_loops_s": 23.966666666666665,
+      "frames_each": 165,
+      "cycles": 2
+    },
+    "face": {
+      "first_full_cycle_start_frame": 392,
+      "first_full_cycle_start_s": 13.066666666666666,
+      "completed_two_loops_frame": 692,
+      "completed_two_loops_s": 23.066666666666666,
+      "frames_each": 150,
+      "cycles": 2
+    },
+    "image": {
+      "first_full_cycle_start_frame": 289,
+      "first_full_cycle_start_s": 9.633333333333333,
+      "completed_two_loops_frame": 619,
+      "completed_two_loops_s": 20.633333333333333,
+      "frames_each": 165,
+      "cycles": 2
+    },
+    "3d": {
+      "first_full_cycle_start_frame": 322,
+      "first_full_cycle_start_s": 10.733333333333333,
+      "completed_two_loops_frame": 652,
+      "completed_two_loops_s": 21.733333333333334,
+      "frames_each": 165,
+      "cycles": 2
+    },
+    "cms": {
+      "first_full_cycle_start_frame": 355,
+      "first_full_cycle_start_s": 11.833333333333334,
+      "completed_two_loops_frame": 685,
+      "completed_two_loops_s": 22.833333333333332,
+      "frames_each": 165,
+      "cycles": 2
+    },
+    "search": {
+      "first_full_cycle_start_frame": 372,
+      "first_full_cycle_start_s": 12.4,
+      "completed_two_loops_frame": 672,
+      "completed_two_loops_s": 22.4,
+      "frames_each": 150,
+      "cycles": 2
+    }
+  },
+  "final_settle_frames": 16
+}
