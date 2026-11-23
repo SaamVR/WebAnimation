@@ -59,4 +59,5 @@ test('dark Press Green circle is CSS-only and other palettes/illustrations stay 
  assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)\{\s*background:var\(--color-press-green\);/);
  assert.match(css,/--theme-gallery:var\(--color-warm-beige\)/);
  assert.doesNotMatch(css,/filter:\s*(?:invert|brightness|contrast|sepia)/);
+ assert.match(css,/#app > \.site-header \.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)\{\s*min-width:44px;min-height:44px;/);
 });
