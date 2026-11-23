@@ -49,8 +49,8 @@ function createMotion(svg){
   ref['inner-texture'].style.fill=ink;
   ref['inner-border'].style.fill=ink;
   // Preserve the illustrator circle/grain structure: Gallery White light circle and Press Green distress.
-  sliderBase.style.fill=lerpColor(GALLERY_WHITE,TERRACOTTA,progress);
-  sliderGrain.style.fill=lerpColor(PRESS,CREAM,progress);
+  sliderBase.style.fill=lerpColor(GALLERY_WHITE,CREAM,progress);
+  sliderGrain.style.fill=lerpColor(PRESS,TERRACOTTA,progress);
   ref.slider.setAttribute('transform',`translate(${(TRAVEL*progress).toFixed(3)} 0)`);
   ref.day.style.opacity=String(1-progress);
   ref.night.style.opacity=String(progress);
