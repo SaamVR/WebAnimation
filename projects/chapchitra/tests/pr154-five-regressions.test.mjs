@@ -8,7 +8,8 @@ test('PR154 viewport hero changes are strictly desktop-scoped, with no global wr
  const css=read('src/styles.css');
  const marker=css.indexOf('/* CHAPCHITRA PR154: viewport-bound desktop hero only.');
  assert.ok(marker>0,'a traceable, isolated desktop correction is required');
- const segment=css.slice(marker);
+ const nextRefinement=css.indexOf('/* CHAPCHITRA C09 / PR155 — edge-to-edge surfaces',marker);
+ const segment=css.slice(marker,nextRefinement<0?undefined:nextRefinement);
  assert.match(segment,/@media \(min-width:1024px\)/);
  assert.match(segment,/#app > \.site-header \.header-line\.wrap\{/);
  assert.match(segment,/#hero \.hero-split-inner\.wrap\{/);
