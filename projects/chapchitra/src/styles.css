@@ -2659,3 +2659,102 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
     padding-bottom:70px;
   }
 }
+
+
+/* CHAPCHITRA C09 / PR155 — edge-to-edge surfaces with bounded contents.
+   The page root, navbar, Shop banner, street story and footer already extend
+   to the viewport. Their empty-looking sides came from individually capped
+   .wrap sections. Keep editorial typography/card dimensions bounded; never
+   modify the global .wrap or the approved C01–C08 animation layouts. */
+#app,
+#main{
+  width:100%;
+  max-width:none;
+  min-width:0;
+}
+#categories.section-pad.wrap,
+#collection.section-pad.wrap,
+#values.section-pad.wrap{
+  width:100%;
+  max-width:none;
+  margin-inline:0;
+}
+#categories.section-pad.wrap > *,
+#collection.section-pad.wrap > *,
+#values.section-pad.wrap > *{
+  width:min(1160px,calc(100% - 40px));
+  margin-inline:auto;
+}
+/* Full-bleed page headings and borders; readable prose stays aligned with
+   its original 1160px editorial content grid, not the viewport edges. */
+.route-head.wrap{
+  width:100%;
+  max-width:none;
+  padding-inline:max(20px,calc((100% - 1160px)/2));
+}
+/* Shop section background truly reaches both screen edges. Its internal
+   sidebar + card grid uses a larger but bounded editorial width. At wide
+   desktop breakpoints, extra columns maintain original card proportions. */
+.shop-listing.wrap{
+  width:100%;
+  max-width:none;
+  margin-inline:0;
+  padding-inline:max(32px,calc((100% - 1680px)/2));
+}
+.shop-banner .shop-banner-inner.wrap{
+  width:min(1680px,calc(100% - 64px));
+  max-width:none;
+}
+@media(min-width:1250px){
+  .shop-product-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+}
+@media(min-width:1680px){
+  .shop-product-grid{
+    grid-template-columns:repeat(5,minmax(0,1fr));
+  }
+}
+@media(max-width:740px){
+  .shop-listing.wrap{padding-inline:16px}
+  .shop-banner .shop-banner-inner.wrap{width:calc(100% - 32px)}
+}
+@media(max-width:600px){
+  #categories.section-pad.wrap > *,
+  #collection.section-pad.wrap > *,
+  #values.section-pad.wrap > *{width:calc(100% - 32px)}
+}
+/* 1920×700 static owner street illustration: no artificial height, crop,
+   masking, tint, gradient or motion. The supplied SVG's 4,012 vector paths
+   and Illustrator group hierarchy are preserved. C09 remains provisional. */
+#story .street-link{
+  display:block;
+  width:100%;
+  max-width:none;
+  overflow:visible;
+  background:var(--color-cream);
+}
+#story .street-link img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  min-height:0;
+  aspect-ratio:1920/700;
+  object-fit:contain;
+  object-position:center center;
+}
+#story .street-link::after{content:none}
+#story .street-note{
+  position:static;
+  display:block;
+  text-align:right;
+  padding:8px clamp(16px,2vw,32px);
+}
+#street-story .about-street{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+}
