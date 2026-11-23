@@ -1,5 +1,9 @@
 # CHAPCHITRA Development Guardrails
 
+## 2026-11-22 — owner-approved global Cream revision
+The canonical brand Cream is **#F4EBE4** everywhere the Cream token is intended, in both light and dark themes. Keep all other canonical swatches unchanged. Never recolor existing approved illustration, logo, Lottie or original theme-toggle artwork during this token-only implementation. A replacement hand-drawn toggle will be supplied separately. Keep staging unmodified until explicit merge/deploy authorization.
+
+
 ## STRICT LANES — DO NOT DUPLICATE FEATURE DEVELOPMENT (2026-11-12)
 
 **The Artist's Edit chat is the serial staging integrator, NOT the animation developer.** A new developer MUST identify its assigned lane, read the unified staging runbook, and not take over another lane's scope.
@@ -32,7 +36,7 @@ Follow the repository-root `AGENTS.md` as binding policy.
 This is a standalone creative portfolio demo. Its **12-color palette (2026-11-06) and existing HTML-derived layout** are owner-specified; it is not an operational commercial storefront.
 - Scope every change to this directory. Vercel root = `projects/chapchitra`; no `site/` or THREADS dependency.
 - The owner-approved CHAPCHITRA artwork is now integrated as cropped transparent WebP/PNG assets in `src/assets/` on the final-logo branch. Preserve its custom lettering and illustrated symbol exactly. Do not recreate it with fonts, invent vector paths, or claim the original editable SVG is available.
-- Use exactly **12 canonical color tokens** from the owner's 2026-11-06 final palette in `src/styles.css` (no additional persistent greens/neutrals): Gallery White #F6F7F5, Silver Mist #E9EDEB, Warm Beige #D8CEC2, Cream #E4E3DE, Soft Gray #D9DCD7, Mushroom Gray #A6A29B, Deep Forest #172419, Press Green #293D2D, Dark Olive #1F2216, Walnut #6E523F, Terracotta #8A503B, Graphite #232323. Semantic roles and old aliases reference those tokens. The retired #1C241D and thirteenth muted-gray hex must not return. Keep artwork and product-color swatches unchanged; do not recolor logo/images. Gallery White is dominant, Silver Mist sparse, Warm Beige/Cream editorial, Soft Gray for borders/shadows only, Mushroom Gray decorative only (not small text), Press Green interactive and Deep Forest dark-brand surfaces.
+- Use exactly **12 canonical color tokens** from the owner's 2026-11-06 final palette in `src/styles.css` (no additional persistent greens/neutrals): Gallery White #F6F7F5, Silver Mist #E9EDEB, Warm Beige #D8CEC2, Cream #F4EBE4, Soft Gray #D9DCD7, Mushroom Gray #A6A29B, Deep Forest #172419, Press Green #293D2D, Dark Olive #1F2216, Walnut #6E523F, Terracotta #8A503B, Graphite #232323. Semantic roles and old aliases reference those tokens. The retired #1C241D and thirteenth muted-gray hex must not return. Keep artwork and product-color swatches unchanged; do not recolor logo/images. Gallery White is dominant, Silver Mist sparse, Warm Beige/Cream editorial, Soft Gray for borders/shadows only, Mushroom Gray decorative only (not small text), Press Green interactive and Deep Forest dark-brand surfaces.
 - Assets are own neutral SVG or CSS shapes only; do not import photos or simulate real products.
 - C01 story icons, C02 brass bell motion, C03 folding/packing and C04 ink-stamp add-to-cart have **no implementation authorization**. Static interface icons are not animation artwork.
 - Cart: the owner approved a **sessionStorage-only demo bag** (card Add action, header quantity, bag +/- and remove) with explicit unavailable stock/pricing and no server persistence. Checkout, payment and newsletter must not pretend to accept orders/submit data; retain their explicit unavailable states.

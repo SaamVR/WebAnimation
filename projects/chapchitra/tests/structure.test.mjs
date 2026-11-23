@@ -97,7 +97,7 @@ test('authoritative twelve brand colors have one canonical root and semantic ali
  const buttons=await read('src/button-system.css');
  const values={
   'gallery-white':'#F6F7F5','silver-mist':'#E9EDEB','warm-beige':'#D8CEC2',
-  'cream':'#E4E3DE','soft-gray':'#D9DCD7','mushroom-gray':'#A6A29B',
+  'cream':'#F4EBE4','soft-gray':'#D9DCD7','mushroom-gray':'#A6A29B',
   'deep-forest':'#172419','press-green':'#293D2D','dark-olive':'#1F2216',
   'walnut':'#6E523F','terracotta':'#8A503B','graphite':'#232323'
  };

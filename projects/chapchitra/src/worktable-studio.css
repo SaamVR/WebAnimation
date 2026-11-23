@@ -1,4 +1,4 @@
- .cc-worktable{--cc-page:#f6f7f5;--cc-deep:#172419;--cc-press:#293d2d;--cc-paper:#e4e3de;--cc-line:#d9dcd7;--cc-ink:#232323;--cc-warm:#d8cec2;--cc-accent:#8a503b}
+ .cc-worktable{--cc-page:#f6f7f5;--cc-deep:#172419;--cc-press:#293d2d;--cc-paper:var(--color-cream);--cc-line:#d9dcd7;--cc-ink:#232323;--cc-warm:#d8cec2;--cc-accent:#8a503b}
 .cc-worktable,.cc-worktable *{box-sizing:border-box}
 
 .cc-worktable{width:100%;padding-bottom:4rem}
