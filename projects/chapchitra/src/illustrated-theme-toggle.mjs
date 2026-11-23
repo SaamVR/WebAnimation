@@ -4,6 +4,7 @@ const ASSET='/assets/theme-toggle/toggle-integrated.svg';
 const PRESS=[41,61,45];
 const TERRACOTTA=[138,80,59];
 const CREAM=[244,235,228];
+const GALLERY_WHITE=[246,247,245];
 const TRAVEL=196;
 const DURATION=300;
 const lerpColor=(a,b,t)=>`rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(', ')})`;
@@ -40,13 +41,15 @@ function createMotion(svg){
   progress=clamp(v);
   // Existing Illustrator ink changes from light Press Green to dark Terracotta.
   svg.style.setProperty('--cc-toggle-ink',lerpColor(PRESS,TERRACOTTA,progress));
+  // Artwork paper is Gallery White only at light; the dark endpoint keeps approved Cream.
+  svg.style.setProperty('--cc-toggle-paper',lerpColor(GALLERY_WHITE,CREAM,progress));
   const ink=lerpColor(PRESS,CREAM,progress);
-  const paper=lerpColor(CREAM,TERRACOTTA,progress);
+  const paper=lerpColor(GALLERY_WHITE,TERRACOTTA,progress);
   ref['inner-fill'].style.fill=paper;
   ref['inner-texture'].style.fill=ink;
   ref['inner-border'].style.fill=ink;
-  // Preserve the Illustrator light endpoint: Cream circle, Press Green distress.
-  sliderBase.style.fill=lerpColor(CREAM,TERRACOTTA,progress);
+  // Preserve the illustrator circle/grain structure: Gallery White light circle and Press Green distress.
+  sliderBase.style.fill=lerpColor(GALLERY_WHITE,TERRACOTTA,progress);
   sliderGrain.style.fill=lerpColor(PRESS,CREAM,progress);
   ref.slider.setAttribute('transform',`translate(${(TRAVEL*progress).toFixed(3)} 0)`);
   ref.day.style.opacity=String(1-progress);
