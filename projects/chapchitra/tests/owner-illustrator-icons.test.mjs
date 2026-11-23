@@ -34,9 +34,9 @@ test('footer uses original Instagram/Facebook/WhatsApp, never TikTok or invented
 test('navbar keeps original Illustrator assets and the new selected heart retains its outline',()=>{
  for(const asset of ['nav-search.svg','nav-account.svg','nav-bag.svg','nav-favorites-filled.svg','nav-favorites-outline.svg'])
   assert.ok(original.assets.some(x=>x.filename===asset),'missing source '+asset);
- assert.match(app,/navArt\('search'\)/);
- assert.match(app,/navArt\('account'\)/);
- assert.match(app,/navArt\('bag'\)/);
+ assert.match(app,/navArt\('owner-search'\)/);
+ assert.match(app,/navArt\('owner-account'\)/);
+ assert.match(app,/navArt\('owner-bag'\)/);
  assert.match(app,/favorites-selected/);
  const selected=read('src/assets/illustrator/nav-favorites-selected.svg');
  const outline=read('src/assets/illustrator/nav-favorites-outline.svg');

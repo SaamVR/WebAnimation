@@ -92,10 +92,10 @@ async function boot(){
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon cc-theme-toggle" id="themeToggle" aria-label="Switch to dark theme" aria-pressed="false" title="Switch color theme">'+
      '<span class="cc-theme-toggle-art" aria-hidden="true"></span></button>'+
-   '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+navArt('search')+'</button>'+
-   '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites"'+(route==='favorites'?' aria-current="page"':'')+'>'+navArt(route==='favorites'?'favorites-selected':'favorites-outline')+'</a>'+
-   '<a class="nav-icon nav-optional-action" href="/account/" aria-label="Account">'+navArt('account')+'</a>'+
-   '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+navArt('bag')+'<span class="bag-count">'+stampedBagCount(demoBagCount())+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
+   '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+navArt('owner-search')+'</button>'+
+   '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites"'+(route==='favorites'?' aria-current="page"':'')+'>'+navArt(route==='favorites'?'owner-favorites-selected':'owner-favorites-outline')+'</a>'+
+   '<a class="nav-icon nav-optional-action" href="/account/" aria-label="Account">'+navArt('owner-account')+'</a>'+
+   '<a class="nav-icon bag-link" href="/bag/" aria-label="Demo shopping bag, '+demoBagCount()+' items">'+navArt('owner-bag')+'<span class="bag-count">'+stampedBagCount(demoBagCount())+'</span></a><span class="sr-only" role="status" aria-live="polite" id="bagStatus"></span>'+
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
    '</div></div>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
