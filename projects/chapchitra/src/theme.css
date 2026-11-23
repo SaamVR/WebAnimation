@@ -3,6 +3,17 @@
    Theme scope is the root attribute set synchronously before style paint.
    No artwork, SVG, Lottie or animation choreography is modified here. */
 
+/* Preserve the approved navbar track width while honoring 44px interactive
+   targets. Desktop 2px negative side margins compensate the existing 40px
+   layout slot; on narrow screens two visible actions use separate 44px areas.
+   No icon drawing, lettering, theme control or animation geometry changes. */
+#app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
+  min-width:44px;min-height:44px;margin-inline:-2px;
+}
+@media(max-width:740px){
+  #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){margin-inline:0}
+}
+
 /* A single theme control appears in either mode; leave the rest of the
    existing light navbar untouched. This icon is new UI, not supplied artwork. */
 #app > .site-header .nav-actions .cc-theme-toggle {
