@@ -14,6 +14,16 @@ const configs=[
  {name:'narrow-chromium',browser:chromium,viewport:{width:320,height:740},mobile:true}
 ];
 const checks=[],errors=[],screenshots=[];
+// A DOMContentLoaded reload can tear down WebKit while its original Long
+// SVG poster/fetch is in flight. This adds an asset readiness precondition;
+// the strict existing pageerror assertion is NOT disabled or modified.
+async function waitForLongHydration(page){
+ await page.waitForFunction(()=>{
+  const buttons=[...document.querySelectorAll('.cc-sketch--long.cc-long-artwork')];
+  return buttons.length>0&&buttons.every(button=>button.dataset.long==='ready');
+ },undefined,{timeout:30000});
+}
+
 const verify=(id,ok,details)=>{checks.push({id,ok:!!ok});if(!ok)console.error('OWNER_VECTOR_FAIL '+JSON.stringify({id,details}).slice(0,800))};
 async function run(d){
  const browser=await d.browser.launch({headless:true});
@@ -26,6 +36,7 @@ async function run(d){
  try{
   await page.goto(root+'/shop/',{waitUntil:'domcontentloaded',timeout:90000});
   await page.locator('.product-card .favorite-toggle').first().waitFor({state:'attached',timeout:24000});
+  await waitForLongHydration(page);
   const before=await page.evaluate(()=>{
    const bag=document.querySelector('.bag-link');
    const button=document.querySelector('.product-card .favorite-toggle');
@@ -97,12 +108,14 @@ async function run(d){
      sessionStorage.setItem(key,JSON.stringify(num?[[id,num]]:[]))
     },{key:storageKey,id:pid,num:target});
     await page.reload({waitUntil:'domcontentloaded',timeout:60000});
+    await waitForLongHydration(page);
     await page.waitForFunction(num=>document.querySelector('.bag-count')?.textContent===String(num),target);
     await checkCount(target);
    }
   }
   await page.evaluate(()=>sessionStorage.clear());
   await page.reload({waitUntil:'domcontentloaded'});
+  await waitForLongHydration(page);
   const headerSnap=path.join(dir,d.name+'-navbar-stamps.png');
   await page.locator('.site-header').screenshot({path:headerSnap,animations:'disabled'});
   screenshots.push(path.basename(headerSnap));
@@ -135,6 +148,7 @@ async function run(d){
   await footer.screenshot({path:footSnap,animations:'disabled'});screenshots.push(path.basename(footSnap));
   if(d.name==='desktop-chromium'){
    await page.goto(root+'/',{waitUntil:'domcontentloaded'});
+   await waitForLongHydration(page);
    await page.locator('#values h2#valuesTitle').waitFor({state:'visible',timeout:20000});
    const headings=await page.locator('#values .section-title').allTextContents();
    verify(d.name+' clean C05 heading',headings.length===1&&headings[0].trim()==='More Than a T-Shirt',headings);

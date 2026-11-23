@@ -97,3 +97,16 @@ test('COMPACT source and runtime stay untouched by the dedicated LONG renderer',
  const html=await read('src/buttons/long/index.html');
  assert.match(html,/src="\/long-button-preview\.mjs"/);
 });
+
+test('LONG poster load and WebKit QA reloads preserve resource lifecycle',async()=>{
+ const runtime=await read('src/long-button-runtime.mjs');
+ const qa=await read('scripts/perf/owner-refinement-qa.cjs');
+ assert.match(runtime,/async function waitForPosterLoad\(art\)/);
+ assert.match(runtime,/poster\.addEventListener\('load',settled/);
+ assert.match(runtime,/poster\.addEventListener\('error',settled/);
+ assert.match(runtime,/await waitForPosterLoad\(art\);\s*if\(!button\.isConnected\)return;\s*art\.replaceChildren\(svg\)/);
+ assert.match(qa,/async function waitForLongHydration\(page\)/);
+ assert.match(qa,/buttons\.length>0&&buttons\.every\(button=>button\.dataset\.long==='ready'\)/);
+ assert.equal((qa.match(/await waitForLongHydration\(page\)/g)||[]).length,4);
+ assert.match(qa,/verify\(d\.name\+' browser errors absent',exceptions\.length===0,exceptions\)/);
+});

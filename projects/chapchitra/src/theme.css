@@ -13,7 +13,6 @@
   width:20px;height:20px;max-width:20px;max-height:20px;
   pointer-events:none;
 }
-#app > .site-header .cc-theme-toggle .cc-theme-icon-moon{display:none}
 #app > .site-header .cc-theme-toggle:focus-visible{
   outline:3px solid var(--color-terracotta);outline-offset:2px;
 }
@@ -111,8 +110,6 @@
   color:var(--theme-text);
   background:transparent;
 }
-:root[data-theme="dark"] #app > .site-header .cc-theme-toggle svg:first-child{display:none}
-:root[data-theme="dark"] #app > .site-header .cc-theme-toggle .cc-theme-icon-moon{display:block}
 :root[data-theme="dark"] #app > .site-header .nav-actions .cc-theme-toggle:hover{
   background:var(--color-walnut);
 }

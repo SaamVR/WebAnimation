@@ -33,10 +33,11 @@ async function injectTypographyPreloads(dir){
   // Keep the dark-only stylesheet at the end of the head for semantic overrides.
   const themeBoot='<script src="/theme-init.js"></script>';
   const themeCss='<link rel="stylesheet" href="/theme.css">';
+  const themeToggleCss='<link rel="stylesheet" href="/theme-toggle.css">';
   if(html.includes('theme-init.js')||html.includes('theme.css'))throw new Error('Duplicate theme bootstrap: '+full);
   await writeFile(full,html
     .replace('<head>','<head>'+themeBoot+criticalTypographyPreloads)
-    .replace('</head>',themeCss+'</head>'));
+    .replace('</head>',themeCss+themeToggleCss+'</head>'));
   fontPreloadedPages++;
  }
 }

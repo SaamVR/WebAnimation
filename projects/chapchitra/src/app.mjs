@@ -1,3 +1,4 @@
+import { mountOriginalThemeToggle } from './illustrated-theme-toggle.mjs';
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
 import { createHeroCarouselClock } from './hero-carousel-clock.mjs';
 import {hero01Retraction} from './hero01-retraction.mjs';
@@ -90,10 +91,7 @@ async function boot(){
    '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/chapchitra-wordmark.webp" data-cc-theme-brand="nav" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon cc-theme-toggle" id="themeToggle" aria-label="Switch to dark theme" aria-pressed="false" title="Switch color theme">'+
-     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+
-     '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>'+
-     '<svg viewBox="0 0 24 24" class="cc-theme-icon-moon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+
-     '<path d="M20.5 15.4A8.3 8.3 0 0 1 8.6 3.5 8.6 8.6 0 1 0 20.5 15.4Z"/></svg></button>'+
+     '<span class="cc-theme-toggle-art" aria-hidden="true"></span></button>'+
    '<button type="button" class="nav-icon" id="searchButton" aria-label="Open search" aria-expanded="false" aria-controls="searchPanel">'+navArt('search')+'</button>'+
    '<a class="nav-icon nav-optional-action" href="/favorites/" aria-label="Favorites"'+(route==='favorites'?' aria-current="page"':'')+'>'+navArt(route==='favorites'?'favorites-selected':'favorites-outline')+'</a>'+
    '<a class="nav-icon nav-optional-action" href="/account/" aria-label="Account">'+navArt('account')+'</a>'+
@@ -102,7 +100,7 @@ async function boot(){
    '</div></div>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
    '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop</a><a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a><a href="/favorites/">Favorites</a><a href="/account/">Account</a>'+
-   '<button type="button" class="cc-mobile-theme-toggle" id="themeToggleMobile" aria-pressed="false" aria-label="Switch to dark theme"><span class="cc-theme-menu-label">Switch to dark theme</span></button></nav></header>';
+   '<button type="button" class="cc-mobile-theme-toggle" id="themeToggleMobile" aria-pressed="false" aria-label="Switch to dark theme"><span class="cc-theme-toggle-art" aria-hidden="true"></span><span class="cc-theme-menu-label">Switch to dark theme</span></button></nav></header>';
  }
  const paperVisual=(i)=>'<div class="art-plate art-plate-'+(i%3)+'">'+(i%2===0?shirtSilhouette(i):printSilhouette(i))+'<span class="plate-disclaimer">Illustration placeholder</span></div>';
  const linkFiltered=(category,audience)=>'/shop/?category='+encodeURIComponent(category)+(audience?'&audience='+audience:'');
@@ -745,6 +743,7 @@ async function boot(){
  // The synchronous head bootstrap owns persistence/system detection. This
  // handler only reflects/accessibly changes its resolved choice, never layout.
  const themeButtons=[$('#themeToggle'),$('#themeToggleMobile')].filter(Boolean);
+ const illustratedToggle=mountOriginalThemeToggle(themeButtons);
  const syncThemeButton=()=>{
   const dark=document.documentElement.dataset.theme==='dark';
   const label=dark?'Switch to light theme':'Switch to dark theme';
@@ -782,6 +781,7 @@ async function boot(){
    const menuText=control.querySelector('.cc-theme-menu-label');
    if(menuText)menuText.textContent=label;
   }
+  illustratedToggle.sync(dark);
  };
  syncThemeButton();
  for(const control of themeButtons)control.addEventListener('click',()=>{

@@ -255,4 +255,20 @@ async function run(browser,engine,width,height){
    process.exitCode=2;
   }
  }
+
+ // C09 owner Illustrator theme toggle, isolated PR evidence; NO deployment.
+ if(process.env.GITHUB_HEAD_REF==='feature/chapchitra-illustrated-theme-toggle-20261123'){
+  const {spawnSync}=require('node:child_process');
+  const pathQA=path.resolve(__dirname,'../illustrated-theme-toggle-browser-qa.mjs');
+  const result=spawnSync(process.execPath,[pathQA],{
+   cwd:path.resolve(__dirname,'../..'),
+   env:{...process.env,CC_QA_ROOT:origin,
+    CC_TOGGLE_QA_OUT:path.resolve('perf-results/shared-stage-illustrated-toggle')},
+   encoding:'utf8',stdio:'inherit',timeout:11*60*1000
+  });
+  if(result.error||result.status!==0){
+   console.error('Owner Illustrator theme toggle browser QA failed',result.error?.message||result.status);
+   process.exitCode=2;
+  }
+ }
 })().catch(e=>{console.error(e.stack||e);process.exitCode=3});
