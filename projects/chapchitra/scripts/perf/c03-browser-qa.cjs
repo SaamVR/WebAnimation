@@ -101,17 +101,32 @@ async function normalTest(config){
   // A second add interrupts rather than accumulating orphan timelines.
   await button.click();
   await page.waitForTimeout(85);
+  // Store the previous flight element before the second click. WebKit may
+  // defer the new camera reveal/GSAP kickoff longer than a fixed 640ms delay.
+  await page.evaluate(()=>{
+   window.__c03PriorRapidFlight=document.querySelector('[data-c03-flight]');
+  });
   await button.click();
   const rapid=await state(page);
   check(id+' double-click exactly +2 bag items',rapid.count===3,rapid);
   check(id+' at most one clone during rapid add',rapid.overlayCount<=1,rapid.overlayCount);
-  // An interrupted animation disappears before the replacement is attached.
-  // Waiting for "detached" immediately may observe this *temporary gap*,
-  // incorrectly failing when the new flight appears one frame later.
+  // Require a NEW replacement clone, not the previous interrupted one.
+  // A missing second flight still fails hard after 6s; no assertions skipped.
+  await page.waitForFunction(()=>{
+   const current=document.querySelector('[data-c03-flight]');
+   return !!current && current!==window.__c03PriorRapidFlight;
+  },undefined,{timeout:6000});
+  const launched=await state(page);
+  check(id+' new rapid-replacement clone attached',
+   launched.overlayCount===1&&launched.count===3&&launched.path.includes(' Q '),
+   {overlayCount:launched.overlayCount,count:launched.count,path:launched.path});
+  // Verify the same approved 1.55s flight remains active 640ms AFTER the
+  // actual async attachment rather than sampling before the WebKit kickoff.
   await page.waitForTimeout(640);
   const replacement=await state(page);
   check(id+' replacement flight starts after rapid add',
-   replacement.overlayCount===1,{overlayCount:replacement.overlayCount,count:replacement.count});
+   replacement.overlayCount===1&&replacement.count===3,
+   {overlayCount:replacement.overlayCount,count:replacement.count});
   await page.locator('[data-c03-flight]').waitFor({state:'detached',timeout:8000});
   await page.waitForTimeout(120);
   const rapidSettled=await state(page);

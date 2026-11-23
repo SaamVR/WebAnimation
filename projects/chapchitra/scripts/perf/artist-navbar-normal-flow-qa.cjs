@@ -256,8 +256,12 @@ async function run(browser,engine,width,height){
   }
  }
 
- // C09 owner Illustrator theme toggle, isolated PR evidence; NO deployment.
- if(process.env.GITHUB_HEAD_REF==='feature/chapchitra-illustrated-theme-toggle-20261123'){
+ // C09 Illustrator toggle: require genuine Chromium/WebKit frame, palette,
+ // moon-disc and stamped bag QA for this owner refinement and staging merges.
+ // Retain strict visual assertions and the real uncut browser video artifact.
+ if(process.env.GITHUB_HEAD_REF==='feature/chapchitra-illustrated-theme-toggle-20261123'||
+    process.env.GITHUB_HEAD_REF==='feature/chapchitra-dark-slider-cream-circular-bag-badge-20261123'||
+    process.env.GITHUB_REF==='refs/heads/deploy/chapchitra-render-review'){
   const {spawnSync}=require('node:child_process');
   const pathQA=path.resolve(__dirname,'../illustrated-theme-toggle-browser-qa.mjs');
   const result=spawnSync(process.execPath,[pathQA],{
