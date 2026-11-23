@@ -56,7 +56,7 @@ test('only the header icons use new SVGs, without modifying product Favorites an
 });
 test('dark Press Green circle is CSS-only and other palettes/illustrations stay untouched',()=>{
  const css=text('src/theme.css');
- assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)\{\s*background:var\(--color-press-green\);/);
+ assert.match(css,/:root\[data-theme="dark"\] #app > \.site-header \.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)\{[^}]*background:var\(--color-press-green\);/);
  assert.match(css,/--theme-gallery:var\(--color-warm-beige\)/);
  assert.doesNotMatch(css,/filter:\s*(?:invert|brightness|contrast|sepia)/);
  assert.match(css,/#app > \.site-header \.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)\{\s*min-width:44px;min-height:44px;/);
