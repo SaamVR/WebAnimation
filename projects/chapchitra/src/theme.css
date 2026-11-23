@@ -119,9 +119,9 @@
   background:var(--color-walnut);
 }
 :root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
-  /* Owner-requested preview ONLY: preserve Press Green hand-drawn SVG ink
-     against a Press Green circle, despite the deliberate 1:1 green contrast. */
-  background:var(--color-press-green);
+  /* Owner-approved regression correction: Cream restores contrast without
+     changing one original Press Green/Terracotta Illustrator SVG pigment. */
+  background:var(--color-cream);
   color:var(--theme-on-panel);
   border-radius:999px;
 }
@@ -131,7 +131,9 @@
   color:var(--theme-on-panel);
   border-radius:999px;
 }
-:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle):hover,
+:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle):hover{
+  background:var(--color-cream);
+}
 :root[data-theme="dark"] #app > .site-header .nav-left .hamburger:hover{
   background:var(--theme-paper);
 }
