@@ -68,7 +68,7 @@ test('light Gallery White/Press Green and dark Cream/Terracotta palettes',()=>{
  assert.equal((text.match(/#F6F7F5/gi)||[]).length,4,'all four visible paper roles use Gallery White');
  assert.match(text,/<g id="light-mode-scene-mountains" class="cc-mountain-negative-details">/);
  assert.match(text,/\.cc-mountain-negative-details \.st1 \{fill:var\(--cc-toggle-paper,#F6F7F5\);\}/);
- assert.match(text,/<path id="cc-mountain-solid-fill"[^>]*style="fill:var\(--cc-toggle-ink,#293D2D\)"/);
+ assert.match(text,/<path id="cc-mountain-solid-fill"[^>]*style="fill:var\(--cc-toggle-ink,#293D2D\);"/);
  assert.match(script,/const PRESS=\[41,61,45\]/);
  assert.match(script,/const TERRACOTTA=\[138,80,59\]/);
  assert.match(script,/const GALLERY_WHITE=\[246,247,245\]/);
