@@ -189,6 +189,33 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
     cloth.draggable=false;
     heroStage.append(slot,cloth,trigger);
     hero.trigger=trigger;
+    // An external Illustrator SVG can finish decoding AFTER lottie-web has
+    // rendered its first frame. Never hide the complete static logo before
+    // the owner's Cloth_patch has actual decoded pixels. This gate changes
+    // asset readiness only: C08's 240-frame choreography is untouched.
+    const clothIsDecoded=()=>cloth.complete&&cloth.naturalWidth>0;
+    const waitForCloth=async()=>{
+      const requestedSrc=cloth.getAttribute('src');
+      if(!requestedSrc)return false;
+      if(!clothIsDecoded()){
+        if(typeof cloth.decode==='function'){
+          try{await cloth.decode()}catch{}
+        }
+        if(!cloth.complete){
+          await new Promise(resolve=>{
+            const settled=()=>{
+              cloth.removeEventListener('load',settled);
+              cloth.removeEventListener('error',settled);
+              resolve();
+            };
+            cloth.addEventListener('load',settled,{once:true});
+            cloth.addEventListener('error',settled,{once:true});
+            if(cloth.complete)settled();
+          });
+        }
+      }
+      return cloth.getAttribute('src')===requestedSrc&&clothIsDecoded();
+    };
     const place=()=>{
       const box=heroImage.getBoundingClientRect();
       const origin=parent.getBoundingClientRect();
@@ -214,7 +241,7 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
       onHeroHolding(false);
     };
     const play=({autoplay=false}={})=>{
-      if(hero.playing||REDUCED.matches||!hero.ready||document.hidden||heroImage.closest('.hero-slide')?.hidden)return false;
+      if(hero.playing||REDUCED.matches||!hero.ready||!clothIsDecoded()||document.hidden||heroImage.closest('.hero-slide')?.hidden)return false;
       hero.playing=true;
       if(autoplay)hero.autoplay++;
       onHeroHolding(true);
@@ -242,11 +269,18 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
       try{
         const requested=heroSource();
         const instance=await loadAnimation(slot,requested);
+        // Decode while the original full logo remains visible. In a cold
+        // browser this can complete later than the Lottie SVG DOMLoaded.
+        const clothReady=await waitForCloth();
         if(requested!==heroSource()){
           instance.destroy();
           // A theme toggle while first loading should not show the wrong ink.
           queueMicrotask(()=>{if(!hero.ready&&!REDUCED.matches)void prepareHero()});
           return;
+        }
+        if(!clothReady){
+          instance.destroy();
+          throw new Error('C08 original Cloth_patch could not be decoded');
         }
         hero.instance=instance;
         hero.source=requested;
@@ -291,8 +325,12 @@ export function mountC08({navbar,heroImage=null,heroStage=null,heroVariant='dark
         for(let attempt=0;attempt<6;attempt++){
           requested=heroSource();
           next=await loadAnimation(slot,requested);
-          if(requested===heroSource())break;
+          const clothReady=await waitForCloth();
+          if(requested===heroSource()&&clothReady)break;
           next.destroy();next=null;
+          if(requested===heroSource()&&!clothReady){
+            throw new Error('C08 themed Cloth_patch could not be decoded');
+          }
         }
         if(!next)throw new Error('C08 theme changed during renderer replacement');
         hero.instance=next;

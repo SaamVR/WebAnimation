@@ -1,0 +1,161 @@
+{
+  "method": "Public staging browser with only candidate logo-player.mjs injected and actual owner Cloth_patch network response deliberately HELD until QA release",
+  "cases": [
+    {
+      "name": "chromium-light-delayed",
+      "theme": "light",
+      "checks": {
+        "staticLogoWhileWaiting": true,
+        "noAutoplayBeforeDecoded": true,
+        "startsOnceDecoded": true,
+        "completedOriginal240Frames": true,
+        "noPageErrors": true
+      },
+      "errors": [],
+      "blocked": {
+        "frame": null,
+        "playing": false,
+        "ready": false,
+        "completed": 0,
+        "clothWidth": 0,
+        "clothComplete": false,
+        "clothVisibility": "hidden",
+        "staticVisibility": "visible",
+        "staticLoaded": true,
+        "active": false,
+        "source": null
+      },
+      "started": {
+        "frame": 0,
+        "playing": true,
+        "ready": true,
+        "completed": 0,
+        "clothWidth": 178,
+        "clothComplete": true,
+        "clothVisibility": "visible",
+        "staticVisibility": "hidden",
+        "staticLoaded": true,
+        "active": true,
+        "source": "/assets/c08/wordmark-reprint-original.json"
+      },
+      "complete": {
+        "frame": 239,
+        "playing": false,
+        "ready": true,
+        "completed": 1,
+        "clothWidth": 178,
+        "clothComplete": true,
+        "clothVisibility": "visible",
+        "staticVisibility": "hidden",
+        "staticLoaded": true,
+        "active": true,
+        "source": "/assets/c08/wordmark-reprint-original.json"
+      },
+      "failed": []
+    },
+    {
+      "name": "chromium-dark-delayed",
+      "theme": "dark",
+      "checks": {
+        "staticLogoWhileWaiting": true,
+        "noAutoplayBeforeDecoded": true,
+        "startsOnceDecoded": true,
+        "completedOriginal240Frames": true,
+        "noPageErrors": true
+      },
+      "errors": [],
+      "blocked": {
+        "frame": null,
+        "playing": false,
+        "ready": false,
+        "completed": 0,
+        "clothWidth": 0,
+        "clothComplete": false,
+        "clothVisibility": "hidden",
+        "staticVisibility": "visible",
+        "staticLoaded": true,
+        "active": false,
+        "source": null
+      },
+      "started": {
+        "frame": 0,
+        "playing": true,
+        "ready": true,
+        "completed": 0,
+        "clothWidth": 178,
+        "clothComplete": true,
+        "clothVisibility": "visible",
+        "staticVisibility": "hidden",
+        "staticLoaded": true,
+        "active": true,
+        "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json"
+      },
+      "complete": {
+        "frame": 239,
+        "playing": false,
+        "ready": true,
+        "completed": 1,
+        "clothWidth": 178,
+        "clothComplete": true,
+        "clothVisibility": "visible",
+        "staticVisibility": "hidden",
+        "staticLoaded": true,
+        "active": true,
+        "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json"
+      },
+      "failed": []
+    },
+    {
+      "name": "webkit-light-delayed",
+      "theme": "light",
+      "checks": {
+        "staticLogoWhileWaiting": true,
+        "noAutoplayBeforeDecoded": true,
+        "startsOnceDecoded": true,
+        "completedOriginal240Frames": true,
+        "noPageErrors": true
+      },
+      "errors": [],
+      "blocked": {
+        "frame": null,
+        "playing": false,
+        "ready": false,
+        "completed": 0,
+        "clothWidth": 0,
+        "clothComplete": false,
+        "clothVisibility": "hidden",
+        "staticVisibility": "visible",
+        "staticLoaded": true,
+        "active": false,
+        "source": null
+      },
+      "started": {
+        "frame": 0,
+        "playing": true,
+        "ready": true,
+        "completed": 0,
+        "clothWidth": 178,
+        "clothComplete": true,
+        "clothVisibility": "visible",
+        "staticVisibility": "hidden",
+        "staticLoaded": true,
+        "active": true,
+        "source": "/assets/c08/wordmark-reprint-original.json"
+      },
+      "complete": {
+        "frame": 239,
+        "playing": false,
+        "ready": true,
+        "completed": 1,
+        "clothWidth": 178,
+        "clothComplete": true,
+        "clothVisibility": "visible",
+        "staticVisibility": "hidden",
+        "staticLoaded": true,
+        "active": true,
+        "source": "/assets/c08/wordmark-reprint-original.json"
+      },
+      "failed": []
+    }
+  ]
+}

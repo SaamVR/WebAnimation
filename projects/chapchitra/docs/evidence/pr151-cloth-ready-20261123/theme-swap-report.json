@@ -1,0 +1,47 @@
+{
+  "before": {
+    "ready": true,
+    "playing": true,
+    "completed": 0,
+    "autoplay": 1,
+    "failed": false,
+    "source": "/assets/c08/wordmark-reprint-original.json",
+    "frame": 57.984
+  },
+  "blocked": {
+    "theme": "dark",
+    "shown": false,
+    "clothWidth": 0,
+    "staticVisible": true,
+    "hero": {
+      "ready": false,
+      "playing": false,
+      "completed": 0,
+      "autoplay": 1,
+      "failed": false,
+      "source": "/assets/c08/wordmark-reprint-original.json",
+      "frame": null
+    }
+  },
+  "after": {
+    "shown": true,
+    "clothWidth": 178,
+    "hero": {
+      "ready": true,
+      "playing": true,
+      "completed": 0,
+      "autoplay": 1,
+      "failed": false,
+      "source": "/assets/c08/wordmark-reprint-dark-owner-cream.json",
+      "frame": 69.97800000000002
+    }
+  },
+  "checks": {
+    "startedOriginal": true,
+    "originalVisibleDuringBlocked": true,
+    "resumedOnDecoded": true,
+    "preservedAnimationFrame": true,
+    "noJSErrors": true
+  },
+  "errors": []
+}
