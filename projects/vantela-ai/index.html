@@ -971,7 +971,7 @@ button{font-family:inherit}
     poster.setAttribute('aria-hidden','true');
     poster.hidden=true;
     const video=document.createElement('video');
-    video.src='assets/animations/'+key+'/preview.mp4';
+    video.src='assets/animations/'+key+'/'+(key==='ai04'?'preview-web.mp4':'preview.mp4');
     video.muted=true;
     video.defaultMuted=true;
     video.playsInline=true;
