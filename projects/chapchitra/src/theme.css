@@ -656,3 +656,32 @@
   background:var(--color-warm-beige);
   border-color:var(--color-gallery-white);
 }
+
+
+/* CHAPCHITRA PR155 — dark navbar, exact 44px visible Cream circles and
+   independent 44px pointer/keyboard targets. Original Illustrator artwork
+   and illustrated theme-toggle are expressly not modified. */
+:root[data-theme="dark"] #app > .site-header .nav-actions{
+  gap:2px;
+}
+:root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
+  display:inline-grid;
+  place-items:center;
+  box-sizing:border-box;
+  width:44px;
+  height:44px;
+  min-width:44px;
+  min-height:44px;
+  max-width:44px;
+  max-height:44px;
+  flex:0 0 44px;
+  padding:0;
+  border-radius:50%;
+}
+/* Keep the unchanged owner street illustration legible in the site's dark
+   composition without recolouring, filtering, or reanimating a single path.
+   Both themes use intentional neutral canvases behind the transparent SVG. */
+:root[data-theme="dark"] #story .street-link,
+:root[data-theme="dark"] #street-story .about-street{
+  background:var(--color-warm-beige);
+}
