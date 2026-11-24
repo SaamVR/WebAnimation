@@ -2633,7 +2633,7 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
 }
 @media(max-width:360px){
   /* 44px Hamburger + 44px Search/Bag targets must not crowd the center. */
-  #app > .site-header .logo-word.logo-word--image{width:112px}
+  #app > .site-header .logo-word.logo-word--image{width:104px}
 }
 
 /* CHAPCHITRA PR154: viewport-bound desktop hero only.
