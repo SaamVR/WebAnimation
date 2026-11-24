@@ -36,9 +36,11 @@ async function captureInit(context){
      path:location.pathname,inkAsset:o.dataset.inkAsset,
      inkContactX:Number(o.dataset.inkContactX),
      rollerCenterX:rect?(rect.left+rect.width/2):null,
+     rollerCenterY:rect?(rect.top+rect.height/2):null,
+     direction:o.dataset.c02Direction||'horizontal',
      rollerTransform:r?.style.transform||'',
      rollerSize:parseFloat(r?getComputedStyle(r).width:'0'),
-     viewport:vp?.width||innerWidth,
+     viewport:o.dataset.c02Direction==='vertical'?(vp?.height||innerHeight):(vp?.width||innerWidth),
      visible:r?getComputedStyle(r).display==='block':false,
      driftX:Number(o.dataset.c02DriftX)||0,
      driftDirection:Number(o.dataset.c02DriftDirection)||1,
@@ -100,11 +102,15 @@ function evaluateSamples(label,report,durationMs){
  // not obsolete left: CSS coordinates. This catches the owner's post-handoff
  // roller jump even if progress p remains mathematically monotonic.
  const contacts=samples.filter(s=>Number.isFinite(s.inkContactX)&&
-  Number.isFinite(s.rollerCenterX));
+  Number.isFinite(s.rollerCenterX)&&
+  (s.direction!=='vertical'||Number.isFinite(s.rollerCenterY)));
  check(label+' original quilt never switches renderer',
   samples.every(s=>s.inkAsset==='owner-vector-svg'),{
    distinct:[...new Set(samples.map(s=>s.inkAsset))]});
- const offsets=contacts.map(s=>s.rollerCenterX-s.inkContactX);
+ // A portrait stage rotates the original +X pigment contact into device +Y.
+ // Compare its PHYSICAL roller Y center, not the unchanged physical X center.
+ const offsets=contacts.map(s=>(s.direction==='vertical'
+  ?s.rollerCenterY:s.rollerCenterX)-s.inkContactX);
  const span=offsets.length?Math.max(...offsets)-Math.min(...offsets):Infinity;
  check(label+' roller keeps physical bitmap contact offset',
   contacts.length>=5&&span<9,{n:contacts.length,offsetSpanPx:span});
@@ -131,7 +137,8 @@ function evaluateSamples(label,report,durationMs){
   proof?.covered===true&&proof.progress===1&&proof.frameFits===true&&
   proof.imageReady===true&&proof.imageSpans===true&&
   proof.whiteSeal===true&&proof.clip==='none'&&
-  proof.minPigmentEdgePx>=proof.viewport.width+2&&
+  proof.minPigmentEdgePx>=(proof.direction==='vertical'
+   ?proof.logicalViewport.width:proof.viewport.width)+2&&
   proof.committedAt>=report.startedAt&&
   proof.committedAt<=report.destinationReadyAt,
   {proof,destinationReadyAt:report.destinationReadyAt});
