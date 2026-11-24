@@ -67,10 +67,10 @@ test('Dark circles have 36px Cream artwork inside four 44px hit targets',()=>{
  assert.match(originalToggle,/width:96px!important;height:38\.4px!important/);
 });
 
-test('Phone-only 36px hamburger backing and owner illustration in closed header',()=>{
+test('Unboxed phone hamburger plus original owner toggle in closed header',()=>{
  const app=text('src/app.mjs'),theme=text('src/theme.css'),styles=text('src/styles.css');
  assert.match(theme,/@media\(max-width:430px\)/);
- assert.match(theme,/\.nav-left \.hamburger::before\{/);
+ assert.doesNotMatch(theme,/\.nav-left \.hamburger::before\{/,'Phone hamburger is an unboxed icon, not a fifth circle');
  assert.match(app,/id="themeToggle"/);
  assert.match(app,/id="themeToggleMobile"/);
  assert.match(styles,/\.logo-word\.logo-word--image\{\s*display:none/);

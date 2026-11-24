@@ -686,16 +686,13 @@
 @media (min-width:431px){
   :root[data-theme="dark"] #app > .site-header .nav-actions{gap:2px}
 }
-/* Phone hamburger retains its approved dark-mode Cream disk, but the
-   open-panel X uses a plain theme-aware line treatment. */
+/* Phone uses a SIMPLE 44px hamburger with the theme's existing text
+   color, not a fifth decorative Cream disk. Search/Bag keep 36px disks. */
 @media(max-width:430px){
   :root[data-theme="dark"] #app > .site-header .nav-left .hamburger{
-    background:transparent;isolation:isolate;position:relative;
-  }
-  :root[data-theme="dark"] #app > .site-header .nav-left .hamburger::before{
-    content:"";position:absolute;left:50%;top:50%;width:36px;height:36px;
-    border-radius:50%;background:var(--color-cream);
-    transform:translate(-50%,-50%);pointer-events:none;z-index:-1;
+    background:transparent;
+    color:var(--theme-text);
+    border-radius:0;
   }
   :root[data-theme="dark"] #app > .site-header .nav-left .hamburger:hover{
     background:transparent;
