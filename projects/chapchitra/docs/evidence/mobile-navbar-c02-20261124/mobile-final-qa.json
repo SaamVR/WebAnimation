@@ -11,11 +11,12 @@
         "sticky mobile header": true,
         "zero horizontal overflow": true,
         "mobile palette persists": true,
-        "36px dark Cream backgrounds": true,
+        "all three 36px dark Cream backgrounds": true,
         "asset decoded before click": true,
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -78,6 +79,12 @@
           "bottom": 99.6875,
           "left": 260
         },
+        "hamburgerDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
         "searchDisc": {
           "width": "36px",
           "height": "36px",
@@ -133,18 +140,18 @@
             "width": 320,
             "height": 844
           },
-          "committedAt": 1795535627148,
-          "startedAt": 1795535625056,
+          "committedAt": 1795537688974,
+          "startedAt": 1795537686895,
           "from": "/",
           "to": "/shop/"
         },
         "firstPaint": {
-          "x": 0.005508820212526189,
+          "x": 0.001813600113564462,
           "y": 0,
           "progress": 1,
           "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
-          "rawTransform": "translate3d(-2298.41px, -80px, 0px)",
-          "rawPrepaintX": "-2298.4044032891625px",
+          "rawTransform": "translate3d(-2298.42px, -80px, 0px)",
+          "rawPrepaintX": "-2298.4181082748864px",
           "rawPrepaintY": "-80px",
           "pendingClass": true,
           "originalTicketProgress": 1
@@ -177,6 +184,7 @@
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -239,6 +247,12 @@
           "bottom": 99.6875,
           "left": 260
         },
+        "hamburgerDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
         "searchDisc": {
           "width": "auto",
           "height": "auto",
@@ -294,18 +308,18 @@
             "width": 320,
             "height": 844
           },
-          "committedAt": 1795535638494,
-          "startedAt": 1795535634483,
+          "committedAt": 1795537696121,
+          "startedAt": 1795537694028,
           "from": "/",
           "to": "/shop/"
         },
         "firstPaint": {
-          "x": 0.0006771098846911627,
+          "x": 0.003553660784746171,
           "y": 0,
           "progress": 1,
           "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
-          "rawTransform": "translate3d(-2288.85px, -80px, 0px)",
-          "rawPrepaintX": "-2288.8494205463653px",
+          "rawTransform": "translate3d(-2297.65px, -80px, 0px)",
+          "rawPrepaintX": "-2297.6463486829653px",
           "rawPrepaintY": "-80px",
           "pendingClass": true,
           "originalTicketProgress": 1
@@ -334,11 +348,12 @@
         "sticky mobile header": true,
         "zero horizontal overflow": true,
         "mobile palette persists": true,
-        "36px dark Cream backgrounds": true,
+        "all three 36px dark Cream backgrounds": true,
         "asset decoded before click": true,
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -400,6 +415,12 @@
           "right": 359,
           "bottom": 99.6875,
           "left": 315
+        },
+        "hamburgerDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
         },
         "searchDisc": {
           "width": "36px",
@@ -456,18 +477,18 @@
             "width": 375,
             "height": 844
           },
-          "committedAt": 1795535646927,
-          "startedAt": 1795535644848,
+          "committedAt": 1795537706886,
+          "startedAt": 1795537704793,
           "from": "/",
           "to": "/shop/"
         },
         "firstPaint": {
-          "x": 0.0047543398331981734,
+          "x": 0.00018599594704937772,
           "y": 0,
           "progress": 1,
           "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
           "rawTransform": "translate3d(-2878.21px, -93.75px, 0px)",
-          "rawPrepaintX": "-2878.205206597667px",
+          "rawPrepaintX": "-2878.209774941553px",
           "rawPrepaintY": "-93.75px",
           "pendingClass": true,
           "originalTicketProgress": 1
@@ -500,6 +521,7 @@
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -562,6 +584,12 @@
           "bottom": 99.6875,
           "left": 315
         },
+        "hamburgerDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
         "searchDisc": {
           "width": "auto",
           "height": "auto",
@@ -617,18 +645,18 @@
             "width": 375,
             "height": 844
           },
-          "committedAt": 1795535657024,
-          "startedAt": 1795535654931,
+          "committedAt": 1795537714601,
+          "startedAt": 1795537712514,
           "from": "/",
           "to": "/shop/"
         },
         "firstPaint": {
-          "x": 0.0054101937635095965,
+          "x": 0.0006870971860735153,
           "y": 0,
           "progress": 1,
           "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
-          "rawTransform": "translate3d(-2878.96px, -93.75px, 0px)",
-          "rawPrepaintX": "-2878.9545507437365px",
+          "rawTransform": "translate3d(-2878.2px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.200638269061px",
           "rawPrepaintY": "-93.75px",
           "pendingClass": true,
           "originalTicketProgress": 1
@@ -657,11 +685,12 @@
         "sticky mobile header": true,
         "zero horizontal overflow": true,
         "mobile palette persists": true,
-        "36px dark Cream backgrounds": true,
+        "all three 36px dark Cream backgrounds": true,
         "asset decoded before click": true,
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -724,6 +753,12 @@
           "bottom": 99.6875,
           "left": 330
         },
+        "hamburgerDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
         "searchDisc": {
           "width": "36px",
           "height": "36px",
@@ -779,18 +814,18 @@
             "width": 390,
             "height": 844
           },
-          "committedAt": 1795535664405,
-          "startedAt": 1795535662324,
+          "committedAt": 1795537722898,
+          "startedAt": 1795537720807,
           "from": "/",
           "to": "/shop/"
         },
         "firstPaint": {
-          "x": 0.006388423626503936,
+          "x": 0.004439855938926485,
           "y": 0,
           "progress": 1,
           "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
-          "rawTransform": "translate3d(-3036.3px, -97.5px, 0px)",
-          "rawPrepaintX": "-3036.2936604044985px",
+          "rawTransform": "translate3d(-3036.33px, -97.5px, 0px)",
+          "rawPrepaintX": "-3036.325638269061px",
           "rawPrepaintY": "-97.5px",
           "pendingClass": true,
           "originalTicketProgress": 1
@@ -823,6 +858,7 @@
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -885,6 +921,12 @@
           "bottom": 99.6875,
           "left": 330
         },
+        "hamburgerDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
         "searchDisc": {
           "width": "auto",
           "height": "auto",
@@ -940,18 +982,18 @@
             "width": 390,
             "height": 844
           },
-          "committedAt": 1795535670954,
-          "startedAt": 1795535668880,
+          "committedAt": 1795537730667,
+          "startedAt": 1795537727740,
           "from": "/",
           "to": "/shop/"
         },
         "firstPaint": {
-          "x": 0.006043677583420504,
+          "x": 0.0005273812635095965,
           "y": 0,
           "progress": 1,
           "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
-          "rawTransform": "translate3d(-3019.67px, -97.5px, 0px)",
-          "rawPrepaintX": "-3019.6638781974166px",
+          "rawTransform": "translate3d(-3037.08px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
           "rawPrepaintY": "-97.5px",
           "pendingClass": true,
           "originalTicketProgress": 1
@@ -980,11 +1022,12 @@
         "sticky mobile header": true,
         "zero horizontal overflow": true,
         "mobile palette persists": true,
-        "36px dark Cream backgrounds": true,
+        "all three 36px dark Cream backgrounds": true,
         "asset decoded before click": true,
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -1046,6 +1089,12 @@
           "right": 414,
           "bottom": 99.6875,
           "left": 370
+        },
+        "hamburgerDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
         },
         "searchDisc": {
           "width": "36px",
@@ -1102,18 +1151,18 @@
             "width": 430,
             "height": 844
           },
-          "committedAt": 1795535681301,
-          "startedAt": 1795535679228,
+          "committedAt": 1795537740895,
+          "startedAt": 1795537738819,
           "from": "/",
           "to": "/shop/"
         },
         "firstPaint": {
-          "x": 0.004202069343136827,
+          "x": 0.003126735666228342,
           "y": 0,
           "progress": 1,
           "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
-          "rawTransform": "translate3d(-3457.96px, -107.5px, 0px)",
-          "rawPrepaintX": "-3457.955758868157px",
+          "rawTransform": "translate3d(-3458px, -107.5px, 0px)",
+          "rawPrepaintX": "-3457.9968732643338px",
           "rawPrepaintY": "-107.5px",
           "pendingClass": true,
           "originalTicketProgress": 1
@@ -1146,6 +1195,7 @@
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -1208,6 +1258,12 @@
           "bottom": 99.6875,
           "left": 370
         },
+        "hamburgerDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
         "searchDisc": {
           "width": "auto",
           "height": "auto",
@@ -1263,18 +1319,18 @@
             "width": 430,
             "height": 844
           },
-          "committedAt": 1795535689483,
-          "startedAt": 1795535687406,
+          "committedAt": 1795537747059,
+          "startedAt": 1795537744979,
           "from": "/",
           "to": "/shop/"
         },
         "firstPaint": {
-          "x": 0.005948692777110409,
+          "x": 0.000568575835586671,
           "y": 0,
           "progress": 1,
           "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
-          "rawTransform": "translate3d(-3457.98px, -107.5px, 0px)",
-          "rawPrepaintX": "-3457.974031775973px",
+          "rawTransform": "translate3d(-3458.01px, -107.5px, 0px)",
+          "rawPrepaintX": "-3458.0105783414606px",
           "rawPrepaintY": "-107.5px",
           "pendingClass": true,
           "originalTicketProgress": 1
@@ -1303,11 +1359,12 @@
         "sticky mobile header": true,
         "zero horizontal overflow": true,
         "mobile palette persists": true,
-        "36px dark Cream backgrounds": true,
+        "all three 36px dark Cream backgrounds": true,
         "asset decoded before click": true,
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -1370,6 +1427,12 @@
           "bottom": 99.6875,
           "left": 260
         },
+        "hamburgerDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
         "searchDisc": {
           "width": "36px",
           "height": "36px",
@@ -1425,8 +1488,8 @@
             "width": 320,
             "height": 844
           },
-          "committedAt": 1795535701420,
-          "startedAt": 1795535699094,
+          "committedAt": 1795537756387,
+          "startedAt": 1795537754041,
           "from": "/",
           "to": "/shop/"
         },
@@ -1469,6 +1532,7 @@
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -1531,6 +1595,12 @@
           "bottom": 99.6875,
           "left": 260
         },
+        "hamburgerDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
         "searchDisc": {
           "width": "auto",
           "height": "auto",
@@ -1586,8 +1656,8 @@
             "width": 320,
             "height": 844
           },
-          "committedAt": 1795535710827,
-          "startedAt": 1795535708530,
+          "committedAt": 1795537768530,
+          "startedAt": 1795537766181,
           "from": "/",
           "to": "/shop/"
         },
@@ -1626,11 +1696,12 @@
         "sticky mobile header": true,
         "zero horizontal overflow": true,
         "mobile palette persists": true,
-        "36px dark Cream backgrounds": true,
+        "all three 36px dark Cream backgrounds": true,
         "asset decoded before click": true,
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -1693,6 +1764,12 @@
           "bottom": 99.6875,
           "left": 315
         },
+        "hamburgerDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
         "searchDisc": {
           "width": "36px",
           "height": "36px",
@@ -1748,8 +1825,8 @@
             "width": 375,
             "height": 844
           },
-          "committedAt": 1795535723234,
-          "startedAt": 1795535720705,
+          "committedAt": 1795537778006,
+          "startedAt": 1795537775703,
           "from": "/",
           "to": "/shop/"
         },
@@ -1792,6 +1869,7 @@
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -1854,6 +1932,12 @@
           "bottom": 99.6875,
           "left": 315
         },
+        "hamburgerDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
         "searchDisc": {
           "width": "auto",
           "height": "auto",
@@ -1909,8 +1993,8 @@
             "width": 375,
             "height": 844
           },
-          "committedAt": 1795535732350,
-          "startedAt": 1795535730035,
+          "committedAt": 1795537801768,
+          "startedAt": 1795537799471,
           "from": "/",
           "to": "/shop/"
         },
@@ -1949,11 +2033,12 @@
         "sticky mobile header": true,
         "zero horizontal overflow": true,
         "mobile palette persists": true,
-        "36px dark Cream backgrounds": true,
+        "all three 36px dark Cream backgrounds": true,
         "asset decoded before click": true,
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -2016,6 +2101,12 @@
           "bottom": 99.6875,
           "left": 330
         },
+        "hamburgerDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
         "searchDisc": {
           "width": "36px",
           "height": "36px",
@@ -2071,8 +2162,8 @@
             "width": 390,
             "height": 844
           },
-          "committedAt": 1795535745205,
-          "startedAt": 1795535742888,
+          "committedAt": 1795537810672,
+          "startedAt": 1795537808358,
           "from": "/",
           "to": "/shop/"
         },
@@ -2115,6 +2206,7 @@
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -2177,6 +2269,12 @@
           "bottom": 99.6875,
           "left": 330
         },
+        "hamburgerDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
         "searchDisc": {
           "width": "auto",
           "height": "auto",
@@ -2232,8 +2330,8 @@
             "width": 390,
             "height": 844
           },
-          "committedAt": 1795535755661,
-          "startedAt": 1795535753284,
+          "committedAt": 1795537820032,
+          "startedAt": 1795537817740,
           "from": "/",
           "to": "/shop/"
         },
@@ -2272,11 +2370,12 @@
         "sticky mobile header": true,
         "zero horizontal overflow": true,
         "mobile palette persists": true,
-        "36px dark Cream backgrounds": true,
+        "all three 36px dark Cream backgrounds": true,
         "asset decoded before click": true,
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -2338,6 +2437,12 @@
           "right": 414,
           "bottom": 99.6875,
           "left": 370
+        },
+        "hamburgerDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
         },
         "searchDisc": {
           "width": "36px",
@@ -2394,8 +2499,8 @@
             "width": 430,
             "height": 844
           },
-          "committedAt": 1795535767712,
-          "startedAt": 1795535765409,
+          "committedAt": 1795537829355,
+          "startedAt": 1795537827026,
           "from": "/",
           "to": "/shop/"
         },
@@ -2438,6 +2543,7 @@
         "menu opens": true,
         "menu contains Favorites Account": true,
         "illustrated theme toggle accessible": true,
+        "original illustrated toggle SVG mounted": true,
         "menu theme switches": true,
         "theme switch restores": true,
         "portrait direction": true,
@@ -2500,6 +2606,12 @@
           "bottom": 99.6875,
           "left": 370
         },
+        "hamburgerDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
         "searchDisc": {
           "width": "auto",
           "height": "auto",
@@ -2555,8 +2667,8 @@
             "width": 430,
             "height": 844
           },
-          "committedAt": 1795535779876,
-          "startedAt": 1795535777525,
+          "committedAt": 1795537839855,
+          "startedAt": 1795537837549,
           "from": "/",
           "to": "/shop/"
         },
@@ -2587,11 +2699,11 @@
       "pass": true
     }
   ],
-  "startTime": 1795535619618,
+  "startTime": 1795537683061,
   "summary": {
     "profiles": 16,
-    "checks": 344,
-    "passed": 344,
+    "checks": 360,
+    "passed": 360,
     "failures": []
   }
 }
