@@ -1,0 +1,2597 @@
+{
+  "sourceSHA": "468d45bff714661ef4f8b43a5deaf016730d6119",
+  "mode": "candidate resources intercepted on original staging, NOT deployed",
+  "profiles": [
+    {
+      "name": "chromium-320-dark",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "36px dark Cream backgrounds": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 108,
+          "y": 65.9375,
+          "width": 104,
+          "height": 23.484375,
+          "top": 65.9375,
+          "right": 212,
+          "bottom": 89.421875,
+          "left": 108
+        },
+        "search": {
+          "x": 216,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 260,
+          "bottom": 99.6875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 304,
+          "bottom": 99.6875,
+          "left": 260
+        },
+        "searchDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "bagDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "logoSrc": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "dark",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed-dark.svg",
+        "width": 320,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "dark",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 320
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 320,
+            "height": 844
+          },
+          "committedAt": 1795535627148,
+          "startedAt": 1795535625056,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.005508820212526189,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2298.41px, -80px, 0px)",
+          "rawPrepaintX": "-2298.4044032891625px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672400000002
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-320-light",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 108,
+          "y": 65.9375,
+          "width": 104,
+          "height": 23.484375,
+          "top": 65.9375,
+          "right": 212,
+          "bottom": 89.421875,
+          "left": 108
+        },
+        "search": {
+          "x": 216,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 260,
+          "bottom": 99.6875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 304,
+          "bottom": 99.6875,
+          "left": 260
+        },
+        "searchDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "bagDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "logoSrc": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "light",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed.svg",
+        "width": 320,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "light",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 320
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 320,
+            "height": 844
+          },
+          "committedAt": 1795535638494,
+          "startedAt": 1795535634483,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0006771098846911627,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2288.85px, -80px, 0px)",
+          "rawPrepaintX": "-2288.8494205463653px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672400000002
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-375-dark",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "36px dark Cream backgrounds": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 62.859375,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 62.859375,
+          "right": 253.125,
+          "bottom": 92.5,
+          "left": 121.875
+        },
+        "search": {
+          "x": 271,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 315,
+          "bottom": 99.6875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 359,
+          "bottom": 99.6875,
+          "left": 315
+        },
+        "searchDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "bagDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "logoSrc": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "dark",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed-dark.svg",
+        "width": 375,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "dark",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 375,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 375
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 375,
+            "height": 844
+          },
+          "committedAt": 1795535646927,
+          "startedAt": 1795535644848,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0047543398331981734,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2878.21px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.205206597667px",
+          "rawPrepaintY": "-93.75px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-375-light",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 62.859375,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 62.859375,
+          "right": 253.125,
+          "bottom": 92.5,
+          "left": 121.875
+        },
+        "search": {
+          "x": 271,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 315,
+          "bottom": 99.6875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 359,
+          "bottom": 99.6875,
+          "left": 315
+        },
+        "searchDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "bagDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "logoSrc": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "light",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed.svg",
+        "width": 375,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "light",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 375,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 375
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 375,
+            "height": 844
+          },
+          "committedAt": 1795535657024,
+          "startedAt": 1795535654931,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0054101937635095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2878.96px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.9545507437365px",
+          "rawPrepaintY": "-93.75px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-390-dark",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "36px dark Cream backgrounds": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": "F:\\CHAPCHITRA_MOBILE_FINAL_QA_20261124\\chromium-390-dark-journey.webm",
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 62.28125,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 62.28125,
+          "right": 263.25,
+          "bottom": 93.09375,
+          "left": 126.75
+        },
+        "search": {
+          "x": 286,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 330,
+          "bottom": 99.6875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 374,
+          "bottom": 99.6875,
+          "left": 330
+        },
+        "searchDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "bagDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "logoSrc": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "dark",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed-dark.svg",
+        "width": 390,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "dark",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 390
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 390,
+            "height": 844
+          },
+          "committedAt": 1795535664405,
+          "startedAt": 1795535662324,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.006388423626503936,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3036.3px, -97.5px, 0px)",
+          "rawPrepaintX": "-3036.2936604044985px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-390-light",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": "F:\\CHAPCHITRA_MOBILE_FINAL_QA_20261124\\chromium-390-light-journey.webm",
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 62.28125,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 62.28125,
+          "right": 263.25,
+          "bottom": 93.09375,
+          "left": 126.75
+        },
+        "search": {
+          "x": 286,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 330,
+          "bottom": 99.6875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 374,
+          "bottom": 99.6875,
+          "left": 330
+        },
+        "searchDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "bagDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "logoSrc": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "light",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed.svg",
+        "width": 390,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "light",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 390
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 390,
+            "height": 844
+          },
+          "committedAt": 1795535670954,
+          "startedAt": 1795535668880,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.006043677583420504,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3019.67px, -97.5px, 0px)",
+          "rawPrepaintX": "-3019.6638781974166px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-430-dark",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "36px dark Cream backgrounds": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 142.5,
+          "y": 61.3125,
+          "width": 145,
+          "height": 32.734375,
+          "top": 61.3125,
+          "right": 287.5,
+          "bottom": 94.046875,
+          "left": 142.5
+        },
+        "search": {
+          "x": 326,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 370,
+          "bottom": 99.6875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 414,
+          "bottom": 99.6875,
+          "left": 370
+        },
+        "searchDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "bagDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "logoSrc": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "dark",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed-dark.svg",
+        "width": 430,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "dark",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 430,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 430
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 430,
+            "height": 844
+          },
+          "committedAt": 1795535681301,
+          "startedAt": 1795535679228,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.004202069343136827,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3457.96px, -107.5px, 0px)",
+          "rawPrepaintX": "-3457.955758868157px",
+          "rawPrepaintY": "-107.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-430-light",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 142.5,
+          "y": 61.3125,
+          "width": 145,
+          "height": 32.734375,
+          "top": 61.3125,
+          "right": 287.5,
+          "bottom": 94.046875,
+          "left": 142.5
+        },
+        "search": {
+          "x": 326,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 370,
+          "bottom": 99.6875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 414,
+          "bottom": 99.6875,
+          "left": 370
+        },
+        "searchDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "bagDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "logoSrc": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "light",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed.svg",
+        "width": 430,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "light",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 430,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 430
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 430,
+            "height": 844
+          },
+          "committedAt": 1795535689483,
+          "startedAt": 1795535687406,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.005948692777110409,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3457.98px, -107.5px, 0px)",
+          "rawPrepaintX": "-3457.974031775973px",
+          "rawPrepaintY": "-107.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-320-dark",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "36px dark Cream backgrounds": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 108,
+          "y": 65.9375,
+          "width": 104,
+          "height": 23.484375,
+          "top": 65.9375,
+          "right": 212,
+          "bottom": 89.421875,
+          "left": 108
+        },
+        "search": {
+          "x": 216,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 260,
+          "bottom": 99.6875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 304,
+          "bottom": 99.6875,
+          "left": 260
+        },
+        "searchDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "bagDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "logoSrc": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "dark",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed-dark.svg",
+        "width": 320,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "dark",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 320
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 320,
+            "height": 844
+          },
+          "committedAt": 1795535701420,
+          "startedAt": 1795535699094,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672400000002
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-320-light",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 108,
+          "y": 65.9375,
+          "width": 104,
+          "height": 23.484375,
+          "top": 65.9375,
+          "right": 212,
+          "bottom": 89.421875,
+          "left": 108
+        },
+        "search": {
+          "x": 216,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 260,
+          "bottom": 99.6875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 304,
+          "bottom": 99.6875,
+          "left": 260
+        },
+        "searchDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "bagDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "logoSrc": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "light",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed.svg",
+        "width": 320,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "light",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 320
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 320,
+            "height": 844
+          },
+          "committedAt": 1795535710827,
+          "startedAt": 1795535708530,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672400000002
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-375-dark",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "36px dark Cream backgrounds": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 62.859375,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 62.859375,
+          "right": 253.125,
+          "bottom": 92.5,
+          "left": 121.875
+        },
+        "search": {
+          "x": 271,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 315,
+          "bottom": 99.6875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 359,
+          "bottom": 99.6875,
+          "left": 315
+        },
+        "searchDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "bagDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "logoSrc": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "dark",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed-dark.svg",
+        "width": 375,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "dark",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 375,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 375
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 375,
+            "height": 844
+          },
+          "committedAt": 1795535723234,
+          "startedAt": 1795535720705,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2878.95776px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.9545507437365px",
+          "rawPrepaintY": "-93.75px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-375-light",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 62.859375,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 62.859375,
+          "right": 253.125,
+          "bottom": 92.5,
+          "left": 121.875
+        },
+        "search": {
+          "x": 271,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 315,
+          "bottom": 99.6875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 359,
+          "bottom": 99.6875,
+          "left": 315
+        },
+        "searchDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "bagDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "logoSrc": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "light",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed.svg",
+        "width": 375,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "light",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 375,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 375
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 375,
+            "height": 844
+          },
+          "committedAt": 1795535732350,
+          "startedAt": 1795535730035,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2878.95776px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.9545507437365px",
+          "rawPrepaintY": "-93.75px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-390-dark",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "36px dark Cream backgrounds": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 62.28125,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 62.28125,
+          "right": 263.25,
+          "bottom": 93.09375,
+          "left": 126.75
+        },
+        "search": {
+          "x": 286,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 330,
+          "bottom": 99.6875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 374,
+          "bottom": 99.6875,
+          "left": 330
+        },
+        "searchDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "bagDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "logoSrc": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "dark",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed-dark.svg",
+        "width": 390,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "dark",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 390
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 390,
+            "height": 844
+          },
+          "committedAt": 1795535745205,
+          "startedAt": 1795535742888,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-390-light",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 62.28125,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 62.28125,
+          "right": 263.25,
+          "bottom": 93.09375,
+          "left": 126.75
+        },
+        "search": {
+          "x": 286,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 330,
+          "bottom": 99.6875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 374,
+          "bottom": 99.6875,
+          "left": 330
+        },
+        "searchDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "bagDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "logoSrc": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "light",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed.svg",
+        "width": 390,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "light",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 390
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 390,
+            "height": 844
+          },
+          "committedAt": 1795535755661,
+          "startedAt": 1795535753284,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-430-dark",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "36px dark Cream backgrounds": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 142.5,
+          "y": 61.3125,
+          "width": 145,
+          "height": 32.734375,
+          "top": 61.3125,
+          "right": 287.5,
+          "bottom": 94.046875,
+          "left": 142.5
+        },
+        "search": {
+          "x": 326,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 370,
+          "bottom": 99.6875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 414,
+          "bottom": 99.6875,
+          "left": 370
+        },
+        "searchDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "bagDisc": {
+          "width": "36px",
+          "height": "36px",
+          "color": "rgb(244, 235, 228)",
+          "pointer": "none"
+        },
+        "logoSrc": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "dark",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed-dark.svg",
+        "width": 430,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "dark",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 430,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 430
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 430,
+            "height": 844
+          },
+          "committedAt": 1795535767712,
+          "startedAt": 1795535765409,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.003294308346539765,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3458.749427px, -107.5px, 0px)",
+          "rawPrepaintX": "-3458.7462174104035px",
+          "rawPrepaintY": "-107.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-430-light",
+      "checks": {
+        "centered original wordmark": true,
+        "Option A spatial order": true,
+        "Hamburger Search Bag 44px targets": true,
+        "sticky mobile header": true,
+        "zero horizontal overflow": true,
+        "mobile palette persists": true,
+        "asset decoded before click": true,
+        "menu opens": true,
+        "menu contains Favorites Account": true,
+        "illustrated theme toggle accessible": true,
+        "menu theme switches": true,
+        "theme switch restores": true,
+        "portrait direction": true,
+        "original vector selected": true,
+        "navigation completes": true,
+        "coverage proof": true,
+        "no horizontal overflow": true,
+        "correct theme backing": true,
+        "firstpaint continuity": true,
+        "both candidate CSS resources loaded": true,
+        "candidate C02 and prepaint resources loaded": true
+      },
+      "errors": [],
+      "resources": {
+        "module": 2,
+        "early": 2,
+        "styles": 4
+      },
+      "proof": null,
+      "samples": [],
+      "video": null,
+      "geometry": {
+        "hamburger": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "logo": {
+          "x": 142.5,
+          "y": 61.3125,
+          "width": 145,
+          "height": 32.734375,
+          "top": 61.3125,
+          "right": 287.5,
+          "bottom": 94.046875,
+          "left": 142.5
+        },
+        "search": {
+          "x": 326,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 370,
+          "bottom": 99.6875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 414,
+          "bottom": 99.6875,
+          "left": 370
+        },
+        "searchDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "bagDisc": {
+          "width": "auto",
+          "height": "auto",
+          "color": "rgba(0, 0, 0, 0)",
+          "pointer": "auto"
+        },
+        "logoSrc": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "logoOpacity": "1",
+        "logoVisibility": "visible",
+        "theme": "light",
+        "overflow": 0,
+        "headerPosition": "sticky"
+      },
+      "outgoingInfo": {
+        "direction": "vertical",
+        "stage": true,
+        "image": "/assets/c02/texture-composed.svg",
+        "width": 430,
+        "height": 844
+      },
+      "arrival": {
+        "theme": "light",
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 430,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 430
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 430,
+            "height": 844
+          },
+          "committedAt": 1795535779876,
+          "startedAt": 1795535777525,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "firstPaint": {
+          "x": 0.003294308346539765,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3458.749427px, -107.5px, 0px)",
+          "rawPrepaintX": "-3458.7462174104035px",
+          "rawPrepaintY": "-107.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "reveal": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "state": "complete",
+        "overflow": 0,
+        "overlay": false
+      },
+      "pass": true
+    }
+  ],
+  "startTime": 1795535619618,
+  "summary": {
+    "profiles": 16,
+    "checks": 344,
+    "passed": 344,
+    "failures": []
+  }
+}

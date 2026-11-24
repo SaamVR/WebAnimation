@@ -1,0 +1,117 @@
+[
+  {
+    "engine": "chromium",
+    "width": 320,
+    "theme": "light",
+    "errors": [],
+    "checks": {
+      "visible by phone-only option": true,
+      "accessible by phone-only option": true,
+      "centering": true,
+      "navbar logo keyboard focus": true
+    },
+    "sample": {
+      "visible": "visible",
+      "opacity": "1",
+      "aria": null,
+      "tabindex": null,
+      "x": 108,
+      "right": 212,
+      "center": 160,
+      "src": "/assets/brand/chapchitra-light-wordmark.svg"
+    },
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "theme": "dark",
+    "errors": [],
+    "checks": {
+      "visible by phone-only option": true,
+      "accessible by phone-only option": true,
+      "centering": true,
+      "navbar logo keyboard focus": true
+    },
+    "sample": {
+      "visible": "visible",
+      "opacity": "1",
+      "aria": null,
+      "tabindex": null,
+      "x": 126.75,
+      "right": 263.25,
+      "center": 195,
+      "src": "/assets/brand/chapchitra-dark-wordmark.svg"
+    },
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "dark",
+    "errors": [],
+    "checks": {
+      "visible by phone-only option": true,
+      "accessible by phone-only option": true,
+      "centering": true,
+      "navbar logo keyboard focus": true
+    },
+    "sample": {
+      "visible": "visible",
+      "opacity": "1",
+      "aria": null,
+      "tabindex": null,
+      "x": 126.75,
+      "right": 263.25,
+      "center": 195,
+      "src": "/assets/brand/chapchitra-dark-wordmark.svg"
+    },
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "width": 834,
+    "theme": "dark",
+    "errors": [],
+    "checks": {
+      "visible by phone-only option": true,
+      "accessible by phone-only option": true,
+      "centering": true,
+      "desktop preserved": true
+    },
+    "sample": {
+      "visible": "hidden",
+      "opacity": "0",
+      "aria": "true",
+      "tabindex": "-1",
+      "x": 346.109375,
+      "right": 487.875,
+      "center": 416.9921875,
+      "src": "/assets/brand/chapchitra-dark-wordmark.svg"
+    },
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "theme": "light",
+    "errors": [],
+    "checks": {
+      "visible by phone-only option": true,
+      "accessible by phone-only option": true,
+      "centering": true,
+      "desktop preserved": true
+    },
+    "sample": {
+      "visible": "hidden",
+      "opacity": "0",
+      "aria": "true",
+      "tabindex": "-1",
+      "x": 624,
+      "right": 816,
+      "center": 720,
+      "src": "/assets/brand/chapchitra-light-wordmark.svg"
+    },
+    "pass": true
+  }
+]
