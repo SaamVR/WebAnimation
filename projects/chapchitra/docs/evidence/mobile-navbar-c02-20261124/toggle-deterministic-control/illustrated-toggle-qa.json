@@ -1,0 +1,179 @@
+{
+  "source": "Owner Illustrator exact master, no raster replacement",
+  "mode": "LIVE Render staging public URL",
+  "screenshots": [
+    "desktop-chromium-light-initial-navbar.png",
+    "desktop-chromium-light-finished-navbar.png",
+    "desktop-chromium-dark-initial-navbar.png",
+    "desktop-chromium-dark-finished-navbar.png",
+    "ipad-webkit-light-initial-navbar.png",
+    "ipad-webkit-light-finished-navbar.png",
+    "ipad-webkit-dark-initial-navbar.png",
+    "ipad-webkit-dark-finished-navbar.png",
+    "mobile-chromium-light-initial-navbar.png",
+    "mobile-chromium-light-finished-navbar.png",
+    "mobile-chromium-dark-initial-navbar.png",
+    "mobile-chromium-dark-finished-navbar.png",
+    "narrow-320-chromium-light-initial-navbar.png",
+    "narrow-320-chromium-light-finished-navbar.png",
+    "narrow-320-chromium-dark-initial-navbar.png",
+    "narrow-320-chromium-dark-finished-navbar.png",
+    "desktop-chromium-light-mid-transition.png",
+    "desktop-chromium-light-reverse-mid.png",
+    "desktop-chromium-dark-mid-transition.png",
+    "desktop-chromium-dark-reverse-mid.png",
+    "ipad-webkit-light-mid-transition.png",
+    "ipad-webkit-light-reverse-mid.png",
+    "ipad-webkit-dark-mid-transition.png",
+    "ipad-webkit-dark-reverse-mid.png",
+    "mobile-chromium-light-mid-transition.png",
+    "mobile-chromium-light-reverse-mid.png",
+    "mobile-chromium-dark-mid-transition.png",
+    "mobile-chromium-dark-reverse-mid.png",
+    "narrow-320-chromium-light-mid-transition.png",
+    "narrow-320-chromium-light-reverse-mid.png",
+    "narrow-320-chromium-dark-mid-transition.png",
+    "narrow-320-chromium-dark-reverse-mid.png"
+  ],
+  "profiles": [
+    {
+      "profile": "desktop-chromium",
+      "runs": [
+        {
+          "theme": "light",
+          "passed": true,
+          "forwardSettled": 1,
+          "paths": 916,
+          "clip": "url(\"#cc-themeToggle-cc-inner-pill-clip\")"
+        },
+        {
+          "theme": "dark",
+          "passed": true,
+          "forwardSettled": 0,
+          "paths": 916,
+          "clip": "url(\"#cc-themeToggle-cc-inner-pill-clip\")"
+        }
+      ]
+    },
+    {
+      "profile": "ipad-webkit",
+      "runs": [
+        {
+          "theme": "light",
+          "passed": true,
+          "forwardSettled": 1,
+          "paths": 916,
+          "clip": "url(\"#cc-themeToggle-cc-inner-pill-clip\")"
+        },
+        {
+          "theme": "dark",
+          "passed": true,
+          "forwardSettled": 0,
+          "paths": 916,
+          "clip": "url(\"#cc-themeToggle-cc-inner-pill-clip\")"
+        }
+      ]
+    },
+    {
+      "profile": "mobile-chromium",
+      "runs": [
+        {
+          "theme": "light",
+          "passed": true,
+          "forwardSettled": 1,
+          "paths": 916,
+          "clip": "url(\"#cc-themeToggleMobile-cc-inner-pill-clip\")"
+        },
+        {
+          "theme": "dark",
+          "passed": true,
+          "forwardSettled": 0,
+          "paths": 916,
+          "clip": "url(\"#cc-themeToggleMobile-cc-inner-pill-clip\")"
+        }
+      ]
+    },
+    {
+      "profile": "narrow-320-chromium",
+      "runs": [
+        {
+          "theme": "light",
+          "passed": true,
+          "forwardSettled": 1,
+          "paths": 916,
+          "clip": "url(\"#cc-themeToggleMobile-cc-inner-pill-clip\")"
+        },
+        {
+          "theme": "dark",
+          "passed": true,
+          "forwardSettled": 0,
+          "paths": 916,
+          "clip": "url(\"#cc-themeToggleMobile-cc-inner-pill-clip\")"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "midpoints": [
+    {
+      "profile": "desktop-chromium",
+      "initialTheme": "light",
+      "forward": 0.4869,
+      "reverse": 0.5031,
+      "method": "real Chromium/WebKit SVG render at deterministic native owner tick 150ms"
+    },
+    {
+      "profile": "desktop-chromium",
+      "initialTheme": "dark",
+      "forward": 0.5089,
+      "reverse": 0.4953,
+      "method": "real Chromium/WebKit SVG render at deterministic native owner tick 150ms"
+    },
+    {
+      "profile": "ipad-webkit",
+      "initialTheme": "light",
+      "forward": 0.4529,
+      "reverse": 0.5679,
+      "method": "real Chromium/WebKit SVG render at deterministic native owner tick 150ms"
+    },
+    {
+      "profile": "ipad-webkit",
+      "initialTheme": "dark",
+      "forward": 0.573,
+      "reverse": 0.4115,
+      "method": "real Chromium/WebKit SVG render at deterministic native owner tick 150ms"
+    },
+    {
+      "profile": "mobile-chromium",
+      "initialTheme": "light",
+      "forward": 0.4921,
+      "reverse": 0.5037,
+      "method": "real Chromium/WebKit SVG render at deterministic native owner tick 150ms"
+    },
+    {
+      "profile": "mobile-chromium",
+      "initialTheme": "dark",
+      "forward": 0.5052,
+      "reverse": 0.4953,
+      "method": "real Chromium/WebKit SVG render at deterministic native owner tick 150ms"
+    },
+    {
+      "profile": "narrow-320-chromium",
+      "initialTheme": "light",
+      "forward": 0.4911,
+      "reverse": 0.5037,
+      "method": "real Chromium/WebKit SVG render at deterministic native owner tick 150ms"
+    },
+    {
+      "profile": "narrow-320-chromium",
+      "initialTheme": "dark",
+      "forward": 0.5031,
+      "reverse": 0.4958,
+      "method": "real Chromium/WebKit SVG render at deterministic native owner tick 150ms"
+    }
+  ],
+  "reducedMotion": {
+    "passed": true,
+    "progress": 1
+  }
+}
