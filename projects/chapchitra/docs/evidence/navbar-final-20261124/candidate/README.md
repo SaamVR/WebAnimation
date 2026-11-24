@@ -1,11 +1,14 @@
 # CHAPCHITRA — final owner screenshot navbar corrections (CANDIDATE ONLY)
 
 - Code pull request: https://github.com/SaamVR/WebAnimation/pull/164
-- Candidate exact SHA: \`d95b171d3d0c6a05ac72fbb6ab47d4bfa792ef4e\`
+- Candidate exact SHA: \`b4d649cdc8a63e82a0ae4f77cc507d262e9aebdc\`
 - Staging baseline at recording: \`c41b8c747167ef2cc2e1d1c486f9a6b554856837\`.
 - Render service was **NOT** redeployed for these captures. Playwright locally substituted candidate app.mjs, styles.css, theme.css and theme-toggle.css into the browser load at the existing staging origin. This is **not live-site acceptance**.
 
 ## Independent browser evidence
+
+- [Hero01 owner-corrected navbar and C08 browser regression](hero01-final-contract/): **5/5 profiles PASS** (1440px Chromium, iPad WebKit, 390px Chromium, 320px Chromium, reduced-motion WebKit). Complete actual-browser screenshots, 390px transition recording, and machine-readable report. The revised test asserts the original CHAPCHITRA wordmark is hidden in the closed phone header and remains available in the expanded menu, without changing original SVG art, C08 timing, or Hero01 visuals.
+
 
 - [Mobile/tablet/desktop browser matrix](candidate-qa.json): **260/260 checks PASS**, 24 Chromium/WebKit profiles × 320/375/390/430/834/1440 widths × dark/light.
 - [Intermediate tablet breakpoint matrix](tablet-between-breakpoints.json): **84/84 PASS**, 16 Chromium/WebKit profiles × 431/600/740/834 widths × dark/light.
