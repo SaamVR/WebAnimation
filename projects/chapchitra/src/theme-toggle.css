@@ -48,3 +48,16 @@
   #app > .site-header .cc-mobile-theme-toggle:focus-visible {outline:3px solid var(--color-terracotta);outline-offset:2px;}
   :root[data-theme="dark"] #app > .site-header .cc-mobile-theme-toggle:focus-visible {outline-color:var(--color-cream);}
 }
+
+
+/* Final owner mobile header: keep the SAME 96px original Illustrator
+   light/dark toggle visible alongside Search and Bag. No artwork scaling. */
+@media(max-width:430px){
+  #app > .site-header .nav-actions .cc-theme-toggle{
+    display:inline-flex;
+    width:96px;min-width:96px;flex:0 0 96px;
+  }
+  html.cc-mobile-menu-open #app > .site-header .nav-actions .cc-theme-toggle{
+    display:none;
+  }
+}

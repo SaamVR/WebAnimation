@@ -86,8 +86,8 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
  assert.match(browser,/snapshot\.vOutsideLeft&&snapshot\.vOutsideRight/);
  assert.match(browser,/snapshot\.logoClearsTip/);
  assert.match(css,/margin-top:-7px/);
- assert.match(browser,/scrolled\.navWordmark\.visible,true/);
- assert.match(browser,/slide02\.navWordmark\.visible,true/);
+ assert.match(browser,/scrolled\.navWordmark\.visible,standardWordmark/);
+ assert.match(browser,/slide02\.navWordmark\.visible,standardWordmark/);
  assert.match(browser,/other\.wordmark\.src/);
  assert.match(browser,/snapshot\.headerBottomBorder/);
  assert.match(browser,/snapshot\.logoCentered/);
@@ -151,5 +151,5 @@ test('Hero01 paper and full logo remain painted through scroll-linked retraction
 
 test('Hero01 navbar logo switches atomically without a 220ms duplicate',()=>{
  assert.match(css,/body\[data-page="home"\] #app > \.site-header \.logo-word\.logo-word--image\s*\{\s*transition:none/);
- assert.match(browser,/getComputedStyle\(el\)\.visibility==='hidden'&&Number\(getComputedStyle\(el\)\.opacity\)<\.05/);
+ assert.match(browser,/await waitClosedNavbarWordmark\(page,false,3500\)/);
 });

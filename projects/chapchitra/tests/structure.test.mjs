@@ -729,7 +729,10 @@ test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only'
  for(const className of ['nav-left','nav-center','logo-word logo-word--image','nav-actions'])
   assert.ok(header.includes('class="'+className+'"'));
  assert.match(header,/<a href="\/shop\/">Shop<\/a>/);
- assert.match(header,/<nav id="mobileNav"[^>]*hidden><a href="\/shop\/">Shop<\/a><a href="\/artists-edit\/">/);
+ assert.match(header,/<nav id="mobileNav"[^>]*hidden>/);
+  assert.match(header,/cc-mobile-menu-main/);
+  assert.ok(header.includes('Home</a>'));
+  assert.match(header,/cc-mobile-menu-footer/);
  assert.doesNotMatch(header,/<details class="shop-dropdown"|class="nav-dropdown"/);
  assert.match(header,/id="menuButton"[^>]*aria-expanded="false"[^>]*aria-controls="mobileNav"/);
  assert.match(header,/id="mobileNav"[^>]*hidden/);
@@ -752,7 +755,7 @@ test('CHAPCHITRA desktop/tablet keeps single-row text; hamburger is mobile-only'
  assert.match(navPriority,/min-height:44px/);
  assert.match(src,/matchMedia\('\(max-width:740px\)'\)/);
  assert.match(src,/menuButton\.addEventListener\('click'/);
- assert.match(src,/toggle\(mobileNav,menuButton,false\)/);
+ assert.match(src,/setMobileMenu\(false\)/);
  assert.doesNotMatch(src,/mobileShopPopover|mobileShopPopover\.hidden/);
 });
 test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',async()=>{

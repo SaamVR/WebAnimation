@@ -161,7 +161,12 @@ async function sample(page){
    canvasBottom:cover?.getBoundingClientRect().bottom??0,
    controlBottom:hero?.querySelector('.hero-controls')?.getBoundingClientRect().bottom??0,
    logoAnimation:window.__chapchitraC08?.hero||null,
-   fullLinkHidden:document.querySelector('#siteHeader .logo-word--image')?.getAttribute('aria-hidden')==='true',
+   // A display:none SVG link is absent from the accessible tree even when
+   // its historical aria-hidden attribute is unset by Hero01's controller.
+   fullLinkHidden:(()=>{
+    const link=document.querySelector('#siteHeader .logo-word--image');
+    return link?.getAttribute('aria-hidden')==='true'||!link?.getClientRects().length;
+   })(),
    heroLogoInert:document.querySelector('#hero .hero01-full-logo')?.inert??null,
    navWordmark:(()=>{
     const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
@@ -177,6 +182,16 @@ async function sample(page){
    })()
   };
  });
+}
+async function waitClosedNavbarWordmark(page,shouldShow,timeout=6000){
+ await page.waitForFunction(expected=>{
+  const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
+  if(!link||!img||!img.complete||img.naturalWidth<=100)return false;
+  const style=getComputedStyle(link),image=getComputedStyle(img),rect=link.getBoundingClientRect();
+  const visible=style.display!=='none'&&style.visibility==='visible'&&
+   Number(style.opacity)>.95&&rect.width>70&&image.visibility==='visible';
+  return visible===expected;
+ },shouldShow,{timeout});
 }
 function locallyLaunched(engine){
  return engine===chromium&&process.platform==='win32'
@@ -210,9 +225,14 @@ for(const t of profiles){
  await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseenter')));
  const initial=await sample(page);
  validate(initial);
- const phoneWordmark=t.width<=430;
+ // NEW OWNER CORRECTION: phones 320–430 place the original 96px
+ // illustrated toggle + Search/Bag in the CLOSED header. Original compact
+ // wordmark appears only in the EXPANDED full-height menu, never squeezed
+ // into the closed navbar (including other routes and Hero02–05).
+ const phoneWordmark=false;
+ const standardWordmark=t.width>430;
  assert.equal(initial.navWordmark.visible,phoneWordmark,'Hero01 owner navbar wordmark follows phone-only Option A');
- assert.equal(initial.fullLinkHidden,!phoneWordmark,'Hero01 wordmark accessible on phones and hidden on desktop/tablet');
+ assert.equal(initial.fullLinkHidden,true,'Closed Hero01 compact SVG is hidden from the accessibility tree');
  assert.equal(initial.heroLogoInert,false);
  if(t.width<=740)assert.equal(initial.copyBelowTip,true,
   'Mobile/narrow V tip must NOT overlap the eyebrow, heading or editorial copy');
@@ -255,7 +275,7 @@ for(const t of profiles){
  }
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  const mid=await sample(page);
- assert.equal(mid.navWordmark.visible,phoneWordmark,'Phone navbar stays visible during paper retraction');
+ assert.equal(mid.navWordmark.visible,false,'Closed mobile wordmark does not reappear during paper retraction');
  assert.equal(mid.heroLogoInert,false,'Original hero logo remains interactive');
  const midGeo=await page.evaluate(()=>{
   const paper=document.querySelector('#hero01PaperPanel'),header=document.querySelector('#siteHeader');
@@ -279,16 +299,12 @@ for(const t of profiles){
  }
 
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
- await page.waitForFunction(()=>{
-  const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
-  return link&&img&&getComputedStyle(link).visibility==='visible'&&Number(getComputedStyle(link).opacity)>.95&&
-    img.complete&&img.naturalWidth>100&&getComputedStyle(img).visibility==='visible';
- },null,{timeout:3500});
+ await waitClosedNavbarWordmark(page,standardWordmark,3500);
  const scrolled=await sample(page);
- assert.equal(scrolled.navWordmark.visible,true,'Scroll restores visible original SVG wordmark');
+ assert.equal(scrolled.navWordmark.visible,standardWordmark,'Scroll preserves original SVG but hides it in the closed phone header');
  assert.equal(scrolled.navWordmark.loaded,true,'Navbar image decoded');
  assert.equal(scrolled.navWordmark.src,'/assets/brand/chapchitra-light-wordmark.svg');
- assert.equal(scrolled.fullLinkHidden,false,'Standard navbar logo accessible on scroll');
+ assert.equal(scrolled.fullLinkHidden,!standardWordmark,'Standard wordmark accessible only when actually displayed');
  assert.equal(scrolled.heroLogoInert,true,'No duplicate or focusable logo below sticky navbar');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95,{},{timeout:2000});
  await page.screenshot({path:resolve(out,t.name+'-scrolled.png')});
@@ -319,13 +335,10 @@ for(const t of profiles){
  reviewTimeline.push({event:'native 8s/4s autoplay',firstDwell,secondDwell});
  await page.locator('#hero [data-slide-to="1"]').evaluate(node=>node.click());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='standard');
- await page.waitForFunction(()=>{
-  const el=document.querySelector('#siteHeader .logo-word--image');
-  return el&&getComputedStyle(el).visibility==='visible'&&Number(getComputedStyle(el).opacity)>.95;
- },null,{timeout:3500});
+ await waitClosedNavbarWordmark(page,standardWordmark,3500);
  const slide02=await sample(page);
  assert.equal(slide02.slide,'1','Hero 02 active');
- assert.equal(slide02.navWordmark.visible,true,'Hero 02 restores original compact wordmark');
+ assert.equal(slide02.navWordmark.visible,standardWordmark,'Hero02 compact wordmark follows closed phone header contract');
  assert.equal(slide02.navWordmark.loaded,true,'Hero 02 compact wordmark decoded');
  assert.ok(await page.locator('#hero .hero-slide[data-slide="1"]').isVisible());
  await page.screenshot({path:resolve(out,t.name+'-slide02.png')});
@@ -335,14 +348,10 @@ for(const t of profiles){
  for(const [target,name] of [[2,'03'],[3,'04'],[4,'05']]){
   await page.locator('#hero [data-slide-to="'+target+'"]').evaluate(node=>node.click());
   await page.waitForFunction(index=>document.querySelector('#hero .hero-slide.is-active')?.dataset.slide===String(index),target);
-  await page.waitForFunction(()=>{
-   const el=document.querySelector('#siteHeader .logo-word--image'),img=el?.querySelector('img');
-   return el&&img&&getComputedStyle(el).visibility==='visible'&&
-     Number(getComputedStyle(el).opacity)>.95&&getComputedStyle(img).visibility==='visible';
-  },null,{timeout:3500});
+  await waitClosedNavbarWordmark(page,standardWordmark,3500);
   const snap=await sample(page);
   assert.equal(snap.state,'standard','Slides 02–05 must use the ONE standard navbar');
-  assert.equal(snap.navWordmark.visible,true,'Original compact navbar wordmark visible for Hero '+name);
+  assert.equal(snap.navWordmark.visible,standardWordmark,'Original SVG display follows phone-only closed header for Hero '+name);
   assert.equal(snap.heroLogoInert,true,'Full logo must not stay interactive on Hero '+name);
   reviewTimeline.push({event:name+' active',compactVisible:snap.navWordmark.visible,heroInert:snap.heroLogoInert});
   await page.screenshot({path:resolve(out,t.name+'-slide'+name+'.png')});
@@ -352,16 +361,11 @@ for(const t of profiles){
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector('#hero .hero01-full-logo')).opacity)>.95,
   null,{timeout:3500});
- await page.waitForFunction(()=>{
-  const el=document.querySelector('#siteHeader .logo-word--image');
-  return el&&(innerWidth<=430
-   ?getComputedStyle(el).visibility==='visible'&&Number(getComputedStyle(el).opacity)>.95
-   :getComputedStyle(el).visibility==='hidden'&&Number(getComputedStyle(el).opacity)<.05);
- },null,{timeout:3500});
+ await waitClosedNavbarWordmark(page,false,3500);
  const returned=await sample(page);
  assert.equal(returned.slide,'0');
  assert.equal(returned.heroLogoInert,false,'Large logo regains accessibility after Hero 05');
- assert.equal(returned.navWordmark.visible,phoneWordmark,'Phone owner navbar stays visible on Hero01 return');
+ assert.equal(returned.navWordmark.visible,false,'Hero01 restores hidden compact SVG in all CLOSED headers');
  reviewTimeline.push({event:'01 restored after 05',compactVisible:returned.navWordmark.visible,fullLogoInert:returned.heroLogoInert});
  await page.screenshot({path:resolve(out,t.name+'-return.png')});
  await page.waitForTimeout(750);
@@ -382,11 +386,7 @@ for(const t of profiles){
  await page.waitForFunction(()=>!document.querySelector('#c02-loader')&&
   !document.documentElement.classList.contains('c02-pending'),null,{timeout:20000});
  await page.locator('#siteHeader .nav-center>a').first().waitFor({state:'attached',timeout:20000});
- await page.waitForFunction(()=>{
-  const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
-  return !!(img&&img.complete&&img.naturalWidth>100&&
-   getComputedStyle(link).visibility==='visible'&&Number(getComputedStyle(link).opacity)>.95);
- },null,{timeout:6000});
+ await waitClosedNavbarWordmark(page,standardWordmark,6000);
  const other=await page.evaluate(()=>({
   mode:document.querySelector('#siteHeader')?.dataset.hero01Mode||'standard',
   paper:document.querySelector('.hero01-paper-panel')!==null,
@@ -396,8 +396,9 @@ for(const t of profiles){
    const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
    if(!link||!img)return {loaded:false,visible:false};
    return {loaded:img.complete&&img.naturalWidth>100,
-    visible:getComputedStyle(link).visibility==='visible'&&
-     Number(getComputedStyle(link).opacity)>.95&&getComputedStyle(img).visibility==='visible',
+    visible:getComputedStyle(link).display!=='none'&&link.getBoundingClientRect().width>70&&
+     getComputedStyle(link).visibility==='visible'&&Number(getComputedStyle(link).opacity)>.95&&
+     getComputedStyle(img).visibility==='visible',
     src:new URL(img.currentSrc||img.src).pathname,
     ariaHidden:link.getAttribute('aria-hidden')};
   })()
@@ -405,7 +406,8 @@ for(const t of profiles){
  assert.equal(other.mode,'standard');assert.equal(other.paper,false);
  assert.equal(other.navLinks,4);assert.equal(other.navArt,4);
  assert.deepEqual([other.wordmark.loaded,other.wordmark.visible,other.wordmark.ariaHidden],
-  [true,true,null],'Shop must render the original compact wordmark and accessible link');
+  [true,standardWordmark,null],
+  'Shop retains original loaded SVG, displayed only on wider closed headers');
  assert.equal(other.wordmark.src,'/assets/brand/chapchitra-light-wordmark.svg');
  await page.screenshot({path:resolve(out,t.name+'-shop.png')});
  if(t.name==='desktop-chromium'){
@@ -428,7 +430,10 @@ for(const t of profiles){
  reviewTimeline.push({event:'Home -> Shop via C02',route:'shop',compactVisible:other.wordmark.visible});
  await page.waitForTimeout(650);
  // Return via the ONE original compact navbar Home link.
- await page.locator('#siteHeader .logo-word--image').click();
+ if(t.width<=430){
+  await page.locator('#menuButton').click();
+  await page.locator('#mobileNav .cc-mobile-menu-main a[href="/"]').click();
+ }else await page.locator('#siteHeader .logo-word--image').click();
  await page.waitForURL(u=>u.pathname==='/',{timeout:30000});
  await page.locator('#hero .hero01-full-logo>img.hero-brand-lockup').evaluate(img=>img.decode());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special',null,{timeout:6000});
@@ -448,20 +453,17 @@ for(const t of profiles){
  await page.waitForURL(u=>u.pathname==='/journal/',{timeout:30000});
  await page.waitForFunction(()=>!document.querySelector('#c02-loader')&&
    !document.documentElement.classList.contains('c02-pending'),null,{timeout:20000});
- await page.waitForFunction(()=>{
-   const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
-   return !!(img&&img.complete&&img.naturalWidth>100&&
-     getComputedStyle(link).visibility==='visible'&&Number(getComputedStyle(link).opacity)>.95&&
-     getComputedStyle(img).visibility==='visible');
- },null,{timeout:6000});
+ await waitClosedNavbarWordmark(page,standardWordmark,6000);
  const journal=await page.evaluate(()=>{
   const link=document.querySelector('#siteHeader .logo-word--image'),img=link?.querySelector('img');
-  return {route:document.body.dataset.page,logoVisible:getComputedStyle(link).visibility==='visible'&&
-   Number(getComputedStyle(link).opacity)>.95&&getComputedStyle(img).visibility==='visible',
+  return {route:document.body.dataset.page,
+   logoVisible:getComputedStyle(link).display!=='none'&&link.getBoundingClientRect().width>70&&
+   getComputedStyle(link).visibility==='visible'&&Number(getComputedStyle(link).opacity)>.95&&
+   getComputedStyle(img).visibility==='visible',
    logoLoaded:img.complete&&img.naturalWidth>100,logoSource:new URL(img.currentSrc||img.src).pathname};
  });
  assert.equal(journal.route,'journal');
- assert.ok(journal.logoVisible&&journal.logoLoaded,'Journal must retain original compact navbar wordmark');
+ assert.ok(journal.logoLoaded&&journal.logoVisible===standardWordmark,'Journal retains original decoded SVG without crowding closed phones');
  assert.equal(journal.logoSource,'/assets/brand/chapchitra-light-wordmark.svg');
  reviewTimeline.push({event:'Home -> Journal via C02',route:journal.route,compactVisible:journal.logoVisible});
  await page.screenshot({path:resolve(out,t.name+'-journal.png')});

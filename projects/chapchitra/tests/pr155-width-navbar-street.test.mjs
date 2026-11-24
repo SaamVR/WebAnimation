@@ -53,33 +53,33 @@ test('Horizontal width refinements do not rewrite global wraps or card geometry'
  assert.doesNotMatch(scoped,/\.product-card(?:-|\{|\s)|\.hero-track/);
 });
 
-test('Four dark Cream circles use exact 44px control boxes, excluding theme toggle',()=>{
+test('Dark circles have 36px Cream artwork inside four 44px hit targets',()=>{
  const css=text('src/theme.css');
- const scoped=css.slice(css.indexOf('/* CHAPCHITRA PR155'));
- assert.match(scoped,/:root\[data-theme="dark"\] #app > \.site-header \.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)\{/);
- for(const s of ['width:44px','height:44px','min-width:44px','min-height:44px','max-width:44px','max-height:44px','flex:0 0 44px','border-radius:50%','background:var(--color-cream)'])assert.ok(scoped.includes(s),s);
- assert.match(scoped,/@media \(min-width:431px\)/);
- assert.doesNotMatch(scoped,/\.cc-theme-toggle(?:\{|:hover| svg)/,'Do not change illustrated toggle');
- assert.doesNotMatch(scoped,/\.cc-nav-art|\.bag-count|#8A503B|#293D2D/,'Do not recolor artwork/stamp');
+ const scope=css.slice(css.indexOf('/* CHAPCHITRA final owner reference'));
+ for(const token of ['width:44px','height:44px','min-width:44px','min-height:44px',
+   'max-width:44px','max-height:44px','flex:0 0 44px'])assert.ok(scope.includes(token),token);
+ const visual=scope.slice(scope.indexOf('.nav-icon:not(.cc-theme-toggle)::before'));
+ for(const token of ['width:36px','height:36px','background:var(--color-cream)',
+   'pointer-events:none','z-index:-1'])assert.ok(visual.includes(token),token);
+ assert.match(scope,/@media \(min-width:431px\)/);
+ assert.doesNotMatch(scope,/\.cc-nav-art|\.bag-count|#8A503B|#293D2D/);
+ const originalToggle=text('src/theme-toggle.css');
+ assert.match(originalToggle,/width:96px!important;height:38\.4px!important/);
 });
 
-
-test('Owner-frozen desktop/tablet Cream controls remain 44px, phone-only 36px decorative discs',()=>{
- const css=text('src/theme.css');
- const marker='/* CHAPCHITRA — MOBILE OPTION A ONLY';
- const start=css.indexOf(marker);
- assert.ok(start>0,'phone-only rule must be present and isolated');
- const desktop=css.slice(css.indexOf('/* CHAPCHITRA PR155'),start);
- assert.match(desktop,/width:44px/);
- assert.match(desktop,/height:44px/);
- assert.match(desktop,/background:var\(--color-cream\)/);
- assert.match(desktop,/@media \(min-width:431px\)/);
- assert.match(desktop,/gap:2px/);
- assert.doesNotMatch(desktop,/width:36px|height:36px|gap:5px/);
- const phone=css.slice(start);
- assert.match(phone,/@media \(max-width:430px\)/);
- assert.match(phone,/\.nav-left \.hamburger::before/);
- assert.match(phone,/\.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)::before/);
- for(const token of ['width:36px','height:36px','background:var(--color-cream)','pointer-events:none','z-index:-1'])assert.ok(phone.includes(token),token);
- assert.doesNotMatch(phone,/(?:^|\n)\s*(?:min-width|max-width|min-height|max-height)\s*:/,'44px semantic targets remain unchanged');
+test('Unboxed phone hamburger plus original owner toggle in closed header',()=>{
+ const app=text('src/app.mjs'),theme=text('src/theme.css'),styles=text('src/styles.css');
+ assert.match(theme,/@media\(max-width:430px\)/);
+ assert.doesNotMatch(theme,/\.nav-left \.hamburger::before\{/,'Phone hamburger is an unboxed icon, not a fifth circle');
+ assert.match(app,/id="themeToggle"/);
+ assert.match(app,/id="themeToggleMobile"/);
+ assert.match(styles,/\.logo-word\.logo-word--image\{\s*display:none/);
+ assert.match(styles,/html\.cc-mobile-menu-open #app > \.site-header \.logo-word\.logo-word--image\{/);
+ assert.match(styles,/height:100dvh/);
+ assert.match(app,/cc-mobile-menu-main/);
+ assert.match(app,/cc-mobile-menu-footer/);
+ assert.match(app,/const setMobileMenu=/);
+ assert.match(app,/mainLandmark\.inert=modal/);
+ assert.match(app,/restoreFocus:true/);
+ assert.doesNotMatch(app,/(?:href="\/orders\/|href="\/track\/)/);
 });
