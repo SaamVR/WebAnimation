@@ -1,0 +1,2293 @@
+{
+  "sourceSHA": "43ec434de1d5ca3f14d6641a95e5b562acc25ab3",
+  "mode": "staging origin with isolated theme.css override; NOT deployed",
+  "profiles": [
+    {
+      "name": "chromium-1920-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "responsive action gap matches light geometry": true,
+        "toggle original width": true,
+        "theme toggle fixed x/width": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 1697,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1741,
+              "bottom": 88,
+              "left": 1697
+            },
+            "imageRect": {
+              "x": 1708,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1730,
+              "bottom": 78.5,
+              "left": 1708
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 1746,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1790,
+              "bottom": 88,
+              "left": 1746
+            },
+            "imageRect": {
+              "x": 1757,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1779,
+              "bottom": 78.5,
+              "left": 1757
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 1795,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1839,
+              "bottom": 88,
+              "left": 1795
+            },
+            "imageRect": {
+              "x": 1806,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1828,
+              "bottom": 78.5,
+              "left": 1806
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 1844,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1888,
+              "bottom": 88,
+              "left": 1844
+            },
+            "imageRect": {
+              "x": 1854.5,
+              "y": 52,
+              "width": 23,
+              "height": 28,
+              "top": 52,
+              "right": 1877.5,
+              "bottom": 80,
+              "left": 1854.5
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "5px",
+        "toggle": {
+          "x": 1596,
+          "y": 46.796875,
+          "width": 96,
+          "height": 38.390625,
+          "top": 46.796875,
+          "right": 1692,
+          "bottom": 85.1875,
+          "left": 1596
+        },
+        "toggleDisplay": "flex",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 1875,
+          "y": 40,
+          "width": 21,
+          "height": 20,
+          "top": 40,
+          "right": 1896,
+          "bottom": 60,
+          "left": 1875
+        },
+        "toggleShift": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-1920-light",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "light theme no new discs": true,
+        "toggle original width": true,
+        "theme toggle fixed x/width": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "light",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 1697,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1741,
+              "bottom": 88,
+              "left": 1697
+            },
+            "imageRect": {
+              "x": 1708,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1730,
+              "bottom": 78.5,
+              "left": 1708
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 1746,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1790,
+              "bottom": 88,
+              "left": 1746
+            },
+            "imageRect": {
+              "x": 1757,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1779,
+              "bottom": 78.5,
+              "left": 1757
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 1795,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1839,
+              "bottom": 88,
+              "left": 1795
+            },
+            "imageRect": {
+              "x": 1806,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1828,
+              "bottom": 78.5,
+              "left": 1806
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 1844,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1888,
+              "bottom": 88,
+              "left": 1844
+            },
+            "imageRect": {
+              "x": 1854.5,
+              "y": 52,
+              "width": 23,
+              "height": 28,
+              "top": 52,
+              "right": 1877.5,
+              "bottom": 80,
+              "left": 1854.5
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "5px",
+        "toggle": {
+          "x": 1596,
+          "y": 46.796875,
+          "width": 96,
+          "height": 38.390625,
+          "top": 46.796875,
+          "right": 1692,
+          "bottom": 85.1875,
+          "left": 1596
+        },
+        "toggleDisplay": "flex",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 1875,
+          "y": 40,
+          "width": 21,
+          "height": 20,
+          "top": 40,
+          "right": 1896,
+          "bottom": 60,
+          "left": 1875
+        },
+        "toggleShift": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-1440-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "responsive action gap matches light geometry": true,
+        "toggle original width": true,
+        "theme toggle fixed x/width": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 1217,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1261,
+              "bottom": 88,
+              "left": 1217
+            },
+            "imageRect": {
+              "x": 1228,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1250,
+              "bottom": 78.5,
+              "left": 1228
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 1266,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1310,
+              "bottom": 88,
+              "left": 1266
+            },
+            "imageRect": {
+              "x": 1277,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1299,
+              "bottom": 78.5,
+              "left": 1277
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 1315,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1359,
+              "bottom": 88,
+              "left": 1315
+            },
+            "imageRect": {
+              "x": 1326,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1348,
+              "bottom": 78.5,
+              "left": 1326
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 1364,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1408,
+              "bottom": 88,
+              "left": 1364
+            },
+            "imageRect": {
+              "x": 1374.5,
+              "y": 52,
+              "width": 23,
+              "height": 28,
+              "top": 52,
+              "right": 1397.5,
+              "bottom": 80,
+              "left": 1374.5
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "5px",
+        "toggle": {
+          "x": 1116,
+          "y": 46.796875,
+          "width": 96,
+          "height": 38.390625,
+          "top": 46.796875,
+          "right": 1212,
+          "bottom": 85.1875,
+          "left": 1116
+        },
+        "toggleDisplay": "flex",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 1395,
+          "y": 40,
+          "width": 21,
+          "height": 20,
+          "top": 40,
+          "right": 1416,
+          "bottom": 60,
+          "left": 1395
+        },
+        "toggleShift": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-1366-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "responsive action gap matches light geometry": true,
+        "toggle original width": true,
+        "theme toggle fixed x/width": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 1143,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1187,
+              "bottom": 88,
+              "left": 1143
+            },
+            "imageRect": {
+              "x": 1154,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1176,
+              "bottom": 78.5,
+              "left": 1154
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 1192,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1236,
+              "bottom": 88,
+              "left": 1192
+            },
+            "imageRect": {
+              "x": 1203,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1225,
+              "bottom": 78.5,
+              "left": 1203
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 1241,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1285,
+              "bottom": 88,
+              "left": 1241
+            },
+            "imageRect": {
+              "x": 1252,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 1274,
+              "bottom": 78.5,
+              "left": 1252
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 1290,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 1334,
+              "bottom": 88,
+              "left": 1290
+            },
+            "imageRect": {
+              "x": 1300.5,
+              "y": 52,
+              "width": 23,
+              "height": 28,
+              "top": 52,
+              "right": 1323.5,
+              "bottom": 80,
+              "left": 1300.5
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "5px",
+        "toggle": {
+          "x": 1042,
+          "y": 46.796875,
+          "width": 96,
+          "height": 38.390625,
+          "top": 46.796875,
+          "right": 1138,
+          "bottom": 85.1875,
+          "left": 1042
+        },
+        "toggleDisplay": "flex",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 1321,
+          "y": 40,
+          "width": 21,
+          "height": 20,
+          "top": 40,
+          "right": 1342,
+          "bottom": 60,
+          "left": 1321
+        },
+        "toggleShift": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-834-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "responsive action gap matches light geometry": true,
+        "toggle original width": true,
+        "theme toggle fixed x/width": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 623,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 667,
+              "bottom": 88,
+              "left": 623
+            },
+            "imageRect": {
+              "x": 634,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 656,
+              "bottom": 78.5,
+              "left": 634
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 153,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 672,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 716,
+              "bottom": 88,
+              "left": 672
+            },
+            "imageRect": {
+              "x": 683,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 705,
+              "bottom": 78.5,
+              "left": 683
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 163,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 721,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 765,
+              "bottom": 88,
+              "left": 721
+            },
+            "imageRect": {
+              "x": 732,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 754,
+              "bottom": 78.5,
+              "left": 732
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 131,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 770,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 814,
+              "bottom": 88,
+              "left": 770
+            },
+            "imageRect": {
+              "x": 780.5,
+              "y": 52,
+              "width": 23,
+              "height": 28,
+              "top": 52,
+              "right": 803.5,
+              "bottom": 80,
+              "left": 780.5
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "5px",
+        "toggle": {
+          "x": 522,
+          "y": 46.796875,
+          "width": 96,
+          "height": 38.390625,
+          "top": 46.796875,
+          "right": 618,
+          "bottom": 85.1875,
+          "left": 522
+        },
+        "toggleDisplay": "flex",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 801,
+          "y": 40,
+          "width": 21,
+          "height": 20,
+          "top": 40,
+          "right": 822,
+          "bottom": 60,
+          "left": 801
+        },
+        "toggleShift": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-834-light",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "light theme no new discs": true,
+        "toggle original width": true,
+        "theme toggle fixed x/width": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "light",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 623,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 667,
+              "bottom": 88,
+              "left": 623
+            },
+            "imageRect": {
+              "x": 634,
+              "y": 53,
+              "width": 22,
+              "height": 25,
+              "top": 53,
+              "right": 656,
+              "bottom": 78,
+              "left": 634
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 153,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 672,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 716,
+              "bottom": 88,
+              "left": 672
+            },
+            "imageRect": {
+              "x": 683,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 705,
+              "bottom": 78.5,
+              "left": 683
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 163,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 721,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 765,
+              "bottom": 88,
+              "left": 721
+            },
+            "imageRect": {
+              "x": 732,
+              "y": 53.5,
+              "width": 22,
+              "height": 25,
+              "top": 53.5,
+              "right": 754,
+              "bottom": 78.5,
+              "left": 732
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 131,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 770,
+              "y": 44,
+              "width": 44,
+              "height": 44,
+              "top": 44,
+              "right": 814,
+              "bottom": 88,
+              "left": 770
+            },
+            "imageRect": {
+              "x": 780.5,
+              "y": 52,
+              "width": 23,
+              "height": 28,
+              "top": 52,
+              "right": 803.5,
+              "bottom": 80,
+              "left": 780.5
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "5px",
+        "toggle": {
+          "x": 522,
+          "y": 46.796875,
+          "width": 96,
+          "height": 38.390625,
+          "top": 46.796875,
+          "right": 618,
+          "bottom": 85.1875,
+          "left": 522
+        },
+        "toggleDisplay": "flex",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 801,
+          "y": 40,
+          "width": 21,
+          "height": 20,
+          "top": 40,
+          "right": 822,
+          "bottom": 60,
+          "left": 801
+        },
+        "toggleShift": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-600-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "responsive action gap matches light geometry": true,
+        "favorites and account remain hidden on mobile": true,
+        "toggle original width": true,
+        "theme toggle fixed x/width": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 496,
+              "y": 44.5,
+              "width": 44,
+              "height": 44,
+              "top": 44.5,
+              "right": 540,
+              "bottom": 88.5,
+              "left": 496
+            },
+            "imageRect": {
+              "x": 508.5,
+              "y": 55.5,
+              "width": 19,
+              "height": 22,
+              "top": 55.5,
+              "right": 527.5,
+              "bottom": 77.5,
+              "left": 508.5
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 540,
+              "y": 44.5,
+              "width": 44,
+              "height": 44,
+              "top": 44.5,
+              "right": 584,
+              "bottom": 88.5,
+              "left": 540
+            },
+            "imageRect": {
+              "x": 552,
+              "y": 55,
+              "width": 20,
+              "height": 23,
+              "top": 55,
+              "right": 572,
+              "bottom": 78,
+              "left": 552
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "0px",
+        "toggle": {
+          "x": 400,
+          "y": 47.296875,
+          "width": 96,
+          "height": 38.390625,
+          "top": 47.296875,
+          "right": 496,
+          "bottom": 85.6875,
+          "left": 400
+        },
+        "toggleDisplay": "flex",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 571,
+          "y": 39.5,
+          "width": 20,
+          "height": 20,
+          "top": 39.5,
+          "right": 591,
+          "bottom": 59.5,
+          "left": 571
+        },
+        "toggleShift": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-431-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "responsive action gap matches light geometry": true,
+        "favorites and account remain hidden on mobile": true,
+        "toggle original width": true,
+        "theme toggle fixed x/width": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 327,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 371,
+              "bottom": 99.6875,
+              "left": 327
+            },
+            "imageRect": {
+              "x": 339.5,
+              "y": 66.6875,
+              "width": 19,
+              "height": 22,
+              "top": 66.6875,
+              "right": 358.5,
+              "bottom": 88.6875,
+              "left": 339.5
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 371,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 415,
+              "bottom": 99.6875,
+              "left": 371
+            },
+            "imageRect": {
+              "x": 383,
+              "y": 66.1875,
+              "width": 20,
+              "height": 23,
+              "top": 66.1875,
+              "right": 403,
+              "bottom": 89.1875,
+              "left": 383
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "0px",
+        "toggle": {
+          "x": 231,
+          "y": 58.484375,
+          "width": 96,
+          "height": 38.390625,
+          "top": 58.484375,
+          "right": 327,
+          "bottom": 96.875,
+          "left": 231
+        },
+        "toggleDisplay": "flex",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 402,
+          "y": 50.6875,
+          "width": 20,
+          "height": 20,
+          "top": 50.6875,
+          "right": 422,
+          "bottom": 70.6875,
+          "left": 402
+        },
+        "toggleShift": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-390-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "favorites and account remain hidden on mobile": true,
+        "mobile theme button stays in menu": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 286,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 330,
+              "bottom": 99.6875,
+              "left": 286
+            },
+            "imageRect": {
+              "x": 298.5,
+              "y": 66.6875,
+              "width": 19,
+              "height": 22,
+              "top": 66.6875,
+              "right": 317.5,
+              "bottom": 88.6875,
+              "left": 298.5
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 330,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 374,
+              "bottom": 99.6875,
+              "left": 330
+            },
+            "imageRect": {
+              "x": 342,
+              "y": 66.1875,
+              "width": 20,
+              "height": 23,
+              "top": 66.1875,
+              "right": 362,
+              "bottom": 89.1875,
+              "left": 342
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "0px",
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 361,
+          "y": 50.6875,
+          "width": 20,
+          "height": 20,
+          "top": 50.6875,
+          "right": 381,
+          "bottom": 70.6875,
+          "left": 361
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-390-light",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "light theme no new discs": true,
+        "favorites and account remain hidden on mobile": true,
+        "mobile theme button stays in menu": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "light",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 286,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 330,
+              "bottom": 99.6875,
+              "left": 286
+            },
+            "imageRect": {
+              "x": 298.5,
+              "y": 66.6875,
+              "width": 19,
+              "height": 22,
+              "top": 66.6875,
+              "right": 317.5,
+              "bottom": 88.6875,
+              "left": 298.5
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 330,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 374,
+              "bottom": 99.6875,
+              "left": 330
+            },
+            "imageRect": {
+              "x": 342,
+              "y": 66.1875,
+              "width": 20,
+              "height": 23,
+              "top": 66.1875,
+              "right": 362,
+              "bottom": 89.1875,
+              "left": 342
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "auto",
+              "height": "auto",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointer": "auto",
+              "content": "none"
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "0px",
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 361,
+          "y": 50.6875,
+          "width": 20,
+          "height": 20,
+          "top": 50.6875,
+          "right": 381,
+          "bottom": 70.6875,
+          "left": 361
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-320-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "favorites and account remain hidden on mobile": true,
+        "mobile theme button stays in menu": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 216,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 260,
+              "bottom": 99.6875,
+              "left": 216
+            },
+            "imageRect": {
+              "x": 228.5,
+              "y": 66.6875,
+              "width": 19,
+              "height": 22,
+              "top": 66.6875,
+              "right": 247.5,
+              "bottom": 88.6875,
+              "left": 228.5
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 154,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 164,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 132,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 260,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 304,
+              "bottom": 99.6875,
+              "left": 260
+            },
+            "imageRect": {
+              "x": 272,
+              "y": 66.1875,
+              "width": 20,
+              "height": 23,
+              "top": 66.1875,
+              "right": 292,
+              "bottom": 89.1875,
+              "left": 272
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "0px",
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 291,
+          "y": 50.6875,
+          "width": 20,
+          "height": 20,
+          "top": 50.6875,
+          "right": 311,
+          "bottom": 70.6875,
+          "left": 291
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-390-dark",
+      "checks": {
+        "response and theme": true,
+        "no horizontal overflow": true,
+        "sticky navbar CSS": true,
+        "original SVGs loaded": true,
+        "branch CSS intercepted": true,
+        "original 44px hitboxes": true,
+        "original icon centered": true,
+        "36px Cream discs": true,
+        "transparent hitbox surround": true,
+        "favorites and account remain hidden on mobile": true,
+        "mobile theme button stays in menu": true,
+        "hover retains 36px Cream disc": true,
+        "sticky after scrolling": true
+      },
+      "errors": [],
+      "interceptions": 1,
+      "metrics": {
+        "theme": "dark",
+        "icons": [
+          {
+            "name": "search",
+            "rect": {
+              "x": 286,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 330,
+              "bottom": 99.6875,
+              "left": 286
+            },
+            "imageRect": {
+              "x": 298.5,
+              "y": 66.6875,
+              "width": 19,
+              "height": 22,
+              "top": 66.6875,
+              "right": 317.5,
+              "bottom": 88.6875,
+              "left": 298.5
+            },
+            "src": "/assets/illustrator/nav-owner-search.svg",
+            "naturalWidth": 153,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "BUTTON"
+          },
+          {
+            "name": "favorite",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-favorites-outline.svg",
+            "naturalWidth": 163,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "account",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "imageRect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "src": "/assets/illustrator/nav-owner-account.svg",
+            "naturalWidth": 131,
+            "visible": false,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          },
+          {
+            "name": "bag",
+            "rect": {
+              "x": 330,
+              "y": 55.6875,
+              "width": 44,
+              "height": 44,
+              "top": 55.6875,
+              "right": 374,
+              "bottom": 99.6875,
+              "left": 330
+            },
+            "imageRect": {
+              "x": 342,
+              "y": 66.1875,
+              "width": 20,
+              "height": 23,
+              "top": 66.1875,
+              "right": 362,
+              "bottom": 89.1875,
+              "left": 342
+            },
+            "src": "/assets/illustrator/nav-owner-bag.svg",
+            "naturalWidth": 129,
+            "visible": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "before": {
+              "width": "36px",
+              "height": "36px",
+              "bg": "rgb(244, 235, 228)",
+              "pointer": "none",
+              "content": "\"\""
+            },
+            "hit": "A"
+          }
+        ],
+        "gap": "0px",
+        "toggle": null,
+        "toggleDisplay": "none",
+        "overflow": 0,
+        "headerPosition": "sticky",
+        "badge": {
+          "x": 361,
+          "y": 50.6875,
+          "width": 20,
+          "height": 20,
+          "top": 50.6875,
+          "right": 381,
+          "bottom": 70.6875,
+          "left": 361
+        }
+      },
+      "pass": true
+    }
+  ],
+  "summary": {
+    "cases": 12,
+    "checks": 158,
+    "pass": 158,
+    "fail": []
+  }
+}
