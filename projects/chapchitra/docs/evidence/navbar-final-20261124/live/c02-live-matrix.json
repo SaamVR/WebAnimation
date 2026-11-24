@@ -1,0 +1,1196 @@
+{
+  "mode": "UNMODIFIED LIVE WEBSITE, no CSS/JS interception",
+  "expectedStagingSHA": "be087dbeae8cd2590ace88cf7828f43150ec4398",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 320,
+      "theme": "dark",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 320
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 320,
+            "height": 844
+          },
+          "committedAt": 1795550423989,
+          "startedAt": 1795550421841,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.007037797930024681,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.17px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672400000002
+        },
+        "theme": "dark",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "theme": "light",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 320
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 320,
+            "height": 844
+          },
+          "committedAt": 1795550429805,
+          "startedAt": 1795550427684,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.007037797930024681,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.17px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672400000002
+        },
+        "theme": "light",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "theme": "dark",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 375,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 375
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 375,
+            "height": 844
+          },
+          "committedAt": 1795550436071,
+          "startedAt": 1795550433994,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0054101937635095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2878.96px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.9545507437365px",
+          "rawPrepaintY": "-93.75px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "dark",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "theme": "light",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 375,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 375
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 375,
+            "height": 844
+          },
+          "committedAt": 1795550442670,
+          "startedAt": 1795550440588,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0054101937635095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2878.96px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.9545507437365px",
+          "rawPrepaintY": "-93.75px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "light",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 390
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 390,
+            "height": 844
+          },
+          "committedAt": 1795550449702,
+          "startedAt": 1795550447612,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0005273812635095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "dark",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 390
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 390,
+            "height": 844
+          },
+          "committedAt": 1795550456099,
+          "startedAt": 1795550454009,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0005273812635095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "light",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 430,
+      "theme": "dark",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 430,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 430
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 430,
+            "height": 844
+          },
+          "committedAt": 1795550462449,
+          "startedAt": 1795550460357,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.003782589596539765,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3458.75px, -107.5px, 0px)",
+          "rawPrepaintX": "-3458.7462174104035px",
+          "rawPrepaintY": "-107.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "dark",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 430,
+      "theme": "light",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 430,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 430
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 430,
+            "height": 844
+          },
+          "committedAt": 1795550469064,
+          "startedAt": 1795550466973,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.003782589596539765,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3458.75px, -107.5px, 0px)",
+          "rawPrepaintX": "-3458.7462174104035px",
+          "rawPrepaintY": "-107.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "light",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 320,
+      "theme": "dark",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 320
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 320,
+            "height": 844
+          },
+          "committedAt": 1795550475758,
+          "startedAt": 1795550473357,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672400000002
+        },
+        "theme": "dark",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 320,
+      "theme": "light",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 320
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 320,
+            "height": 844
+          },
+          "committedAt": 1795550482681,
+          "startedAt": 1795550480283,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672400000002
+        },
+        "theme": "light",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "theme": "dark",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 375,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 375
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 375,
+            "height": 844
+          },
+          "committedAt": 1795550490268,
+          "startedAt": 1795550487824,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2878.95776px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.9545507437365px",
+          "rawPrepaintY": "-93.75px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "dark",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "theme": "light",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 375,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 375
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 375,
+            "height": 844
+          },
+          "committedAt": 1795550498198,
+          "startedAt": 1795550495739,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":375,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2878.95776px, -93.75px, 0px)",
+          "rawPrepaintX": "-2878.9545507437365px",
+          "rawPrepaintY": "-93.75px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "light",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 390
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 390,
+            "height": 844
+          },
+          "committedAt": 1795550505639,
+          "startedAt": 1795550502644,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "dark",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 390
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 390,
+            "height": 844
+          },
+          "committedAt": 1795550514326,
+          "startedAt": 1795550511802,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "light",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 430,
+      "theme": "dark",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 430,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 430
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 430,
+            "height": 844
+          },
+          "committedAt": 1795550522079,
+          "startedAt": 1795550519609,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.003294308346539765,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3458.749427px, -107.5px, 0px)",
+          "rawPrepaintX": "-3458.7462174104035px",
+          "rawPrepaintY": "-107.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "dark",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 430,
+      "theme": "light",
+      "checks": {
+        "portrait original vector stage": true,
+        "vertical full viewport covered": true,
+        "first paint continuity under 2px": true,
+        "Walnut and Gallery White preserved": true,
+        "Shop route and theme persist": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "vertical",
+        "hasStage": true
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1035.18288,
+          "viewport": {
+            "width": 430,
+            "height": 844,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 844,
+            "height": 430
+          },
+          "direction": "vertical",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 430,
+            "height": 844
+          },
+          "committedAt": 1795550528749,
+          "startedAt": 1795550526247,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.003294308346539765,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":430,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3458.749427px, -107.5px, 0px)",
+          "rawPrepaintX": "-3458.7462174104035px",
+          "rawPrepaintY": "-107.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "surface": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1074.1672399999998
+        },
+        "theme": "light",
+        "overflow": 0,
+        "loaderRemoved": true
+      },
+      "pass": true
+    }
+  ],
+  "summary": {
+    "profiles": 16,
+    "checks": 80,
+    "passed": 80,
+    "failed": []
+  }
+}

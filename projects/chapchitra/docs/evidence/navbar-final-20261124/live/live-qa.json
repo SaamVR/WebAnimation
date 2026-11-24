@@ -1,0 +1,4984 @@
+{
+  "mode": "UNMODIFIED PUBLIC LIVE Render staging; no source interception",
+  "expectedStageSHA": "be087dbeae8cd2590ace88cf7828f43150ec4398",
+  "profiles": [
+    {
+      "key": "chromium-320-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 120,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 216,
+          "bottom": 101.1875,
+          "left": 120
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 216,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 260,
+          "bottom": 101.1875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 304,
+          "bottom": 101.1875,
+          "left": 260
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 288,
+          "height": 68,
+          "top": 45.1875,
+          "right": 304,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 104,
+          "y": 23.359375,
+          "width": 112,
+          "height": 25.28125,
+          "top": 23.359375,
+          "right": 216,
+          "bottom": 48.640625,
+          "left": 104
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 216,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 260,
+          "bottom": 58,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 304,
+          "bottom": 58,
+          "left": 260
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 844,
+          "top": 0,
+          "right": 320,
+          "bottom": 844,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 72,
+          "top": 0,
+          "right": 320,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-320-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 120,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 216,
+          "bottom": 101.1875,
+          "left": 120
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 216,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 260,
+          "bottom": 101.1875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 304,
+          "bottom": 101.1875,
+          "left": 260
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 288,
+          "height": 68,
+          "top": 45.1875,
+          "right": 304,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "light",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 104,
+          "y": 23.359375,
+          "width": 112,
+          "height": 25.28125,
+          "top": 23.359375,
+          "right": 216,
+          "bottom": 48.640625,
+          "left": 104
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 216,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 260,
+          "bottom": 58,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 304,
+          "bottom": 58,
+          "left": 260
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 844,
+          "top": 0,
+          "right": 320,
+          "bottom": 844,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 72,
+          "top": 0,
+          "right": 320,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-375-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 175,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 271,
+          "bottom": 101.1875,
+          "left": 175
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 271,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 315,
+          "bottom": 101.1875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 359,
+          "bottom": 101.1875,
+          "left": 315
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 343,
+          "height": 68,
+          "top": 45.1875,
+          "right": 359,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 21.171875,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 21.171875,
+          "right": 253.125,
+          "bottom": 50.8125,
+          "left": 121.875
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 271,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 315,
+          "bottom": 58,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 359,
+          "bottom": 58,
+          "left": 315
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 844,
+          "top": 0,
+          "right": 375,
+          "bottom": 844,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 72,
+          "top": 0,
+          "right": 375,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-375-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 175,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 271,
+          "bottom": 101.1875,
+          "left": 175
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 271,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 315,
+          "bottom": 101.1875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 359,
+          "bottom": 101.1875,
+          "left": 315
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 343,
+          "height": 68,
+          "top": 45.1875,
+          "right": 359,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "light",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 21.171875,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 21.171875,
+          "right": 253.125,
+          "bottom": 50.8125,
+          "left": 121.875
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 271,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 315,
+          "bottom": 58,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 359,
+          "bottom": 58,
+          "left": 315
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 844,
+          "top": 0,
+          "right": 375,
+          "bottom": 844,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 72,
+          "top": 0,
+          "right": 375,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-390-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 190,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 286,
+          "bottom": 101.1875,
+          "left": 190
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 286,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 330,
+          "bottom": 101.1875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 374,
+          "bottom": 101.1875,
+          "left": 330
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 358,
+          "height": 68,
+          "top": 45.1875,
+          "right": 374,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 20.59375,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 20.59375,
+          "right": 263.25,
+          "bottom": 51.40625,
+          "left": 126.75
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 286,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 330,
+          "bottom": 58,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 374,
+          "bottom": 58,
+          "left": 330
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "top": 0,
+          "right": 390,
+          "bottom": 844,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 72,
+          "top": 0,
+          "right": 390,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-390-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 190,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 286,
+          "bottom": 101.1875,
+          "left": 190
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 286,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 330,
+          "bottom": 101.1875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 374,
+          "bottom": 101.1875,
+          "left": 330
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 358,
+          "height": 68,
+          "top": 45.1875,
+          "right": 374,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "light",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 20.59375,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 20.59375,
+          "right": 263.25,
+          "bottom": 51.40625,
+          "left": 126.75
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 286,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 330,
+          "bottom": 58,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 374,
+          "bottom": 58,
+          "left": 330
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "top": 0,
+          "right": 390,
+          "bottom": 844,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 72,
+          "top": 0,
+          "right": 390,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-430-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 230,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 326,
+          "bottom": 101.1875,
+          "left": 230
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 326,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 370,
+          "bottom": 101.1875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 414,
+          "bottom": 101.1875,
+          "left": 370
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 398,
+          "height": 68,
+          "top": 45.1875,
+          "right": 414,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 146,
+          "y": 20.421875,
+          "width": 138,
+          "height": 31.15625,
+          "top": 20.421875,
+          "right": 284,
+          "bottom": 51.578125,
+          "left": 146
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 326,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 370,
+          "bottom": 58,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 414,
+          "bottom": 58,
+          "left": 370
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 844,
+          "top": 0,
+          "right": 430,
+          "bottom": 844,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 72,
+          "top": 0,
+          "right": 430,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-430-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 230,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 326,
+          "bottom": 101.1875,
+          "left": 230
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 326,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 370,
+          "bottom": 101.1875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 414,
+          "bottom": 101.1875,
+          "left": 370
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 398,
+          "height": 68,
+          "top": 45.1875,
+          "right": 414,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "light",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 146,
+          "y": 20.421875,
+          "width": 138,
+          "height": 31.15625,
+          "top": 20.421875,
+          "right": 284,
+          "bottom": 51.578125,
+          "left": 146
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 326,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 370,
+          "bottom": 58,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 414,
+          "bottom": 58,
+          "left": 370
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 844,
+          "top": 0,
+          "right": 430,
+          "bottom": 844,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 72,
+          "top": 0,
+          "right": 430,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-834-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "original toggle stays 96px": true,
+        "four 36px Cream disks": true,
+        "four accessible targets": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logo": {
+          "x": 346.109375,
+          "y": 50,
+          "width": 141.765625,
+          "height": 32,
+          "top": 50,
+          "right": 487.875,
+          "bottom": 82,
+          "left": 346.109375
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 534,
+          "y": 44,
+          "width": 96,
+          "height": 44,
+          "top": 44,
+          "right": 630,
+          "bottom": 88,
+          "left": 534
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 632,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 676,
+          "bottom": 88,
+          "left": 632
+        },
+        "bag": {
+          "x": 770,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 814,
+          "bottom": 88,
+          "left": 770
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 20,
+          "y": 34,
+          "width": 794,
+          "height": 64,
+          "top": 34,
+          "right": 814,
+          "bottom": 98,
+          "left": 20
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-834-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "original toggle stays 96px": true,
+        "four accessible targets": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logo": {
+          "x": 346.109375,
+          "y": 50,
+          "width": 141.765625,
+          "height": 32,
+          "top": 50,
+          "right": 487.875,
+          "bottom": 82,
+          "left": 346.109375
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 522,
+          "y": 44,
+          "width": 96,
+          "height": 44,
+          "top": 44,
+          "right": 618,
+          "bottom": 88,
+          "left": 522
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 623,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 667,
+          "bottom": 88,
+          "left": 623
+        },
+        "bag": {
+          "x": 770,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 814,
+          "bottom": 88,
+          "left": 770
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 20,
+          "y": 34,
+          "width": 794,
+          "height": 64,
+          "top": 34,
+          "right": 814,
+          "bottom": 98,
+          "left": 20
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-1440-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "original toggle stays 96px": true,
+        "four 36px Cream disks": true,
+        "four accessible targets": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logo": {
+          "x": 624,
+          "y": 44.3125,
+          "width": 192,
+          "height": 43.359375,
+          "top": 44.3125,
+          "right": 816,
+          "bottom": 87.671875,
+          "left": 624
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 1128,
+          "y": 44,
+          "width": 96,
+          "height": 44,
+          "top": 44,
+          "right": 1224,
+          "bottom": 88,
+          "left": 1128
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 1226,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 1270,
+          "bottom": 88,
+          "left": 1226
+        },
+        "bag": {
+          "x": 1364,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 1408,
+          "bottom": 88,
+          "left": 1364
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 32,
+          "y": 34,
+          "width": 1376,
+          "height": 64,
+          "top": 34,
+          "right": 1408,
+          "bottom": 98,
+          "left": 32
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "chromium-1440-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "original toggle stays 96px": true,
+        "four accessible targets": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logo": {
+          "x": 624,
+          "y": 44.3125,
+          "width": 192,
+          "height": 43.359375,
+          "top": 44.3125,
+          "right": 816,
+          "bottom": 87.671875,
+          "left": 624
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 1116,
+          "y": 44,
+          "width": 96,
+          "height": 44,
+          "top": 44,
+          "right": 1212,
+          "bottom": 88,
+          "left": 1116
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 1217,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 1261,
+          "bottom": 88,
+          "left": 1217
+        },
+        "bag": {
+          "x": 1364,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 1408,
+          "bottom": 88,
+          "left": 1364
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 32,
+          "y": 34,
+          "width": 1376,
+          "height": 64,
+          "top": 34,
+          "right": 1408,
+          "bottom": 98,
+          "left": 32
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-320-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 120,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 216,
+          "bottom": 101.1875,
+          "left": 120
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 216,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 260,
+          "bottom": 101.1875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 304,
+          "bottom": 101.1875,
+          "left": 260
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 288,
+          "height": 68,
+          "top": 45.1875,
+          "right": 304,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 104,
+          "y": 23.359375,
+          "width": 112,
+          "height": 25.28125,
+          "top": 23.359375,
+          "right": 216,
+          "bottom": 48.640625,
+          "left": 104
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 216,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 260,
+          "bottom": 58,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 304,
+          "bottom": 58,
+          "left": 260
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 843.984375,
+          "top": 0,
+          "right": 320,
+          "bottom": 843.984375,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 72,
+          "top": 0,
+          "right": 320,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-320-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 120,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 216,
+          "bottom": 101.1875,
+          "left": 120
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 216,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 260,
+          "bottom": 101.1875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 304,
+          "bottom": 101.1875,
+          "left": 260
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 288,
+          "height": 68,
+          "top": 45.1875,
+          "right": 304,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "light",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 104,
+          "y": 23.359375,
+          "width": 112,
+          "height": 25.28125,
+          "top": 23.359375,
+          "right": 216,
+          "bottom": 48.640625,
+          "left": 104
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 216,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 260,
+          "bottom": 58,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 304,
+          "bottom": 58,
+          "left": 260
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 843.984375,
+          "top": 0,
+          "right": 320,
+          "bottom": 843.984375,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 72,
+          "top": 0,
+          "right": 320,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-375-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 175,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 271,
+          "bottom": 101.1875,
+          "left": 175
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 271,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 315,
+          "bottom": 101.1875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 359,
+          "bottom": 101.1875,
+          "left": 315
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 343,
+          "height": 68,
+          "top": 45.1875,
+          "right": 359,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 21.171875,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 21.171875,
+          "right": 253.125,
+          "bottom": 50.8125,
+          "left": 121.875
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 271,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 315,
+          "bottom": 58,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 359,
+          "bottom": 58,
+          "left": 315
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 843.984375,
+          "top": 0,
+          "right": 375,
+          "bottom": 843.984375,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 72,
+          "top": 0,
+          "right": 375,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-375-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 175,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 271,
+          "bottom": 101.1875,
+          "left": 175
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 271,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 315,
+          "bottom": 101.1875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 359,
+          "bottom": 101.1875,
+          "left": 315
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 343,
+          "height": 68,
+          "top": 45.1875,
+          "right": 359,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "light",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 21.171875,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 21.171875,
+          "right": 253.125,
+          "bottom": 50.8125,
+          "left": 121.875
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 271,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 315,
+          "bottom": 58,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 359,
+          "bottom": 58,
+          "left": 315
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 843.984375,
+          "top": 0,
+          "right": 375,
+          "bottom": 843.984375,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 72,
+          "top": 0,
+          "right": 375,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-390-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 190,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 286,
+          "bottom": 101.1875,
+          "left": 190
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 286,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 330,
+          "bottom": 101.1875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 374,
+          "bottom": 101.1875,
+          "left": 330
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 358,
+          "height": 68,
+          "top": 45.1875,
+          "right": 374,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 20.59375,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 20.59375,
+          "right": 263.25,
+          "bottom": 51.40625,
+          "left": 126.75
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 286,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 330,
+          "bottom": 58,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 374,
+          "bottom": 58,
+          "left": 330
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 843.984375,
+          "top": 0,
+          "right": 390,
+          "bottom": 843.984375,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 72,
+          "top": 0,
+          "right": 390,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-390-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 190,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 286,
+          "bottom": 101.1875,
+          "left": 190
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 286,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 330,
+          "bottom": 101.1875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 374,
+          "bottom": 101.1875,
+          "left": 330
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 358,
+          "height": 68,
+          "top": 45.1875,
+          "right": 374,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "light",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 20.59375,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 20.59375,
+          "right": 263.25,
+          "bottom": 51.40625,
+          "left": 126.75
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 286,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 330,
+          "bottom": 58,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 374,
+          "bottom": 58,
+          "left": 330
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 843.984375,
+          "top": 0,
+          "right": 390,
+          "bottom": 843.984375,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 72,
+          "top": 0,
+          "right": 390,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-430-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 230,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 326,
+          "bottom": 101.1875,
+          "left": 230
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 326,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 370,
+          "bottom": 101.1875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 414,
+          "bottom": 101.1875,
+          "left": 370
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 398,
+          "height": 68,
+          "top": 45.1875,
+          "right": 414,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 146,
+          "y": 20.421875,
+          "width": 138,
+          "height": 31.15625,
+          "top": 20.421875,
+          "right": 284,
+          "bottom": 51.578125,
+          "left": 146
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 326,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 370,
+          "bottom": 58,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 414,
+          "bottom": 58,
+          "left": 370
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 843.984375,
+          "top": 0,
+          "right": 430,
+          "bottom": 843.984375,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 72,
+          "top": 0,
+          "right": 430,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-430-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "four closed controls fit at width": true,
+        "no squeezed closed wordmark": true,
+        "full-height overlay": true,
+        "five valid primary links": true,
+        "two valid footer links": true,
+        "centered untouched original wordmark": true,
+        "menu search/bag controls active": true,
+        "inert scroll lock": true,
+        "Escape restores focus and body": true,
+        "theme switch from full menu": true,
+        "closed original toggle switches": true,
+        "menu Search works": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 16,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 60,
+          "bottom": 101.1875,
+          "left": 16
+        },
+        "logo": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logoDisplay": "none",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 230,
+          "y": 57.1875,
+          "width": 96,
+          "height": 44,
+          "top": 57.1875,
+          "right": 326,
+          "bottom": 101.1875,
+          "left": 230
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 326,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 370,
+          "bottom": 101.1875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 57.1875,
+          "width": 44,
+          "height": 44,
+          "top": 57.1875,
+          "right": 414,
+          "bottom": 101.1875,
+          "left": 370
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 16,
+          "y": 45.1875,
+          "width": 398,
+          "height": 68,
+          "top": 45.1875,
+          "right": 414,
+          "bottom": 113.1875,
+          "left": 16
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "expanded": {
+        "theme": "light",
+        "overflow": 0,
+        "open": true,
+        "hamburger": {
+          "x": 16,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 60,
+          "bottom": 58,
+          "left": 16
+        },
+        "logo": {
+          "x": 146,
+          "y": 20.421875,
+          "width": 138,
+          "height": 31.15625,
+          "top": 20.421875,
+          "right": 284,
+          "bottom": 51.578125,
+          "left": 146
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "toggleDisplay": "none",
+        "search": {
+          "x": 326,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 370,
+          "bottom": 58,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 414,
+          "bottom": 58,
+          "left": 370
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 843.984375,
+          "top": 0,
+          "right": 430,
+          "bottom": 843.984375,
+          "left": 0
+        },
+        "inert": true,
+        "menu": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 72,
+          "top": 0,
+          "right": 430,
+          "bottom": 72,
+          "left": 0
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-834-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "original toggle stays 96px": true,
+        "four 36px Cream disks": true,
+        "four accessible targets": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logo": {
+          "x": 346.109375,
+          "y": 50,
+          "width": 141.765625,
+          "height": 32,
+          "top": 50,
+          "right": 487.875,
+          "bottom": 82,
+          "left": 346.109375
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 534,
+          "y": 44,
+          "width": 96,
+          "height": 44,
+          "top": 44,
+          "right": 630,
+          "bottom": 88,
+          "left": 534
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 632,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 676,
+          "bottom": 88,
+          "left": 632
+        },
+        "bag": {
+          "x": 770,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 814,
+          "bottom": 88,
+          "left": 770
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 20,
+          "y": 34,
+          "width": 794,
+          "height": 64,
+          "top": 34,
+          "right": 814,
+          "bottom": 98,
+          "left": 20
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-834-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "original toggle stays 96px": true,
+        "four accessible targets": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logo": {
+          "x": 346.109375,
+          "y": 50,
+          "width": 141.765625,
+          "height": 32,
+          "top": 50,
+          "right": 487.875,
+          "bottom": 82,
+          "left": 346.109375
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 522,
+          "y": 44,
+          "width": 96,
+          "height": 44,
+          "top": 44,
+          "right": 618,
+          "bottom": 88,
+          "left": 522
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 623,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 667,
+          "bottom": 88,
+          "left": 623
+        },
+        "bag": {
+          "x": 770,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 814,
+          "bottom": 88,
+          "left": 770
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 20,
+          "y": 34,
+          "width": 794,
+          "height": 64,
+          "top": 34,
+          "right": 814,
+          "bottom": 98,
+          "left": 20
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-1440-dark",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "original toggle stays 96px": true,
+        "four 36px Cream disks": true,
+        "four accessible targets": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "dark",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logo": {
+          "x": 624,
+          "y": 44.3125,
+          "width": 192,
+          "height": 43.359375,
+          "top": 44.3125,
+          "right": 816,
+          "bottom": 87.671875,
+          "left": 624
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 1128,
+          "y": 44,
+          "width": 96,
+          "height": 44,
+          "top": 44,
+          "right": 1224,
+          "bottom": 88,
+          "left": 1128
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 1226,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 1270,
+          "bottom": 88,
+          "left": 1226
+        },
+        "bag": {
+          "x": 1364,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 1408,
+          "bottom": 88,
+          "left": 1364
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 32,
+          "y": 34,
+          "width": 1376,
+          "height": 64,
+          "top": 34,
+          "right": 1408,
+          "bottom": 98,
+          "left": 32
+        },
+        "darkDiscs": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "bg": "rgb(244, 235, 228)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "key": "webkit-1440-light",
+      "checks": {
+        "live header and original SVG present": true,
+        "initial theme and no overflow": true,
+        "original toggle stays 96px": true,
+        "four accessible targets": true
+      },
+      "errors": [],
+      "intercepted": {},
+      "closed": {
+        "theme": "light",
+        "overflow": 0,
+        "open": false,
+        "hamburger": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "logo": {
+          "x": 624,
+          "y": 44.3125,
+          "width": 192,
+          "height": 43.359375,
+          "top": 44.3125,
+          "right": 816,
+          "bottom": 87.671875,
+          "left": 624
+        },
+        "logoDisplay": "flex",
+        "logoSource": "/assets/brand/chapchitra-light-wordmark.svg",
+        "logoNatural": 300,
+        "toggle": {
+          "x": 1116,
+          "y": 44,
+          "width": 96,
+          "height": 44,
+          "top": 44,
+          "right": 1212,
+          "bottom": 88,
+          "left": 1116
+        },
+        "toggleDisplay": "flex",
+        "search": {
+          "x": 1217,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 1261,
+          "bottom": 88,
+          "left": 1217
+        },
+        "bag": {
+          "x": 1364,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "top": 44,
+          "right": 1408,
+          "bottom": 88,
+          "left": 1364
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "inert": false,
+        "menu": {
+          "x": 32,
+          "y": 34,
+          "width": 1376,
+          "height": 64,
+          "top": 34,
+          "right": 1408,
+          "bottom": 98,
+          "left": 32
+        },
+        "darkDiscs": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "labels": [
+          "Home",
+          "Shop",
+          "Artist’s Edit",
+          "Journal",
+          "About Us"
+        ],
+        "links": [
+          "/favorites/",
+          "/account/"
+        ]
+      },
+      "pass": true
+    }
+  ],
+  "summary": {
+    "profiles": 24,
+    "checks": 260,
+    "passed": 260,
+    "failed": []
+  }
+}

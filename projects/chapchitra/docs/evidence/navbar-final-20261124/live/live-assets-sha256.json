@@ -1,0 +1,25 @@
+{
+  "expected_merged_sha": "be087dbeae8cd2590ace88cf7828f43150ec4398",
+  "assets": {
+    "app.mjs": {
+      "sha256": "ec75fcfd66cb15d2a9735debe4cc99aaeccdd40691443c329a558da130f65414",
+      "matches_approved_build": true,
+      "bytes": 130685
+    },
+    "styles.css": {
+      "sha256": "98935bcd234895a7f3beac7fe5b540a37a0f6eaa4d280d51a0eb7a5bd5a29241",
+      "matches_approved_build": true,
+      "bytes": 129440
+    },
+    "theme.css": {
+      "sha256": "df67405f628711c130c0c1ba0fb846be47e0b71ebbb9a3f8e0a59e39d29f4cb4",
+      "matches_approved_build": true,
+      "bytes": 28355
+    },
+    "theme-toggle.css": {
+      "sha256": "51ed1f975feb4546e5567e6e50b4345ecfacd653f43e7cd3eb377559f4585320",
+      "matches_approved_build": true,
+      "bytes": 3018
+    }
+  }
+}

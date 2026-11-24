@@ -1,0 +1,108 @@
+{
+  "mode": "UNMODIFIED LIVE Render public origin",
+  "testedStageSHA": "be087dbeae8cd2590ace88cf7828f43150ec4398",
+  "summary": {
+    "cases": 2,
+    "checks": 19,
+    "passed": 19,
+    "failures": []
+  },
+  "cases": [
+    {
+      "name": "desktop-chromium-dark",
+      "width": 1440,
+      "height": 900,
+      "theme": "dark",
+      "checks": [
+        {
+          "name": "original hero illustration loaded",
+          "pass": true
+        },
+        {
+          "name": "C08 original hero stage present",
+          "pass": true
+        },
+        {
+          "name": "original compact navbar SVG stays decoded",
+          "pass": true
+        },
+        {
+          "name": "C04 bag stamp markup retained",
+          "pass": true
+        },
+        {
+          "name": "C04 pagination ink stamp retained",
+          "pass": true
+        },
+        {
+          "name": "C04 pagination changes current and retains ink",
+          "pass": true
+        },
+        {
+          "name": "C02 maintains correct Shop route and header",
+          "pass": true
+        },
+        {
+          "name": "C03 original card add control and product source",
+          "pass": true
+        },
+        {
+          "name": "C03 add updates live demo bag and C04 stamped count",
+          "pass": true
+        },
+        {
+          "name": "C08 navbar hover completes and restores original wordmark",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "pass": true
+    },
+    {
+      "name": "mobile-webkit-light",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "checks": [
+        {
+          "name": "original hero illustration loaded",
+          "pass": true
+        },
+        {
+          "name": "C08 original hero stage present",
+          "pass": true
+        },
+        {
+          "name": "original compact navbar SVG stays decoded",
+          "pass": true
+        },
+        {
+          "name": "C04 bag stamp markup retained",
+          "pass": true
+        },
+        {
+          "name": "C04 pagination ink stamp retained",
+          "pass": true
+        },
+        {
+          "name": "C04 pagination changes current and retains ink",
+          "pass": true
+        },
+        {
+          "name": "C02 maintains correct Shop route and header",
+          "pass": true
+        },
+        {
+          "name": "C03 original card add control and product source",
+          "pass": true
+        },
+        {
+          "name": "C03 add updates live demo bag and C04 stamped count",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "pass": true
+    }
+  ]
+}

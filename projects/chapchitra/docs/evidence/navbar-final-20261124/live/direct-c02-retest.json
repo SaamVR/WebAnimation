@@ -1,0 +1,335 @@
+{
+  "source": "UNMODIFIED Render staging",
+  "sha": "be087dbeae8cd2590ace88cf7828f43150ec4398",
+  "summary": {
+    "cases": 6,
+    "passed": 6,
+    "failures": []
+  },
+  "results": [
+    {
+      "id": "webkit-320-dark-direct-0",
+      "width": 320,
+      "mode": "direct",
+      "repeat": 0,
+      "errors": [],
+      "initial": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "settled": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "ok": true
+    },
+    {
+      "id": "webkit-320-dark-direct-1",
+      "width": 320,
+      "mode": "direct",
+      "repeat": 1,
+      "errors": [],
+      "initial": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "settled": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "ok": true
+    },
+    {
+      "id": "webkit-320-dark-direct-2",
+      "width": 320,
+      "mode": "direct",
+      "repeat": 2,
+      "errors": [],
+      "initial": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "settled": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0031315479300246807,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":320,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-2299.166093px, -80px, 0px)",
+          "rawPrepaintX": "-2299.16288407707px",
+          "rawPrepaintY": "-80px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "ok": true
+    },
+    {
+      "id": "webkit-390-dark-direct-0",
+      "width": 390,
+      "mode": "direct",
+      "repeat": 0,
+      "errors": [],
+      "initial": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "settled": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "ok": true
+    },
+    {
+      "id": "webkit-390-dark-direct-1",
+      "width": 390,
+      "mode": "direct",
+      "repeat": 1,
+      "errors": [],
+      "initial": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "settled": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "ok": true
+    },
+    {
+      "id": "webkit-390-dark-direct-2",
+      "width": 390,
+      "mode": "direct",
+      "repeat": 2,
+      "errors": [],
+      "initial": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "settled": {
+        "theme": "dark",
+        "path": "/shop/",
+        "rootOverflow": 0,
+        "bodyOverflow": 0,
+        "loader": false,
+        "first": {
+          "x": 0.0032129281385095965,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":390,\"height\":844,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-3037.08276px, -97.5px, 0px)",
+          "rawPrepaintX": "-3037.0795507437365px",
+          "rawPrepaintY": "-97.5px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "covered": true,
+        "direction": "vertical",
+        "backing": "walnut-source-envelope",
+        "menuOpen": false,
+        "offenders": []
+      },
+      "ok": true
+    }
+  ]
+}

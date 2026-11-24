@@ -1,0 +1,164 @@
+{
+  "source": "UNMODIFIED LIVE public Render staging",
+  "sha": "be087dbeae8cd2590ace88cf7828f43150ec4398",
+  "summary": {
+    "cases": 2,
+    "checks": 10,
+    "passed": 10,
+    "failures": []
+  },
+  "cases": [
+    {
+      "name": "desktop-chromium-dark",
+      "checks": {
+        "existing horizontal ink stage": true,
+        "full horizontal cover committed": true,
+        "cross-document first paint delta under 2px": true,
+        "Walnut/Gallery backing unchanged": true,
+        "route theme and cleanup preserved": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "horizontal",
+        "active": true,
+        "inkAsset": "owner-vector-svg"
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1766.1888000000001,
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 1440,
+            "height": 900,
+            "left": 0,
+            "top": 0
+          },
+          "direction": "horizontal",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 1440,
+            "height": 900
+          },
+          "committedAt": 1795550590917,
+          "startedAt": 1795550588840,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0076801958166470286,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":1440,\"height\":900,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-7654.8px, -225px, 0px)",
+          "rawPrepaintX": "-7654.792124491683px",
+          "rawPrepaintY": "-225px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "backing": {
+          "source": "/assets/c02/texture-composed-dark.svg",
+          "asset": "owner-vector-svg",
+          "backing": "walnut-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1832.7024000000001
+        },
+        "theme": "dark",
+        "gone": true,
+        "overflow": 0,
+        "route": "/shop/"
+      },
+      "pass": true
+    },
+    {
+      "name": "tablet-webkit-light",
+      "checks": {
+        "existing horizontal ink stage": true,
+        "full horizontal cover committed": true,
+        "cross-document first paint delta under 2px": true,
+        "Walnut/Gallery backing unchanged": true,
+        "route theme and cleanup preserved": true
+      },
+      "errors": [],
+      "departure": {
+        "direction": "horizontal",
+        "active": true,
+        "inkAsset": "owner-vector-svg"
+      },
+      "arrival": {
+        "cover": {
+          "covered": true,
+          "progress": 1,
+          "imageReady": true,
+          "frameFits": true,
+          "imageSpans": true,
+          "whiteSeal": true,
+          "clip": "none",
+          "minPigmentEdgePx": 1022.9176799999999,
+          "viewport": {
+            "width": 834,
+            "height": 1112,
+            "left": 0,
+            "top": 0
+          },
+          "logicalViewport": {
+            "width": 834,
+            "height": 1112,
+            "left": 0,
+            "top": 0
+          },
+          "direction": "horizontal",
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "width": 834,
+            "height": 1112
+          },
+          "committedAt": 1795550597086,
+          "startedAt": 1795550594650,
+          "from": "/",
+          "to": "/shop/"
+        },
+        "first": {
+          "x": 0.0035325860662851483,
+          "y": 0,
+          "progress": 1,
+          "viewport": "{\"width\":834,\"height\":1112,\"left\":0,\"top\":0}",
+          "rawTransform": "translate3d(-10660.893193px, -278px, 0px)",
+          "rawPrepaintX": "-10660.890022101434px",
+          "rawPrepaintY": "-278px",
+          "pendingClass": true,
+          "originalTicketProgress": 1
+        },
+        "backing": {
+          "source": "/assets/c02/texture-composed.svg",
+          "asset": "owner-vector-svg",
+          "backing": "gallery-white-source-envelope",
+          "layers": 1,
+          "svgHidden": true,
+          "progress": 0,
+          "contact": 1061.4401400000006
+        },
+        "theme": "light",
+        "gone": true,
+        "overflow": 0,
+        "route": "/shop/"
+      },
+      "pass": true
+    }
+  ]
+}
