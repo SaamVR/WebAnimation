@@ -8,6 +8,7 @@
 
 - [mobile-final-qa.json](mobile-final-qa.json): **360/360 checks passed**, 16 browser / viewport / theme combinations (2 browsers × 4 widths × 2 themes); no JS errors reported in these scenarios.
 - [hero-navbar-a11y-qa.json](hero-navbar-a11y-qa.json): **5/5** original-wordmark accessibility and keyboard-nav scenarios passed, including desktop/tablet Hero01 behavior.
+- [desktop-tablet-freeze-qa.json](desktop-tablet-freeze-qa.json): **8/8 exact baseline-vs-candidate comparisons passed** at 431/600px Chromium, 834px WebKit and 1440px Chromium, in both themes. Every measured navbar geometry, background, action gap, logo, theme-toggle footprint and visible state matched staging within 1.1px.
 - Each profile has **four screenshots** named `{chromium|webkit}-{320|375|390|430}-{dark|light}-{navbar|menu|vertical-progress|shop-arrived}.png`: closed navbar, expanded hamburger, a mid-ink frame, and the destination page after completion. The SVG wordmark is unchanged; portrait C02 uses the original owner's vector ink source and theme-specific Walnut/Gallery White derivative.
 
 ## Video evidence
