@@ -694,9 +694,9 @@
 :root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle):hover{
   background:transparent;
 }
-@media (min-width:431px){
+@media (min-width:601px){
   :root[data-theme="dark"] #app > .site-header .nav-actions{
-    /* Same geometry as light theme: no 12px theme-toggle position jump. */
+    /* Match desktop light gap. From 431–600px inherit mobile gap:0. */
     gap:5px;
   }
 }
