@@ -682,3 +682,35 @@
     gap:2px;
   }
 }
+
+
+/* CHAPCHITRA — MOBILE OPTION A ONLY (portrait phone widths).
+   Restore the entire owner-approved 44px Cream-circle + 2px gap styling
+   unchanged for desktop/tablet. On phones, keep 44px touch boxes but draw
+   only 36px Cream discs, including the left hamburger, behind original SVGs.
+   The light theme and illustrated theme toggle never enter these selectors. */
+@media (max-width:430px){
+  :root[data-theme="dark"] #app > .site-header .nav-left .hamburger,
+  :root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
+    background:transparent;
+    isolation:isolate;
+  }
+  :root[data-theme="dark"] #app > .site-header .nav-left .hamburger::before,
+  :root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle)::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:var(--color-cream);
+    pointer-events:none;
+    z-index:-1;
+  }
+  :root[data-theme="dark"] #app > .site-header .nav-left .hamburger:hover,
+  :root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle):hover{
+    background:transparent;
+  }
+}

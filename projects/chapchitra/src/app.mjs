@@ -1011,11 +1011,15 @@ async function boot(){
    paperPanel.dataset.retractionProgress=state.progress.toFixed(4);
    const special=active===0&&!state.complete;
    const mode=special?'special':'standard';
-   if(headerModeInitialized&&headerRoot.dataset.hero01Mode===mode)return;
+   // The compact owner wordmark is now required on portrait phones even
+   // above Hero01. Desktop/tablet keep their approved hero-logo handoff.
+   const hideNavIdentity=special&&window.innerWidth>430;
+   if(headerModeInitialized&&headerRoot.dataset.hero01Mode===mode&&
+      navIdentity.hasAttribute('aria-hidden')===hideNavIdentity)return;
    headerModeInitialized=true;headerRoot.dataset.hero01Mode=mode;
    heroRoot.dataset.hero01Mode=mode;
    heroIdentity.inert=!special;
-   if(special){
+   if(hideNavIdentity){
     navIdentity.setAttribute('aria-hidden','true');navIdentity.tabIndex=-1;
    }else{
     navIdentity.removeAttribute('aria-hidden');navIdentity.removeAttribute('tabindex');

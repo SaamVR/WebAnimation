@@ -2621,6 +2621,21 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
 #app .cc-c04-inking{will-change:transform,opacity}
 
 
+/* CHAPCHITRA mobile Option A — preserve the ORIGINAL centered wordmark.
+   Home's Hero01 desktop duplicate-logo suppression must not blank the
+   required phone header identity. C08 artwork/player remain unchanged. */
+@media(max-width:430px){
+  body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-word.logo-word--image{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+}
+@media(max-width:360px){
+  /* 44px Hamburger + 44px Search/Bag targets must not crowd the center. */
+  #app > .site-header .logo-word.logo-word--image{width:104px}
+}
+
 /* CHAPCHITRA PR154: viewport-bound desktop hero only.
    The original 34px announcement + 64px Hero01 special header (65px normal)
    remain unchanged. Do NOT reset global .wrap, tablet/mobile hero dimensions,
@@ -2731,3 +2746,4 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
   /* Neutral sky only: original authored vector fills remain untouched. */
   background:var(--color-cream);
 }
+
