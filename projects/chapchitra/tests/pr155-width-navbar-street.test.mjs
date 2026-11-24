@@ -62,7 +62,7 @@ test('Dark 36px Cream discs are decorative inside unchanged 44px hitboxes',()=>{
  assert.match(scoped, /nav-icon:not\(\.cc-theme-toggle\)::before\{/);
  for(const s of ['width:36px','height:36px','transform:translate(-50%,-50%)','background:var(--color-cream)','pointer-events:none','z-index:-1'])assert.ok(scoped.includes(s),s);
  assert.match(scoped, /nav-icon:not\(\.cc-theme-toggle\):hover\{\s*background:transparent;/);
- assert.match(scoped, /@media \(min-width:431px\)/);
+ assert.match(scoped, /@media \(min-width:601px\)/);
  assert.match(scoped, /gap:5px/);
  assert.doesNotMatch(scoped,/\.cc-theme-toggle(?:\{|:hover| svg)/,'Do not change illustrated toggle');
  assert.doesNotMatch(scoped,/\.cc-nav-art|\.bag-count|#8A503B|#293D2D/,'Do not recolor artwork/stamp');
