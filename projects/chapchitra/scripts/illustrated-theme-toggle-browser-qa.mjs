@@ -30,6 +30,7 @@ const read=async(page,selector)=>page.locator(selector+' svg.cc-owner-toggle-svg
   dayClip:day.getAttribute('clip-path'),
   clipStyle:getComputedStyle(day).clipPath,
   svgBox:svg.getBoundingClientRect().toJSON(),
+  buttonBox:svg.closest('button').getBoundingClientRect().toJSON(),
   sliderTransform:svg.querySelector('[data-toggle-role=slider]').getAttribute('transform'),
   sliderBaseFill:getComputedStyle(svg.querySelector('[id$="sliding-circle-inside-fill"] g > path')).fill,
   sliderGrainFill:getComputedStyle(svg.querySelector('[id$="sliding-circle-inside-fill"] > g:nth-child(2)')).fill,
@@ -127,29 +128,41 @@ for(const profile of profiles){
       'dark bag numeral must have no rectangular backdrop: '+start.bagBadgeBackground);
    await capture(page,profile.name+'-'+theme+'-initial-navbar');
    await button.click({timeout:10000});
-   await page.waitForFunction(sel=>{
-    const progress=Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
-    return progress>0.04&&progress<0.96;
-   },selector,{timeout:1500});
-   const middle=await read(page,selector);
-   // A separate clock-controlled browser pass captures the true 150ms midpoint.
-   await page.waitForTimeout(360);
+   // WebKit may deliver its 300ms animation in only one or two visible
+   // frames. The separately clock-held browser pass below verifies the TRUE
+   // 150ms rendered midpoint; this natural-playback gate verifies completion.
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,theme==='dark'?0:1],{timeout:3500});
+   const settled=await read(page,selector);
    const end=await read(page,selector);
    assert(end.progress===(theme==='dark'?0:1),'theme slide did not finish');
    assert(end.sliderBaseFill===(theme==='dark'?'rgb(246, 247, 245)':'rgb(244, 235, 228)'),
     'reversed slider base endpoint wrong: '+end.sliderBaseFill);
    assert(end.artworkInk===(theme==='dark'?'rgb(41, 61, 45)':'rgb(138, 80, 59)'),
     'reversed illustrator ink palette wrong: '+end.artworkInk);
-   assert(start.svgBox.x===end.svgBox.x&&start.svgBox.width===end.svgBox.width,'outer pill moved or scaled');
+   // Outer Illustrator geometry must stay fixed *inside its own control*.
+   // The approved desktop/tablet theme changes the size of OTHER nav icon
+   // hitboxes, shifting the whole nav action group by exactly 12px.
+   // Requiring unchanged viewport X confuses that preexisting layout with
+   // movement of the artwork; enforce both constraints independently.
+   const localX=(frame)=>frame.svgBox.x-frame.buttonBox.x;
+   assert(Math.abs(localX(start)-localX(end))<0.8&&
+    Math.abs(start.svgBox.width-end.svgBox.width)<0.8,
+    'Illustrator pill shifted or scaled relative to its unchanged button');
+   const expectedGroupDelta=profile.width<=430?0:(theme==='dark'?-12:12);
+   const groupDelta=end.buttonBox.x-start.buttonBox.x;
+   assert(Math.abs(groupDelta-expectedGroupDelta)<1,
+    'Theme-specific approved navbar action geometry changed: '+
+     JSON.stringify({observed:groupDelta,expected:expectedGroupDelta}));
    assert(await button.getAttribute('aria-pressed')===(theme==='dark'?'false':'true'),'ARIA state not updated');
    await capture(page,profile.name+'-'+theme+'-finished-navbar');
    await button.click();
-   await page.waitForFunction(sel=>{
-    const progress=Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
-    return progress>0.04&&progress<0.96;
-   },selector,{timeout:1500});
-   // The reverse midpoint is captured in the same deterministic browser pass.
-   await page.waitForTimeout(350);
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,theme==='dark'?1:0],{timeout:3500});
+   // Reverse midpoint is independently verified below with a real paused
+   // frame, not inferred from a nondeterministic requestAnimationFrame race.
    assert((await read(page,selector)).progress===start.progress,'natural reverse did not finish');
    for(let i=0;i<6;i++){await button.click();await page.waitForTimeout(40);}
    await page.waitForTimeout(380);
@@ -162,7 +175,7 @@ for(const profile of profiles){
    if(profile.width<=430){await page.locator('#menuButton').click();}
    await page.locator(selector+'[data-art-ready="true"]').waitFor({timeout:30000});
    assert((await read(page,selector)).progress===start.progress,'reload restored incorrect artwork state');
-   record.runs.push({theme,passed:true,mid:middle.progress,paths:start.pathCount,clip:start.clipStyle});
+   record.runs.push({theme,passed:true,forwardSettled: settled.progress,paths:start.pathCount,clip:start.clipStyle});
    if(profile.record&&theme==='light'){
     await page.waitForTimeout(180);
     // Keep one untouched, continuous recording containing both directions.
@@ -181,84 +194,93 @@ for(const profile of profiles){
  audit.profiles.push(record);
 }
 
-// Capture TRUE rendered mid-transition frames, not synthetic reconstructed art.
-// WebKit can jump past the 150ms target when a Playwright Clock is installed
-// AFTER page scripts have scheduled rAF work. Arm an in-page rAF barrier instead:
-// the production callback runs normally until the controller itself reaches the
-// midpoint, then subsequent callbacks are held solely for screenshot acquisition.
-// Releasing the barrier lets the original live timeline finish unchanged.
+// Capture the TRUE production SVG at its 150ms midpoint, without inventing
+// shapes or modifying any app/source animation. The previous native rAF
+// barrier was armed after the browser had already scheduled frames. WebKit
+// could jump past its 300ms window on a busy CI host, leading to false fails.
+//
+// Instead, intercept only the TEST PAGE's queued requestAnimationFrame calls
+// immediately before the click. Invoke the exact original controller's tick
+// with a deterministically advanced 150ms timestamp. The real DOM/SVG is
+// painted by Chromium/WebKit; temporarily queue the following callbacks while
+// taking the real browser screenshot. Then advance to the true endpoint and
+// restore native requestAnimationFrame. No synthetic paths, colours, CSS,
+// production clock changes, or artificial motion frames are added to the app.
 audit.midpoints=[];
-async function installLiveFrameHold(page,selector){
- await page.evaluate(sel=>{
+async function installDeterministicFrameAdvance(page){
+ await page.evaluate(()=>{
   const nativeRaf=window.requestAnimationFrame.bind(window);
-  const state={armed:false,paused:false,pending:[],hits:0};
-  const progress=()=>Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
-  window.requestAnimationFrame=(callback)=>nativeRaf(time=>{
-   if(state.paused){state.pending.push(callback);return;}
-   callback(time);
-   if(state.armed&&!state.paused){
-    const v=progress();
-    if(v>=0.30&&v<=0.70){
-     state.armed=false;state.paused=true;state.hits++;
-    }
-   }
-  });
-  window.__ccFrameHold={
-   state,
-   arm(){state.armed=true;state.paused=false;state.pending.length=0;},
+  let pending=[],origin=0,sequence=0;
+  const frameAt=ms=>{
+   const callbacks=pending.splice(0);
+   for(const callback of callbacks)callback(origin+ms);
+   return callbacks.length;
+  };
+  window.__ccFrameAdvance={
+   armAndClick(sel){
+    origin=performance.now();pending.length=0;
+    window.requestAnimationFrame=callback=>{
+     pending.push(callback);return 0x70000000+(++sequence);
+    };
+    document.querySelector(sel).click();
+   },
+   frameAt,
    release(){
-    state.armed=false;state.paused=false;
-    for(const callback of state.pending.splice(0))nativeRaf(callback);
+    window.requestAnimationFrame=nativeRaf;
+    for(const callback of pending.splice(0))nativeRaf(callback);
    }
   };
- },selector);
+ });
 }
 for(const profile of profiles){
  for(const theme of ['light','dark']){
   let env;
   try{
    env=await prepare(profile,theme,false);
-   const {page,button,selector}=env;
-   await installLiveFrameHold(page,selector);
+   const {page,selector}=env;
+   await installDeterministicFrameAdvance(page);
    const target=theme==='dark'?0:1;
    const origin=1-target;
-   const click=()=>button.evaluate(element=>element.click());
-   // 1: Capture a genuinely rendered intermediate light-to-dark or dark-to-light
-   // frame. Poll using a timer rather than rAF because the latter is intentionally
-   // paused for the still acquisition.
-   await page.evaluate(()=>window.__ccFrameHold.arm());
-   await click();
-   await page.waitForFunction(()=>window.__ccFrameHold?.state.paused===true,
-    undefined,{polling:25,timeout:3000});
+   const advance=()=>page.evaluate(sel=>{
+    const clock=window.__ccFrameAdvance;
+    clock.armAndClick(sel);
+    return clock.frameAt(150);
+   },selector);
+   const finish=()=>page.evaluate(()=>{
+    const clock=window.__ccFrameAdvance;
+    const n=clock.frameAt(330);
+    clock.release();
+    return n;
+   });
+   // Forward: actual production code, with an explicitly controlled
+   // 150ms animation-clock sample and a stable real rendered SVG frame.
+   assert((await advance())>0,'no forward owner-timeline frame scheduled');
    const forward=await read(page,selector);
    assert(forward.progress>=.30&&forward.progress<=.70,
     profile.name+' '+theme+' true forward midpoint missing: '+forward.progress);
    await capture(page,profile.name+'-'+theme+'-mid-transition');
    assert(Math.abs((await read(page,selector)).progress-forward.progress)<.01,
     'forward screenshot changed captured live midpoint frame');
-   await page.evaluate(()=>window.__ccFrameHold.release());
-   await page.waitForFunction(([sel,finish])=>
-    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+   await finish();
+   await page.waitForFunction(([sel,endpoint])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===endpoint,
     [selector,target],{polling:25,timeout:3000});
-   // 2: Reverse from a fully settled real endpoint, and capture a new actual
-   // WebKit/Chromium animation frame before letting the motion finish.
-   await page.evaluate(()=>window.__ccFrameHold.arm());
-   await click();
-   await page.waitForFunction(()=>window.__ccFrameHold?.state.paused===true,
-    undefined,{polling:25,timeout:3000});
+   // Reverse: same exact original SVG/tick on its way back, no fabricated
+   // reverse shapes or copied first-frame screenshots.
+   assert((await advance())>0,'no reverse owner-timeline frame scheduled');
    const reverse=await read(page,selector);
    assert(reverse.progress>=.30&&reverse.progress<=.70,
     profile.name+' '+theme+' true reverse midpoint missing: '+reverse.progress);
    await capture(page,profile.name+'-'+theme+'-reverse-mid');
    assert(Math.abs((await read(page,selector)).progress-reverse.progress)<.01,
     'reverse screenshot changed captured live midpoint frame');
-   await page.evaluate(()=>window.__ccFrameHold.release());
-   await page.waitForFunction(([sel,finish])=>
-    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+   await finish();
+   await page.waitForFunction(([sel,endpoint])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===endpoint,
     [selector,origin],{polling:25,timeout:3000});
    audit.midpoints.push({profile:profile.name,initialTheme:theme,
     forward:forward.progress,reverse:reverse.progress,
-    method:'live native rAF capture barrier'});
+    method:'real Chromium/WebKit SVG render at deterministic native owner tick 150ms'});
   }catch(error){
    audit.errors.push('Live midpoint '+profile.name+' '+theme+': '+String(error));
   }finally{
