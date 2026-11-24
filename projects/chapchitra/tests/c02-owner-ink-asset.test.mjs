@@ -90,7 +90,15 @@ test('C02 has exactly one theme-correct composed vector per cover/full/loading/r
  assert.match(early,/background-image:url\('\/assets\/c02\/texture-composed\.svg'\)/);
  assert.match(early,/link\.href=dark\?'\/assets\/c02\/texture-composed-dark\.svg':'\/assets\/c02\/texture-composed\.svg'/);
  assert.match(early,/rightContact-8096\*scale/);
- assert.match(early,/var scale=vh\*1\.5\/1152/);
+ assert.match(early,/var portrait=vw<=430&&vh>vw/);
+ assert.match(early,/var scale=logicalH\*1\.5\/1152/);
+ assert.match(early,/\*logicalW\/1000/);
+ assert.match(early,/c02-mobile-portrait/);
+ assert.match(runtime,/overlay\.dataset\.c02Direction=portrait\?'vertical':'horizontal'/);
+ assert.match(runtime,/rotate\(90deg\)/);
+ assert.match(runtime,/const viewport=portrait\?\{width:physical\.height,height:physical\.width\}:physical/);
+ assert.match(early,/--c02-portrait-center-left/);
+ assert.match(early,/--c02-portrait-stage-width/);
  assert.doesNotMatch(early,/ink-interior-loop|ink-unified|Ink_swipe_1\.png/);
  assert.match(build,/C02 exact hand-illustrated SVG source verified/);
  assert.match(build,/inkSVGHash!==C02_INK_ASSET\.sourceSHA256/);

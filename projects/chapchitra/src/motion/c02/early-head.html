@@ -35,6 +35,15 @@ html[data-theme="dark"].c02-pending.c02-asset-arrival::after{
 background-image:url('/assets/c02/texture-composed-dark.svg')}
 html[data-theme="dark"].c02-pending.c02-asset-arrival.c02-full-cover::after{
 background-color:#6E523F}
+/* Portrait arrival is the SAME owner vector in the same rotated coordinates
+   as the runtime. No image switching, squashing, mirroring or repeated tiles. */
+html.c02-pending.c02-asset-arrival.c02-mobile-portrait::after{
+left:var(--c02-portrait-center-left,50vw);
+top:var(--c02-portrait-center-top,50vh);
+width:var(--c02-portrait-stage-width,100vh);
+height:var(--c02-portrait-stage-height,100vw);
+transform:translate(-50%,-50%) rotate(90deg);
+transform-origin:center}
 /* Cross-document native View Transitions are deliberately not auto-enabled:
    Chromium can suspend the outgoing animated document while snapshotting,
    stranding an ink overlay. The one-use native-navigation fallback is the
@@ -69,13 +78,21 @@ background-color:#6E523F}
      var vv=window.visualViewport;
      var vw=vv&&vv.width>0?vv.width:innerWidth;
      var vh=vv&&vv.height>0?vv.height:innerHeight;
-     var scale=vh*1.5/1152;
+     var portrait=vw<=430&&vh>vw;
+     // The runtime transposes its physical viewport only for portrait phones.
+     var logicalW=portrait?vh:vw,logicalH=portrait?vw:vh;
+     var scale=logicalH*1.5/1152;
      var driftX=Number(ticket.drift?.x)||0;
     var rightContact=(-265+1530*p+(Math.sin(Math.PI*p)*.34+.66)*(
       104*Math.sin(Math.PI*470/1000*2.35+.32)+
       48*Math.sin(Math.PI*470/1000*4.15+1.15)+
-      19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*vw/1000;
+      19*Math.sin(Math.PI*470/1000*7.1-.7))+27)*logicalW/1000;
      var root=document.documentElement;
+     root.classList.toggle('c02-mobile-portrait',portrait);
+     root.style.setProperty('--c02-portrait-stage-width',logicalW+'px');
+     root.style.setProperty('--c02-portrait-stage-height',logicalH+'px');
+     root.style.setProperty('--c02-portrait-center-left',((vv?.offsetLeft||0)+vw/2)+'px');
+     root.style.setProperty('--c02-portrait-center-top',((vv?.offsetTop||0)+vh/2)+'px');
      root.style.setProperty('--c02-viewport-left',(vv?.offsetLeft||0)+'px');
      root.style.setProperty('--c02-viewport-top',(vv?.offsetTop||0)+'px');
      root.style.setProperty('--c02-viewport-width',vw+'px');
@@ -84,7 +101,7 @@ background-color:#6E523F}
      root.style.setProperty('--c02-asset-height',1152*scale+'px');
      root.style.setProperty('--c02-asset-left',(rightContact-8096*scale+driftX)+'px');
      root.dataset.c02PrepaintDriftX=String(driftX);
-     root.style.setProperty('--c02-asset-top',((vh-1152*scale)/2)+'px');
+     root.style.setProperty('--c02-asset-top',((logicalH-1152*scale)/2)+'px');
     }
     var root=document.documentElement;
     root.classList.add('c02-asset-arrival');

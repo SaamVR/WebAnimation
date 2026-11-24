@@ -59,6 +59,12 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  }
  const overlay=doc.createElement('div');
  overlay.id='c02-loader';overlay.className='c02-loader';overlay.dataset.c02='loader';
+ // Portrait phones rotate only the ORIGINAL composite coordinate space.
+ // X in the untouched ink SVG becomes device +Y: no stretching or tiling.
+ const physicalAtCreation=c02InkVisualViewport(win);
+ const portrait=win.matchMedia('(max-width:430px)').matches&&
+  physicalAtCreation.height>physicalAtCreation.width;
+ overlay.dataset.c02Direction=portrait?'vertical':'horizontal';
  overlay.setAttribute('aria-hidden','true');
  const svg=doc.createElementNS(NS,'svg');svg.setAttribute('viewBox','0 0 1000 1000');
  svg.setAttribute('preserveAspectRatio','none');svg.setAttribute('class','c02-loader__surface');
@@ -126,7 +132,19 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  img.alt='';img.draggable=false;img.decoding='async';img.loading='eager';
  img.setAttribute('fetchpriority','high');
  img.addEventListener('error',()=>{roller.hidden=true},{once:true});
- roller.append(img);overlay.append(svg,inkAssetLayer,roller);doc.body.append(overlay);
+ roller.append(img);
+ let stage=null;
+ if(portrait){
+  stage=doc.createElement('div');
+  stage.className='c02-loader__portrait-stage';
+  // The stage is exactly the transposed viewport; rotation preserves every
+  // source aspect ratio, ink contact position, mask and roller coordinate.
+  stage.style.cssText='position:absolute;left:50%;top:50%;'+
+   'transform:translate(-50%,-50%) rotate(90deg);transform-origin:center;'+
+   'overflow:hidden;isolation:isolate;pointer-events:none;';
+  stage.append(svg,inkAssetLayer,roller);overlay.append(stage);
+ }else overlay.append(svg,inkAssetLayer,roller);
+ doc.body.append(overlay);
  let stopAnimation=null,viewportKey='',rasterSizeKey='';
  let driftPhase=0,driftX=0,driftRunning=false,driftRaf=0,driftTime=0;
  let driftBase=null,driftLimit=0,driftViewportWidth=0;
@@ -150,7 +168,8 @@ function makeOverlay(doc,win,edgeStyle='asset'){
  }
  function restoreDrift(snapshot={}){
   driftPhase=c02DriftPhase(snapshot.phase);
-  const view=c02InkVisualViewport(win);
+  const physical=c02InkVisualViewport(win);
+  const view=portrait?{width:physical.height,height:physical.width}:physical;
   driftLimit=driftLimitForViewport(view);driftViewportWidth=view.width;
   const value=Number(snapshot.x);
   driftX=Number.isFinite(value)?
@@ -200,17 +219,26 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   const p=Math.min(1,Math.max(0,progress));
   overlay.dataset.phase=mode;
   overlay.dataset.progress=String(p); // QA-readable contact alignment, not user UI
-  const viewport=c02InkVisualViewport(win);
-  const nextViewportKey=[viewport.left,viewport.top,viewport.width,viewport.height].join(':');
-  // A 120 Hz iPad must not invalidate layout on every animation frame when
-  // the toolbar is stationary. Reflow only on an actual visual-viewport change.
+  const physical=c02InkVisualViewport(win);
+  // Desktop/tablet use EXACTLY their original dimensions and rendering path.
+  // Portrait phones transpose once inside the rotated stage, so the same
+  // painted organic X-edge advances naturally from device top to bottom.
+  const viewport=portrait?{width:physical.height,height:physical.width}:physical;
+  const nextViewportKey=[physical.left,physical.top,physical.width,
+   physical.height,viewport.width,viewport.height].join(':');
+  // Reflow only on visual-viewport changes; never recalculate on each RAF.
   if(nextViewportKey!==viewportKey){
    viewportKey=nextViewportKey;
-   overlay.style.left=viewport.left+'px';
-   overlay.style.top=viewport.top+'px';
-   overlay.style.width=viewport.width+'px';
-   overlay.style.height=viewport.height+'px';
-   overlay.dataset.viewport=JSON.stringify(viewport);
+   overlay.style.left=physical.left+'px';
+   overlay.style.top=physical.top+'px';
+   overlay.style.width=physical.width+'px';
+   overlay.style.height=physical.height+'px';
+   if(stage){
+    stage.style.width=viewport.width+'px';
+    stage.style.height=viewport.height+'px';
+   }
+   overlay.dataset.viewport=JSON.stringify(physical);
+   if(portrait)overlay.dataset.c02LogicalViewport=JSON.stringify(viewport);
    driftLimit=driftLimitForViewport(viewport);driftViewportWidth=viewport.width;
    driftX=Math.max(-driftLimit,Math.min(driftLimit,driftX));
   }
@@ -408,7 +436,9 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   };
  }
  function fullCoverage(){
-  const viewport=c02InkVisualViewport(win),bounds=overlay.getBoundingClientRect();
+  const physical=c02InkVisualViewport(win);
+  const viewport=portrait?{width:physical.height,height:physical.width}:physical;
+  const bounds=overlay.getBoundingClientRect();
   const imageBounds=inkAssetImg.getBoundingClientRect();
   // The SVG canvas extends beyond the actual pigment. Check the approved
   // moving contact envelope across the full height, not just a progress
@@ -418,10 +448,10 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   const ready=inkAssetImg.complete&&
    inkAssetImg.naturalWidth===C02_INK_ASSET.width&&
    inkAssetImg.naturalHeight===C02_INK_ASSET.height;
-  const frameFits=Math.abs(bounds.left-viewport.left)<2&&
-   Math.abs(bounds.top-viewport.top)<2&&
-   Math.abs(bounds.width-viewport.width)<2&&
-   Math.abs(bounds.height-viewport.height)<2;
+  const frameFits=Math.abs(bounds.left-physical.left)<2&&
+   Math.abs(bounds.top-physical.top)<2&&
+   Math.abs(bounds.width-physical.width)<2&&
+   Math.abs(bounds.height-physical.height)<2;
   const imageSpans=imageBounds.left<=bounds.left&&
    imageBounds.top<=bounds.top&&
    imageBounds.right>=bounds.right&&
@@ -439,7 +469,8 @@ function makeOverlay(doc,win,edgeStyle='asset'){
   const proof={covered,progress:Number(overlay.dataset.progress),
    imageReady:ready,frameFits,imageSpans,whiteSeal,clip:style.clipPath,
    minPigmentEdgePx:minPigmentEdge,
-   viewport,bounds:{left:bounds.left,top:bounds.top,
+   viewport:physical,logicalViewport:viewport,direction:overlay.dataset.c02Direction,
+   bounds:{left:bounds.left,top:bounds.top,
     width:bounds.width,height:bounds.height}};
   overlay.dataset.c02FullCoverage=JSON.stringify(proof);
   return proof;
