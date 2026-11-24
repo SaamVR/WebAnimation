@@ -1,0 +1,58 @@
+{
+  "origin": "https://chapchitra-webanimation.onrender.com",
+  "mode": "UNMODIFIED Render staging C03/C04/C08 regression smoke",
+  "testedStageSHA": "6d6f8611327d7346190eba28597783c67491f759",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "checks": {
+        "catalog increments real bag": true,
+        "C04 stamped bag artwork retained": true,
+        "C03 GSAP flight layer appeared": true,
+        "C03 cleans transient flight layer": true,
+        "C04 page impression markup exists": true,
+        "C04 page change renders selected state": true,
+        "C08 navbar wordmark replay completes": true,
+        "C08 original SVG restored": true,
+        "C03 bag state survives page navigation": true,
+        "C04 stamped bag persists": true
+      },
+      "errors": [],
+      "observed": {
+        "beforeBag": "Demo shopping bag, 0 items",
+        "c03Seen": true
+      },
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "checks": {
+        "catalog increments real bag": true,
+        "C04 stamped bag artwork retained": true,
+        "C03 GSAP flight layer appeared": true,
+        "C03 cleans transient flight layer": true,
+        "C04 page impression markup exists": true,
+        "C04 page change renders selected state": true,
+        "C08 original SVG preserved on mobile": true,
+        "C03 bag state survives page navigation": true,
+        "C04 stamped bag persists": true
+      },
+      "errors": [],
+      "observed": {
+        "beforeBag": "Demo shopping bag, 0 items",
+        "c03Seen": true
+      },
+      "pass": true
+    }
+  ],
+  "summary": {
+    "cases": 2,
+    "checks": 19,
+    "passed": 19,
+    "failures": []
+  }
+}

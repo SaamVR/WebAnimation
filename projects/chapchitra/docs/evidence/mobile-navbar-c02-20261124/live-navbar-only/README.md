@@ -1,3 +1,5 @@
 # CHAPCHITRA staging navbar only — actual live test
 
 On 2026-11-24, the existing Render service deployed PR #159 at exact staging SHA `6d6f8611327d7346190eba28597783c67491f759` (deploy `dep-dc2rr3tbedkc73bfmtgg`). The attached Playwright report documents **200/200 successful checks** across 16 Chromium/WebKit × 320/375/390/430 × light/dark profiles, against the unchanged **public URL** without intercepting any source. The four PNGs show the real public 390px expanded menu in both themes/engines. This is intentionally an **intermediate navbar-only deployment**, before C02 PR #161 is merged. Do not use these images as evidence that portrait C02 was already live.
+
+[cseries-before-c02-smoke.json](cseries-before-c02-smoke.json) records **19/19 live C03 GSAP flight, C04 bag/page stamps and C08 desktop logo-hover regression checks** on this exact navbar-only staging SHA, across 1440px Chromium and 390px WebKit. This is the before-C02 preservation baseline.
