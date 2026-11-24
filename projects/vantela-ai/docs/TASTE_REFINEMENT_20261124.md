@@ -18,3 +18,10 @@ Scope: projects/vantela-ai/ exclusively. No merge, Render action, preview servic
 - White preview: H.264, yuv420p, 670×376, 30 fps, 16.00 seconds.
 - Taste local audit job 1314f14d-b2ae-40e7-9383-1b0e524e09d2 started on 127.0.0.1:39572; not a final gate result. Local disk pressure (5 MB free observed) limits samai browser QA. Earlier audit began before the last changes, so it cannot certify final revision. Browser evidence and owner/device acceptance remain separate.
 - No new deployment URL. No claim of actual AI product functionality.
+
+## Final Windows local browser review (follow-up)
+- Desktop 1440px and mobile 390px Chromium screenshots captured from the refinement branch using a loopback server; nine review images and the browser log are in `docs/review-20261124/`.
+- Adjusted the hero pie clearance, mobile diagonal background placement, mobile ornament positioning, and boundary-cube alignment after reviewing the first captures.
+- Verified all four Explorer click states and Home-key return to Create; reduced-motion simulation reports animation `none`. No runtime exceptions captured. Desktop document width 1425px at 1440px viewport and mobile document width 375px at 390px viewport (scrollbar excluded).
+- AI04 white preview decoded (`readyState=4`), current time advanced to 1.1091s, and computed stage padding 28px on every edge at desktop.
+- Both source contracts rerun successfully after these adjustments. Browser review script uses the installed Windows Chrome and Node 24; it is a local review harness, not a deployment action. Physical iPad Safari and final Taste audit PASS remain unverified.

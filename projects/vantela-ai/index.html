@@ -55,7 +55,7 @@ html{scroll-behavior:smooth}
 /* Existing palette and content remain authoritative; ornaments are background-only. */
 #hero .vantela-decorative-motif[data-replaces="hero cyan circle"]{opacity:1}
 .vantela-gallery-band{isolation:isolate;z-index:1}
-.vantela-boundary-cube{z-index:1}
+.vantela-boundary-cube{z-index:1;left:8px!important}
 .vantela-boundary-cluster{position:absolute;right:max(10px,calc((100vw - 1370px)/2));bottom:-116px;width:clamp(230px,26vw,340px);pointer-events:none;z-index:2}
 .vantela-boundary-cluster svg{display:block;width:100%;height:auto}
 #stories{min-height:232px}
@@ -90,10 +90,18 @@ html{scroll-behavior:smooth}
  #hero .vantela-decorative-motif[data-replaces="hero yellow triangle"]{width:80px!important;height:80px!important;top:160px!important}
  #caps .vantela-decorative-motif[data-replaces="capabilities yellow circle"]{width:140px!important;height:140px!important;top:-40px!important;right:-55px!important;opacity:.8}
  #caps .vantela-decorative-motif[data-replaces="capabilities orange ring"]{width:130px!important;height:130px!important;left:-70px!important}
- .vantela-boundary-cube{width:160px!important;height:160px!important;left:-40px!important;top:-72px!important}
+ .vantela-boundary-cube{width:160px!important;height:160px!important;left:2px!important;top:-72px!important}
  .vantela-boundary-cluster{width:150px;right:6px;bottom:-50px}
  #stories>div:last-child{padding-right:clamp(20px,4vw,40px)!important;padding-top:88px!important}
  .ve-layout{grid-template-columns:1fr}.ve-tabs{grid-template-columns:1fr 1fr}.ve-tabs button{grid-template-columns:18px 1fr;min-height:56px;padding:10px 8px}.ve-tabs button>span:last-child{display:none}
+}
+/* Browser-review adjustments: reserve the copy column and keep section ornaments intentional. */
+#hero .vantela-decorative-motif[data-replaces="hero orange ring"]{left:-74px!important;width:175px!important;height:175px!important;bottom:96px!important}
+@media(max-width:1050px){
+ #hero>div[aria-hidden="true"]:first-child{top:auto!important;bottom:0!important;height:620px!important;width:100%!important;clip-path:polygon(0 14%,100% 0,100% 100%,0 100%)!important}
+ #hero .vantela-decorative-motif[data-replaces="hero cyan circle"]{top:auto!important;bottom:375px!important;right:-55px!important;width:170px!important;height:170px!important}
+ #hero .vantela-decorative-motif[data-replaces="hero yellow triangle"]{top:auto!important;bottom:530px!important;left:auto!important;right:32px!important;width:88px!important;height:88px!important}
+ #hero .vantela-decorative-motif[data-replaces="hero orange ring"]{bottom:88px!important;left:-44px!important;width:140px!important;height:140px!important}
 }
 @media(prefers-reduced-motion:reduce){.ve-tabs button,.ve-panel,.ve-panel.ve-change .ve-copy,.ve-panel.ve-change .ve-diagram{animation:none!important;transition:none!important;transform:none!important}}
 </style>
