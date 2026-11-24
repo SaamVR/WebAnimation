@@ -12,4 +12,5 @@
 - [32.30s combined actual-browser MP4](CHAPCHITRA_Navbar_Final_Candidate_Light_Dark_390x844.mp4) with separate dark/light 390×844 browser sessions concatenated, showing original illustrated toggle, full-height menu, X close, theme changes and Home→Shop C02. File SHA-256: \`90e63e9764546768cb5400524a8b9c1c92120833e2379de6454d8339deae8eeb\`.
 - **44 real-browser PNG screenshots** of full-width desktop dark Cream 36px backing and expanded/closed phone menus, rather than a simulation/mockup.
 - The original owner SVG files, C02/C03/C04/C08 runtime files, palette tokens, other repo demos and production/main were not edited.
+- [C02 unchanged vertical portrait compositor regression](c02-candidate-matrix.json): **80/80 PASS** across all 16 Chromium/WebKit × 320/375/390/430px × light/dark journeys from the new menu to Shop; full viewport ink cover, existing source Walnut/Gallery White backing, first-paint continuity and destination completion. Four real 390px destination captures included.
 - 315/315 native tests passed. Required exact-head CI and merged live Render verification are separate release gates.
