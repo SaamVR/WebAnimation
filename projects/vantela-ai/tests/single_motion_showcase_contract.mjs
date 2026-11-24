@@ -30,7 +30,7 @@ for(const id of ids){
   const stage=html.slice(stageStart,stageEnd+9);
   assert.equal((stage.match(/<img\b/g)||[]).length,0,id+' has no legacy screenshot');
   assert(stage.includes('data-vantela-replay="'+id+'"'),id+' replay button wired');
-  assert(stage.includes('padding:0'),id+' uses entire inner stage');
+  assert(stage.includes('padding:clamp(12px,2.1vw,28px)'),id+' has a consistent four-edge inset');
 }
 const script=(html.match(/<script id="vantela-local-animation-integration">([\s\S]*?)<\/script>/)||[])[1];
 assert(script,'player script present');
