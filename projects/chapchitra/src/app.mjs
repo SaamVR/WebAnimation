@@ -99,8 +99,13 @@ async function boot(){
    (bellRendered?'<button class="nav-icon" aria-label="Notifications"></button>':'')+
    '</div></div>'+
    '<div id="searchPanel" class="search-panel" hidden><form class="wrap search-form" action="/shop/" method="get" role="search"><label for="globalSearch">Search the demo catalogue</label><div class="search-inline"><input id="globalSearch" name="q" type="search" placeholder="Search sample prints, fits, and collections" autocomplete="off">'+sketchButton({label:'Search',variant:'compact',tone:'forest',className:'cc-sketch--inline',type:'submit'})+'</div><small>Demo records only. No real inventory.</small></form></div>'+
-   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop/">Shop</a><a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a><a href="/favorites/">Favorites</a><a href="/account/">Account</a>'+
-   '<button type="button" class="cc-mobile-theme-toggle" id="themeToggleMobile" aria-pressed="false" aria-label="Switch to dark theme"><span class="cc-theme-toggle-art" aria-hidden="true"></span><span class="cc-theme-menu-label">Switch to dark theme</span></button></nav></header>';
+   '<nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden>'+
+    '<div class="cc-mobile-menu-main"><a href="/">Home</a><a href="/shop/">Shop</a><a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></div>'+
+    '<div class="cc-mobile-menu-footer">'+
+     '<a href="/favorites/" class="cc-mobile-menu-secondary"'+(route==='favorites'?' aria-current="page"':'')+'>'+navArt('owner-favorites-outline')+'<span>Favorites</span></a>'+
+     '<a href="/account/" class="cc-mobile-menu-secondary">'+navArt('owner-account')+'<span>Account / Log in</span></a>'+
+     '<button type="button" class="cc-mobile-theme-toggle" id="themeToggleMobile" aria-pressed="false" aria-label="Switch to dark theme"><span class="cc-theme-toggle-art" aria-hidden="true"></span><span class="cc-theme-menu-label">Switch to dark theme</span></button>'+
+    '</div></nav></header>';
  }
  const paperVisual=(i)=>'<div class="art-plate art-plate-'+(i%3)+'">'+(i%2===0?shirtSilhouette(i):printSilhouette(i))+'<span class="plate-disclaimer">Illustration placeholder</span></div>';
  const linkFiltered=(category,audience)=>'/shop/?category='+encodeURIComponent(category)+(audience?'&audience='+audience:'');
@@ -797,22 +802,77 @@ async function boot(){
  const search=$('#searchPanel'),searchButton=$('#searchButton');
  const mobileNav=$('#mobileNav'),menuButton=$('#menuButton');
  const toggle=(el,trigger,show)=>{el.hidden=!show;trigger.setAttribute('aria-expanded',String(show));};
+ const phoneMenu=window.matchMedia('(max-width:430px)');
+ const reducedMenuMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ const mainLandmark=$('#main'),footerLandmark=$('.site-footer');
+ let menuCloseTimer=0;
+ const finishMobileMenuClose=()=>{
+  mobileNav.classList.remove('cc-mobile-menu-leaving');
+  toggle(mobileNav,menuButton,false);
+  menuButton.setAttribute('aria-label','Open navigation');
+  document.documentElement.classList.remove('cc-mobile-menu-open');
+  if(mainLandmark)mainLandmark.inert=false;
+  if(footerLandmark)footerLandmark.inert=false;
+ };
+ const setMobileMenu=(show,{restoreFocus=false,immediate=false}={})=>{
+  // Cancel a previous close before it can hide a newly reopened panel.
+  if(menuCloseTimer){window.clearTimeout(menuCloseTimer);menuCloseTimer=0}
+  mobileNav.classList.remove('cc-mobile-menu-leaving');
+  if(show){
+   toggle(mobileNav,menuButton,true);
+   menuButton.setAttribute('aria-label','Close navigation');
+   const modal=phoneMenu.matches;
+   document.documentElement.classList.toggle('cc-mobile-menu-open',modal);
+   if(mainLandmark)mainLandmark.inert=modal;
+   if(footerLandmark)footerLandmark.inert=modal;
+   if(modal)mobileNav.querySelector('.cc-mobile-menu-main a')?.focus({preventScroll:true});
+  }else if(!immediate&&!mobileNav.hidden&&phoneMenu.matches&&!reducedMenuMotion.matches){
+   // Keep the panel at the same viewport position for its 170ms fade-out.
+   // No layout, SVG or C-series animation lifecycle is changed.
+   menuButton.setAttribute('aria-expanded','false');
+   menuButton.setAttribute('aria-label','Open navigation');
+   mobileNav.classList.add('cc-mobile-menu-leaving');
+   menuCloseTimer=window.setTimeout(()=>{
+    menuCloseTimer=0;
+    finishMobileMenuClose();
+   },170);
+  }else finishMobileMenuClose();
+  if(restoreFocus)menuButton.focus({preventScroll:true});
+ };
  searchButton.addEventListener('click',()=>{const show=search.hidden;toggle(search,searchButton,show);
-  if(show){toggle(mobileNav,menuButton,false);$('#globalSearch').focus()}
+  if(show){setMobileMenu(false);$('#globalSearch').focus()}
   else searchButton.focus();
  });
- menuButton.addEventListener('click',()=>{const show=mobileNav.hidden;toggle(mobileNav,menuButton,show);
+ menuButton.addEventListener('click',()=>{const show=menuButton.getAttribute('aria-expanded')!=='true';setMobileMenu(show);
   if(show)toggle(search,searchButton,false);
  });
  const compactNav=window.matchMedia('(max-width:740px)');
- compactNav.addEventListener('change',()=>{toggle(mobileNav,menuButton,false)});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){
-  if(!search.hidden){toggle(search,searchButton,false);searchButton.focus()}
-  else if(!mobileNav.hidden){toggle(mobileNav,menuButton,false);menuButton.focus()}
- }});
+ compactNav.addEventListener('change',()=>setMobileMenu(false,{immediate:true}));
+ phoneMenu.addEventListener('change',()=>setMobileMenu(false,{immediate:true}));
+ document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+   if(!search.hidden){toggle(search,searchButton,false);searchButton.focus()}
+   else if(!mobileNav.hidden)setMobileMenu(false,{restoreFocus:true});
+  }
+  if(e.key==='Tab'&&!mobileNav.hidden&&phoneMenu.matches){
+   // One focus order: close control, original static wordmark, header Search
+   // and Bag, then five page links and the menu footer. Trap only on phones.
+   const candidates=[menuButton,$('.logo-word--image'),searchButton,$('.bag-link'),
+    ...mobileNav.querySelectorAll('a,button')];
+   const focusable=candidates.filter(el=>el&&el.getClientRects().length&&
+    getComputedStyle(el).visibility!=='hidden'&&!el.disabled);
+   const first=focusable[0],last=focusable.at(-1);
+   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}
+   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}
+  }
+ });
  document.addEventListener('pointerdown',e=>{
-  if(!mobileNav.hidden&&!mobileNav.contains(e.target)&&!menuButton.contains(e.target)){
-   toggle(mobileNav,menuButton,false);
+  // The persistent header's Search and Bag are deliberately reused inside
+  // the full-screen menu. Closing on their pointerdown would reposition
+  // them before click, stealing the action in touch browsers.
+  if(!mobileNav.hidden&&!mobileNav.contains(e.target)&&!menuButton.contains(e.target)&&
+     !e.target.closest('#siteHeader .header-line')){
+   setMobileMenu(false);
   }
  });
  // Proper email validation, but never a simulated successful submission.
