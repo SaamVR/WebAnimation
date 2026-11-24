@@ -53,12 +53,17 @@ test('Horizontal width refinements do not rewrite global wraps or card geometry'
  assert.doesNotMatch(scoped,/\.product-card(?:-|\{|\s)|\.hero-track/);
 });
 
-test('Four dark Cream circles use exact 44px control boxes, excluding theme toggle',()=>{
+test('Dark 36px Cream discs are decorative inside unchanged 44px hitboxes',()=>{
  const css=text('src/theme.css');
- const scoped=css.slice(css.indexOf('/* CHAPCHITRA PR155'));
+ const scoped=css.slice(css.indexOf('/* CHAPCHITRA owner-approved 36px'));
+ assert.ok(scoped.startsWith('/* CHAPCHITRA owner-approved 36px'), 'Scoped control rules missing');
  assert.match(scoped,/:root\[data-theme="dark"\] #app > \.site-header \.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)\{/);
- for(const s of ['width:44px','height:44px','min-width:44px','min-height:44px','max-width:44px','max-height:44px','flex:0 0 44px','border-radius:50%','background:var(--color-cream)'])assert.ok(scoped.includes(s),s);
- assert.match(scoped,/@media \(min-width:431px\)/);
+ for(const s of ['width:44px','height:44px','min-width:44px','min-height:44px','max-width:44px','max-height:44px','flex:0 0 44px','place-items:center','background:transparent','isolation:isolate'])assert.ok(scoped.includes(s),s);
+ assert.match(scoped, /nav-icon:not\(\.cc-theme-toggle\)::before\{/);
+ for(const s of ['width:36px','height:36px','transform:translate(-50%,-50%)','background:var(--color-cream)','pointer-events:none','z-index:-1'])assert.ok(scoped.includes(s),s);
+ assert.match(scoped, /nav-icon:not\(\.cc-theme-toggle\):hover\{\s*background:transparent;/);
+ assert.match(scoped, /@media \(min-width:431px\)/);
+ assert.match(scoped, /gap:5px/);
  assert.doesNotMatch(scoped,/\.cc-theme-toggle(?:\{|:hover| svg)/,'Do not change illustrated toggle');
  assert.doesNotMatch(scoped,/\.cc-nav-art|\.bag-count|#8A503B|#293D2D/,'Do not recolor artwork/stamp');
 });
