@@ -1,0 +1,1492 @@
+{
+  "expectedRenderSHA": "6d6f8611327d7346190eba28597783c67491f759",
+  "mode": "unmodified live staging origin; no interception",
+  "cases": [
+    {
+      "name": "chromium-320-dark",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "all 36px original cream discs": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 320,
+          "height": 65,
+          "top": 45.1875,
+          "right": 320,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 108,
+          "y": 65.9375,
+          "width": 104,
+          "height": 23.484375,
+          "top": 65.9375,
+          "right": 212,
+          "bottom": 89.421875,
+          "left": 108
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 216,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 260,
+          "bottom": 99.6875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 304,
+          "bottom": 99.6875,
+          "left": 260
+        },
+        "theme": "dark",
+        "img": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "disc": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-320-light",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 320,
+          "height": 65,
+          "top": 45.1875,
+          "right": 320,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 108,
+          "y": 65.9375,
+          "width": 104,
+          "height": 23.484375,
+          "top": 65.9375,
+          "right": 212,
+          "bottom": 89.421875,
+          "left": 108
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 216,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 260,
+          "bottom": 99.6875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 304,
+          "bottom": 99.6875,
+          "left": 260
+        },
+        "theme": "light",
+        "img": "/assets/brand/chapchitra-light-wordmark.svg",
+        "disc": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-375-dark",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "all 36px original cream discs": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 375,
+          "height": 65,
+          "top": 45.1875,
+          "right": 375,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 62.859375,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 62.859375,
+          "right": 253.125,
+          "bottom": 92.5,
+          "left": 121.875
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 271,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 315,
+          "bottom": 99.6875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 359,
+          "bottom": 99.6875,
+          "left": 315
+        },
+        "theme": "dark",
+        "img": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "disc": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-375-light",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 375,
+          "height": 65,
+          "top": 45.1875,
+          "right": 375,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 62.859375,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 62.859375,
+          "right": 253.125,
+          "bottom": 92.5,
+          "left": 121.875
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 271,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 315,
+          "bottom": 99.6875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 359,
+          "bottom": 99.6875,
+          "left": 315
+        },
+        "theme": "light",
+        "img": "/assets/brand/chapchitra-light-wordmark.svg",
+        "disc": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-390-dark",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "all 36px original cream discs": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 390,
+          "height": 65,
+          "top": 45.1875,
+          "right": 390,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 62.28125,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 62.28125,
+          "right": 263.25,
+          "bottom": 93.09375,
+          "left": 126.75
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 286,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 330,
+          "bottom": 99.6875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 374,
+          "bottom": 99.6875,
+          "left": 330
+        },
+        "theme": "dark",
+        "img": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "disc": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-390-light",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 390,
+          "height": 65,
+          "top": 45.1875,
+          "right": 390,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 62.28125,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 62.28125,
+          "right": 263.25,
+          "bottom": 93.09375,
+          "left": 126.75
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 286,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 330,
+          "bottom": 99.6875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 374,
+          "bottom": 99.6875,
+          "left": 330
+        },
+        "theme": "light",
+        "img": "/assets/brand/chapchitra-light-wordmark.svg",
+        "disc": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-430-dark",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "all 36px original cream discs": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 430,
+          "height": 65,
+          "top": 45.1875,
+          "right": 430,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 142.5,
+          "y": 61.3125,
+          "width": 145,
+          "height": 32.734375,
+          "top": 61.3125,
+          "right": 287.5,
+          "bottom": 94.046875,
+          "left": 142.5
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 326,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 370,
+          "bottom": 99.6875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 414,
+          "bottom": 99.6875,
+          "left": 370
+        },
+        "theme": "dark",
+        "img": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "disc": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "chromium-430-light",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 430,
+          "height": 65,
+          "top": 45.1875,
+          "right": 430,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 142.5,
+          "y": 61.3125,
+          "width": 145,
+          "height": 32.734375,
+          "top": 61.3125,
+          "right": 287.5,
+          "bottom": 94.046875,
+          "left": 142.5
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 326,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 370,
+          "bottom": 99.6875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 414,
+          "bottom": 99.6875,
+          "left": 370
+        },
+        "theme": "light",
+        "img": "/assets/brand/chapchitra-light-wordmark.svg",
+        "disc": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-320-dark",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "all 36px original cream discs": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 320,
+          "height": 65,
+          "top": 45.1875,
+          "right": 320,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 108,
+          "y": 65.9375,
+          "width": 104,
+          "height": 23.484375,
+          "top": 65.9375,
+          "right": 212,
+          "bottom": 89.421875,
+          "left": 108
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 216,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 260,
+          "bottom": 99.6875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 304,
+          "bottom": 99.6875,
+          "left": 260
+        },
+        "theme": "dark",
+        "img": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "disc": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-320-light",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 320,
+          "height": 65,
+          "top": 45.1875,
+          "right": 320,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 108,
+          "y": 65.9375,
+          "width": 104,
+          "height": 23.484375,
+          "top": 65.9375,
+          "right": 212,
+          "bottom": 89.421875,
+          "left": 108
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 216,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 260,
+          "bottom": 99.6875,
+          "left": 216
+        },
+        "bag": {
+          "x": 260,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 304,
+          "bottom": 99.6875,
+          "left": 260
+        },
+        "theme": "light",
+        "img": "/assets/brand/chapchitra-light-wordmark.svg",
+        "disc": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-375-dark",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "all 36px original cream discs": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 375,
+          "height": 65,
+          "top": 45.1875,
+          "right": 375,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 62.859375,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 62.859375,
+          "right": 253.125,
+          "bottom": 92.5,
+          "left": 121.875
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 271,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 315,
+          "bottom": 99.6875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 359,
+          "bottom": 99.6875,
+          "left": 315
+        },
+        "theme": "dark",
+        "img": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "disc": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-375-light",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 375,
+          "height": 65,
+          "top": 45.1875,
+          "right": 375,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 121.875,
+          "y": 62.859375,
+          "width": 131.25,
+          "height": 29.640625,
+          "top": 62.859375,
+          "right": 253.125,
+          "bottom": 92.5,
+          "left": 121.875
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 271,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 315,
+          "bottom": 99.6875,
+          "left": 271
+        },
+        "bag": {
+          "x": 315,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 359,
+          "bottom": 99.6875,
+          "left": 315
+        },
+        "theme": "light",
+        "img": "/assets/brand/chapchitra-light-wordmark.svg",
+        "disc": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-390-dark",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "all 36px original cream discs": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 390,
+          "height": 65,
+          "top": 45.1875,
+          "right": 390,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 62.28125,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 62.28125,
+          "right": 263.25,
+          "bottom": 93.09375,
+          "left": 126.75
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 286,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 330,
+          "bottom": 99.6875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 374,
+          "bottom": 99.6875,
+          "left": 330
+        },
+        "theme": "dark",
+        "img": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "disc": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-390-light",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 390,
+          "height": 65,
+          "top": 45.1875,
+          "right": 390,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 126.75,
+          "y": 62.28125,
+          "width": 136.5,
+          "height": 30.8125,
+          "top": 62.28125,
+          "right": 263.25,
+          "bottom": 93.09375,
+          "left": 126.75
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 286,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 330,
+          "bottom": 99.6875,
+          "left": 286
+        },
+        "bag": {
+          "x": 330,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 374,
+          "bottom": 99.6875,
+          "left": 330
+        },
+        "theme": "light",
+        "img": "/assets/brand/chapchitra-light-wordmark.svg",
+        "disc": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-430-dark",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "all 36px original cream discs": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 430,
+          "height": 65,
+          "top": 45.1875,
+          "right": 430,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 142.5,
+          "y": 61.3125,
+          "width": 145,
+          "height": 32.734375,
+          "top": 61.3125,
+          "right": 287.5,
+          "bottom": 94.046875,
+          "left": 142.5
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 326,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 370,
+          "bottom": 99.6875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 414,
+          "bottom": 99.6875,
+          "left": 370
+        },
+        "theme": "dark",
+        "img": "/assets/brand/chapchitra-dark-wordmark.svg",
+        "disc": [
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          },
+          {
+            "width": "36px",
+            "height": "36px",
+            "color": "rgb(244, 235, 228)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "webkit-430-light",
+      "checks": {
+        "source theme": true,
+        "original centered wordmark": true,
+        "three 44px touchboxes": true,
+        "spatial order": true,
+        "sticky and no document overflow": true,
+        "expanded menu": true,
+        "Favorites Account and four links": true,
+        "real owner toggle artwork": true,
+        "toggle round trip": true,
+        "search expands": true,
+        "search collapses": true,
+        "navbar sticks at scroll": true
+      },
+      "errors": [],
+      "home": {
+        "nav": {
+          "x": 0,
+          "y": 45.1875,
+          "width": 430,
+          "height": 65,
+          "top": 45.1875,
+          "right": 430,
+          "bottom": 110.1875,
+          "left": 0
+        },
+        "logo": {
+          "x": 142.5,
+          "y": 61.3125,
+          "width": 145,
+          "height": 32.734375,
+          "top": 61.3125,
+          "right": 287.5,
+          "bottom": 94.046875,
+          "left": 142.5
+        },
+        "menu": {
+          "x": 16,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 60,
+          "bottom": 99.6875,
+          "left": 16
+        },
+        "search": {
+          "x": 326,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 370,
+          "bottom": 99.6875,
+          "left": 326
+        },
+        "bag": {
+          "x": 370,
+          "y": 55.6875,
+          "width": 44,
+          "height": 44,
+          "top": 55.6875,
+          "right": 414,
+          "bottom": 99.6875,
+          "left": 370
+        },
+        "theme": "light",
+        "img": "/assets/brand/chapchitra-light-wordmark.svg",
+        "disc": [
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "width": "auto",
+            "height": "auto",
+            "color": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "headerPos": "sticky",
+        "overflow": 0
+      },
+      "pass": true
+    }
+  ],
+  "summary": {
+    "profiles": 16,
+    "checks": 200,
+    "passed": 200,
+    "failures": []
+  }
+}
