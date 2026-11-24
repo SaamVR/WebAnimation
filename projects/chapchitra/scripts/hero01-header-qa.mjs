@@ -210,8 +210,9 @@ for(const t of profiles){
  await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseenter')));
  const initial=await sample(page);
  validate(initial);
- assert.equal(initial.navWordmark.visible,false,'Compact wordmark hidden only for Hero 01 at top');
- assert.equal(initial.fullLinkHidden,true,'Compact logo removed from special header accessibility tree');
+ const phoneWordmark=t.width<=430;
+ assert.equal(initial.navWordmark.visible,phoneWordmark,'Hero01 owner navbar wordmark follows phone-only Option A');
+ assert.equal(initial.fullLinkHidden,!phoneWordmark,'Hero01 wordmark accessible on phones and hidden on desktop/tablet');
  assert.equal(initial.heroLogoInert,false);
  if(t.width<=740)assert.equal(initial.copyBelowTip,true,
   'Mobile/narrow V tip must NOT overlap the eyebrow, heading or editorial copy');
@@ -254,7 +255,7 @@ for(const t of profiles){
  }
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special');
  const mid=await sample(page);
- assert.equal(mid.navWordmark.visible,false,'No duplicate compact logo over partially visible paper');
+ assert.equal(mid.navWordmark.visible,phoneWordmark,'Phone navbar stays visible during paper retraction');
  assert.equal(mid.heroLogoInert,false,'Original hero logo remains interactive');
  const midGeo=await page.evaluate(()=>{
   const paper=document.querySelector('#hero01PaperPanel'),header=document.querySelector('#siteHeader');
@@ -353,12 +354,14 @@ for(const t of profiles){
   null,{timeout:3500});
  await page.waitForFunction(()=>{
   const el=document.querySelector('#siteHeader .logo-word--image');
-  return el&&getComputedStyle(el).visibility==='hidden'&&Number(getComputedStyle(el).opacity)<.05;
+  return el&&(innerWidth<=430
+   ?getComputedStyle(el).visibility==='visible'&&Number(getComputedStyle(el).opacity)>.95
+   :getComputedStyle(el).visibility==='hidden'&&Number(getComputedStyle(el).opacity)<.05);
  },null,{timeout:3500});
  const returned=await sample(page);
  assert.equal(returned.slide,'0');
  assert.equal(returned.heroLogoInert,false,'Large logo regains accessibility after Hero 05');
- assert.equal(returned.navWordmark.visible,false,'Compact navbar logo hidden ONLY on Hero 01 at top');
+ assert.equal(returned.navWordmark.visible,phoneWordmark,'Phone owner navbar stays visible on Hero01 return');
  reviewTimeline.push({event:'01 restored after 05',compactVisible:returned.navWordmark.visible,fullLogoInert:returned.heroLogoInert});
  await page.screenshot({path:resolve(out,t.name+'-return.png')});
  await page.waitForTimeout(750);
@@ -430,7 +433,7 @@ for(const t of profiles){
  await page.locator('#hero .hero01-full-logo>img.hero-brand-lockup').evaluate(img=>img.decode());
  await page.waitForFunction(()=>document.querySelector('#siteHeader')?.dataset.hero01Mode==='special',null,{timeout:6000});
  const homeRestored=await sample(page);
- assert.equal(homeRestored.navWordmark.visible,false,'Home restores full logo before Journal transition');
+ assert.equal(homeRestored.navWordmark.visible,phoneWordmark,'Home wordmark visibility follows phone breakpoint');
  assert.equal(homeRestored.heroLogoInert,false);
  reviewTimeline.push({event:'Shop -> Home: full logo restored',route:'home',scale90:homeRestored.logoUniform90});
  await page.screenshot({path:resolve(out,t.name+'-home-before-journal.png')});

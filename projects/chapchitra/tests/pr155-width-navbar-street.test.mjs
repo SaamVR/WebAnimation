@@ -62,3 +62,24 @@ test('Four dark Cream circles use exact 44px control boxes, excluding theme togg
  assert.doesNotMatch(scoped,/\.cc-theme-toggle(?:\{|:hover| svg)/,'Do not change illustrated toggle');
  assert.doesNotMatch(scoped,/\.cc-nav-art|\.bag-count|#8A503B|#293D2D/,'Do not recolor artwork/stamp');
 });
+
+
+test('Owner-frozen desktop/tablet Cream controls remain 44px, phone-only 36px decorative discs',()=>{
+ const css=text('src/theme.css');
+ const marker='/* CHAPCHITRA — MOBILE OPTION A ONLY';
+ const start=css.indexOf(marker);
+ assert.ok(start>0,'phone-only rule must be present and isolated');
+ const desktop=css.slice(css.indexOf('/* CHAPCHITRA PR155'),start);
+ assert.match(desktop,/width:44px/);
+ assert.match(desktop,/height:44px/);
+ assert.match(desktop,/background:var\(--color-cream\)/);
+ assert.match(desktop,/@media \(min-width:431px\)/);
+ assert.match(desktop,/gap:2px/);
+ assert.doesNotMatch(desktop,/width:36px|height:36px|gap:5px/);
+ const phone=css.slice(start);
+ assert.match(phone,/@media \(max-width:430px\)/);
+ assert.match(phone,/\.nav-left \.hamburger::before/);
+ assert.match(phone,/\.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)::before/);
+ for(const token of ['width:36px','height:36px','background:var(--color-cream)','pointer-events:none','z-index:-1'])assert.ok(phone.includes(token),token);
+ assert.doesNotMatch(phone,/(?:^|\n)\s*(?:min-width|max-width|min-height|max-height)\s*:/,'44px semantic targets remain unchanged');
+});
