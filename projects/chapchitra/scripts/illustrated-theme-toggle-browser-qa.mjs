@@ -30,6 +30,7 @@ const read=async(page,selector)=>page.locator(selector+' svg.cc-owner-toggle-svg
   dayClip:day.getAttribute('clip-path'),
   clipStyle:getComputedStyle(day).clipPath,
   svgBox:svg.getBoundingClientRect().toJSON(),
+  buttonBox:svg.closest('button').getBoundingClientRect().toJSON(),
   sliderTransform:svg.querySelector('[data-toggle-role=slider]').getAttribute('transform'),
   sliderBaseFill:getComputedStyle(svg.querySelector('[id$="sliding-circle-inside-fill"] g > path')).fill,
   sliderGrainFill:getComputedStyle(svg.querySelector('[id$="sliding-circle-inside-fill"] > g:nth-child(2)')).fill,
@@ -127,29 +128,41 @@ for(const profile of profiles){
       'dark bag numeral must have no rectangular backdrop: '+start.bagBadgeBackground);
    await capture(page,profile.name+'-'+theme+'-initial-navbar');
    await button.click({timeout:10000});
-   await page.waitForFunction(sel=>{
-    const progress=Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
-    return progress>0.04&&progress<0.96;
-   },selector,{timeout:1500});
-   const middle=await read(page,selector);
-   // A separate clock-controlled browser pass captures the true 150ms midpoint.
-   await page.waitForTimeout(360);
+   // WebKit may deliver its 300ms animation in only one or two visible
+   // frames. The separately clock-held browser pass below verifies the TRUE
+   // 150ms rendered midpoint; this natural-playback gate verifies completion.
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,theme==='dark'?0:1],{timeout:3500});
+   const settled=await read(page,selector);
    const end=await read(page,selector);
    assert(end.progress===(theme==='dark'?0:1),'theme slide did not finish');
    assert(end.sliderBaseFill===(theme==='dark'?'rgb(246, 247, 245)':'rgb(244, 235, 228)'),
     'reversed slider base endpoint wrong: '+end.sliderBaseFill);
    assert(end.artworkInk===(theme==='dark'?'rgb(41, 61, 45)':'rgb(138, 80, 59)'),
     'reversed illustrator ink palette wrong: '+end.artworkInk);
-   assert(start.svgBox.x===end.svgBox.x&&start.svgBox.width===end.svgBox.width,'outer pill moved or scaled');
+   // Outer Illustrator geometry must stay fixed *inside its own control*.
+   // The approved desktop/tablet theme changes the size of OTHER nav icon
+   // hitboxes, shifting the whole nav action group by exactly 12px.
+   // Requiring unchanged viewport X confuses that preexisting layout with
+   // movement of the artwork; enforce both constraints independently.
+   const localX=(frame)=>frame.svgBox.x-frame.buttonBox.x;
+   assert(Math.abs(localX(start)-localX(end))<0.8&&
+    Math.abs(start.svgBox.width-end.svgBox.width)<0.8,
+    'Illustrator pill shifted or scaled relative to its unchanged button');
+   const expectedGroupDelta=profile.width<=430?0:(theme==='dark'?-12:12);
+   const groupDelta=end.buttonBox.x-start.buttonBox.x;
+   assert(Math.abs(groupDelta-expectedGroupDelta)<1,
+    'Theme-specific approved navbar action geometry changed: '+
+     JSON.stringify({observed:groupDelta,expected:expectedGroupDelta}));
    assert(await button.getAttribute('aria-pressed')===(theme==='dark'?'false':'true'),'ARIA state not updated');
    await capture(page,profile.name+'-'+theme+'-finished-navbar');
    await button.click();
-   await page.waitForFunction(sel=>{
-    const progress=Number(document.querySelector(sel+' svg')?.dataset.toggleProgress);
-    return progress>0.04&&progress<0.96;
-   },selector,{timeout:1500});
-   // The reverse midpoint is captured in the same deterministic browser pass.
-   await page.waitForTimeout(350);
+   await page.waitForFunction(([sel,finish])=>
+    Number(document.querySelector(sel+' svg')?.dataset.toggleProgress)===finish,
+    [selector,theme==='dark'?1:0],{timeout:3500});
+   // Reverse midpoint is independently verified below with a real paused
+   // frame, not inferred from a nondeterministic requestAnimationFrame race.
    assert((await read(page,selector)).progress===start.progress,'natural reverse did not finish');
    for(let i=0;i<6;i++){await button.click();await page.waitForTimeout(40);}
    await page.waitForTimeout(380);
@@ -162,7 +175,7 @@ for(const profile of profiles){
    if(profile.width<=430){await page.locator('#menuButton').click();}
    await page.locator(selector+'[data-art-ready="true"]').waitFor({timeout:30000});
    assert((await read(page,selector)).progress===start.progress,'reload restored incorrect artwork state');
-   record.runs.push({theme,passed:true,mid:middle.progress,paths:start.pathCount,clip:start.clipStyle});
+   record.runs.push({theme,passed:true,forwardSettled: settled.progress,paths:start.pathCount,clip:start.clipStyle});
    if(profile.record&&theme==='light'){
     await page.waitForTimeout(180);
     // Keep one untouched, continuous recording containing both directions.
