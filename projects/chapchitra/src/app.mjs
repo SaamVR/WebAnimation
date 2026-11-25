@@ -764,6 +764,7 @@ async function boot(){
    cloth:dark?'/assets/brand/chapchitra-dark-cloth.svg':'/assets/brand/chapchitra-light-cloth.svg'
   };
   for(const image of document.querySelectorAll('img[data-cc-theme-brand]')){
+   if(image.dataset.ccThemeBrand==='hero'&&image.parentElement?.dataset.c08CompleteMounted==='true')continue;
    const source=approvedBrandSources[image.dataset.ccThemeBrand];
    if(source && image.getAttribute('src')!==source)image.setAttribute('src',source);
   }
@@ -1142,7 +1143,15 @@ async function boot(){
   document.addEventListener('visibilitychange',refreshHeroClock);
   mediaReduced.addEventListener('change',refreshHeroClock);
   refreshHeroClock();
-  // Keep the approved static full SVG; C01 is independent.
+  // C08 final complete theme compositions are independently decoded and
+  // mounted only on Home. Let C01 register its observer first; the approved
+  // carousel clock is not held or reset by logo loading or replay.
+  void c01Initialized.then(()=>new Promise(resolve=>requestAnimationFrame(resolve)))
+   .then(()=>import('/motion/c08/complete-logo.mjs'))
+   .then(({mountC08Hero})=>mountC08Hero({
+    heroImage:heroIdentity.querySelector('.hero-brand-lockup'),
+    remainingDwell:()=>clock.snapshot().remainingMs
+   })).catch(()=>{});
   let homePage=1;
   renderHomeCollection=function(){
    const pages=Math.ceil(catalog.length/PAGE_SIZE_HOME);

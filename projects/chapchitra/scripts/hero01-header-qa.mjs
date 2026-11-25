@@ -238,7 +238,8 @@ for(const t of profiles){
  await page.waitForTimeout(550);
  const staticLogo=await sample(page);
  assert.ok(staticLogo.logoOriginal&&staticLogo.logoImageMatchesBox,'Owner original full SVG stays visible');
- assert.equal(await page.locator('#hero .c08-hero-stage').count(),0);
+ assert.equal(await page.locator('#hero .c08-hero-stage').count(),0,'retired split stage must remain absent');
+ assert.ok(await page.evaluate(()=>{const box=document.querySelector('#hero .hero01-full-logo');const view=box.dataset.c08View||'static';return view==='static'?box.querySelector('img.hero-brand-lockup').naturalWidth>0:box.querySelector('[data-c08-variant="'+view+'"][data-c08-ready="true"] svg image')!==null}),'complete static or decoded native identity');
  await page.screenshot({path:resolve(out,t.name+'-logo-static.png')});
  if(t.name==='desktop-chromium'||t.name==='ipad-webkit'){
   const width=Math.min(610,Math.floor(t.width*.76)),height=180;

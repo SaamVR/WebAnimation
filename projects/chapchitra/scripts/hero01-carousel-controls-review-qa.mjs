@@ -28,9 +28,12 @@ for(const t of profiles){
   await page.goto(root+'/',{waitUntil:'domcontentloaded',timeout:30000});
   await page.locator('#hero .hero-slide.is-active').waitFor({timeout:18000});
   await page.locator('#hero .hero-brand-lockup').evaluate(img=>img.decode());
-  record.checks.initialStaticLogo=await page.evaluate(()=>
-   document.querySelector('#hero .hero-brand-lockup')?.naturalWidth>100&&
-   !document.querySelector('#hero .c08-hero-stage'));
+  record.checks.initialCompleteLogo=await page.evaluate(()=>{
+   const box=document.querySelector('#hero .hero01-full-logo'),view=box.dataset.c08View||'static';
+   return box.querySelector('img.hero-brand-lockup')?.naturalWidth>100&&
+    !document.querySelector('#hero .c08-hero-stage')&&
+    (view==='static'||box.querySelector('[data-c08-variant="'+view+'"][data-c08-ready="true"] svg image')!==null);
+  });
   // Actual click on visible slide dot, with all interactive event listeners.
   await page.locator('#hero [data-slide-to="1"]').click({timeout:5000});
   record.checks.manualDot=await page.evaluate(()=>
@@ -91,7 +94,7 @@ for(const t of profiles){
    running:window.__chapchitraHeroCarousel.state.running,
    active:document.querySelector('#hero .hero-slide.is-active')?.dataset.slide,
    logoNaturalWidth:document.querySelector('#hero .hero-brand-lockup')?.naturalWidth,
-   staticLogoOnly:!document.querySelector('#hero .c08-hero-stage')
+   staticLogoOnly:!document.querySelector('#hero .c08-complete-variant')&&getComputedStyle(document.querySelector('#hero .hero-brand-lockup')).visibility==='visible'
   }));
   record.checks.reducedMotion=reducedStatus.running===false&&reducedStatus.active==='0'&&reducedStatus.staticLogoOnly;
   await rm.close();

@@ -46,11 +46,12 @@ test('C08 original green patch plus two-color wordmark fallback retain audited b
   assert.deepEqual(dimensions,f.dims,'Original artwork dimensions must stay unchanged');
  }
 });
-test('Owner inverted static SVG replaces retired dark C08 renderer',async()=>{
+test('Owner inverted static SVG remains fallback; retired split renderer stays removed',async()=>{
  const app=await readFile(resolve(root,'src/app.mjs'),'utf8');
  const html=await readFile(resolve(root,'src/index.html'),'utf8');
  assert.match(app,/chapchitra-dark-full\.svg/);
  assert.match(app,/chapchitra-dark-wordmark\.svg/);
  assert.doesNotMatch(app,/\/motion\/c08\/logo-player|c08-navbar-playing/);
- assert.doesNotMatch(html,/motion\/c08\//);
+ assert.match(html,/motion\/c08\/complete-logo\.css/);
+ assert.doesNotMatch(html,/motion\/c08\/logo-player\.css/);
 });

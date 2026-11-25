@@ -34,10 +34,11 @@ test('Hero01 preserves one navbar, restores standard presentation on slide and s
   assert.ok(app.includes(source.replace('nav-',''))||source==='nav-favorites');
 });
 
-test('Hero01 uses original complete theme-specific static SVG',()=>{
+test('Hero01 retains original complete theme-specific static SVG as the fallback',()=>{
  assert.match(app,/chapchitra-light-full\.svg/);
  assert.match(app,/chapchitra-dark-full\.svg/);
- assert.doesNotMatch(app,/c08HeroStage|mountC08|heroLogoHolding/);
+ assert.doesNotMatch(app,/c08HeroStage|logo-player\.mjs|heroLogoHolding/);
+ assert.match(app,/mountC08Hero\(/);
  assert.doesNotMatch(app,/new win\.IntersectionObserver|gsap\.timeline/);
 });
 test('local browser acceptance tests verify actual header states and motion',()=>{
@@ -91,7 +92,7 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
 });
  
 test('Original static navbar SVG remains visible on hover',()=>{
- assert.doesNotMatch(app,/c08-navbar-animation|logo-player\.mjs|mountC08/);
+ assert.doesNotMatch(app,/c08-navbar-animation|logo-player\.mjs|mountC08\(\{navbar/);
  assert.match(browser,/static navbar SVG stays visible/);
  assert.match(css,/:not\(\[data-hero01-mode="special"\]\)/);
 });

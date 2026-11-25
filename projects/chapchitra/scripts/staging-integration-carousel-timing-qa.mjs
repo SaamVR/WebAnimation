@@ -110,3 +110,11 @@ console.log('TIMING_SUMMARY '+JSON.stringify({
   c08:p.c08,failed:p.failure}))
 }));
 if(summary.profiles.some(p=>!p.pass))process.exitCode=1;
+// Retain the existing exact 8s/4s uninterrupted recording gate above.
+// Run final C08 native cold/theme/gesture/cleanup QA in the same approved
+// non-deployment CI job so its existing artifact path retains all evidence.
+if(!probe){
+ const {runCompleteC08QA}=await import('./c08-complete-browser-qa.mjs');
+ const result=await runCompleteC08QA({root,out:join(out,'c08-final-native')});
+ if(!result.pass)process.exitCode=1;
+}

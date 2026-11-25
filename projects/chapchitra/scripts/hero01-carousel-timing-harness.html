@@ -63,6 +63,7 @@ html,body{margin:0;height:100%;width:100%;overflow:hidden;background:#151d19;fon
     const c08=win.__chapchitraC08?.hero;
     if(c08){
      tape.c08.autoplay=c08.autoplay||0;tape.c08.completed=c08.completed||0;tape.c08.failed=c08.failed||0;
+     tape.c08.frame=c08.frame;tape.c08.theme=c08.theme;tape.c08.shown=c08.shown;tape.c08.variants=c08.variants;
      if(c08.completed>=1&&tape.c08.completedAtMs===null)tape.c08.completedAtMs=+elapsed.toFixed(3);
      $("c08").textContent=c08.completed>=1?"C08 ✓ complete @ "+(tape.c08.completedAtMs/1000).toFixed(2)+"s":"C08 PLAYING";
     }

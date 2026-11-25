@@ -1,0 +1,19 @@
+{
+  "archiveSHA256": "d8b4abca6fd01f1688fc96c38f7d04020696a2f000a35b9bfa491617b44672a4",
+  "variants": {
+    "light": {
+      "file": "CHAPCHITRA_C08_WORDMARK_REPRINT_NEG90_WITH_CLOTHING_PATCH.json",
+      "sha256": "a7c84e4d3368e1f1497718552e7f327ba24495cf43d4fe1e67756d30077e16f7",
+      "bytes": 989888,
+      "matchingDotLottieSHA256": "0b0483b29502cc4b5fa1be74d23a0b29b46f18ab912692f88dd794863889ceee",
+      "dotLottieContainsByteExactJSON": true
+    },
+    "dark": {
+      "file": "CHAPCHITRA_C08_INVERTED_WORDMARK_REPRINT.json",
+      "sha256": "4c0152b18063022558bfc988bebbaaa3d655ce4ab266212278804b4910e356ab",
+      "bytes": 1000845,
+      "matchingDotLottieSHA256": "fe41475768b67faba7251a3b21c91cd41e2583c5ad2d08f59b52433d86a56932",
+      "dotLottieContainsByteExactJSON": true
+    }
+  }
+}
