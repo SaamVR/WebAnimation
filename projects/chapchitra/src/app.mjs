@@ -88,7 +88,7 @@ async function boot(){
    '<nav class="nav-center" aria-label="Main navigation"><a href="/shop/">Shop</a>'+
    '<a href="/artists-edit/">Artist’s Edit</a><a href="/journal/">Journal</a><a href="/about/">About Us</a></nav>'+
    '<button type="button" class="nav-icon hamburger" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">'+svg('menu')+'</button></div>'+ 
-   '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/brand/chapchitra-light-wordmark.svg" data-cc-theme-brand="nav" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"><span class="c08-navbar-animation" aria-hidden="true"></span></a>'+
+   '<a href="/" class="logo-word logo-word--image" aria-label="CHAPCHITRA home"><img src="/assets/brand/chapchitra-light-wordmark.svg" data-cc-theme-brand="nav" width="1400" height="316" alt="" aria-hidden="true" decoding="async" fetchpriority="high"></a>'+
    '<div class="nav-actions">'+
    '<button type="button" class="nav-icon cc-theme-toggle" id="themeToggle" aria-label="Switch to dark theme" aria-pressed="false" title="Switch color theme">'+
      '<span class="cc-theme-toggle-art" aria-hidden="true"></span></button>'+
@@ -503,7 +503,7 @@ async function boot(){
   return '<div class="hero01-paper-panel" id="hero01PaperPanel">'+
    '<div class="hero01-full-logo" aria-label="CHAPCHITRA original illustrated clothing badge and custom lettering">'+
     '<img class="hero-brand-lockup" src="/assets/brand/chapchitra-light-full.svg" data-cc-theme-brand="hero" width="1250" height="1052" alt="CHAPCHITRA illustrated clothing badge and original custom wordmark" decoding="async" fetchpriority="high">'+
-    '<div class="c08-hero-stage" id="c08HeroStage"></div></div>'+
+    '</div>'+
    '<svg class="hero01-paper-edge" viewBox="0 381 4200 812" preserveAspectRatio="none" aria-hidden="true" focusable="false">'+
     '<path class="hero01-paper-cut" d="'+HERO01_TORN_PAPER_PATH+'"/>'+
     '</svg></div>';
@@ -764,6 +764,7 @@ async function boot(){
    cloth:dark?'/assets/brand/chapchitra-dark-cloth.svg':'/assets/brand/chapchitra-light-cloth.svg'
   };
   for(const image of document.querySelectorAll('img[data-cc-theme-brand]')){
+   if(image.dataset.ccThemeBrand==='hero'&&image.parentElement?.dataset.c08CompleteMounted==='true')continue;
    const source=approvedBrandSources[image.dataset.ccThemeBrand];
    if(source && image.getAttribute('src')!==source)image.setAttribute('src',source);
   }
@@ -1099,15 +1100,12 @@ async function boot(){
   }
   syncHero01Header();
 
-  // Slide 01 has 8s TOTAL visible dwell, including initial C08 playback.
-  // A running C08 locks its deadline, but does not restart that countdown.
-  let heroLogoHolding=!mediaReduced.matches;
+  // Hero 01 retains its approved 8s dwell; the original SVG stays static.
   const rect=heroRoot.getBoundingClientRect();
   let heroInView=rect.bottom>0&&rect.top<innerHeight;
   const canPlay=()=>!mediaReduced.matches&&!hovered&&!focused&&!document.hidden&&heroInView;
   const clock=createHeroCarouselClock({
    canRun:canPlay,
-   isLocked:()=>active===0&&heroLogoHolding,
    onAdvance:next=>changeHero(next,false)
   });
   function refreshHeroClock(){if(canPlay())clock.resume();else clock.pause()}
@@ -1145,22 +1143,15 @@ async function boot(){
   document.addEventListener('visibilitychange',refreshHeroClock);
   mediaReduced.addEventListener('change',refreshHeroClock);
   refreshHeroClock();
-  // Let C01 register its existing IntersectionObserver first, so C08 can
-  // reuse the same self-hosted lottie-web script if benefits are in viewport.
-  // No C01 artwork, controller, styles, or activation times are changed.
-  c01Initialized.then(()=>new Promise(done=>requestAnimationFrame(done)))
-   .then(()=>import('/motion/c08/logo-player.mjs')).then(({mountC08})=>
-    mountC08({
-      navbar:$('.logo-word--image'),
-      heroImage:$('.hero-brand-lockup'),
-      heroStage:$('#c08HeroStage'),
-      heroVariant:'paper',
-      onHeroHolding:hold=>{heroLogoHolding=hold;if(!hold)clock.resume()}
-    })
-  ).catch(error=>{
-    heroLogoHolding=false;clock.resume();
-    console.warn('C08 retained the existing static logo:',error);
-  });
+  // C08 final complete theme compositions are independently decoded and
+  // mounted only on Home. Let C01 register its observer first; the approved
+  // carousel clock is not held or reset by logo loading or replay.
+  void c01Initialized.then(()=>new Promise(resolve=>requestAnimationFrame(resolve)))
+   .then(()=>import('/motion/c08/complete-logo.mjs'))
+   .then(({mountC08Hero})=>mountC08Hero({
+    heroImage:heroIdentity.querySelector('.hero-brand-lockup'),
+    remainingDwell:()=>clock.snapshot().remainingMs
+   })).catch(()=>{});
   let homePage=1;
   renderHomeCollection=function(){
    const pages=Math.ceil(catalog.length/PAGE_SIZE_HOME);
@@ -1474,10 +1465,7 @@ async function boot(){
    }
   }
  }
- // Navbar C08 is hover-only on all routes. It never loads a player automatically.
- if(route!=='home')import('/motion/c08/logo-player.mjs')
-  .then(({mountC08})=>mountC08({navbar:$('.logo-word--image')}))
-  .catch(error=>console.warn('C08 original navbar image retained:',error));
+ // Display the original theme-correct navbar SVG without an animation player.
  if(route==='journal'){
   let index=0,interval=null,hover=false,focus=false;
   const spotlight=$('#journalSpotlight');

@@ -2565,7 +2565,7 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
 #app > .site-header:not([data-hero01-mode="special"]) .logo-word.logo-word--image{
   opacity:1;visibility:visible;pointer-events:auto;
 }
-#app > .site-header:not([data-hero01-mode="special"]) .logo-word.logo-word--image:not(.c08-navbar-playing)>img{
+#app > .site-header:not([data-hero01-mode="special"]) .logo-word.logo-word--image>img{
   visibility:visible;opacity:1;
 }
 #hero{

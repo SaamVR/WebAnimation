@@ -27,9 +27,13 @@ for(const t of profiles){
   page.on('pageerror',e=>record.errors.push(e.message));
   await page.goto(root+'/',{waitUntil:'domcontentloaded',timeout:30000});
   await page.locator('#hero .hero-slide.is-active').waitFor({timeout:18000});
-  await page.waitForFunction(()=>window.__chapchitraC08?.hero?.completed>=1,null,{timeout:22000});
-  record.checks.initialC08Completed=await page.evaluate(()=>
-   window.__chapchitraC08?.hero?.autoplay===1&&window.__chapchitraC08?.hero?.completed>=1);
+  await page.locator('#hero .hero-brand-lockup').evaluate(img=>img.decode());
+  record.checks.initialCompleteLogo=await page.evaluate(()=>{
+   const box=document.querySelector('#hero .hero01-full-logo'),view=box.dataset.c08View||'static';
+   return box.querySelector('img.hero-brand-lockup')?.naturalWidth>100&&
+    !document.querySelector('#hero .c08-hero-stage')&&
+    (view==='static'||box.querySelector('[data-c08-variant="'+view+'"][data-c08-ready="true"] svg image')!==null);
+  });
   // Actual click on visible slide dot, with all interactive event listeners.
   await page.locator('#hero [data-slide-to="1"]').click({timeout:5000});
   record.checks.manualDot=await page.evaluate(()=>
@@ -64,17 +68,16 @@ for(const t of profiles){
   await page.waitForTimeout(300);
   const returnAfter=await page.evaluate(()=>window.__chapchitraHeroCarousel.state.remainingMs);
   record.checks.onScreenResume=returnBefore-returnAfter>180;
-  // Manual go back to Hero 01 must preserve 8s deadline and C08 original completion.
+  // Manual return to Hero 01 must preserve the eight-second deadline.
   await page.locator('#hero [data-slide-to="0"]').evaluate(b=>b.click());
   await page.waitForFunction(()=>window.__chapchitraHeroCarousel?.state?.slide===0,null,{timeout:4000});
   const s=await page.evaluate(()=>({
    clock:window.__chapchitraHeroCarousel.state,
-   c08:window.__chapchitraC08?.hero,
+   
    paperPath:document.querySelector('#hero01PaperPanel .hero01-paper-cut')?.getAttribute('d')?.length
   }));
   record.checks.manualReturnToHero1=s.clock.remainingMs>7500&&s.clock.remainingMs<=8000;
-  record.c08ManualReturnDebug={autoplay:s.c08?.autoplay,completed:s.c08?.completed,failed:s.c08?.failed,pathLength:s.paperPath};
-  record.checks.c08StillValid=s.c08?.autoplay===1&&s.c08?.completed>=1&&s.paperPath>100;
+  record.checks.originalPaperPreserved=s.paperPath>100;
   // The focus pause and resume behavior are part of the original approved carousel.
   await page.locator('#hero [data-slide-to="2"]').focus();
   await page.waitForFunction(()=>window.__chapchitraHeroCarousel.state.running===false,null,{timeout:4000});
@@ -91,9 +94,9 @@ for(const t of profiles){
    running:window.__chapchitraHeroCarousel.state.running,
    active:document.querySelector('#hero .hero-slide.is-active')?.dataset.slide,
    logoNaturalWidth:document.querySelector('#hero .hero-brand-lockup')?.naturalWidth,
-   c08Autoplay:window.__chapchitraC08?.hero?.autoplay??0
+   staticLogoOnly:!document.querySelector('#hero .c08-complete-variant')&&getComputedStyle(document.querySelector('#hero .hero-brand-lockup')).visibility==='visible'
   }));
-  record.checks.reducedMotion=reducedStatus.running===false&&reducedStatus.active==='0'&&reducedStatus.c08Autoplay===0;
+  record.checks.reducedMotion=reducedStatus.running===false&&reducedStatus.active==='0'&&reducedStatus.staticLogoOnly;
   await rm.close();
   assert.deepEqual(record.errors,[],'Unexpected browser errors');
   for(const [name,result] of Object.entries(record.checks))assert.equal(result,true,name+' failed');

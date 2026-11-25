@@ -1,145 +1,77 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile,stat} from 'node:fs/promises';
+import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
-const root=resolve(import.meta.dirname,'..');
-const text=p=>readFile(resolve(root,p),'utf8');
-const data=p=>readFile(resolve(root,p));
-const source='src/assets/c08/';
-const originalHash='e3887a7187f845099a4948c3a8a3ff2b85dc650b381635cc6db5e3aa68d33876';
-test('approved C08 master, original Lottie JSON and dotLottie archive are preserved byte-for-byte',async()=>{
- const expected=[
-  ['approved-master-source.svg','093b1d63ce8e572caa9f605cf1c786f174a2b3505d228b7279d51982c63cd4a3'],
-  ['wordmark-reprint-original.json',originalHash],
-  ['wordmark-reprint-original.lottie','ed802b1986075d88862020206d23175a8a707454b4ad11c165ed5698eb4a5898']
- ];
- for(const [name,hash] of expected){
-  const content=await data(source+name);
-  assert.equal(createHash('sha256').update(content).digest('hex'),hash,name);
+const root=resolve(import.meta.dirname,'..'),read=p=>readFile(resolve(root,p),'utf8');
+const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const supplied={
+ light:['CHAPCHITRA_C08_WORDMARK_REPRINT_NEG90_WITH_CLOTHING_PATCH.json','a7c84e4d3368e1f1497718552e7f327ba24495cf43d4fe1e67756d30077e16f7',989888],
+ dark:['CHAPCHITRA_C08_INVERTED_WORDMARK_REPRINT.json','4c0152b18063022558bfc988bebbaaa3d655ce4ab266212278804b4910e356ab',1000845]
+};
+test('Owner final complete Lottie files are byte-exact, nonlooping 2400 square source with embedded clothing',async()=>{
+ const names=await readdir(resolve(root,'src/assets/c08-final'));
+ assert.deepEqual(names.sort(),Object.values(supplied).map(a=>a[0]).sort());
+ for(const [theme,[file,expected,size]] of Object.entries(supplied)){
+  const raw=await readFile(resolve(root,'src/assets/c08-final',file));
+  assert.equal(raw.length,size,theme+' original byte count');
+  assert.equal(sha(raw),expected,theme+' original SHA-256');
+  const data=JSON.parse(raw);
+  assert.deepEqual([data.w,data.h,data.fr,data.ip,data.op],[2400,2400,60,0,240]);
+  assert.equal(data.layers.length,2);
+  assert.equal(data.assets.length,2);
+  const patch=data.assets.find(a=>a.e===1),precomp=data.assets.find(a=>a.layers);
+  assert.equal(patch.w,1416);assert.equal(patch.h,1271);
+  assert.match(patch.p,/^data:image\/png;base64,/);
+  const png=Buffer.from(patch.p.split(',')[1],'base64');
+  assert.deepEqual([...png.subarray(0,8)],[137,80,78,71,13,10,26,10]);
+  assert.equal(png.readUInt32BE(16),1416);assert.equal(png.readUInt32BE(20),1271);
+  const imageLayer=data.layers.find(l=>l.ty===2),motionLayer=data.layers.find(l=>l.ty===0);
+  assert.equal(imageLayer.refId,patch.id);assert.equal(motionLayer.refId,precomp.id);
+  assert.deepEqual([imageLayer.ip,imageLayer.op,motionLayer.ip,motionLayer.op],[0,240,0,240]);
+  assert.deepEqual(imageLayer.ks.p.k,[492,219,0]);
+  assert.deepEqual(motionLayer.ks.p.k,[0,1497,0]);
+  const roller=precomp.layers.find(l=>l.nm==='ROLLER_ASSEMBLY_MASTER');
+  assert.ok(roller.ks.r.k.some(k=>k.s?.includes(-90)||k.e?.includes(-90)));
  }
 });
-test('approved C08 source has 240 frames at 60fps, exact 6 vector layers and zero raster assets',async()=>{
- const l=JSON.parse(await text(source+'wordmark-reprint-original.json'));
- assert.equal(l.w,2400);assert.equal(l.h,550);assert.equal(l.fr,60);assert.equal(l.ip,0);assert.equal(l.op,240);
- assert.deepEqual(l.layers.map(x=>x.nm),[
-  'ROLLER_ASSEMBLY_MASTER','ROLLER_HANDLE_ROD','ROLLER_CYLINDER',
-  'HIDDEN_T','PRINT_REVEAL','BASE_WORDMARK'
- ]);
- assert.equal(l.assets?.length??0,0);
-});
-test('dark-surface C08 animation uses only Cream and Terracotta while preserving complete source choreography',async()=>{
- const source=JSON.parse(await text('src/assets/c08/wordmark-reprint-original.json'));
- const variant=JSON.parse(await text('src/assets/c08/wordmark-reprint-dark-inverted-v2.json'));
- const legacyActive=JSON.parse(await text('src/assets/c08/wordmark-reprint-hero-light.json'));
- assert.deepEqual(variant,legacyActive,'Legacy dark-surface alias must have corrected palette, too');
- const graphite=[.1373,.1373,.1373],green=[.1608,.2392,.1765],white=[.9647,.9686,.9608];
- const cream=[228/255,227/255,222/255],terra=[138/255,80/255,59/255];
- const keyed=new Map([[JSON.stringify(graphite),cream],[JSON.stringify(green),terra],[JSON.stringify(white),cream]]);
- const hit={graphite:0,green:0,white:0};
- function rewrite(node){
-  if(Array.isArray(node))return node.map(rewrite);
-  if(!node||typeof node!=='object')return node;
-  const copy=Object.fromEntries(Object.entries(node).map(([k,v])=>[k,rewrite(v)]));
-  if(copy.ty==='fl'||copy.ty==='st'){
-   const key=JSON.stringify(copy.c?.k);
-   assert.ok(keyed.has(key),'Unsupported vector fill/stroke in original C08: '+key);
-   const target=keyed.get(key);
-   if(key===JSON.stringify(graphite))hit.graphite++;
-   if(key===JSON.stringify(green))hit.green++;
-   if(key===JSON.stringify(white))hit.white++;
-   copy.c.k=target;
-  }
-  return copy;
- }
- assert.deepEqual(variant,rewrite(source),'Only static fill RGB may change, never paths, keyframes, easing, transforms, layers, fps or frames');
- assert.deepEqual(hit,{graphite:21,green:6,white:1});
-});
-test('dark-surface derived SVG has the same original vector path geometry and exactly two ink swatches',async()=>{
- const master=await text('src/assets/c08/approved-master-source.svg');
- const inverse=await text('src/assets/c08/wordmark-reprint-dark-inverted-v2.svg');
- const expected=master.replaceAll('#232323','#E4E3DE').replaceAll('#293D2D','#8A503B').replaceAll('#F6F7F5','#E4E3DE');
- assert.equal(inverse,expected.replaceAll('\r\n','\n'),'Only SVG paint tokens may change');
- assert.ok(!/#232323|#293D2D|#F6F7F5|#9DC39F/.test(inverse));
- assert.ok(inverse.includes('#E4E3DE')&&inverse.includes('#8A503B'));
-});
-test('original full hero lockup on paper and navbar SVG remain immediate static fallbacks',async()=>{
- const app=await text('src/app.mjs');
- assert.match(app,/src="\/assets\/brand\/chapchitra-light-full\.svg"/);
- assert.match(app,/class="hero-brand-lockup"/);
- assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
- assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
- assert.match(app,/class="logo-word logo-word--image"/);
- assert.match(app,/class="c08-navbar-animation" aria-hidden="true"/);
- assert.match(app,/class="c08-hero-stage"/);
- assert.ok(!app.includes('class="c08-hero-stage" aria-hidden="true"'),'Replay button must not be in aria-hidden subtree');
-});
-test('C08 hero keeps initial slider hold; navbar never automatically starts',async()=>{
- const app=await text('src/app.mjs');
- const script=await text('src/motion/c08/logo-player.mjs');
- assert.match(app,/let heroLogoHolding=!mediaReduced\.matches/);
- assert.match(app,/const canPlay=\(\)=>!mediaReduced\.matches/);
- assert.match(app,/onHeroHolding:hold=>\{heroLogoHolding=hold;if\(!hold\)clock\.resume\(\)\}/);
- assert.match(app,/createHeroCarouselClock\(\{/);
-  assert.doesNotMatch(app,/setInterval\(\(\)=>changeHero/);
- assert.match(script,/loop:false,autoplay:false/);
- assert.match(script,/navbar\.addEventListener\('pointerenter'/);
- assert.match(script,/trigger\.addEventListener\('pointerenter'/);
- assert.match(script,/trigger\.addEventListener\('click'/);
- assert.match(script,/window\.lottie\?\.loadAnimation/);
- assert.match(script,/const PLAYER = '\/motion\/c01\/vendor\/lottie\.min\.js'/);
- assert.ok(!script.includes('preventDefault('),'Navbar Home click must never be hijacked');
-});
-test('C08 uses scoped placement, reduced motion and leaves footer static',async()=>{
- const css=await text('src/motion/c08/logo-player.css');
- const script=await text('src/motion/c08/logo-player.mjs');
- assert.match(css,/#app > \.site-header/);
- assert.match(css,/#hero \.hero-cover-inner\.c08-hero-shown/);
- assert.match(css,/clip-path:inset\(0 0 26\.35% 0\)/);
+test('PR165 retirement remains intact; final player is hero-only, never split cloth or legacy renderer',async()=>{
+ const assets=await readdir(resolve(root,'src/assets/c08'));
+ assert.equal(assets.filter(f=>/\.(json|lottie)$/i.test(f)).length,0);
+ const app=await read('src/app.mjs'),html=await read('src/index.html'),build=await read('scripts/build.mjs');
+ const runtime=await read('src/motion/c08/complete-logo.mjs'),css=await read('src/motion/c08/complete-logo.css');
+ assert.doesNotMatch(app,/logo-player\.mjs|c08-hero-stage|c08-navbar-animation|heroLogoHolding/);
+ assert.match(app,/mountC08Hero\(\{/);
+ assert.match(html,/motion\/c08\/complete-logo\.css/);
+ assert.doesNotMatch(html,/motion\/c08\/logo-player\.css/);
+ assert.match(build,/rm\(resolve\(output,'assets\/c08'\),\{recursive:true,force:true\}\)/);
+ assert.doesNotMatch(build,/rm\(resolve\(output,'assets\/c08-final'/);
+ assert.doesNotMatch(runtime,/chapchitra-(light|dark)-cloth\.svg|\.lottie['"]/);
+ assert.match(runtime,/renderer:'svg',loop:false,autoplay:false/);
+ assert.match(runtime,/await abortable\(image\.decode\(\),signal\)/);
+ assert.match(runtime,/await rendererReady\(animation,signal\)/);
+ assert.match(runtime,/rec\.decoded=true/);
+ assert.match(runtime,/rec\.animation\.goToAndStop\(frame,true\)/);
+ assert.match(runtime,/controller\.abort\(\)/);
+ assert.match(css,/width:100%;aspect-ratio:1/);
+ assert.match(css,/visibility:hidden/);
  assert.match(css,/prefers-reduced-motion:reduce/);
- assert.ok(!css.includes('filter:'),'No blanket CSS color filters allowed');
- assert.ok(!css.includes('footer'),'Footer styling is not in C08 scope');
- assert.match(script,/REDUCED\.addEventListener\('change'/);
- assert.match(script,/original static logo/);
- assert.match(script,/dataCache = new Map\(\)/);
- assert.ok((await stat(resolve(root,'src/assets/c08/wordmark-reprint-original.json'))).size<100000);
 });
-
-test('global C08 navbar resolves from versioned Artist Edit release without changing the editor',async()=>{
- const app=await text('src/app.mjs');
- const player=await text('src/motion/c08/logo-player.mjs');
- assert.equal((app.match(/import\('\/motion\/c08\/logo-player\.mjs'\)/g)||[]).length,2);
- assert.ok(!app.includes("import('./motion/c08/logo-player.mjs')"));
- assert.match(player,/const CSS = '\/motion\/c08\/logo-player\.css'/);
- assert.match(player,/function ensureC08Stylesheet\(\)/);
- assert.match(player,/\.some\(link => new URL\(link\.href,location\.href\)\.pathname===CSS\)/);
- assert.match(player,/link\.dataset\.c08Styles='true'/);
- assert.match(player,/if\(navbar\|\|heroImage\)ensureC08Stylesheet\(\)/);
- // Scope remains separate from the Artist Edit worktable and C01 originals.
- assert.ok(!(await text('src/worktable-studio.mjs')).includes('c08'));
- assert.ok(!(await text('src/motion/c01/connected-benefits.mjs')).includes('c08'));
+test('Original full SVG fallback and static navbar wordmark preserved in both themes',async()=>{
+ const app=await read('src/app.mjs');
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-full\.svg"/);
+ assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
+ for(const f of ['chapchitra-light-full.svg','chapchitra-dark-full.svg','chapchitra-light-wordmark.svg','chapchitra-dark-wordmark.svg'])
+  assert.match(await read('src/assets/brand/'+f),/<svg\b/);
+ assert.match(app,/hero:dark\?'\/assets\/brand\/chapchitra-dark-full\.svg'/);
+ assert.match(app,/nav:dark\?'\/assets\/brand\/chapchitra-dark-wordmark\.svg'/);
+ assert.match(app,/img\[data-cc-theme-brand\]/);
 });
-
-
-test('owner Cream C08 dark variant changes only 22 static fill paints, never timing or geometry',async()=>{
- const source=JSON.parse(await text('src/assets/c08/wordmark-reprint-dark-inverted-v2.json'));
- const derived=JSON.parse(await text('src/assets/c08/wordmark-reprint-dark-owner-cream.json'));
- const expected=JSON.parse(JSON.stringify(source));
- let repainted=0;
- const paint=part=>{
-  if(!part||typeof part!=='object')return;
-  if(part.ty==='fl'&&Array.isArray(part.c?.k)&&part.c.k.length>=3&&
-    [228/255,227/255,222/255].every((v,i)=>Math.abs(part.c.k[i]-v)<.0003)){
-   [244/255,235/255,228/255].forEach((v,i)=>part.c.k[i]=v);
-   repainted++;
-  }
-  for(const node of Object.values(part))paint(node);
- };
- paint(expected);
- assert.equal(repainted,22);
- assert.deepEqual(derived,expected,'C08 geometry, keyframes, easing, roller, source colors except Cream and full duration remain immutable');
- assert.equal(derived.fr,60);assert.equal(derived.op,240);
- const player=await text('src/motion/c08/logo-player.mjs');
- assert.match(player,/const DARK = '\/assets\/c08\/wordmark-reprint-dark-owner-cream\.json'/);
- assert.match(player,/const themedSource = \(\) => document\.documentElement\.dataset\.theme==='dark' \? DARK : SOURCE/);
+test('Hero dwell and unrelated animation lanes remain unchanged',async()=>{
+ const app=await read('src/app.mjs'),clock=await read('src/hero-carousel-clock.mjs');
+ assert.match(clock,/HERO_DWELL_MS = Object\.freeze\(\[8000, 4000, 4000, 4000, 4000\]\)/);
+ assert.match(app,/createHeroCarouselClock\(\{/);
+ assert.doesNotMatch(app,/isLocked:\(\)=>active===0/);
+ assert.match(app,/motion\/c01\/connected-benefits\.mjs/);
+ assert.match(app,/motion\/c04\/ink-impression\.mjs/);
 });
