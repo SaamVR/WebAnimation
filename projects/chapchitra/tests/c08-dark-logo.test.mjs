@@ -46,31 +46,11 @@ test('C08 original green patch plus two-color wordmark fallback retain audited b
   assert.deepEqual(dimensions,f.dims,'Original artwork dimensions must stay unchanged');
  }
 });
-test('C08 dark-surface brand uses versioned asset URLs while light-background navbar retains original source',async()=>{
+test('Owner inverted static SVG replaces retired dark C08 renderer',async()=>{
  const app=await readFile(resolve(root,'src/app.mjs'),'utf8');
  const html=await readFile(resolve(root,'src/index.html'),'utf8');
- const player=await readFile(resolve(root,'src/motion/c08/logo-player.mjs'),'utf8');
- assert.match(app,/src="\/assets\/brand\/chapchitra-light-full\.svg"/);
- assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
- assert.match(html,/href="\/assets\/brand\/chapchitra-light-full\.svg"/);
- assert.match(player,/const HERO = '\/assets\/c08\/wordmark-reprint-dark-inverted-v2\.json'/);
-  assert.match(player,/heroVariant==='paper'\?themedSource\(\):HERO/);
- assert.match(player,/const SOURCE = '\/assets\/c08\/wordmark-reprint-original\.json'/);
- assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
- assert.doesNotMatch(app,/src="\/assets\/chapchitra-wordmark-light\.webp"/);
- assert.doesNotMatch(player,/const HERO = '\/assets\/c08\/wordmark-reprint-hero-light\.json'/);
-});
-
-
-test('C08 build code cannot recolor the original patch or silently retime Lottie',async()=>{
- const script=await readFile(resolve(root,'scripts/c08-recolor-static.mjs'),'utf8');
- const approvedLower=await readFile(resolve(root,'scripts/c08-fallback-originals/chapchitra-full-terracotta-before-patch-restoration.webp'));
- assert.equal(SHA(approvedLower),'3acec051748757e05501e759f497c938e69097b6c0f88f19c5a6c3bb6f288f00');
- assert.match(script,/PATCH_END_Y=775/);
- assert.match(script,/patch\.data\.copy\(pixels,0,0,split\)/,'Original green source pixels must be copied verbatim');
- assert.match(script,/Buffer\.from\(wordmark\.data\)/,'The approved lower wordmark must be used verbatim');
- assert.match(script,/PATCH_FRINGE_LIMIT_X=840/,'Tiny approved textile antialias pixels must also be protected');
- assert.doesNotMatch(script,/greenExcess|isSymbol|isCream|luminance|\.tint\(|\.modulate\(/,'Future build must never remap patch colors');
- const css=await readFile(resolve(root,'src/motion/c08/logo-player.css'),'utf8');
- assert.match(css,/clip-path:inset\(0 0 26\.35% 0\)/,'The complete approved patch silhouette must remain visible');
+ assert.match(app,/chapchitra-dark-full\.svg/);
+ assert.match(app,/chapchitra-dark-wordmark\.svg/);
+ assert.doesNotMatch(app,/\/motion\/c08\/logo-player|c08-navbar-playing/);
+ assert.doesNotMatch(html,/motion\/c08\//);
 });

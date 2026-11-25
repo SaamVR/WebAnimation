@@ -46,11 +46,3 @@ for(const [theme,meta] of Object.entries(originals)){
  });
 }
 
-test('C08 remains 240 frames / 60 FPS and original six-layer hierarchy',()=>{
- const old=JSON.parse(readFileSync(resolve(base,'../c08/wordmark-reprint-original.json'),'utf8'));
- assert.equal(old.fr,60);assert.equal(old.op,240);assert.equal(old.layers.length,6);
- assert.deepEqual(old.layers.map(x=>x.nm),[
-  'ROLLER_ASSEMBLY_MASTER','ROLLER_HANDLE_ROD','ROLLER_CYLINDER',
-  'HIDDEN_T','PRINT_REVEAL','BASE_WORDMARK'
- ]);
-});

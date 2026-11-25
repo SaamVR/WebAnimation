@@ -4,7 +4,6 @@ import {readFileSync} from 'node:fs';
 const root=new URL('../',import.meta.url);
 const read=p=>readFileSync(new URL(p,root),'utf8');
 const app=read('src/app.mjs'),css=read('src/styles.css');
-const c08=read('src/motion/c08/logo-player.mjs'),c08css=read('src/motion/c08/logo-player.css');
 const browser=read('scripts/hero01-header-qa.mjs'),gate=read('scripts/perf/artist-navbar-normal-flow-qa.cjs');
 
 test('Hero01 uses original illustrated badge, distinct responsive tear, and no placeholder image',()=>{
@@ -12,7 +11,7 @@ test('Hero01 uses original illustrated badge, distinct responsive tear, and no p
  assert.match(app,/hero01-paper-edge/);
  assert.doesNotMatch(app,/hero01-paper-fibers/);
  assert.match(app,/\/assets\/brand\/chapchitra-light-full\.svg/);
- assert.match(app,/id="c08HeroStage"/);
+ assert.doesNotMatch(app,/id="c08HeroStage"/);
  assert.doesNotMatch(app,/<img class="hero-background" src="\/assets\/hero-paper\.svg"/);
  assert.match(css,/#hero \.hero-cover\s*\{\s*background:#1C241D/);
  assert.match(css,/hero01-paper-edge \.hero01-paper-cut/);
@@ -35,15 +34,12 @@ test('Hero01 preserves one navbar, restores standard presentation on slide and s
   assert.ok(app.includes(source.replace('nav-',''))||source==='nav-favorites');
 });
 
-test('Existing C08 keyframes are reused through original white-background variant',()=>{
- assert.match(app,/heroVariant:'paper'/);
- assert.match(c08,/heroVariant='dark'/);
- assert.match(c08,/heroVariant==='paper'\?themedSource\(\):HERO/);
- assert.match(c08css,/\.hero01-full-logo\.c08-hero-shown/);
- assert.match(c08css,/clip-path:inset\(0 0 26\.35% 0\)/);
+test('Hero01 uses original complete theme-specific static SVG',()=>{
+ assert.match(app,/chapchitra-light-full\.svg/);
+ assert.match(app,/chapchitra-dark-full\.svg/);
+ assert.doesNotMatch(app,/c08HeroStage|mountC08|heroLogoHolding/);
  assert.doesNotMatch(app,/new win\.IntersectionObserver|gsap\.timeline/);
 });
-
 test('local browser acceptance tests verify actual header states and motion',()=>{
  assert.match(browser,/requires localhost/);
  assert.match(browser,/recordVideo:/);
@@ -51,7 +47,7 @@ test('local browser acceptance tests verify actual header states and motion',()=
  assert.match(browser,/ipad-webkit/);
  assert.match(browser,/mobile-chromium/);
  assert.match(browser,/reducedMotion:'reduce'/);
- assert.match(browser,/waitForFunction\(\(\)=>window\.__chapchitraC08\?\.hero\?\.completed>=1/);
+ assert.match(browser,/staticLogo/);
  assert.match(browser,/paper-mid-scroll/);
  assert.match(browser,/data-slide-to="1"/);
  assert.match(browser,/\.webm/);
@@ -94,14 +90,11 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
  assert.match(browser,/snapshot\.ctaLeftAligned/);
 });
  
-test('C08 compact navbar returns to real original static wordmark after hover while still hovered',()=>{
- assert.match(c08,/nav\.instance\.addEventListener\('complete'/);
- assert.match(c08,/nav\.instance\.goToAndStop\(DURATION_FRAMES-1,true\);[\s\S]*?showStatic\(\)/);
- assert.match(browser,/C08 completed hover must restore compact image/);
- assert.match(browser,/C08 must rearm, replay and restore original logo/);
+test('Original static navbar SVG remains visible on hover',()=>{
+ assert.doesNotMatch(app,/c08-navbar-animation|logo-player\.mjs|mountC08/);
+ assert.match(browser,/static navbar SVG stays visible/);
  assert.match(css,/:not\(\[data-hero01-mode="special"\]\)/);
 });
-
 test('visual evidence waits for real full logo decode and completed C02 cover/reveal before Shop screenshot',()=>{
  assert.match(browser,/await img\.decode\(\)/);
  assert.match(browser,/original full illustrated logo failed to decode/i);
@@ -110,7 +103,7 @@ test('visual evidence waits for real full logo decode and completed C02 cover/re
  assert.match(browser,/\{timeout:20000\}\);/);
 });
 
-test('complete original identity scales exactly 90%, is raised as one unit, and C08 overlay follows',()=>{
+test('complete original static logo scales exactly 90% and rises as one unit',()=>{
  assert.match(css,/width:clamp\(205\.2px,20\.7vw,275\.4px\)/);
  assert.match(css,/width:clamp\(181\.8px,53\.1vw,221\.4px\)/);
  assert.match(css,/margin-top:-7px/);
@@ -124,7 +117,6 @@ test('complete original identity scales exactly 90%, is raised as one unit, and 
  assert.match(browser,/snapshot\.logoUniform90/);
  assert.match(browser,/snapshot\.logoImageMatchesBox/);
  assert.match(browser,/snapshot\.logoRaised/);
- assert.match(browser,/afterC08\.logoStageAligned/);
 });
 test('full owner review records every slider, both real C02 routes and logo states',()=>{
  for(const scene of ["'slide03.png'","'slide04.png'","'slide05.png'","'journal.png'"]) {
