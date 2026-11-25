@@ -140,12 +140,6 @@ async function sample(page){
    })(),
    logoRaised:!!(logo&&Number.parseFloat(getComputedStyle(logo).marginTop)<
      (innerWidth<=365?7:innerWidth<=740?6:innerWidth<=950?4:3)), 
-   logoStageAligned:(()=>{
-    const imgRect=logo?.querySelector('img.hero-brand-lockup')?.getBoundingClientRect();
-    const stageRect=logo?.querySelector('.c08-hero-stage')?.getBoundingClientRect();
-    return !!(imgRect&&stageRect&&stageRect.width>0&&Math.abs(imgRect.left-stageRect.left)<2&&
-      Math.abs(imgRect.top-stageRect.top)<2&&Math.abs(imgRect.width-stageRect.width)<2);
-   })(),
    copyAlignment:eyebrow&&getComputedStyle(eyebrow.parentElement).textAlign,
    ctaLeftAligned:!!(cta&&eyebrow&&Math.abs(cta.getBoundingClientRect().left-eyebrow.getBoundingClientRect().left)<3),
    ctaBelowText:!!(cta&&lastCopy&&cta.getBoundingClientRect().top>=lastCopy.getBoundingClientRect().bottom-2),
@@ -160,7 +154,7 @@ async function sample(page){
    horizontalOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth),
    canvasBottom:cover?.getBoundingClientRect().bottom??0,
    controlBottom:hero?.querySelector('.hero-controls')?.getBoundingClientRect().bottom??0,
-   logoAnimation:window.__chapchitraC08?.hero||null,
+   
    // A display:none SVG link is absent from the accessible tree even when
    // its historical aria-hidden attribute is unset by Hero01's controller.
    fullLinkHidden:(()=>{
@@ -220,8 +214,7 @@ for(const t of profiles){
  // keep the original strict geometry assertions unchanged.
  await page.evaluate(()=>document.fonts.ready);
  await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
- // Keep the approved carousel on Hero 01 while the C08 240-frame animation
- // completes, exactly as a real pointer hovering over the hero would.
+ // Pause the carousel while checking the original static identity.
  await page.evaluate(()=>document.querySelector('#hero').dispatchEvent(new MouseEvent('mouseenter')));
  const initial=await sample(page);
  validate(initial);
@@ -243,22 +236,17 @@ for(const t of profiles){
  await page.screenshot({path:resolve(out,t.name+'-special.png')});
  reviewTimeline.push({event:'01 initial full logo',mode:initial.state,compactVisible:initial.navWordmark.visible,scale90:initial.logoUniform90});
  await page.waitForTimeout(550);
- await page.waitForFunction(()=>window.__chapchitraC08?.hero?.completed>=1,null,{timeout:22000});
- const afterC08=await sample(page);
- assert.equal(afterC08.logoAnimation.failed,false,'Reuse exact approved C08 timeline');
- assert.equal(afterC08.logoAnimation.autoplay,1,'Original C08 hero autoplay fires once');
- assert.ok(afterC08.logoStageAligned,'Approved C08 Wordmark Reprint overlay must track the uniformly scaled original lockup');
- await page.screenshot({path:resolve(out,t.name+'-logo-complete.png')});
+ const staticLogo=await sample(page);
+ assert.ok(staticLogo.logoOriginal&&staticLogo.logoImageMatchesBox,'Owner original full SVG stays visible');
+ assert.equal(await page.locator('#hero .c08-hero-stage').count(),0);
+ await page.screenshot({path:resolve(out,t.name+'-logo-static.png')});
  if(t.name==='desktop-chromium'||t.name==='ipad-webkit'){
   const width=Math.min(610,Math.floor(t.width*.76)),height=180;
-  const clip={
-   x:Math.round((t.width-width)/2),
-   y:Math.max(0,Math.min(t.height-height,Math.round(afterC08.tipScreenY-height*.66))),
-   width,height
-  };
+  const clip={x:Math.round((t.width-width)/2),
+   y:Math.max(0,Math.min(t.height-height,Math.round(staticLogo.tipScreenY-height*.66))),width,height};
   await page.screenshot({path:resolve(out,t.name+'-torn-edge-shadow-closeup.png'),clip});
  }
- reviewTimeline.push({event:'01 C08 complete',completed:afterC08.logoAnimation.completed,c08Aligned:afterC08.logoStageAligned});
+ reviewTimeline.push({event:'01 static logo confirmed',original:staticLogo.logoOriginal});
  await page.waitForTimeout(550);
  const paperAtTop=await page.locator('#hero01PaperPanel').evaluate(el=>el.getBoundingClientRect().top);
  const logoAtTop=await page.locator('#hero .hero01-full-logo').evaluate(el=>el.getBoundingClientRect().top);
@@ -411,21 +399,12 @@ for(const t of profiles){
  assert.equal(other.wordmark.src,'/assets/brand/chapchitra-light-wordmark.svg');
  await page.screenshot({path:resolve(out,t.name+'-shop.png')});
  if(t.name==='desktop-chromium'){
-  // The original C08 hover must still play. Completion must restore the
-  // ORIGINAL compact image even if the pointer remains above the link.
   const link=page.locator('#siteHeader .logo-word--image');
-  await page.waitForFunction(()=>!!window.__chapchitraC08?.navbar,null,{timeout:10000});
   await link.hover();
-  await page.waitForFunction(()=>window.__chapchitraC08?.navbar?.completed>=1,null,{timeout:18000});
-  await page.waitForFunction(()=>!document.querySelector('#siteHeader .logo-word--image').classList.contains('c08-navbar-playing'));
   assert.equal(await link.locator('img').evaluate(n=>getComputedStyle(n).visibility),'visible',
-    'C08 completed hover must restore compact image while pointer remains hovered');
-  await page.screenshot({path:resolve(out,'desktop-chromium-shop-hover-restored.png')});
-  await page.mouse.move(2,320);
-  await link.hover();
-  await page.waitForFunction(()=>window.__chapchitraC08?.navbar?.completed>=2,null,{timeout:18000});
-  assert.equal(await link.locator('img').evaluate(n=>getComputedStyle(n).visibility),'visible',
-    'C08 must rearm, replay and restore original logo a second time');
+    'The static navbar SVG stays visible on hover');
+  assert.equal(await link.locator('.c08-navbar-animation').count(),0);
+  await page.screenshot({path:resolve(out,'desktop-chromium-shop-static-hover.png')});
  }
  reviewTimeline.push({event:'Home -> Shop via C02',route:'shop',compactVisible:other.wordmark.visible});
  await page.waitForTimeout(650);
@@ -473,16 +452,16 @@ for(const t of profiles){
  await copyFile(video,resolve(out,t.name+'-transitions.webm'));
  await browser.close();
  assert.deepEqual(errors,[],t.name+' browser errors');
- result.push({profile:t.name,initial,afterC08,scrolled,slide02,returned,other,homeRestored,journal,reviewTimeline,errors,
-  screenshots:[t.name+'-special.png',t.name+'-logo-complete.png',t.name+'-paper-mid-scroll.png',t.name+'-scrolled.png',t.name+'-scroll-restored.png',
+ result.push({profile:t.name,initial,staticLogo,scrolled,slide02,returned,other,homeRestored,journal,reviewTimeline,errors,
+  screenshots:[t.name+'-special.png',t.name+'-logo-static.png',t.name+'-paper-mid-scroll.png',t.name+'-scrolled.png',t.name+'-scroll-restored.png',
    t.name+'-slide02.png',t.name+'-slide03.png',t.name+'-slide04.png',t.name+'-slide05.png',
    t.name+'-return.png',t.name+'-shop.png',t.name+'-home-before-journal.png',t.name+'-journal.png'],
   recording:t.name+'-transitions.webm',
   edgeShadowCloseup:(t.name==='desktop-chromium'||t.name==='ipad-webkit')
    ?t.name+'-torn-edge-shadow-closeup.png':null});
- console.log('HERO01_OK',t.name,'C08',afterC08.logoAnimation.completed,'tears',initial.tearPaths);
+ console.log('HERO01_OK',t.name,'static owner SVG','tears',initial.tearPaths);
 }
-// Reduced motion: original full static logo remains and C08 does not autoplay.
+// Reduced motion: owner original full SVG remains static.
 const rb=await webkit.launch({headless:true});
 const rc=await rb.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
 const rp=await rc.newPage();
@@ -492,13 +471,11 @@ await rp.waitForTimeout(650);
 const reduced=await rp.evaluate(()=>({
  state:document.querySelector('#siteHeader')?.dataset.hero01Mode,
  visible:getComputedStyle(document.querySelector('#hero .hero01-full-logo img')).visibility,
- animationPlaying:!!window.__chapchitraC08?.hero?.playing,
- autoplay:window.__chapchitraC08?.hero?.autoplay||0
+ noC08Stage:document.querySelector('#hero .c08-hero-stage')===null
 }));
 assert.equal(reduced.state,'special');
 assert.equal(reduced.visible,'visible');
-assert.equal(reduced.animationPlaying,false);
-assert.equal(reduced.autoplay,0);
+assert.equal(reduced.noC08Stage,true);
 await rp.screenshot({path:resolve(out,'reduced-webkit.png')});
 await rc.close();await rb.close();
 result.push({profile:'reduced-webkit',reduced,screenshot:'reduced-webkit.png'});
