@@ -13,6 +13,8 @@ console.log('CHAPCHITRA four back garments verified:',backAssets);
 await rm(output,{recursive:true,force:true});
 await mkdir(output,{recursive:true});
 await cp(src,output,{recursive:true});
+// The former C08 animation is retired. Never publish its archived SVG assets.
+await rm(resolve(output,'assets/c08'),{recursive:true,force:true});
 // Final owner-approved type system: preload only the two critical Latin
 // variable files on actual website pages. The Bengali and italic subsets are
 // unicode-range/on-demand, and none of this changes the HTML source/artwork.

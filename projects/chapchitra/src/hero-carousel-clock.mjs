@@ -1,7 +1,6 @@
 /**
  * Visible dwell clock for CHAPCHITRA's approved five-slide hero.
- * C08 can lock a completed deadline, but its playing time is INCLUDED
- * in the eight-second first slide instead of being an extra delay.
+ * The approved eight-second first slide no longer waits for a logo animation.
  */
 export const HERO_DWELL_MS = Object.freeze([8000, 4000, 4000, 4000, 4000]);
 
