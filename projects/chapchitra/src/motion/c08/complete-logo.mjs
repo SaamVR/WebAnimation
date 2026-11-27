@@ -325,3 +325,6 @@ export function mountC08Hero({heroImage,remainingDwell}){
  });
  reconcile();
 }
+
+// Shared native loading gates; hero behavior is unchanged.
+export { ASSETS, player, validate, decodePatch, rendererReady };

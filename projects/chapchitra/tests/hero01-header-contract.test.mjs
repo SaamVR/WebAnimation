@@ -91,9 +91,9 @@ test('single SVG diagonal is the entire paper panel, navbar seam is removed, her
  assert.match(browser,/snapshot\.ctaLeftAligned/);
 });
  
-test('Original static navbar SVG remains visible on hover',()=>{
+test('Native C08 navbar hover restores original static SVG after completion',()=>{
  assert.doesNotMatch(app,/c08-navbar-animation|logo-player\.mjs|mountC08\(\{navbar/);
- assert.match(browser,/static navbar SVG stays visible/);
+ assert.match(browser,/static navbar SVG stays visible after hover completion/);
  assert.match(css,/:not\(\[data-hero01-mode="special"\]\)/);
 });
 test('visual evidence waits for real full logo decode and completed C02 cover/reveal before Shop screenshot',()=>{

@@ -1,3 +1,4 @@
+import { DEMO_SIZES, DEMO_COLORS, variantKey, readVariantKey, colorLabel } from './demo-variants.mjs';
 import { mountOriginalThemeToggle } from './illustrated-theme-toggle.mjs';
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
 import { createHeroCarouselClock } from './hero-carousel-clock.mjs';
@@ -691,10 +692,17 @@ async function boot(){
   return pageTop('PEOPLE · PLACES · PRINTS','The Living Print Studio','CHAPCHITRA is an evolving editorial vision for wearable art, illustration and printmaking in a Bangladeshi creative context.')+
   '<section class="wrap route-content about-layout"><div><p class="eyebrow">OUR PERSPECTIVE</p><h2>Culture, drawn into everyday life.</h2><p>People, places, and prints form the framework for the studio’s visual world. This page is a foundation for the owner-approved origin story, original artwork and printmaking references.</p><p>Until final copy arrives, we avoid inventing a founder biography, workshop location or sourcing claims.</p><a class="text-link" href="/journal/">Read the Journal ↗</a></div><div class="about-visual">'+printSilhouette(2)+'</div></section><section id="street-story" class="wrap route-content"><h2>Scenes from the street</h2><p>The original owner-supplied layered street illustration is shown here as a provisional, static artwork. C09 animation will be designed and approved separately.</p><img class="about-street" src="/assets/street-owner-provisional.svg" width="1920" height="700" loading="lazy" decoding="async" alt="Provisional original layered illustration of CHAPCHITRA shops, a neighborhood street and a tea stall."></section>';
  }
+ function productVariantFields(){
+  return '<div class="detail-variants"><fieldset class="detail-variant-group"><legend>Garment size <small>Demo selection</small></legend><div class="detail-size-options">'+
+   DEMO_SIZES.map(size=>'<label class="detail-size-option"><input type="radio" name="detailSize" value="'+size+'"><span>'+size+'</span></label>').join('')+
+   '</div></fieldset><fieldset class="detail-variant-group"><legend>Fabric color <small>Demo selection</small></legend><div class="detail-color-options">'+
+   DEMO_COLORS.map(color=>'<label class="detail-color-option" data-color="'+color+'"><input type="radio" name="detailColor" value="'+color+'"><span class="detail-color-dot" aria-hidden="true"></span><span>'+colorLabel(color)+'</span></label>').join('')+
+   '</div></fieldset><p class="detail-variant-note">Optional preview choices only. Fabric availability and garment measurements have not been confirmed.</p></div>';
+ }
  function product(){
   const item=catalog.find(p=>p.id===qs.get('id'))||catalog[0];
   const related=catalog.filter(p=>p.id!==item.id&&p.category.some(c=>item.category.includes(c))).slice(0,4);
-  return '<section class="wrap route-content detail-layout"><div class="detail-art">'+shirtSilhouette(item.visual)+'</div><div><p class="eyebrow">SAMPLE PRODUCT · NOT FOR SALE</p><h1>'+esc(item.name)+'</h1><p>'+esc(item.subtitle)+'</p><p>'+esc(item.fit)+' · '+item.audience.map(esc).join(' / ')+'</p><h2>Tk — <small>Price not provided</small></h2><p>Neutral silhouette only; there are no physical product photographs or available stock in this preview.</p>'+sketchButton({label:'ADD TO BAG',variant:'long',tone:'forest',className:'product-add-button detail-add-button',attrs:'data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo bag"'})+sketchButton({label:isFavoriteNow(item.id)?'Remove from Favorites':'Save to Favorites',variant:'compact',tone:'beige',attrs:'data-favorite="'+item.id+'"'})+'<a href="/shop/" class="text-link">Continue exploring ↗</a><p class="route-disclaimer">Demo cart only. No stock, prices, checkout, payment or orders are available.</p></div></section>'+
+  return '<section class="wrap route-content detail-layout"><div class="detail-art">'+shirtSilhouette(item.visual)+'</div><div class="detail-info"><p class="eyebrow">SAMPLE PRODUCT · NOT FOR SALE</p><h1>'+esc(item.name)+'</h1><p>'+esc(item.subtitle)+'</p><p>'+esc(item.fit)+' · '+item.audience.map(esc).join(' / ')+'</p><h2>Tk — <small>Price not provided</small></h2><p>Neutral silhouette only; there are no physical product photographs or available stock in this preview.</p>'+productVariantFields()+'<div class="detail-actions">'+sketchButton({label:'ADD TO BAG',variant:'long',tone:'forest',className:'product-add-button detail-add-button',attrs:'data-add-to-bag="'+item.id+'" aria-label="Add '+esc(item.name)+' to demo bag"'})+sketchButton({label:isFavoriteNow(item.id)?'Remove from Favorites':'Save to Favorites',variant:'compact',tone:'beige',attrs:'data-favorite="'+item.id+'"'})+'</div><a href="/shop/" class="text-link">Continue exploring ↗</a><p class="route-disclaimer">Demo cart only. No stock, prices, checkout, payment or orders are available.</p></div></section>'+
    '<section class="wrap route-content related-studies" aria-labelledby="relatedTitle"><div class="section-title"><div><p class="eyebrow">KEEP EXPLORING</p><h2 id="relatedTitle">Related studies</h2></div><p>More sample silhouettes from the same category.</p></div><div class="product-grid" id="relatedProducts">'+related.map(productCard).join('')+'</div></section>';
  }
  function bag(){
@@ -731,7 +739,7 @@ async function boot(){
  try{
   const rows=JSON.parse(sessionStorage.getItem(demoBagKey)||'[]');
   if(Array.isArray(rows))for(const row of rows){
-   if(Array.isArray(row)&&catalog.some(p=>p.id===row[0])&&Number.isInteger(row[1])&&row[1]>0&&row[1]<=99)demoBag.set(row[0],row[1]);
+   if(Array.isArray(row)&&catalog.some(p=>p.id===readVariantKey(row[0])?.id)&&Number.isInteger(row[1])&&row[1]>0&&row[1]<=99)demoBag.set(row[0],row[1]);
   }
  }catch{}
    let artistDemoBag=[];
@@ -748,6 +756,33 @@ async function boot(){
  // The synchronous head bootstrap owns persistence/system detection. This
  // handler only reflects/accessibly changes its resolved choice, never layout.
  const themeButtons=[$('#themeToggle'),$('#themeToggleMobile')].filter(Boolean);
+ // Safari and Chromium can retain native :focus-visible when an already keyboard-
+ // focused control is clicked. Track the last real input modality for these four
+ // controls only; all other focus styling continues to use native focus-visible.
+ const pointerFocusTargets='#themeToggle,#themeToggleMobile,.logo-word--image,.logo-word--footer';
+ document.addEventListener('pointerdown',event=>{
+  document.documentElement.dataset.ccFocusModality='pointer';
+  const control=event.target.closest?.(pointerFocusTargets);
+  // Remove a previous keyboard focus before pointer activation, without
+  // canceling the pointer event, hover animation, touch scroll or link click.
+  if(control&&control.contains(document.activeElement))document.activeElement.blur();
+ },{capture:true,passive:true});
+ // Chromium focuses native links/buttons as the default action of mousedown,
+ // before click. A click-time blur is too late for a transient native focus
+ // highlight. Cancel only that default action on the four named controls.
+ // Mouse/touch-generated click and the ordinary link/button semantics remain.
+ document.addEventListener('mousedown',event=>{
+  if(event.button===0&&event.target.closest?.(pointerFocusTargets))event.preventDefault();
+ },{capture:true});
+ // A pointer-activated link must not retain focus through a BFCache restore.
+ // Preserve keyboard/screen-reader activation (detail=0) and native navigation.
+ document.addEventListener('click',event=>{
+  const control=event.target.closest?.(pointerFocusTargets);
+  if(control&&event.detail>0&&document.documentElement.dataset.ccFocusModality==='pointer')control.blur();
+ },{capture:true});
+ document.addEventListener('keydown',e=>{
+  if(!['Shift','Control','Alt','Meta'].includes(e.key))document.documentElement.dataset.ccFocusModality='keyboard';
+ },{capture:true});
  const illustratedToggle=mountOriginalThemeToggle(themeButtons);
  const syncThemeButton=()=>{
   const dark=document.documentElement.dataset.theme==='dark';
@@ -793,6 +828,7 @@ async function boot(){
   illustratedToggle.sync(dark);
  };
  syncThemeButton();
+ void import('/motion/c08/navbar-native.mjs').then(({mountC08Navbar})=>mountC08Navbar($('.site-header .logo-word--image'))).catch(()=>{});
  for(const control of themeButtons)control.addEventListener('click',()=>{
   const target=document.documentElement.dataset.theme==='dark'?'light':'dark';
   window.chapchitraTheme?.set(target);
@@ -927,16 +963,16 @@ async function boot(){
   link.setAttribute('aria-label','Demo shopping bag, '+count+' item'+(count===1?'':'s'));
  }
  function setDemoBagQty(id,qty){
-  if(!catalog.some(item=>item.id===id))return;
+  if(!catalog.some(item=>item.id===readVariantKey(id)?.id))return;
   const next=Math.max(0,Math.min(99,qty));
   if(next)demoBag.set(id,next);else demoBag.delete(id);
   persistDemoBag();updateBagCounter();
  }
  function renderDemoBag(){
   if(route!=='bag')return;
-  const entries=[...demoBag.entries()].map(([id,qty])=>({item:catalog.find(p=>p.id===id),qty})).filter(x=>x.item);
-     const sampleMarkup=entries.map(({item,qty})=>
-   '<article class="demo-bag-row" data-bag-row="'+item.id+'"><a class="demo-bag-thumb" href="/product/?id='+item.id+'" aria-label="View '+esc(item.name)+'">'+shirtSilhouette(item.visual)+'</a><div class="demo-bag-info"><h3><a href="/product/?id='+item.id+'">'+esc(item.name)+'</a></h3><p>'+esc(item.fit)+' · Tk — · Sample only</p><div class="demo-bag-stepper" aria-label="Quantity for '+esc(item.name)+'"><button type="button" data-bag-adjust="-1" data-bag-id="'+item.id+'" aria-label="Decrease '+esc(item.name)+' quantity">−</button><output aria-label="Quantity">'+qty+'</output><button type="button" data-bag-adjust="1" data-bag-id="'+item.id+'" aria-label="Increase '+esc(item.name)+' quantity"'+(qty===99?' disabled':'')+'>+</button></div><button type="button" class="demo-bag-remove" data-bag-remove="'+item.id+'">Remove</button></div></article>'
+  const entries=[...demoBag.entries()].map(([key,qty])=>({key,variant:readVariantKey(key),qty})).filter(x=>x.variant).map(x=>({...x,item:catalog.find(p=>p.id===x.variant.id)})).filter(x=>x.item);
+     const sampleMarkup=entries.map(({item,qty,key,variant})=>
+   '<article class="demo-bag-row" data-bag-row="'+esc(key)+'"><a class="demo-bag-thumb" href="/product/?id='+item.id+'" aria-label="View '+esc(item.name)+'">'+shirtSilhouette(item.visual)+'</a><div class="demo-bag-info"><h3><a href="/product/?id='+item.id+'">'+esc(item.name)+'</a></h3><p>'+esc(item.fit)+(variant.size||variant.color?' · Size '+esc(variant.size||'Not specified')+' · Fabric '+esc(colorLabel(variant.color)):'')+' · Tk — · Sample only</p><div class="demo-bag-stepper" aria-label="Quantity for '+esc(item.name)+'"><button type="button" data-bag-adjust="-1" data-bag-id="'+esc(key)+'" aria-label="Decrease '+esc(item.name)+' quantity">−</button><output aria-label="Quantity">'+qty+'</output><button type="button" data-bag-adjust="1" data-bag-id="'+esc(key)+'" aria-label="Increase '+esc(item.name)+' quantity"'+(qty===99?' disabled':'')+'>+</button></div><button type="button" class="demo-bag-remove" data-bag-remove="'+esc(key)+'">Remove</button></div></article>'
      ).join('');
    const sideDetails=side=>side.hasArtwork?
     side.preset+' ('+side.dimensionsMm.join(' × ')+' mm)':
@@ -999,9 +1035,13 @@ async function boot(){
    const add=e.target.closest('[data-add-to-bag]');
   if(add){
    const item=catalog.find(p=>p.id===add.dataset.addToBag);if(!item)return;
-   const previous=demoBag.get(item.id)||0;
-   setDemoBagQty(item.id,previous+1);
-   const count=demoBag.get(item.id);
+   const detail=add.closest('.detail-info');
+   const key=detail?variantKey(item.id,$('input[name="detailSize"]:checked',detail)?.value||'',$('input[name="detailColor"]:checked',detail)?.value||''):item.id;
+   if(!key)return;
+   const previous=demoBag.get(key)||0;
+   if(key===item.id)setDemoBagQty(item.id,previous+1);
+   else setDemoBagQty(key,previous+1);
+   const count=demoBag.get(key);
    // Exactly one flight per successful catalog increment; resolve its clicked source.
    // Bag mutation, limits, feedback and announcements are unchanged.
    if(count>previous){

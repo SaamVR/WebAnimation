@@ -402,10 +402,12 @@ for(const t of profiles){
  if(t.name==='desktop-chromium'){
   const link=page.locator('#siteHeader .logo-word--image');
   await link.hover();
-  assert.equal(await link.locator('img').evaluate(n=>getComputedStyle(n).visibility),'visible',
-    'The static navbar SVG stays visible on hover');
+  await page.waitForFunction(()=>window.__chapchitraNavbarC08?.state.playing===true,{timeout:25000});
+  assert.equal(await link.locator('img').evaluate(n=>getComputedStyle(n).visibility),'hidden','Native hover replaces static navbar SVG');
   assert.equal(await link.locator('.c08-navbar-animation').count(),0);
-  await page.screenshot({path:resolve(out,'desktop-chromium-shop-static-hover.png')});
+  await page.screenshot({path:resolve(out,'desktop-chromium-shop-native-hover.png')});
+  await page.waitForFunction(()=>window.__chapchitraNavbarC08?.state.completed===1,{timeout:15000});
+  assert.equal(await link.locator('img').evaluate(n=>getComputedStyle(n).visibility),'visible','The static navbar SVG stays visible after hover completion');
  }
  reviewTimeline.push({event:'Home -> Shop via C02',route:'shop',compactVisible:other.wordmark.visible});
  await page.waitForTimeout(650);
