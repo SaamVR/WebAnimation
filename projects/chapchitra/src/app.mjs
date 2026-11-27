@@ -1,4 +1,4 @@
-import { journalEditorial, articleEditorial, mountJournalEditorial } from './journal-editorial.mjs';
+import { journalEditorial, articleEditorial } from './journal-editorial.mjs';
 import { DEMO_SIZES, DEMO_COLORS, variantKey, readVariantKey, colorLabel } from './demo-variants.mjs';
 import { mountOriginalThemeToggle } from './illustrated-theme-toggle.mjs';
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
@@ -680,7 +680,7 @@ async function boot(){
   return '<section class="customize-layout" hidden aria-hidden="true"></section>';
  }
  function journal(){return journalEditorial(articlePreviews,printSilhouette);}
- function article(){return articleEditorial(articlePreviews,printSilhouette,qs.get('slug'));}
+ function article(){return articleEditorial(articlePreviews,printSilhouette,qs.get('slug')||document.body.dataset.journalSlug||null);}
  function about(){
   return pageTop('PEOPLE · PLACES · PRINTS','The Living Print Studio','CHAPCHITRA is an evolving editorial vision for wearable art, illustration and printmaking in a Bangladeshi creative context.')+
   '<section class="wrap route-content about-layout"><div><p class="eyebrow">OUR PERSPECTIVE</p><h2>Culture, drawn into everyday life.</h2><p>People, places, and prints form the framework for the studio’s visual world. This page is a foundation for the owner-approved origin story, original artwork and printmaking references.</p><p>Until final copy arrives, we avoid inventing a founder biography, workshop location or sourcing claims.</p><a class="text-link" href="/journal/">Read the Journal ↗</a></div><div class="about-visual">'+printSilhouette(2)+'</div></section><section id="street-story" class="wrap route-content"><h2>Scenes from the street</h2><p>The original owner-supplied layered street illustration is shown here as a provisional, static artwork. C09 animation will be designed and approved separately.</p><img class="about-street" src="/assets/street-owner-provisional.svg" width="1920" height="700" loading="lazy" decoding="async" alt="Provisional original layered illustration of CHAPCHITRA shops, a neighborhood street and a tea stall."></section>';
@@ -1502,7 +1502,10 @@ async function boot(){
   }
  }
  // Display the original theme-correct navbar SVG without an animation player.
- if(route==='journal'||route==='article')mountJournalEditorial(document,window,articlePreviews,printSilhouette);
+ if(route==='journal'||route==='article'){
+  const {mountJournalNavigation}=await import('./journal-navigation.mjs');
+  mountJournalNavigation(document,window,articlePreviews,printSilhouette,{closePanels:()=>{setMobileMenu(false,{immediate:true});toggle(search,searchButton,false)}});
+ }
 }
 boot().catch(error=>{
  console.error('CHAPCHITRA V3 initialization failure:',error);

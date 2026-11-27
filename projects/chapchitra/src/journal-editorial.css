@@ -64,3 +64,14 @@
 .je-image-sheet>img{object-position:50% 65%}.je-story,.je-notes article{padding-bottom:12px}.je-feature-controls{margin-top:10px}
 @media(max-width:1000px){.je-front>.je-notes{grid-column:1/-1;grid-row:2}}
 @media(max-width:600px){.je-front>.je-feature{grid-column:1;grid-row:1}.je-front>.je-support{grid-column:1;grid-row:2}.je-front>.je-notes{grid-column:1;grid-row:3}.je-masthead h1{font-size:clamp(48px,12vw,72px)}}
+
+/* Entrance owns transient transforms only; the approved newspaper grid is unchanged. */
+.je-feature #journalFeatured>.je-kicker{font-size:12px}
+.je-paper[data-je-entrance]:not([data-je-entrance="complete"]) .je-masthead,.je-paper[data-je-entrance]:not([data-je-entrance="complete"]) .je-article-mast{overflow:clip}
+.je-paper[data-je-entrance]:not([data-je-entrance="complete"]) .je-front,.je-paper[data-je-entrance]:not([data-je-entrance="complete"]) .je-article-opening{overflow:clip}
+.je-paper h1[tabindex='-1']:focus{outline:none}
+@media(prefers-reduced-motion:reduce){.je-paper[data-je-entrance] :is(.je-word,.je-image-sheet){transform:none;clip-path:none}}
+
+/* First paint guard only while Journal boots; native content is readable without JS. */
+html.je-boot .je-paper :is(.je-masthead h1,.je-article-mast a,.je-front .je-image,.je-article-opening .je-image,.je-front .je-word,.je-article-opening .je-word){clip-path:inset(0 100% 0 0)}
+@media(prefers-reduced-motion:reduce){html.je-boot .je-paper :is(.je-masthead h1,.je-article-mast a,.je-image,.je-word){clip-path:none}}
