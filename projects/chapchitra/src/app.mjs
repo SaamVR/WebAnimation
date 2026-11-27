@@ -760,7 +760,20 @@ async function boot(){
  // focused control is clicked. Track the last real input modality for these four
  // controls only; all other focus styling continues to use native focus-visible.
  const pointerFocusTargets='#themeToggle,#themeToggleMobile,.logo-word--image,.logo-word--footer';
- document.addEventListener('pointerdown',()=>{document.documentElement.dataset.ccFocusModality='pointer'},{capture:true,passive:true});
+ document.addEventListener('pointerdown',event=>{
+  document.documentElement.dataset.ccFocusModality='pointer';
+  const control=event.target.closest?.(pointerFocusTargets);
+  // Remove a previous keyboard focus before pointer activation, without
+  // canceling the pointer event, hover animation, touch scroll or link click.
+  if(control&&control.contains(document.activeElement))document.activeElement.blur();
+ },{capture:true,passive:true});
+ // Chromium focuses native links/buttons as the default action of mousedown,
+ // before click. A click-time blur is too late for a transient native focus
+ // highlight. Cancel only that default action on the four named controls.
+ // Mouse/touch-generated click and the ordinary link/button semantics remain.
+ document.addEventListener('mousedown',event=>{
+  if(event.button===0&&event.target.closest?.(pointerFocusTargets))event.preventDefault();
+ },{capture:true});
  // A pointer-activated link must not retain focus through a BFCache restore.
  // Preserve keyboard/screen-reader activation (detail=0) and native navigation.
  document.addEventListener('click',event=>{

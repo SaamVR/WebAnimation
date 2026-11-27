@@ -2989,6 +2989,14 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
 :root[data-theme="dark"][data-cc-focus-modality="keyboard"] #app > .site-header :is(.logo-word--image,.cc-theme-toggle,.cc-mobile-theme-toggle):focus,
 :root[data-cc-focus-modality="keyboard"] #app .site-footer .logo-word--footer:focus{outline-color:var(--color-cream)!important}
 
+
+/* Pointer-only focus suppression, including the press interval and unfocused
+   release. No changes to the native logo, C08 player or toggle illustration. */
+:root[data-cc-focus-modality="pointer"] #app > .site-header :is(.logo-word--image,.cc-theme-toggle,.cc-mobile-theme-toggle),
+:root[data-cc-focus-modality="pointer"] #app .site-footer .logo-word--footer{
+ outline:0!important;box-shadow:none!important;-webkit-tap-highlight-color:transparent;
+}
+
 /* C08 native navbar projection; the original image remains the layout anchor. */
 #app > .site-header .logo-word--image{position:relative;isolation:isolate}
 #app > .site-header .cc-nav-native-stage{
