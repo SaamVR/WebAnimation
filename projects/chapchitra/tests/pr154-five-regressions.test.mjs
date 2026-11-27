@@ -13,8 +13,8 @@ test('PR154 viewport hero changes are strictly desktop-scoped, with no global wr
  assert.match(segment,/#app > \.site-header \.header-line\.wrap\{/);
  assert.match(segment,/#hero \.hero-split-inner\.wrap\{/);
  assert.match(segment,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
- assert.match(segment,/height:calc\(100dvh - 99px\)/);
- assert.match(segment,/height:calc\(100dvh - 98px\)/);
+ assert.match(segment,/height:calc\(100dvh - 65px\)/);
+ assert.match(segment,/height:calc\(100dvh - 64px\)/);
  assert.doesNotMatch(segment,/(?:^|\n)\s*\.wrap\s*\{/,'do not alter unrelated sections');
  assert.doesNotMatch(segment,/@media\s*\(max-width/,'do not override approved tablet/mobile sizing');
 });

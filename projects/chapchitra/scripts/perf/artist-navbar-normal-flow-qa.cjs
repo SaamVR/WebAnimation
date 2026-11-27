@@ -12,12 +12,12 @@ async function measure(page){
  return page.evaluate(()=>{
   const header=document.querySelector('#app > .site-header');
   const main=document.querySelector('#app > #main');
-  const announcement=document.querySelector('#app > .announcement');
-  const h=header.getBoundingClientRect(),m=main.getBoundingClientRect(),a=announcement.getBoundingClientRect();
+  const announcementCount=document.querySelectorAll('#app > .announcement').length;
+  const h=header.getBoundingClientRect(),m=main.getBoundingClientRect();
   const element=document.elementFromPoint(innerWidth/2,3);
   return {route:document.body.dataset.page,scrollY:scrollY,headerTop:h.top,
    headerBottom:h.bottom,headerHeight:h.height,mainTop:m.top,
-   announcementTop:a.top,announcementBottom:a.bottom,
+   announcementCount,
    headerPosition:getComputedStyle(header).position,
    topmostIsHeader:!!element?.closest('#siteHeader'),
    headerInlineStyle:header.getAttribute('style'),
@@ -44,8 +44,8 @@ async function run(browser,engine,width,height){
   check(engine+' '+route+' page identity',initial.route===route,{got:initial.route});
   check(engine+' '+route+' navbar in normal header flow initially',
    Math.abs(initial.mainTop-initial.headerBottom)<2 && initial.headerHeight>40,{initial});
-  check(engine+' '+route+' retains initial nav height and announcement flow',
-   initial.announcementBottom<=initial.headerTop+2 && initial.headerTop>=0,{initial});
+  check(engine+' '+route+' starts at viewport top without announcement',
+   initial.announcementCount===0 && Math.abs(initial.headerTop)<2,{initial});
   const expected=route==='artists-edit'?'static':'sticky';
   check(engine+' '+route+' computed position is '+expected,initial.headerPosition===expected,{got:initial.headerPosition});
   if(route==='artists-edit'){

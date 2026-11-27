@@ -3,19 +3,15 @@
 // Nothing is rendered, measured repeatedly or listened to on normal pages.
 const round = value => Math.round(value * 100) / 100;
 
-export function navGeometry(header, announcement, view = window) {
+export function navGeometry(header, view = window) {
   const headerRect = header.getBoundingClientRect();
-  const announcementRect = announcement.getBoundingClientRect();
   const viewport = view.visualViewport;
   const visualOffsetTop = viewport?.offsetTop ?? 0;
-  const announcementGone = announcementRect.bottom <= 0;
   return {
     scrollY: round(view.scrollY ?? 0),
     headerTop: round(headerRect.top),
     headerBottom: round(headerRect.bottom),
-    announcementBottom: round(announcementRect.bottom),
-    announcementGone,
-    layoutGap: round(announcementGone ? Math.max(0, headerRect.top) : 0),
+    layoutGap: round(Math.max(0, headerRect.top)),
     visualOffsetTop: round(visualOffsetTop),
     visualPageTop: round(viewport?.pageTop ?? (view.scrollY ?? 0) + visualOffsetTop),
     visualHeight: round(viewport?.height ?? view.innerHeight ?? 0),
@@ -29,8 +25,7 @@ export function navGeometry(header, announcement, view = window) {
 export function installStickyViewportDiagnostics(root = document, view = window) {
   if (!new URLSearchParams(view.location?.search ?? '').has('navdebug')) return () => {};
   const header = root.getElementById('siteHeader');
-  const announcement = root.querySelector('#app > .announcement');
-  if (!header || !announcement) return () => {};
+  if (!header) return () => {};
 
   const panel = root.createElement('aside');
   panel.setAttribute('data-cc-nav-debug', '');
@@ -60,12 +55,11 @@ export function installStickyViewportDiagnostics(root = document, view = window)
   function describeElement(element) {
     if (!element) return 'outside document / none';
     if (header.contains(element)) return 'navbar';
-    if (announcement.contains(element)) return 'announcement';
     const parent = element.closest('[id], main, section, article');
     return (parent?.id ? '#' + parent.id : parent?.tagName?.toLowerCase() ?? element.tagName.toLowerCase());
   }
   const measure = () => {
-    const state = navGeometry(header, announcement, view);
+    const state = navGeometry(header, view);
     const headerStyle = view.getComputedStyle(header);
     const safeStyle = view.getComputedStyle(probe);
     // elementFromPoint can test only DOM-visible pixels. If it reports the
@@ -114,7 +108,6 @@ export function installStickyViewportDiagnostics(root = document, view = window)
     text.textContent =
       'iPad navbar diagnosis (read-only)\n' +
       'header.top: ' + state.headerTop + 'px; CSS top: ' + state.cssTop + '\n' +
-      'announcement.bottom: ' + state.announcementBottom + 'px\n' +
       'layout gap: ' + state.layoutGap + 'px\n' +
       'visualViewport.offsetTop: ' + state.visualOffsetTop + 'px\n' +
       'visualViewport.pageTop: ' + state.visualPageTop + 'px\n' +

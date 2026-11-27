@@ -22,6 +22,6 @@ test('Every other page still inherits existing sticky CSS', () => {
   assert.doesNotMatch(css, /body\[data-page="(?:home|shop|journal|about)"\][^}]*position\s*:\s*static/);
   assert.match(artistPage, /<body data-page="artists-edit">/);
   assert.match(homePage, /<body data-page="home">/);
-  assert.match(app, /app\.innerHTML=announcement\(\)\+header\(\)/);
+  assert.match(app, /app\.innerHTML=header\(\)/);
   assert.match(guard, /if \(!new URLSearchParams\(view.location\?\.search \?\? ''\).has\('navdebug'\)\) return/);
 });

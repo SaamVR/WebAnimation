@@ -77,7 +77,6 @@ async function boot(){
   {id:'tie-dye',title:'Tie-Dye',desc:'Color and hand-made exploration'}
  ];
  const bellRendered=false; // No existing authentication integration. Remain logged out.
- function announcement(){return '<aside class="announcement" aria-label="Store announcement"><span>Free delivery on orders over ৳2000 · Join the list for early access to new drops</span></aside>'}
  function header(){
   // Three equal-side CSS grid tracks place the middle link at the mathematical
   // viewport center, regardless of left-side links or right-side icon widths.
@@ -748,7 +747,7 @@ async function boot(){
  let favoritesState=new Set();
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
- app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
+ app.innerHTML=header()+'<main id="main">'+mainPage()+'</main>'+footer();
   // Hydration restores the existing count without replaying the stamp.
   let renderedBagCount=demoBagCount();
  // Native CSS sticky handles alignment; optional ?navdebug=1 is read-only.
