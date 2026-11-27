@@ -136,7 +136,9 @@ test('Hero01 paper and full logo remain painted through scroll-linked retraction
  assert.doesNotMatch(css,/#hero \.hero01-full-logo\{transition:opacity/);
  assert.match(app,/paperPanel\.style\.transform='translate3d/);
  assert.match(app,/hero01Retraction\(\{/);
- assert.match(css,/#hero:has\(\.hero-cover:not\(\[hidden\]\)\)\{overflow:visible\}/);
+ assert.match(css,/#hero:has\(\.hero-cover:not\(\[hidden\]\)\)\{overflow:clip\}/);
+ assert.match(app,/paperPanel\.toggleAttribute/);
+ assert.match(css,/\.hero01-paper-panel\[data-retraction-complete\]\{visibility:hidden;pointer-events:none\}/);
  assert.match(app,/heroIdentity\.inert=!special/);
  assert.match(browser,/paperAtTop/);
  assert.match(browser,/logoAtTop/);

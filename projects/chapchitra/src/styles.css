@@ -2638,10 +2638,11 @@ body[data-page="home"] #app > .site-header[data-hero01-mode="special"] .logo-wor
   margin-left:0;
   margin-right:auto;
 }
-/* The compositor-preserved hero clips ordinary descendants; it must release
-   overflow only while Hero01 is active so the retraction can pass *behind*
-   the separate sticky navbar instead of clipping at the hero's old top. */
-#hero:has(.hero-cover:not([hidden])){overflow:visible}
+/* Confine the paper assembly to the hero, independent of navbar visibility.
+   Its original scroll-linked transform remains intact until completion. */
+#hero:has(.hero-cover:not([hidden])){overflow:clip}
+#hero .hero01-paper-panel[data-retraction-complete]{visibility:hidden;pointer-events:none}
+#hero .hero01-paper-panel[data-retraction-complete] *{visibility:hidden!important;pointer-events:none!important}
 #hero .hero01-paper-panel{
   position:absolute;
   top:0;left:0;right:0;

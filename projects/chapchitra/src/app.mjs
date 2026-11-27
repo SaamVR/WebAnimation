@@ -1111,6 +1111,8 @@ async function boot(){
    });
    paperPanel.style.transform='translate3d(0,'+state.offsetY.toFixed(3)+'px,0)';
    paperPanel.dataset.retractionProgress=state.progress.toFixed(4);
+   // The original completed paper must not depend on the navbar covering it.
+   paperPanel.toggleAttribute('data-retraction-complete',state.complete);
    const special=active===0&&!state.complete;
    const mode=special?'special':'standard';
    // The compact owner wordmark is now required on portrait phones even
