@@ -263,11 +263,35 @@ async function runOne(browser,profile,t,root,out){
   await ready(page,()=>window.__chapchitraC08?.hero.disposed===true);
   assert.equal(await page.locator('.c08-complete-stage').count(),0);
   const countBefore=record.requests.length;
+  await page.mouse.move(5,5);
   await page.goto(root+'/shop/',{waitUntil:'domcontentloaded'});
   await page.locator('#shopProducts').waitFor({timeout:20000});
-  await page.waitForTimeout(250);
-  assert.equal(record.requests.length,countBefore,'Non-home route must not load C08');
+  await ready(page,()=>!!window.__chapchitraNavbarC08);
+  await page.waitForTimeout(350);
+  const idleRequests=record.requests.slice(countBefore);
+  assert.deepEqual([...idleRequests].sort(),['/motion/c08/complete-logo.mjs','/motion/c08/navbar-native.mjs'],'Only approved navbar code may load at idle outside Home');
+  assert.equal(await page.locator('.c08-complete-stage,.c08-complete-variant,.c08-navbar-animation').count(),0,'No hero or retired split renderer outside Home');
+  assert.equal(await page.evaluate(()=>!!window.__chapchitraC08?.hero),false,'No hero runtime outside Home');
+  assert.equal(await page.evaluate(()=>window.__chapchitraNavbarC08.state.starts),0,'No idle navbar autoplay');
+  assert.equal(await page.evaluate(()=>window.__chapchitraNavbarC08.state.ready),false,'No idle navbar composition');
+  assert.equal(await page.locator('.site-footer .cc-nav-native-stage').count(),0,'Footer remains static');
+  const nav=page.locator('.site-header .logo-word--image');
+  if(!profile.touch){
+   const hoverTheme=await page.evaluate(()=>document.documentElement.dataset.theme);
+   const beforeHover=record.requests.length;
+   await nav.hover();
+   await ready(page,()=>window.__chapchitraNavbarC08.state.playing===true);
+   assert.equal(await page.evaluate(()=>window.__chapchitraNavbarC08.state.theme),hoverTheme);
+   assert.deepEqual(record.requests.slice(beforeHover),['/assets/c08-final/'+suffix[hoverTheme]],'Deliberate hover loads only active approved theme asset');
+   assert.equal(await nav.locator('img').evaluate(e=>getComputedStyle(e).visibility),'hidden');
+   assert.equal(await nav.locator('.cc-nav-native-holder svg').count(),1);
+   await ready(page,()=>window.__chapchitraNavbarC08.state.completed===1);
+   assert.equal(await nav.locator('img').evaluate(e=>getComputedStyle(e).visibility),'visible');
+   assert.equal(await page.evaluate(()=>window.__chapchitraNavbarC08.state.starts),1);
+   await page.mouse.move(5,5);
+  }
   record.checks.disposalAndNonHomeIsolation=true;
+  record.checks.approvedNavbarOnDemand=true;
   assert.deepEqual(record.errors,[]);assert.deepEqual(record.badResponses,[]);
   record.pass=true;
  }catch(error){record.pass=false;record.failure=error.stack||String(error);try{record.failureState=await snapshot(page);await shot(page,out,name+'-FAIL')}catch{}}
