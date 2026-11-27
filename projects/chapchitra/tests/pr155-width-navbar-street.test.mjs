@@ -56,12 +56,14 @@ test('Horizontal width refinements do not rewrite global wraps or card geometry'
 test('Dark circles have 36px Cream artwork inside four 44px hit targets',()=>{
  const css=text('src/theme.css');
  const scope=css.slice(css.indexOf('/* CHAPCHITRA final owner reference'));
- for(const token of ['width:44px','height:44px','min-width:44px','min-height:44px',
-   'max-width:44px','max-height:44px','flex:0 0 44px'])assert.ok(scope.includes(token),token);
+ assert.match(css,/#app > \.site-header \.nav-actions \.nav-icon:not\(\.cc-theme-toggle\)\{\s*min-width:44px;min-height:44px;/);
+ const darkAction=scope.match(/\.nav-icon:not\(\.cc-theme-toggle\)\{([^}]+)\}/)?.[1];
+ assert.ok(darkAction);
+ assert.doesNotMatch(darkAction,/(?:^|[;\n])\s*(?:width|height|min-width|min-height|max-width|max-height|flex|padding|gap|place-items|position|box-sizing)\s*:/);
  const visual=scope.slice(scope.indexOf('.nav-icon:not(.cc-theme-toggle)::before'));
  for(const token of ['width:36px','height:36px','background:var(--color-cream)',
    'pointer-events:none','z-index:-1'])assert.ok(visual.includes(token),token);
- assert.match(scope,/@media \(min-width:431px\)/);
+ assert.doesNotMatch(scope,/\.nav-actions\{[^}]*gap\s*:/,'Dark mode must inherit light spacing');
  assert.doesNotMatch(scope,/\.cc-nav-art|\.bag-count|#8A503B|#293D2D/);
  const originalToggle=text('src/theme-toggle.css');
  assert.match(originalToggle,/width:96px!important;height:38\.4px!important/);

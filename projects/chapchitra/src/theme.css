@@ -663,10 +663,8 @@
    All FOUR dark-mode actions on desktop/tablet use the same optical surface.
    Never resize/search/paint the owner SVGs or the 96px illustrated toggle. */
 :root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle){
-  box-sizing:border-box;
-  width:44px;height:44px;min-width:44px;min-height:44px;
-  max-width:44px;max-height:44px;flex:0 0 44px;padding:0;
-  place-items:center;position:relative;
+  /* Geometry is inherited from the approved light-mode action row.
+     Only the Cream optical surface changes with the theme. */
   background:transparent;
   isolation:isolate;
 }
@@ -682,9 +680,6 @@
 }
 :root[data-theme="dark"] #app > .site-header .nav-actions .nav-icon:not(.cc-theme-toggle):hover{
   background:transparent;
-}
-@media (min-width:431px){
-  :root[data-theme="dark"] #app > .site-header .nav-actions{gap:2px}
 }
 /* Phone uses a SIMPLE 44px hamburger with the theme's existing text
    color, not a fifth decorative Cream disk. Search/Bag keep 36px disks. */
