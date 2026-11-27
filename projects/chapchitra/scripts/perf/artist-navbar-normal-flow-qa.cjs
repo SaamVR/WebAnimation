@@ -18,7 +18,7 @@ async function measure(page){
   return {route:document.body.dataset.page,scrollY:scrollY,headerTop:h.top,
    headerBottom:h.bottom,headerHeight:h.height,mainTop:m.top,
    announcementCount,
-   headerPosition:getComputedStyle(header).position,
+   headerPosition:getComputedStyle(header).position,scrollMode:header.dataset.ccScrollNav,
    topmostIsHeader:!!element?.closest('#siteHeader'),
    headerInlineStyle:header.getAttribute('style'),
    bodyScrollHeight:document.documentElement.scrollHeight,
@@ -46,7 +46,7 @@ async function run(browser,engine,width,height){
    Math.abs(initial.mainTop-initial.headerBottom)<2 && initial.headerHeight>40,{initial});
   check(engine+' '+route+' starts at viewport top without announcement',
    initial.announcementCount===0 && Math.abs(initial.headerTop)<2,{initial});
-  const expected=route==='artists-edit'?'static':'sticky';
+  const expected='sticky';
   check(engine+' '+route+' computed position is '+expected,initial.headerPosition===expected,{got:initial.headerPosition});
   if(route==='artists-edit'){
    await page.screenshot({path:path.join(out,engine+'-artist-top.png')});
@@ -55,25 +55,21 @@ async function run(browser,engine,width,height){
    await page.evaluate(()=>scrollTo({top:Math.min(650,document.documentElement.scrollHeight-innerHeight),behavior:'instant'}));
    await page.waitForTimeout(130);
    let scrolled=await measure(page);
-   check(engine+' artist header physically scrolls out',
-    scrolled.scrollY>initial.headerTop+initial.headerHeight+20 && scrolled.headerBottom<-20 && !scrolled.topmostIsHeader,{scrolled});
-   check(engine+' artist static header follows scroll without compensation',
-    Math.abs(scrolled.headerTop-(initial.headerTop-scrolled.scrollY))<2,{initialHeaderTop:initial.headerTop,scrolled});
+   check(engine+' artist header visually hides',scrolled.scrollMode==='hidden'&&!scrolled.topmostIsHeader,{scrolled});
+   check(engine+' artist header retains sticky layout footprint',Math.abs(scrolled.headerTop)<2&&scrolled.headerHeight===initial.headerHeight&&Math.abs(scrolled.mainTop-(initial.mainTop-scrolled.scrollY))<2,{scrolled});
    await page.screenshot({path:path.join(out,engine+'-artist-scrolled.png')});
    await page.evaluate(()=>scrollTo({top:Math.min(1500,document.documentElement.scrollHeight-innerHeight),behavior:'instant'}));
    await page.waitForTimeout(160);
    const deep=await measure(page);
-   check(engine+' artist remains nonsticky after deep scroll',
-    deep.scrollY>scrolled.scrollY && deep.headerBottom < -initial.headerHeight,{deep});
+   check(engine+' artist stays visually hidden after deep scroll',deep.scrollY>scrolled.scrollY&&deep.scrollMode==='hidden',{deep});
    await page.evaluate(()=>scrollTo({top:180,behavior:'instant'}));
    await page.waitForTimeout(120);
    const reverse=await measure(page);
-   check(engine+' artist header remains in normal flow during reverse scroll',
-    Math.abs(reverse.headerTop-(initial.headerTop-reverse.scrollY))<2,{reverse});
+   check(engine+' artist header reveals during reverse scroll without layout shift',reverse.scrollMode==='visible'&&Math.abs(reverse.headerTop)<2&&Math.abs(reverse.mainTop-(initial.mainTop-reverse.scrollY))<2,{reverse});
    await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
    await page.waitForTimeout(160);
    const returned=await measure(page);
-   check(engine+' artist navbar returns only at page top',
+   check(engine+' artist navbar remains visible at page top',
     returned.scrollY===0 && Math.abs(returned.headerTop-initial.headerTop)<2 &&
     Math.abs(returned.mainTop-returned.headerBottom)<2,{returned});
    await page.screenshot({path:path.join(out,engine+'-artist-returned.png')});

@@ -58,7 +58,7 @@ const geometry=(id,m)=>{
  verify(id+' stage retains original aspect',Math.abs(m.stage.width/m.stage.height-16/9)<.02,m.stage);
  verify(id+' frame retains approved aspect',Math.abs(m.frame.width/m.frame.height-(id.startsWith('mobile')?9/16:16/9))<.02,m.frame);
  verify(id+' no horizontal overflow',m.overflowX<=2,m.overflowX);
- verify(id+' Artist navbar remains normal flow',m.headerPosition==='static',m.headerPosition);
+ verify(id+' Artist navbar enhanced sticky remains in flow',m.headerPosition==='sticky',m.headerPosition);
 };
 const navigateToArtist=async(page,kind,id)=>{
  await page.goto(root+'/',{waitUntil:'load',timeout:60000});

@@ -1,6 +1,7 @@
 import { DEMO_SIZES, DEMO_COLORS, variantKey, readVariantKey, colorLabel } from './demo-variants.mjs';
 import { mountOriginalThemeToggle } from './illustrated-theme-toggle.mjs';
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
+import { mountScrollNavbar } from './nav-scroll.mjs';
 import { createHeroCarouselClock } from './hero-carousel-clock.mjs';
 import {hero01Retraction} from './hero01-retraction.mjs';
 import {playInkImpression,cancelInkImpression} from './motion/c04/ink-impression.mjs';
@@ -752,6 +753,7 @@ async function boot(){
   let renderedBagCount=demoBagCount();
  // Native CSS sticky handles alignment; optional ?navdebug=1 is read-only.
  installStickyViewportDiagnostics(document, window);
+ mountScrollNavbar(document.getElementById('siteHeader'));
  // The synchronous head bootstrap owns persistence/system detection. This
  // handler only reflects/accessibly changes its resolved choice, never layout.
  const themeButtons=[$('#themeToggle'),$('#themeToggleMobile')].filter(Boolean);

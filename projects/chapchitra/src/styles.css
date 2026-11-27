@@ -1901,6 +1901,40 @@ html,body{overflow-x:visible}
 
 
 
+/* Scroll-reactive navbar: visual-only clipping and opacity, never height,
+   padding, spacing, artwork, transform, or document-flow compensation.
+   Artist's Edit retains its original static fallback without JS. */
+body[data-page="artists-edit"] #app > .site-header[data-cc-scroll-nav]{
+ position:sticky;top:0;inset-block-start:0;
+}
+#app > .site-header[data-cc-scroll-nav="hidden"]{
+ opacity:0;clip-path:inset(0 100% 0 0);pointer-events:none;
+ animation:cc-navbar-hide 350ms ease-in-out both;
+}
+#app > .site-header[data-cc-scroll-nav="hidden"] *{pointer-events:none!important}
+#app > .site-header[data-cc-scroll-nav="visible"]{
+ animation:cc-navbar-reveal 350ms cubic-bezier(.22,.61,.36,1);
+}
+#app > .site-header[data-cc-scroll-nav="pinned"]{
+ animation:none;clip-path:none;opacity:1;
+}
+@keyframes cc-navbar-hide{
+ from{opacity:1;clip-path:inset(0 0 0 0)}
+ to{opacity:0;clip-path:inset(0 100% 0 0)}
+}
+@keyframes cc-navbar-reveal{
+ from{opacity:1;clip-path:inset(0 100% 0 0)}
+ to{opacity:1;clip-path:inset(0 0 0 0)}
+}
+/* No clipping containing block on open menus or C02 handoff. */
+html.cc-mobile-menu-open #app > .site-header[data-cc-scroll-nav],
+html.c02-pending #app > .site-header[data-cc-scroll-nav]{
+ animation:none;clip-path:none;opacity:1;pointer-events:auto;
+}
+@media(prefers-reduced-motion:reduce){
+ #app > .site-header[data-cc-scroll-nav]{animation:none!important}
+}
+
 /* CHAPCHITRA Shop: static editorial banner and metadata-driven collection UI.
    Scoped to /shop/ classes. No animation or homepage layout changes. */
 #app > .site-header .nav-center > a[href="/shop/"]{

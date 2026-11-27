@@ -9,7 +9,7 @@ const homePage = read('../src/index.html');
 const app = read('../src/app.mjs');
 const guard = read('../src/nav-sticky-guard.mjs');
 
-test('Artist Edit alone opts out of sticky header with static normal flow', () => {
+test('Artist Edit static fallback remains without enhanced scroll controller', () => {
   const rule = css.match(/body\[data-page="artists-edit"\]\s+#app\s*>\s*\.site-header\s*\{([^}]*)\}/);
   assert.ok(rule, 'route-scoped header override');
   assert.match(rule[1], /position\s*:\s*static\s*;/);
@@ -25,3 +25,5 @@ test('Every other page still inherits existing sticky CSS', () => {
   assert.match(app, /app\.innerHTML=header\(\)/);
   assert.match(guard, /if \(!new URLSearchParams\(view.location\?\.search \?\? ''\).has\('navdebug'\)\) return/);
 });
+
+test('Artist Edit enhancement preserves initial footprint and enables scroll-reactive sticky header',()=>{assert.match(css,/body\[data-page="artists-edit"\] #app > \.site-header\[data-cc-scroll-nav\]\{\s*position:sticky;top:0;inset-block-start:0;/);assert.match(app,/mountScrollNavbar\(document\.getElementById\('siteHeader'\)\)/)});
