@@ -928,3 +928,29 @@
  .cc-mobile-popup-artwork-controls .cc-worktable-secondary-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
  .cc-mobile-popup-artwork-controls .cc-manual-art-button.cc-sketch{font-size:12px}
 }
+
+/* Creative review: selection uses an existing painted Terracotta SVG instead
+   of a generic rectangle. Original button textures and aspect ratio remain. */
+.cc-worktable-choice.cc-manual-choice.cc-compact-artwork{font-size:13px}
+.cc-worktable-choice.cc-manual-choice[aria-pressed="true"]:not(:focus-visible){outline:none}
+.cc-worktable-choice.cc-manual-choice[aria-pressed="true"]::before{
+ content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background:url("/assets/compact/compact-button-terracotta.svg?compact=final-colors-ink-2") center/contain no-repeat;
+}
+.cc-worktable-choice.cc-manual-choice[aria-pressed="true"] .cc-compact-art{visibility:hidden}
+.cc-worktable-choice.cc-manual-choice[aria-pressed="true"] .cc-sketch-label{
+ color:#F4EBE4!important;font-weight:700;text-decoration:none;opacity:1!important;
+}
+.cc-worktable-choice.cc-manual-choice[aria-pressed="true"] .cc-sketch-label-ink{visibility:hidden}
+.cc-worktable-choice-row[data-control-group="printSize"] .cc-manual-choice{max-width:164px}
+.cc-worktable-scale-label,.cc-worktable-scale output,.cc-worktable-print-tips,.cc-worktable-live,
+.cc-worktable-size-guidance,.cc-worktable-bag-status{color:var(--text-primary)}
+:root[data-theme="dark"] body[data-page="artists-edit"] :is(.cc-worktable-panel-subtitle,.cc-worktable-field-note,.cc-worktable-hint,.cc-worktable-price-note,.cc-worktable-price-disclaimer,.cc-worktable-print-tips,.cc-worktable-scale-label,.cc-worktable-scale output,.cc-worktable-live,.cc-worktable-size-guidance,.cc-worktable-bag-status,.cc-worktable-quality){color:var(--theme-muted)}
+:root[data-theme="dark"] body[data-page="artists-edit"] :is(.cc-worktable-panel-kicker,.cc-worktable-artwork-kicker,.cc-worktable-field-index,.cc-worktable-price-kicker){color:var(--theme-gallery)}
+:root[data-theme="dark"] body[data-page="artists-edit"] .cc-manual-choice.cc-sketch .cc-sketch-label{color:#232323}
+:root[data-theme="dark"] body[data-page="artists-edit"] .cc-manual-choice.cc-sketch[aria-pressed="true"] .cc-sketch-label{color:#F4EBE4!important}
+@media(min-width:601px) and (max-width:1100px){
+ .cc-worktable-artwork-zone{grid-template-columns:1fr;gap:18px}
+ .cc-worktable-upload-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+ .cc-worktable-secondary-actions{grid-column:1/-1;grid-template-columns:repeat(2,minmax(100px,164px));justify-content:start}
+}
