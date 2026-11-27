@@ -2934,3 +2934,46 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
   /* Neutral sky only: original authored vector fills remain untouched. */
   background:var(--color-cream);
 }
+
+/* UX Batch 01: pointer activation does not leave a rectangle; keyboard focus stays visible. */
+#app > .site-header :is(.logo-word--image,.cc-theme-toggle,.cc-mobile-theme-toggle):focus:not(:focus-visible),
+#app .site-footer .logo-word--footer:focus:not(:focus-visible){outline:none;box-shadow:none}
+#app > .site-header .logo-word--image:focus-visible,
+#app .site-footer .logo-word--footer:focus-visible{outline:3px solid var(--color-terracotta);outline-offset:4px}
+:root[data-theme="dark"] #app > .site-header .logo-word--image:focus-visible,
+#app .site-footer .logo-word--footer:focus-visible{outline-color:var(--color-cream)}
+@media(min-width:1200px){
+ #app .site-footer :is(.footer-grid,.footer-bottom).wrap{width:min(1680px,calc(100% - 64px));max-width:none}
+ #app .site-footer .footer-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.8fr) minmax(0,1fr) minmax(0,1.65fr);column-gap:clamp(24px,3vw,60px)}
+}
+/* Product selection: use existing demo vocabulary; do not change the illustration or button artwork. */
+.detail-layout{align-items:start;gap:clamp(24px,4vw,70px)}
+.detail-info{min-width:0}
+.detail-info h1{margin:0 0 12px}
+.detail-variants{display:grid;gap:18px;margin:24px 0 8px}
+.detail-variant-group{border:0;padding:0;margin:0;min-width:0}
+.detail-variant-group legend{font-weight:650;padding:0;margin-bottom:10px}
+.detail-variant-group legend small{margin-left:8px;color:var(--mut);font-size:11px;font-weight:400}
+.detail-size-options,.detail-color-options{display:flex;flex-wrap:wrap;gap:10px}
+.detail-size-option,.detail-color-option{position:relative;display:grid;place-items:center;cursor:pointer;min-width:44px;min-height:44px}
+.detail-size-option input,.detail-color-option input{position:absolute;inset:0;margin:0;opacity:0;cursor:pointer}
+.detail-size-option span{display:grid;place-items:center;min-width:44px;min-height:44px;padding:4px 9px;border:1px solid var(--color-mushroom-gray);border-radius:4px}
+.detail-size-option input:checked + span{background:var(--color-press-green);border-color:var(--color-press-green);color:var(--color-cream)}
+.detail-color-option{gap:6px;font-size:11px;min-width:54px}
+.detail-color-dot{display:block;width:28px;height:28px;border-radius:50%;border:1px solid var(--color-mushroom-gray)}
+.detail-color-option[data-color="black"] .detail-color-dot{background:var(--color-graphite)}
+.detail-color-option[data-color="white"] .detail-color-dot{background:var(--color-gallery-white)}
+.detail-color-option[data-color="red"] .detail-color-dot{background:#be4747}
+.detail-color-option[data-color="yellow"] .detail-color-dot{background:#e5c447}
+.detail-color-option[data-color="green"] .detail-color-dot{background:#3c7251}
+.detail-color-option[data-color="blue"] .detail-color-dot{background:#416eac}
+.detail-color-option input:checked + .detail-color-dot{outline:2px solid var(--color-terracotta);outline-offset:3px}
+.detail-color-option input:checked ~ span:last-child{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.detail-size-option input:focus-visible + span,.detail-color-option input:focus-visible + .detail-color-dot{outline:3px solid var(--color-terracotta);outline-offset:4px}
+:root[data-theme="dark"] .detail-size-option input:focus-visible + span,
+:root[data-theme="dark"] .detail-color-option input:focus-visible + .detail-color-dot{outline-color:var(--color-cream)}
+.detail-variant-note{font-size:12px;color:var(--mut);margin:0}
+.detail-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:16px 0}
+.detail-actions .detail-add-button{margin:0}
+.detail-info > .text-link{display:inline-block;margin:0}
+@media(min-width:1200px){body[data-page="product"] #main > .detail-layout.wrap{width:min(1680px,calc(100% - 64px));max-width:none;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
