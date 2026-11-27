@@ -12,9 +12,9 @@ test('eleven homepage units and functional UX controller contracts',async()=>{
  const home=app.match(/function home\(\)\{return ([^}]+)\}/)?.[1];
  assert.ok(home,'home() should exist');
  for(const f of ['hero()','benefits()','categoriesSection()','collection()','banners()','featured()','values()','story()'])assert.ok(home.includes(f),f);
- assert.match(app,/app\.innerHTML=announcement\(\)\+header\(\)/);
+ assert.match(app,/app\.innerHTML=header\(\)/);
  assert.match(app,/mainPage\(\)\+'<\/main>'\+footer\(\)/);
- for(const label of ['Free delivery on orders over ৳2000','Artist-Inspired Drop','Color, by hand','Your idea, printed','From the Journal'])assert.ok(app.includes(label),label);
+ for(const label of ['Artist-Inspired Drop','Color, by hand','Your idea, printed','From the Journal'])assert.ok(app.includes(label),label);
  assert.match(app,/createHeroCarouselClock\(\{/);
  assert.match(app,/onAdvance:next=>changeHero\(next,false\)/);
  assert.match(app,/aria-pressed/);
@@ -186,7 +186,7 @@ test('exact homepage section and individual card background mapping is maintaine
  const css=await read('src/styles.css');
  const app=await read('src/app.mjs');
  const required=[
-  '.announcement','background:var(--deep)',
+
   '.site-header','background:var(--bg)',
   '.hero-carousel','background:var(--bg)',
   '.benefit-section','background:var(--bg)',
@@ -643,7 +643,7 @@ test('Featured has straight full-bleed sides and zero vertical edge strips',asyn
 });
 
 
-test('native sticky uses announcement normal flow and never patches navbar position',async()=>{
+test('native sticky uses top-of-page normal flow and never patches navbar position',async()=>{
  const css=await read('src/styles.css');
  const app=await read('src/app.mjs');
  const guard=await read('src/nav-sticky-guard.mjs');
@@ -651,7 +651,7 @@ test('native sticky uses announcement normal flow and never patches navbar posit
  assert.match(stickyRule,/#app\{overflow:visible\}/);
  assert.match(stickyRule,/#app > \.site-header\{[\s\S]*?position:-webkit-sticky;[\s\S]*?position:sticky;[\s\S]*?top:0;[\s\S]*?inset-block-start:0;[\s\S]*?margin-block-start:0/);
  assert.match(stickyRule,/html,body\{overflow-x:visible\}/);
- assert.match(app,/app\.innerHTML=announcement\(\)\+header\(\)/);
+ assert.match(app,/app\.innerHTML=header\(\)/);
  assert.match(app,/installStickyViewportDiagnostics\(document, window\)/);
  assert.doesNotMatch(app,/installStickyViewportGuard\(/);
  assert.match(guard,/if \(!new URLSearchParams\(view\.location\?\.search \?\? ''\)\.has\('navdebug'\)\) return \(\) => \{\};/);
@@ -663,24 +663,21 @@ test('native sticky uses announcement normal flow and never patches navbar posit
 
 test('Safari viewport offsets remain diagnostic-only, not navbar corrections',async()=>{
  const {navGeometry,installStickyViewportDiagnostics}=await import('../src/nav-sticky-guard.mjs');
- let top=34,bottom=34,scrollY=0,offset=0;
+ let top=0,scrollY=0,offset=0;
  const header={getBoundingClientRect:()=>({top,height:65}),style:{}};
- const announcement={getBoundingClientRect:()=>({bottom})};
  const view={get scrollY(){return scrollY},visualViewport:{get offsetTop(){return offset}}};
- let state=navGeometry(header,announcement,view);
- assert.equal(state.announcementGone,false);
- assert.equal(state.headerTop,34);
+ let state=navGeometry(header,view);
+ assert.equal(state.headerTop,0);
  assert.equal(state.layoutGap,0);
- top=0;bottom=-280;scrollY=300;
- state=navGeometry(header,announcement,view);
- assert.equal(state.announcementGone,true);
+ top=0;scrollY=300;
+ state=navGeometry(header,view);
  assert.equal(state.layoutGap,0);
- offset=24;state=navGeometry(header,announcement,view);
+ offset=24;state=navGeometry(header,view);
  assert.equal(state.visualOffsetTop,24);
  assert.equal(state.visualRelativeTop,-24);
  assert.equal(state.layoutGap,0,'Safari visual viewport movement must not create CSS sticky gap');
  assert.deepEqual(header.style,{},'the header is never translated');
- top=12;state=navGeometry(header,announcement,view);
+ top=12;state=navGeometry(header,view);
  assert.equal(state.layoutGap,12,'positive native layout gap must be exposed for diagnosis, not patched');
  assert.deepEqual(header.style,{});
  const result=installStickyViewportDiagnostics({}, {location:{search:''}});
@@ -704,9 +701,8 @@ test('opt-in physical iPad report distinguishes DOM gap from Safari browser chro
  assert.match(app,/installStickyViewportDiagnostics\(document, window\)/);
  assert.doesNotMatch(src,/header\.style\.translate\s*=|header\.style\.transform\s*=|window\.scrollBy/);
  const header={getBoundingClientRect:()=>({top:0,bottom:65})};
- const announcement={getBoundingClientRect:()=>({bottom:-90})};
  const visualViewport={offsetTop:24,pageTop:524,height:744,scale:1};
- const geometry=navGeometry(header,announcement,{
+ const geometry=navGeometry(header,{
   scrollY:500,visualViewport,innerHeight:768,
  });
  assert.equal(geometry.layoutGap,0);
@@ -779,7 +775,7 @@ test('authentic cropped final logo used in navbar, Hero 1, footer and favicon',a
  assert.match(css,/grid-template-columns:minmax\(0,1fr\) auto minmax\(0,1fr\)/);
  assert.match(guard,/visualViewport/);
  assert.match(guard,/installStickyViewportDiagnostics/);
- assert.doesNotMatch(guard,/state\.announcementGone && state\.gap > 1/);
+ assert.doesNotMatch(guard,/announcementGone/);
 });
 test('all final logo binaries are real optimized image files with expected magic bytes',async()=>{
  const webps=['chapchitra-wordmark.webp','chapchitra-wordmark-light.webp',

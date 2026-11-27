@@ -26,16 +26,16 @@ const paths=['/','/shop/','/artists-edit/'];
      await page.evaluate(value=>window.scrollTo({top:value,behavior:'instant'}),y);
      await page.waitForTimeout(90);
      const measure=await page.evaluate(()=>{
-      const h=document.getElementById('siteHeader'),a=document.querySelector('#app > .announcement');
-      const hb=h.getBoundingClientRect(),ab=a.getBoundingClientRect();
+      const h=document.getElementById('siteHeader');
+      const hb=h.getBoundingClientRect();
       const vp=visualViewport,el=document.elementFromPoint(innerWidth/2,2);
-      return {scrollY,headerTop:hb.top,headerBottom:hb.bottom,announcementBottom:ab.bottom,
+      return {scrollY,headerTop:hb.top,headerBottom:hb.bottom,announcementCount:document.querySelectorAll("#app > .announcement").length,
        vpOffset:vp?.offsetTop??0,visualPageTop:vp?.pageTop??scrollY,
        cssPosition:getComputedStyle(h).position,elementAtTop:!!el?.closest('#siteHeader'),
        translate:getComputedStyle(h).translate,diagnostics:!!window.__ccNavViewport};
      });
-     const stuck=measure.announcementBottom<=0;
-     const pass=!stuck||(Math.abs(measure.headerTop)<2&&measure.elementAtTop&&measure.cssPosition==='sticky');
+     const stuck=true;
+     const pass=measure.announcementCount===0&&Math.abs(measure.headerTop)<2&&measure.elementAtTop&&measure.cssPosition==='sticky';
      rows.push({engine:name,route,target:y,pass,stuck,...measure});
     }
     await page.screenshot({path:path.join(out,name+'-'+slug+'-scroll.png')});

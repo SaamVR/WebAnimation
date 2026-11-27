@@ -1,6 +1,7 @@
 import { DEMO_SIZES, DEMO_COLORS, variantKey, readVariantKey, colorLabel } from './demo-variants.mjs';
 import { mountOriginalThemeToggle } from './illustrated-theme-toggle.mjs';
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
+import { mountScrollNavbar } from './nav-scroll.mjs';
 import { createHeroCarouselClock } from './hero-carousel-clock.mjs';
 import {hero01Retraction} from './hero01-retraction.mjs';
 import {playInkImpression,cancelInkImpression} from './motion/c04/ink-impression.mjs';
@@ -77,7 +78,6 @@ async function boot(){
   {id:'tie-dye',title:'Tie-Dye',desc:'Color and hand-made exploration'}
  ];
  const bellRendered=false; // No existing authentication integration. Remain logged out.
- function announcement(){return '<aside class="announcement" aria-label="Store announcement"><span>Free delivery on orders over ৳2000 · Join the list for early access to new drops</span></aside>'}
  function header(){
   // Three equal-side CSS grid tracks place the middle link at the mathematical
   // viewport center, regardless of left-side links or right-side icon widths.
@@ -748,11 +748,12 @@ async function boot(){
  let favoritesState=new Set();
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
- app.innerHTML=announcement()+header()+'<main id="main">'+mainPage()+'</main>'+footer();
+ app.innerHTML=header()+'<main id="main">'+mainPage()+'</main>'+footer();
   // Hydration restores the existing count without replaying the stamp.
   let renderedBagCount=demoBagCount();
  // Native CSS sticky handles alignment; optional ?navdebug=1 is read-only.
  installStickyViewportDiagnostics(document, window);
+ mountScrollNavbar(document.getElementById('siteHeader'));
  // The synchronous head bootstrap owns persistence/system detection. This
  // handler only reflects/accessibly changes its resolved choice, never layout.
  const themeButtons=[$('#themeToggle'),$('#themeToggleMobile')].filter(Boolean);
@@ -1110,6 +1111,8 @@ async function boot(){
    });
    paperPanel.style.transform='translate3d(0,'+state.offsetY.toFixed(3)+'px,0)';
    paperPanel.dataset.retractionProgress=state.progress.toFixed(4);
+   // The original completed paper must not depend on the navbar covering it.
+   paperPanel.toggleAttribute('data-retraction-complete',state.complete);
    const special=active===0&&!state.complete;
    const mode=special?'special':'standard';
    // The compact owner wordmark is now required on portrait phones even

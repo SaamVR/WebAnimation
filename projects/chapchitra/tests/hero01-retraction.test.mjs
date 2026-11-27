@@ -46,3 +46,12 @@ test('after the last retraction frame paper AND its drop shadow are fully behind
  assert.equal(paperBottom,headerBottom-HERO01_SHADOW_CLEARANCE_PX);
  assert.ok(HERO01_SHADOW_CLEARANCE_PX>=10);
 });
+
+test('completed paper releases with the hero instead of tracking the sticky viewport',()=>{
+ const h=306,d=h*HERO01_RETRACTION_SCROLL_RATIO,b=65;
+ const a=hero01Retraction({scrollY:d,headerBottom:b,heroTop:b-d,paperHeight:h});
+ for(const extra of [1,200,900,1800]){
+  const s=hero01Retraction({scrollY:d+extra,headerBottom:b,heroTop:b-d-extra,paperHeight:h});
+  assert.equal(s.complete,true);assert.ok(Math.abs(s.offsetY-a.offsetY)<1e-8);assert.ok(Math.abs(s.targetTop-(a.targetTop-extra))<1e-8);
+ }
+});

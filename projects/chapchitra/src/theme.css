@@ -158,9 +158,6 @@
 :root[data-theme="dark"] #app > .site-header .search-inline input::placeholder{
   color:var(--theme-muted);opacity:1;
 }
-:root[data-theme="dark"] .announcement{
-  background:var(--theme-header);color:var(--theme-text);
-}
 :root[data-theme="dark"] #hero .hero01-paper-edge .hero01-paper-cut{
   fill:var(--theme-header);
   /* identical SVG d path, shadow, transform, origin, and scale */
