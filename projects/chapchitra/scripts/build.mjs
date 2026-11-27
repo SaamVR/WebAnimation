@@ -19,7 +19,12 @@ const {articlePreviews}=await import('../src/catalog.mjs');
 const {printSilhouette}=await import('../src/components.mjs');
 const journalTemplate=await readFile(resolve(output,'journal/index.html'),'utf8');
 const storyTemplate=await readFile(resolve(output,'journal/story/index.html'),'utf8');
-const prerender=(html,content)=>html.replace('<div id="app"></div>','<div id="app"><main id="main">'+content+'</main></div>');
+const prerender=(html,content)=>{
+ // Static HTML links resolve directly to the crawlable per-slug outline.
+ // The hydrated Journal deliberately retains its existing query URLs.
+ for(const a of articlePreviews)content=content.replaceAll('href="/journal/story/?slug='+encodeURIComponent(a.slug)+'"','href="/journal/story/'+a.slug+'/"');
+ return html.replace('<div id="app"></div>','<div id="app"><main id="main">'+content+'</main></div>');
+};
 await writeFile(resolve(output,'journal/index.html'),prerender(journalTemplate,journalEditorial(articlePreviews,printSilhouette)));
 const safeText=t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 for(const a of articlePreviews){
