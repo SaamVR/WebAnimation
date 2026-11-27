@@ -759,7 +759,14 @@ async function boot(){
  // Safari and Chromium can retain native :focus-visible when an already keyboard-
  // focused control is clicked. Track the last real input modality for these four
  // controls only; all other focus styling continues to use native focus-visible.
+ const pointerFocusTargets='#themeToggle,#themeToggleMobile,.logo-word--image,.logo-word--footer';
  document.addEventListener('pointerdown',()=>{document.documentElement.dataset.ccFocusModality='pointer'},{capture:true,passive:true});
+ // A pointer-activated link must not retain focus through a BFCache restore.
+ // Preserve keyboard/screen-reader activation (detail=0) and native navigation.
+ document.addEventListener('click',event=>{
+  const control=event.target.closest?.(pointerFocusTargets);
+  if(control&&event.detail>0&&document.documentElement.dataset.ccFocusModality==='pointer')control.blur();
+ },{capture:true});
  document.addEventListener('keydown',e=>{
   if(!['Shift','Control','Alt','Meta'].includes(e.key))document.documentElement.dataset.ccFocusModality='keyboard';
  },{capture:true});
@@ -808,6 +815,7 @@ async function boot(){
   illustratedToggle.sync(dark);
  };
  syncThemeButton();
+ void import('/motion/c08/navbar-native.mjs').then(({mountC08Navbar})=>mountC08Navbar($('.site-header .logo-word--image'))).catch(()=>{});
  for(const control of themeButtons)control.addEventListener('click',()=>{
   const target=document.documentElement.dataset.theme==='dark'?'light':'dark';
   window.chapchitraTheme?.set(target);

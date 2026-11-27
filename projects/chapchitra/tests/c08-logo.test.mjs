@@ -35,7 +35,7 @@ test('Owner final complete Lottie files are byte-exact, nonlooping 2400 square s
   assert.ok(roller.ks.r.k.some(k=>k.s?.includes(-90)||k.e?.includes(-90)));
  }
 });
-test('PR165 retirement remains intact; final player is hero-only, never split cloth or legacy renderer',async()=>{
+test('PR165 retirement remains intact; final complete hero player never uses split cloth or legacy renderer',async()=>{
  const assets=await readdir(resolve(root,'src/assets/c08'));
  assert.equal(assets.filter(f=>/\.(json|lottie)$/i.test(f)).length,0);
  const app=await read('src/app.mjs'),html=await read('src/index.html'),build=await read('scripts/build.mjs');
@@ -57,7 +57,7 @@ test('PR165 retirement remains intact; final player is hero-only, never split cl
  assert.match(css,/visibility:hidden/);
  assert.match(css,/prefers-reduced-motion:reduce/);
 });
-test('Original full SVG fallback and static navbar wordmark preserved in both themes',async()=>{
+test('Original full SVG fallback and navbar static fallback preserved in both themes',async()=>{
  const app=await read('src/app.mjs');
  assert.match(app,/src="\/assets\/brand\/chapchitra-light-full\.svg"/);
  assert.match(app,/src="\/assets\/brand\/chapchitra-light-wordmark\.svg"/);
@@ -74,4 +74,9 @@ test('Hero dwell and unrelated animation lanes remain unchanged',async()=>{
  assert.doesNotMatch(app,/isLocked:\(\)=>active===0/);
  assert.match(app,/motion\/c01\/connected-benefits\.mjs/);
  assert.match(app,/motion\/c04\/ink-impression\.mjs/);
+});
+
+test('native navbar projects the unchanged complete composition, not obsolete split art',async()=>{
+ const runtime=await read('src/motion/c08/navbar-native.mjs'),app=await read('src/app.mjs');
+ assert.match(app,/mountC08Navbar/);assert.match(runtime,/import \{ASSETS,player,validate,decodePatch,rendererReady\}/);assert.match(runtime,/viewBox','0 1497 2400 550'/);assert.match(runtime,/loop:false,autoplay:false/);assert.match(runtime,/pointerenter/);assert.match(runtime,/prefers-reduced-motion: reduce/);assert.doesNotMatch(runtime,/logo-player|cloth\.svg|animationData:\s*\{/);
 });

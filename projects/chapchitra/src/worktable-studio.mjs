@@ -118,7 +118,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
       </div>
       <div class="cc-worktable-upload-row">
         <div class="cc-worktable-upload-group">
-          <button type="button" id="worktableUploadArt" aria-label="Upload artwork from this device">Upload artwork</button>
+          ${sketchButton({label:'Upload artwork',variant:'long',tone:'forest',className:'cc-manual-art-button',attrs:'id="worktableUploadArt" aria-label="Upload artwork from this device"'})}
           <p id="worktableArtworkQuality" class="cc-worktable-quality" role="status" aria-live="polite" hidden></p>
           <details class="cc-worktable-print-tips">
             <summary>Print tips</summary>
@@ -131,7 +131,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
           </details>
         </div>
         <label class="cc-worktable-scale"><span class="cc-worktable-scale-label">Artwork size</span><span class="cc-worktable-scale-control"><input type="range" id="worktableArtScale" min="-50" max="100" step="1" value="0" disabled aria-label="Artwork size adjustment relative to selected A3 or A4 print area"><output id="worktableScaleOutput">0%</output></span><span id="worktableSizeGuidance" class="cc-worktable-size-guidance" aria-live="polite" hidden></span></label>
-        <div class="cc-worktable-secondary-actions"><button type="button" id="worktableResetArt" aria-label="Reset artwork position, size and rotation" disabled>Reset</button><button type="button" id="worktableRemoveArt" aria-label="Remove uploaded artwork" disabled>Remove</button></div>
+        <div class="cc-worktable-secondary-actions">${sketchButton({label:'Reset',tone:'beige',className:'cc-manual-art-button',attrs:'id="worktableResetArt" aria-label="Reset artwork position, size and rotation" disabled'})}${sketchButton({label:'Remove',tone:'terracotta',className:'cc-manual-art-button',attrs:'id="worktableRemoveArt" aria-label="Remove uploaded artwork" disabled'})}</div>
       </div>
     </section>
     <p class="cc-worktable-hint">Move, resize or rotate directly on the shirt.</p>
@@ -143,7 +143,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
           <p class="cc-worktable-price-note">Temporary BDT pricing · No checkout or payment</p>
         </div>
         <div class="cc-worktable-price-action">
-          <button type="button" id="worktableAddDemoBag">Add to demo bag</button>
+          ${sketchButton({label:'Add to demo bag',variant:'long',tone:'forest',className:'cc-manual-art-button',attrs:'id="worktableAddDemoBag"'})}
           <p id="worktableBagStatus" class="cc-worktable-bag-status" role="status" aria-live="polite"></p>
         </div>
       </div>
@@ -420,8 +420,13 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  // illustration. Its editorial hierarchy is presentation only: no second
  // selected-state store and no modifications to the worktable hit targets.
  const sideControl=(group,value)=>{
-  const b=document.createElement('button');b.type='button';b.dataset.group=group;b.dataset.value=value;
-  b.className='cc-worktable-choice';
+  const b=group==='color'?document.createElement('button'):(()=>{
+   const template=document.createElement('template');
+   template.innerHTML=sketchButton({label:labels[value]||value,variant:'compact',tone:'beige',className:'cc-worktable-choice cc-manual-choice'});
+   return template.content.firstElementChild;
+  })();
+  b.type='button';b.dataset.group=group;b.dataset.value=value;
+  b.classList.add('cc-worktable-choice');
   b.setAttribute('aria-pressed','false');
   if(group==='color'){
    // Swatches represent the calibrated FABRIC, not the unchanged illustrated
@@ -430,8 +435,6 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    const dot=document.createElement('span');dot.className='cc-worktable-swatch';dot.setAttribute('aria-hidden','true');
    const name=document.createElement('span');name.className='cc-worktable-choice-label';name.textContent=labels[value];
    b.append(dot,name);
-  }else{
-   b.textContent=labels[value]||value;
   }
   return b;
  };
