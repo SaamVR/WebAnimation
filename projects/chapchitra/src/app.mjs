@@ -1,3 +1,4 @@
+import { journalEditorial, articleEditorial } from './journal-editorial.mjs';
 import { DEMO_SIZES, DEMO_COLORS, variantKey, readVariantKey, colorLabel } from './demo-variants.mjs';
 import { mountOriginalThemeToggle } from './illustrated-theme-toggle.mjs';
 import { installStickyViewportDiagnostics } from './nav-sticky-guard.mjs';
@@ -678,16 +679,8 @@ async function boot(){
   // No visible route heading, hero, spacer or scroll intervention.
   return '<section class="customize-layout" hidden aria-hidden="true"></section>';
  }
- function journal(){
-  return pageTop('STORIES / PROCESS','The Journal','A structural editorial collection. Feature rotation and individual pages work; final story copy is pending.')+
-  '<section class="wrap route-content"><div class="journal-spotlight" id="journalSpotlight" aria-label="Featured story carousel"><div id="journalFeatured"></div><div class="journal-controls"><button id="journalPrevious" type="button" aria-label="Previous featured article">‹</button><span id="journalIndex">01 / 05</span><button id="journalNext" type="button" aria-label="Next featured article">›</button></div></div><div class="section-title"><div><p class="eyebrow">INDEX</p><h2>From the notebook</h2></div><p>Click through to individual article study pages.</p></div><div class="journal-grid">'+articlePreviews.map((a,i)=>'<article class="journal-card"><div class="journal-thumb">'+printSilhouette(i)+'</div><p class="eyebrow">'+a.eyebrow+'</p><h3><a href="/journal/story/?slug='+a.slug+'">'+a.title+'</a></h3><p>'+a.teaser+'</p><a class="text-link" href="/journal/story/?slug='+a.slug+'">Read the outline ↗</a></article>').join('')+'</div></section>';
- }
- function article(){
-  const slug=qs.get('slug')||articlePreviews[0].slug;
-  const a=articlePreviews.find(x=>x.slug===slug);
-  if(!a)return pageTop('JOURNAL','Story unavailable','The requested studio outline does not exist.')+'<div class="wrap route-content">'+sketchButton({label:'Return to Journal',variant:'compact',tone:'forest',href:'/journal/'})+'</div>';
-  return '<article class="wrap article-detail route-content"><p class="eyebrow">'+a.eyebrow+'</p><h1>'+a.title+'</h1><p class="lead">'+a.teaser+'</p><div class="article-art">'+printSilhouette(articlePreviews.indexOf(a))+'</div><h2>Editorial outline</h2><p>This page reserves space for the original writing, process photographs and artist context associated with this story. The final article has not been supplied and this copy is intentionally not presented as researched reporting.</p><a href="/journal/" class="text-link">← All journal stories</a></article>';
- }
+ function journal(){return journalEditorial(articlePreviews,printSilhouette);}
+ function article(){return articleEditorial(articlePreviews,printSilhouette,qs.get('slug')||document.body.dataset.journalSlug||null);}
  function about(){
   return pageTop('PEOPLE · PLACES · PRINTS','The Living Print Studio','CHAPCHITRA is an evolving editorial vision for wearable art, illustration and printmaking in a Bangladeshi creative context.')+
   '<section class="wrap route-content about-layout"><div><p class="eyebrow">OUR PERSPECTIVE</p><h2>Culture, drawn into everyday life.</h2><p>People, places, and prints form the framework for the studio’s visual world. This page is a foundation for the owner-approved origin story, original artwork and printmaking references.</p><p>Until final copy arrives, we avoid inventing a founder biography, workshop location or sourcing claims.</p><a class="text-link" href="/journal/">Read the Journal ↗</a></div><div class="about-visual">'+printSilhouette(2)+'</div></section><section id="street-story" class="wrap route-content"><h2>Scenes from the street</h2><p>The original owner-supplied layered street illustration is shown here as a provisional, static artwork. C09 animation will be designed and approved separately.</p><img class="about-street" src="/assets/street-owner-provisional.svg" width="1920" height="700" loading="lazy" decoding="async" alt="Provisional original layered illustration of CHAPCHITRA shops, a neighborhood street and a tea stall."></section>';
@@ -1509,20 +1502,9 @@ async function boot(){
   }
  }
  // Display the original theme-correct navbar SVG without an animation player.
- if(route==='journal'){
-  let index=0,interval=null,hover=false,focus=false;
-  const spotlight=$('#journalSpotlight');
-  function renderJournalFeature(){
-   const a=articlePreviews[index];
-   $('#journalFeatured').innerHTML='<div class="journal-feature-art">'+printSilhouette(index)+'</div><div class="journal-feature-copy"><p class="eyebrow">'+a.eyebrow+'</p><h2>'+a.title+'</h2><p>'+a.teaser+'</p>'+sketchButton({label:'Open story',variant:'compact',tone:'terracotta',href:'/journal/story/?slug='+a.slug})+'</div>';
-   $('#journalIndex').textContent=String(index+1).padStart(2,'0')+' / 05';
-  }
-  function schedule(){if(interval){clearInterval(interval);interval=null}if(!hover&&!focus&&!document.hidden&&!mediaReduced.matches)interval=setInterval(()=>{index=(index+1)%articlePreviews.length;renderJournalFeature()},8000)}
-  function rotate(n){index=(index+n+articlePreviews.length)%articlePreviews.length;renderJournalFeature();schedule()}
-  $('#journalPrevious').addEventListener('click',()=>rotate(-1));$('#journalNext').addEventListener('click',()=>rotate(1));
-  spotlight.addEventListener('mouseenter',()=>{hover=true;schedule()});spotlight.addEventListener('mouseleave',()=>{hover=false;schedule()});
-  spotlight.addEventListener('focusin',()=>{focus=true;schedule()});spotlight.addEventListener('focusout',()=>{focus=spotlight.contains(document.activeElement);schedule()});
-  document.addEventListener('visibilitychange',schedule);mediaReduced.addEventListener('change',schedule);renderJournalFeature();schedule();
+ if(route==='journal'||route==='article'){
+  const {mountJournalNavigation}=await import('./journal-navigation.mjs');
+  mountJournalNavigation(document,window,articlePreviews,printSilhouette,{closePanels:()=>{setMobileMenu(false,{immediate:true});toggle(search,searchButton,false)}});
  }
 }
 boot().catch(error=>{

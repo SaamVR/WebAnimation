@@ -16,6 +16,7 @@ export const C02_PAGES = Object.freeze([
 // Legacy symbol retained for old test references; it now names pages,
 // never the obsolete homepage-only link allowlist.
 export const C02_PATHS=C02_PAGES;
+export function isJournalPath(path){return /^\/journal(?:\/story(?:\/[a-z0-9-]+)?)?\/?$/.test(path)}
 export function isC02Eligible({
   current, destination, modified=false, target='_self',
   download=false, external=false, disabled=false
@@ -30,6 +31,7 @@ export function isC02Eligible({
      from.origin!==to.origin)return false;
   const sameDocument=from.pathname===to.pathname && from.search===to.search;
   if(sameDocument)return false; // Includes in-page anchor scrolling.
+  if(isJournalPath(from.pathname)&&isJournalPath(to.pathname))return false; // Editorial navigation only.
   if(/\.(?:zip|rar|pdf|svg|png|jpe?g|gif|webp|mp4|webm|json|css|mjs|js|woff2?|ttf)$/i.test(to.pathname))return false;
   return true;
 }

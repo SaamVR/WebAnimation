@@ -13,6 +13,28 @@ console.log('CHAPCHITRA four back garments verified:',backAssets);
 await rm(output,{recursive:true,force:true});
 await mkdir(output,{recursive:true});
 await cp(src,output,{recursive:true});
+// Journal preview: real anchor URLs and pre-rendered outlines. Preserve noindex on this demo.
+const {journalEditorial,articleEditorial}=await import('../src/journal-editorial.mjs');
+const {articlePreviews}=await import('../src/catalog.mjs');
+const {printSilhouette}=await import('../src/components.mjs');
+const journalTemplate=await readFile(resolve(output,'journal/index.html'),'utf8');
+const storyTemplate=await readFile(resolve(output,'journal/story/index.html'),'utf8');
+const prerender=(html,content)=>{
+ // Static HTML links resolve directly to the crawlable per-slug outline.
+ // The hydrated Journal deliberately retains its existing query URLs.
+ for(const a of articlePreviews)content=content.replaceAll('href="/journal/story/?slug='+encodeURIComponent(a.slug)+'"','href="/journal/story/'+a.slug+'/"');
+ return html.replace('<div id="app"></div>','<div id="app"><main id="main">'+content+'</main></div>');
+};
+await writeFile(resolve(output,'journal/index.html'),prerender(journalTemplate,journalEditorial(articlePreviews,printSilhouette)));
+const safeText=t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+for(const a of articlePreviews){
+ if(!/^[a-z0-9-]+$/.test(a.slug))throw Error('Unsafe journal slug');
+ const dir=resolve(output,'journal/story',a.slug);await mkdir(dir,{recursive:true});
+ const html=storyTemplate.replace('href="../../styles.css"','href="/styles.css"').replace('src="../../app.mjs"','src="/app.mjs"').replace('data-page="article"','data-page="article" data-journal-slug="'+a.slug+'"').replace('<title>From the Journal · CHAPCHITRA</title>','<title>'+safeText(a.title)+' · CHAPCHITRA</title>').replace('content="CHAPCHITRA creative apparel and printmaking demo. Editorial prototype; no purchases."','content="'+safeText(a.teaser)+'"');
+ await writeFile(resolve(dir,'index.html'),prerender(html,articleEditorial(articlePreviews,printSilhouette,a.slug)));
+}
+// Query URLs still resolve through the original page controller. Non-JS readers get the real outline index.
+await writeFile(resolve(output,'journal/story/index.html'),prerender(storyTemplate,'<section class="je-paper"><div class="je-inner"><h1>From the Journal</h1><p>Editorial preview: choose an outline.</p>'+articlePreviews.map(a=>'<p><a href="/journal/story/'+a.slug+'/">'+safeText(a.title)+'</a> — '+safeText(a.teaser)+'</p>').join('')+'</div></section>'));
 // The former C08 animation is retired. Never publish its archived SVG assets.
 await rm(resolve(output,'assets/c08'),{recursive:true,force:true});
 // Final owner-approved type system: preload only the two critical Latin
