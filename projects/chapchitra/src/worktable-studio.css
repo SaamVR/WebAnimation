@@ -954,3 +954,40 @@
  .cc-worktable-upload-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
  .cc-worktable-secondary-actions{grid-column:1/-1;grid-template-columns:repeat(2,minmax(100px,164px));justify-content:start}
 }
+
+/* Final manual-control refinement. Only the painted faces and their copy
+   shrink; the original button box remains the accessible hit target. */
+.cc-worktable-rail .cc-worktable-choice.cc-manual-choice.cc-compact-artwork{
+ min-height:44px;min-width:44px;background:transparent;border:0;box-shadow:none;
+}
+.cc-worktable-rail .cc-worktable-choice.cc-manual-choice .cc-compact-art,
+.cc-worktable-rail .cc-worktable-choice.cc-manual-choice .cc-sketch-copy{
+ transform:scale(.8);transform-origin:center;
+}
+.cc-worktable-rail .cc-worktable-choice.cc-manual-choice[aria-pressed="true"]::before{
+ inset:10%;background-size:contain;
+}
+.cc-worktable-rail .cc-worktable-choice[data-group="size"]{
+ --cc-label:#F4EBE4;
+}
+.cc-worktable-rail .cc-worktable-choice[data-group="size"] .cc-sketch-label,
+:root[data-theme="dark"] body[data-page="artists-edit"] .cc-worktable-rail .cc-manual-choice[data-group="size"] .cc-sketch-label{color:#F4EBE4!important}
+.cc-worktable-rail .cc-worktable-choice[data-group="size"] .cc-sketch-label-ink{visibility:hidden}
+.cc-worktable-rail .cc-worktable-choice-row[data-control-group="color"]{
+ grid-template-columns:repeat(3,minmax(44px,1fr));gap:8px;align-items:start;
+}
+.cc-worktable-rail .cc-worktable-choice[data-group="color"]{min-width:44px;min-height:64px;padding:5px 2px;gap:6px;justify-content:center}
+.cc-worktable-rail .cc-worktable-choice[data-group="color"] .cc-worktable-choice-label{line-height:1.25;text-align:center}
+.cc-worktable-rail .cc-worktable-choice-row[data-control-group="printSize"]{justify-items:start}
+.cc-worktable-rail .cc-worktable-choice-row[data-control-group="printSize"] .cc-manual-choice{width:min(100%,164px)}
+.cc-worktable-rail .cc-worktable-choice{-webkit-tap-highlight-color:transparent}
+:root[data-cc-focus-modality="pointer"] .cc-worktable-rail .cc-worktable-choice{outline:0!important;box-shadow:none!important}
+:root[data-cc-focus-modality="keyboard"] .cc-worktable-rail .cc-worktable-choice:focus{outline:3px solid var(--color-terracotta)!important;outline-offset:3px}
+:root[data-theme="dark"][data-cc-focus-modality="keyboard"] .cc-worktable-rail .cc-worktable-choice:focus{outline-color:var(--color-cream)!important}
+@media(min-width:601px) and (max-width:1100px){
+ .cc-worktable-rail .cc-worktable-choice-row[data-control-group="printSize"]{grid-template-columns:repeat(2,minmax(44px,1fr))}
+}
+@media(max-width:600px){
+ .cc-worktable-rail .cc-worktable-choice-row{gap:6px}
+ .cc-worktable-rail .cc-worktable-choice-row[data-control-group="color"]{grid-template-columns:repeat(3,minmax(44px,1fr))}
+}
