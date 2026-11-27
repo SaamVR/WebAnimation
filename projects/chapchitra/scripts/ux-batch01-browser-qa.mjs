@@ -9,7 +9,7 @@ const tools=process.env.CC_LOCAL_TOOLS||'G:/CHAPCHITRA-Local/tools';
 const baseline='http://127.0.0.1:4173',candidate='http://127.0.0.1:4174';
 const out=path.join(tools,'qa','ux-batch01-ui-'+(process.env.CC_TEST_SHA||'uncommitted').slice(0,12));
 fs.mkdirSync(out,{recursive:true});
-const profiles=[{width:1440,height:900},{width:834,height:1112},{width:390,height:844}];
+const profiles=[{width:1440,height:900},{width:834,height:1112},{width:390,height:844}].filter(v=>!process.env.CC_UX_WIDTH||v.width===Number(process.env.CC_UX_WIDTH));
 const sha=process.env.CC_TEST_SHA||'uncommitted';
 const results=[];
 const save=()=>fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({sha,results},null,2));
@@ -57,18 +57,34 @@ try{
     rec.checks.variants='PASS';await shot(p,'.demo-bag-section',name+'-after-bag');
     await load(p,candidate+product,'.detail-info');const favorite=p.locator('.detail-info [data-favorite]');
     const before=await favorite.innerText();await favorite.click();assert.notEqual(await favorite.innerText(),before);rec.checks.favorite='PASS';
-    const toggle=p.locator('#themeToggle');await toggle.click();await p.waitForFunction(t=>document.documentElement.dataset.theme===t,theme==='dark'?'light':'dark',{timeout:10000});
+    const touch=viewport.width<=430;
+    const activate=async l=>touch?l.tap():l.click();
+    const toggle=p.locator('#themeToggle');await activate(toggle);
+    await p.waitForFunction(t=>document.documentElement.dataset.theme===t,theme==='dark'?'light':'dark',{timeout:10000});
     let f=await focus(toggle);assert.ok(!f.focused||f.outline==='none'||f.width==='0px','pointer theme focus rectangle');
     await p.keyboard.press('Tab');await toggle.focus();f=await focus(toggle);assert.ok(f.focused&&f.outline!=='none'&&f.width!=='0px','keyboard theme focus not visible');
     rec.checks.themeFocus='PASS';
-    await p.keyboard.press('Tab');
-    for(const selector of ['.site-header .logo-word--image','.site-footer .logo-word--footer']){
-     const link=p.locator(selector).first();await p.keyboard.press('Tab');await link.focus();f=await focus(link);assert.ok(f.focused&&f.outline!=='none'&&f.width!=='0px','keyboard logo outline '+selector);
-     // Only suppress navigation inside the QA page, to observe real pointer focus after activation.
+    async function logoFocus(selector){
+     const link=p.locator(selector).first();await link.waitFor({state:'visible'});
+     await p.keyboard.press('Tab');await link.focus();f=await focus(link);assert.ok(f.focused&&f.outline!=='none'&&f.width!=='0px','keyboard logo outline '+selector);
      await link.evaluate(el=>el.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation()},{capture:true,once:true}));
-     await link.click();f=await focus(link);assert.ok(!f.focused||f.outline==='none'||f.width==='0px','pointer logo outline '+selector);
+     await activate(link);f=await focus(link);assert.ok(!f.focused||f.outline==='none'||f.width==='0px','pointer logo outline '+selector);
     }
-    rec.checks.logoFocus='PASS';await toggle.click();await p.waitForFunction(t=>document.documentElement.dataset.theme===t,theme,{timeout:10000});await shot(p,'.site-footer',name+'-after-footer');
+    if(touch){
+     // Approved closed mobile header intentionally hides the wordmark.
+     assert.equal(await p.locator('.site-header .logo-word--image').isVisible(),false);
+     await activate(p.locator('#menuButton'));
+     await p.locator('.site-header .logo-word--image').waitFor({state:'visible'});
+    }
+    await logoFocus('.site-header .logo-word--image');
+    if(touch){
+     const menu=p.locator('#menuButton');
+     if(await menu.getAttribute('aria-expanded')==='true')await activate(menu);
+    }
+    await logoFocus('.site-footer .logo-word--footer');
+    rec.checks.logoFocus='PASS';await activate(toggle);
+    await p.waitForFunction(t=>document.documentElement.dataset.theme===t,theme,{timeout:10000});
+    await shot(p,'.site-footer',name+'-after-footer');
     await load(p,candidate+'/artists-edit/','#artistWorktable');await p.waitForFunction(()=>document.body.dataset.worktableStatus==='ready',{timeout:20000});
     rec.after.palette=await rect(p,'.cc-worktable-palette');rec.after.stage=await rect(p,'.cc-worktable-stage');await check(p);
     if(viewport.width>=1200)assert.ok(rec.after.palette.width>rec.before.palette.width+40,'manual palette not widened');
@@ -81,4 +97,4 @@ try{
   }}finally{await b.close();}
  }
 }finally{server.kill();save();}
-if(results.length!==12||results.some(r=>r.status!=='PASS'))process.exitCode=1;
+if(results.length!==profiles.length*4||results.some(r=>r.status!=='PASS'))process.exitCode=1;
