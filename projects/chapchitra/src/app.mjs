@@ -756,6 +756,13 @@ async function boot(){
  // The synchronous head bootstrap owns persistence/system detection. This
  // handler only reflects/accessibly changes its resolved choice, never layout.
  const themeButtons=[$('#themeToggle'),$('#themeToggleMobile')].filter(Boolean);
+ // Safari and Chromium can retain native :focus-visible when an already keyboard-
+ // focused control is clicked. Track the last real input modality for these four
+ // controls only; all other focus styling continues to use native focus-visible.
+ document.addEventListener('pointerdown',()=>{document.documentElement.dataset.ccFocusModality='pointer'},{capture:true,passive:true});
+ document.addEventListener('keydown',e=>{
+  if(!['Shift','Control','Alt','Meta'].includes(e.key))document.documentElement.dataset.ccFocusModality='keyboard';
+ },{capture:true});
  const illustratedToggle=mountOriginalThemeToggle(themeButtons);
  const syncThemeButton=()=>{
   const dark=document.documentElement.dataset.theme==='dark';

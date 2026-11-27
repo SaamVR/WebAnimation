@@ -2977,3 +2977,14 @@ h1,h2,h3,h4,h5,h6,.editorial-phrase{
 .detail-actions .detail-add-button{margin:0}
 .detail-info > .text-link{display:inline-block;margin:0}
 @media(min-width:1200px){body[data-page="product"] #main > .detail-layout.wrap{width:min(1680px,calc(100% - 64px));max-width:none;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
+
+/* UX-01/02: native focus-visible fallback plus explicit input modality.
+   Limit the exception to these controls; never suppress other focus rings. */
+#app > .site-header :is(.logo-word--image,.cc-theme-toggle,.cc-mobile-theme-toggle),
+#app .site-footer .logo-word--footer{-webkit-tap-highlight-color:transparent}
+:root[data-cc-focus-modality="pointer"] #app > .site-header :is(.logo-word--image,.cc-theme-toggle,.cc-mobile-theme-toggle):focus,
+:root[data-cc-focus-modality="pointer"] #app .site-footer .logo-word--footer:focus{outline:none!important;box-shadow:none!important}
+:root[data-cc-focus-modality="keyboard"] #app > .site-header :is(.logo-word--image,.cc-theme-toggle,.cc-mobile-theme-toggle):focus,
+:root[data-cc-focus-modality="keyboard"] #app .site-footer .logo-word--footer:focus{outline:3px solid var(--color-terracotta)!important;outline-offset:4px}
+:root[data-theme="dark"][data-cc-focus-modality="keyboard"] #app > .site-header :is(.logo-word--image,.cc-theme-toggle,.cc-mobile-theme-toggle):focus,
+:root[data-cc-focus-modality="keyboard"] #app .site-footer .logo-word--footer:focus{outline-color:var(--color-cream)!important}

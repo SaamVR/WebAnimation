@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 const app=path.resolve(import.meta.dirname,'..'),root=path.resolve(app,'../../..','..');
 const tools=process.env.CC_LOCAL_TOOLS||'G:/CHAPCHITRA-Local/tools';
 const baseline='http://127.0.0.1:4173',candidate='http://127.0.0.1:4174';
-const out=path.join(tools,'qa','ux-batch01-ui');
+const out=path.join(tools,'qa','ux-batch01-ui-'+(process.env.CC_TEST_SHA||'uncommitted').slice(0,12));
 fs.mkdirSync(out,{recursive:true});
 const profiles=[{width:1440,height:900},{width:834,height:1112},{width:390,height:844}];
 const sha=process.env.CC_TEST_SHA||'uncommitted';
@@ -58,17 +58,17 @@ try{
     await load(p,candidate+product,'.detail-info');const favorite=p.locator('.detail-info [data-favorite]');
     const before=await favorite.innerText();await favorite.click();assert.notEqual(await favorite.innerText(),before);rec.checks.favorite='PASS';
     const toggle=p.locator('#themeToggle');await toggle.click();await p.waitForFunction(t=>document.documentElement.dataset.theme===t,theme==='dark'?'light':'dark',{timeout:10000});
-    let f=await focus(toggle);assert.ok(!f.visible||f.outline==='none'||f.width==='0px','pointer theme focus rectangle');
-    await p.keyboard.press('Tab');await toggle.focus();f=await focus(toggle);assert.ok(f.visible&&f.outline!=='none'&&f.width!=='0px','keyboard theme focus not visible');
+    let f=await focus(toggle);assert.ok(!f.focused||f.outline==='none'||f.width==='0px','pointer theme focus rectangle');
+    await p.keyboard.press('Tab');await toggle.focus();f=await focus(toggle);assert.ok(f.focused&&f.outline!=='none'&&f.width!=='0px','keyboard theme focus not visible');
     rec.checks.themeFocus='PASS';
     await p.keyboard.press('Tab');
     for(const selector of ['.site-header .logo-word--image','.site-footer .logo-word--footer']){
-     const link=p.locator(selector).first();await link.focus();f=await focus(link);assert.ok(f.visible&&f.outline!=='none'&&f.width!=='0px','keyboard logo outline '+selector);
+     const link=p.locator(selector).first();await p.keyboard.press('Tab');await link.focus();f=await focus(link);assert.ok(f.focused&&f.outline!=='none'&&f.width!=='0px','keyboard logo outline '+selector);
      // Only suppress navigation inside the QA page, to observe real pointer focus after activation.
      await link.evaluate(el=>el.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation()},{capture:true,once:true}));
-     await link.click();f=await focus(link);assert.ok(!f.visible||f.outline==='none'||f.width==='0px','pointer logo outline '+selector);
+     await link.click();f=await focus(link);assert.ok(!f.focused||f.outline==='none'||f.width==='0px','pointer logo outline '+selector);
     }
-    rec.checks.logoFocus='PASS';await shot(p,'.site-footer',name+'-after-footer');
+    rec.checks.logoFocus='PASS';await toggle.click();await p.waitForFunction(t=>document.documentElement.dataset.theme===t,theme,{timeout:10000});await shot(p,'.site-footer',name+'-after-footer');
     await load(p,candidate+'/artists-edit/','#artistWorktable');await p.waitForFunction(()=>document.body.dataset.worktableStatus==='ready',{timeout:20000});
     rec.after.palette=await rect(p,'.cc-worktable-palette');rec.after.stage=await rect(p,'.cc-worktable-stage');await check(p);
     if(viewport.width>=1200)assert.ok(rec.after.palette.width>rec.before.palette.width+40,'manual palette not widened');
