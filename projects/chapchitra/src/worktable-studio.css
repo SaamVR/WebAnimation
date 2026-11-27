@@ -995,3 +995,37 @@
  .cc-worktable-rail .cc-worktable-choice-row{gap:6px}
  .cc-worktable-rail .cc-worktable-choice-row[data-control-group="color"]{grid-template-columns:repeat(3,minmax(44px,1fr))}
 }
+
+/* Owner annotated control grid, 2026-11-28. Keep source artwork intact. */
+@media(min-width:1101px){
+ .cc-worktable-rail{
+  grid-template-columns:minmax(0,1.16fr) minmax(0,1.14fr) minmax(0,.98fr) minmax(0,.73fr);
+  --cc-garment-face:calc((min(1680px,100vw - 64px)*.31172 - 26px)*.4);
+  --cc-control-row:max(44px,calc(var(--cc-garment-face)*64/164/.8));
+ }
+ .cc-worktable-rail .cc-worktable-choice-row[data-control-group="garment"]{gap:10px 6px}
+ .cc-worktable-rail .cc-worktable-choice-row:is([data-control-group="garment"],[data-control-group="size"],[data-control-group="printSize"]) .cc-manual-choice.cc-compact-artwork{
+  height:var(--cc-control-row);aspect-ratio:auto;
+ }
+ .cc-worktable-rail .cc-worktable-choice[data-group="garment"] .cc-compact-art,
+ .cc-worktable-rail .cc-worktable-choice[data-group="garment"][aria-pressed="true"]::before{
+  inset:0;margin:auto;width:min(100%,var(--cc-garment-face));height:auto;aspect-ratio:164/64;transform:none;
+ }
+ .cc-worktable-rail .cc-worktable-choice[data-group="size"] .cc-compact-art,
+ .cc-worktable-rail .cc-worktable-choice[data-group="size"][aria-pressed="true"]::before{
+  inset:0;margin:auto;width:90%;height:auto;aspect-ratio:164/64;transform:none;
+ }
+ .cc-worktable-rail .cc-worktable-choice[data-group="printSize"] .cc-compact-art,
+ .cc-worktable-rail .cc-worktable-choice[data-group="printSize"][aria-pressed="true"]::before{
+  inset:0;margin:auto;width:80%;height:auto;aspect-ratio:164/64;transform:none;
+ }
+ .cc-worktable-rail .cc-worktable-choice-row[data-control-group="color"]{
+  gap:10px 6px;align-content:start;
+ }
+ .cc-worktable-rail .cc-worktable-choice[data-group="color"]{min-height:var(--cc-control-row)}
+}
+@media(min-width:601px){
+ .cc-worktable-rail .cc-worktable-choice-row[data-control-group="size"]{
+  grid-template-columns:repeat(3,minmax(44px,1fr));gap:10px 8px;justify-items:stretch;align-content:start;
+ }
+}
