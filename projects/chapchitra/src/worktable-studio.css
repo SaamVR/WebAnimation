@@ -960,9 +960,13 @@
 .cc-worktable-rail .cc-worktable-choice.cc-manual-choice.cc-compact-artwork{
  min-height:44px;min-width:44px;background:transparent;border:0;box-shadow:none;
 }
-.cc-worktable-rail .cc-worktable-choice.cc-manual-choice .cc-compact-art,
-.cc-worktable-rail .cc-worktable-choice.cc-manual-choice .cc-sketch-copy{
+.cc-worktable-rail .cc-worktable-choice.cc-manual-choice .cc-compact-art{
  transform:scale(.8);transform-origin:center;
+}
+.cc-worktable-rail .cc-worktable-choice.cc-manual-choice .cc-sketch-copy{
+ top:calc(50% - 3.2px);
+ transform:translate(-50%,-50%) translateY(calc(var(--cc-press-depth) * .8)) scale(.8);
+ transform-origin:center;
 }
 .cc-worktable-rail .cc-worktable-choice.cc-manual-choice[aria-pressed="true"]::before{
  inset:10%;background-size:contain;
