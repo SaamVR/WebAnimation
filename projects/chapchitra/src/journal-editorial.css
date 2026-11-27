@@ -123,3 +123,11 @@ html.je-boot .je-paper :is(.je-masthead h1,.je-article-mast a,.je-front .je-imag
 }
 /* Retain approved crop ratios and natural image proportions. */
 .je-article-opening .je-image-sheet>img,.je-front .je-image-sheet>img{object-fit:cover}
+
+/* Preserve the green-ticked editorial headline stack and keep sample art readable
+   inside smaller panels; the original SVG image frames are unchanged. */
+@media(min-width:1001px){.je-article-opening h1{max-inline-size:9ch}}
+.je-front .je-image{container-type:inline-size}
+.je-front .blank-print{padding:4px;min-width:0;min-height:0}
+.je-front .blank-print .print-border{gap:3px;border-width:1px;font-size:clamp(9px,6cqi,18px)}
+.je-front .blank-print .print-border small{font-size:clamp(5px,2.8cqi,9px)}
