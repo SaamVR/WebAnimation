@@ -1029,3 +1029,66 @@
   grid-template-columns:repeat(3,minmax(44px,1fr));gap:10px 8px;justify-items:stretch;align-content:start;
  }
 }
+
+/* Full opening desktop composition. The 2048x1152 stage, every source
+   layer and its percentage hotspot remain registered to the same frame.
+   Phones retain the approved portrait composition and accessible popups.
+   Very short windows retain ordinary scrolling rather than tiny controls. */
+.cc-worktable{--cc-worktable-navbar-height:65px;--cc-worktable-opening:calc(100vh - var(--cc-worktable-navbar-height))}
+@supports(height:100svh){.cc-worktable{--cc-worktable-opening:calc(100svh - var(--cc-worktable-navbar-height))}}
+@media(min-width:701px) and (min-height:480px){
+ .cc-worktable-frame{width:min(100%,1540px,calc(var(--cc-worktable-opening) * 16 / 9));container-type:inline-size}
+}
+@media(min-width:1101px) and (min-height:480px){
+ .cc-worktable-view-button.cc-sketch.cc-compact-artwork{
+  width:clamp(112px,10.65cqi,164px);min-width:0;
+  height:clamp(44px,4.156cqi,64px);min-height:44px;
+  font-size:clamp(12px,1.072cqi,16.5px)
+ }
+ .cc-worktable-view-glyph{font-size:clamp(14px,1.3cqi,20px)}
+}
+
+/* Extend only the unoccupied desktop side gutters with a wood-grain strip
+   sampled from the original tabletop. No stage dimensions or hit areas change.
+   The mirrored strip tiles horizontally without duplicating illustrated props.
+   The background ends at the stage bottom; editorial content is unaffected. */
+@media(min-width:701px) and (min-height:480px){
+ .cc-worktable{
+  background-image:url('/assets/worktable-gutter-wood.webp');
+  background-repeat:repeat-x;
+  background-position:center top;
+  background-size:auto min(calc(100vw * 9 / 16),866.25px,var(--cc-worktable-opening));
+ }
+}
+
+/* Owner desktop-only composition: shared translation for every registered
+   layer and its hit area; independent of garment/print geometry. The approved
+   1366px iPad landscape and all touch-primary layouts are intentionally excluded.
+   At tight desktop widths, clamp outward movement to the existing viewport. */
+@media(min-width:1367px) and (min-height:480px) and (hover:hover) and (pointer:fine){
+ .cc-worktable:not(.is-hydrating) .cc-worktable-frame{overflow:visible}
+ .cc-worktable:not(.is-hydrating) .cc-worktable-stage{
+  overflow:visible;
+  --cc-desktop-gutter:max(0px,calc((100vw - 100cqw) / 2 - 9px));
+  --cc-plant-x:min(0px,max(-2.8cqw,calc(6px - var(--cc-desktop-gutter))));
+  --cc-garment-x:max(-11.8cqw,calc(8px - var(--cc-desktop-gutter) - 3.52cqw));
+  --cc-color-x:max(-2.5cqw,calc(8px - var(--cc-desktop-gutter) - 1.07cqw));
+  --cc-upload-x:max(0px,min(15.8cqw,calc(var(--cc-desktop-gutter) + 3.75cqw - 8px)));
+  --cc-print-x:max(0px,min(5.5cqw,calc(var(--cc-desktop-gutter) + 2.63cqw - 8px)));
+  --cc-price-y:min(2cqw,max(0.2cqw,calc((var(--cc-desktop-gutter) - 8cqw)*.4)));
+ }
+ .cc-worktable:not(.is-hydrating) .cc-worktable-desktop-plant-underlay,
+ .cc-worktable:not(.is-hydrating) .cc-worktable-desktop-plant-cluster{display:block}
+ .cc-worktable:not(.is-hydrating) .cc-worktable-desktop-plant-cluster{translate:var(--cc-plant-x) .3cqw}
+ .cc-worktable:not(.is-hydrating) :is([data-source^="Garment style/"],.cc-worktable-hit[data-group="garment"]){translate:var(--cc-garment-x) 2.4cqw}
+ .cc-worktable:not(.is-hydrating) :is([data-source^="Tshirt color/"],.cc-worktable-hit[data-group="color"]){translate:var(--cc-color-x) 1.9cqw}
+ .cc-worktable:not(.is-hydrating) :is([data-source^="Upload image notebook/"],.cc-worktable-hit[data-group="upload"]){translate:var(--cc-upload-x) 1.05cqw}
+ .cc-worktable:not(.is-hydrating) :is([data-source^="Print size/"],.cc-worktable-hit[data-group="printSize"]){translate:var(--cc-print-x) .65cqw}
+ .cc-worktable:not(.is-hydrating) .cc-worktable-price-tag-stage{translate:min(2.8cqw,calc(1.5cqw + var(--cc-desktop-gutter))) var(--cc-price-y)}
+}
+.cc-worktable-desktop-plant-underlay,.cc-worktable-desktop-plant-cluster{
+ display:none;position:absolute;left:0;top:0;width:17.578125%;height:38.194444%;
+ background-size:100% 100%;background-repeat:no-repeat;pointer-events:none
+}
+.cc-worktable-desktop-plant-underlay{background-image:url('/assets/worktable-desktop-plant-underlay.webp')}
+.cc-worktable-desktop-plant-cluster{background-image:url('/assets/worktable-desktop-plant-cluster.webp')}
