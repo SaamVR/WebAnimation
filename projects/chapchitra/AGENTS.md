@@ -1,5 +1,12 @@
 # CHAPCHITRA Development Guardrails
 
+## Mandatory owner deployment gate — 2026-11-28 (supersedes earlier preview/redeploy guidance)
+
+**NO ONLINE PREVIEW OR DEPLOYMENT WITHOUT EXPLICIT OWNER AUTHORIZATION.** Applies to CHAPCHITRA on Vercel and Render. Routine development, GitHub commits and Windows localhost QA are allowed; online builds, previews, deploys and promotion are not. A build or Git merge is not approval. Prevent automatic hosting builds; verify Git deployment/preview settings before pushing or merging a connected branch. If settings cannot be verified or disabled, keep hosting-connected branches unchanged and use an isolated non-deploying development branch. App vercel.json disables Git deployment; project settings must be verified separately. Render auto-deploy must be disabled before touching its linked branch. Never alter unrelated services.
+
+Routine reviews use unified Windows localhost, real screenshots and MP4 recordings. Track completed/unapproved, owner-approved/undeployed and deployed SHAs in projects/chapchitra/docs/DEPLOYMENT_REGISTER.md. Carry this policy and register in every handoff. Only the owner's explicit **"Approve and deploy"** authorizes one consolidated deployment of approved work after comprehensive regression to the authorized existing stable review URL. Never include unapproved changes, create another hosting project or promote production without separate authorization.
+
+
 ## 2026-11-22 — owner-approved global Cream revision
 The canonical brand Cream is **#F4EBE4** everywhere the Cream token is intended, in both light and dark themes. Keep all other canonical swatches unchanged. Never recolor existing approved illustration, logo, Lottie or original theme-toggle artwork during this token-only implementation. A replacement hand-drawn toggle will be supplied separately. Keep staging unmodified until explicit merge/deploy authorization.
 

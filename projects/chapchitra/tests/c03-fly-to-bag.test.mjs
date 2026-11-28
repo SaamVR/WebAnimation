@@ -54,6 +54,9 @@ test('all successful catalog adds use the exact clicked illustration with unchan
  assert.match(css,/pointer-events:none/);
  assert.match(flight,/prefers-reduced-motion: reduce/);
  assert.match(flight,/pagehide',cancelC03/);
- assert.match(flight,/cameraScroll\(scrollY\+before\.top-clearance/);
+ assert.match(flight,/await hold\.ready/);
+ assert.match(flight,/hold\.wasHidden/);
+ assert.doesNotMatch(flight,/scrollTo\(|cameraScroll\(/);
+ assert.match(flight,/pendingHold\?\.release\(\)/);
  assert.match(flight,/duration:\.91,ease:'power2\.inOut'/);
 });

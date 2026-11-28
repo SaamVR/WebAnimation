@@ -1,4 +1,4 @@
-import {bagMarkup,renderBag,checkoutMarkup,confirmationMarkup,prefs,qtyFor,rowsFor,PREFS,ORDER,COUPON,makeOrder,readOrder,mountCheckout,hydratePreviews} from './purchase-flow.mjs';
+import {bagMarkup,renderBag,checkoutMarkup,confirmationMarkup,prefs,qtyFor,rowsFor,PREFS,ORDER,COUPON,makeOrder,readOrder,mountCheckout,mountConfirmation,hydratePreviews} from './purchase-flow.mjs';
 import {saveArtwork,removeArtwork,pruneArtwork} from './purchase-artwork.mjs';
 import {aboutMarkup,mountAbout} from './about-content.mjs';
 import { journalEditorial, articleEditorial } from './journal-editorial.mjs';
@@ -741,7 +741,7 @@ async function boot(){
  let favoritesState=new Set();
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
- if(['bag','checkout','confirmation'].includes(route)){const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/purchase-flow.css';document.head.append(sheet);void pruneArtwork().catch(()=>{});}
+ if(['bag','checkout','confirmation'].includes(route)){if(!document.querySelector('link[href="/purchase-flow.css"]')){const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/purchase-flow.css';document.head.append(sheet)}void pruneArtwork().catch(()=>{});}
  app.innerHTML=header()+'<main id="main">'+mainPage()+'</main>'+footer();
  if(route==='about')mountAbout();
   // Hydration restores the existing count without replaying the stamp.
@@ -1055,7 +1055,7 @@ async function boot(){
    demoBag.clear();artistDemoBag=[];persistDemoBag();sessionStorage.removeItem(ARTIST_CART_STORAGE_KEY);sessionStorage.removeItem(PREFS);
    location.assign('/order-confirmation/');
   });
-  if(route==='confirmation')void hydratePreviews(app);
+  if(route==='confirmation'){void hydratePreviews(app);void mountConfirmation(app)}
  // Global delegation (no card flicker from full grid rebuild except explicit favorite interaction).
  document.addEventListener('click',e=>{const btn=e.target.closest('[data-favorite]');if(btn)updateFav(btn.dataset.favorite)});
  // Navigation dropdown closes when leaving or using Escape.

@@ -11,9 +11,10 @@
  * Nothing touches notification controls, THREADS source, C02 or C05.
  */
 import {planC03Flight,shrinkAt} from './geometry.mjs';
+import {holdNavbarForBag} from '../../nav-scroll.mjs';
 
 const ROOT='/motion/c03/';
-let gsapPromise=null,active=null,serial=0,listenersReady=false,cameraActive=false,scrollToken=0,flightWatchTimer=0;
+let gsapPromise=null,active=null,serial=0,listenersReady=false,flightWatchTimer=0,pendingHold=null,ackTimer=0;
 const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function ensureCSS(){
@@ -49,7 +50,7 @@ function watchFlightGeometry(version){
   const resized=innerWidth!==start.width||innerHeight!==start.height||
    (start.visualWidth!=null&&Math.abs((window.visualViewport?.width??start.visualWidth)-start.visualWidth)>2)||
    (start.visualHeight!=null&&Math.abs((window.visualViewport?.height??start.visualHeight)-start.visualHeight)>2);
-  const moved=!active.restoring&&!cameraActive&&Math.abs(scrollY-start.scroll)>4;
+  const moved=Math.abs(scrollY-start.scroll)>4;
   if(resized||moved){cancelC03();return;}
  };
  // WebKit can suppress both native resize events and animation frames during
@@ -62,6 +63,7 @@ function cleanup(){
  const current=active;active=null;
  if(!current)return;
  current.timeline?.kill();
+ current.hold?.release();
  current.path?.remove();current.layer?.remove();
  const gs=window.gsap;
  if(gs){
@@ -73,40 +75,18 @@ function cleanup(){
 }
 export function cancelC03(){
  serial++;
- scrollToken++;
- cameraActive=false;
+ clearTimeout(ackTimer);ackTimer=0;pendingHold?.release();pendingHold=null;
  cleanup();
 }
-// T02 reference uses a short camera reveal when the product is offscreen.
-// Mobile Add is normally below the SVG; preserve the user's scroll position,
-// bring the real source into view, fly, then restore. No layout dimensions change.
+// Never programmatically scroll the customer to reveal artwork.
 const framesSettled=()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done)));
-async function cameraScroll(to,version,duration=.38){
- const from=scrollY,limit=Math.max(0,document.documentElement.scrollHeight-innerHeight);
- const target=Math.max(0,Math.min(limit,to));
- if(Math.abs(target-from)<3)return false;
- const token=++scrollToken;cameraActive=true;
- await new Promise(done=>{
-  const start=performance.now();
-  const tick=now=>{
-   if(version!==serial||token!==scrollToken){done();return;}
-   const t=Math.min(1,(now-start)/(duration*1000));
-   const ease=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
-   scrollTo({left:0,top:from+(target-from)*ease,behavior:'instant'});
-   if(t<1)requestAnimationFrame(tick);else done();
-  };
-  requestAnimationFrame(tick);
- });
- if(token===scrollToken)cameraActive=false;
- return version===serial&&Math.abs(scrollY-from)>3;
-}
 function installLifecycle(){
  if(listenersReady)return;listenersReady=true;
  window.addEventListener('pagehide',cancelC03);
  window.addEventListener('resize',cancelC03,{passive:true});
  // A moving viewport invalidates one-shot rect measurements. Cancel; never
  // counter-scroll the user's page (unlike the optional T02 camera follow).
- window.addEventListener('scroll',()=>{if(active&&!active.restoring&&!cameraActive)cancelC03()},{passive:true});
+ window.addEventListener('scroll',()=>{if(active||pendingHold)cancelC03()},{passive:true});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelC03()});
  window.matchMedia('(prefers-reduced-motion: reduce)')
   .addEventListener?.('change',cancelC03);
@@ -151,45 +131,36 @@ function makeCutout(source,rect,geometry){
  return {layer,cloneBox,path};
 }
 export async function playC03({button,productId}={}){
- // Invalidate any older in-flight proxy; repeated successful cart changes are
- // already committed synchronously by app.mjs before this visual hook.
- cancelC03();
- const version=serial;
- if(prefersReduced()||!button?.isConnected)return false;
+ // Cart commits independently. Acquire the next lease before cancelling the old proxy.
+ if(!button?.isConnected)return false;
+ const headerEl=document.querySelector('.site-header');
+ if(prefersReduced()&&headerEl?.dataset.ccScrollNav!=='hidden'&&!pendingHold)return false;
+ const hold=holdNavbarForBag(headerEl);
+ cancelC03();pendingHold=hold;
+ const version=serial,initialScroll=scrollY;
+ const abandon=()=>{if(pendingHold===hold)pendingHold=null;hold.release();return false};
+ const acknowledgeOnly=()=>{if(!hold.wasHidden||version!==serial)return abandon();ackTimer=window.setTimeout(()=>{ackTimer=0;abandon()},650);return false};
+ try{
  ensureCSS();installLifecycle();
+ if(prefersReduced()){if(!await hold.ready||version!==serial)return abandon();return acknowledgeOnly()}
  const gs=await getGSAP();
- if(!gs||version!==serial||!button.isConnected||document.hidden||prefersReduced())return false;
- // Wait for click-induced native scroll to settle before measuring. Without
- // this, its delayed scroll event could immediately cancel a new timeline.
+ if(!gs||version!==serial||!button.isConnected||document.hidden||prefersReduced())return abandon();
+ if(!await hold.ready||version!==serial)return abandon();
  await framesSettled();
- if(version!==serial||!button.isConnected)return false;
+ if(version!==serial||!button.isConnected||Math.abs(scrollY-initialScroll)>4)return abandon();
  const source=resolveC03ProductSource(button,productId);
  const bagLink=document.querySelector('.site-header .bag-link');
  const badge=bagLink?.querySelector('.bag-count');
  const icon=bagLink?.querySelector('.cc-nav-art, svg');
- if(!source||!bagLink||!badge||!icon)return false;
- const originalScroll=scrollY;
- const before=source.getBoundingClientRect();
- const headBefore=document.querySelector('.site-header')?.getBoundingClientRect();
- const clearance=(headBefore?.bottom||0)+18;
- let cameraMoved=false;
- if(before.top<clearance||before.bottom>innerHeight-15){
-  cameraMoved=await cameraScroll(scrollY+before.top-clearance,version,.38);
-  if(version!==serial||!source.isConnected||!bagLink.isConnected)return false;
-  await framesSettled();
- }
- const sourceRect=source.getBoundingClientRect();
- const bagRect=bagLink.getBoundingClientRect();
- const header=document.querySelector('.site-header')?.getBoundingClientRect();
- const geometry=planC03Flight(sourceRect,bagRect,header,
-  {width:innerWidth,height:innerHeight});
- if(!geometry){
-  if(cameraMoved)await cameraScroll(originalScroll,version,.28);
-  return false;
- }
+ if(!source||!bagLink||!badge||!icon)return acknowledgeOnly();
+ const sourceRect=source.getBoundingClientRect(),bagRect=bagLink.getBoundingClientRect();
+ const header=headerEl.getBoundingClientRect();
+ if(headerEl.dataset.ccScrollNav==='hidden'||sourceRect.bottom<=header.bottom||sourceRect.top>=innerHeight)return acknowledgeOnly();
+ const geometry=planC03Flight(sourceRect,bagRect,header,{width:innerWidth,height:innerHeight});
+ if(!geometry)return acknowledgeOnly();
  const {layer,cloneBox,path}=makeCutout(source,sourceRect,geometry);
  const length=path.getTotalLength();
- if(!Number.isFinite(length)||length<=0){layer.remove();return false;}
+ if(!Number.isFinite(length)||length<=0){layer.remove();return abandon();}
  const progress={t:0};
  const paint=()=>{
   const t=Math.min(1,Math.max(0,progress.t));
@@ -202,16 +173,9 @@ export async function playC03({button,productId}={}){
   });
  };
  paint();
- const tl=gs.timeline({paused:true,onComplete:()=>{
-  if(active?.version!==version)return;
-  if(cameraMoved){
-   active.restoring=true;
-   void cameraScroll(originalScroll,version,.34).then(()=>{
-    if(active?.version===version)cleanup();
-   });
-  }else cleanup();
- }});
- active={version,layer,path,timeline:tl,bag:icon,badge,restoring:false};
+ const tl=gs.timeline({paused:true,onComplete:()=>{if(active?.version===version)cleanup()}});
+ active={version,layer,path,timeline:tl,bag:icon,badge,hold};
+ pendingHold=null;
  watchFlightGeometry(version);
  // THREADS T02 V3: 0.12s anticipation, 0.91s uninterrupted flight,
  // catch at 1.03s, restrained spring settling by ~1.55s.
@@ -226,6 +190,8 @@ export async function playC03({button,productId}={}){
    .to(badge,{scale:1.22,transformOrigin:'50% 50%',duration:.13,ease:'power2.out'},1.03)
    .to(badge,{scale:1,duration:.22,ease:'back.out(2)'},1.16)
    .to({}, {duration:.04},1.55);
+ if(hold.wasHidden)tl.to({}, {duration:.38},1.59);
  tl.play();
  return true;
+ }catch(error){if(active?.version===version)cleanup();return abandon()}
 }
