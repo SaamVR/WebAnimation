@@ -1050,9 +1050,10 @@ async function boot(){
    notes.addEventListener('input',()=>{purchasePrefs.notes=notes.value;savePrefs()});
   }
   if(route==='checkout')mountCheckout(app,purchaseRows,fields=>{
-   const rows=purchaseRows(),ref='CC-DEMO-'+(crypto.randomUUID?.()||String(Date.now())).slice(0,8).toUpperCase();
+   const rows=purchaseRows(),ref='CC-DEMO-'+(globalThis.crypto?.randomUUID?.()||Date.now().toString(36)).slice(0,8).toUpperCase();
    const order=makeOrder(fields,rows,purchasePrefs,ref);sessionStorage.setItem(ORDER,JSON.stringify(order));
-   demoBag.clear();artistDemoBag=[];persistDemoBag();sessionStorage.removeItem(ARTIST_CART_STORAGE_KEY);sessionStorage.removeItem(PREFS);location.assign('/order-confirmation/');
+   demoBag.clear();artistDemoBag=[];persistDemoBag();sessionStorage.removeItem(ARTIST_CART_STORAGE_KEY);sessionStorage.removeItem(PREFS);
+   location.assign('/order-confirmation/');
   });
   if(route==='confirmation')void hydratePreviews(app);
  // Global delegation (no card flicker from full grid rebuild except explicit favorite interaction).

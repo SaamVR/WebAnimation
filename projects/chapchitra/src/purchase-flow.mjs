@@ -23,9 +23,96 @@ export function renderBag(root,rows,p){root.querySelector('#bagItems').innerHTML
 const districts=['Bagerhat','Bandarban','Barguna','Barishal','Bhola','Bogura','Brahmanbaria','Chandpur','Chapainawabganj','Chattogram','Chuadanga','Cox’s Bazar','Cumilla','Dhaka','Dinajpur','Faridpur','Feni','Gaibandha','Gazipur','Gopalganj','Habiganj','Jamalpur','Jashore','Jhalokati','Jhenaidah','Joypurhat','Khagrachhari','Khulna','Kishoreganj','Kurigram','Kushtia','Lakshmipur','Lalmonirhat','Madaripur','Magura','Manikganj','Meherpur','Moulvibazar','Munshiganj','Mymensingh','Naogaon','Narail','Narayanganj','Narsingdi','Natore','Netrokona','Nilphamari','Noakhali','Pabna','Panchagarh','Patuakhali','Pirojpur','Rajbari','Rajshahi','Rangamati','Rangpur','Satkhira','Shariatpur','Sherpur','Sirajganj','Sunamganj','Sylhet','Tangail','Thakurgaon'];
 const field=(name,label,attrs='')=>'<label class="cc-buy-field">'+label+'<input name="'+name+'" '+attrs+'></label>';
 const radio=(name,value,label,checked=false)=>'<label class="cc-buy-radio"><input type="radio" name="'+name+'" value="'+value+'" '+(checked?'checked':'')+' required><span>'+label+'</span></label>';
-export function checkoutMarkup(rows,p){if(!rows.length)return '<section class="wrap cc-buy">'+title('Checkout','Your bag is empty.')+btn('Continue shopping',{href:'/shop/'})+'</section>';return '<section class="wrap cc-buy cc-buy-checkout">'+title('Checkout','Preview only. Use fictional contact details; no payment or delivery will occur.')+'<div class="cc-buy-grid"><form id="purchaseCheckout"><fieldset><legend>Contact &amp; delivery</legend><div class="cc-buy-fields">'+field('first','First name *','required maxlength="80" autocomplete="given-name"')+field('last','Last name *','required maxlength="80" autocomplete="family-name"')+'<label class="cc-buy-field cc-buy-wide">Country / region<input name="country" value="Bangladesh" readonly></label>'+field('phone','Phone number *','type="tel" required maxlength="20" autocomplete="tel"')+field('email','Email (optional)','type="email" maxlength="120" autocomplete="email"')+'<label class="cc-buy-field">District *<select name="district" required><option value="">Select district</option>'+districts.map(d=>'<option>'+esc(d)+'</option>').join('')+'</select></label>'+field('area','Area / Thana *','required maxlength="100" autocomplete="address-level2"')+'<label class="cc-buy-field cc-buy-wide">Full delivery address *<textarea name="address" rows="3" maxlength="300" required autocomplete="street-address"></textarea></label>'+field('postcode','Postcode (optional)','maxlength="12" autocomplete="postal-code"')+'</div></fieldset><fieldset><legend>Shipping method</legend>'+radio('shipping','demo','Standard delivery · ৳0 (demonstration)',true)+'</fieldset><fieldset><legend>Payment method</legend><p class="cc-buy-muted">Simulated only. No payment credentials requested.</p>'+radio('payment','cod','Cash on Delivery (demo)',true)+radio('payment','bkash','bKash (simulated)')+radio('payment','online','Online payment (simulated)')+'<p id="purchasePaymentHelp" role="status" class="cc-buy-muted">Simulated cash on delivery. Nothing is charged.</p></fieldset><fieldset><legend>Billing address</legend>'+radio('billing','same','Same as delivery address',true)+radio('billing','different','Use a different billing address')+'<label id="purchaseBilling" class="cc-buy-field" hidden>Billing address<textarea name="billingAddress" rows="3" maxlength="300" disabled></textarea></label></fieldset><fieldset><legend>Order notes (optional)</legend><textarea name="notes" maxlength="500" rows="4" aria-label="Order notes">'+esc(p.notes)+'</textarea></fieldset><label class="cc-buy-consent"><input name="terms" type="checkbox" required><span>I agree to the demonstration terms: no real order, charge or delivery is created. Commercial terms are not yet configured.</span></label><p id="purchaseFormStatus" role="alert"></p>'+btn('Place demo order',{type:'submit'})+'</form><aside class="cc-buy-summary"><h2>Order summary</h2><div class="cc-buy-summary-items">'+rows.map(r=>row(r,true)).join('')+'</div>'+totalMarkup(totals(rows,p.coupon))+'<a class="cc-buy-edit" href="/bag/">Edit shopping bag</a></aside></div></section>'}
-export function validate(fields,rows){if(!rows.length)throw Error('Your bag is empty.');for(const n of ['first','last','phone','district','area','address'])if(typeof fields[n]!=='string'||!fields[n].trim())throw Error('Complete required delivery fields.');if(!/^(?:\+?880|0)1[3-9]\d{8}$/.test(fields.phone.replace(/[\s()-]/g,'')))throw Error('Enter a valid Bangladesh mobile number for the demo.');if(!districts.includes(fields.district)||fields.country!=='Bangladesh')throw Error('Select a district in Bangladesh.');if(!['cod','bkash','online'].includes(fields.payment)||fields.shipping!=='demo'||!['same','different'].includes(fields.billing)||fields.terms!=='on')throw Error('Select delivery and payment options and accept demo terms.');if(fields.billing==='different'&&!fields.billingAddress?.trim())throw Error('Enter your billing address.');return true}
+export function checkoutMarkup(rows,p){if(!rows.length)return '<section class="wrap cc-buy">'+title('Checkout','Your bag is empty.')+btn('Continue shopping',{href:'/shop/'})+'</section>';return '<section class="wrap cc-buy cc-buy-checkout">'+title('Checkout','Preview only. Use fictional contact details; no payment or delivery will occur.')+'<div class="cc-buy-grid"><form id="purchaseCheckout"><fieldset><legend>Contact &amp; delivery</legend><div class="cc-buy-fields">'+field('first','First name *','required maxlength="80" autocomplete="given-name"')+field('last','Last name *','required maxlength="80" autocomplete="family-name"')+'<label class="cc-buy-field cc-buy-wide">Country / region<input name="country" value="Bangladesh" readonly></label>'+field('phone','Phone number *','type="tel" required maxlength="32" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX or +8801XXXXXXXXX"')+field('email','Email (optional)','type="email" maxlength="120" autocomplete="email"')+'<label class="cc-buy-field">District *<select name="district" required><option value="">Select district</option>'+districts.map(d=>'<option>'+esc(d)+'</option>').join('')+'</select></label>'+field('area','Area / Thana *','required maxlength="100" autocomplete="address-level2"')+'<label class="cc-buy-field cc-buy-wide">Full delivery address *<textarea name="address" rows="3" maxlength="300" required autocomplete="street-address"></textarea></label>'+field('postcode','Postcode (optional)','maxlength="12" autocomplete="postal-code"')+'</div></fieldset><fieldset><legend>Shipping method</legend>'+radio('shipping','demo','Standard delivery · ৳0 (demonstration)',true)+'</fieldset><fieldset><legend>Payment method</legend><p class="cc-buy-muted">Simulated only. No payment credentials requested.</p>'+radio('payment','cod','Cash on Delivery (demo)',true)+radio('payment','bkash','bKash (simulated)')+radio('payment','online','Online payment (simulated)')+'<p id="purchasePaymentHelp" role="status" class="cc-buy-muted">Simulated cash on delivery. Nothing is charged.</p></fieldset><fieldset><legend>Billing address</legend>'+radio('billing','same','Same as delivery address',true)+radio('billing','different','Use a different billing address')+'<label id="purchaseBilling" class="cc-buy-field" hidden>Billing address<textarea name="billingAddress" rows="3" maxlength="300" disabled></textarea></label></fieldset><fieldset><legend>Order notes (optional)</legend><textarea name="notes" maxlength="500" rows="4" aria-label="Order notes">'+esc(p.notes)+'</textarea></fieldset><label class="cc-buy-consent"><input name="terms" type="checkbox" required><span>I agree to the demonstration terms: no real order, charge or delivery is created. Commercial terms are not yet configured.</span></label><p id="purchaseFormStatus" role="alert"></p>'+btn('Place demo order',{type:'submit'})+'</form><aside class="cc-buy-summary"><h2>Order summary</h2><div class="cc-buy-summary-items">'+rows.map(r=>row(r,true)).join('')+'</div>'+totalMarkup(totals(rows,p.coupon))+'<a class="cc-buy-edit" href="/bag/">Edit shopping bag</a></aside></div></section>'}
+// One validation contract for browser errors and order creation. Normalize local and
+// international Bangladesh mobile formats, including Bangla digits and separators.
+export function normalizeBangladeshPhone(value){
+ const digits=String(value??'').trim().replace(/[০-৯]/g,ch=>String(ch.charCodeAt(0)-0x09e6)).replace(/[\s()\-\u2010-\u2015]/g,'');
+ if(/^01[3-9]\d{8}$/.test(digits))return '+880'+digits.slice(1);
+ if(/^\+?8801[3-9]\d{8}$/.test(digits))return '+'+digits.replace(/^\+/,'');
+ if(/^008801[3-9]\d{8}$/.test(digits))return '+'+digits.slice(2);
+ return null;
+}
+export function checkoutErrors(fields,rows){
+ const f=fields||{},e={},present=n=>typeof f[n]==='string'&&f[n].trim().length>0;
+ if(!present('first'))e.first='Enter your first name.';
+ if(!present('last'))e.last='Enter your last name.';
+ if(f.country!=='Bangladesh')e.country='Select Bangladesh as your delivery country.';
+ if(!present('phone'))e.phone='Enter your mobile number.';
+ else if(!normalizeBangladeshPhone(f.phone))e.phone='Enter a valid Bangladesh mobile number, e.g. 01712345678 or +8801712345678.';
+ if(present('email')&&!/^[^\s@]+@[^\s@]+$/.test(f.email.trim()))e.email='Enter a valid email address or leave this field blank.';
+ if(!districts.includes(f.district))e.district='Select your district.';
+ if(!present('area'))e.area='Enter your area or thana.';
+ if(!present('address'))e.address='Enter your full delivery address.';
+ if(f.shipping!=='demo')e.shipping='Select the demonstration shipping method.';
+ if(!['cod','bkash','online'].includes(f.payment))e.payment='Select a simulated payment method.';
+ if(!['same','different'].includes(f.billing))e.billing='Select a billing address option.';
+ if(f.billing==='different'&&!present('billingAddress'))e.billingAddress='Enter your billing address.';
+ if(f.terms!=='on')e.terms='Agree to the demonstration terms before placing your order.';
+ if(!rows.length)e.bag='Your bag is empty. Return to your shopping bag.';
+ return e;
+}
+export function validate(fields,rows){const errors=checkoutErrors(fields,rows);if(Object.keys(errors).length)throw Error(Object.values(errors)[0]);return true}
 export function makeOrder(f,rows,p,reference){validate(f,rows);return {schema:1,reference,rows,totals:totals(rows,p.coupon),delivery:{name:f.first.trim()+' '+f.last.trim(),address:f.address.trim(),area:f.area.trim(),district:f.district,postcode:f.postcode?.trim()||''},payment:f.payment,notes:f.notes?.slice(0,500)||''}}
 export const readOrder=()=>{const o=read(ORDER,null);return o?.schema===1&&typeof o.reference==='string'&&Array.isArray(o.rows)&&o.totals&&o.delivery?o:null};
-export function confirmationMarkup(o){if(!o)return '<section class="wrap cc-buy">'+title('Order confirmation','No demonstration order has been placed.')+btn('Continue shopping',{href:'/shop/'})+'</section>';return '<section class="wrap cc-buy cc-buy-confirm">'+title('Thank you for your order.','Your demonstration order was recorded locally. Nothing has been charged or sent.')+'<p class="cc-buy-reference">Demo reference · '+esc(o.reference)+'</p><div class="cc-buy-grid"><div><div id="packing-animation-slot" class="cc-buy-animation" role="img" aria-label="Reserved for future T-shirt folding and box-packing animation"><span>PACKING ANIMATION<br><small>Artwork pending</small></span></div><h2>Delivery information</h2><p>'+esc(o.delivery.name)+'<br>'+esc(o.delivery.address)+'<br>'+esc(o.delivery.area)+', '+esc(o.delivery.district)+' '+esc(o.delivery.postcode)+'<br>Bangladesh</p><p>Payment: '+esc(({cod:'Cash on Delivery',bkash:'bKash',online:'Online payment'})[o.payment])+' (simulated)</p>'+btn('Continue shopping',{href:'/shop/'})+'</div><aside class="cc-buy-summary"><h2>Order summary</h2><div class="cc-buy-summary-items">'+o.rows.map(r=>row(r,true)).join('')+'</div>'+totalMarkup(o.totals)+'</aside></div></section>'}
-export function mountCheckout(root,getRows,onSubmit){const form=root.querySelector('#purchaseCheckout');if(!form)return;form.addEventListener('change',()=>{const x=form.elements.billing.value==='different',el=root.querySelector('#purchaseBilling'),b=el.querySelector('textarea');el.hidden=!x;b.disabled=!x;b.required=x;root.querySelector('#purchasePaymentHelp').textContent=({cod:'Simulated cash on delivery. Nothing is charged.',bkash:'Simulated bKash. No account or PIN required.',online:'Simulated online payment. No card details required.'})[form.elements.payment.value]});form.addEventListener('submit',e=>{e.preventDefault();try{const f=Object.fromEntries(new FormData(form));validate(f,getRows());onSubmit(f)}catch(error){root.querySelector('#purchaseFormStatus').textContent=String(error.message||error)}});void hydratePreviews(root)}
+// Stable replacement mount for the owner-supplied Lottie asset.
+export function confirmationSuccessMarkup(reference){return '<header class="cc-buy-heading cc-buy-success-heading"><div id="packing-animation-slot" class="cc-buy-success-mark" data-animation-slot="order-confirmation" role="img" aria-label="Order placed successfully"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="49" fill="var(--color-press-green,#293D2D)"/><path d="M27 51 43 67 74 35" fill="none" stroke="#F6F7F5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="eyebrow">CHAPCHITRA · DEMONSTRATION</p><h1>Order Placed Successfully!</h1><p>Thank you for shopping with CHAPCHITRA.</p><p class="cc-buy-muted">This is a demonstration order. No payment was processed and no commercial order or delivery was created.</p><p class="cc-buy-reference">Demo reference · '+esc(reference)+'</p></header>'}
+export function confirmationMarkup(o){if(!o)return '<section class="wrap cc-buy">'+title('Order confirmation','No demonstration order has been placed.')+btn('Continue shopping',{href:'/shop/'})+'</section>';return '<section class="wrap cc-buy cc-buy-confirm">'+confirmationSuccessMarkup(o.reference)+'<div class="cc-buy-grid"><div><h2>Delivery information</h2><p>'+esc(o.delivery.name)+'<br>'+esc(o.delivery.address)+'<br>'+esc(o.delivery.area)+', '+esc(o.delivery.district)+' '+esc(o.delivery.postcode)+'<br>Bangladesh</p><p>Payment: '+esc(({cod:'Cash on Delivery',bkash:'bKash',online:'Online payment'})[o.payment])+' (simulated)</p>'+btn('Continue shopping',{href:'/shop/'})+'</div><aside class="cc-buy-summary"><h2>Order summary</h2><div class="cc-buy-summary-items">'+o.rows.map(r=>row(r,true)).join('')+'</div>'+totalMarkup(o.totals)+'</aside></div></section>'}
+export function mountCheckout(root,getRows,onSubmit){
+ const form=root.querySelector('#purchaseCheckout');if(!form)return;
+ if(form.dataset.checkoutMounted)return;form.dataset.checkoutMounted='true';
+ const status=root.querySelector('#purchaseFormStatus'),submit=form.querySelector('button[type="submit"]');
+ const billing=root.querySelector('#purchaseBilling'),billingInput=billing.querySelector('textarea');
+ let attempted=false,submitting=false;
+ function syncOptions(){
+  const different=form.elements.billing.value==='different';
+  billing.hidden=!different;billingInput.disabled=!different;billingInput.required=different;
+  root.querySelector('#purchasePaymentHelp').textContent=({cod:'Simulated cash on delivery. Nothing is charged.',bkash:'Simulated bKash. No account or PIN required.',online:'Simulated online payment. No card details required.'})[form.elements.payment.value]||'Select a simulated payment method.';
+ }
+ function controls(name){return [...form.querySelectorAll('[name]')].filter(el=>el.name===name&&!el.disabled)}
+ function errorHost(name,list){
+  const first=list[0];if(!first)return null;
+  if(first.type==='radio')return first.closest('fieldset');
+  return first.closest('label')||first.parentElement;
+ }
+ function clearErrors(){
+  for(const el of form.querySelectorAll('[data-checkout-invalid]')){
+   const id=el.dataset.checkoutInvalid;el.removeAttribute('data-checkout-invalid');el.removeAttribute('aria-invalid');
+   const ids=(el.getAttribute('aria-describedby')||'').split(/\s+/).filter(x=>x&&x!==id);
+   if(ids.length)el.setAttribute('aria-describedby',ids.join(' '));else el.removeAttribute('aria-describedby');
+  }
+  for(const el of form.querySelectorAll('[data-checkout-error-host]'))el.removeAttribute('data-checkout-error-host');
+  for(const el of form.querySelectorAll('[data-checkout-error]'))el.remove();
+ }
+ function check({focus=false}={}){
+  clearErrors();const fields=Object.fromEntries(new FormData(form)),errors=checkoutErrors(fields,getRows());
+  const email=form.elements.email;if(email.value.trim()&&email.validity.typeMismatch)errors.email='Enter a valid email address or leave this field blank.';
+  let firstInvalid=null;
+  // DOM order defines the first field, not the order of error discovery.
+  const names=[...new Set([...form.elements].map(el=>el.name).filter(Boolean))];
+  for(const name of names){
+   if(!errors[name])continue;
+   const list=controls(name),host=errorHost(name,list);if(!host)continue;
+   const id='checkout-error-'+name,err=document.createElement('span');err.id=id;err.className='cc-buy-field-error';err.dataset.checkoutError=name;err.textContent=errors[name];
+   host.dataset.checkoutErrorHost='true';host.append(err);
+   for(const el of list){el.dataset.checkoutInvalid=id;el.setAttribute('aria-invalid','true');el.setAttribute('aria-describedby',[el.getAttribute('aria-describedby'),id].filter(Boolean).join(' '))}
+   if(!firstInvalid)firstInvalid=list[0];
+  }
+  const count=Object.keys(errors).length;
+  status.textContent=errors.bag|| (count?'Please correct the highlighted '+(count===1?'field.':'fields.'):'');
+  if(focus&&firstInvalid){firstInvalid.focus({preventScroll:true});firstInvalid.scrollIntoView({block:'center',inline:'nearest',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}
+  return {fields,errors};
+ }
+ form.addEventListener('change',()=>{syncOptions();if(attempted)check()});
+ form.addEventListener('input',()=>{if(attempted)check()});
+ form.addEventListener('submit',async e=>{
+  e.preventDefault();if(submitting)return;attempted=true;syncOptions();
+  const {fields,errors}=check({focus:true});if(Object.keys(errors).length)return;
+  submitting=true;if(submit)submit.disabled=true;status.textContent='Preparing your demonstration order…';
+  try{await onSubmit({...fields,phone:normalizeBangladeshPhone(fields.phone),email:fields.email?.trim()||''})}
+  catch(error){status.textContent='Could not place the demonstration order. '+String(error?.message||error).slice(0,180);submitting=false;if(submit)submit.disabled=false}
+ });
+ // Use accessible inline feedback rather than the browser silently blocking submit.
+ // Native attributes remain for semantics and mobile keyboard selection.
+ form.noValidate=true;syncOptions();void hydratePreviews(root)
+}
