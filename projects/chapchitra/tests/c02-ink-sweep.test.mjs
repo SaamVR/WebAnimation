@@ -11,12 +11,16 @@ import {
 const origin='https://chapchitra-webanimation.onrender.com';
 const current=origin+'/shop/';
 const allow=to=>isC02Eligible({current,destination:origin+to});
-test('C02 expands to all ordinary cross-page navigation without changing URLs',()=>{
+test('C02 preserves ordinary cross-page navigation while purchase pages bypass ink sweep',()=>{
  for(const path of [
   '/', '/artists-edit/', '/journal/', '/about/', '/product/?id=study-1',
-  '/bag/', '/favorites/', '/account/', '/checkout/', '/order-confirmation/',
+  '/favorites/', '/account/',
   '/journal/story/?slug=prints-and-people','/shop/?category=regular-tees'
  ])assert.ok(allow(path),path);
+ for(const path of ['/bag/','/checkout/','/order-confirmation/']){
+  assert.equal(allow(path),false,path);
+  assert.equal(isC02Eligible({current:origin+path,destination:origin+'/shop/'}),false,path);
+ }
  assert.ok(C02_PAGES.includes('/product/'));
  assert.deepEqual(C02_PATHS,C02_PAGES);
 });

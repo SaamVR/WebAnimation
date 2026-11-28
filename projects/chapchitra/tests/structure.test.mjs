@@ -235,7 +235,7 @@ test('product hover and Add to Cart use one shared card component and retain mot
  assert.match(css,/\.related-studies/);
  assert.doesNotMatch(app,/gsap\.|ScrollTrigger|ink-stamp|C04\s*implementation/i);
 });
-test('session-only demo bag is not a real order flow',async()=>{
+test('session-only demo bag supports simulated orders without real commerce',async()=>{
  const app=await read('src/app.mjs');
  assert.match(app,/sessionStorage\.setItem\(demoBagKey/);
  assert.match(app,/function demoBagCount\(/);
@@ -245,9 +245,14 @@ test('session-only demo bag is not a real order flow',async()=>{
  assert.match(app,/data-bag-remove/);
  assert.match(app,/function bag\(\)/);
  assert.match(app,/case 'bag':return bag\(\)/);
- assert.match(app,/Demo cart only\. No stock, prices, checkout, payment or orders are available/);
- assert.match(app,/No checkout, payment or order submission is enabled/);
- assert.match(app,/case 'checkout':return emptyRoute/);
+ assert.match(app,/Demo cart only\. No real stock, prices, payments or orders are available/);
+ assert.match(app,/case 'checkout':return checkoutMarkup/);
+ assert.match(app,/case 'confirmation':return confirmationMarkup/);
+ assert.match(app,/sessionStorage\.setItem\(ORDER,JSON\.stringify\(order\)\)/);
+ const purchase=await read('src/purchase-flow.mjs');
+ assert.match(purchase,/no real order, charge or delivery is created/i);
+ assert.match(purchase,/No payment credentials requested/);
+ assert.doesNotMatch(purchase,/name="(?:card|cvv|pin|password)"/);
  assert.doesNotMatch(app,/localStorage\.setItem\(demoBagKey/);
 });
 
