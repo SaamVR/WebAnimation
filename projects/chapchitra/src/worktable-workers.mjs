@@ -1,3 +1,4 @@
+import {normalizeWorker1Leaf} from './worktable-worker1-leaf.mjs';
 // Exact owner-supplied native-vector animation packages, resting frame 0.
 const specs=[
  {id:'worker-1',name:'Worker1_Brush_Presentation_VECTOR.json',sha256:'422f794a894b34d176a2f72a0b09fa389855da4a08549e75a632a50e6bb4239e',frames:120,bounds:[173,21,422,495],anchor:'left'},
@@ -59,7 +60,7 @@ export function mountWorktableWorkers(stage,targets){
   })]);
   if(disposed)return false;
   for(let i=0;i<data.length;i++){
-   const el=hosts[i],actor=lottie.loadAnimation({container:el,renderer:'svg',loop:WORKER_CYCLES-1,autoplay:false,animationData:data[i],rendererSettings:{preserveAspectRatio:'xMidYMid meet',progressiveLoad:false}});
+   const el=hosts[i],actor=lottie.loadAnimation({container:el,renderer:'svg',loop:WORKER_CYCLES-1,autoplay:false,animationData:i===0?normalizeWorker1Leaf(data[i]):data[i],rendererSettings:{preserveAspectRatio:'xMidYMid meet',progressiveLoad:false}});
    actors.push({actor,el});actor.setSpeed(1);
    actor.addEventListener('complete',()=>{if(!disposed){actor.goToAndStop(0,true);el.dataset.workerState='rest'}});
   }
