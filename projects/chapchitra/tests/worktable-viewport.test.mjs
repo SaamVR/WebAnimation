@@ -18,3 +18,12 @@ test('desktop repositioning excludes all approved iPad and touch layouts and tra
   const b=readFileSync(new URL('../src/assets/'+f,import.meta.url));assert.equal(b.toString('ascii',8,12),'WEBP');
  }
 });
+
+test('final desktop props preserve original backdrop and use isolated desktop-only decor',()=>{
+ assert.ok(src.includes("['lamp',345,45,235,229]"));
+ assert.ok(src.includes("return d.decode()"));assert.ok(css.includes('[data-final-decor-ready="true"]'));
+ assert.match(css,/@media\(min-width:1367px\) and \(min-height:480px\) and \(hover:hover\) and \(pointer:fine\)/);
+ for(const name of ['decor-underlay','lamp','brushes','tape','ruler','ink']){
+  const b=readFileSync(new URL('../src/assets/worktable-desktop-'+name+'.webp',import.meta.url));assert.equal(b.toString('ascii',8,12),'WEBP');
+ }
+});

@@ -1092,3 +1092,23 @@
 }
 .cc-worktable-desktop-plant-underlay{background-image:url('/assets/worktable-desktop-plant-underlay.webp')}
 .cc-worktable-desktop-plant-cluster{background-image:url('/assets/worktable-desktop-plant-cluster.webp')}
+
+/* Final owner-marked desktop decor offsets, expressed in the existing stage
+   width units. Each decor crop preserves the original scale and rotation. */
+.cc-worktable-desktop-decor{display:none;position:absolute;pointer-events:none;object-fit:fill;user-select:none}
+@media(min-width:1367px) and (min-height:480px) and (hover:hover) and (pointer:fine){
+ .cc-worktable[data-final-decor-ready="true"]:not(.is-hydrating) .cc-worktable-stage{
+  --cc-plant-x:min(0px,max(-5.5cqw,calc(6px - var(--cc-desktop-gutter))));
+  --cc-garment-x:max(-10.8cqw,calc(8px - var(--cc-desktop-gutter) - 3.52cqw));
+  --cc-color-x:max(-4.2cqw,calc(8px - var(--cc-desktop-gutter) - 1.07cqw));
+  --cc-upload-x:max(0px,min(11.9cqw,calc(var(--cc-desktop-gutter) + 3.75cqw - 8px)));
+ }
+ .cc-worktable[data-final-decor-ready="true"]:not(.is-hydrating) :is([data-source^="Garment style/"],.cc-worktable-hit[data-group="garment"]){translate:var(--cc-garment-x) 3.45cqw}
+ .cc-worktable[data-final-decor-ready="true"]:not(.is-hydrating) :is([data-source^="Upload image notebook/"],.cc-worktable-hit[data-group="upload"]){translate:var(--cc-upload-x) 2.45cqw}
+ .cc-worktable[data-final-decor-ready="true"]:not(.is-hydrating) .cc-worktable-desktop-decor{display:block}
+ .cc-worktable-desktop-decor[data-decor="lamp"]{translate:-4.18cqw -.65cqw}
+ .cc-worktable-desktop-decor[data-decor="brushes"]{translate:1.72cqw .66cqw}
+ .cc-worktable-desktop-decor[data-decor="tape"]{translate:max(0px,min(10.34cqw,calc(var(--cc-desktop-gutter) + 4.75cqw - 8px))) .82cqw}
+ .cc-worktable-desktop-decor[data-decor="ruler"]{translate:-.66cqw -7.88cqw}
+ .cc-worktable-desktop-decor[data-decor="ink"]{translate:4.6cqw -3.94cqw}
+}

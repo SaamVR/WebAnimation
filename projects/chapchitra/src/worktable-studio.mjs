@@ -303,6 +303,21 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const plantUnderlay=document.createElement('div');plantUnderlay.className='cc-worktable-desktop-plant-underlay';plantUnderlay.setAttribute('aria-hidden','true');
  const plantCluster=document.createElement('div');plantCluster.className='cc-worktable-desktop-plant-cluster';plantCluster.setAttribute('aria-hidden','true');
  stage.append(plantUnderlay,plantCluster);
+ // The desktop-only derived decor layers share the existing stage registration.
+ // Original source backdrop remains the sole tablet/phone artwork.
+ const finalDecor=[];
+ for(const [name,x,y,w,h] of [['decor-underlay',0,0,1536,864],['lamp',345,45,235,229],['brushes',1014,63,130,180],['tape',1330,0,142,112],['ruler',1016,501,304,176],['ink',1002,721,164,140]]){
+  const d=document.createElement('img');d.className='cc-worktable-desktop-decor';d.dataset.decor=name;d.setAttribute('aria-hidden','true');d.alt='';d.draggable=false;d.decoding='async';
+  d.style.left=percent(x,1536);d.style.top=percent(y,864);d.style.width=percent(w,1536);d.style.height=percent(h,864);
+  // Do not expose any relocated layer until the complete set has decoded.
+  stage.append(d);finalDecor.push(d);
+ }
+ const finalDecorMedia=window.matchMedia('(min-width:1367px) and (min-height:480px) and (hover:hover) and (pointer:fine)');
+ let finalDecorLoading=null,finalDecorDisposed=false;
+ const loadFinalDecor=()=>{if(finalDecorDisposed||!finalDecorMedia.matches||body.dataset.finalDecorReady==='true'||finalDecorLoading)return;finalDecorLoading=Promise.all(finalDecor.map(d=>{d.src='/assets/worktable-desktop-'+d.dataset.decor+'.webp';return d.decode()})).then(()=>{if(!finalDecorDisposed&&body.isConnected)body.dataset.finalDecorReady='true'}).catch(()=>{delete body.dataset.finalDecorReady}).finally(()=>{finalDecorLoading=null})};
+ finalDecorMedia.addEventListener('change',loadFinalDecor);
+ const disposeFinalDecor=()=>{finalDecorDisposed=true;finalDecorMedia.removeEventListener('change',loadFinalDecor)};
+
  const clickTargets=[];
  const interactiveImgs=[];
  const interactionImages=new Map();
@@ -1130,7 +1145,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  if(viewportHeader)viewportObserver.observe(viewportHeader);
  viewportObserver.observe(stage);fitWorktable();
  const unload=()=>{
-  viewportObserver.disconnect();
+  disposeFinalDecor();viewportObserver.disconnect();
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
   if(guideTimer!==null)clearTimeout(guideTimer);
   document.removeEventListener('pointerdown',onOutsidePointer,true);
@@ -1205,7 +1220,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  }
  // First paint and existing input listeners win over optional fine-layer
  // network/decodes. A bounded idle timeout avoids starving iOS Safari.
- const startHydration=()=>{if(body.isConnected)void hydrate()};
+ const startHydration=()=>{if(body.isConnected){loadFinalDecor();void hydrate()}};
  if(typeof window.requestIdleCallback==='function')
   window.requestIdleCallback(startHydration,{timeout:250});
  else setTimeout(startHydration,60);
@@ -1215,6 +1230,6 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
   mobileUI?.destroy();
   viewportObserver.disconnect();uploadObserver?.disconnect();document.removeEventListener('visibilitychange',syncUploadMotion);
-  window.removeEventListener('pagehide',unload);root.replaceChildren();
+  disposeFinalDecor();window.removeEventListener('pagehide',unload);root.replaceChildren();
  }};
 }
