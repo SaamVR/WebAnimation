@@ -5,6 +5,8 @@ const specs=[
  {id:'worker-3',name:'worker3-cloth-v2.json',sha256:'d5c9577ba343bbb0ff57d470aecd8050ad30d786d1d8696572e1e13352b3efb1',frames:102,bounds:[95,20,417,492],anchor:'right'}
 ];
 export const WORKER_ANIMATIONS=Object.freeze(specs.map(s=>Object.freeze({...s,bounds:Object.freeze(s.bounds)})));
+// The bundled Lottie runtime counts repeats AFTER the initial cycle.
+export const WORKER_CYCLES=3;
 const runtime='/motion/c01/vendor/lottie.min.js';
 let runtimePending;
 function loadRuntime(){
@@ -41,12 +43,12 @@ export function mountWorktableWorkers(stage,targets){
  });
  let disposed=false,revision=0,actors=[],ready=false;
  const controller=new AbortController();
- const rest=()=>{for(const {actor,el} of actors){actor.goToAndStop(0,true);el.dataset.workerState='rest'}};
+ const rest=()=>{for(const {actor,el} of actors){actor.stop();el.dataset.workerState='rest'}};
  const onMotion=()=>{if(motion.matches){revision++;rest()}};
  motion.addEventListener('change',onMotion);
  const onHidden=()=>{if(document.hidden){revision++;rest()}};
  document.addEventListener('visibilitychange',onHidden);
- // Load once, no loops, no autoplay. Parallel network requests but a single
+ // Load once, two bounded repeats, no autoplay. Parallel requests but a single
  // instance per character; do not install raster stand-ins.
  const initialization=(async()=>{
   const [lottie,...data]=await Promise.all([loadRuntime(),...WORKER_ANIMATIONS.map(async s=>{
@@ -57,7 +59,7 @@ export function mountWorktableWorkers(stage,targets){
   })]);
   if(disposed)return false;
   for(let i=0;i<data.length;i++){
-   const el=hosts[i],actor=lottie.loadAnimation({container:el,renderer:'svg',loop:false,autoplay:false,animationData:data[i],rendererSettings:{preserveAspectRatio:'xMidYMid meet',progressiveLoad:false}});
+   const el=hosts[i],actor=lottie.loadAnimation({container:el,renderer:'svg',loop:WORKER_CYCLES-1,autoplay:false,animationData:data[i],rendererSettings:{preserveAspectRatio:'xMidYMid meet',progressiveLoad:false}});
    actors.push({actor,el});actor.setSpeed(1);
    actor.addEventListener('complete',()=>{if(!disposed){actor.goToAndStop(0,true);el.dataset.workerState='rest'}});
   }
@@ -70,12 +72,13 @@ export function mountWorktableWorkers(stage,targets){
   ready=true;rest();stage.dataset.workersReady='true';return true;
  })().catch(error=>{if(!disposed){stage.dataset.workersReady='failed';console.error('Worker SVG initialization failed:',error);for(const {actor} of actors)actor.destroy();actors=[]}return false});
  return {
-  async playOnce(){
+  async playSequence(){
    const ticket=++revision;
    if(disposed||motion.matches||document.hidden)return;
    if(!(ready||await initialization)||disposed||ticket!==revision||motion.matches||document.hidden)return;
    // Latest successfully placed upload restarts the same three actors. Each
-   // has its own native frame clock and resets independently on completion.
+   // has its own native frame clock, wraps continuously twice, and resets
+   // independently on completion. stop() resets native playCount on re-upload.
    rest();
    for(const {actor,el} of actors){el.dataset.workerState='playing';actor.goToAndPlay(0,true)}
    stage.dataset.workerSequence=String((Number(stage.dataset.workerSequence)||0)+1);

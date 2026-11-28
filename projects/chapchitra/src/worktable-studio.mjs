@@ -953,7 +953,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
        paintSelection();syncPricing();artImg.style.objectFit='contain';artImg.src=artURL;revealGuide();
    // A decoded and painted garment image is the sole animation trigger.
    void artImg.decode().then(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))).then(()=>{
-    if(placedRevision===revision&&artURL===next&&artImg.naturalWidth&&print.getBoundingClientRect().width>0)workers.playOnce();
+    if(placedRevision===revision&&artURL===next&&artImg.naturalWidth&&print.getBoundingClientRect().width>0)workers.playSequence();
    }).catch(()=>{});
    announce('Artwork loaded locally at 0% adjustment to the '+current.printSize+
     ' visual reference. Drag to position or use the signed resize slider.');
