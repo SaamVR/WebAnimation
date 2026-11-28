@@ -12,3 +12,5 @@ test('fast down, small upward reversal, pinned overlays and overscroll',()=>{
  assert.equal(s.step(800),'hidden');assert.equal(s.step(1000,{pinned:true}),'pinned');
  assert.equal(s.step(1000),'visible');assert.equal(s.step(1010),'visible');assert.equal(s.step(1040),'hidden');assert.equal(s.step(-5),'pinned');
 });
+
+test('lease restore preserves previous hidden mode',()=>{const s=createNavScrollState();assert.equal(s.step(500),'hidden');assert.equal(s.restore(540,true),'hidden');assert.equal(s.step(540),'hidden');assert.equal(s.step(526),'visible');assert.equal(s.restore(0,true),'pinned')});
