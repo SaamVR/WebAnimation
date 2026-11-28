@@ -176,3 +176,58 @@ html.je-boot .je-paper :is(.je-masthead h1,.je-article-mast a,.je-front .je-imag
 @media(max-width:1000px){.je-v1 .je-article-opening h1{font-size:clamp(37px,5.6vw,64px)}.je-v1 .je-article-opening{gap:18px}}
 @media(max-width:900px){.je-article.je-v1 .je-article-opening{display:grid;grid-template-columns:1fr;gap:20px}.je-v1 .je-article-heading,.je-v1[data-title-side="right"] .je-article-heading{grid-column:1;grid-row:1}.je-v1 .je-article-opening>.je-v1-figure,.je-v1[data-title-side="right"] .je-article-opening>.je-v1-figure{grid-column:1;grid-row:2}.je-v1 .je-lead{max-width:65ch}.je-v1-pair{display:block}.je-v1-pair>.je-v1-prose{margin:0 auto}.je-v1-pair>.je-v1-figure{width:min(100%,640px);margin:18px auto}.je-v1-band{width:100%}}
 @media(max-width:600px){.je-v1 .je-article-opening h1{font-size:clamp(38px,10vw,52px)}.je-v1 .je-v1-subtitle{font-size:22px}.je-v1 .je-v1-section{padding:24px 0}.je-v1-prose{font-size:16px}.je-v1-section h2{font-size:32px}}
+
+/* Individual articles only: magazine body compositions use the source marker
+   order, the approved typography, and the existing scene/image/word hooks. */
+.je-article.je-v1 .je-v1-section{border:0;padding:0;margin:0 0 clamp(40px,6vw,92px)}
+.je-article.je-v1 .je-v1-section:last-child{margin-bottom:0}
+.je-article.je-v1 .je-v1-section h2{max-width:22ch;margin:0 0 clamp(18px,2.5vw,36px)}
+.je-article.je-v1 .je-v1-body{margin:clamp(40px,5vw,76px) 0}
+.je-article.je-v1 .je-edition,.je-article.je-v1 .je-more .je-rule-heading,.je-article.je-v1 .je-preview-note,.je-article.je-v1 .je-index .je-story{border:0}
+.je-article.je-v1 .je-v1-alpha[data-je-image-slot]{border:0;background:transparent;box-shadow:none}
+.je-article.je-v1 .je-v1-alpha[data-je-image-slot] .je-image-sheet{background:transparent}
+.je-article.je-v1 .je-v1-alpha[data-je-image-slot] .je-v1-placeholder{border:0;background:transparent;opacity:.65}
+.je-article.je-v1 [data-je-image-slot] .je-image-sheet>img{object-fit:contain;object-position:center}
+.je-article.je-v1 .je-v1-prose ol,.je-article.je-v1 .je-v1-prose ul{padding-inline-start:1.45em;margin:1em 0}
+.je-article.je-v1 .je-v1-prose li{padding-inline-start:.22em;margin:.32em 0}
+.je-article.je-v1 .je-v1-prose>:last-child{margin-bottom:0}
+.je-article.je-v1 .je-mag-text-band{margin:0 0 clamp(20px,3vw,40px)}
+.je-article.je-v1 .je-mag-text-band:last-child{margin-bottom:0}
+.je-article.je-v1 .je-mag-pair{margin:0 0 clamp(22px,3vw,42px);align-items:start}
+.je-article.je-v1 .je-mag-pair:last-child{margin-bottom:0}
+.je-article.je-v1 .je-mag-band{margin:clamp(20px,3vw,40px) 0;width:100%}
+.je-article.je-v1 .je-mag-band:last-child{margin-bottom:0}
+.je-article.je-v1 .je-mag-wrap{display:flow-root;margin:clamp(20px,3vw,40px) 0}
+.je-article.je-v1 .je-mag-wrap:last-child{margin-bottom:0}
+@media(min-width:901px){
+ .je-article.je-v1 .je-mag-body{--je-mag-gap:clamp(24px,2.5vw,36px)}
+ .je-article.je-v1 .je-mag-section h2{margin-inline-start:calc((100% + var(--je-mag-gap))/12)}
+ .je-article.je-v1 .je-mag-section:nth-child(3n+2) h2{margin-inline-start:calc((100% + var(--je-mag-gap))/6)}
+ .je-article.je-v1 .je-mag-section:has(.je-mag-pair:first-of-type[data-je-side="left"]) h2{margin-inline-start:calc((100% + var(--je-mag-gap))/2)}
+ .je-article.je-v1 .je-mag-pair{gap:var(--je-mag-gap);grid-template-columns:repeat(12,minmax(0,1fr))}
+ .je-article.je-v1 .je-mag-pair>.je-v1-prose{grid-column:1/span calc(12 - var(--je-figure-cols));grid-row:1;margin:0}
+ .je-article.je-v1 .je-mag-pair>.je-v1-figure{grid-column:span var(--je-figure-cols);grid-row:1;width:100%}
+ .je-article.je-v1 .je-mag-pair[data-je-side="left"]>.je-v1-figure{grid-column:1/span var(--je-figure-cols)}
+ .je-article.je-v1 .je-mag-pair[data-je-side="left"]>.je-v1-prose{grid-column:span calc(12 - var(--je-figure-cols))}
+ .je-article.je-v1 .je-mag-band{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--je-mag-gap)}
+ .je-article.je-v1 .je-mag-band>.je-v1-figure{grid-column:span var(--je-figure-cols)}
+ .je-article.je-v1 .je-mag-band[data-je-side="right"]>.je-v1-figure{grid-column:calc(13 - var(--je-figure-cols))/-1}
+ .je-article.je-v1 .je-mag-wrap{max-width:100%;padding-inline:clamp(0px,2vw,24px)}
+ .je-article.je-v1 .je-mag-wrap>.je-v1-figure{width:calc(var(--je-figure-cols)*100%/12);float:right;margin:0 0 16px var(--je-mag-gap)}
+ .je-article.je-v1 .je-mag-wrap[data-je-side="left"]>.je-v1-figure{float:left;margin:0 var(--je-mag-gap) 16px 0}
+ .je-article.je-v1 .je-mag-wrap>.je-v1-prose{max-width:none;margin:0}
+ .je-article.je-v1 .je-mag-text-band{padding-inline:calc((100% + var(--je-mag-gap))/12)}
+ .je-article.je-v1 .je-mag-text-band[data-je-text-align="left"]>.je-v1-prose{margin-left:0}
+ .je-article.je-v1 .je-mag-text-band[data-je-text-align="right"]>.je-v1-prose{margin-right:0}
+ .je-article.je-v1 .je-mag-text-band>.je-mag-columns{max-width:100%;column-count:2;column-gap:var(--je-mag-gap)}
+ .je-article.je-v1 .je-mag-columns p{break-inside:avoid}
+}
+@media(max-width:900px){
+ .je-article.je-v1 .je-mag-wrap>.je-v1-figure,.je-article.je-v1 .je-mag-band>.je-v1-figure{width:min(100%,640px);margin:0 auto 18px;float:none}
+ .je-article.je-v1 .je-mag-pair>.je-v1-figure{width:min(100%,640px);margin:18px auto 0}
+ .je-article.je-v1 .je-mag-pair>.je-v1-prose{margin-inline:auto}
+}
+@media(max-width:600px){
+ .je-article.je-v1 .je-mag-section{margin-bottom:42px}
+ .je-article.je-v1 .je-mag-pair>.je-v1-figure,.je-article.je-v1 .je-mag-band>.je-v1-figure,.je-article.je-v1 .je-mag-wrap>.je-v1-figure{width:100%}
+}
