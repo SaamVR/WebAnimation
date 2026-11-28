@@ -25,11 +25,13 @@ test('Original Illustrator layered street artwork is preserved byte-exact',()=>{
  assert.doesNotMatch(b,/Street_illustration_4K_transparent\.png/);
 });
 
-test('Street remains static and uncropped on Home and About',()=>{
+test('Street remains static and uncropped on Home; About deep link targets approved template',()=>{
  const app=text('src/app.mjs'),css=text('src/styles.css');
- assert.equal((app.match(/src="\/assets\/street-owner-provisional\.svg"/g)||[]).length,2);
+ assert.equal((app.match(/src="\/assets\/street-owner-provisional\.svg"/g)||[]).length,1);
  assert.match(app,/width="1920" height="700" loading="lazy" decoding="async"/);
- assert.match(app,/C09 animation will be designed and approved separately/);
+ assert.match(app,/href="\/about\/#street-story"/);
+ assert.match(text('src/about-content.mjs'),/id=\\"street-story\\"/);
+ assert.doesNotMatch(text('src/about-content.mjs'),/street-owner-provisional\.svg/);
  const scoped=css.slice(css.indexOf('/* CHAPCHITRA PR155'));
  assert.match(scoped,/#story \.street-link > img\{/);
  assert.match(scoped,/aspect-ratio:1920 \/ 700/);
