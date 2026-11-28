@@ -1,9 +1,10 @@
 // Journal-only progressive enhancement: real links + same-document editorial swaps.
 import {journalEditorial,articleEditorial,mountJournalEditorial} from './journal-editorial.mjs';
+import {resolveArticle,articleMetadata,safeJson} from './journal-content-render.mjs';
 import {isJournalPath} from './motion/c02/ink-shapes.mjs';
 export const JOURNAL_ENTRANCE_MS=1240;
 export function journalTarget(url,base){try{const from=new URL(base),to=new URL(url,from);if(from.origin!==to.origin||!isJournalPath(from.pathname)||!isJournalPath(to.pathname))return null;return to}catch{return null}}
-export function articleSlug(url){return url.searchParams.get('slug')||(url.pathname.split('/').filter(Boolean).length===3?url.pathname.split('/').filter(Boolean)[2]:null)||null}
+export function articleSlug(url){const p=url.pathname.split('/').filter(Boolean);return url.searchParams.get('slug')||(p.length===3?p[2]:p.length===2&&p[1]!=='story'?p[1]:null)||null}
 const ease='cubic-bezier(.22,.68,.28,1)';
 const finished=a=>a.finished.catch(()=>{});
 function makeEntrance(root,view,{reverse=false,skip=false}={}){
@@ -28,7 +29,7 @@ export function mountJournalNavigation(doc,view,items,draw,{closePanels=()=>{}}=
  let disposeScroll=mountJournalEditorial(doc,view,items,draw),entrance=makeEntrance(main.querySelector('.je-paper'),view),serial=0,exit=null,observer=null,guard=0,scrollTimer=0,liveURL=view.location.href,liveY=view.scrollY,disposed=false;
  const priorRestoration=view.history.scrollRestoration;view.history.scrollRestoration='manual';
  const mark=()=>{try{view.history.replaceState({...view.history.state,je:true,jeY:view.scrollY},'',view.location.href)}catch{}};
- function metadata(url){const slug=articleSlug(url),article=url.pathname!='/journal/'&&url.pathname!='/journal';const a=items.find(x=>x.slug===(slug||items[0].slug));doc.body.dataset.page=article?'article':'journal';doc.title=(article?(a?.title||'Story unavailable'):'The Journal')+' · CHAPCHITRA';const desc=doc.querySelector('meta[name=description]');if(desc)desc.content=article?(a?.teaser||'Story unavailable.'):'CHAPCHITRA Journal — People, Places and Prints. Editorial preview.'}
+ function metadata(url){const slug=articleSlug(url),article=url.pathname!=='/journal/'&&url.pathname!=='/journal';const a=article?resolveArticle(items,slug):null;const m=articleMetadata(a);doc.body.dataset.page=article?'article':'journal';doc.title=article&&!a?'Story unavailable · CHAPCHITRA':m.title;const meta=(key,value,property=false)=>{const attr=property?'property':'name';let el=doc.querySelector('meta['+attr+'="'+key+'"]');if(!el){el=doc.createElement('meta');el.setAttribute(attr,key);doc.head.append(el)}el.content=value};meta('description',m.description);meta('og:title',m.title,true);meta('og:description',m.description,true);meta('og:type',m.type,true);let ld=doc.querySelector('#je-article-schema');ld?.remove();if(m.schema){ld=doc.createElement('script');ld.id='je-article-schema';ld.type='application/ld+json';ld.textContent=safeJson(m.schema);doc.head.append(ld)}}
  metadata(new URL(liveURL));doc.documentElement.classList.remove('je-boot');mark();
  function clearWait(){observer?.disconnect();observer=null;if(guard)view.clearTimeout(guard);guard=0}
  function afterInk(){clearWait();const ready=()=>!doc.documentElement.classList.contains('c02-pending')&&!doc.querySelector('.c02-loader');const start=()=>{clearWait();view.requestAnimationFrame(()=>{if(!disposed)entrance.play()})};if(ready()){start();return}observer=new MutationObserver(()=>{if(ready())start()});observer.observe(doc.documentElement,{attributes:true,attributeFilter:['class','data-c02-busy']});observer.observe(doc.body,{childList:true});guard=view.setTimeout(()=>{if(ready())start();else{clearWait();entrance.cancel()}},27000)}

@@ -16,7 +16,7 @@ export const C02_PAGES = Object.freeze([
 // Legacy symbol retained for old test references; it now names pages,
 // never the obsolete homepage-only link allowlist.
 export const C02_PATHS=C02_PAGES;
-export function isJournalPath(path){return /^\/journal(?:\/story(?:\/[a-z0-9-]+)?)?\/?$/.test(path)}
+export function isJournalPath(path){return /^\/journal(?:\/(?:story(?:\/[a-z0-9-]+)?|[a-z0-9-]+))?\/?$/.test(path)}
 export function isC02Eligible({
   current, destination, modified=false, target='_self',
   download=false, external=false, disabled=false

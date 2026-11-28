@@ -17,10 +17,4 @@ function catalogBuild(){
 export const catalog = catalogBuild();
 export const PAGE_SIZE_HOME = 8;
 export const PAGE_SIZE_SHOP = 12;
-export const articlePreviews = [
- {slug:'prints-and-people',title:'Prints & People',eyebrow:'Studio notebook',teaser:'An editorial space for the stories behind the work.'},
- {slug:'colors-of-place',title:'Colors of Place',eyebrow:'Field notes',teaser:'A place for observations from around Bengal.'},
- {slug:'the-making-table',title:'The Making Table',eyebrow:'Making process',teaser:'Draw, transfer, layer, and experiment.'},
- {slug:'art-on-cloth',title:'Art on Cloth',eyebrow:'Wearable art',teaser:'Thinking beyond the paper and into everyday life.'},
- {slug:'the-first-impression',title:'The First Impression',eyebrow:'Artist notes',teaser:'A journal placeholder for hands-on studio practice.'}
-];
+export {journalArticles as articlePreviews} from './journal-content-v1.mjs';

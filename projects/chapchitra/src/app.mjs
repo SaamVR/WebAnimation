@@ -516,7 +516,7 @@ async function boot(){
    {title:'Artist-Inspired Drop',eyebrow:'02 / ARTIST-INSPIRED',copy:'Discover where drawings meet wearable surfaces. This is a structural preview of an upcoming collection.',cta:'Explore the collection',href:'/shop/?print=illustration'},
    {title:'Color, by hand.',eyebrow:'03 / TIE-DYE',copy:'Inspired by the slow, expressive making of hand-dyed textiles.',cta:'Explore Tie-Dye',href:'/shop/?category=tie-dye'},
    {title:'Your idea, printed.',eyebrow:"04 / ARTIST'S EDIT",copy:'A dedicated space to plan custom printing, from garment choice to print approach.',cta:"Explore Artist's Edit",href:'/artists-edit/'},
-   {title:'From the Journal',eyebrow:'05 / TODAY’S STORY',copy:'Read the studio notebook. Original articles and photography will be supplied later.',cta:'Open featured story',href:'/journal/story/?slug=prints-and-people'}
+   {title:'From the Journal',eyebrow:'05 / TODAY’S STORY',copy:'Explore fashion, culture and the craft of printmaking.',cta:'Open featured story',href:'/journal/fashion-trends-bangladesh-2026/'}
   ];
   return '<section id="hero" class="hero-carousel" aria-label="Five-slide editorial hero"><div class="hero-track">'+slides.map((s,i)=>{
    if(i===0)return '<article class="hero-slide hero-cover is-active" data-slide="0">'+hero01Paper()+'<div class="wrap hero-cover-inner"><p class="eyebrow on-dark">'+s.eyebrow+'</p><h1>'+s.title+'</h1><p>'+s.copy+'</p>'+sketchButton({label:s.cta,variant:'compact',tone:'beige',href:s.href})+'</div></article>';

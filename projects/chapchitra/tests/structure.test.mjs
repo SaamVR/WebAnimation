@@ -31,7 +31,7 @@ test('catalogue pagination, price integrity and overlapping categories',()=>{
  assert.equal(Math.ceil(catalog.length/PAGE_SIZE_SHOP),6);
  assert.ok(catalog.some(p=>p.category.includes('tie-dye')&&p.category.includes('drop-shoulder')&&p.audience.includes('women')));
  assert.ok(catalog.every(p=>p.price===null));
- assert.equal(articlePreviews.length,5);
+ assert.equal(articlePreviews.length,10);
 });
 test('static street has distinct future SVG motion slots',async()=>{
  const street=await read('src/assets/street-bengal.svg');
