@@ -1047,3 +1047,16 @@
  }
  .cc-worktable-view-glyph{font-size:clamp(14px,1.3cqi,20px)}
 }
+
+/* Extend only the unoccupied desktop side gutters with a wood-grain strip
+   sampled from the original tabletop. No stage dimensions or hit areas change.
+   The mirrored strip tiles horizontally without duplicating illustrated props.
+   The background ends at the stage bottom; editorial content is unaffected. */
+@media(min-width:701px) and (min-height:480px){
+ .cc-worktable{
+  background-image:url('/assets/worktable-gutter-wood.webp');
+  background-repeat:repeat-x;
+  background-position:center top;
+  background-size:auto min(calc(100vw * 9 / 16),866.25px,var(--cc-worktable-opening));
+ }
+}
