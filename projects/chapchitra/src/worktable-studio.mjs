@@ -1118,7 +1118,15 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  stage.addEventListener('transitionend',event=>{
   if(event.propertyName==='transform'&&mobileUI?.isMobile())printPosition();
  });
+ // Measure layout height, not the animated sticky header's transformed rect.
+ const viewportHeader=document.querySelector('#siteHeader');
+ let measuredHeader=0;
+ const fitWorktable=()=>{const h=viewportHeader?.offsetHeight||65;if(h!==measuredHeader){measuredHeader=h;body.style.setProperty('--cc-worktable-navbar-height',h+'px')}if(lastInfo&&!mobileUI?.isMobile())syncTransformTools(lastInfo)};
+ const viewportObserver=new ResizeObserver(fitWorktable);
+ if(viewportHeader)viewportObserver.observe(viewportHeader);
+ viewportObserver.observe(stage);fitWorktable();
  const unload=()=>{
+  viewportObserver.disconnect();
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
   if(guideTimer!==null)clearTimeout(guideTimer);
   document.removeEventListener('pointerdown',onOutsidePointer,true);
@@ -1202,7 +1210,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   artURL=null;artBitmap=null;
   if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);
   mobileUI?.destroy();
-  uploadObserver?.disconnect();document.removeEventListener('visibilitychange',syncUploadMotion);
+  viewportObserver.disconnect();uploadObserver?.disconnect();document.removeEventListener('visibilitychange',syncUploadMotion);
   window.removeEventListener('pagehide',unload);root.replaceChildren();
  }};
 }

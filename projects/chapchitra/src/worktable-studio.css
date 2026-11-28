@@ -1029,3 +1029,21 @@
   grid-template-columns:repeat(3,minmax(44px,1fr));gap:10px 8px;justify-items:stretch;align-content:start;
  }
 }
+
+/* Full opening desktop composition. The 2048x1152 stage, every source
+   layer and its percentage hotspot remain registered to the same frame.
+   Phones retain the approved portrait composition and accessible popups.
+   Very short windows retain ordinary scrolling rather than tiny controls. */
+.cc-worktable{--cc-worktable-navbar-height:65px;--cc-worktable-opening:calc(100vh - var(--cc-worktable-navbar-height))}
+@supports(height:100svh){.cc-worktable{--cc-worktable-opening:calc(100svh - var(--cc-worktable-navbar-height))}}
+@media(min-width:701px) and (min-height:480px){
+ .cc-worktable-frame{width:min(100%,1540px,calc(var(--cc-worktable-opening) * 16 / 9));container-type:inline-size}
+}
+@media(min-width:1101px) and (min-height:480px){
+ .cc-worktable-view-button.cc-sketch.cc-compact-artwork{
+  width:clamp(112px,10.65cqi,164px);min-width:0;
+  height:clamp(44px,4.156cqi,64px);min-height:44px;
+  font-size:clamp(12px,1.072cqi,16.5px)
+ }
+ .cc-worktable-view-glyph{font-size:clamp(14px,1.3cqi,20px)}
+}
