@@ -53,7 +53,7 @@ export function mountScrollNavbar(header,doc=document,view=window){
   return {ready:revealReady,wasHidden:restoreHidden,release(){
    if(released)return;released=true;if(disposed)return;if(--holds>0)return;
    const current=y();lastY=current;
-   if(pinned()||current<=16){state.restore(current,false);force()}else set(state.restore(current,restoreHidden));
+   if(pinned()||current<=16){state.restore(current,false);force()}else {const next=state.restore(current,restoreHidden);if(restoreHidden)set(next)}
    revealReady=null;restoreHidden=false;
   }};
  });

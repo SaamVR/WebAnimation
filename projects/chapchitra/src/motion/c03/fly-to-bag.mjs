@@ -14,7 +14,7 @@ import {planC03Flight,shrinkAt} from './geometry.mjs';
 import {holdNavbarForBag} from '../../nav-scroll.mjs';
 
 const ROOT='/motion/c03/';
-let gsapPromise=null,active=null,serial=0,listenersReady=false,flightWatchTimer=0,pendingHold=null;
+let gsapPromise=null,active=null,serial=0,listenersReady=false,flightWatchTimer=0,pendingHold=null,ackTimer=0;
 const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function ensureCSS(){
@@ -75,7 +75,7 @@ function cleanup(){
 }
 export function cancelC03(){
  serial++;
- pendingHold?.release();pendingHold=null;
+ clearTimeout(ackTimer);ackTimer=0;pendingHold?.release();pendingHold=null;
  cleanup();
 }
 // Never programmatically scroll the customer to reveal artwork.
@@ -132,14 +132,17 @@ function makeCutout(source,rect,geometry){
 }
 export async function playC03({button,productId}={}){
  // Cart commits independently. Acquire the next lease before cancelling the old proxy.
- if(prefersReduced()||!button?.isConnected)return false;
+ if(!button?.isConnected)return false;
  const headerEl=document.querySelector('.site-header');
+ if(prefersReduced()&&headerEl?.dataset.ccScrollNav!=='hidden'&&!pendingHold)return false;
  const hold=holdNavbarForBag(headerEl);
  cancelC03();pendingHold=hold;
  const version=serial,initialScroll=scrollY;
  const abandon=()=>{if(pendingHold===hold)pendingHold=null;hold.release();return false};
+ const acknowledgeOnly=()=>{if(!hold.wasHidden||version!==serial)return abandon();ackTimer=window.setTimeout(()=>{ackTimer=0;abandon()},650);return false};
  try{
  ensureCSS();installLifecycle();
+ if(prefersReduced()){if(!await hold.ready||version!==serial)return abandon();return acknowledgeOnly()}
  const gs=await getGSAP();
  if(!gs||version!==serial||!button.isConnected||document.hidden||prefersReduced())return abandon();
  if(!await hold.ready||version!==serial)return abandon();
@@ -149,12 +152,12 @@ export async function playC03({button,productId}={}){
  const bagLink=document.querySelector('.site-header .bag-link');
  const badge=bagLink?.querySelector('.bag-count');
  const icon=bagLink?.querySelector('.cc-nav-art, svg');
- if(!source||!bagLink||!badge||!icon)return abandon();
+ if(!source||!bagLink||!badge||!icon)return acknowledgeOnly();
  const sourceRect=source.getBoundingClientRect(),bagRect=bagLink.getBoundingClientRect();
  const header=headerEl.getBoundingClientRect();
- if(headerEl.dataset.ccScrollNav==='hidden'||sourceRect.bottom<=header.bottom||sourceRect.top>=innerHeight)return abandon();
+ if(headerEl.dataset.ccScrollNav==='hidden'||sourceRect.bottom<=header.bottom||sourceRect.top>=innerHeight)return acknowledgeOnly();
  const geometry=planC03Flight(sourceRect,bagRect,header,{width:innerWidth,height:innerHeight});
- if(!geometry)return abandon();
+ if(!geometry)return acknowledgeOnly();
  const {layer,cloneBox,path}=makeCutout(source,sourceRect,geometry);
  const length=path.getTotalLength();
  if(!Number.isFinite(length)||length<=0){layer.remove();return abandon();}
