@@ -6,6 +6,7 @@ Last updated 2026-11-28. Current authorization: development, GitHub saves, Windo
 |---|---|---|
 | Previously deployed to protected Vercel review | PR166/169/168/170; Artist's Edit, Journal V1/magazine, About, bag/checkout/confirmation validation | 4e0996db89f9e7a2215b28a81395d2cc51658da8 (last verified review alias) |
 | Development pending local QA and owner approval | C03 hidden-navbar coordination, confirmation entrance, permanent deployment gate | Current isolated local-review commit; exact SHA in Git and QA report |
+| Development completed; owner review pending; NOT approved for deployment | Artist's Edit three exact miniature Lottie workers; 343 native tests, 10/10 playback cases; WebKit frame pacing remains below target | PR #173; implementation c3da7e08478d28e5109a4fedab44d0e5942aa848; Windows performance report |
 | Owner-approved awaiting deployment | None newly authorized for deployment | Explicit scoped approval required |
 | Render | No deployment authorized; keep linked branch unchanged while auto-deploy is enabled | deploy/chapchitra-render-review; verify service and deployed SHA before future authorized deploy |
 
