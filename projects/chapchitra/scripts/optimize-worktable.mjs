@@ -75,7 +75,7 @@ for(const [garment,garmentPath] of Object.entries(WORKTABLE_GARMENT_ASSETS)){
    const top=Math.min(height-v.height,Math.round(info.crop[1]*viewWidth/4000));
    composite.push({input:await readFile(resolve(target,v.path)),left:Math.max(0,left),top:Math.max(0,top),blend:'over'});
   }
-  const outPath='variants/preview/assembled-'+garment+'-svg3ea32afb.w'+viewWidth+'.webp';
+  const outPath='variants/preview/assembled-'+garment+'-svg3ea32afb-workers-v1.w'+viewWidth+'.webp';
   const image=await sharp({create:{width:viewWidth,height,channels:4,background:{r:0,g:0,b:0,alpha:0}}})
     .composite(composite).webp({quality:94,alphaQuality:100,effort:5,smartSubsample:true}).toBuffer();
   await mkdir(dirname(resolve(target,outPath)),{recursive:true});
@@ -91,6 +91,7 @@ for(const [garment,garmentPath] of Object.entries(WORKTABLE_GARMENT_ASSETS)){
 for(const garment of Object.keys(WORKTABLE_GARMENT_ASSETS)){
  for(const viewWidth of widths){
   await rm(resolve(target,'variants/preview/assembled-'+garment+'.w'+viewWidth+'.webp'),{force:true});
+  await rm(resolve(target,'variants/preview/assembled-'+garment+'-svg3ea32afb.w'+viewWidth+'.webp'),{force:true});
  }
 }
 // Compact shared source plate for atomic first-frame garment+color changes.

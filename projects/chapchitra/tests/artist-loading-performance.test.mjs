@@ -7,9 +7,9 @@ const html=read('src/artists-edit/index.html');
 const app=read('src/app.mjs');
 const studio=read('src/worktable-studio.mjs');
 const build=read('scripts/build.mjs');
-test('original approved desktop preview is high priority but never preloaded on phones',()=>{
+test('worker-free approved desktop preview is high priority but never preloaded on phones',()=>{
  assert.ok(html.includes('media="(min-width: 601px)"'));
- assert.ok(html.includes('assembled-regular-svg3ea32afb.w1536.webp'));
+ assert.ok(html.includes('assembled-regular-svg3ea32afb-workers-v1.w1536.webp'));
  assert.ok(html.includes('media="(max-width: 600px)"'));
  assert.ok(html.includes('walnut_table_background_exact_tone_4K_1.w768.webp 348w'));
  assert.ok(html.includes('fetchpriority="high"'));
