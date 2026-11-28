@@ -57,7 +57,8 @@ test('alpha-trimmed layers use shared stage coordinates and never intercept clic
  assert.match(source,/img\.style\.top=percent\(box\[1\],1152\)/);
  assert.match(css,/\.cc-worktable-hit\{[^}]*left:var\(--x\)[^}]*top:var\(--y\)[^}]*width:var\(--w\)/);
  assert.doesNotMatch(source,/\b(?:crop|resizeBitmap|createImageBitmap)\(/);
- assert.match(source,/for\(const path of ALL\.workers\)addImage\(path,'cc-worktable-worker'\)/);
+ assert.match(source,/mountWorktableWorkers\(stage,ALL\.workers\.map\(path=>manifest\[path\]\.bbox\)\)/);
+ assert.match(css,/\.cc-worktable-stage>\.cc-worktable-worker\{[^}]*pointer-events:none/);
  assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
 });
 
@@ -184,7 +185,7 @@ test('assembled initial scene is made only from source runtime layers, not refer
  const {WORKTABLE_SOURCE_STACK,WORKTABLE_PREVIEW_STACK,WORKTABLE_UPLOAD_RASTER}=await import('../src/worktable-studio.mjs');
  assert.deepEqual(delivery.__initialScene.generatedFromLayers,WORKTABLE_PREVIEW_STACK);
  assert.equal(WORKTABLE_SOURCE_STACK.length,39,'owner master SHA archive unchanged');
- assert.equal(WORKTABLE_PREVIEW_STACK.length,38,'only raster upload icon removed from assembled scene');
+ assert.equal(WORKTABLE_PREVIEW_STACK.length,35,'raster upload icon and three workers excluded from assembled scene');
  assert.equal(WORKTABLE_SOURCE_STACK.includes(WORKTABLE_UPLOAD_RASTER),true);
  assert.equal(WORKTABLE_PREVIEW_STACK.includes(WORKTABLE_UPLOAD_RASTER),false);
  assert.equal(delivery.__initialScene.variants.length,3);

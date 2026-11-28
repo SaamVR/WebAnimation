@@ -1,3 +1,4 @@
+import { mountWorktableWorkers } from './worktable-workers.mjs';
 import {readArtwork} from './purchase-artwork.mjs';
 import {ARTIST_CART_STORAGE_KEY,readArtistDemoBag} from './worktable-pricing.mjs';
 import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableReducer } from './worktable-stage.mjs';
@@ -54,10 +55,10 @@ const layers = [
 ];
 // Keep the immutable 39-file original source stack for provenance/QA.
 export const WORKTABLE_SOURCE_STACK=Object.freeze([ALL.backdrop,...layers.map(layer=>layer[0]),ALL.garment.regular,...ALL.workers]);
-// The interactive upload icon is now the owner's vector. Omit ONLY that old
-// raster layer when creating the 12 assembled previews: no double drawing.
+// The owner's vector upload icon and separate Lottie workers replace their raster layers.
+// Exclude all four old raster layers from assembled previews.
 export const WORKTABLE_UPLOAD_RASTER='Upload image notebook/Upload_image_notebook_upload_button_4.png';
-export const WORKTABLE_PREVIEW_STACK=Object.freeze(WORKTABLE_SOURCE_STACK.filter(path=>path!==WORKTABLE_UPLOAD_RASTER));
+export const WORKTABLE_PREVIEW_STACK=Object.freeze(WORKTABLE_SOURCE_STACK.filter(path=>path!==WORKTABLE_UPLOAD_RASTER&&!ALL.workers.includes(path)));
 // The on-demand atomic preview uses the same checksum-pinned original layers,
 // but has no baked garment: no previous white shirt can show through a new one.
 export const WORKTABLE_ATOMIC_BACKPLATE_STACK=Object.freeze(
@@ -433,7 +434,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   button.textContent=icon;button.title=name;button.setAttribute('aria-label',name);
   button.setAttribute('aria-pressed','false');tools.append(button);toolButtons.set(mode,button);
  }
- for(const path of ALL.workers)addImage(path,'cc-worktable-worker');
+ const workers=mountWorktableWorkers(stage,ALL.workers.map(path=>manifest[path].bbox));
  for(const {path,group,value} of interactiveFiles)hitFor(path,group,value);
  // Only the illustrated plus/upload image is a hotspot. The notebook paper
  // remains decorative and never opens the file chooser.
@@ -734,10 +735,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  const composeAtomicPreview=async(colored,index)=>{
   const info=manifest.__initialScene;
   if(!info.backplateVariants?.[index])throw new Error('Atomic worktable background unavailable');
-  const [backplate,...workerImgs]=await Promise.all([
-   loadVariant({variants:info.backplateVariants},index),
-   ...ALL.workers.map(path=>loadVariant(sourceInfo(path),index)),
-  ]);
+  const backplate=await loadVariant({variants:info.backplateVariants},index);
   const canvas=document.createElement('canvas');
   canvas.width=backplate.naturalWidth;canvas.height=backplate.naturalHeight;
   canvas.className='cc-worktable-layer cc-worktable-preview';
@@ -762,7 +760,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    ctx.drawImage(img,left,top);
   };
   place(colored,colored.dataset.assetPath||ALL.garment[colored.dataset.garment]);
-  ALL.workers.forEach((path,i)=>place(workerImgs[i],path));
+  // All workers remain separate SVG actors, including during atomic previews.
   return canvas;
  };
  const queueGarmentVisual=()=>{
@@ -934,26 +932,33 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  // Keep upload available as an accessible 44px touch target even when
  // the illustrated stage hotspots are too small on narrow screens.
  uploadButton.addEventListener('click',()=>file.click());
+ let uploadRevision=0,placedRevision=0;
  file.addEventListener('change',async()=>{
   const fileObj=file.files?.[0];if(!fileObj)return;
   if(!['image/png','image/jpeg','image/webp'].includes(fileObj.type)){
    announce('Please choose a PNG, JPEG, or WebP design. SVG is not supported for security.');file.value='';return;
   }
   if(fileObj.size>10*1024*1024){announce('Artwork must be 10 MB or smaller.');file.value='';return}
+  const revision=++uploadRevision;
   const next=URL.createObjectURL(fileObj);
   try{
    const img=new Image();img.src=next;await img.decode();
    if(img.naturalWidth<1||img.naturalHeight<1||img.naturalWidth>8192||img.naturalHeight>8192)throw Error('Unsupported image dimensions');
-   clearArtURL();artURL=next;artBitmap=img;
+   if(revision!==uploadRevision||!body.isConnected){URL.revokeObjectURL(next);return}
+   clearArtURL();artURL=next;artBitmap=img;placedRevision=revision;
    editor.x=editor.y=0;editor.adjustment=0;editor.rotation=0;editor.selected=false;editor.mode='move';
    // The selected A4 frame location is independent from newly uploaded artwork.
    scale.value='0';scaleOut.textContent='0%';scale.disabled=false;remove.disabled=false;reset.disabled=false;
    // Precompute the new fitted bounds before showing the new source pixels.
        paintSelection();syncPricing();artImg.style.objectFit='contain';artImg.src=artURL;revealGuide();
+   // A decoded and painted garment image is the sole animation trigger.
+   void artImg.decode().then(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))).then(()=>{
+    if(placedRevision===revision&&artURL===next&&artImg.naturalWidth&&print.getBoundingClientRect().width>0)workers.playOnce();
+   }).catch(()=>{});
    announce('Artwork loaded locally at 0% adjustment to the '+current.printSize+
     ' visual reference. Drag to position or use the signed resize slider.');
-  }catch{URL.revokeObjectURL(next);announce('The selected image could not be decoded.');}
-  file.value='';
+  }catch{URL.revokeObjectURL(next);if(revision===uploadRevision)announce('The selected image could not be decoded.');}
+  if(revision===uploadRevision)file.value='';
  });
  scale.addEventListener('input',()=>{
   editor.adjustment=Number(scale.value);
@@ -1164,6 +1169,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  if(viewportHeader)viewportObserver.observe(viewportHeader);
  viewportObserver.observe(stage);fitWorktable();
  const unload=()=>{
+  workers.destroy();
   disposeFinalDecor();viewportObserver.disconnect();
   if(placementFeedbackTimer!==null)clearTimeout(placementFeedbackTimer);
   if(guideTimer!==null)clearTimeout(guideTimer);
@@ -1260,6 +1266,7 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   window.requestIdleCallback(startHydration,{timeout:250});
  else setTimeout(startHydration,60);
  return {getState:()=>({...current,view}),getPricing:()=>calculateArtistPrice(selectionForPricing()),getOrderData:()=>buildArtistCustomization(selectionForPricing()),getPlacement:()=>({...editor,scale:1+editor.adjustment/100}),destroy:()=>{
+  workers.destroy();
   saveActiveSide();disposeSideRecords(sideRecords,url=>URL.revokeObjectURL(url));
   artURL=null;artBitmap=null;
   if(uploadAckTimer!==null)clearTimeout(uploadAckTimer);

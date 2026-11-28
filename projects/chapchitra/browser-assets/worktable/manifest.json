@@ -2330,132 +2330,129 @@
       "Print size/Print_size_title_2.png",
       "Print size/Print_size_A3_1.png",
       "Print size/Print_size_A4_2.png",
-      "Tshirts/walnut_table_background_exact_tone_4K_1.png",
-      "Worker/Mini_worker_1.png",
-      "Worker/Mini_worker_1.pn2.png",
-      "Worker/Mini_worker_1.pn3.png"
+      "Tshirts/walnut_table_background_exact_tone_4K_1.png"
     ],
     "variants": [
       {
-        "path": "variants/preview/assembled-regular-svg3ea32afb.w768.webp",
+        "path": "variants/preview/assembled-regular-svg3ea32afb-workers-v1.w768.webp",
         "width": 768,
         "height": 432,
-        "bytes": 90412,
-        "sha256": "664249e9109011c7d8d6e5d573f673bd495c5d8d0138e3431bc4982ba92277d9"
+        "bytes": 86252,
+        "sha256": "3b26d1dea55c68e50359e36c14708d421611727fd3cc64d84e1fbf0619004dc7"
       },
       {
-        "path": "variants/preview/assembled-regular-svg3ea32afb.w1536.webp",
+        "path": "variants/preview/assembled-regular-svg3ea32afb-workers-v1.w1536.webp",
         "width": 1536,
         "height": 864,
-        "bytes": 268142,
-        "sha256": "f56bf1a20d529d94cd2805eba21fe41ea979f8876e0f4c8a0111cdeb0af44dd4"
+        "bytes": 254760,
+        "sha256": "d0f40e03ddb30d879bffe3f7b3d7aaa01ddfee18993adbd6dd923fa4d79fd3d0"
       },
       {
-        "path": "variants/preview/assembled-regular-svg3ea32afb.w2560.webp",
+        "path": "variants/preview/assembled-regular-svg3ea32afb-workers-v1.w2560.webp",
         "width": 2560,
         "height": 1440,
-        "bytes": 516614,
-        "sha256": "4133f04ed82013062c8b37159f5d80a73c0b32d20c2de58995f1d8a683af6840"
+        "bytes": 515486,
+        "sha256": "13ec396a45740814fea1919e4ef0fd769d588506a1bffbb345ce0818eb537c3b"
       }
     ],
     "garments": {
       "regular": {
         "variants": [
           {
-            "path": "variants/preview/assembled-regular-svg3ea32afb.w768.webp",
+            "path": "variants/preview/assembled-regular-svg3ea32afb-workers-v1.w768.webp",
             "width": 768,
             "height": 432,
-            "bytes": 90412,
-            "sha256": "664249e9109011c7d8d6e5d573f673bd495c5d8d0138e3431bc4982ba92277d9"
+            "bytes": 86252,
+            "sha256": "3b26d1dea55c68e50359e36c14708d421611727fd3cc64d84e1fbf0619004dc7"
           },
           {
-            "path": "variants/preview/assembled-regular-svg3ea32afb.w1536.webp",
+            "path": "variants/preview/assembled-regular-svg3ea32afb-workers-v1.w1536.webp",
             "width": 1536,
             "height": 864,
-            "bytes": 268142,
-            "sha256": "f56bf1a20d529d94cd2805eba21fe41ea979f8876e0f4c8a0111cdeb0af44dd4"
+            "bytes": 254760,
+            "sha256": "d0f40e03ddb30d879bffe3f7b3d7aaa01ddfee18993adbd6dd923fa4d79fd3d0"
           },
           {
-            "path": "variants/preview/assembled-regular-svg3ea32afb.w2560.webp",
+            "path": "variants/preview/assembled-regular-svg3ea32afb-workers-v1.w2560.webp",
             "width": 2560,
             "height": 1440,
-            "bytes": 516614,
-            "sha256": "4133f04ed82013062c8b37159f5d80a73c0b32d20c2de58995f1d8a683af6840"
+            "bytes": 515486,
+            "sha256": "13ec396a45740814fea1919e4ef0fd769d588506a1bffbb345ce0818eb537c3b"
           }
         ]
       },
       "dropShoulder": {
         "variants": [
           {
-            "path": "variants/preview/assembled-dropShoulder-svg3ea32afb.w768.webp",
+            "path": "variants/preview/assembled-dropShoulder-svg3ea32afb-workers-v1.w768.webp",
             "width": 768,
             "height": 432,
-            "bytes": 90566,
-            "sha256": "13a61290505e689b3ab8fbdf5d70d71e6f63495dbc79e666fef5644f8f4f694f"
+            "bytes": 86726,
+            "sha256": "f640d24d538e8e258466f6624e6a0211511066968f8ba6bceaf6c7448ebd48f2"
           },
           {
-            "path": "variants/preview/assembled-dropShoulder-svg3ea32afb.w1536.webp",
+            "path": "variants/preview/assembled-dropShoulder-svg3ea32afb-workers-v1.w1536.webp",
             "width": 1536,
             "height": 864,
-            "bytes": 269656,
-            "sha256": "e21b118371016f008c7d0fbb6ec3ee384b1e7704f537ff285a13568c070ae8d5"
+            "bytes": 249080,
+            "sha256": "d5d965255f422b819ad26c6d48784953fb7358094999963a23fb77599e80360c"
           },
           {
-            "path": "variants/preview/assembled-dropShoulder-svg3ea32afb.w2560.webp",
+            "path": "variants/preview/assembled-dropShoulder-svg3ea32afb-workers-v1.w2560.webp",
             "width": 2560,
             "height": 1440,
-            "bytes": 521760,
-            "sha256": "a720a5df9e64906fa6e074ca6130ecee1ca9a7bb54431f03e288e89979518b5e"
+            "bytes": 516136,
+            "sha256": "053a31d9197b5dd717197c4c209aee59651966bf743652e584ed717f76021bf9"
           }
         ]
       },
       "fullSleeve": {
         "variants": [
           {
-            "path": "variants/preview/assembled-fullSleeve-svg3ea32afb.w768.webp",
+            "path": "variants/preview/assembled-fullSleeve-svg3ea32afb-workers-v1.w768.webp",
             "width": 768,
             "height": 432,
-            "bytes": 90032,
-            "sha256": "f34eb16fa4335a8752a7b8c15fda2b97daa75cf3e410d2b86042959edfff9e43"
+            "bytes": 86238,
+            "sha256": "7b0bdda7f27d0e4384370ac727ebf170cf88673db936f459718d52a6e7c441c6"
           },
           {
-            "path": "variants/preview/assembled-fullSleeve-svg3ea32afb.w1536.webp",
+            "path": "variants/preview/assembled-fullSleeve-svg3ea32afb-workers-v1.w1536.webp",
             "width": 1536,
             "height": 864,
-            "bytes": 267542,
-            "sha256": "c6bfda692a740128b7a5b7a6217608045627773a4d75a954d3b01a3a4dff848c"
+            "bytes": 255692,
+            "sha256": "143c7fa38b887f20eb3d2dde1bc10bae5cd03bcd9fba206346c6b5752a6d08e6"
           },
           {
-            "path": "variants/preview/assembled-fullSleeve-svg3ea32afb.w2560.webp",
+            "path": "variants/preview/assembled-fullSleeve-svg3ea32afb-workers-v1.w2560.webp",
             "width": 2560,
             "height": 1440,
-            "bytes": 517702,
-            "sha256": "636a075be21cdf363772f1a0605371335f8818e8fc2ed2c9c43b1262180f30d0"
+            "bytes": 515912,
+            "sha256": "dff837db6934875a45a71a7e28532b90142b493e259ff2bb7217c94c30821970"
           }
         ]
       },
       "hoodie": {
         "variants": [
           {
-            "path": "variants/preview/assembled-hoodie-svg3ea32afb.w768.webp",
+            "path": "variants/preview/assembled-hoodie-svg3ea32afb-workers-v1.w768.webp",
             "width": 768,
             "height": 432,
-            "bytes": 92076,
-            "sha256": "9fd229f5e7c0e7868156da2b22775418b26d54c219adc5eac1b9bae4d2d04c80"
+            "bytes": 88682,
+            "sha256": "bd4a697c72f69d7d3436e4f878751a7158516e3c59b82da473da706183492a4d"
           },
           {
-            "path": "variants/preview/assembled-hoodie-svg3ea32afb.w1536.webp",
+            "path": "variants/preview/assembled-hoodie-svg3ea32afb-workers-v1.w1536.webp",
             "width": 1536,
             "height": 864,
-            "bytes": 271874,
-            "sha256": "78b6149f15ffbd0046ec09334dcd42e8e9d954f3a5315bd91dd153832f2a6cce"
+            "bytes": 260400,
+            "sha256": "11495632b080243ee8a1d24a9a35a67d20a17979090c3a52a1d17bd7c55da4e9"
           },
           {
-            "path": "variants/preview/assembled-hoodie-svg3ea32afb.w2560.webp",
+            "path": "variants/preview/assembled-hoodie-svg3ea32afb-workers-v1.w2560.webp",
             "width": 2560,
             "height": 1440,
-            "bytes": 526738,
-            "sha256": "f0bc784d1dc5f5de8e653fe5ac78e2604c02d17c99564b0f1f576ddf6cd8f8fa"
+            "bytes": 524076,
+            "sha256": "3479794afa714d078d19947b4b21173b489c8fad5508e255fadde5a84bb01665"
           }
         ]
       }

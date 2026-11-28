@@ -20,9 +20,9 @@ test('user-supplied original SVG is preserved byte-for-byte in source, with real
  assert.ok(!UPLOAD_ARTWORK_SVG.includes('<script')&&!UPLOAD_ARTWORK_SVG.includes('<foreignObject'));
 });
 
-test('only the old raster upload button is omitted from compiled scene, never notebook or original archive',async()=>{
+test('old raster upload button and workers omitted from compiled scene, never notebook or original archive',async()=>{
  assert.equal(WORKTABLE_SOURCE_STACK.length,39);
- assert.equal(WORKTABLE_PREVIEW_STACK.length,38);
+ assert.equal(WORKTABLE_PREVIEW_STACK.length,35);
  assert.ok(WORKTABLE_SOURCE_STACK.includes(WORKTABLE_UPLOAD_RASTER));
  assert.ok(!WORKTABLE_PREVIEW_STACK.includes(WORKTABLE_UPLOAD_RASTER));
  assert.ok(WORKTABLE_PREVIEW_STACK.includes('Upload image notebook/Upload_image_notebook_1.png'));
@@ -31,9 +31,9 @@ test('only the old raster upload button is omitted from compiled scene, never no
  assert.deepEqual(M.__initialScene.generatedFromLayers,WORKTABLE_PREVIEW_STACK);
  for(const scene of Object.values(M.__initialScene.garments)){
   assert.equal(scene.variants.length,3);
-  for(const variant of scene.variants)assert.match(variant.path,/assembled-(?:regular|dropShoulder|fullSleeve|hoodie)-svg3ea32afb\.w(?:768|1536|2560)\.webp/);
+  for(const variant of scene.variants)assert.match(variant.path,/assembled-(?:regular|dropShoulder|fullSleeve|hoodie)-svg3ea32afb-workers-v1\.w(?:768|1536|2560)\.webp/);
  }
- assert.ok((await stat(resolve(root,'browser-assets/worktable/variants/preview/assembled-regular-svg3ea32afb.w1536.webp'))).size<300000);
+ assert.ok((await stat(resolve(root,'browser-assets/worktable/variants/preview/assembled-regular-svg3ea32afb-workers-v1.w1536.webp'))).size<300000);
  await assert.rejects(()=>stat(resolve(root,'browser-assets/worktable/variants/preview/assembled-regular.w1536.webp')));
 });
 
