@@ -32,6 +32,7 @@ export function isC02Eligible({
   const sameDocument=from.pathname===to.pathname && from.search===to.search;
   if(sameDocument)return false; // Includes in-page anchor scrolling.
   if(isJournalPath(from.pathname)&&isJournalPath(to.pathname))return false; // Editorial navigation only.
+  if([from.pathname,to.pathname].some(p=>/^\/(bag|checkout|order-confirmation)\/?$/.test(p)))return false; // Fast purchase journey.
   if(/\.(?:zip|rar|pdf|svg|png|jpe?g|gif|webp|mp4|webm|json|css|mjs|js|woff2?|ttf)$/i.test(to.pathname))return false;
   return true;
 }

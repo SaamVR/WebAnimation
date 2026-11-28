@@ -1,3 +1,5 @@
+import {readArtwork} from './purchase-artwork.mjs';
+import {ARTIST_CART_STORAGE_KEY,readArtistDemoBag} from './worktable-pricing.mjs';
 import { WORKTABLE_VIEWBOX, GARMENT_VARIANTS, createWorktableState, worktableReducer } from './worktable-stage.mjs';
 import { sketchButton } from './handdrawn-buttons.mjs';
 import { UPLOAD_ARTWORK_SVG } from './worktable-upload-icon.mjs';
@@ -529,12 +531,29 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
    priceBreakdownTotal.textContent=formatArtistBDT(amount.total);
    return amount;
   };
-  addDemoBag.addEventListener('click',()=>{
-   const config=buildArtistCustomization(selectionForPricing());
-   root.querySelector('#worktableBagStatus').textContent='Adding to demo bag…';
-   root.dispatchEvent(new CustomEvent('chapchitra:artist-demo-add',{
-    bubbles:true,detail:{selection:config}
-   }));
+  addDemoBag.addEventListener('click',async()=>{
+   if(addDemoBag.disabled)return;addDemoBag.disabled=true;
+   const status=root.querySelector('#worktableBagStatus');
+   try{
+    const config=buildArtistCustomization(selectionForPricing());saveActiveSide();
+    status.textContent='Preparing browser-local garment previews…';
+    const records={front:loadSide(sideRecords,'front'),back:loadSide(sideRecords,'back')},artwork={};await ensureBackManifest();
+    for(const side of ['front','back']){
+     const r=records[side],source=await colorized(config.garment,config.color,0,side),box=sourceInfo(source.dataset.assetPath).stageBox;
+     const canvas=document.createElement('canvas');canvas.width=300;canvas.height=Math.max(1,Math.round(300*box[3]/box[2]));
+     const ctx=canvas.getContext('2d');ctx.drawImage(source,0,0,canvas.width,canvas.height);
+     let original=null;
+     if(r.url&&r.bitmap){
+      const g=placementGeometry({garment:config.garment,preset:r.preset,imageWidth:r.bitmap.naturalWidth,imageHeight:r.bitmap.naturalHeight,adjustment:r.editor.adjustment,dx:r.editor.x,dy:r.editor.y,rotation:r.editor.rotation,frameX:r.editor.frameX,frameY:r.editor.frameY});
+      ctx.save();ctx.scale(canvas.width/box[2],canvas.height/box[3]);ctx.translate(g.centerX-box[0],g.centerY-box[1]);ctx.rotate(g.rotation*Math.PI/180);ctx.drawImage(r.bitmap,-g.width/2,-g.height/2,g.width,g.height);ctx.restore();
+      original=await(await fetch(r.url)).blob();
+     }
+     const preview=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',.82));if(!preview)throw Error('Could not prepare preview');
+     artwork[side]={original,preview,editor:{...r.editor},preset:r.preset};
+    }
+    root.dispatchEvent(new CustomEvent('chapchitra:artist-demo-add',{bubbles:true,detail:{selection:config,artwork}}));
+   }catch(error){status.textContent='Not saved: '+String(error?.message||error).slice(0,120)}
+   finally{addDemoBag.disabled=false}
   });
   syncPricing();
  // Paper reference and uploaded-image transform are separate stage layers.
@@ -1220,7 +1239,23 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
  }
  // First paint and existing input listeners win over optional fine-layer
  // network/decodes. A bounded idle timeout avoids starving iOS Safari.
- const startHydration=()=>{if(body.isConnected){loadFinalDecor();void hydrate()}};
+ const restoreCartEdit=async()=>{
+  const id=new URLSearchParams(location.search).get('edit');if(!id)return;
+  let row;try{row=readArtistDemoBag(JSON.parse(sessionStorage.getItem(ARTIST_CART_STORAGE_KEY)||'[]')).find(r=>r.id===id)}catch{}
+  if(!row){announce('Customization is not in this browser session.');return}
+  try{
+   const saved=await readArtwork(id),s=row.selection;
+   if((s.front.hasArtwork&&!saved?.front?.original)||(s.back.hasArtwork&&!saved?.back?.original)){announce('Saved artwork has expired or is unavailable. Re-upload before updating this customization.');return}
+   for(const group of ['garment','size','color'])current=worktableReducer(current,{type:'select',group,value:s[group]});
+   for(const side of ['front','back']){
+    const a=saved?.[side],r=s[side],e={...r.editor,...a?.editor,selected:false,mode:'move'},preset=r.preset;
+    let url=null,bitmap=null;if(a?.original instanceof Blob){url=URL.createObjectURL(a.original);bitmap=new Image();bitmap.src=url;try{await bitmap.decode()}catch(error){URL.revokeObjectURL(url);throw error}}
+    storeSide(sideRecords,side,{url,bitmap,preset,editor:e});
+   }
+   restoreActiveSide();await queueGarmentVisual();syncPricing();addDemoBag.querySelectorAll('.cc-sketch-label,.cc-sketch-label-ink').forEach(n=>n.textContent='UPDATE CUSTOMIZATION');announce('Saved customization restored. Artwork stays on this browser.');
+  }catch(error){announce('Could not restore customization: '+String(error?.message||error).slice(0,100))}
+ };
+ const startHydration=()=>{if(body.isConnected){loadFinalDecor();void hydrate().then(restoreCartEdit)}};
  if(typeof window.requestIdleCallback==='function')
   window.requestIdleCallback(startHydration,{timeout:250});
  else setTimeout(startHydration,60);
