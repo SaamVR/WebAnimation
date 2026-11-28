@@ -6,3 +6,15 @@ test('desktop side gutters use only a matching wood texture and leave the regist
  assert.match(css,/@media\(min-width:701px\) and \(min-height:480px\)\{\s*\.cc-worktable\{\s*background-image:url\('\/assets\/worktable-gutter-wood\.webp'\);\s*background-repeat:repeat-x;\s*background-position:center top;\s*background-size:auto min\(calc\(100vw \* 9 \/ 16\),866\.25px,var\(--cc-worktable-opening\)\)/);
  const texture=readFileSync(new URL('../src/assets/worktable-gutter-wood.webp',import.meta.url));assert.equal(texture.toString('ascii',0,4),'RIFF');assert.equal(texture.toString('ascii',8,12),'WEBP');
 });
+
+test('desktop repositioning excludes all approved iPad and touch layouts and translates matching artwork and hits',()=>{
+ assert.match(css,/@media\(min-width:1367px\) and \(min-height:480px\) and \(hover:hover\) and \(pointer:fine\)/);
+ for(const [prefix,group] of [['Garment style/','garment'],['Tshirt color/','color'],['Upload image notebook/','upload'],['Print size/','printSize']]){
+  assert.ok(css.includes('[data-source^="'+prefix+'"],.cc-worktable-hit[data-group="'+group+'"]'));
+ }
+ assert.ok(css.includes('.cc-worktable:not(.is-hydrating) .cc-worktable-price-tag-stage{translate:'));
+ assert.ok(src.includes("stage.append(plantUnderlay,plantCluster)"));
+ for(const f of ['worktable-desktop-plant-underlay.webp','worktable-desktop-plant-cluster.webp']){
+  const b=readFileSync(new URL('../src/assets/'+f,import.meta.url));assert.equal(b.toString('ascii',8,12),'WEBP');
+ }
+});

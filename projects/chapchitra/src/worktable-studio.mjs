@@ -299,6 +299,10 @@ export async function mountWorktable(root,{manifestURL='/assets/worktable/manife
   return img;
  };
  addImage(ALL.backdrop,'cc-worktable-desk');
+ // Desktop-only decor separation; original backdrop remains immutable.
+ const plantUnderlay=document.createElement('div');plantUnderlay.className='cc-worktable-desktop-plant-underlay';plantUnderlay.setAttribute('aria-hidden','true');
+ const plantCluster=document.createElement('div');plantCluster.className='cc-worktable-desktop-plant-cluster';plantCluster.setAttribute('aria-hidden','true');
+ stage.append(plantUnderlay,plantCluster);
  const clickTargets=[];
  const interactiveImgs=[];
  const interactionImages=new Map();
