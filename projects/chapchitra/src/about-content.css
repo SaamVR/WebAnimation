@@ -1,0 +1,201 @@
+
+/* Brand colours: change them here and the whole page follows */
+.cc-about{
+  --cream:var(--color-cream); --gallery:var(--color-gallery-white); --forest:var(--color-press-green); --night:var(--color-deep-forest);
+  --clay:var(--color-terracotta); --sage:#637565; --stone:var(--color-warm-beige); --ink:var(--text-primary);
+  --line:var(--border-subtle); --serif:var(--font-editorial); --sans:var(--font-ui);
+  --pad:clamp(18px,2.8vw,44px); --about-accent-text:var(--color-terracotta);
+}
+
+.cc-about *{box-sizing:border-box;margin:0;padding:0}
+.cc-about{background:var(--cream);color:var(--ink);font:400 1rem/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+.cc-about img{display:block;max-width:100%;height:auto}
+.cc-about a{color:inherit}
+.cc-about :focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+.cc-about h1,.cc-about h2,.cc-about h3{font-family:var(--serif);font-weight:450;font-variation-settings:"opsz" 144;text-transform:uppercase;letter-spacing:-.02em;line-height:1.04}
+.cc-about{max-width:1440px;margin-inline:auto;border-inline:1px solid var(--line);overflow:clip}
+
+
+
+
+
+/* ---------- placeholders ----------
+   To add artwork, put an image inside any box:
+   <div class="ph ..."><img src="your-art.webp" alt="Describe it"></div>
+   The label disappears and the image is cut to the shape. */
+.cc-about .ccab-ph{position:relative;overflow:hidden;background:var(--c,var(--stone));border:1px solid var(--line);display:grid;place-items:center;text-align:center;width:100%}
+.cc-about .ccab-ph::after{content:attr(data-label);white-space:pre-line;font-size:.76rem;line-height:1.5;font-weight:500;padding:8px 12px;color:var(--t,var(--ink))}
+.cc-about .ccab-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cc-about .ccab-ph:has(img)::after{display:none}
+.cc-about .ccab-forest{--c:var(--forest);--t:var(--gallery)}
+.cc-about .ccab-clay{--c:var(--clay);--t:var(--gallery)}
+.cc-about .ccab-sage{--c:var(--sage);--t:var(--gallery)}
+.cc-about .ccab-circle{border-radius:50%;aspect-ratio:1}
+.cc-about .ccab-half-right{border-radius:0 100% 100% 0/0 50% 50% 0}   /* flat left, round right */
+.cc-about .ccab-half-left{border-radius:100% 0 0 100%/50% 0 0 50%}    /* round left, flat right */
+.cc-about .ccab-bowl{border-radius:0 0 999px 999px;aspect-ratio:2/1}
+.cc-about .ccab-dome{border-radius:999px 999px 0 0;aspect-ratio:2/1.15}
+.cc-about .ccab-arch{border-radius:999px 999px 0 0;aspect-ratio:4/5}
+.cc-about .ccab-pill{border-radius:999px;aspect-ratio:5/3}
+
+/* two overlapping dots */
+.cc-about .ccab-duo{display:inline-flex;vertical-align:middle}
+.cc-about .ccab-duo i{width:34px;height:34px;border-radius:50%;background:var(--clay);border:1px solid var(--line)}
+.cc-about .ccab-duo i+i{background:var(--forest);margin-left:-11px}
+
+/* scalloped badge */
+.cc-about .ccab-badge{display:grid;place-items:center;width:clamp(104px,9vw,136px);aspect-ratio:1;position:relative;text-decoration:none;color:var(--gallery);text-align:center;font-weight:600;font-size:.92rem;line-height:1.3;flex:none}
+.cc-about .ccab-badge svg{position:absolute;inset:0;width:100%;height:100%;fill:var(--b,var(--clay));animation:ccab-spin 24s linear infinite}
+.cc-about .ccab-badge span{position:relative;padding:0 18px}
+.cc-about .ccab-badge:hover svg{fill:var(--forest)}
+
+/* circular text */
+.cc-about .ccab-ring{position:absolute;inset:0;width:100%;height:100%;animation:ccab-spin 30s linear infinite;pointer-events:none}
+.cc-about .ccab-ring text{font:600 15px var(--sans);letter-spacing:2.4px;fill:var(--ink);text-transform:uppercase}
+.cc-about .ccab-ring.ccab-faint text{fill:color-mix(in srgb,var(--ink) 53%,transparent)}
+.cc-about .ccab-ring.ccab-reverse{animation-direction:reverse}
+@keyframes ccab-spin{to{transform:rotate(1turn)}}
+
+/* 01 mosaic opening */
+.cc-about .ccab-hero{display:grid;grid-template-columns:22fr 60fr 18fr;padding:var(--pad);padding-bottom:calc(var(--pad) + 64px)}
+.cc-about .ccab-hero>div{display:flex;flex-direction:column;min-width:0}
+.cc-about .ccab-cell{border:1px solid var(--line);margin:-1px 0 0 -1px}
+.cc-about .ccab-hero-left .ccab-top{position:relative;flex:1;min-height:340px;display:flex;padding-right:14%}
+.cc-about .ccab-hero-left .ccab-top>.ccab-half-right{height:100%}
+.cc-about .ccab-hero-left .ccab-top>.ccab-circle{position:absolute;width:26%;right:3%;top:0}
+.cc-about .ccab-hero-left .ccab-circle::after{padding:0;white-space:nowrap}
+.cc-about .ccab-quote{padding:var(--pad) calc(var(--pad)*.7);font-family:var(--serif);font-size:clamp(1rem,1.3vw,1.3rem);line-height:1.45}
+.cc-about .ccab-quote small{display:block;margin-top:10px;font:500 .8rem var(--sans);color:var(--about-accent-text)}
+.cc-about .ccab-quote small::before{content:"";display:inline-block;width:28px;height:1px;background:currentColor;vertical-align:middle;margin-right:8px}
+.cc-about .ccab-title{flex:1;display:flex;align-items:center;padding:var(--pad)}
+.cc-about .ccab-title h1{font-size:clamp(2.6rem,6.2vw,5.8rem)}
+.cc-about .ccab-hero-bottom{display:grid;grid-template-columns:.45fr 1.25fr 1.3fr}
+.cc-about .ccab-vert{display:grid;place-items:center;padding:16px 0}
+.cc-about .ccab-vert span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.42em;font-size:.78rem;font-weight:600;color:var(--about-accent-text)}
+.cc-about .ccab-bowl-cell{position:relative;padding:0 8% 88px}
+.cc-about .ccab-bowl-cell .ccab-badge{position:absolute;left:50%;bottom:-64px;translate:-50% 0;z-index:2}
+.cc-about .ccab-intro{padding:var(--pad) calc(var(--pad)*.8);font-size:.95rem}
+.cc-about .ccab-intro .ccab-duo{margin-bottom:14px}
+.cc-about .ccab-hero-right{position:relative;padding-left:12%}
+.cc-about .ccab-hero-right .ccab-half-left{height:100%;min-height:480px}
+.cc-about .ccab-hero-right .ccab-badge{position:absolute;left:0;top:6%;width:clamp(72px,6vw,96px);--b:var(--forest)}
+
+/* 02 statement */
+.cc-about .ccab-statement{text-align:center;padding:clamp(80px,11vw,170px) var(--pad);border-top:1px solid var(--line)}
+.cc-about .ccab-statement h2{font-size:clamp(2rem,4.8vw,4.4rem);max-width:12em;margin-inline:auto}
+.cc-about .ccab-statement p{max-width:58ch;margin:28px auto 0}
+.cc-about .ccab-statement p.ccab-last{font-family:var(--serif);font-size:1.45rem;color:var(--about-accent-text);line-height:1.4}
+
+/* 03 People Places Prints */
+.cc-about .ccab-ppp{border-top:1px solid var(--line)}
+.cc-about .ccab-ppp>header{display:grid;grid-template-columns:2fr 3fr;border-bottom:1px solid var(--line)}
+.cc-about .ccab-ppp>header p{padding:var(--pad);align-self:end;color:var(--about-accent-text);font-weight:600}
+.cc-about .ccab-ppp>header h2{padding:var(--pad);border-left:1px solid var(--line);font-size:clamp(2.1rem,5vw,4.6rem);text-align:right}
+.cc-about .ccab-ppp-grid{display:grid;grid-template-columns:2fr 3fr}
+.cc-about .ccab-ppp-big{grid-row:span 2;padding:var(--pad) var(--pad) var(--pad) 0;margin-left:var(--pad);border-right:1px solid var(--line)}
+.cc-about .ccab-ppp-big .ccab-ph{aspect-ratio:1/1.9}
+.cc-about .ccab-orbit-cell{display:grid;place-items:center;padding:var(--pad)}
+.cc-about .ccab-orbit{position:relative;width:min(100%,460px);aspect-ratio:1;display:grid;place-items:center}
+.cc-about .ccab-orbit>.ccab-ph{width:50%}
+.cc-about .ccab-orbit .ccab-inner{inset:12%;width:76%;height:76%}
+.cc-about .ccab-orbit .ccab-halo{position:absolute;width:58%;aspect-ratio:1;border:1px solid var(--clay);border-radius:50%}
+.cc-about .ccab-ppp-caption{display:grid;grid-template-columns:1fr 1.4fr;border-top:1px solid var(--line);grid-column:2;min-height:230px}
+.cc-about .ccab-ppp-caption h3{display:grid;place-items:center;font-size:clamp(2rem,3.6vw,3.4rem);border-right:1px solid var(--line);padding:var(--pad) 10px}
+.cc-about .ccab-ppp-caption>div{display:grid;align-content:center;justify-items:center;text-align:center;padding:var(--pad)}
+.cc-about .ccab-ppp-caption p{max-width:38ch;min-height:5em}
+.cc-about .ccab-dots{display:flex;margin-top:12px}
+.cc-about .ccab-dots button{width:32px;height:32px;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.cc-about .ccab-dots button::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--clay);opacity:.45}
+.cc-about .ccab-dots button[aria-pressed="true"]::before{opacity:1;box-shadow:0 0 0 4px var(--cream),0 0 0 5px var(--clay)}
+
+/* 04 values */
+.cc-about .ccab-values{border-top:1px solid var(--line);padding-top:clamp(64px,8vw,120px)}
+.cc-about .ccab-values>h2{text-align:center;font-size:clamp(2rem,4.2vw,3.8rem);padding-inline:var(--pad)}
+.cc-about .ccab-value-list{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--line)}
+.cc-about .ccab-value-list li{padding:var(--pad);text-align:center;border-right:1px solid var(--line);display:flex;flex-direction:column}
+.cc-about .ccab-value-list li:last-child{border:0}
+.cc-about .ccab-shape{height:320px;display:grid;place-items:center}
+.cc-about .ccab-seal{position:relative;width:min(100%,290px);aspect-ratio:1;display:grid;place-items:center}
+.cc-about .ccab-seal>.ccab-ph{width:68%}
+.cc-about .ccab-shape .ccab-arch{width:min(76%,230px)}
+.cc-about .ccab-shape .ccab-pill{max-width:290px}
+.cc-about .ccab-shape .ccab-bowl{max-width:290px}
+.cc-about .ccab-value-list h3{font-size:clamp(1.25rem,1.8vw,1.7rem);margin-top:26px}
+.cc-about .ccab-value-list p{max-width:28ch;margin:10px auto 0}
+
+/* 05 Artist's Edit */
+.cc-about .ccab-edit{display:grid;grid-template-columns:1.1fr 1fr;border-top:1px solid var(--line)}
+.cc-about .ccab-edit-left{border-right:1px solid var(--line)}
+.cc-about .ccab-edit-title{padding:clamp(40px,5vw,80px) var(--pad) var(--pad);border-bottom:1px solid var(--line)}
+.cc-about .ccab-edit-title h2{font-size:clamp(2rem,4.4vw,4rem)}
+.cc-about .ccab-edit-title p{max-width:46ch;margin-top:20px}
+.cc-about .ccab-edit-left .ccab-bowl-wrap{padding:0 12% var(--pad)}
+.cc-about .ccab-edit-right{display:grid;place-items:center;padding:var(--pad)}
+.cc-about .ccab-portal{position:relative;width:min(100%,460px)}
+.cc-about .ccab-go{position:absolute;right:-2%;top:-3%;width:42%;aspect-ratio:1;background:var(--cream);display:grid;place-items:center;text-decoration:none}
+.cc-about .ccab-go .ccab-ring text{font-size:19px}
+.cc-about .ccab-go b{width:48%;aspect-ratio:1;border:1px solid var(--clay);border-radius:50%;display:grid;place-items:center;font:400 clamp(1.4rem,2.6vw,2.4rem) var(--sans);transition:.2s}
+.cc-about .ccab-go:hover b{background:var(--clay);color:var(--gallery)}
+
+/* 06 closing */
+.cc-about .ccab-closing{display:grid;grid-template-columns:1fr 2fr 1fr;border-top:1px solid var(--line)}
+.cc-about .ccab-closing>div{display:grid;place-items:center;align-content:center;text-align:center;padding:clamp(48px,6vw,96px) var(--pad)}
+.cc-about .ccab-closing>div+div{border-left:1px solid var(--line)}
+.cc-about .ccab-closing .ccab-mark{width:min(100%,230px)}
+.cc-about .ccab-closing h2{font-size:clamp(1.9rem,3.6vw,3.3rem);max-width:13em}
+.cc-about .ccab-closing .ccab-bn{font-size:2.4rem;color:var(--forest);margin-top:18px}
+.cc-about .ccab-closing .ccab-tag{color:var(--about-accent-text);font-weight:600}
+
+
+/* motion: headline lines rise, shapes grow in as you scroll */
+.cc-about .ccab-line{display:block;overflow:hidden;padding-bottom:.04em}
+.cc-about .ccab-line>span{display:block}
+.cc-about.cc-about-js .ccab-rise .ccab-line>span{transform:translateY(110%);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.cc-about.cc-about-js .ccab-rise.ccab-seen .ccab-line>span{transform:none}
+.cc-about.cc-about-js .ccab-rise .ccab-line:nth-child(2)>span{transition-delay:.12s}
+.cc-about.cc-about-js .ccab-rise .ccab-line:nth-child(3)>span{transition-delay:.24s}
+.cc-about.cc-about-js .ccab-grow{opacity:0;scale:.82;transition:opacity .7s,scale .8s cubic-bezier(.2,.7,.2,1)}
+.cc-about.cc-about-js .ccab-grow.ccab-seen{opacity:1;scale:1}
+
+@media (max-width:1000px){
+.cc-about .ccab-hero{grid-template-columns:1fr 1fr}
+.cc-about .ccab-hero>.ccab-hero-mid{grid-column:1/-1;order:-1}
+.cc-about .ccab-value-list{grid-template-columns:1fr 1fr}
+.cc-about .ccab-value-list li{border-bottom:1px solid var(--line)}
+.cc-about .ccab-edit,.cc-about .ccab-closing{grid-template-columns:1fr}
+.cc-about .ccab-edit-left{border:0}
+.cc-about .ccab-closing>div+div{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:700px){
+  .cc-about{border:0}
+
+.cc-about .ccab-hero-bottom{grid-template-columns:48px 1fr}
+.cc-about .ccab-intro{grid-column:1/-1;padding-top:84px}
+.cc-about .ccab-hero-left .ccab-top{min-height:260px}
+.cc-about .ccab-hero-right .ccab-half-left{min-height:0}
+.cc-about .ccab-ppp>header,.cc-about .ccab-ppp-grid,.cc-about .ccab-ppp-caption{grid-template-columns:1fr}
+.cc-about .ccab-ppp>header h2{border:0;text-align:left;padding-top:0}
+.cc-about .ccab-ppp-big{grid-row:auto;border:0;margin:0;padding:var(--pad) 18% var(--pad) 0}
+.cc-about .ccab-ppp-caption{grid-column:1}
+.cc-about .ccab-ppp-caption h3{border:0}
+.cc-about .ccab-orbit .ccab-ring text{font-size:17px}
+.cc-about .ccab-value-list{grid-template-columns:1fr}
+.cc-about .ccab-value-list li{border-right:0}
+}
+@media (prefers-reduced-motion:reduce){
+
+  .cc-about *{animation:none!important;transition:none!important}
+}
+
+body[data-page="about"] #main{background:var(--color-cream);color:var(--text-primary)}
+:root[data-theme="dark"] body[data-page="about"] #main{background:var(--surface-page)}
+:root[data-theme="dark"] .cc-about{--cream:var(--surface-page);--about-accent-text:var(--color-warm-beige)}
+:root[data-theme="dark"] .cc-about .ccab-closing .ccab-bn{color:var(--color-warm-beige)}
+.cc-about .ccab-ph{--t:var(--color-graphite)}
+.cc-about .ccab-ph.ccab-forest,.cc-about .ccab-ph.ccab-clay,.cc-about .ccab-ph.ccab-sage{--t:var(--color-gallery-white)}
+.cc-about .ccab-ph img{max-width:none}
+.cc-about .ccab-dots button{width:44px;height:44px}
+.cc-about .ccab-line>span{overflow-wrap:normal}
+.cc-about .ccab-title h1{max-width:100%}
+@media(max-width:700px){.cc-about .ccab-title h1{font-size:clamp(2rem,9vw,2.6rem)}.cc-about .ccab-edit-title h2{font-size:clamp(1.8rem,7.6vw,2rem)}.cc-about .ccab-hero-left .ccab-circle::after{white-space:normal}}
+@media(prefers-reduced-motion:reduce){.cc-about.cc-about-js .ccab-rise .ccab-line>span{transform:none}.cc-about.cc-about-js .ccab-grow{opacity:1;scale:1}}

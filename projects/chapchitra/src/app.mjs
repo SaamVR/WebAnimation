@@ -1,3 +1,4 @@
+import {aboutMarkup,mountAbout} from './about-content.mjs';
 import { journalEditorial, articleEditorial } from './journal-editorial.mjs';
 import { DEMO_SIZES, DEMO_COLORS, variantKey, readVariantKey, colorLabel } from './demo-variants.mjs';
 import { mountOriginalThemeToggle } from './illustrated-theme-toggle.mjs';
@@ -681,10 +682,7 @@ async function boot(){
  }
  function journal(){return journalEditorial(articlePreviews,printSilhouette);}
  function article(){return articleEditorial(articlePreviews,printSilhouette,qs.get('slug')||document.body.dataset.journalSlug||null);}
- function about(){
-  return pageTop('PEOPLE · PLACES · PRINTS','The Living Print Studio','CHAPCHITRA is an evolving editorial vision for wearable art, illustration and printmaking in a Bangladeshi creative context.')+
-  '<section class="wrap route-content about-layout"><div><p class="eyebrow">OUR PERSPECTIVE</p><h2>Culture, drawn into everyday life.</h2><p>People, places, and prints form the framework for the studio’s visual world. This page is a foundation for the owner-approved origin story, original artwork and printmaking references.</p><p>Until final copy arrives, we avoid inventing a founder biography, workshop location or sourcing claims.</p><a class="text-link" href="/journal/">Read the Journal ↗</a></div><div class="about-visual">'+printSilhouette(2)+'</div></section><section id="street-story" class="wrap route-content"><h2>Scenes from the street</h2><p>The original owner-supplied layered street illustration is shown here as a provisional, static artwork. C09 animation will be designed and approved separately.</p><img class="about-street" src="/assets/street-owner-provisional.svg" width="1920" height="700" loading="lazy" decoding="async" alt="Provisional original layered illustration of CHAPCHITRA shops, a neighborhood street and a tea stall."></section>';
- }
+ function about(){return aboutMarkup();}
  function productVariantFields(){
   return '<div class="detail-variants"><fieldset class="detail-variant-group"><legend>Garment size <small>Demo selection</small></legend><div class="detail-size-options">'+
    DEMO_SIZES.map(size=>'<label class="detail-size-option"><input type="radio" name="detailSize" value="'+size+'"><span>'+size+'</span></label>').join('')+
@@ -742,6 +740,7 @@ async function boot(){
  try{const saved=JSON.parse(localStorage.getItem('chapchitra-v3-sample-favorites')||'[]');if(Array.isArray(saved))favoritesState=new Set(saved.filter(s=>catalog.some(p=>p.id===s)))}catch{}
  if(!app)throw Error('App root missing');
  app.innerHTML=header()+'<main id="main">'+mainPage()+'</main>'+footer();
+ if(route==='about')mountAbout();
   // Hydration restores the existing count without replaying the stamp.
   let renderedBagCount=demoBagCount();
  // Native CSS sticky handles alignment; optional ?navdebug=1 is read-only.
